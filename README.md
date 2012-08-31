@@ -13,19 +13,21 @@ Features
 * Object oriented development
 * Easy managing of complex scenes
 * Hierarchy of nodes, maintaining their absolute matrix
-* Mouse and touch events
+* Mouse and touch events, seamlessly for the developer (just define a onClick event on a node or the scene, the framework take care of the rest)
 * Mouse over/out/click/dblclick events on nodes
 * Draggable attribute
 * Resizable attribute
 * Powerful animated sprites with event handlers
 * Powerful and easy to use animation framework with event handlers
 * Asynchronous image loading
-* Sharing of image between several nodes to optimize the memory
+* Sharing of image between several nodes to optimize the memory consumption
+* spritesheet and tiles images
 * Fast collision detection
 * Traverser class to quicly find nodes with condition
 * Display ratio to render the same content on different screen sizes
 * Powerful particle system
-* Text rendering
+* More than 20 events for nodes, scene and animations
+* Easily extension of CGSGNode and framework
 * Lots of useful functions
 * ...
 
