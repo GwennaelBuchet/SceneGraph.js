@@ -4,7 +4,9 @@ cgSceneGraph
 The cgSceneGraph is a powerful and very easy-to-use Scene Graph framework written in JavaScript for the <canvas> tag in HTML5
 It's full oriented object to ease the development of your applications and games.
 
-It has been designed to be used on professional application as well as for game development.
+Since the start of the project, it has been designed to be used on professional application as well as for game development.
+
+Feel free to share your extensions or to publish a link to your projects using the cgSceneGraph :)
 
 Features
 ========
@@ -29,7 +31,7 @@ Features
 
 Why to offer the cgSceneGraph as an open source project ?
 =========================================================
-Because :
+For a lot of excellent reasons :) :
 * we think innovation has to be shared to be really innovating
 * we trust in our team and the quality of its work
 * we are convinced that everyone is able to use and extend it
