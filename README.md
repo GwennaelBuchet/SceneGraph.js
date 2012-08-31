@@ -6,21 +6,22 @@ It's full oriented object to ease the development of your applications and games
 
 Features
 ========
-* managing of complex or simple scene
-* mouse and touch events
-* mouse over/out/click/dblclick events on nodes
-* draggable attribute
-* resizable attribute
-* powerful animated sprites with event handlers
-* powerful and easy to use animation framework with event handlers
-* asynchronous image loading
-* sharing of image between several nodes to optimize the memory
-* fast collision detection
-* traverser class to quicly find nodes with condition
-* display ratio to render the same content on different screen sizes
-* powerful particle system
-* text rendering
-* and a lots of useful functions
+* Object oriented development
+* Managing of complex or simple scene
+* Mouse and touch events
+* Mouse over/out/click/dblclick events on nodes
+* Draggable attribute
+* Resizable attribute
+* Powerful animated sprites with event handlers
+* Powerful and easy to use animation framework with event handlers
+* Asynchronous image loading
+* Sharing of image between several nodes to optimize the memory
+* Fast collision detection
+* Traverser class to quicly find nodes with condition
+* Display ratio to render the same content on different screen sizes
+* Powerful particle system
+* Text rendering
+* Lots of useful functions
 * ...
 
 LICENSE
