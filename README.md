@@ -9,7 +9,8 @@ It has been designed to be used on professional application as well as for game 
 Features
 ========
 * Object oriented development
-* Managing of complex or simple scene
+* Easy managing of complex scenes
+* Hierarchy of nodes, maintaining their absolute matrix
 * Mouse and touch events
 * Mouse over/out/click/dblclick events on nodes
 * Draggable attribute
