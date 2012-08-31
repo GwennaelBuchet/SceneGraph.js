@@ -12,9 +12,10 @@ Features
 ========
 * Object oriented development
 * Easy managing of complex scenes
-* Hierarchy of nodes, maintaining their absolute matrix
+* Hierarchy of nodes, keeping a trace of their absolute transformation matrix
 * Mouse and touch events, seamlessly for the developer (just define a onClick event on a node or the scene, the framework take care of the rest)
 * Mouse over/out/click/dblclick events on nodes
+* Multi-selection
 * Draggable attribute
 * Resizable attribute
 * Powerful animated sprites with event handlers
@@ -26,8 +27,10 @@ Features
 * Traverser class to quicly find nodes with condition
 * Display ratio to render the same content on different screen sizes
 * Powerful particle system
+* Color manipulation
 * More than 20 events for nodes, scene and animations
 * Easily extension of CGSGNode and framework
+* Use of RequestAnimationFrame to correctly synchronize the rendering pass with the browser
 * Lots of useful functions
 * ...
 
