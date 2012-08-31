@@ -27,6 +27,14 @@ Features
 * Lots of useful functions
 * ...
 
+Why to offer the cgSceneGraph as an open source project ?
+=========================================================
+Because :
+* we think innovation has to be shared to be really innovating
+* we trust in our team and the quality of its work
+* we are convinced that everyone is able to use and extend it
+* we are very exciting to see what can people do with it :)
+
 LICENSE
 =======
 The cgSceneGraph is under a slightly modified MIT license, described as below :
