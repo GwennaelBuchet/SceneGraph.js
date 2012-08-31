@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Cgscenegraph : Canvas HTML5 Framework" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Cgscenegraph</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/GwennaelBuchet/cgSceneGraph">View on GitHub</a>
+
+          <h1 id="project_title">Cgscenegraph</h1>
+          <h2 id="project_tagline">Canvas HTML5 Framework</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/GwennaelBuchet/cgSceneGraph/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/GwennaelBuchet/cgSceneGraph/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>cgSceneGraph</h3>
+
+<p>The cgSceneGraph is a powerful and very easy-to-use Scene Graph framework written in JavaScript for the &lt;canvas&gt; tag in HTML5
+It's full oriented object to ease the development of your applications and games.</p>
+
+<p>Since the start of the project, it has been designed to be used on professional application as well as for game development.</p>
+
+<p>Feel free to share your extensions or to publish a link to your projects using the cgSceneGraph :)</p>
+
+<h3>Features</h3>
+
+<ul>
+<li>Object oriented development</li>
+<li>Easy managing of complex scenes</li>
+<li>Hierarchy of nodes, keeping a trace of their absolute transformation matrix</li>
+<li>Mouse and touch events, seamlessly for the developer (just define a onClick event on a node or the scene, the framework take care of the rest)</li>
+<li>Mouse over/out/click/dblclick events on nodes</li>
+<li>Multi-selection</li>
+<li>Draggable attribute</li>
+<li>Resizable attribute</li>
+<li>Powerful animated sprites with event handlers</li>
+<li>Powerful and easy to use animation framework with event handlers</li>
+<li>Asynchronous image loading</li>
+<li>Sharing of image between several nodes to optimize the memory consumption</li>
+<li>spritesheet and tiles images</li>
+<li>Fast collision detection</li>
+<li>Traverser class to quicly find nodes with condition</li>
+<li>Display ratio to render the same content on different screen sizes</li>
+<li>Powerful particle system</li>
+<li>Color manipulation</li>
+<li>More than 20 events for nodes, scene and animations</li>
+<li>Easily extension of CGSGNode and framework</li>
+<li>Use of RequestAnimationFrame to correctly synchronize the rendering pass with the browser</li>
+<li>Lots of useful functions</li>
+<li>...</li>
+</ul><h3>Example of code</h3>
+
+<pre><code>// create a text node at position (20, 10)
+var textNode = new CGSGNodeText(20, 10, "my text...");
+//add some attributes to the node
+textNode.isDraggable = true;
+textNode.setSize(18);
+//add the node to the scene-graph
+this.rootNode.addChild(textNode);
+</code></pre>
+
+<p>Just as easy :D</p>
+
+<h3>Why to offer the cgSceneGraph as an open source project ?</h3>
+
+<p>For a lot of excellent reasons :) :</p>
+
+<ul>
+<li>we think innovation has to be shared to be really innovating</li>
+<li>we trust in our team and the quality of its work</li>
+<li>we are convinced that everyone is able to use and extend it</li>
+<li>we are very exciting to see what can people do with it :)</li>
+</ul><h3>LICENSE</h3>
+
+<p>The cgSceneGraph is under a slightly modified MIT license, described as below :</p>
+
+<p>Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)</p>
+
+<p>Permission is hereby granted, free of charge and for the duration of intellectual property rights, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy and modify, anywhere in the world, all or part of the Software subject to the following conditions:</p>
+
+<p>•  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization from Capgemini.”</p>
+
+<h3>Authors and Contributors</h3>
+
+<p>cgSceneGraph is designed, developed and maintained by Capgemini.
+The development of the framework is leaded by Gwennaël Buchet.</p>
+
+<h3>Support or Contact</h3>
+
+<p>Need support ? Feel freeto send me an email after to have take a look to the forums :)</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Cgscenegraph maintained by <a href="https://github.com/GwennaelBuchet">GwennaelBuchet</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
