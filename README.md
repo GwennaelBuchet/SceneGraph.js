@@ -37,10 +37,14 @@ Features
 Why to offer the cgSceneGraph as an open source project ?
 =========================================================
 For a lot of excellent reasons :) :
-* we think innovation has to be shared to be really innovating
+* we think innovation has to be shared to be really useful
 * we trust in our team and the quality of its work
-* we are convinced that everyone is able to use and extend it
+* we are convinced that it's a very powerful tool and it can help lot of people and projects
 * we are very exciting to see what can people do with it :)
+
+
+## &nbsp; 
+#### By downloading the framework, its sources or its documentation, you agree to the following license :
 
 LICENSE
 =======
