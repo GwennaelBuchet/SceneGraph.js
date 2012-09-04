@@ -1,0 +1,67 @@
+/**
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License/Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ * */
+
+cgSceneGraph Framework.
+
+=====================================================================
+TODO LIST:
+=====================================================================
+
+//- Correction. events are not launched if they are defined into the subclass (not to an instance) because they are null.
+- Correction. A double-click generate 2 onClick events before generating the onDblClik event
+- Evolution. CGSGNodeText : In-live text edition
+- Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
+
+
+=====================================================================
+HISTORY
+=====================================================================
+v0.9.7.2
+
+CHANGES:
+- Optimizization. Don't traverse the particles on the event handlers (mouse over, ...)
+- Optimizization. In the particle system, the emitters and the particles' nodes are children of the particle system.
+- Optimizization. CGSGParticleSystem, CGSGParticleEmitter and nodes of CGSGParticle get 'isClickable', 'isDraggable' and 'isResizable' to false by default.
+- Evolution. Update the particle example.
+- Optimization. OnMouseOver: check first the current _nodeMouseOver node.
+- Evolution. Add Events/Events_03_StressTest example
+- Evolution. Add of the attribute CGSGNode.isTraversable (true by default). If isTraversable===true, the node will be recursively check by the Traverser class and the pickNode method.
+- Optimization. Optimization of the CGSGTraverser class.
+- Evolution. Add of the License in header of all files in the framework
+
+---------------------------------------------------------------------
+v0.9.7.1
+
+CHANGES:
+- Evolution. New ParticlesSystem Node (first version).
+- Evolution. New particle example.
+- Evolution. Add of a "copy()" method on each node class.
+- Evolution. Add of this changeLog.txt file.
+- Evolution. New methods on the CGSGVector2D class : rotate(angle), getLength(), getSquaredLength(), normalize()
+- Evolution. Detection of the explorer version.
+- Evolution. Add of 2 new globals functions : cgsgDetectCurrentExplorer(), cgsgExist(object).
+- Evolution. Add of new functions on the cgsgColors utility : rgb2hex(r, g, b), hex2rgb(hex), hex2R(hex), hex2G(hex), hex2B(hex)
+
+
