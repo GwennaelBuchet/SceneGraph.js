@@ -23,23 +23,17 @@
  *  These Terms of Use are subject to French law.
  *
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 07/08/2012
+ * @date 10/08/2012
  *
  * Purpose :
- * Math helper functions.
- */
-CGSGMath = {
-    PI2:Math.PI * 2,
+ * class extension example
+ * */
+var Car = Locomotion.extend(
+	{
+		initialize : function (name) {
+			this._super(name);
 
-    deg2rad:function (angle) {
-        return (angle / 180.0) * Math.PI;
-    },
-
-    rad2deg:function (angle) {
-        return angle * 57.29577951308232;
-    },
-
-    fixedPoint:function (n) {
-        return (0.5 + n) << 0;
-    }
-}
+			this.power = 100;
+		}
+	}
+);

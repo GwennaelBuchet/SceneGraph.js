@@ -40,7 +40,7 @@ var CGSGSceneGraph = Object.extend(
 			this.canvas = canvas;
 
 			///// @protected //////
-			this.currentFrame = 0;
+            cgsgCurrentFrame = 0;
 
 			///// @private //////
 
@@ -73,7 +73,7 @@ var CGSGSceneGraph = Object.extend(
 		initializeGhost : function (width, height) {
 			this.ghostCanvas.height = height;
 			this.ghostCanvas.width = width;
-			this.ghostContext = this.ghostCanvas.getContext('2d');
+			cgsgGhostContext = this.ghostCanvas.getContext('2d');
 		},
 
 		/**
@@ -107,20 +107,20 @@ var CGSGSceneGraph = Object.extend(
 						node = this._listTimelines[i].parentNode;
 
 						if (node.isVisible) {
-							value = this._listTimelines[i].getValue(this.currentFrame);
+							value = this._listTimelines[i].getValue(cgsgCurrentFrame);
 							if (value !== undefined) {
-								node.evalSet(this._listTimelines[i].attribute, value);
+								node.evalSet(this._listTimelines[i].attribute, value.value);
 							}
 
 							//fire event if this is the first animation key for this timeline
 							key = this._listTimelines[i].getFirstKey();
-							if (key !== null && key.frame == this.currentFrame &&
+							if (key !== null && key.frame == cgsgCurrentFrame &&
 								this._listTimelines[i].onAnimationStart !== null) {
 								this._listTimelines[i].onAnimationStart();
 							}
 							//fire event if this is the last animation key for this timeline
 							key = this._listTimelines[i].getLastKey();
-							if (key !== null && key.frame == this.currentFrame) {
+							if (key !== null && key.frame == cgsgCurrentFrame) {
 								if (this._listTimelines[i].onAnimationEnd !== null) {
 									this._listTimelines[i].onAnimationEnd();
 								}
@@ -134,7 +134,7 @@ var CGSGSceneGraph = Object.extend(
 				this.context.save();
 				this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
 				if (this.root.isVisible) {
-					this.root.render(this.context, this.currentFrame);
+					this.root.render(this.context, cgsgCurrentFrame);
 				}
 				this.context.restore();
 			}
@@ -161,7 +161,7 @@ var CGSGSceneGraph = Object.extend(
 				}
 			}
 
-			this.currentFrame++;
+            cgsgCurrentFrame++;
 		},
 
 		/**
@@ -227,7 +227,7 @@ var CGSGSceneGraph = Object.extend(
 		pickNode : function (mousePosition, condition) {
 			//empty the current selection first
 			//this.selectedNodes = new Array();
-			this._clearContext(this.ghostContext);
+			this._clearContext(cgsgGhostContext);
 			//recursively traverse the nodes to get the selected nodes
 			if (this.root === null || this.root === undefined) {
 				return null;
@@ -236,7 +236,7 @@ var CGSGSceneGraph = Object.extend(
 				return this.root.pickNode(
 					mousePosition.copy(), //position of the cursor on the viewport
 					new CGSGScale(1, 1), //absolute scale for the nodes
-					this.ghostContext, //context for the ghost rendering
+					cgsgGhostContext, //context for the ghost rendering
 					true, //recursively ?
 					this.canvas.width / cgsgDisplayRatio.x, this.canvas.height / cgsgDisplayRatio.y,
 					//dimension of the canvas container
@@ -297,28 +297,15 @@ var CGSGSceneGraph = Object.extend(
 		 */
 		addAnimationKey : function (node, attribute, frame, value, method, precompute) {
 			//if a timeline already exist fot this nodes and attribute use it, else create a new one
-			var timeline = null;
-			//no timeline yet, create a new one
-			if (this._listTimelines.length == 0) {
-				timeline = new CGSGTimeline(node, attribute, method);
-				this._listTimelines[this._listTimelines.length] = timeline;
-			}
-			else {
-				//try to find a corresponding timeline for these nodes and attribute
-				timeline = this.getTimeline(node, attribute);
-				//if no timeline found...
-				if (timeline === null) {
-					timeline = new CGSGTimeline(node, attribute, method);
-					this._listTimelines[this._listTimelines.length] = timeline;
-				}
-			}
+			var timeline = this.getTimeline(node, attribute);
+			timeline.method = method;
 
 			//add the new key to the timeline
 			timeline.addKey(frame, value);
 
 			//if the user want to precompute the animation, do it now
 			if (precompute) {
-				timeline.computeValues(this.currentFrame, method);
+				timeline.computeValues(cgsgCurrentFrame, method);
 			}
 		},
 
@@ -337,15 +324,9 @@ var CGSGSceneGraph = Object.extend(
 		 * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
 		 */
 		animate : function (node, attribute, duration, from, to, method, delay, precompute) {
-			//remove all animation keys of this timeline
-			var timeline = this.getTimeline(node, attribute);
-			if (timeline !== null) {
-				timeline.removeAll();
-			}
-
-			this.addAnimationKey(node, attribute, this.currentFrame + delay, from,
+			this.addAnimationKey(node, attribute, cgsgCurrentFrame + delay, from,
 								 method, false);
-			this.addAnimationKey(node, attribute, this.currentFrame + delay + duration,
+			this.addAnimationKey(node, attribute, cgsgCurrentFrame + delay + duration,
 								 to, method, precompute);
 		},
 
@@ -360,7 +341,7 @@ var CGSGSceneGraph = Object.extend(
 			else {
 				for (var i = 0, len = this._listTimelines.length; i < len; ++i) {
 					if (this._listTimelines[i].getLastKey() !== null &&
-						this._listTimelines[i].getLastKey().frame <= this.currentFrame) {
+						this._listTimelines[i].getLastKey().frame <= cgsgCurrentFrame) {
 						return true;
 					}
 				}
@@ -371,7 +352,7 @@ var CGSGSceneGraph = Object.extend(
 
 		/**
 		 * @public
-		 * Return the timeline corresponding with the nodes and attribute, if exists
+		 * Return the timeline corresponding with the nodes and attribute. Create it if not exists
 		 * @param node Handle to the nodes
 		 * @param attribute String. the attribute name
 		 */
@@ -381,7 +362,11 @@ var CGSGSceneGraph = Object.extend(
 					return this._listTimelines[i];
 				}
 			}
-			return null;
+
+            //no timeline yet, create a new one
+            var timeline = new CGSGTimeline(node, attribute, "linear");
+            this._listTimelines.push(timeline);
+			return timeline;
 		}
 	}
 );

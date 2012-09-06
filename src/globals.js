@@ -29,7 +29,7 @@
  * global parameters for the application
  */
 //current version of the framework
-var cgsgVersion = "0.9.7.2";
+var cgsgVersion = "0.9.7.3";
 
 //current display ratio
 var cgsgDisplayRatio = CGSG_DEFAULT_DISPLAYRATIO;
@@ -49,3 +49,8 @@ var cgsgExplorerParams = {
 };
 
 var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
+
+//the global ghost context for fake rendering
+var cgsgGhostContext = null;
+
+var cgsgCurrentFrame = 0;

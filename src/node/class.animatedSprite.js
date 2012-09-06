@@ -211,8 +211,8 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 				this.beforeRender(context);
 
 				//compute the current slice of the current sprite
-				var slice = this.currentAnimation.slices[Math.floor(this.currentFrame)];
-				if (this.currentAnimation !== null) {
+				if (cgsgExist(this.currentAnimation)) {
+                    var slice = this.currentAnimation.slices[Math.floor(this.currentFrame)];
 					context.drawImage(
 						this.img, // image
 						slice.x, slice.y, // start position on the image

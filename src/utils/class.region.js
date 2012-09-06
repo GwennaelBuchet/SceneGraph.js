@@ -47,8 +47,8 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * Replace current relative position by this new one
 		 * */
 		translateTo : function (newX, newY) {
-			this.x = newX;
-			this.y = newY;
+			this.x = CGSGMath.fixedPoint(newX);
+			this.y = CGSGMath.fixedPoint(newY);
 		},
 
 		/**
