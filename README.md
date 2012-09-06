@@ -34,6 +34,15 @@ Features
 * Lots of useful functions
 * ...
 
+How to use examples ?
+=====================
+Each project includes a link to the framework in the 'min' folder, in its index.html file.
+So be sure to also download it, or to change the link url.
+
+As images loading is asynchronous, you need to test your projects on a HTTP server. Use which you like (Jetty, Apache, EasyPHP, ...)
+Be sure that the 'min' folder is also in the alias of your work folder in your HTTP server.
+
+
 Why to offer the cgSceneGraph as an open source project ?
 =========================================================
 For a lot of excellent reasons :) :
