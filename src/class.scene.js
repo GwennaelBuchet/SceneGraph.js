@@ -162,7 +162,6 @@ var CGSGScene = Object.extend(
 
             this._now = 0;
             this._lastUpdate = (new Date) * 1 - 1;
-            this._fpsFilter = 2;
 
             this._nodeMouseOver = null;
 

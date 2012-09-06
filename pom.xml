@@ -30,7 +30,7 @@ Any failure to comply with the above shall automatically terminate the license a
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini</groupId>
     <artifactId>cgscenegraph</artifactId>
-    <version>0.9.7.2</version>
+    <version>0.9.7.3</version>
     <name>cgSceneGraph</name>
 
     <!--
@@ -50,7 +50,7 @@ Any failure to comply with the above shall automatically terminate the license a
                     <!--
                    @see http://davidb.github.com/yuicompressor-maven-plugin/compress-mojo.html
                     -->
-                    <sourceDirectory>${project.basedir}/cgSceneGraph/</sourceDirectory>
+                    <sourceDirectory>${project.basedir}/src/</sourceDirectory>
                     <outputDirectory>${project.build.directory}</outputDirectory>
 
                     <!-- Options -->
@@ -91,6 +91,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>node/class.image.js</include>
                                 <include>node/class.background.js</include>
                                 <include>node/class.animatedSprite.js</include>
+                                <include>animation/class.particles.js</include>
                                 <include>class.scenegraph.js</include>
                                 <include>class.scene.js</include>
                             </includes>

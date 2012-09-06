@@ -30,14 +30,25 @@ TODO LIST:
 =====================================================================
 
 //- Correction. events are not launched if they are defined into the subclass (not to an instance) because they are null.
-- Correction. A double-click generate 2 onClick events before generating the onDblClik event
-- Evolution. CGSGNodeText : In-live text edition
+- Evolution. Browsers generate 2 onClick events before generating the onDblClik event.
+- Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
+- Evolution. Add notion of chains of animations.
+- Optimization. Add double buffering (render in a temporary context, and swap them)
 
 
 =====================================================================
 HISTORY
 =====================================================================
+v0.9.7.3
+
+CHANGES:
+- Correction. Correct pick node on mouse over
+- Evolution. Refactorization of some examples
+- Correction. AnimatedSprite : don't try to render if the name of the animation passed in "play" method does not exists.
+- Correction. Timeline in animation : allow to use the same animation values list for several nodes (less memory consumed)
+
+---------------------------------------------------------------------
 v0.9.7.2
 
 CHANGES:

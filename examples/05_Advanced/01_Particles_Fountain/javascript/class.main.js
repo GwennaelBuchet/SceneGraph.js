@@ -57,6 +57,10 @@ var CGMain = CGSGScene.extend(
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
 
+            this.textNode = new CGSGNodeText(10, 10, "Click on the scene to add a temporary force on Y.");
+            this.textNode.setSize(14);
+            this.rootNode.addChild(this.textNode);
+
 			//create the particle system instance
 			this.particlesSystem = new CGSGParticleSystem(0, 100); //x, y
 
@@ -88,7 +92,6 @@ var CGMain = CGSGScene.extend(
 				event.particle.initTTL(180 + Math.random() * 240);
 			};
 
-			emitter.addForce(new CGSGVector2D(0.0, -5), 200); //force vector, ttl
 			//add a force  representing the wind
 			//emitter.addForce(new CGSGVector2D(5, 0.0), null); //force vector, ttl
 
@@ -104,8 +107,6 @@ var CGMain = CGSGScene.extend(
 				var force = emitter.addForce(new CGSGVector2D(0.0, -12), 30); //force of -12 on Y (up direction), for 30 frames
 				//scope._super(event);
 			};
-
-			//emitter.addImpulse(new CGSGVector2D(0.005, 0.0), null); //origin, force vector
 
 			//launch the emitters
 			emitter.start();
