@@ -30,7 +30,7 @@ Any failure to comply with the above shall automatically terminate the license a
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini</groupId>
     <artifactId>cgscenegraph</artifactId>
-    <version>0.9.7.3</version>
+    <version>1.0.0</version>
     <name>cgSceneGraph</name>
 
     <!--
@@ -88,6 +88,8 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>node/class.node.js</include>
                                 <include>node/class.text.js</include>
                                 <include>node/class.shape.square.js</include>
+                                <include>node/class.shape.circle.js</include>
+                                <include>node/class.shape.ellipse.js</include>
                                 <include>node/class.image.js</include>
                                 <include>node/class.background.js</include>
                                 <include>node/class.animatedSprite.js</include>

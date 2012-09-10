@@ -261,13 +261,16 @@ var CGSGTimeline = Object.extend(
 
             //Here, I have precomputed values
 
-            //if frame < first frame of the values, return no value
-            if (frame < this.listValues[0].frame)
+            //if frame < first frame, return no value
+            if (frame < this.listValues[0].frame) {
                 return undefined;
+                //return this.listValues[0];
+            }
 
-            //if frame > last frame of the values (ie last key), return no value
+            //if frame > last frame (ie last key), return no value
             if (frame >= this.listValues[this.listValues.length - 1].frame) {
-                return undefined;
+                //return undefined;
+                return this.listValues[this.listValues.length - 1];
             }
 
             var index = 0;

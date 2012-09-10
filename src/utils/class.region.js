@@ -29,46 +29,46 @@
  * A CGSGPosition
  * */
 var CGSGPosition = CGSGVector2D.extend(
-	{
-		initialize : function (x, y) {
-			this._super(x, y);
-		},
+    {
+        initialize : function (x, y) {
+            this._super(x, y);
+        },
 
-		/**
-		 * @public
-		 * return a new object with these attributes
-		 */
-		copy : function () {
-			return new CGSGPosition(this.x, this.y);
-		},
+        /**
+         * @public
+         * return a new object with these attributes
+         */
+        copy : function () {
+            return new CGSGPosition(this.x, this.y);
+        },
 
-		/**
-		 * @public
-		 * Replace current relative position by this new one
-		 * */
-		translateTo : function (newX, newY) {
-			this.x = CGSGMath.fixedPoint(newX);
-			this.y = CGSGMath.fixedPoint(newY);
-		},
+        /**
+         * @public
+         * Replace current relative position by this new one
+         * */
+        translateTo : function (newX, newY) {
+            this.x = newX;
+            this.y = newY;
+        },
 
-		/**
-		 * @public
-		 * Add new coordinate to the current relative one
-		 * */
-		translateWith : function (x, y) {
-			this.x += x;
-			this.y += y;
-		},
+        /**
+         * @public
+         * Add new coordinate to the current relative one
+         * */
+        translateWith : function (x, y) {
+            this.x += x;
+            this.y += y;
+        },
 
-		/**
-		 * @public
-		 * Add new coordinate to the current relative one
-		 * */
-		translateBy : function (x, y) {
-			this.x *= x;
-			this.y *= y;
-		}
-	}
+        /**
+         * @public
+         * Add new coordinate to the current relative one
+         * */
+        translateBy : function (x, y) {
+            this.x *= x;
+            this.y *= y;
+        }
+    }
 );
 
 /**
@@ -80,11 +80,11 @@ var CGSGPosition = CGSGVector2D.extend(
  * A CGSGScale
  * */
 var CGSGScale = CGSGPosition.extend(
-	{
-		initialize : function (x, y) {
-			this._super(x, y);
-		}
-	}
+    {
+        initialize : function (x, y) {
+            this._super(x, y);
+        }
+    }
 );
 
 /**
@@ -96,67 +96,67 @@ var CGSGScale = CGSGPosition.extend(
  * A CGSGRotation
  * */
 var CGSGRotation = Object.extend(
-	{
-		initialize : function (angle) {
-			this.angle = angle;
-		},
+    {
+        initialize : function (angle) {
+            this.angle = angle;
+        },
 
-		/**
-		 * @public
-		 * return a new object with these attributes
-		 */
-		copy : function () {
-			return new CGSGRotation(this.angle);
-		},
+        /**
+         * @public
+         * return a new object with these attributes
+         */
+        copy : function () {
+            return new CGSGRotation(this.angle);
+        },
 
-		/**
-		 * @public
-		 * Replace current relative relativeRotation by this new one
-		 * */
-		rotateTo : function (newAngle) {
-			this.angle = newAngle;
-		},
+        /**
+         * @public
+         * Replace current relative relativeRotation by this new one
+         * */
+        rotateTo : function (newAngle) {
+            this.angle = newAngle;
+        },
 
-		/**
-		 * @public
-		 * Multiply this relativeScale factor by the current relative relativeScale
-		 * */
-		rotateBy : function (rotateFactor) {
-			this.multiply(rotateFactor);
-		},
+        /**
+         * @public
+         * Multiply this relativeScale factor by the current relative relativeScale
+         * */
+        rotateBy : function (rotateFactor) {
+            this.multiply(rotateFactor);
+        },
 
-		/**
-		 * @public
-		 * Add this angle to the current relative relativeRotation
-		 * */
-		rotateWith : function (angle) {
-			this.add(angle);
-		},
+        /**
+         * @public
+         * Add this angle to the current relative relativeRotation
+         * */
+        rotateWith : function (angle) {
+            this.add(angle);
+        },
 
-		/**
-		 * @public
-		 * @param angle
-		 */
-		add : function (angle) {
-			this.angle += angle;
-		},
+        /**
+         * @public
+         * @param angle
+         */
+        add : function (angle) {
+            this.angle += angle;
+        },
 
-		/**
-		 * @public
-		 * @param angle
-		 */
-		substract : function (angle) {
-			this.angle -= angle;
-		},
+        /**
+         * @public
+         * @param angle
+         */
+        substract : function (angle) {
+            this.angle -= angle;
+        },
 
-		/**
-		 * @public
-		 * @param angle
-		 */
-		multiply : function (angle) {
-			this.angle *= angle;
-		}
-	}
+        /**
+         * @public
+         * @param angle
+         */
+        multiply : function (angle) {
+            this.angle *= angle;
+        }
+    }
 );
 
 /**
@@ -168,63 +168,63 @@ var CGSGRotation = Object.extend(
  * A CGSGDimension
  * */
 var CGSGDimension = CGSGVector2D.extend(
-	{
-		initialize : function (width, height) {
+    {
+        initialize : function (width, height) {
 
-			this._super(width, height);
+            this._super(width, height);
 
-			///// @public //////
-			//alias to the x attribute
-			this.width = this.x;
-			//alias to the y attribute
-			this.height = this.y;
-		},
+            ///// @public //////
+            //alias to the x attribute
+            this.width = this.x;
+            //alias to the y attribute
+            this.height = this.y;
+        },
 
-		/**
-		 * @public
-		 * return a new object with these attributes
-		 */
-		copy : function () {
-			return new CGSGDimension(this.width, this.height);
-		},
+        /**
+         * @public
+         * return a new object with these attributes
+         */
+        copy : function () {
+            return new CGSGDimension(this.width, this.height);
+        },
 
-		/**
-		 * @public
-		 * Replace current dimension by these new ones
-		 * */
-		resizeTo : function (newWidth, newHeight) {
-			if (newWidth > 0) {
-				this.width = newWidth;
-			}
-			if (newHeight > 0) {
-				this.height = newHeight;
-			}
-		},
+        /**
+         * @public
+         * Replace current dimension by these new ones
+         * */
+        resizeTo : function (newWidth, newHeight) {
+            if (newWidth > 0) {
+                this.width = newWidth;
+            }
+            if (newHeight > 0) {
+                this.height = newHeight;
+            }
+        },
 
-		/**
-		 * Multiply current dimension by these new ones
-		 * */
-		resizeBy : function (widthFactor, heightFactor) {
-			if (widthFactor > 0) {
-				this.width *= widthFactor;
-			}
-			if (heightFactor > 0) {
-				this.height *= heightFactor;
-			}
-		},
+        /**
+         * Multiply current dimension by these new ones
+         * */
+        resizeBy : function (widthFactor, heightFactor) {
+            if (widthFactor > 0) {
+                this.width *= widthFactor;
+            }
+            if (heightFactor > 0) {
+                this.height *= heightFactor;
+            }
+        },
 
-		/**
-		 * Increase/decrease current dimention with adding values
-		 * */
-		resizeWith : function (width, height) {
-			if (this.width + width > 0) {
-				this.width += width;
-			}
-			if (this.height + height > 0) {
-				this.height += height;
-			}
-		}
-	}
+        /**
+         * Increase/decrease current dimention with adding values
+         * */
+        resizeWith : function (width, height) {
+            if (this.width + width > 0) {
+                this.width += width;
+            }
+            if (this.height + height > 0) {
+                this.height += height;
+            }
+        }
+    }
 );
 
 /**
@@ -241,26 +241,26 @@ var CGSGDimension = CGSGVector2D.extend(
  * @param height
  * */
 var CGSGRegion = Object.extend(
-	{
-		initialize : function (x, y, width, height) {
-			///// @public //////
-			this.position = new CGSGPosition(x, y);
-			this.dimension = new CGSGDimension(width, height);
-		},
+    {
+        initialize : function (x, y, width, height) {
+            ///// @public //////
+            this.position = new CGSGPosition(x, y);
+            this.dimension = new CGSGDimension(width, height);
+        },
 
-		copy : function () {
-			return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
-		},
+        copy : function () {
+            return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
+        },
 
-		add : function (region) {
-			this.position.translateWith(region.position.x, region.position.y);
-			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
-		},
+        add : function (region) {
+            this.position.translateWith(region.position.x, region.position.y);
+            this.dimension.resizeWith(region.dimension.width, region.dimension.height);
+        },
 
-		substract : function (region) {
-			this.position.translateWith(-region.position.x, -region.position.y);
-			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
-		}
-	}
+        substract : function (region) {
+            this.position.translateWith(-region.position.x, -region.position.y);
+            this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
+        }
+    }
 );
 

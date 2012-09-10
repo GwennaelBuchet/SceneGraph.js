@@ -35,11 +35,26 @@ TODO LIST:
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
 - Evolution. Add notion of chains of animations.
 - Optimization. Add double buffering (render in a temporary context, and swap them)
+- Optimization. Automatic multiple canvas for multiple layers, sharing the same scene graph.
+- Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
+- Evolution. Particle system : add a getter to the rotation of a particle
+- Optimization. Animated sprites : pre-rendered
 
 
 =====================================================================
 HISTORY
 =====================================================================
+
+v1.0.0
+
+CHANGES:
+- Evolution. Add pivotPoint to rotation of a node.
+- Evolution. Add of 2 new nodes : CGSGNodeCircle and CGSGNodeEllipse
+- Optimization. Particle system : more accurate.
+- Evolution. Particle system : add outflow parameter
+- Optimization. Images are pre-rendered, to be displayed faster each frame
+
+---------------------------------------------------------------------
 v0.9.7.3
 
 CHANGES:

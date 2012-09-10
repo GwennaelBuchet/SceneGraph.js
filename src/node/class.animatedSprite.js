@@ -81,6 +81,8 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 			this.onAnimationEnd = null;
 			this.onAnimationStart = null;
 
+            this.tmpCanvas = document.createElement('canvas');
+
 			///// INITIALIZATION //////
 			//finally load the image
 			if (this.urlImage !== null && this.urlImage != "") {
@@ -108,11 +110,30 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		_onImageLoaded : function (context) {
 			this._checkDimension();
 			this._isLoaded = true;
+            this.initShape();
 			if (this.onLoadEnd !== null) {
 				this.onLoadEnd();
 			}
 			this.render(this._context);
 		},
+
+        /**
+         * pre-render the image to optimize the perfs
+         */
+        initShape:function () {
+            this.tmpCanvas.width = this.dimension.width;
+            this.tmpCanvas.height = this.dimension.height;
+            var tmpContext = this.tmpCanvas.getContext('2d');
+
+            tmpContext.drawImage(
+                this.img, // image
+                0, 0, // start position on the image
+                this.dimension.width, this.dimension.height, // dimension on the image
+                0, 0,
+                // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
+                this.dimension.width, this.dimension.height                // dimension on the screen
+            );
+        },
 
 		/**
 		 * @private
@@ -132,6 +153,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		setImage : function (newImage) {
 			this.img = newImage;
 			this._isLoaded = true;
+            this.initShape();
 		},
 
 		/**
@@ -212,9 +234,11 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 
 				//compute the current slice of the current sprite
 				if (cgsgExist(this.currentAnimation)) {
+                    context.globalAlpha = this.globalAlpha;
+
                     var slice = this.currentAnimation.slices[Math.floor(this.currentFrame)];
 					context.drawImage(
-						this.img, // image
+                        this.img, // image
 						slice.x, slice.y, // start position on the image
 						this.currentAnimation.width, this.currentAnimation.height, // dimension of the sprite
 						0, 0,

@@ -80,8 +80,6 @@ var CGSGScene = Object.extend(
             this.canvas = canvas;
             this.context = this.canvas.getContext("2d");
 
-            ////// @protected /////////
-
             //the scene graph itself
             this.sceneGraph = new CGSGSceneGraph(this.canvas, this.context);
 
@@ -113,6 +111,10 @@ var CGSGScene = Object.extend(
             this._offsetX = 0;
             this._offsetY = 0;
             this._selectedNode = null;
+
+            //double-buffer for the temporary rendering
+            this._dblCanvas = document.createElement('canvas');
+            this._dblContext = null;
 
             ////// INITIALIZATION /////////
 
@@ -185,6 +187,10 @@ var CGSGScene = Object.extend(
             this.canvas.width = newDimension.x;
             this.canvas.height = newDimension.y;
             this.sceneGraph.setCanvasDimension(newDimension);
+
+            this._dblCanvas.width = newDimension.x;
+            this._dblCanvas.height = newDimension.y;
+            this._dblContext = this._dblCanvas.getContext('2d');
         },
 
         /**
@@ -223,6 +229,7 @@ var CGSGScene = Object.extend(
                     this.onRenderStart();
                 }
                 this.sceneGraph.render();
+
                 if (this.onRenderEnd !== null) {
                     this.onRenderEnd();
                 }
@@ -442,6 +449,7 @@ var CGSGScene = Object.extend(
                     for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                         this._selectedNode = this.sceneGraph.selectedNodes[i];
                         if (this._selectedNode !== null && this._selectedNode.isDraggable) {
+                            this._selectedNode.isMoving = true;
                             //TODO : appliquer aussi l'opposée de la rotation
                             nodeOffsetX = this._offsetX /
                                 (this._selectedNode._absoluteScale.x / this._selectedNode.scale.x);
@@ -480,6 +488,7 @@ var CGSGScene = Object.extend(
                     for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                         this._selectedNode = this.sceneGraph.selectedNodes[i];
                         if (this._selectedNode.isResizable) {
+                            this._selectedNode.isResizing = true;
                             //TODO : appliquer aussi l'opposée de la rotation
                             nodeOffsetX = this._offsetX / this._selectedNode._absoluteScale.x;
                             nodeOffsetY = this._offsetY / this._selectedNode._absoluteScale.y;
@@ -614,9 +623,11 @@ var CGSGScene = Object.extend(
                     n = this._nodeMouseOver.pickNode(this._mousePosition, null, cgsgGhostContext, false,
                         this.canvas.width, this.canvas.height, null);
 
-                    if (n === null && cgsgExist(this._nodeMouseOver.onMouseOut)) {
+                    if (n === null) {
                         this._nodeMouseOver.isMouseOver = false;
-                        this._nodeMouseOver.onMouseOut({node:this._nodeMouseOver, position:this._mousePosition});
+                        if (cgsgExist(this._nodeMouseOver.onMouseOut)) {
+                            this._nodeMouseOver.onMouseOut({node:this._nodeMouseOver, position:this._mousePosition});
+                        }
                         this._nodeMouseOver = null;
                     }
                 }
@@ -629,6 +640,7 @@ var CGSGScene = Object.extend(
                         this._nodeMouseOver.onMouseOver({node:this._nodeMouseOver, position:this._mousePosition})
                     }
                 }
+
             }
         },
 
@@ -679,9 +691,12 @@ var CGSGScene = Object.extend(
             if (this._isDrag) {
                 for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
-                    this._selectedNode.computeAbsoluteMatrix();
-                    if (this._selectedNode.onDragEnd !== null) {
-                        this._selectedNode.onDragEnd(event);
+                    if (this._selectedNode.isMoving) {
+                        this._selectedNode.isMoving = false;
+                        this._selectedNode.computeAbsoluteMatrix();
+                        if (this._selectedNode.onDragEnd !== null) {
+                            this._selectedNode.onDragEnd(event);
+                        }
                     }
                 }
                 this._isDrag = false;
@@ -690,9 +705,12 @@ var CGSGScene = Object.extend(
             if (this._isResizeDrag) {
                 for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
-                    this._selectedNode.computeAbsoluteMatrix();
-                    if (this._selectedNode.onResizeEnd !== null) {
-                        this._selectedNode.onResizeEnd(event);
+                    if (this._selectedNode.isResizing) {
+                        this._selectedNode.isResizing = false;
+                        this._selectedNode.computeAbsoluteMatrix();
+                        if (this._selectedNode.onResizeEnd !== null) {
+                            this._selectedNode.onResizeEnd(event);
+                        }
                     }
                 }
                 this._isResizeDrag = false;

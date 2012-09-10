@@ -73,12 +73,14 @@ var CGMain = CGSGScene.extend(
 		createFireEmitter : function() {
 			//first create and add an emitter to the particle system
 			var emitter = this.particlesSystem.addEmitter(
-				new CGSGRegion(100, 200, 15, 3) 	//emission area
-				, 150                               //nbParticlesMax
+                new CGSGNodeSquare(0, 0, 3, 3)
+				, new CGSGRegion(100, 200, 25, 8) 	//emission area
+				, 200                               //nbParticlesMax
 				, new CGSGVector2D(0.0, 1.0)        //initial velocity of a particle
 				, Math.PI / 8.0                     //angle area to rotate the direction vector
 				, 2.5  								//speed of animation (1.0 = normal and slow speed)
 				, 1.0   							//random range to apply to the speed of each particle
+                , 0                               //outflow
 			);
 
 			//tell the emitter how to init a particle.
@@ -104,7 +106,7 @@ var CGMain = CGSGScene.extend(
 			emitter.removeForce(emitter.gravity);
 
 			//tell the system how to render the particles for emitter (can be different for another emitter on the same system)
-			emitter.initParticles(new CGSGNodeSquare(0, 0, 3, 3));
+			//emitter.initParticles(new CGSGNodeSquare(0, 0, 3, 3));
 
 			//add an update handler, fired each time a particle position was updated by the emitter
             emitter.onUpdateParticleEnd = function (particle) {

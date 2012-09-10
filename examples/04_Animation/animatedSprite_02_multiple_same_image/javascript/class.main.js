@@ -78,9 +78,16 @@ var CGMain = CGSGScene.extend(
             this.numbers = new CGSGNodeAnimatedSprite(60, 120, null, this.context);
             this.numbers.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-            this.numbers.addAnimation("count", 20, 8, 476, 136, 34, 34, 8);
+            this.numbers.addAnimation("count", 20, 8, 476, 136, 34, 34, 4);
             this.numbers.play("count", null);
             this.rootNode.addChild(this.numbers);
+
+            this.water = new CGSGNodeAnimatedSprite(60, 180, null, this.context);
+            this.water.isDraggable = true;
+            //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+            this.water.addAnimation("wave", 2, 32, 476, 204, 34, 34, 4);
+            this.water.play("wave", null);
+            this.rootNode.addChild(this.water);
 
 
 			//now, load the image containing the sprite sheet.
@@ -96,6 +103,7 @@ var CGMain = CGSGScene.extend(
 		onImageLoaded : function () {
 			this.pingoo.setImage(this.spriteSheet);
 			this.numbers.setImage(this.spriteSheet);
+            this.water.setImage(this.spriteSheet);
 		}
 	}
 );

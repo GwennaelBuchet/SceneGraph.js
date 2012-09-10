@@ -23,67 +23,24 @@
  *  These Terms of Use are subject to French law.
  *
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 30/08/2012
+ * @date 07/07/2012
  *
  * Purpose:
- * Propose a UI logger
+ * Subclassing CGSGNode.
  *
+ * A CGSGNodeSquare represent a square
  */
-var CGSGUILogger = CGSGNode.extend(
+var CGSGNodeEllipse = CGSGNode.extend(
 	{
-		initialize : function (x, y) {
+		initialize : function (x, y, width, height) {
 			this._super(x, y, width, height);
 
 			///// @public //////
-			this.isTraversable = false;
-			this.isResizable = false;
-			this.isDraggable = true;
-
 			this.color = "#444444";
 			this.lineColor = "#222222";
-			this.lineWidth = 2;
-			this.globalAlpha = 0.6;
-			this.textSize = 12;
-			this.textColor = "white";
+			this.lineWidth = 0;
 
-			this._attributes = [];
-
-			this.classType = "CGSGUILogger";
-
-			//construct the panel
-			this._createPanel();
-		},
-
-		_createPanel : function() {
-
-		},
-
-		//set a new couple name/value to render onto the logger
-		//if an attribute already exists with that name, just update the value
-		set        : function (name, value) {
-			//if the attribute already exists,just update the value
-			var attr = null;
-			for (var a = 0; a < this._attributes[a]; a++) {
-				if (name === this._attributes[a].name) {
-					attr = this._attributes[a];
-					attr.value = value;
-					attr.nodeValue.setText(value);
-					break;
-				}
-			}
-
-			//else create it, and add it to the window
-			if (attr === null) {
-				var tnn = new CGSGNodeText(10, 10, name);
-				var tnv = new CGSGNodeText(100, 10, value);
-				tnn.setSize(this.textSize);
-				tnn.color = this.textColor;
-				tnv.setSize(this.textSize);
-				tnv.color = this.textColor;
-				attr = {name : name, value : value, nodeName : tnn, nodeValue : tnv};
-				this._attributes.push(attr);
-			}
-
+			this.classType = "CGSGNodeEllipse";
 		},
 
 		/**
@@ -95,24 +52,33 @@ var CGSGUILogger = CGSGNode.extend(
 			this.beforeRender(context);
 
 			context.globalAlpha = this.globalAlpha;
-			//draw this zone
-			context.fillStyle = this.color;
-			context.strokeStyle = this.lineColor;
-            context.lineWidth = this.lineWidth;
 
-            var rectWidth = 200;
-            var rectHeight = 100;
-            var rectX = 189;
-            var rectY = 50;
-            var cornerRadius = 50;
+            var centerX = this.dimension.width / 2;
+            var centerY = this.dimension.height / 2;
 
             context.beginPath();
-            context.moveTo(rectX, rectY);
-            context.lineTo(rectX + rectWidth - cornerRadius, rectY);
-            context.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);
-            context.lineTo(rectX + rectWidth, rectY + rectHeight);
+
+            context.moveTo(centerX, 0); // A1
+
+            context.bezierCurveTo(
+                this.dimension.width, 0, // C1
+                this.dimension.width, this.dimension.height, // C2
+                centerX, this.dimension.height); // A2
+
+            context.bezierCurveTo(
+                0, this.dimension.height, // C3
+                0, 0, // C4
+                centerX, 0); // A1
+
+            context.fillStyle = this.color;
             context.fill();
-            context.stroke();
+            if (this.lineWidth > 0) {
+                context.lineWidth = this.lineWidth;
+                context.strokeStyle = this.lineColor;
+                context.stroke();
+            }
+
+            context.closePath();
 
 			//restore state
 			this.afterRender(context);
@@ -123,23 +89,14 @@ var CGSGUILogger = CGSGNode.extend(
 		 * @return a copy of this node
 		 */
 		copy : function () {
-			var node = new CGSGUILogger(this.position.x, this.position.y);
+			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
+										  this.dimension.height);
 			//call the super method
 			node = this._super(node);
-
-			node.isTraversable = this.isTraversable;
-			node.isResizable = this.isResizable;
-			node.isDraggable = this.isDraggable;
 
 			node.color = this.color;
 			node.lineColor = this.lineColor;
 			node.lineWidth = this.lineWidth;
-			node.globalAlpha = this.globalAlpha;
-
-			for (var i = 0; i < this._attributes.length; i++) {
-				node.setAttribute(this._attributes[i].name, this._attributes[i].value);
-			}
-
 			return node;
 		}
 	}
