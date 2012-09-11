@@ -1,0 +1,397 @@
+html {
+    background: #494949;
+    margin: 0 0 0 -1px;
+    padding: 0;
+    overflow-Y: scroll;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: table;
+    width: 100%;
+}
+
+body {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+}
+
+p {
+    letter-spacing: normal;
+    line-height: 20px;
+}
+
+.bigTitle {
+	font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 46px;
+    line-height: 1.5em;
+    font-family: Anton, sans-serif;
+    color: #fff;
+    margin: 25px 0 10px 0;
+    clear: both;
+}
+
+.tinyText {
+	font-size: 12px;
+}
+
+h1 {
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	font-size: 30px;
+	line-height: 1.2em;
+	font-family: Anton, sans-serif;
+	color: #00a9ff;
+	margin: 10px 0 0px 0;
+	clear: both;
+}
+
+h2 {
+	font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 1.2em;
+    font-family: Anton, sans-serif;
+    color: #00a9ff;
+    margin: 10px 0 0px 0;
+    clear: both;
+}
+
+h3 {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 1.2em;
+    font-family: Anton, sans-serif;
+    color: #00a9ff;
+    margin: 15px 0 3px 0;
+    clear: both;
+}
+
+h4 {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: inherit;
+    line-height: 1.1em;
+    font-family: Arial, sans-serif;
+    color: #00a9ff;
+    clear: both;
+}
+
+.blueText {
+	color: #00a9ff;
+}
+.whiteText {
+	color: #fff;
+}
+.grayText {
+	color:#b7b7b7;
+}
+
+
+a:link, a:visited {
+    color: #008adb;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fa720a;
+    text-decoration: underline;
+}
+
+#wrapper {
+    background: transparent url(../img/css/page-vbg.jpg) repeat-y scroll 50% 0px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+body {
+    background-color: #494949;
+}
+
+#wrapper {
+    border-top: 1px solid #7b7b7b;
+}
+
+#topWrapper {
+    width: 100%;
+    height: 120px;
+    background-color: #000;
+    background-image: url(../img/css/topWrapper-bg.jpg);
+    background-position: center top;
+    background-repeat: repeat-x;
+}
+
+#topBanner {
+    width: 960px;
+    margin: 0 auto;
+    height: 120px;
+    background-image: url(../img/css/topBanner.jpg);
+    background-repeat: no-repeat;
+}
+
+#topnav {
+    background: transparent url('../img/css/hmenu.jpg') repeat-x top left;
+}
+
+#topnav {
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#topnav ul {
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    height: 40px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+#topnav ul li {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    background: transparent url('../img/css/hmenu.jpg') repeat-x top left;
+
+}
+
+#topnav ul li a {
+    display: block;
+    float: left;
+    color: #efefef;
+    text-decoration: none;
+    padding: 0px 50px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+#topnav ul li a:hover, #topnav li#current a {
+    color: #00a9ff;
+    background: transparent url('../img/css/hmenu-sel.jpg') repeat-x top left;
+}
+
+#topnav ul {
+    width: 960px;
+}
+
+.downloadLink {
+    padding-top: 40px;
+    position: relative;
+    float: right;
+}
+
+.downloadLink a {
+    padding: 10px;
+}
+
+body {
+    background-position: center 160px;
+}
+
+#bg {
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    background-image: url(../img/css/hat.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+#header {
+    margin: 0 auto;
+    min-height: 30px;
+    height: 30px;
+    width: 960px;
+}
+
+#page {
+    background: transparent url(../img/css/page-bg.jpg) no-repeat center top;
+}
+
+#container {
+    margin: 0 auto;
+    width: 960px;
+}
+
+#content {
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
+    min-height: 100px;
+}
+
+
+#pageFooter {
+    margin: 0 auto;
+    height: 26px;
+    padding: 0;
+    background: transparent url(../img/css/footerWrapper-bg.png) no-repeat scroll center top;
+}
+
+#footerWrapper {
+    width: 100%;
+    height: 200px;
+    background-color: #222222;
+    border-bottom: 40px solid #000;
+}
+
+.footerShadow {
+    margin: 0 auto;
+	margin-top: -19px;
+    padding: 0;
+	padding-bottom: 20px;
+	height:26px;
+    background: transparent url(../img/home_shadow.png) no-repeat scroll center top;
+}
+
+#footerBanner {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.footerBlock {
+    width: 300px;
+    padding-top: 1px;
+    margin-left: 20px;
+}
+
+.footerBlock h1 {
+    color: #FFFFFF;
+}
+
+.footerBlock a:link, #footer a:visited {
+    color: #EEEEEE;
+}
+
+.footerBlock a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#right {
+    width: 200px;
+    padding: 10px 20px 20px 20px;
+    float: left;
+}
+
+#center {
+	width: 940px;
+	padding: 10px 20px 20px 20px;
+	float: left;
+}
+
+#content p {
+    margin-top: 10px;
+    text-align: justify;
+}
+
+#sidebar ul.vmenu {
+    list-style: none;
+    text-align: left;
+    margin: 7px 0px 8px 0px;
+    padding: 0;
+    text-decoration: none;
+    border-top: 1px solid #a0a0a0;
+}
+
+#sidebar ul.vmenu li {
+    list-style: none;
+    padding: 4px 0 4px 0px;
+    margin: 0 2px;
+    border-bottom: 1px solid #a0a0a0;
+}
+
+#sidebar ul.vmenu li a {
+    text-decoration: none;
+    color: #d0d0d0;
+}
+
+#sidebar ul.vmenu li a:hover {
+    color: #00a9ff;
+}
+
+#sidebar ul.vmenu ul {
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+#sidebar ul.vmenu ul li {
+    border: none;
+}
+
+hr {
+    color: #494949;
+    background-color: #494949;
+    height: 1px;
+    border: 0;
+    width: 100%;
+    text-align: left;/*this will align it for IE*/
+    margin: 0 auto 0 0; /*this will align it left for Mozilla*/
+    margin-bottom: 10px;
+}
+
+a img {
+    border: none;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+
+#homepub {
+ 	width: 100%;
+    height: 410px;
+    background-color: #222222;
+	margin-bottom: 35px;
+}
+
+#homepubBanner {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.homepubBlock {
+    width: 300px;
+    padding-top: 1px;
+    margin-right: 20px;
+	float:left;
+}
+
+#tryIt {
+    width: 200px;
+	height: 150px;
+    padding-top: 1px;
+    margin-left: 20px;
+	float:right;
+	background-color:#2d2d2d;
+	border:0px;
+}
