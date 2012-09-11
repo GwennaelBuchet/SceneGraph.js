@@ -366,6 +366,14 @@ a img {
 	float: right;
 }
 
+.welcomeText {
+width: 420px;	
+}
+.welcomeCanvas {
+width: 480px;
+padding-top:20px;
+padding-right:20px;	
+}
 
 #homepub {
  	width: 100%;

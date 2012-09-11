@@ -14,9 +14,13 @@
     <meta name="copyright" content="Capgemini industries et Distribution"/>
     <meta name="abstract" content="cgSceneGraph framework html 5"/>
     <meta name="MSSmartTagsPreventParsing" content="true"/>
+    
+    <meta name="viewport"
+          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
 
     <link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
     <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
+    
 </head>
 <body>
 <!-- top wrapper -->
@@ -69,7 +73,7 @@
                 <!--  content -->
                 <div id="content">
                     <div id="center">
-                        <div id="welcome">
+                        <div class="welcomeText alignleft">
                             <div class="bigTitle">cgSceneGraph</div>
                             <p>The cgSceneGraph is a powerful and very easy-to-use Scene Graph framework written in JavaScript for the <em>&lt;canvas&gt;</em> tag in HTML5.<br /> It's full oriented object to ease the development of your applications and games.</p>
 <p>
@@ -77,6 +81,10 @@ Since the start of the project, it has been designed to be used on professional 
 <p>
 Feel free to share your extensions or to publish a link to your projects using the cgSceneGraph :)?</p>
                             <p style="clear:both"/>
+                        </div>
+                        
+                        <div class="welcomeCanvas alignright">
+                            <canvas id="scene" width="480" height="320"> Oups... Your browser does not support HTML5 canvas tag ... :( <br />Please, try again with a correct browser (Chrome, Firefox, IE10, Opera, ...)</canvas>
                         </div>
                     </div>
                     
@@ -153,5 +161,12 @@ Feel free to share your extensions or to publish a link to your projects using t
         <div class="clear" style="height:4px"></div>
     </div>
 </div>
+
+<script type="text/javascript" src="js/cgscenegraph_1.0.0.min.js"></script>
+<script type="text/javascript" src="js/class.main.js"></script>
+<script type="text/javascript">
+    var canvasScene = document.getElementById("scene");
+    var game = new CGMain(canvasScene);
+</script>
 </body>
 </html>
