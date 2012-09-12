@@ -234,6 +234,8 @@ body {
     margin: 0 auto;
     text-align: left;
     min-height: 100px;
+	padding-left:10px;
+	padding-right:10px;
 }
 
 
@@ -292,13 +294,23 @@ body {
 
 #center {
 	width: 940px;
-	padding: 10px 20px 20px 20px;
+	padding: 10px 10px 20px 10px;
 	float: left;
 }
 
 #content p {
     margin-top: 10px;
     text-align: justify;
+}
+
+#sidebar {
+	width:200px;
+	margin-right:10px;	
+}
+
+#sidebar a:hover, #sidebar li#current a {
+    color: #00a9ff;
+	/*background-color:#141414;*/
 }
 
 #sidebar ul.vmenu {
@@ -311,10 +323,8 @@ body {
 }
 
 #sidebar ul.vmenu li {
-    list-style: none;
-    padding: 4px 0 4px 0px;
-    margin: 0 2px;
-    border-bottom: 1px solid #a0a0a0;
+	padding: 4px 0 4px 0px;
+	margin: 0 2px;
 }
 
 #sidebar ul.vmenu li a {
@@ -403,3 +413,8 @@ padding-right:20px;
 	background-color:#2d2d2d;
 	border:0px;
 }
+
+.DocumentationText {
+	width : 740px
+}
+

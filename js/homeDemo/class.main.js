@@ -64,6 +64,40 @@
 			this.squareNode.color = "red";
 
 			this.rootNode.addChild(this.squareNode);
+			
+			//create bees without image.
+			//The image will be loaded just after and common to all bees
+			this.createBees();
+			
+			
+			//now, load the image containing the sprite sheet.
+			//The affectation to the sprite will be done in the loaded handler function
+			this.spriteBee = new Image();
+			this.spriteBee.onload = this.onImageLoaded();
+			this.spriteBee.src = "js/homeDemo/bee.png";
+		},
+		
+		createBees : function() {
+			this.bees = [];
+			for (var b=0; b<30; b++) {
+				var bee = new CGSGNodeAnimatedSprite(60, 60, null, this.context);
+				bee.isDraggable = true;
+				//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+				bee.addAnimation("fly", 6, 3, 0, 0, 16, 16, 1);
+				bee.play("fly", null);
+				this.rootNode.addChild(bee);
+				
+				this.bees.push(bee);
+			}
+		},
+		
+		/**
+		 * once the image is loaded, set it to the sprites
+		 */
+		onImageLoaded : function () {
+			for (var b=0; b<this.bees.length; b++) {
+				this.bees[b].setImage(this.spriteBee);
+			}
 		}
 
 	}
