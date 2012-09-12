@@ -324,9 +324,9 @@ var CGSGSceneGraph = Object.extend(
 		 * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
 		 */
 		animate : function (node, attribute, duration, from, to, method, delay, precompute) {
-			this.addAnimationKey(node, attribute, cgsgCurrentFrame + delay, from,
+			this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay), from,
 								 method, false);
-			this.addAnimationKey(node, attribute, cgsgCurrentFrame + delay + duration,
+			this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay + duration),
 								 to, method, precompute);
 		},
 
