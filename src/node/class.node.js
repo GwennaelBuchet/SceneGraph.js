@@ -161,7 +161,7 @@ var CGSGNode = Object.extend(
          * @return {CGSGRegion}
          */
         getRegion:function () {
-            return new CGSGRegion(this.position.x, this.position.y, this.getWidth(), this.getHeight());
+            return new CGSGRegion(this.position.x, this.position.y, this.getAbsoluteWidth(), this.getAbsoluteHeight());
         },
 
         //// RENDERING MANIPULATION //////
@@ -759,14 +759,27 @@ var CGSGNode = Object.extend(
             return this._absolutePosition.x;
         },
         getAbsoluteRight:function () {
-            return this._absolutePosition.x + this.dimension.width * this._absoluteScale.x;
+            return this._absolutePosition.x + this.getAbsoluteWidth();
         },
         getAbsoluteTop:function () {
             return this._absolutePosition.y;
         },
         getAbsoluteBottom:function () {
-            return this._absolutePosition.y + this.dimension.height * this._absoluteScale.y;
+            return this._absolutePosition.y + this.getAbsoluteHeight();
         },
+	    getAbsoluteWidth:function () {
+		    return this.getWidth() * this._absoluteScale.x;
+	    },
+	    getAbsoluteHeight:function () {
+		    return this.getHeight() * this._absoluteScale.y;
+	    },
+	    getWidth:function () {
+		    return this.dimension.width;
+	    },
+
+	    getHeight:function () {
+		    return this.dimension.height;
+	    },
 
         /**
          * @public
@@ -828,14 +841,6 @@ var CGSGNode = Object.extend(
             }
 
             return false;
-        },
-
-        getWidth:function () {
-            return this.dimension.width * this._absoluteScale.x;
-        },
-
-        getHeight:function () {
-            return this.dimension.height * this._absoluteScale.y;
         },
 
         /**

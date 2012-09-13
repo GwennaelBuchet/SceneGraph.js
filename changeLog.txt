@@ -45,6 +45,16 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+
+v1.0.1
+
+CHANGES:
+- Evolution. Add CGSGNode::getAbsoluteWidth() and getAbsoluteHeight().
+- Correction. Force fixed point on delay and time for animation timeline.
+- Evolution. Add information on onClick and onDblClick events on Node and Scene
+
+
+---------------------------------------------------------------------
 v1.0.0
 
 CHANGES:

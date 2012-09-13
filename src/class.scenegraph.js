@@ -301,7 +301,7 @@ var CGSGSceneGraph = Object.extend(
 			timeline.method = method;
 
 			//add the new key to the timeline
-			timeline.addKey(frame, value);
+			timeline.addKey(CGSGMath.fixedPoint(frame), value);
 
 			//if the user want to precompute the animation, do it now
 			if (precompute) {
