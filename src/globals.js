@@ -29,7 +29,7 @@
  * global parameters for the application
  */
 //current version of the framework
-var cgsgVersion = "0.9.8.0";
+var cgsgVersion = "1.0.1";
 
 //current display ratio
 var cgsgDisplayRatio = CGSG_DEFAULT_DISPLAYRATIO;
