@@ -121,10 +121,11 @@ var CGSGSceneGraph = Object.extend(
 							//fire event if this is the last animation key for this timeline
 							key = this._listTimelines[i].getLastKey();
 							if (key !== null && key.frame == cgsgCurrentFrame) {
+								this._listTimelines[i].removeAll();
 								if (this._listTimelines[i].onAnimationEnd !== null) {
 									this._listTimelines[i].onAnimationEnd();
 								}
-								this._listTimelines[i].removeAll();
+
 							}
 						}
 					}

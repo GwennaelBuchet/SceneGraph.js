@@ -51,7 +51,8 @@ v1.0.1
 CHANGES:
 - Evolution. Add CGSGNode::getAbsoluteWidth() and getAbsoluteHeight().
 - Correction. Force fixed point on delay and time for animation timeline.
-- Evolution. Add information on onClick and onDblClick events on Node and Scene
+- Evolution. Add information on onClick and onDblClick events on Node and Scene.
+- Correction. Timeline : at the end of an animation, delete all keys before calling event onAnimationEnd.
 
 
 ---------------------------------------------------------------------
