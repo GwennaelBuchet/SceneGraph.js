@@ -394,7 +394,7 @@ var CGSGScene = Object.extend(
                 //execute the action binded with the click event
                 if (this._selectedNode.isClickable) {
                     if (cgsgExist(this._selectedNode.onClick)) {
-                        this._selectedNode.onClick({node:this._nodeMouseOver, position:this._mousePosition.copy()})
+                        this._selectedNode.onClick({node:this._selectedNode, position:this._mousePosition.copy()})
                     }
                     else if (this._selectedNode.isDraggable === false && this._selectedNode.isResizable === false) {
                         this.deselectAll();
@@ -738,10 +738,10 @@ var CGSGScene = Object.extend(
             this._mousePosition = cgsgGetCursorPosition(event, this.canvas);
             this._selectedNode = this.sceneGraph.pickNode(this._mousePosition);
             if (cgsgExist(this._selectedNode) && this._selectedNode.onDblClick !== null) {
-                this._selectedNode.onDblClick({node:this._nodeMouseOver, position:this._mousePosition.copy()});
+                this._selectedNode.onDblClick({node:this._selectedNode, position:this._mousePosition.copy()});
             }
             else if (this.onSceneDblClickEnd !== null) {
-                this.onSceneDblClickEnd({node:this._nodeMouseOver, position:this._mousePosition.copy()});
+                this.onSceneDblClickEnd({node:this._selectedNode, position:this._mousePosition.copy()});
             }
             return this._selectedNode;
         },
