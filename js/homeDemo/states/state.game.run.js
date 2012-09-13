@@ -19,10 +19,11 @@ var StateGameRun = Object.extend(
 			this.nbLive = 6;
 			this.speed = 1;
 
-			this.maxBees = 1;
+			this.maxBees = 10;
 			this.bees = [];
-			this.maxClouds = 3;
+			this.maxClouds = 5;
 			this.clouds = [];
+			this.flowers = [];
 
 			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight);
 		},
@@ -57,10 +58,9 @@ var StateGameRun = Object.extend(
 			}
 
 			var bindKillBee = this.killBee.bind(this);
-
 			//init bees
 			for (var b = 0; b < this.maxBees; b++) {
-				var bee = new Bee(-30, Math.random() * 200, this.context, this, b);
+				var bee = new BeeNode(-30, Math.random() * 200, this.context, this, b);
 				bee.onClick = bindKillBee;
 
 				this.rootNode.addChild(bee);

@@ -6,7 +6,7 @@
  * Time: 11:52
  * To change this template use File | Settings | File Templates.
  */
-var Bee = CGSGNodeAnimatedSprite.extend(
+var BeeNode = CGSGNodeAnimatedSprite.extend(
 	{
 		initialize : function(x, y, context, parentState, id) {
 			this._super(x, y, null, context);
@@ -33,12 +33,11 @@ var Bee = CGSGNodeAnimatedSprite.extend(
 
 		initPosAndSpeed : function() {
 			this.currentPos = 0;
-			var x = CGSGMath.fixedPoint(50 + Math.random() * 20);
-			var y = CGSGMath.fixedPoint(Math.random() * canvasWidth);
+			var x = CGSGMath.fixedPoint(-200 + Math.random() * 180);
+			var y = CGSGMath.fixedPoint(Math.random() * (canvasWidth * 0.8));
 			this.translateTo(x, y);
 			this.speed = CGSGMath.fixedPoint(150 + Math.random() * 100);
 		},
-
 
 		startAnim : function() {
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
@@ -49,7 +48,5 @@ var Bee = CGSGNodeAnimatedSprite.extend(
 			this.initPosAndSpeed();
 			this.startAnim();
 		}
-
-
 	}
 );

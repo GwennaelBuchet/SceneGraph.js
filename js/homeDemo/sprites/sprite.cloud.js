@@ -47,8 +47,6 @@ var CloudNode = CGSGNode.extend(
 
 			this.initShape();
 
-			this.initPosAndSpeed();
-
 			//random values for scaling animation
 			this.scaleYSpeed = 16.0 + Math.random() * 2.0;
 		},
@@ -93,8 +91,10 @@ var CloudNode = CGSGNode.extend(
 		},
 
 		start : function() {
-			this.translateTo(Math.random() * canvasWidth, 2 + Math.random() * 20);
-			sceneGraph.animate(this, "position.x", this.speed, this.position.x, canvasWidth + Math.random() * 50,
+			var x = -150 + Math.random() * canvasWidth;
+			this.translateTo(x, Math.random() * 20);
+			this.speed = CGSGMath.fixedPoint(canvasWidth * 1.5 + Math.random() * canvasWidth * 2);
+			sceneGraph.animate(this, "position.x", this.speed, x, CGSGMath.fixedPoint(canvasWidth + Math.random() * 50),
 			                   "linear", 0, true);
 
 			var bindInitPosAndSpeed = this.initPosAndSpeed.bind(this);
@@ -103,9 +103,11 @@ var CloudNode = CGSGNode.extend(
 
 		initPosAndSpeed : function() {
 			this.globalAlpha = 0.7 + Math.random() * 0.295;
-			this.translateTo(CGSGMath.fixedPoint(-150 + Math.random() * 20), CGSGMath.fixedPoint(Math.random() * 50));
+			var x = CGSGMath.fixedPoint(-150 + Math.random() * 20);
+			var y = CGSGMath.fixedPoint(Math.random() * 50);
+			this.translateTo(x, y);
 			this.currentPos = 0;
-			this.speed = CGSGMath.fixedPoint(canvasWidth * 1.5 + Math.random() * 600);
+			this.speed = CGSGMath.fixedPoint(canvasWidth * 1.5 + Math.random() * canvasWidth * 2);
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
 			                   CGSGMath.fixedPoint(canvasWidth + Math.random() * 50), "linear", 2, true);
 		},
@@ -122,36 +124,14 @@ var CloudNode = CGSGNode.extend(
 			context.globalAlpha = this.globalAlpha;
 
 			//custom rendering
-			var heightScale = -1 * Math.sin(cgsgCurrentFrame / this.scaleYSpeed) * 0.01 + 0.99;
+			var heightScale = -1 * Math.sin(cgsgCurrentFrame / this.scaleYSpeed) * 0.05 + 0.95;
 			context.scale(1.0, heightScale);
 			//render the pre-rendered canvas
 			context.drawImage(this.tmpCanvas, 0, 0);
 
-			/*this.currentPos++;
-			 if (this.currentPos >= this.speed) {
-			 this.initPosAndSpeed();
-			 }*/
-
 			//restore state
 			//always call it
 			this.afterRender(context);
-		},
-
-		/**
-		 *
-		 * @return a copy of this node
-		 */
-		copy : function() {
-			var node = new CloudNode(this.position.x, this.position.y, this.dimension.width,
-			                         this.dimension.height);
-			//call the super method
-			node = this._super(node);
-
-			//node.color = this.color;
-			//node.lineColor = this.lineColor;
-			//node.lineWidth = this.lineWidth;
-
-			return node;
 		}
 	}
 );
