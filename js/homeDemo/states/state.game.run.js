@@ -19,7 +19,7 @@ var StateGameRun = Object.extend(
 			this.nbLive = 6;
 			this.speed = 1;
 
-			this.maxBees = 20;
+			this.maxBees = 1;
 			this.bees = [];
 			this.maxClouds = 3;
 			this.clouds = [];
@@ -61,15 +61,9 @@ var StateGameRun = Object.extend(
 			//init bees
 			for (var b = 0; b < this.maxBees; b++) {
 				var bee = new Bee(-30, Math.random() * 200, this.context, this, b);
-				//bee.isDraggable = true;
-				//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-				bee.addAnimation("fly", 6, 3, 0, 0, 16, 16, 1);
-				bee.play("fly", null);
-
 				bee.onClick = bindKillBee;
 
 				this.rootNode.addChild(bee);
-
 				this.bees.push(bee);
 			}
 		},
