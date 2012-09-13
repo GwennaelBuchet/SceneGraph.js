@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,12 +31,12 @@
  */
 var SkyNode = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height) {
-            //call the initialize of the parent
+		initialize : function(x, y, width, height) {
+			//call the initialize of the parent
 			this._super(x, y, width, height);
 
-            //define the classType with the name of the class
-            this.classType = "SkyNode";
+			//define the classType with the name of the class
+			this.classType = "SkyNode";
 
 			//define attributes of your custom node
 			this.firstColor = "#7badff";
@@ -47,23 +47,23 @@ var SkyNode = CGSGNode.extend(
 		 * @override
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function (context) {
+		render : function(context) {
 			//save current state
-            //always call it
+			//always call it
 			this.beforeRender(context);
 
 			context.globalAlpha = this.globalAlpha;
 
-            // create linear gradient
-            var gradient = context.createLinearGradient(0, 0, 0, this.dimension.height);
-            gradient.addColorStop(0, this.firstColor);
-            gradient.addColorStop(1, this.lastColor);
-            context.fillStyle = gradient;
+			// create linear gradient
+			var gradient = context.createLinearGradient(0, 0, 0, this.dimension.height);
+			gradient.addColorStop(0, this.firstColor);
+			gradient.addColorStop(1, this.lastColor);
+			context.fillStyle = gradient;
 
-            context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
 
 			//restore state
-            //always call it
+			//always call it
 			this.afterRender(context);
 		},
 
@@ -71,9 +71,9 @@ var SkyNode = CGSGNode.extend(
 		 *
 		 * @return a copy of this node
 		 */
-		copy : function () {
+		copy : function() {
 			var node = new CustomNode(this.position.x, this.position.y, this.dimension.width,
-										  this.dimension.height);
+			                          this.dimension.height);
 			//call the super method
 			node = this._super(node);
 

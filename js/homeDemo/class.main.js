@@ -34,101 +34,101 @@
  * @type {Object}
  */
 var GAME_STATE = {
-    LOADING:{ instance:null },
-    HOME:{ instance:null },
-    PLAY_RUN:{ instance:null }
+	LOADING  : { instance : null },
+	HOME     : { instance : null },
+	PLAY_RUN : { instance : null }
 };
 
 var CGMain = CGSGScene.extend(
-    {
-        initialize:function (canvas) {
+	{
+		initialize : function(canvas) {
 
-            this._super(canvas);
+			this._super(canvas);
 
-            this.gameState = GAME_STATE.LOADING;
-
-
-            ////// INITIALIZATION /////////
-
-            this.initializeCanvas();
-
-            sceneGraph = this.sceneGraph;
-            this.createScene();
-
-            //keyboard events handler
-            var scope = this;
-            document.onkeydown = function (event) {
-                scope.onKeyDown(event);
-            };
-            document.onkeyup = function (event) {
-                scope.onKeyUp(event);
-            };
-
-            this.startPlaying();
-        },
-
-        initializeCanvas:function () {
-            canvasWidth = this.canvas.width;
-            canvasHeight = this.canvas.height;
-            var dim = new CGSGDimension(canvasWidth, canvasHeight);
-            this.setCanvasDimension(dim);
-        },
-
-        /**
-         * Just create a single node (a square node)
-         *
-         */
-        createScene:function () {
-            this.rootNode = new CGSGNode(0, 0, 1, 1);
-            this.sceneGraph.addNode(this.rootNode);
-
-            GAME_STATE.LOADING.instance = new StateLoading(this.context);
-            GAME_STATE.HOME.instance = new StateHome(this.context, this);
-            GAME_STATE.PLAY_RUN.instance = new StateGameRun(this.context);
-
-            this.changeGameState(GAME_STATE.LOADING);
-
-            //now, load the image containing the sprite sheet.
-            //The affectation to the sprite will be done in the loaded handler function
-            this.spriteSheet = new Image();
-            var that = this;
-            this.spriteSheet.onload = that.onItemsImageLoaded();
-            this.spriteSheet.src = "js/homeDemo/img/board.png";
-        },
-
-        /**
-         * once the image is loaded, set it to the sprites
-         */
-        onItemsImageLoaded:function () {
-            GAME_STATE.PLAY_RUN.instance.setImage(this.spriteSheet);
-
-            this.changeGameState(GAME_STATE.PLAY_RUN);
-        },
+			this.gameState = GAME_STATE.LOADING;
 
 
-        /**
-         *
-         * @param newState
-         */
-        changeGameState:function (newState) {
-            this.rootNode.detachChild(this.gameState.instance.rootNode);
+			////// INITIALIZATION /////////
 
-            this.gameState = newState;
-            this.rootNode.addChild(this.gameState.instance.rootNode);
-            this.gameState.instance.run();
-        },
+			this.initializeCanvas();
 
-        onKeyDown:function (event) {
-            this.gameState.instance.onKeyDown(event);
-            //call the parent handler
-            return this.onKeyDownHandler(event);
-        },
+			sceneGraph = this.sceneGraph;
+			this.createScene();
 
-        onKeyUp:function (event) {
-            this.gameState.instance.onKeyUp(event);
-            //call the parent handler
-            this.onKeyUpHandler(event);
-        }
+			//keyboard events handler
+			var scope = this;
+			document.onkeydown = function(event) {
+				scope.onKeyDown(event);
+			};
+			document.onkeyup = function(event) {
+				scope.onKeyUp(event);
+			};
 
-    }
+			this.startPlaying();
+		},
+
+		initializeCanvas : function() {
+			canvasWidth = this.canvas.width;
+			canvasHeight = this.canvas.height;
+			var dim = new CGSGDimension(canvasWidth, canvasHeight);
+			this.setCanvasDimension(dim);
+		},
+
+		/**
+		 * Just create a single node (a square node)
+		 *
+		 */
+		createScene : function() {
+			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			this.sceneGraph.addNode(this.rootNode);
+
+			GAME_STATE.LOADING.instance = new StateLoading(this.context);
+			GAME_STATE.HOME.instance = new StateHome(this.context, this);
+			GAME_STATE.PLAY_RUN.instance = new StateGameRun(this.context);
+
+			this.changeGameState(GAME_STATE.LOADING);
+
+			//now, load the image containing the sprite sheet.
+			//The affectation to the sprite will be done in the loaded handler function
+			this.spriteSheet = new Image();
+			var that = this;
+			this.spriteSheet.onload = that.onItemsImageLoaded();
+			this.spriteSheet.src = "js/homeDemo/img/board.png";
+		},
+
+		/**
+		 * once the image is loaded, set it to the sprites
+		 */
+		onItemsImageLoaded : function() {
+			GAME_STATE.PLAY_RUN.instance.setImage(this.spriteSheet);
+
+			this.changeGameState(GAME_STATE.PLAY_RUN);
+		},
+
+
+		/**
+		 *
+		 * @param newState
+		 */
+		changeGameState : function(newState) {
+			this.rootNode.detachChild(this.gameState.instance.rootNode);
+
+			this.gameState = newState;
+			this.rootNode.addChild(this.gameState.instance.rootNode);
+			this.gameState.instance.run();
+		},
+
+		onKeyDown : function(event) {
+			this.gameState.instance.onKeyDown(event);
+			//call the parent handler
+			return this.onKeyDownHandler(event);
+		},
+
+		onKeyUp : function(event) {
+			this.gameState.instance.onKeyUp(event);
+			//call the parent handler
+			this.onKeyUpHandler(event);
+		}
+
+	}
 );

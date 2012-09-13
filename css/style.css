@@ -26,7 +26,7 @@ p {
 }
 
 .bigTitle {
-	font-style: normal;
+    font-style: normal;
     font-variant: normal;
     font-weight: normal;
     font-size: 46px;
@@ -38,23 +38,23 @@ p {
 }
 
 .tinyText {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 h1 {
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	font-size: 30px;
-	line-height: 1.2em;
-	font-family: Anton, sans-serif;
-	color: #00a9ff;
-	margin: 10px 0 0px 0;
-	clear: both;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 1.2em;
+    font-family: Anton, sans-serif;
+    color: #00a9ff;
+    margin: 10px 0 0px 0;
+    clear: both;
 }
 
 h2 {
-	font-style: normal;
+    font-style: normal;
     font-variant: normal;
     font-weight: normal;
     font-size: 24px;
@@ -89,15 +89,16 @@ h4 {
 }
 
 .blueText {
-	color: #00a9ff;
-}
-.whiteText {
-	color: #fff;
-}
-.grayText {
-	color:#b7b7b7;
+    color: #00a9ff;
 }
 
+.whiteText {
+    color: #fff;
+}
+
+.grayText {
+    color: #b7b7b7;
+}
 
 a:link, a:visited {
     color: #008adb;
@@ -234,10 +235,9 @@ body {
     margin: 0 auto;
     text-align: left;
     min-height: 100px;
-	padding-left:10px;
-	padding-right:10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
-
 
 #pageFooter {
     margin: 0 auto;
@@ -255,10 +255,10 @@ body {
 
 .footerShadow {
     margin: 0 auto;
-	margin-top: -19px;
+    margin-top: -19px;
     padding: 0;
-	padding-bottom: 20px;
-	height:26px;
+    padding-bottom: 20px;
+    height: 26px;
     background: transparent url(../img/home_shadow.png) no-repeat scroll center top;
 }
 
@@ -293,9 +293,9 @@ body {
 }
 
 #center {
-	width: 940px;
-	padding: 10px 10px 20px 10px;
-	float: left;
+    width: 940px;
+    padding: 10px 10px 20px 10px;
+    float: left;
 }
 
 #content p {
@@ -304,13 +304,13 @@ body {
 }
 
 #sidebar {
-	width:200px;
-	margin-right:10px;	
+    width: 200px;
+    margin-right: 10px;
 }
 
 #sidebar a:hover, #sidebar li#current a {
     color: #00a9ff;
-	/*background-color:#141414;*/
+    /*background-color:#141414;*/
 }
 
 #sidebar ul.vmenu {
@@ -323,8 +323,8 @@ body {
 }
 
 #sidebar ul.vmenu li {
-	padding: 4px 0 4px 0px;
-	margin: 0 2px;
+    padding: 4px 0 4px 0px;
+    margin: 0 2px;
 }
 
 #sidebar ul.vmenu li a {
@@ -351,7 +351,7 @@ hr {
     height: 1px;
     border: 0;
     width: 100%;
-    text-align: left;/*this will align it for IE*/
+    text-align: left; /*this will align it for IE*/
     margin: 0 auto 0 0; /*this will align it left for Mozilla*/
     margin-bottom: 10px;
 }
@@ -370,26 +370,28 @@ a img {
 }
 
 .alignleft {
-	float: left;
+    float: left;
 }
+
 .alignright {
-	float: right;
+    float: right;
 }
 
 .welcomeText {
-width: 420px;	
+    width: 420px;
 }
+
 .welcomeCanvas {
-width: 480px;
-padding-top:20px;
-padding-right:20px;	
+    width: 480px;
+    padding-top: 20px;
+    padding-right: 20px;
 }
 
 #homepub {
- 	width: 100%;
+    width: 100%;
     height: 450px;
     background-color: #222222;
-	margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 
 #homepubBanner {
@@ -401,20 +403,20 @@ padding-right:20px;
     width: 300px;
     padding-top: 1px;
     margin-right: 20px;
-	float:left;
+    float: left;
 }
 
 #tryIt {
     width: 200px;
-	height: 150px;
+    height: 150px;
     padding-top: 1px;
     margin-left: 20px;
-	float:right;
-	background-color:#2d2d2d;
-	border:0px;
+    float: right;
+    background-color: #2d2d2d;
+    border: 0px;
 }
 
 .DocumentationText {
-	width : 740px
+    width: 740px
 }
 

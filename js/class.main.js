@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -28,9 +28,9 @@
  * Purpose :
  * Template project
  * */
- var CGMain = CGSGScene.extend(
+var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize : function(canvas) {
 
 			this._super(canvas);
 
@@ -42,7 +42,7 @@
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas : function() {
 			var dim = new CGSGDimension(this.canvas.width, this.canvas.height);
 			this.setCanvasDimension(dim);
 		},
@@ -51,13 +51,13 @@
 		 * Just create a single node (a square node)
 		 *
 		 */
-		createScene : function () {
+		createScene : function() {
 			//add a root node to the graph as a background
 			this.rootNode = new CGSGNodeSquare(0, 0, this.canvas.width, this.canvas.height);
 			this.rootNode.color = "white";
 			this.rootNode.isClickable = false;
 			this.sceneGraph.addNode(this.rootNode);
-			
+
 			this.squareNode = new CGSGNodeSquare(10, 10, 30, 30);
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;
