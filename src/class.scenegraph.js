@@ -150,7 +150,7 @@ var CGSGSceneGraph = Object.extend(
 						this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
 
 						var n = node;
-						var t = n.computeAbsolutePosition();
+						var t = n.getAbsolutePosition();
 
 						this.context.translate(t.x, t.y);
 						this.context.rotate(node._absoluteRotation);

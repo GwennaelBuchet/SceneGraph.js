@@ -53,6 +53,8 @@ CHANGES:
 - Correction. Force fixed point on delay and time for animation timeline.
 - Evolution. Add information on onClick and onDblClick events on Node and Scene.
 - Correction. Timeline : at the end of an animation, delete all keys before calling event onAnimationEnd.
+- Evolution. CGSGNode : Add getAbsoluteRegion method
+- Evolution. CGSGNode : add recursive parameter to the computeAbsoluteMatrix method.
 
 
 ---------------------------------------------------------------------

@@ -407,8 +407,8 @@ var CGSGNodeText = CGSGNode.extend(
 			var decalX = 0;
 			var decalY = this._computeDecalY();
 
-			this._absolutePosition = this.computeAbsolutePosition();
-			this._absoluteScale = this.computeAbsoluteScale();
+			this._absolutePosition = this.getAbsolutePosition();
+			this._absoluteScale = this.getAbsoluteScale();
 
 			var height = this.getHeight();
 			var width = this.getWidth();

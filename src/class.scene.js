@@ -457,7 +457,7 @@ var CGSGScene = Object.extend(
                                 (this._selectedNode._absoluteScale.y / this._selectedNode.scale.y);
                             //check for the region constraint
                             if (this._selectedNode.regionConstraint !== null) {
-                                var reg = this._selectedNode.getRegion().copy();
+	                            var reg = this._selectedNode.getRegion().copy();
                                 reg.position.x += nodeOffsetX;
                                 reg.position.y += nodeOffsetY;
                                 if (!cgsgRegionIsInRegion(reg, this._selectedNode.regionConstraint, 0)) {
@@ -573,7 +573,7 @@ var CGSGScene = Object.extend(
                                     }
                                     break;
                             }
-                            this._selectedNode.computeAbsoluteMatrix();
+                            this._selectedNode.computeAbsoluteMatrix(false);
                             if (this._selectedNode.onResize !== null) {
                                 this._selectedNode.onResize({node:this._selectedNode});
                             }
@@ -693,7 +693,7 @@ var CGSGScene = Object.extend(
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
                     if (this._selectedNode.isMoving) {
                         this._selectedNode.isMoving = false;
-                        this._selectedNode.computeAbsoluteMatrix();
+                        this._selectedNode.computeAbsoluteMatrix(true);
                         if (this._selectedNode.onDragEnd !== null) {
                             this._selectedNode.onDragEnd(event);
                         }
@@ -707,7 +707,7 @@ var CGSGScene = Object.extend(
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
                     if (this._selectedNode.isResizing) {
                         this._selectedNode.isResizing = false;
-                        this._selectedNode.computeAbsoluteMatrix();
+                        this._selectedNode.computeAbsoluteMatrix(true);
                         if (this._selectedNode.onResizeEnd !== null) {
                             this._selectedNode.onResizeEnd(event);
                         }
