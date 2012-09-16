@@ -29,26 +29,47 @@
  * Subclassing CGSGNode.
  *
  */
-var CloudNode = CGSGNode.extend(
+
+var FLOWER_TYPE = [
+	{ live : 0, points : 100, petalColor : "white", centerColor : "f2e2a0"},
+	{ live : 1, points : 500, petalColor : "#ed87ad", centerColor : "f2e2a0"},
+	{ live : 2, points : 3000, petalColor : "87b9ed", centerColor : "dd87ed"}
+];
+
+
+var FlowerNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize : function() {
 			//call the initialize of the parent
-			this._super(x, y, width, height);
+			this._super(0, 0, 20, 20);
 
 			//define the classType with the name of the class
-			this.classType = "CloudNode";
+			this.classType = "FlowerNode";
 
 			//define attributes of your custom node
-			this._firstColor = "white";
-			this._lastColor = "LightGray";
+			var index = 0;
+			var rand = Math.random();
+			if (rand > 0.90) {
+				index = 2;
+			}
+			else if (rand > 0.88) {
+				index = 1;
+			}
+			this._petalColor = FLOWER_TYPE[index].petalColor;
+			this._centerColor = FLOWER_TYPE[index].centerColor;
+			this.live = FLOWER_TYPE[index].live;
+			this.points = FLOWER_TYPE[index].points;
 
 			//fake canvas to pre-render static display
 			this._tmpCanvas = null;
 
+			//random values for scaling animation
+			this.animXSpeed = 10 + Math.random() * 50;
+			this.animXAmplitude = 5 + Math.random() * 10;
+
 			this.initShape();
 
-			//random values for scaling animation
-			this.scaleYSpeed = 16.0 + Math.random() * 2.0;
+			//todo : automatic computation of dimension (by using fake canvas)
 		},
 
 		/**
@@ -60,63 +81,60 @@ var CloudNode = CGSGNode.extend(
 			this._tmpCanvas.height = 300;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
-			var startX = 40;
-			var startY = 100;
+			var scale = 0.1 + Math.random() * 0.05;
 
 			tmpContext.save();
-			tmpContext.scale(0.4, 0.4);
-
-			// draw cloud shape
+			tmpContext.scale(scale, scale);
 			tmpContext.beginPath();
-			tmpContext.moveTo(startX, startY);
-			tmpContext.bezierCurveTo(startX - 60 + Math.random() * 60, startY + 20, startX - 40, startY + 70,
-			                         startX + 60, startY + 70);
-			tmpContext.bezierCurveTo(startX + 60 + Math.random() * 100, startY + 60 + Math.random() * 80, startX + 250,
-			                         startY + 40, startX + 220, startY + 20);
-			tmpContext.bezierCurveTo(startX + 230 + Math.random() * 60, startY - 40, startX + 200, startY - 50,
-			                         startX + 170, startY - 30);
-			tmpContext.bezierCurveTo(startX + 120 + Math.random() * 60, startY - 75, startX + 80 + Math.random() * 60,
-			                         startY - 60, startX + 80, startY - 30); //middle_top
-			tmpContext.bezierCurveTo(startX + 30 + Math.random() * 40, startY - 75 + Math.random() * 40,
-			                         startX - 20 + Math.random() * 40, startY - 60, startX, startY); //left-top
+			tmpContext.moveTo(130.3, 37.6);
+			tmpContext.bezierCurveTo(126.0, -8.3, 56.3, -16.6, 47.4, 37.6);
+			tmpContext.bezierCurveTo(-1.4, 33.0, -17.0, 93.7, 21.9, 115.6);
+			tmpContext.bezierCurveTo(5.6, 158.7, 55.0, 192.7, 88.8, 162.3);
+			tmpContext.bezierCurveTo(119.3, 191.4, 172.3, 162.0, 155.7, 115.7);
+			tmpContext.bezierCurveTo(192.0, 98.4, 183.6, 33.7, 130.3, 37.6);
 			tmpContext.closePath();
-
-			var gradient = tmpContext.createLinearGradient(startX, startY, startX, this.dimension.height + startY);
-			gradient.addColorStop(0, this._firstColor);
-			gradient.addColorStop(1, this._lastColor);
-			tmpContext.fillStyle = gradient;
+			tmpContext.fillStyle = this._petalColor;
 			tmpContext.fill();
+
+
+			var centerX = 88;
+			var centerY = 90;
+			var radius = 30;
+
+			tmpContext.beginPath();
+			tmpContext.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+			tmpContext.fillStyle = this._centerColor;
+			tmpContext.fill();
+			tmpContext.lineWidth = 4;
+			tmpContext.strokeStyle = 'gray';
+			tmpContext.stroke();
 
 			tmpContext.restore();
 		},
 
 		start : function() {
-			this.initPosAndSpeed(true);
+			this.initPosAndSpeed(1);
 			this.startAnim();
 
 			var bindReStartAnim = this.reStartAnim.bind(this);
-			sceneGraph.getTimeline(this, "position.x").onAnimationEnd = bindReStartAnim;
+			sceneGraph.getTimeline(this, "position.y").onAnimationEnd = bindReStartAnim;
 		},
 
-		initPosAndSpeed : function(isFirst) {
-			this.globalAlpha = 0.7 + Math.random() * 0.295;
-			var x = CGSGMath.fixedPoint(-150 + Math.random() * 20);
-			if (isFirst) {
-				x += Math.random() * canvasWidth;
-			}
-			var y = CGSGMath.fixedPoint(Math.random() * 50);
+		initPosAndSpeed : function(speed) {
+			var x = CGSGMath.fixedPoint(20 + (Math.random() * (canvasWidth - 40)));
+			var y = -50;
 			this.translateTo(x, y);
-			this.speed = CGSGMath.fixedPoint(canvasWidth * 2.5 + Math.random() * canvasWidth * 2);
-
+			this.speed = CGSGMath.fixedPoint(canvasHeight + Math.random() * canvasHeight * 2);
+			this.speed *= speed;
 		},
 
 		startAnim : function() {
-			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-			                   CGSGMath.fixedPoint(canvasWidth + Math.random() * 50), "linear", 0, true);
+			sceneGraph.animate(this, "position.y", this.speed, this.position.y,
+			                   CGSGMath.fixedPoint(canvasHeight + Math.random() * 50), "linear", 0, true);
 		},
 
 		reStartAnim : function() {
-			this.initPosAndSpeed(false);
+			this.initPosAndSpeed(1);
 			this.startAnim();
 		},
 
@@ -132,8 +150,8 @@ var CloudNode = CGSGNode.extend(
 			context.globalAlpha = this.globalAlpha;
 
 			//custom rendering
-			var heightScale = -1 * Math.sin(cgsgCurrentFrame / this.scaleYSpeed) * 0.05 + 0.95;
-			context.scale(1.0, heightScale);
+			var xpos = Math.sin(cgsgCurrentFrame / this.animXSpeed) * this.animXAmplitude;
+			context.translate(xpos, 0);
 			//render the pre-rendered canvas
 			context.drawImage(this._tmpCanvas, 0, 0);
 

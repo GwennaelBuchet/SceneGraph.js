@@ -19,15 +19,20 @@ var StateGameRun = Object.extend(
 			this.nbLive = 6;
 			this.speed = 1;
 
+			this.nbBees = 0;
 			this.maxBees = 10;
 			this.bees = [];
 			this.maxClouds = 5;
 			this.clouds = [];
+
 			this.flowers = [];
 
-			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight);
+			this.createEnvironment();
 		},
 
+		/**
+		 * called each time this state is activated
+		 */
 		run : function() {
 			this.initGame(/*currentLevel*/);
 
@@ -37,12 +42,37 @@ var StateGameRun = Object.extend(
 
 			for (var b = 0; b < this.maxBees; b++) {
 				this.bees[b].setImage(this.image);
-				this.bees[b].start();
+			}
+		},
+
+		/**
+		 * called each frame
+		 */
+		onRenderStartHandler : function() {
+			if (this.nbBees < this.maxBees && (cgsgCurrentFrame % 900) == 0) {
+				this.rootNode.addChild(this.bees[this.nbBees]);
+				this.bees[this.nbBees].start();
+				this.nbBees++;
+			}
+
+			if ((cgsgCurrentFrame % 900) == 0) {
+				var flower = new FlowerNode();
+				flower.start();
+				var bindCatchFlower = this.catchFlower.bind(this);
+				flower.onClick = bindCatchFlower;
+				this.rootNode.addChild(flower);
 			}
 		},
 
 		setImage : function(image) {
 			this.image = image;
+		},
+
+		createEnvironment : function() {
+			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+
+			var floor = new FloorNode(0, 0, 1, 1);
+			this.rootNode.addChild(floor);
 		},
 
 		/**
@@ -52,7 +82,7 @@ var StateGameRun = Object.extend(
 		initGame : function(level) {
 			//init clouds
 			for (var c = 0; c < this.maxClouds; c++) {
-				var cloud = new CloudNode(0, 0, 10, 10);
+				var cloud = new CloudNode(0, 0, 200, 200);
 				this.clouds.push(cloud);
 				this.rootNode.addChild(cloud);
 			}
@@ -62,8 +92,6 @@ var StateGameRun = Object.extend(
 			for (var b = 0; b < this.maxBees; b++) {
 				var bee = new BeeNode(-30, Math.random() * 200, this.context, this, b);
 				bee.onClick = bindKillBee;
-
-				this.rootNode.addChild(bee);
 				this.bees.push(bee);
 			}
 		},
@@ -96,8 +124,7 @@ var StateGameRun = Object.extend(
 		killBee : function(event) {
 			this.nbLive--;
 
-			this.rootNode.removeChild(event.node, true);
-			this.bees.without(event.node);
+			event.node.reStartAnim();
 		},
 
 		catchFlower : function(flower) {

@@ -48,8 +48,17 @@ var StateHome = Object.extend(
 			this.rootNode.addChild(textLevel);
 		},
 
+		/**
+		 * called each time this state is activated
+		 */
 		run : function() {
 
+		},
+
+		/**
+		 * called each frame
+		 */
+		onRenderStartHandler : function() {
 		},
 
 		onKeyDown : function(event) {

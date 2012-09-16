@@ -64,6 +64,8 @@ var CGMain = CGSGScene.extend(
 				scope.onKeyUp(event);
 			};
 
+			this.onRenderStart = scope.onRenderStartHandler;
+
 			this.startPlaying();
 		},
 
@@ -116,6 +118,10 @@ var CGMain = CGSGScene.extend(
 			this.gameState = newState;
 			this.rootNode.addChild(this.gameState.instance.rootNode);
 			this.gameState.instance.run();
+		},
+
+		onRenderStartHandler : function() {
+			this.gameState.instance.onRenderStartHandler();
 		},
 
 		onKeyDown : function(event) {

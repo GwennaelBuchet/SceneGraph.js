@@ -34,7 +34,7 @@ var BeeNode = CGSGNodeAnimatedSprite.extend(
 		initPosAndSpeed : function() {
 			this.currentPos = 0;
 			var x = CGSGMath.fixedPoint(-200 + Math.random() * 180);
-			var y = CGSGMath.fixedPoint(Math.random() * (canvasWidth * 0.8));
+			var y = 20 + CGSGMath.fixedPoint(Math.random() * (canvasHeight * 0.8));
 			this.translateTo(x, y);
 			this.speed = CGSGMath.fixedPoint(150 + Math.random() * 100);
 		},
@@ -45,6 +45,7 @@ var BeeNode = CGSGNodeAnimatedSprite.extend(
 		},
 
 		reStartAnim : function() {
+			sceneGraph.getTimeline(this, "position.x").removeAll();
 			this.initPosAndSpeed();
 			this.startAnim();
 		}

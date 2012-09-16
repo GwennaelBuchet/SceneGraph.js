@@ -31,7 +31,7 @@
  */
 var SkyNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize : function(x, y, width, height, context) {
 			//call the initialize of the parent
 			this._super(x, y, width, height);
 
@@ -41,6 +41,24 @@ var SkyNode = CGSGNode.extend(
 			//define attributes of your custom node
 			this.firstColor = "#7badff";
 			this.lastColor = "#bcd5ff";
+
+			this.spirale = new CGSGNodeImage(0, //x
+			                                 0, //y
+			                                 -1, //width (-1 = auto compute)
+			                                 -1, //height (-1 = auto compute)
+			                                 0, //slice x (slice x = position in the source image)
+			                                 0, //slice y
+			                                 0, //slice width (used for tiles. Here we want to display all the image)
+			                                 0, //slice height (used for tiles. Here we want to display all the image)
+			                                 null, //URL. Warning : the web page mus be on a web server (apache, ...)
+			                                 context);      //context of rendering
+
+			this.addChild(this.spirale);
+
+			this.img = new Image();
+			var bindOnImageLoaded = this.onImageLoaded.bind(this);
+			this.img.onload = bindOnImageLoaded;
+			this.img.src = "js/homeDemo/img/spirale.png";
 		},
 
 		/**
@@ -54,6 +72,8 @@ var SkyNode = CGSGNode.extend(
 
 			context.globalAlpha = this.globalAlpha;
 
+			//todo : change colors from day to night
+
 			// create linear gradient
 			var gradient = context.createLinearGradient(0, 0, 0, this.dimension.height);
 			gradient.addColorStop(0, this.firstColor);
@@ -62,25 +82,30 @@ var SkyNode = CGSGNode.extend(
 
 			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
 
+			//this.spirale.rotateWith(0.1);
+
 			//restore state
 			//always call it
 			this.afterRender(context);
 		},
 
 		/**
-		 *
-		 * @return a copy of this node
+		 * once the image is loaded, set it to the sprites
 		 */
-		copy : function() {
-			var node = new CustomNode(this.position.x, this.position.y, this.dimension.width,
-			                          this.dimension.height);
-			//call the super method
-			node = this._super(node);
+		onImageLoaded : function() {
+			this.spirale.setImage(this.img);
+			this.spirale.rotationCenter.x = 0.5;
+			this.spirale.rotationCenter.y = 0.5;
+		},
 
-			node.firstColor = this.firstColor;
-			node.lastColor = this.lastColor;
+		interpolate : function (colorFrom, colorTo, weight) {
+			var rgbColorFrom = CGSGColor.hex2rgb(colorFrom);
+			var rgbColorTo = CGSGColor.hex2rgb(colorTo);
 
-			return node;
+			var rgb = [];
+			rgb[0] = rgbColorFrom[0] + (rgbColorTo[0]-rgbColorFrom[0]) * weight;
+			rgb[0] = rgbColorFrom[0] + (rgbColorTo[0]-rgbColorFrom[0]) * weight;
+			rgb[0] = rgbColorFrom[0] + (rgbColorTo[0]-rgbColorFrom[0]) * weight;
 		}
 	}
 );
