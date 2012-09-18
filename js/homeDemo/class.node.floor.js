@@ -40,7 +40,7 @@ var FloorNode = CGSGNode.extend(
 
 			//define attributes of your custom node
 			this._firstColor = "#63d957";
-			this._lastColor = "6fac69";
+			this._lastColor = "#6fac69";
 
 			//fake canvas to pre-render static display
 			this._tmpCanvas = null;

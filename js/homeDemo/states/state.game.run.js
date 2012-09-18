@@ -15,18 +15,6 @@ var StateGameRun = Object.extend(
 			this.context = context;
 			this.image = null;
 
-			this.score = 0;
-			this.nbLive = 6;
-			this.speed = 1;
-
-			this.nbBees = 0;
-			this.maxBees = 10;
-			this.bees = [];
-			this.maxClouds = 5;
-			this.clouds = [];
-
-			this.flowers = [];
-
 			this.createEnvironment();
 		},
 
@@ -43,10 +31,12 @@ var StateGameRun = Object.extend(
 			for (var b = 0; b < this.maxBees; b++) {
 				this.bees[b].setImage(this.image);
 			}
+
+			this.updateScore(this.score);
 		},
 
 		/**
-		 * called each frame
+		 * called each frame, just before the rendering process
 		 */
 		onRenderStartHandler : function() {
 			if (this.nbBees < this.maxBees && (cgsgCurrentFrame % 900) == 0) {
@@ -73,6 +63,12 @@ var StateGameRun = Object.extend(
 
 			var floor = new FloorNode(0, 0, 1, 1);
 			this.rootNode.addChild(floor);
+
+			this.scoreNode = new ScoreNode(0, 0, 103, 18);
+			this.rootNode.addChild(this.scoreNode);
+
+			this.liveNode = new LiveNode(canvasWidth - 135, 0, 135, 18);
+			this.rootNode.addChild(this.liveNode);
 		},
 
 		/**
@@ -80,6 +76,16 @@ var StateGameRun = Object.extend(
 		 * @param level a PingmineLevel
 		 */
 		initGame : function(level) {
+			this.score = 0;
+			this.nbLive = 6;
+			this.speed = 1;
+
+			this.nbBees = 0;
+			this.maxBees = 10;
+			this.bees = [];
+			this.maxClouds = 5;
+			this.clouds = [];
+
 			//init clouds
 			for (var c = 0; c < this.maxClouds; c++) {
 				var cloud = new CloudNode(0, 0, 200, 200);
@@ -94,6 +100,9 @@ var StateGameRun = Object.extend(
 				bee.onClick = bindKillBee;
 				this.bees.push(bee);
 			}
+
+			this.updateScore();
+			this.updateLive();
 		},
 
 		onKeyDown : function(event) {
@@ -135,7 +144,10 @@ var StateGameRun = Object.extend(
 		},
 
 		updateScore : function() {
+			this.scoreNode.setScore(this.score);
+		},
 
+		updateLive : function() {
 		}
 	}
 );

@@ -65,11 +65,9 @@ var FlowerNode = CGSGNode.extend(
 
 			//random values for scaling animation
 			this.animXSpeed = 10 + Math.random() * 50;
-			this.animXAmplitude = 5 + Math.random() * 10;
+			this.animXAmplitude = 0.2 + Math.random() * 1;
 
 			this.initShape();
-
-			//todo : automatic computation of dimension (by using fake canvas)
 		},
 
 		/**
@@ -96,7 +94,6 @@ var FlowerNode = CGSGNode.extend(
 			tmpContext.fillStyle = this._petalColor;
 			tmpContext.fill();
 
-
 			var centerX = 88;
 			var centerY = 90;
 			var radius = 30;
@@ -110,6 +107,8 @@ var FlowerNode = CGSGNode.extend(
 			tmpContext.stroke();
 
 			tmpContext.restore();
+
+			this.resizeTo(175 * scale, 175 * scale);
 		},
 
 		start : function() {
@@ -138,6 +137,11 @@ var FlowerNode = CGSGNode.extend(
 			this.startAnim();
 		},
 
+		onRenderStartHandler : function() {
+			//var xpos = Math.sin(cgsgCurrentFrame / this.animXSpeed) * this.animXAmplitude;
+			//this.translateWith(xpos, 0);
+		},
+
 		/**
 		 * @override
 		 * Must be defined to allow the scene graph to render the image nodes
@@ -149,15 +153,16 @@ var FlowerNode = CGSGNode.extend(
 
 			context.globalAlpha = this.globalAlpha;
 
-			//custom rendering
-			var xpos = Math.sin(cgsgCurrentFrame / this.animXSpeed) * this.animXAmplitude;
-			context.translate(xpos, 0);
 			//render the pre-rendered canvas
 			context.drawImage(this._tmpCanvas, 0, 0);
 
 			//restore state
 			//always call it
 			this.afterRender(context);
+
+			//translate x on a sinusoidal way, for the next frame
+			var xpos = Math.sin(cgsgCurrentFrame / this.animXSpeed) * this.animXAmplitude;
+			this.translateWith(xpos, 0);
 		}
 	}
 );
