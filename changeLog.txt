@@ -29,8 +29,6 @@ cgSceneGraph Framework.
 TODO LIST:
 =====================================================================
 
-//- Correction. events are not launched if they are defined into the subclass (not to an instance) because they are null.
-- Evolution. Browsers generate 2 onClick events before generating the onDblClik event.
 - Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
 - Evolution. Add notion of chains of animations.
@@ -39,6 +37,8 @@ TODO LIST:
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
 - Optimization. Animated sprites : pre-rendered
+- Evolution. CGSGNodeVideo
+- Evolution. CGSGNodeLink
 
 
 =====================================================================
@@ -46,7 +46,7 @@ HISTORY
 =====================================================================
 
 
-v1.0.1
+v1.1.0
 
 CHANGES:
 - Evolution. Add CGSGNode::getAbsoluteWidth() and getAbsoluteHeight().
@@ -55,6 +55,8 @@ CHANGES:
 - Correction. Timeline : at the end of an animation, delete all keys before calling event onAnimationEnd.
 - Evolution. CGSGNode : Add getAbsoluteRegion method
 - Evolution. CGSGNode : add recursive parameter to the computeAbsoluteMatrix method.
+- Evolution. CGSGColor : add lerp method
+- Evolution. CGSGMath : add lerp method
 
 
 ---------------------------------------------------------------------

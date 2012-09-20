@@ -97,7 +97,7 @@ var CGMain = CGSGScene.extend(
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
                 event.particle.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
 
-				var rgb = cgsgColors.hex2rgb(event.particle.node.color);
+				var rgb = CGSGColors.hex2rgb(event.particle.node.color);
 				event.particle.initColor = rgb;
 			};
 
@@ -112,11 +112,11 @@ var CGMain = CGSGScene.extend(
             emitter.onUpdateParticleEnd = function (particle) {
 				var a = 1.0 - (particle.age / particle.ttl);
 				particle.node.globalAlpha = a;
-				var rgb = cgsgColors.hex2rgb(particle.node.color);
+				var rgb = CGSGColors.hex2rgb(particle.node.color);
 				rgb.r = particle.initColor.r * a;
 				rgb.g = particle.initColor.g * a;
 				rgb.b = particle.initColor.b * a;
-				particle.node.color = cgsgColors.rgb2hex(rgb.r, rgb.g, rgb.b);
+				particle.node.color = CGSGColors.rgb2hex(rgb.r, rgb.g, rgb.b);
 				particle.node.lineColor = particle.node.color;
 				//particle.node.rotateWith(emitter.speed * Math.random() / 10.0);
 			};

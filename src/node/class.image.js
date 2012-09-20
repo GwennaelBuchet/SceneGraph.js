@@ -164,7 +164,16 @@ var CGSGNodeImage = CGSGNode.extend(
                 context.globalAlpha = this.globalAlpha;
 
                 //custom rendering
-                context.drawImage(this.tmpCanvas, 0, 0);
+                //context.drawImage(this.tmpCanvas, 0, 0);
+
+	            context.drawImage(
+		            this.img, // image
+		            this.slice.position.x, this.slice.position.y, // start position on the image
+		            this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
+		            0, 0,
+		            // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
+		            this.dimension.width, this.dimension.height                // dimension on the screen
+	            );
                 //restore state
                 this.afterRender(context);
             }

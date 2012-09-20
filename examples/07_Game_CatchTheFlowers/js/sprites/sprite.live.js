@@ -23,39 +23,45 @@
  *  These Terms of Use are subject to French law.
  *
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 07/08/2012
+ * @date 07/07/2012
  *
- * Purpose :
- * Math helper functions.
+ * Purpose:
+ * Subclassing CGSGNode.
+ *
  */
-CGSGMath = {
-	PI2 : Math.PI * 2,
 
-	deg2rad : function(angle) {
-		return (angle / 180.0) * Math.PI;
-	},
+var LiveNode = CGSGNode.extend(
+	{
+		initialize : function(x, y) {
+			//call the initialize of the parent
+			this._super(x, y, 20, 20);
 
-	rad2deg : function(angle) {
-		return angle * 57.29577951308232;
-	},
+			//define the classType with the name of the class
+			this.classType = "LiveNode";
 
-	/**
-	 * return the rounded interer of n
-	 * @param n
-	 * @return {Number}
-	 */
-	fixedPoint : function(n) {
-		return (0.5 + n) << 0;
-	},
+			this._tmpCanvas = null;
+		},
 
-	/**
-	 * linear interpolation between 'from' and 'to'
-	 * @param from
-	 * @param to
-	 * @param weight
-	 * @return {*}
-	 */
-	lerp : function(from, to, weight) {
-		return from + (to - from) * weight;
+
+		/**
+		 * @override
+		 * Must be defined to allow the scene graph to render the image nodes
+		 * */
+		render : function(context) {
+			//save current state
+			//always call it
+			this.beforeRender(context);
+
+			if (this._tmpCanvas !== null) {
+				context.globalAlpha = this.globalAlpha;
+
+				//render the pre-rendered canvas
+				context.drawImage(this._tmpCanvas, 0, 0);
+			}
+
+			//restore state
+			//always call it
+			this.afterRender(context);
+		}
 	}
-}
+);

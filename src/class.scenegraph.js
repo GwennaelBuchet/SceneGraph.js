@@ -116,14 +116,14 @@ var CGSGSceneGraph = Object.extend(
 							key = this._listTimelines[i].getFirstKey();
 							if (key !== null && key.frame == cgsgCurrentFrame &&
 								this._listTimelines[i].onAnimationStart !== null) {
-								this._listTimelines[i].onAnimationStart();
+								this._listTimelines[i].onAnimationStart({node:node});
 							}
 							//fire event if this is the last animation key for this timeline
 							key = this._listTimelines[i].getLastKey();
 							if (key !== null && key.frame == cgsgCurrentFrame) {
 								this._listTimelines[i].removeAll();
 								if (this._listTimelines[i].onAnimationEnd !== null) {
-									this._listTimelines[i].onAnimationEnd();
+									this._listTimelines[i].onAnimationEnd({node:node});
 								}
 
 							}

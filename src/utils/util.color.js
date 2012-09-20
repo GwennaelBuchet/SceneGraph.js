@@ -28,7 +28,7 @@
  * Purpose :
  * Color helper functions.
  */
-cgsgColors = {
+CGSGColors = {
 	/**
 	 * Convert R, G and B value to an hexadecimal code
 	 * @param r red value. from 0 to 255.
@@ -65,5 +65,24 @@ cgsgColors = {
 		n = Math.max(0, Math.min(n, 255));
 		return "0123456789ABCDEF".charAt((n - n % 16) / 16)
 			+ "0123456789ABCDEF".charAt(n % 16);
+	},
+
+	/**
+	 * Linear interpolation between 2 colors
+	 * @param colorFrom a hex color
+	 * @param colorTo a hex color
+	 * @param weight
+	 * @return a heh value for the interpolated color
+	 */
+	lerp : function(colorFrom, colorTo, weight) {
+		var rgbColorFrom = this.hex2rgb(colorFrom);
+		var rgbColorTo = this.hex2rgb(colorTo);
+
+		var rgb = [];
+		rgb[0] = rgbColorFrom.r + (rgbColorTo.r - rgbColorFrom.r) * weight;
+		rgb[1] = rgbColorFrom.g + (rgbColorTo.g - rgbColorFrom.g) * weight;
+		rgb[2] = rgbColorFrom.b + (rgbColorTo.b - rgbColorFrom.b) * weight;
+
+		return this.rgb2hex(rgb[0], rgb[1], rgb[2]);
 	}
 }

@@ -54,3 +54,6 @@ var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 var cgsgGhostContext = null;
 
 var cgsgCurrentFrame = 0;
+
+var currentColorIndex = 0;
+var currentColorLerp = 0;
