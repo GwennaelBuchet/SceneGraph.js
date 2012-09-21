@@ -31,30 +31,47 @@
  */
 
 var FLOWER_TYPE = [
-	{ live : 0, points : 100, petalColor : "white", centerColor : "f2e2a0"},
-	{ live : 1, points : 500, petalColor : "#ed87ad", centerColor : "f2e2a0"},
-	{ live : 2, points : 3000, petalColor : "87b9ed", centerColor : "dd87ed"}
+	{ live : 0, points : 100, petalColor : "white", centerColor : "#f2e2a0"},
+	{ live : 1, points : 500, petalColor : "#ed87ad", centerColor : "#f2e2a0"},
+	{ live : 2, points : 3000, petalColor : "#87b9ed", centerColor : "#dd87ed"}
 ];
 
 
 var FlowerNode = CGSGNode.extend(
 	{
-		initialize : function() {
+		initialize : function(parent, typeIndex, isAnimated) {
 			//call the initialize of the parent
 			this._super(0, 0, 20, 20);
 
 			//define the classType with the name of the class
 			this.classType = "FlowerNode";
 
+			this.game = parent;
+
+			//random values for scaling animation
+			this.animXSpeed = 1;
+			this.animXAmplitude = 0;
+
 			//define attributes of your custom node
-			var index = 0;
-			var rand = Math.random();
-			if (rand > 0.90) {
-				index = 2;
+			var index = typeIndex;
+			if (!cgsgExist(index)) {
+				var rand = Math.random();
+				if (this.game.nbFlowers > 8 && rand > 0.96) {
+					index = 2;
+				}
+				else if (this.game.nbFlowers > 5 && rand > 0.85) {
+					index = 1;
+				}
+				else {
+					index = 0;
+				}
 			}
-			else if (rand > 0.88) {
-				index = 1;
+			if (isAnimated) {
+				//random values for scaling animation
+				this.animXSpeed = 10 + Math.random() * 50;
+				this.animXAmplitude = 0.2 + Math.random() * 1;
 			}
+
 			this._petalColor = FLOWER_TYPE[index].petalColor;
 			this._centerColor = FLOWER_TYPE[index].centerColor;
 			this.live = FLOWER_TYPE[index].live;
@@ -63,23 +80,22 @@ var FlowerNode = CGSGNode.extend(
 			//fake canvas to pre-render static display
 			this._tmpCanvas = null;
 
-			//random values for scaling animation
-			this.animXSpeed = 10 + Math.random() * 50;
-			this.animXAmplitude = 0.2 + Math.random() * 1;
-
-			this.initShape();
+			this.initShape(isAnimated);
 		},
 
 		/**
 		 * Pre-render the cloud into a temp canvas to optimize the perfs
 		 */
-		initShape : function() {
+		initShape : function(isAnimated) {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = 400;
 			this._tmpCanvas.height = 300;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
-			var scale = 0.1 + Math.random() * 0.05;
+			var scale = 0.1;
+			if (isAnimated) {
+				scale += Math.random() * 0.05;
+			}
 
 			tmpContext.save();
 			tmpContext.scale(scale, scale);
@@ -112,16 +128,17 @@ var FlowerNode = CGSGNode.extend(
 		},
 
 		start : function() {
-			this.initPosAndSpeed(1);
-			this.startAnim();
+			this.reStartAnim(1);
 
-			var bindReStartAnim = this.reStartAnim.bind(this);
-			sceneGraph.getTimeline(this, "position.y").onAnimationEnd = bindReStartAnim;
+			var bindExplode = this.onExplode.bind(this);
+			sceneGraph.getTimeline(this, "position.y").onAnimationEnd = bindExplode;
 		},
 
 		initPosAndSpeed : function(speed) {
-			var x = CGSGMath.fixedPoint(20 + (Math.random() * (canvasWidth - 40)));
-			var y = -50;
+			this.globalAlpha = 1.0;
+			this.scaleTo(1, 1);
+			var x = CGSGMath.fixedPoint(40 + (Math.random() * (canvasWidth - 90)));
+			var y = -40;
 			this.translateTo(x, y);
 			this.speed = CGSGMath.fixedPoint(canvasHeight + Math.random() * canvasHeight * 2);
 			this.speed *= speed;
@@ -129,17 +146,30 @@ var FlowerNode = CGSGNode.extend(
 
 		startAnim : function() {
 			sceneGraph.animate(this, "position.y", this.speed, this.position.y,
-			                   CGSGMath.fixedPoint(canvasHeight + Math.random() * 50), "linear", 0, true);
+			                   CGSGMath.fixedPoint(canvasHeight - 15), "linear", 0, true);
 		},
 
-		reStartAnim : function() {
-			this.initPosAndSpeed(1);
+		reStartAnim : function(speed) {
+			//remove first the actual animation
+			sceneGraph.getTimeline(this, "globalAlpha").removeAll();
+			sceneGraph.getTimeline(this, "scale.x").removeAll();
+			sceneGraph.getTimeline(this, "scale.y").removeAll();
+			sceneGraph.getTimeline(this, "globalAlpha").onAnimationEnd = null;
+			sceneGraph.getTimeline(this, "position.y").removeAll();
+			this.initPosAndSpeed(speed);
 			this.startAnim();
 		},
 
-		onRenderStartHandler : function() {
-			//var xpos = Math.sin(cgsgCurrentFrame / this.animXSpeed) * this.animXAmplitude;
-			//this.translateWith(xpos, 0);
+		onExplode : function() {
+			this.game.killFlower();
+			sceneGraph.getTimeline(this, "position.y").removeAll();
+			sceneGraph.animate(this, "position.x", 15, this.position.x, this.position.x - 16, "linear", 0, true);
+			sceneGraph.animate(this, "scale.x", 15, 1, 3, "linear", 0, true);
+			sceneGraph.animate(this, "scale.y", 15, 1, 3, "linear", 0, true);
+			sceneGraph.animate(this, "globalAlpha", 15, 1, 0, "linear", 0, true);
+			sceneGraph.getTimeline(this, "globalAlpha").onAnimationEnd = function(event) {
+				event.node.reStartAnim(1);
+			}
 		},
 
 		/**

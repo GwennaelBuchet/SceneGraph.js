@@ -36,6 +36,7 @@
 var GAME_STATE = {
 	LOADING  : { instance : null },
 	HOME     : { instance : null },
+	ABOUT    : { instance : null },
 	PLAY_RUN : { instance : null }
 };
 
@@ -86,7 +87,8 @@ var CGMain = CGSGScene.extend(
 
 			GAME_STATE.LOADING.instance = new StateLoading(this.context);
 			GAME_STATE.HOME.instance = new StateHome(this.context, this);
-			GAME_STATE.PLAY_RUN.instance = new StateGameRun(this.context);
+			GAME_STATE.PLAY_RUN.instance = new StateGameRun(this.context, this);
+			GAME_STATE.ABOUT.instance = new StateAbout(this.context, this);
 
 			this.changeGameState(GAME_STATE.LOADING);
 
@@ -95,18 +97,18 @@ var CGMain = CGSGScene.extend(
 			this.spriteSheet = new Image();
 			var that = this;
 			this.spriteSheet.onload = that.onItemsImageLoaded();
-			this.spriteSheet.src = "js/homeDemo/img/board.png";
+			this.spriteSheet.src = "js/homeDemo/img/bee.png";
 		},
 
 		/**
 		 * once the image is loaded, set it to the sprites
 		 */
 		onItemsImageLoaded : function() {
+			GAME_STATE.ABOUT.instance.setImage(this.spriteSheet);
 			GAME_STATE.PLAY_RUN.instance.setImage(this.spriteSheet);
 
-			this.changeGameState(GAME_STATE.PLAY_RUN);
+			this.changeGameState(GAME_STATE.HOME);
 		},
-
 
 		/**
 		 *

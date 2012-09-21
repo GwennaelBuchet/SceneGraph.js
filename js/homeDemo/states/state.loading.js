@@ -11,18 +11,18 @@
 var StateLoading = Object.extend(
 	{
 		initialize : function(context) {
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+
+			this.createEnvironment();
+		},
+
+		createEnvironment : function() {
+			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+
+			var floor = new FloorNode(0, 0, 1, 1);
+			this.rootNode.addChild(floor);
 
 			this.text = new CGSGNodeText(0, 0, "LOADING...");
-			this.text.setTextAlign("center");
-			this.text.setMaxWidth(476);
 			this.text.color = "#3322DE";
-
-			this.bkg = new CGSGNodeSquare(0, 0, canvasWidth, canvasHeight);
-			this.bkg.color = "EEEEFE";
-
-			this.rootNode.addChild(this.bkg);
-			this.rootNode.addChild(this.text);
 		},
 
 		/**
@@ -47,7 +47,6 @@ var StateLoading = Object.extend(
 		},
 
 		setImage : function(image) {
-			//this.pingoo.setImage(image);
 		}
 	}
 );

@@ -11,7 +11,7 @@ var BeeNode = CGSGNodeAnimatedSprite.extend(
 		initialize : function(x, y, context, parentState, id) {
 			this._super(x, y, null, context);
 
-			this.speed = CGSGMath.fixedPoint(100 + Math.random() * 250);
+			this.speed = CGSGMath.fixedPoint(200 + Math.random() * 200);
 
 			this.parentState = parentState;
 			this.id = id;
@@ -33,10 +33,10 @@ var BeeNode = CGSGNodeAnimatedSprite.extend(
 
 		initPosAndSpeed : function() {
 			this.currentPos = 0;
-			var x = CGSGMath.fixedPoint(-200 + Math.random() * 180);
+			var x = -30;
 			var y = 20 + CGSGMath.fixedPoint(Math.random() * (canvasHeight * 0.8));
 			this.translateTo(x, y);
-			this.speed = CGSGMath.fixedPoint(150 + Math.random() * 100);
+			this.speed = CGSGMath.fixedPoint(200 + Math.random() * 200);
 		},
 
 		startAnim : function() {

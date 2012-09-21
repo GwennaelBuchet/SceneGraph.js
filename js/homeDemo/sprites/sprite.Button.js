@@ -29,28 +29,26 @@
  * Subclassing CGSGNode.
  *
  */
-var CloudNode = CGSGNode.extend(
+var ButtonNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize : function(x, y, width, height, radius) {
 			//call the initialize of the parent
 			this._super(x, y, width, height);
 
 			//define the classType with the name of the class
-			this.classType = "CloudNode";
+			this.classType = "ButtonNode";
 
 			//define attributes of your custom node
 			this._firstColor = "white";
 			this._lastColor = "#dae3f2";
 
+			this.radius = radius;
+
 			//fake canvas to pre-render static display
 			this._tmpCanvas = null;
 
 			this.initShape();
-
-			//random values for scaling animation
-			this.scaleYSpeed = 16.0 + Math.random() * 2.0;
-
-			this.isClickable = false;
+			this.resizeWith(this.radius * 2, this.radius * 2);
 		},
 
 		/**
@@ -58,74 +56,50 @@ var CloudNode = CGSGNode.extend(
 		 */
 		initShape : function() {
 			this._tmpCanvas = document.createElement('canvas');
-			this._tmpCanvas.width = canvasWidth;
-			this._tmpCanvas.height = canvasHeight;
+			this._tmpCanvas.width = this.dimension.width + 2 * this.radius;
+			this._tmpCanvas.height = this.dimension.height + 2 * this.radius;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
-			var startX = 100;
-			var startY = 100;
-
-			tmpContext.save();
-			tmpContext.scale(0.4, 0.4);
-
-			// draw cloud shape
 			tmpContext.beginPath();
-			tmpContext.moveTo(startX, startY);
-			tmpContext.bezierCurveTo(startX - 60 + Math.random() * 60, startY + 20, startX - 40, startY + 70,
-			                         startX + 60, startY + 70);
-			tmpContext.bezierCurveTo(startX + 60 + Math.random() * 100, startY + 60 + Math.random() * 80, startX + 250,
-			                         startY + 40, startX + 220, startY + 20);
-			tmpContext.bezierCurveTo(startX + 230 + Math.random() * 60, startY - 40, startX + 200, startY - 50,
-			                         startX + 170, startY - 30);
-			tmpContext.bezierCurveTo(startX + 120 + Math.random() * 60, startY - 75, startX + 80 + Math.random() * 60,
-			                         startY - 60, startX + 80, startY - 30); //middle_top
-			tmpContext.bezierCurveTo(startX + 30 + Math.random() * 40, startY - 75 + Math.random() * 40,
-			                         startX - 20 + Math.random() * 40, startY - 60, startX, startY); //left-top
+			tmpContext.moveTo(/*this.position.x*/ this.radius + this.radius, /*this.position.y*/ this.radius);
+			tmpContext.lineTo(/*this.position.x*/ this.radius + this.dimension.width - this.radius, /*this.position.y*/
+			                                      this.radius);
+			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius + this.dimension.width, /*this.position.y*/
+			                                                this.radius,
+				/*this.position.x*/ this.radius + this.dimension.width, /*this.position.y*/ this.radius + this.radius);
+			tmpContext.lineTo(/*this.position.x*/ this.radius + this.dimension.width,
+				/*this.position.y*/ this.radius + this.dimension.height - this.radius);
+			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius + this.dimension.width, /*this.position.y*/
+			                                                this.radius + this.dimension.height,
+				/*this.position.x*/ this.radius + this.dimension.width - this.radius,
+				/*this.position.y*/ this.radius + this.dimension.height);
+			tmpContext.lineTo(/*this.position.x*/ this.radius + this.radius, /*this.position.y*/
+			                                      this.radius + this.dimension.height);
+			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius, /*this.position.y*/
+			                                                this.radius + this.dimension.height,
+				/*this.position.x*/ this.radius,
+				/*this.position.y*/ this.radius + this.dimension.height - this.radius);
+			tmpContext.lineTo(/*this.position.x*/ this.radius, /*this.position.y*/ this.radius + this.radius);
+			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius, /*this.position.y*/ this.radius,
+				/*this.position.x*/
+				                                            this.radius + this.radius,
+				/*this.position.y*/ this.radius);
 			tmpContext.closePath();
+			tmpContext.fill();
 
-			var gradient = tmpContext.createLinearGradient(startX, startY, startX, 70 + startY);
+			var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
 			gradient.addColorStop(0, this._firstColor);
 			gradient.addColorStop(1, this._lastColor);
 			tmpContext.fillStyle = gradient;
 
-			tmpContext.shadowColor = '#7ba3e6';
-			tmpContext.shadowBlur = 20;
+			tmpContext.shadowColor = 'white';
+			tmpContext.shadowBlur = 10;
 			tmpContext.shadowOffsetX = 0;
-			tmpContext.shadowOffsetY = 5;
+			tmpContext.shadowOffsetY = 0;
 
 			tmpContext.fill();
 
 			tmpContext.restore();
-		},
-
-		start : function() {
-			this.initPosAndSpeed(true);
-			this.startAnim();
-
-			var bindReStartAnim = this.reStartAnim.bind(this);
-			sceneGraph.getTimeline(this, "position.x").onAnimationEnd = bindReStartAnim;
-		},
-
-		initPosAndSpeed : function(isFirst) {
-			this.globalAlpha = 0.7 + Math.random() * 0.295;
-			var x = CGSGMath.fixedPoint(-150 + Math.random() * 20);
-			if (isFirst) {
-				x += Math.random() * canvasWidth;
-			}
-			var y = CGSGMath.fixedPoint(Math.random() * 50);
-			this.translateTo(x, y);
-			this.speed = CGSGMath.fixedPoint(canvasWidth * 2.5 + Math.random() * canvasWidth * 2);
-
-		},
-
-		startAnim : function() {
-			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-			                   CGSGMath.fixedPoint(canvasWidth + Math.random() * 50), "linear", 0, true);
-		},
-
-		reStartAnim : function() {
-			this.initPosAndSpeed(false);
-			this.startAnim();
 		},
 
 		/**
@@ -139,9 +113,6 @@ var CloudNode = CGSGNode.extend(
 
 			context.globalAlpha = this.globalAlpha;
 
-			//custom rendering
-			var heightScale = -1 * Math.sin(cgsgCurrentFrame / this.scaleYSpeed) * 0.05 + 0.95;
-			context.scale(1.0, heightScale);
 			//render the pre-rendered canvas
 			context.drawImage(this._tmpCanvas, 0, 0);
 
