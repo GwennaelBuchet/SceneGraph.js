@@ -17,7 +17,7 @@ var StateAbout = Object.extend(
 
 			this.game = parent;
 
-			this.createEnvironment();
+			this._createEnvironment();
 		},
 
 		/**
@@ -34,7 +34,7 @@ var StateAbout = Object.extend(
 			this.bee.setImage(image);
 		},
 
-		createEnvironment : function() {
+		_createEnvironment : function() {
 			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
 			this.rootNode.isClickable = false;
 

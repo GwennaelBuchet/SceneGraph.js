@@ -98,8 +98,6 @@ var ButtonNode = CGSGNode.extend(
 			tmpContext.shadowOffsetY = 0;
 
 			tmpContext.fill();
-
-			tmpContext.restore();
 		},
 
 		/**

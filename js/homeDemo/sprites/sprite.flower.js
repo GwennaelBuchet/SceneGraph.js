@@ -69,7 +69,7 @@ var FlowerNode = CGSGNode.extend(
 			if (isAnimated) {
 				//random values for scaling animation
 				this.animXSpeed = 10 + Math.random() * 50;
-				this.animXAmplitude = 0.2 + Math.random() * 1;
+				this.animXAmplitude = 0.2 + Math.random() * 0.3;
 			}
 
 			this._petalColor = FLOWER_TYPE[index].petalColor;

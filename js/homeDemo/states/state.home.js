@@ -17,7 +17,7 @@ var StateHome = Object.extend(
 
 			this.game = parent;
 
-			this.createEnvironment();
+			this._createEnvironment();
 		},
 
 		/**
@@ -44,7 +44,7 @@ var StateHome = Object.extend(
 			this.image = image;
 		},
 
-		createEnvironment : function() {
+		_createEnvironment : function() {
 			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
 			this.rootNode.isClickable = false;
 

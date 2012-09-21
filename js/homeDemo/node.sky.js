@@ -44,26 +44,11 @@ var SkyNode = CGSGNode.extend(
 			this.alpha = [1, 0.5, 0, 0.5, 1];
 			this.reStartAnim();
 
-			this.spirale = new CGSGNodeImage(0, //x
-			                                 0, //y
-			                                 -1, //width (-1 = auto compute)
-			                                 -1, //height (-1 = auto compute)
-			                                 0, //slice x (slice x = position in the source image)
-			                                 0, //slice y
-			                                 0, //slice width (used for tiles. Here we want to display all the image)
-			                                 0, //slice height (used for tiles. Here we want to display all the image)
-			                                 null, //URL. Warning : the web page mus be on a web server (apache, ...)
-			                                 context);      //context of rendering
-
-			this.addChild(this.spirale);
+			this.sun = new SunNode(0, 0);
+			this.addChild(this.sun);
 
 			this.stars = new StarsNode();
 			this.addChild(this.stars);
-
-			this.img = new Image();
-			var bindOnImageLoaded = this.onImageLoaded.bind(this);
-			this.img.onload = bindOnImageLoaded;
-			this.img.src = "js/homeDemo/img/spirale.png";
 		},
 
 		reStartAnim : function() {
@@ -83,10 +68,9 @@ var SkyNode = CGSGNode.extend(
 			CGSGColors.lerp(this.lastColors[currentColorIndex], this.lastColors[currentColorIndex + 1],
 			                currentColorLerp);
 
-			this.spirale.globalAlpha =
+			this.sun.globalAlpha =
 			CGSGMath.lerp(this.alpha[currentColorIndex], this.alpha[currentColorIndex + 1], currentColorLerp);
-			this.stars.globalAlpha = 1.0 - this.spirale.globalAlpha;
-
+			this.stars.globalAlpha = 1.0 - this.sun.globalAlpha;
 
 			//save current state
 			//always call it

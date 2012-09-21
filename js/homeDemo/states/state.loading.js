@@ -12,10 +12,10 @@ var StateLoading = Object.extend(
 	{
 		initialize : function(context) {
 
-			this.createEnvironment();
+			this._createEnvironment();
 		},
 
-		createEnvironment : function() {
+		_createEnvironment : function() {
 			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
 
 			var floor = new FloorNode(0, 0, 1, 1);
