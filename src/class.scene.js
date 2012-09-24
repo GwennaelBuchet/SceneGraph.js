@@ -209,12 +209,14 @@ var CGSGScene = Object.extend(
         /**
          * @public
          * Deselect all nodes
+         * @param excludedArray CGSGNodes not to deselect
          */
-        deselectAll:function () {
+        deselectAll:function (excludedArray) {
             this._isDrag = false;
             this._isResizeDrag = false;
+	        this._resizingDirection = -1;
 
-            this.sceneGraph.deselectAll();
+            this.sceneGraph.deselectAll(excludedArray);
 
             this.invalidate();
         },
@@ -363,7 +365,6 @@ var CGSGScene = Object.extend(
                 "isClickable===true || this.isDraggable===true || this.isResizable===true");
             //if a nodes is under the cursor, select it
             if (this._selectedNode !== null && this._selectedNode !== undefined) {
-
                 if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
                     //if the clicked nodes was already selected, deselect it
                     if (this._selectedNode.isSelected && this._keyDownedCtrl) {
@@ -380,7 +381,7 @@ var CGSGScene = Object.extend(
                             //if it's not a multi-selection, deselect all selected nodes to only select this one
                             if (!this._keyDownedCtrl) {
                                 //inform the scene graph we deselect these nodes
-                                this.sceneGraph.deselectAll();
+                                this.deselectAll(null);
                             }
 
                             //inform the scene graph that we've selected this nodes
@@ -391,20 +392,22 @@ var CGSGScene = Object.extend(
                     this.invalidate();
                 }
 
-                //execute the action binded with the click event
+                //execute the action bound with the click event
                 if (this._selectedNode.isClickable) {
                     if (cgsgExist(this._selectedNode.onClick)) {
-                        this._selectedNode.onClick({node:this._selectedNode, position:this._mousePosition.copy()})
+                        this._selectedNode.onClick({node:this._selectedNode, position:this._mousePosition.copy()});
+	                    //this.deselectAll([this._selectedNode]);
                     }
-                    else if (this._selectedNode.isDraggable === false && this._selectedNode.isResizable === false) {
-                        this.deselectAll();
+                    //deselect all node except the new _selectedNode
+                    /*else*/ if (this._selectedNode.isDraggable === false && this._selectedNode.isResizable === false) {
+                        this.deselectAll([this._selectedNode]);
                     }
                 }
 
             }
             //else if no nodes was clicked
             else {
-                this.deselectAll();
+                this.deselectAll(null);
             }
 
             if (this.onSceneClickEnd !== null) {

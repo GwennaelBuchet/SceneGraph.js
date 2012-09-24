@@ -97,7 +97,7 @@ var CGMain = CGSGScene.extend(
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
                 event.particle.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
 
-				var rgb = CGSGColors.hex2rgb(event.particle.node.color);
+				var rgb = CGSGColor.hex2rgb(event.particle.node.color);
 				event.particle.initColor = rgb;
 			};
 

@@ -54,7 +54,7 @@ var CGMain = CGSGScene.extend(
 		 */
 		createScene : function () {
 			//first create a root node with an arbitrary size and position
-			this.rootNode = new CGSGNode(0, 0, 500, 500);
+			this.rootNode = new CGSGNode(0, 0, 1000, 1000);
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			this.textNode = new CGSGNodeText(40, 40, "Event : (none)");
@@ -68,6 +68,10 @@ var CGMain = CGSGScene.extend(
             var squareHotPink = this.createSquare(20, 220, "HotPink", "resize me");
             var squareOrange = this.createSquare(140, 220, "Orange", "select me");
             this.squareBisque = this.createSquare(260, 220, "Bisque", "drag & \ncollide me");
+
+			//squareOrange.isDraggable = false;
+			squareOrange.isResizable = false;
+			squareMediumPurple.isResizable = false;
 
 			//add events on nodes
             var that = this; // avoid the problem of binding
@@ -153,7 +157,7 @@ var CGMain = CGSGScene.extend(
             square.name = color;
 
             //add a text to the square node
-			var textNode = new CGSGNodeText(5, 5, text);
+			var textNode = new CGSGNodeText(5, 5, color + "\n" + text);
 			textNode.setSize(10);
 			textNode.color = "black";
             textNode.isClickable = false;

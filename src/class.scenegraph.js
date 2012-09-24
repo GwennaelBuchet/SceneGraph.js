@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -33,14 +33,14 @@
  */
 var CGSGSceneGraph = Object.extend(
 	{
-		initialize : function (canvas, context) {
+		initialize : function(canvas, context) {
 			///// @public //////
 			this.root = null;
 			this.context = context;
 			this.canvas = canvas;
 
 			///// @protected //////
-            cgsgCurrentFrame = 0;
+			cgsgCurrentFrame = 0;
 
 			///// @private //////
 
@@ -59,7 +59,7 @@ var CGSGSceneGraph = Object.extend(
 			this.initializeGhost();
 
 			//fixes a problem where double clicking causes text to get selected on the canvas
-			this.canvas.onselectstart = function () {
+			this.canvas.onselectstart = function() {
 				return false;
 			};
 		},
@@ -70,7 +70,7 @@ var CGSGSceneGraph = Object.extend(
 		 * @param height The height for the canvas. Must be the same as the rendering canvas
 		 * Initialize the ghost rendering, used by the PickNode function
 		 * */
-		initializeGhost : function (width, height) {
+		initializeGhost : function(width, height) {
 			this.ghostCanvas.height = height;
 			this.ghostCanvas.width = width;
 			cgsgGhostContext = this.ghostCanvas.getContext('2d');
@@ -80,7 +80,7 @@ var CGSGSceneGraph = Object.extend(
 		 * @private
 		 * wipes the canvas context
 		 * */
-		_clearContext : function (context) {
+		_clearContext : function(context) {
 			context.setTransform(1, 0, 0, 1, 0, 0);
 			// Will always clear the right space
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -90,7 +90,7 @@ var CGSGSceneGraph = Object.extend(
 		 * @public
 		 * render the SceneGraph
 		 * */
-		render : function () {
+		render : function() {
 			//erase previous rendering
 			this._clearContext(this.context);
 
@@ -115,15 +115,15 @@ var CGSGSceneGraph = Object.extend(
 							//fire event if this is the first animation key for this timeline
 							key = this._listTimelines[i].getFirstKey();
 							if (key !== null && key.frame == cgsgCurrentFrame &&
-								this._listTimelines[i].onAnimationStart !== null) {
-								this._listTimelines[i].onAnimationStart({node:node});
+							    this._listTimelines[i].onAnimationStart !== null) {
+								this._listTimelines[i].onAnimationStart({node : node});
 							}
 							//fire event if this is the last animation key for this timeline
 							key = this._listTimelines[i].getLastKey();
 							if (key !== null && key.frame == cgsgCurrentFrame) {
 								this._listTimelines[i].removeAll();
 								if (this._listTimelines[i].onAnimationEnd !== null) {
-									this._listTimelines[i].onAnimationEnd({node:node});
+									this._listTimelines[i].onAnimationEnd({node : node});
 								}
 
 							}
@@ -162,7 +162,7 @@ var CGSGSceneGraph = Object.extend(
 				}
 			}
 
-            cgsgCurrentFrame++;
+			cgsgCurrentFrame++;
 		},
 
 		/**
@@ -172,7 +172,7 @@ var CGSGSceneGraph = Object.extend(
 		 *  but is used by the different computations
 		 * @param newDimension a CGSGVector2D
 		 * */
-		setCanvasDimension : function (newDimension) {
+		setCanvasDimension : function(newDimension) {
 			this.canvas.width = newDimension.x;
 			this.canvas.height = newDimension.y;
 			this.initializeGhost(this.canvas.width, this.canvas.height);
@@ -185,7 +185,7 @@ var CGSGSceneGraph = Object.extend(
 		 * To manually manage the selected object, do not call this function
 		 * @param nodeToSelect The CGSGNode to be selected
 		 * */
-		selectNode : function (nodeToSelect) {
+		selectNode : function(nodeToSelect) {
 			if (!nodeToSelect.isSelected) {
 				nodeToSelect.setSelected(true);
 				nodeToSelect.computeAbsoluteMatrix();
@@ -197,7 +197,7 @@ var CGSGSceneGraph = Object.extend(
 		 * @public
 		 * Mark the nodes as not selected
 		 * */
-		deselectNode : function (nodeToDeselect) {
+		deselectNode : function(nodeToDeselect) {
 			nodeToDeselect.setSelected(false);
 			/*this.selectedNodes = */
 			this.selectedNodes.without(nodeToDeselect);
@@ -206,14 +206,15 @@ var CGSGSceneGraph = Object.extend(
 		/**
 		 * @public
 		 * Mark all nodes as not selected
+		 * @param excludedArray CGSGNodes not to deselect
 		 * */
-		deselectAll : function () {
-			this._isDrag = false;
-			this._isResizeDrag = false;
-			this._resizingDirection = -1;
-
+		deselectAll : function(excludedArray) {
+			var node = null;
 			for (var i = this.selectedNodes.length - 1; i >= 0; i--) {
-				this.deselectNode(this.selectedNodes[i]);
+				node = this.selectedNodes[i];
+				if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
+					this.deselectNode(node);
+				}
 			}
 
 			//just to be sure
@@ -225,7 +226,7 @@ var CGSGSceneGraph = Object.extend(
 		 * Recursively traverse the nodes and return the one who is under the mouse coordinates
 		 * @param mousePosition A CGSGPosition object
 		 * */
-		pickNode : function (mousePosition, condition) {
+		pickNode : function(mousePosition, condition) {
 			//empty the current selection first
 			//this.selectedNodes = new Array();
 			this._clearContext(cgsgGhostContext);
@@ -252,7 +253,7 @@ var CGSGSceneGraph = Object.extend(
 		 * @param recursively if true, try to remove the nodes inside the entire tree
 		 * @return true if the nodes was foud and removed
 		 * */
-		removeNode : function (node, recursively) {
+		removeNode : function(node, recursively) {
 			if (node !== null && node !== undefined) {
 				this.deselectNode(node);
 				if (this.root !== null) {
@@ -269,7 +270,7 @@ var CGSGSceneGraph = Object.extend(
 		 * @param parent the parent nodes of the new one. If it's null, the root will be used as nodes.
 		 * If the root does not already exist, this nodes will be used as root
 		 * */
-		addNode : function (node, parent) {
+		addNode : function(node, parent) {
 			node._id = this._nextNodeID++;
 			if (this.root === null) {
 				this.root = node;
@@ -296,7 +297,7 @@ var CGSGSceneGraph = Object.extend(
 		 *
 		 * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
 		 */
-		addAnimationKey : function (node, attribute, frame, value, method, precompute) {
+		addAnimationKey : function(node, attribute, frame, value, method, precompute) {
 			//if a timeline already exist fot this nodes and attribute use it, else create a new one
 			var timeline = this.getTimeline(node, attribute);
 			timeline.method = method;
@@ -324,25 +325,25 @@ var CGSGSceneGraph = Object.extend(
 		 *
 		 * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
 		 */
-		animate : function (node, attribute, duration, from, to, method, delay, precompute) {
+		animate : function(node, attribute, duration, from, to, method, delay, precompute) {
 			this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay), from,
-								 method, false);
+			                     method, false);
 			this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay + duration),
-								 to, method, precompute);
+			                     to, method, precompute);
 		},
 
 		/**
 		 * @public
 		 * Return true if there are still animation key after the current frame
 		 */
-		stillHaveAnimation : function () {
+		stillHaveAnimation : function() {
 			if (this._listTimelines.length == 0) {
 				return false;
 			}
 			else {
 				for (var i = 0, len = this._listTimelines.length; i < len; ++i) {
 					if (this._listTimelines[i].getLastKey() !== null &&
-						this._listTimelines[i].getLastKey().frame <= cgsgCurrentFrame) {
+					    this._listTimelines[i].getLastKey().frame <= cgsgCurrentFrame) {
 						return true;
 					}
 				}
@@ -357,16 +358,16 @@ var CGSGSceneGraph = Object.extend(
 		 * @param node Handle to the nodes
 		 * @param attribute String. the attribute name
 		 */
-		getTimeline : function (node, attribute) {
+		getTimeline : function(node, attribute) {
 			for (var i = 0, len = this._listTimelines.length; i < len; ++i) {
 				if (this._listTimelines[i].parentNode === node && this._listTimelines[i].attribute == attribute) {
 					return this._listTimelines[i];
 				}
 			}
 
-            //no timeline yet, create a new one
-            var timeline = new CGSGTimeline(node, attribute, "linear");
-            this._listTimelines.push(timeline);
+			//no timeline yet, create a new one
+			var timeline = new CGSGTimeline(node, attribute, "linear");
+			this._listTimelines.push(timeline);
 			return timeline;
 		}
 	}

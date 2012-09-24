@@ -57,6 +57,7 @@ CHANGES:
 - Evolution. CGSGNode : add recursive parameter to the computeAbsoluteMatrix method.
 - Evolution. CGSGColor : add lerp method
 - Evolution. CGSGMath : add lerp method
+- Evolution. Add a "exlusionList" parameter to the CGSGScene::DeselectAll method.
 
 
 ---------------------------------------------------------------------

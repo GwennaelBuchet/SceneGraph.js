@@ -354,10 +354,10 @@ var CGSGNode = Object.extend(
 			this._isDrag = true;
 
 			if (isSelected && this.onSelect !== null) {
-				this.onSelect();
+				this.onSelect({node:this});
 			}
 			else if (this.onDeselect !== null) {
-				this.onDeselect();
+				this.onDeselect({node:this});
 			}
 		},
 
