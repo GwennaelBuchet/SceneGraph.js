@@ -182,7 +182,7 @@ body {
     font-weight: bold;
 }
 
-#topnav ul li a:hover, #topnav li#current a {
+#topnav ul li a:hover, #topnav li.current a, li.current {
     color: #00a9ff;
     background: transparent url('../img/css/hmenu-sel.jpg') repeat-x top left;
 }
@@ -345,6 +345,12 @@ body {
     border: none;
 }
 
+#sidebar .title {
+    color: #a0cdf2;
+    text-align: center;
+    text-transform:uppercase;
+}
+
 hr {
     color: #494949;
     background-color: #494949;
@@ -418,5 +424,47 @@ a img {
 
 .DocumentationText {
     width: 740px
+}
+
+.docBlock {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    width:90%;
+    background-color: #464646;
+    border: 0px;
+    margin: 10px;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    line-height: 1.2em;
+}
+
+.docBlock .title {
+    font-size: 18px;
+    margin: 5px 0 0px 0;
+    text-decoration:underline;
+}
+
+.docBlock .subtitle {
+    font-size: 16px;
+    margin: 15px 0 0px 0;
+    padding-top: 100px;
+}
+
+.docBlock .desc {
+    font-size: 14px;
+    padding-top: 12px;
+    padding-left: 12px;
+}
+
+.docBlock .default {
+    font-size: 16px;
+    color: #a0cdf2;
+    line-height: 1.6em;
+}
+
+.alert {
+    color:#ff1f49;
 }
 
