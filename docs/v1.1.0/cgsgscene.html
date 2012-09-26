@@ -69,150 +69,276 @@
 
 
 <div id="wrapper">
-<div id="bg">
-<div id="header"></div>
-<div id="page">
-<!-- begin container -->
-<div id="container">
-<!--  content -->
-<div id="content">
-<div class="DocumentationText alignleft">
+    <div id="bg">
+        <div id="header"></div>
+        <div id="page">
+            <!-- begin container -->
+            <div id="container">
+                <!--  content -->
+                <div id="content">
+                    <div class="DocumentationText alignleft">
 
-    <h1>Class CGSGScene</h1>
+                        <h1>Class CGSGScene</h1>
 
-    <p>Description</p>
+                        <p>Represent the scene of the application.<br/>
+                            It ensapsulates the scenegraph itself and several methods to track mouse and touch events,
+                            ...<br/><br/>
+                            Your main class should extend this one.
 
-    <p>&nbsp;</p>
+                            <a onclick="toggleElt('#ex1')"><div class="default">Example:</div></a>
+                                <div id="ex1">
+                                    <div class="default">HTML Page</div>
+                                    <pre class="brush: js">
+                                        <canvas id="scene" width="640" height="480">
+                                            Your browser does not support the canvas element.
+                                        </canvas>
 
-    <hr/>
-    <a onclick="toggleElt('#inherited')"><h2>Inherited from</h2></a>
-    <p id="inherited">(todo ...)</p>
+                                        <script type="text/javascript">
+                                            var canvasScene = document.getElementById("scene");
+                                            var game = new CGMain(canvasScene);
+                                        </script>
+                                    </pre>
 
+                                    <div class="default">Main JS class</div>
+                                    <pre class="brush: js">
+                                        var CGMain = CGSGScene.extend(
+                                            {
+                                                initialize : function (canvas) {
+                                                    //call the parent initializer (ie: constructor)
+                                                    this._super(canvas);
 
-    <p>&nbsp;</p>
-    <hr/>
-    <a onclick="toggleElt('#publicproperties')"><h2>Public properties</h2></a>
-    <p id="publicproperties">(todo ...)</p>
+                                                    //create a dummy scene with a dummy object
+                                                    this.createScene();
 
+                                                    //call this to start animation, frame counter, ...
+                                                    this.startPlaying();
+                                                },
 
+                                                /**
+                                                 * Just create a single node (a square node)
+                                                 */
+                                                createScene : function () {
+                                                    this.squareNode = new CGSGNodeSquare(60, 20, 200, 200); //(x, y, w, h)
+                                                    //add some attributes to the square
+                                                    this.squareNode.isResizable = true;
+                                                    this.squareNode.isDraggable = true;
 
-    <p>&nbsp;</p>
-    <hr/>
-    <a onclick="toggleElt('#publicmethods')"><h2>Public methods</h2></a>
-    <p id="publicmethods">(todo ...)</p>
+                                                    //add the square into the scene graph, as root node
+                                                    this.sceneGraph.addNode(this.squareNode, null);
+                                                }
+                                            }
+                                        );
+                                    </pre>
+                                </div>
+                        </p>
 
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <a onclick="toggleElt('#inherited')"><h2>Inherited from</h2></a>
 
+                        <p id="inherited">nothing.</p>
 
-    <p>&nbsp;</p>
-    <hr/>
-    <a onclick="toggleElt('#events')"><h2>Events</h2></a>
-    <p id="events">(todo ...)</p>
-
-
-
-</div>
-
-
-<div id="sidebar" class="alignright">
-    <h3>Docs</h3>
-    <ul class="vmenu">
-        <li>
-            <hr/>
-            <div class="title">CORE</div>
-        </li>
-        <li>
-            <a href="../../docs.html" shape="rect">Concepts</a>
-        </li>
-        <li>
-            <a href="globals.html" shape="rect">Globals</a>
-        </li>
-        <li class="current">
-            <a href="cgsgscene.html" shape="rect">CGSGScene</a>
-        </li>
-        <li>
-            <a href="cgsgscenegraph.html" shape="rect">CGSGSceneGraph</a>
-        </li>
-        <li>
-            <a href="cgsgnode.html" shape="rect">CGSGNode</a>
-        </li>
-        <li>
-            <hr/>
-            <div class="title">CUSTOM NODES</div>
-        </li>
-        <li>
-            <a href="cgsgnodetext.html" shape="rect">CGSGNodeText</a>
-        </li>
-        <li>
-            <a href="cgsgnodeimage.html" shape="rect">CGSGNodeImage</a>
-        </li>
-        <li>
-            <a href="cgsgnodeanimatedsprite.html" shape="rect">CGSGNodeAnimatedSprite</a>
-        </li>
-        <li>
-            <a href="cgsgnodevideo.html" shape="rect">CGSGNodeVideo</a>
-        </li>
-        <li>
-            <a href="cgsgnodesquare.html" shape="rect">CGSGNodeSquare</a>
-        </li>
-        <li>
-            <a href="cgsgnodecircle.html" shape="rect">CGSGNodeCircle</a>
-        </li>
-        <li>
-            <a href="cgsgnodeellipse.html" shape="rect">CGSGNodeEllipse</a>
-        </li>
-        <li>
-            <hr/>
-            <div class="title">UTILS</div>
-        </li>
-        <li>
-            <a href="cgsgtraverser.html" shape="rect">CGSGTraverser</a>
-        </li>
-        <li>
-            <a href="cgsgmath.html" shape="rect">CGSGMath</a>
-        </li>
-        <li>
-            <a href="cgsgvector2d.html" shape="rect">CGSGVector2D</a>
-        </li>
-        <li>
-            <a href="cgsgcolor.html" shape="rect">CGSGColor</a>
-        </li>
-        <li>
-            <hr/>
-            <div class="title">ANIMATION</div>
-        </li>
-        <li>
-            <a href="cgsgtimeline.html" shape="rect">CGSGTimeline </a>
-        </li>
-        <li>
-            <a href="cgsganimationkey.html" shape="rect">CGSGAnimationKey</a>
-        </li>
-        <li>
-            <a href="cgsgparticlesystem.html" shape="rect">CGSGParticleSystem </a>
-        </li>
-        <li>
-            <a href="cgsgparticleemitter.html" shape="rect">CGSGParticleEmitter </a>
-        </li>
-        <li>
-            <hr/>
-            <div class="title">TIPS</div>
-        </li>
-        <li>
-            <a href="performancetips.html" shape="rect">Performance Tips</a>
-        </li>
-    </ul>
-</div>
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <a onclick="toggleElt('#initialize')"><h2>Initialize</h2></a>
+                        <div id="initialize" class="docBlock">
+                            <span class="default">@param canvas </span>A handler to the canvas HTML element<br/>
+                        </div>
 
 
-<div class="clear" style="height:4px"></div>
-</div>
-<!-- end content -->
-</div>
-<!-- end container -->
-</div>
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <h2>Public properties</h2>
+                        <p id="publicproperties">
+                            <div class="docBlock">
+                                <a onclick="toggleElt('#prop1')"><span class="title">canvas</span><span class="subtitle"> : Canvas HTML Element</span></a>
 
-<div id="pageFooter">
-</div>
-</div>
+                                <div id="prop1" style="display: none;">
+                                    <div class="desc">Handler to the Canvas.
+                                        <p class="alert">Readonly property.</p></div>
+                                </div>
+                            </div>
+
+                            <div class="docBlock">
+                                <a onclick="toggleElt('#prop2')"><span class="title">context</span><span class="subtitle"> : Canvas 2D Context</span></a>
+
+                                <div id="prop2" style="display: none;">
+                                    <div class="desc">Handler to the 2D context of the canvas.
+                                        <p class="alert">Readonly property.</p></div>
+                                </div>
+                            </div>
+
+                        <div class="docBlock">
+                            <a onclick="toggleElt('#prop3')"><span class="title">sceneGraph</span></a><span class="subtitle"> : <a href="cgsgscenegraph.html">CGSGSceneGraph</a></span>
+
+                            <div id="prop3" style="display: none;">
+                                <div class="desc">Handler to the scene graph itself.
+                                    <p class="alert">Readonly property.</p></div>
+                            </div>
+                        </div>
+
+                        <div class="docBlock">
+                            <a onclick="toggleElt('#prop4')"><span class="title">selectedNodes</span></a><span class="subtitle"> : Array of <a href="cgsgnode.html">CGSGNode</a></span>
+
+                            <div id="prop4" style="display: none;">
+                                <div class="desc">List of the current selected nodes in the scene graph.<br/>
+                                Each of these nodes also have their "<i>isSelected</i>" attribute set to true.
+                                <p class="alert">Readonly property.</p></div>
+                            </div>
+                        </div>
+
+                        <div class="docBlock">
+                            <a onclick="toggleElt('#prop5')"><span class="title">fps</span><span class="subtitle"> : float</span></a>
+
+                            <div id="prop5" style="display: none;">
+                                <div class="desc">Current FPS (frames per second) of the framework.<br/>
+                                    If you just want to display the current fps in a HTML container, you should use the "<i>showFPS</i>" method of CGSGScene.<br/>
+                                    <div class="default">Example in the HTML page:</div>
+                                    <pre id="ex2" class="brush: js">
+                                        <canvas id="scene" width="80" height="50">
+                                            Your browser does not support the canvas element.
+                                        </canvas>
+                                        <span id="fps"></span> fps.
+
+                                        <script type="text/javascript">
+                                            var canvasScene = document.getElementById("scene");
+                                            var game = new CGMain(canvasScene);
+                                            game.showFPS(document.getElementById("fps"));
+                                        </script>
+                                    </pre>
+                                    <p class="alert">Readonly property.</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        </p>
+
+
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <a onclick="toggleElt('#publicmethods')"><h2>Public methods</h2></a>
+
+                        <p id="publicmethods">(todo ...)</p>
+
+
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <a onclick="toggleElt('#events')"><h2>Events</h2></a>
+
+                        <p id="events">(todo ...)</p>
+
+
+                    </div>
+
+
+                    <div id="sidebar" class="alignright">
+                        <h3>Docs</h3>
+                        <ul class="vmenu">
+                            <li>
+                                <hr/>
+                                <div class="title">CORE</div>
+                            </li>
+                            <li>
+                                <a href="../../docs.html" shape="rect">Concepts</a>
+                            </li>
+                            <li>
+                                <a href="globals.html" shape="rect">Globals</a>
+                            </li>
+                            <li class="current">
+                                <a href="cgsgscene.html" shape="rect">CGSGScene</a>
+                            </li>
+                            <li>
+                                <a href="cgsgscenegraph.html" shape="rect">CGSGSceneGraph</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnode.html" shape="rect">CGSGNode</a>
+                            </li>
+                            <li>
+                                <hr/>
+                                <div class="title">CUSTOM NODES</div>
+                            </li>
+                            <li>
+                                <a href="cgsgnodetext.html" shape="rect">CGSGNodeText</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnodeimage.html" shape="rect">CGSGNodeImage</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnodeanimatedsprite.html" shape="rect">CGSGNodeAnimatedSprite</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnodevideo.html" shape="rect">CGSGNodeVideo</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnodesquare.html" shape="rect">CGSGNodeSquare</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnodecircle.html" shape="rect">CGSGNodeCircle</a>
+                            </li>
+                            <li>
+                                <a href="cgsgnodeellipse.html" shape="rect">CGSGNodeEllipse</a>
+                            </li>
+                            <li>
+                                <hr/>
+                                <div class="title">UTILS</div>
+                            </li>
+                            <li>
+                                <a href="cgsgtraverser.html" shape="rect">CGSGTraverser</a>
+                            </li>
+                            <li>
+                                <a href="cgsgmath.html" shape="rect">CGSGMath</a>
+                            </li>
+                            <li>
+                                <a href="cgsgvector2d.html" shape="rect">CGSGVector2D</a>
+                            </li>
+                            <li>
+                                <a href="cgsgcolor.html" shape="rect">CGSGColor</a>
+                            </li>
+                            <li>
+                                <hr/>
+                                <div class="title">ANIMATION</div>
+                            </li>
+                            <li>
+                                <a href="cgsgtimeline.html" shape="rect">CGSGTimeline </a>
+                            </li>
+                            <li>
+                                <a href="cgsganimationkey.html" shape="rect">CGSGAnimationKey</a>
+                            </li>
+                            <li>
+                                <a href="cgsgparticlesystem.html" shape="rect">CGSGParticleSystem </a>
+                            </li>
+                            <li>
+                                <a href="cgsgparticleemitter.html" shape="rect">CGSGParticleEmitter </a>
+                            </li>
+                            <li>
+                                <hr/>
+                                <div class="title">TIPS</div>
+                            </li>
+                            <li>
+                                <a href="performancetips.html" shape="rect">Performance Tips</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="clear" style="height:4px"></div>
+                </div>
+                <!-- end content -->
+            </div>
+            <!-- end container -->
+        </div>
+
+        <div id="pageFooter">
+        </div>
+    </div>
 </div>
 <!-- end wrapper -->
 <div class="footerShadow"></div>
