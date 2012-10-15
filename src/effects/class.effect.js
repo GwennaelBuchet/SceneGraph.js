@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,25 +21,30 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 04/07/2012
- *
- * Purpose:
- * Abstract class for an image effect
+ */
+
+/*
+ * Base class for visual effects to be applied to a CGSGImage or a CGSGAnimatedSprite.
+ * @class CGSGEffect
+ * @module Effect
+ * @extends Object
+ * @constructor
+ * @beta
+ * @type {CGSGEffect}
  */
 var CGSGEffect = Object.extend(
 	{
-		initialize : function () {
+		initialize : function() {
 		},
 
 		/**
 		 *  This function must be filled by the inherited classes.
-		 *  @param context context containing the image
-		 *  @param width width for the image to be modified
-		 *  @param height height for the image to be modified
+		 *  @method render
+		 *  @param {CanvasRenderingContext2D} context context containing the image
+		 *  @param {Number} width width for the image to be modified
+		 *  @param {Number} height height for the image to be modified
 		 */
-		render : function (context, width, height) {
+		render : function(context, width, height) {
 		}
 	}
 );

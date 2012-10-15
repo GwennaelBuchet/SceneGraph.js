@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,18 +21,30 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
+ */
+
+/**
+ * @module Animation
+ * @class CGSGAnimationKey
+ * @extends {Object}
+ * @constructor
+ * @param {Number} frame number for this key. Must be an integer value.
+ * @param {Number} value for this key. Can be a Float value
+ * @type {CGSGAnimationKey}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 10/08/12
- *
- * Purpose :
- * An animation key is composed of a frame number and a value
  */
 var CGSGAnimationKey = Object.extend(
 	{
-		initialize : function (frame, value) {
-			/////// @public ////////
+		initialize : function(frame, value) {
+			/**
+			 * @property frame
+			 * @type {Number}
+			 */
 			this.frame = frame;
+			/**
+			 * @property value
+			 * @type {Number}
+			 */
 			this.value = value;
 		}
 	}

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,246 +21,315 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
+ * */
+
+/**
+ * A Position object
+ * @class CGSGPosition
+ * @extends CGSGVector2D
+ * @constructor
+ * @param {Number} x X value
+ * @param {Number} y Y value
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 02/08/2012
- *
- * Purpose:
- * A CGSGPosition
- * */
+ * @type {CGSGPosition}
+ */
 var CGSGPosition = CGSGVector2D.extend(
-    {
-        initialize : function (x, y) {
-            this._super(x, y);
-        },
+	{
+		initialize : function(x, y) {
+			this._super(x, y);
+		},
 
-        /**
-         * @public
-         * return a new object with these attributes
-         */
-        copy : function () {
-            return new CGSGPosition(this.x, this.y);
-        },
+		/**
+		 * return a new object with these attributes
+		 * @public
+		 * @method copy
+		 * @return {CGSGPosition}
+		 */
+		copy : function() {
+			return new CGSGPosition(this.x, this.y);
+		},
 
-        /**
-         * @public
-         * Replace current relative position by this new one
-         * */
-        translateTo : function (newX, newY) {
-            this.x = newX;
-            this.y = newY;
-        },
+		/**
+		 * Replace current relative position by this new one
+		 * @method translateTo
+		 * @param {Number} newX
+		 * @param {Number} newY
+		 */
+		translateTo : function(newX, newY) {
+			this.x = newX;
+			this.y = newY;
+		},
 
-        /**
-         * @public
-         * Add new coordinate to the current relative one
-         * */
-        translateWith : function (x, y) {
-            this.x += x;
-            this.y += y;
-        },
+		/**
+		 * Add new coordinate to the current relative one
+		 * @public
+		 * @method translateWith
+		 * @param {Number} x
+		 * @param {Number} y
+		 */
+		translateWith : function(x, y) {
+			this.x += x;
+			this.y += y;
+		},
 
-        /**
-         * @public
-         * Add new coordinate to the current relative one
-         * */
-        translateBy : function (x, y) {
-            this.x *= x;
-            this.y *= y;
-        }
-    }
+		/**
+		 * Add new coordinate to the current relative one
+		 * @public
+		 * @method translateBy
+		 * @param {Number} x
+		 * @param {Number} y
+		 */
+		translateBy : function(x, y) {
+			this.x *= x;
+			this.y *= y;
+		}
+	}
 );
 
 /**
- * User: gbuchet
- * Date: 12/01/12
- * Time: 21:31
- *
- * Purpose:
- * A CGSGScale
- * */
+ * A Scale object
+ * @class CGSGScale
+ * @extends CGSGPosition
+ * @constructor
+ * @param {Number} x X value
+ * @param {Number} y Y value
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @type {CGSGScale}
+ */
 var CGSGScale = CGSGPosition.extend(
-    {
-        initialize : function (x, y) {
-            this._super(x, y);
-        }
-    }
+	{
+		initialize : function(x, y) {
+			this._super(x, y);
+		}
+	}
 );
 
 /**
- * User: gbuchet
- * Date: 12/01/12
- * Time: 21:31
- *
- * Purpose:
- * A CGSGRotation
- * */
+ * A Rotation object
+ * @class CGSGRotation
+ * @extends Object
+ * @constructor
+ * @param {Number} angle Angle value
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @type {CGSGRotation}
+ */
 var CGSGRotation = Object.extend(
-    {
-        initialize : function (angle) {
-            this.angle = angle;
-        },
+	{
+		initialize : function(angle) {
+			this.angle = angle;
+		},
 
-        /**
-         * @public
-         * return a new object with these attributes
-         */
-        copy : function () {
-            return new CGSGRotation(this.angle);
-        },
+		/**
+		 * return a new object with these attributes
+		 * @public
+		 * @method copy
+		 * @return {CGSGRotation}
+		 */
+		copy : function() {
+			return new CGSGRotation(this.angle);
+		},
 
-        /**
-         * @public
-         * Replace current relative relativeRotation by this new one
-         * */
-        rotateTo : function (newAngle) {
-            this.angle = newAngle;
-        },
+		/**
+		 * Replace current angle by this new one
+		 * @public
+		 * @method rotateTo
+		 * @param {Number} newAngle
+		 */
+		rotateTo : function(newAngle) {
+			this.angle = newAngle;
+		},
 
-        /**
-         * @public
-         * Multiply this relativeScale factor by the current relative relativeScale
-         * */
-        rotateBy : function (rotateFactor) {
-            this.multiply(rotateFactor);
-        },
+		/**
+		 * Multiply this angle by this factor
+		 * @public
+		 * @method rotateBy
+		 * @param {Number} rotateFactor
+		 */
+		rotateBy : function(rotateFactor) {
+			this.multiply(rotateFactor);
+		},
 
-        /**
-         * @public
-         * Add this angle to the current relative relativeRotation
-         * */
-        rotateWith : function (angle) {
-            this.add(angle);
-        },
+		/**
+		 * Add this angle to the current one
+		 * @public
+		 * @method rotateWith
+		 * @param {Number} angle
+		 */
+		rotateWith : function(angle) {
+			this.add(angle);
+		},
 
-        /**
-         * @public
-         * @param angle
-         */
-        add : function (angle) {
-            this.angle += angle;
-        },
+		/**
+		 * Add this angle to the current one
+		 * @public
+		 * @method add
+		 * @param {Number} angle
+		 */
+		add : function(angle) {
+			this.angle += angle;
+		},
 
-        /**
-         * @public
-         * @param angle
-         */
-        substract : function (angle) {
-            this.angle -= angle;
-        },
+		/**
+		 * Substract this angle to the current one
+		 * @public
+		 * @method substract
+		 * @param {Number} angle
+		 */
+		substract : function(angle) {
+			this.angle -= angle;
+		},
 
-        /**
-         * @public
-         * @param angle
-         */
-        multiply : function (angle) {
-            this.angle *= angle;
-        }
-    }
+		/**
+		 * Multiply this angle to the current one
+		 * @public
+		 * @method multiply
+		 * @param {Number} angle
+		 */
+		multiply : function(angle) {
+			this.angle *= angle;
+		}
+	}
 );
 
 /**
- * User: gbuchet
- * Date: 12/01/12
- * Time: 21:31
- *
- * Purpose:
- * A CGSGDimension
- * */
+ * A Dimension object
+ * @class CGSGDimension
+ * @extends CGSGVector2D
+ * @constructor
+ * @param {Number} width
+ * @param {Number} height
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @type {CGSGDimension}
+ */
 var CGSGDimension = CGSGVector2D.extend(
-    {
-        initialize : function (width, height) {
+	{
+		initialize : function(width, height) {
 
-            this._super(width, height);
+			this._super(width, height);
 
-            ///// @public //////
-            //alias to the x attribute
-            this.width = this.x;
-            //alias to the y attribute
-            this.height = this.y;
-        },
+			/**
+			 * Alias to the x attribute
+			 * @property width
+			 * @type {Number}
+			 */
+			this.width = this.x;
+			/**
+			 * Alias to the y attribute
+			 * @property height
+			 * @type {Number}
+			 */
+			this.height = this.y;
+		},
 
-        /**
-         * @public
-         * return a new object with these attributes
-         */
-        copy : function () {
-            return new CGSGDimension(this.width, this.height);
-        },
+		/**
+		 * Return a new object with these attributes
+		 * @method copy
+		 * @override
+		 * @return {CGSGDimension}
+		 */
+		copy : function() {
+			return new CGSGDimension(this.width, this.height);
+		},
 
-        /**
-         * @public
-         * Replace current dimension by these new ones
-         * */
-        resizeTo : function (newWidth, newHeight) {
-            if (newWidth > 0) {
-                this.width = newWidth;
-            }
-            if (newHeight > 0) {
-                this.height = newHeight;
-            }
-        },
+		/**
+		 * Replace current dimension by these new ones
+		 * @method resizeTo
+		 * @param {Number} newWidth
+		 * @param {Number} newHeight
+		 * */
+		resizeTo : function(newWidth, newHeight) {
+			if (newWidth > 0) {
+				this.width = newWidth;
+			}
+			if (newHeight > 0) {
+				this.height = newHeight;
+			}
+		},
 
-        /**
-         * Multiply current dimension by these new ones
-         * */
-        resizeBy : function (widthFactor, heightFactor) {
-            if (widthFactor > 0) {
-                this.width *= widthFactor;
-            }
-            if (heightFactor > 0) {
-                this.height *= heightFactor;
-            }
-        },
+		/**
+		 * Multiply current dimension by these new ones
+		 * @method resizeBy
+		 * @param {Number} widthFactor
+		 * @param {Number} heightFactor
+		 * */
+		resizeBy : function(widthFactor, heightFactor) {
+			if (widthFactor > 0) {
+				this.width *= widthFactor;
+			}
+			if (heightFactor > 0) {
+				this.height *= heightFactor;
+			}
+		},
 
-        /**
-         * Increase/decrease current dimention with adding values
-         * */
-        resizeWith : function (width, height) {
-            if (this.width + width > 0) {
-                this.width += width;
-            }
-            if (this.height + height > 0) {
-                this.height += height;
-            }
-        }
-    }
+		/**
+		 * Increase/decrease current dimension with adding values
+		 * @method resizeWith
+		 * @param {Number} width
+		 * @param {Number} height
+		 * */
+		resizeWith : function(width, height) {
+			if (this.width + width > 0) {
+				this.width += width;
+			}
+			if (this.height + height > 0) {
+				this.height += height;
+			}
+		}
+	}
 );
 
 /**
- * User: gbuchet
- * Date: 12/01/12
- * Time: 21:31
- *
- * Purpose:
- * A CGSGRegion represent a region on the screen with a position and a dimension
- *
- * @param x
- * @param y
- * @param width
- * @param height
- * */
+ * A Region object encapsulates a CGSGPosition and a CGSGDimension
+ * @class CGSGRegion
+ * @extends Object
+ * @constructor
+ * @param {Number} x Position on X
+ * @param {Number} y Position on Y
+ * @param {Number} width Dimension on Width
+ * @param {Number} height Dimension on Height
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @type {CGSGRegion}
+ */
 var CGSGRegion = Object.extend(
-    {
-        initialize : function (x, y, width, height) {
-            ///// @public //////
-            this.position = new CGSGPosition(x, y);
-            this.dimension = new CGSGDimension(width, height);
-        },
+	{
+		initialize : function(x, y, width, height) {
+			/**
+			 * @property position
+			 * @type {CGSGPosition}
+			 */
+			this.position = new CGSGPosition(x, y);
+			/**
+			 * @property dimension
+			 * @type {CGSGDimension}
+			 */
+			this.dimension = new CGSGDimension(width, height);
+		},
 
-        copy : function () {
-            return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
-        },
+		/**
+		 * @method copy
+		 * @return {CGSGRegion}
+		 */
+		copy : function() {
+			return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
+		},
 
-        add : function (region) {
-            this.position.translateWith(region.position.x, region.position.y);
-            this.dimension.resizeWith(region.dimension.width, region.dimension.height);
-        },
+		/**
+		 * @method add
+		 * @param region {CGSGRegion}
+		 */
+		add : function(region) {
+			this.position.translateWith(region.position.x, region.position.y);
+			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
+		},
 
-        substract : function (region) {
-            this.position.translateWith(-region.position.x, -region.position.y);
-            this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
-        }
-    }
+		/**
+		 * @method substract
+		 * @param {CGSGRegion} region
+		 */
+		substract : function(region) {
+			this.position.translateWith(-region.position.x, -region.position.y);
+			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
+		}
+	}
 );
 

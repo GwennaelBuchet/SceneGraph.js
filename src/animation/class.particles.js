@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -21,405 +21,613 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 18/08/12
- *
- * Purpose :
- *
  */
 
+/**
+ * @module Animation
+ * @submodule ParticleSystem
+ * @class CGSGParticle
+ * @constructor
+ * @param node {CGSGNode}
+ * @type {CGSGParticle}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
 var CGSGParticle = Object.extend(
-    {
-        initialize:function (node) {
-            this.node = node;
+	{
+		initialize : function(node) {
+			/**
+			 * @property node
+			 * @type {CGSGNode}
+			 */
+			this.node = node;
 
-            this.node.isClickable = false;
-            this.node.isResizable = false;
-            this.node.isDraggable = false;
+			this.node.isClickable = false;
+			this.node.isResizable = false;
+			this.node.isDraggable = false;
 
-            this.init();
-        },
+			this.init();
+		},
 
-        init:function () {
-            //this.direction = new CGSGVector2D(1, 0);
-            this.position = new CGSGPosition(0.0, 0.0);
-            this.mass = 1000;
-            this.initVelocity(new CGSGVector2D(1.0, 1.0));
-            this.initTTL(50 + Math.random() * 160);
-            this.isAlive = true;
+		/**
+		 * Initialize attributes of this particle
+		 * @public
+		 * @method init
+		 */
+		init : function() {
+			//this.direction = new CGSGVector2D(1, 0);
+			this.position = new CGSGPosition(0.0, 0.0);
+			this.mass = 1000;
+			this.initVelocity(new CGSGVector2D(1.0, 1.0));
+			this.initTTL(50 + Math.random() * 160);
+			this.isAlive = true;
 
-            this._gravity = new CGSGVector2D(0.0, 0.0);
-            this._forceTotal = new CGSGVector2D(0.0, 0.0);
-            this._acceleration = new CGSGVector2D(0.0, 0.0);
+			this._gravity = new CGSGVector2D(0.0, 0.0);
+			this._forceTotal = new CGSGVector2D(0.0, 0.0);
+			this._acceleration = new CGSGVector2D(0.0, 0.0);
 
-            this.speedThreshold = 0.0;
-        },
+			this.speedThreshold = 0.0;
+		},
 
-        initTTL:function (ttl) {
-            this.age = 0;
-            this.ttl = ttl;
-        },
+		/**
+		 * Initialize the TTL of
+		 * @public
+		 * @method initTTL
+		 * @param {Number} ttl
+		 */
+		initTTL : function(ttl) {
+			this.age = 0;
+			this.ttl = ttl;
+		},
 
-        initPosition:function (x, y) {
-            this.position.x = x;
-            this.position.y = y;
-            this.node.translateTo(x, y);
-        },
+		/**
+		 * @public
+		 * @method initPosition
+		 * @param {Number} x
+		 * @param {Number} y
+		 */
+		initPosition : function(x, y) {
+			this.position.x = x;
+			this.position.y = y;
+			this.node.translateTo(x, y);
+		},
 
-        initVelocity:function (velocity) {
-            this.velocity = velocity.copy();
-            this.velocity.normalize();
-        },
+		/**
+		 * @public
+		 * @method initVelocity
+		 * @param {Number} velocity
+		 */
+		initVelocity : function(velocity) {
+			this.velocity = velocity.copy();
+			this.velocity.normalize();
+		},
 
-        initSpeedThreshold:function (st) {
-            this.speedThreshold = st;
-        },
+		/**
+		 * @public
+		 * @method initSpeedThreshold
+		 * @param {Number} st
+		 */
+		initSpeedThreshold : function(st) {
+			this.speedThreshold = st;
+		},
 
-        /**
-         * update the particle position with an Euler integration
-         * TODO : externalize the process to choose between RK4 and Euler integration
-         * @param emitterForce
-         * @param gravity
-         * @param deltaTime
-         * @return {*}
-         */
-        updatePosition:function (deltaTime, acceleration) {
-            if (isNaN(deltaTime)) {
-                deltaTime = 1.0;
-            }
+		/**
+		 * update the particle position with an Euler integration
+		 * TODO : externalize the process to choose between RK4 and Euler integration
+		 * @public
+		 * @method updatePosition
+		 * @param {Number} deltaTime
+		 * @param {Number} acceleration
+		 * @return {*}
+		 */
+		updatePosition : function(deltaTime, acceleration) {
+			if (isNaN(deltaTime)) {
+				deltaTime = 1.0;
+			}
 
-            deltaTime += this.speedThreshold;
+			deltaTime += this.speedThreshold;
 
-            this._acceleration.x = acceleration.x / this.mass;
-            this._acceleration.y = acceleration.y / this.mass;
+			this._acceleration.x = acceleration.x / this.mass;
+			this._acceleration.y = acceleration.y / this.mass;
 
-            this.velocity.x += this._acceleration.x * deltaTime;
-            this.velocity.y += this._acceleration.y * deltaTime;
+			this.velocity.x += this._acceleration.x * deltaTime;
+			this.velocity.y += this._acceleration.y * deltaTime;
 
-            this.position.x += this.velocity.x * deltaTime;
-            this.position.y += this.velocity.y * deltaTime;
+			this.position.x += this.velocity.x * deltaTime;
+			this.position.y += this.velocity.y * deltaTime;
 
-            if (this.node !== null) {
-                this.node.translateTo(this.position.x, this.position.y);
-            }
+			if (this.node !== null) {
+				this.node.translateTo(this.position.x, this.position.y);
+			}
 
-            this.age += deltaTime;
-            if (this.age >= this.ttl) {
-                this.isAlive = false;
-            }
+			this.age += deltaTime;
+			if (this.age >= this.ttl) {
+				this.isAlive = false;
+			}
 
-            return this.isAlive;
-        }
-    }
+			return this.isAlive;
+		}
+	}
 );
 
 /**
  * A particle emitter for the cgSceneGraph Particle System
- * @type {*}
+ * @class CGSGParticleEmitter
+ * @extends {CGSGNode}
+ * @module Animation
+ * @submodule ParticleSystem
+ * @constructor
+ * @param {CGSGNode} node
+ * @param {CGSGRegion} region
+ * @param {Number} nbParticlesMax
+ * @param {Number} velocity
+ * @param {Number} angle
+ * @param {Number} speed
+ * @param {Number} speedThreshold
+ * @param {Number} outflow
+ * @type {CGSGParticleEmitter}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGParticleEmitter = CGSGNode.extend(
-    {
-        /**
-         * Constructor
-         * @param region a CGSGRegion
-         * @param force a CGSGVector2D
-         * @param nbParticlesMax
-         */
-        initialize:function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
-            this._super(region.position.x, region.position.y, region.dimension.width, region.dimension.height);
+	{
+		initialize : function(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
+			this._super(region.position.x, region.position.y, region.dimension.width, region.dimension.height);
 
-            this._node = node;
-            //the region from where the particles are emitted
-            this.region = region;
-            //number max of particles out of the emitter on 1 frame
-            this.nbParticlesMax = nbParticlesMax;
-            this.velocity = new CGSGVector2D(0.0, 0.0);
-            if (cgsgExist(velocity)) {
-                this.velocity = velocity;
-            }
-            //angle range of emission. a particle is emitted in the this.direction vector + or - this.angle/2 angle.
-            this.angle = Math.PI / 5.0;
-            if (cgsgExist(angle)) {
-                this.angle = angle;
-            }
 
-            this.speed = 1.0;
-            if (cgsgExist(speed)) {
-                this.speed = speed;
-            }
-            this.speedThreshold = 1.0;
-            if (cgsgExist(speedThreshold)) {
-                this.speedThreshold = speedThreshold;
-            }
+			/**
+			 * @property classType
+			 * @type {String}
+			 */
+			this.classType = "CGSGParticleEmitter";
 
-            this.outflow = 0;
-            if (cgsgExist(outflow)) {
-                this.outflow = outflow;
-            }
+			this._node = node;
+			/**
+			 * the region from where the particles are emitted
+			 * @property region
+			 * @type {CGSGRegion}
+			 */
+			this.region = region;
+			/**
+			 * number max of particles out of the emitter on 1 frame
+			 * @property nbParticlesMax
+			 * @type {Number}
+			 */
+			this.nbParticlesMax = nbParticlesMax;
+			/**
+			 * @property velocity
+			 * @type {CGSGVector2D}
+			 */
+			this.velocity = new CGSGVector2D(0.0, 0.0);
+			if (cgsgExist(velocity)) {
+				this.velocity = velocity;
+			}
+			/**
+			 * angle range of emission. a particle is emitted in the this.direction vector + or - this.angle/2 angle.
+			 * @property angle
+			 * @type {Number}
+			 */
+			this.angle = Math.PI / 5.0;
+			if (cgsgExist(angle)) {
+				this.angle = angle;
+			}
 
-            this._currentFrame = this.outflow;
+			/**
+			 * speed of a particle
+			 * @property speed
+			 * @type {Number}
+			 */
+			this.speed = 1.0;
+			if (cgsgExist(speed)) {
+				this.speed = speed;
+			}
+			/**
+			 * threshold to randomize and add to the speed of a particle
+			 * @property speedThreshold
+			 * @type {Number}
+			 */
+			this.speedThreshold = 1.0;
+			if (cgsgExist(speedThreshold)) {
+				this.speedThreshold = speedThreshold;
+			}
 
-            //list of the particles
-            this._particles = [];
-            this._isPlaying = false;
-            this._forces = [];
-            this._acceleration = new CGSGVector2D(0.0, 0.0);
+			/**
+			 * @property outflow
+			 * @type {Number}
+			 */
+			this.outflow = 0;
+			if (cgsgExist(outflow)) {
+				this.outflow = outflow;
+			}
 
-            this.gravity = this.addForce(new CGSGVector2D(0.0, 9.81), null);
+			this._currentFrame = this.outflow;
 
-            //events
-            this.onUpdateParticleEnd = null;
-            this.onInitParticle = null;
-            this.onInitParticlesEnd = null;
-        },
+			//list of the particles
+			this._particles = [];
+			this._isPlaying = false;
+			this._forces = [];
+			this._acceleration = new CGSGVector2D(0.0, 0.0);
 
-        /**
-         * start the animation
-         */
-        start:function () {
-            this._isPlaying = true;
-        },
+			/**
+			 * Gravity Force added by default with the addForce method
+			 * @property gravity
+			 * @type {Object}
+			 */
+			this.gravity = this.addForce(new CGSGVector2D(0.0, 9.81), null);
 
-        /**
-         * stop the animation
-         */
-        stop:function () {
-            this._isPlaying = false;
-        },
+			/**
+			 * Callback on end of update for 1 particle
+			 * @property onUpdateParticleEnd
+			 * @default null
+			 * @type {function}
+			 */
+			this.onUpdateParticleEnd = null;
+			/**
+			 * Callback when reinit for 1 particle
+			 * @property onInitParticle
+			 * @default null
+			 * @type {function}
+			 */
+			this.onInitParticle = null;
+			/**
+			 * Callback when reinit all particles is done
+			 * @property onInitParticlesEnd
+			 * @default null
+			 * @type {function}
+			 */
+			this.onInitParticlesEnd = null;
+		},
 
-        /**
-         * reset the animation
-         */
-        reset:function () {
-            this._currentFrame = 0;
-            //free the memory
-            for (var p = this._particles.length - 1; p >= 0; p--) {
-                this.removeChild(this._particles[p].node);
-                delete(this._particles[p]);
-            }
-            this._particles.clear();
+		/**
+		 * start the animation
+		 * @public
+		 * @method start
+		 */
+		start : function() {
+			this._isPlaying = true;
+		},
 
-            //this.initParticles(this._node);
-        },
+		/**
+		 * stop the animation
+		 * @public
+		 * @method stop
+		 */
+		stop : function() {
+			this._isPlaying = false;
+		},
 
-        render:function (context) {
-            this.beforeRender(context);
+		/**
+		 * reset the animation
+		 * @public
+		 * @method reset
+		 */
+		reset : function() {
+			this._currentFrame = 0;
+			//free the memory
+			for (var p = this._particles.length - 1; p >= 0; p--) {
+				this.removeChild(this._particles[p].node);
+				delete(this._particles[p]);
+			}
+			this._particles.clear();
 
-            //update the acceleration of the particles, based on the current forces
-            this._acceleration.initialize(0.0, 0.0);
-            for (var f = this._forces.length - 1; f >= 0; f--) {
-                this._acceleration.x += this._forces[f].vector.x;
-                this._acceleration.y += this._forces[f].vector.y;
+			//this.initParticles(this._node);
+		},
 
-                if (this._forces[f].ttl !== null) {
-                    this._forces[f].age++;
-                    if (this._forces[f].age >= this._forces[f].ttl) {
-                        this.removeForce(this._forces[f]);
-                    }
-                }
-            }
+		/**
+		 * @override
+		 * @public
+		 * @method render
+		 * @param context
+		 */
+		render : function(context) {
+			this.beforeRender(context);
 
-            //updates all particles
-            for (var p = 0; p < this._particles.length; p++) {
-                if (this._isPlaying) {
-                    if (!this.updateParticle(this._particles[p])) {
-                        this.initParticle(this._particles[p], p);
-                    }
-                }
+			//update the acceleration of the particles, based on the current forces
+			this._acceleration.initialize(0.0, 0.0);
+			for (var f = this._forces.length - 1; f >= 0; f--) {
+				this._acceleration.x += this._forces[f].vector.x;
+				this._acceleration.y += this._forces[f].vector.y;
 
-                this._particles[p].node.render(context);
-            }
+				if (this._forces[f].ttl !== null) {
+					this._forces[f].age++;
+					if (this._forces[f].age >= this._forces[f].ttl) {
+						this.removeForce(this._forces[f]);
+					}
+				}
+			}
 
-            //if not all of the particles are out
-            if (this._particles.length < this.nbParticlesMax) {
-                this._currentFrame++;
-                if (this._currentFrame >= this.outflow) {
-                    this._currentFrame = 0;
-                    this._createParticle(this._particles.length);
-                }
-            }
+			//updates all particles
+			for (var p = 0; p < this._particles.length; p++) {
+				if (this._isPlaying) {
+					if (!this.updateParticle(this._particles[p])) {
+						this.initParticle(this._particles[p], p);
+					}
+				}
 
-            //restore state
-            //this.afterRender(context);
-            context.restore();
-        },
+				this._particles[p].node.render(context);
+			}
 
-        /**
-         * create a new particle, and add it to the emitter
-         */
+			//if not all of the particles are out
+			if (this._particles.length < this.nbParticlesMax) {
+				this._currentFrame++;
+				if (this._currentFrame >= this.outflow) {
+					this._currentFrame = 0;
+					this._createParticle(this._particles.length);
+				}
+			}
 
-        _createParticle:function (index) {
-            var particle = new CGSGParticle(this._node.copy());
-            this.initParticle(particle, index);
-            this.addChild(particle.node);
-            this._particles.push(particle);
-        },
+			//restore state
+			//this.afterRender(context);
+			context.restore();
+		},
 
-        updateParticle:function (particle) {
-            //first, update the position of the particle node
-            var isAlive = particle.updatePosition(this.speed, this._acceleration);
+		/**
+		 * create a new particle, and add it to the emitter
+		 * @private
+		 * @method _createParticle
+		 * @param {Number} index
+		 */
+		_createParticle : function(index) {
+			var particle = new CGSGParticle(this._node.copy());
+			this.initParticle(particle, index);
+			this.addChild(particle.node);
+			this._particles.push(particle);
+		},
 
-            //finally, call the update method of the particle node to apply extra animations
-            if (this.onUpdateParticleEnd !== null) {
-                this.onUpdateParticleEnd(particle);
-            }
+		/**
+		 * @public
+		 * @method updateParticle
+		 * @param {CGSGParticle} particle
+		 * @return {Boolean}
+		 */
+		updateParticle : function(particle) {
+			//first, update the position of the particle node
+			var isAlive = particle.updatePosition(this.speed, this._acceleration);
 
-            return isAlive;
-        },
+			//finally, call the update method of the particle node to apply extra animations
+			if (this.onUpdateParticleEnd !== null) {
+				this.onUpdateParticleEnd(particle);
+			}
 
-        /**
-         *
-         * @param particle a CGSGNodeParticle
-         */
-        initParticle:function (particle, index) {
-            particle.init();
-            //set a random position inside the region of this emitter
-            particle.initPosition(Math.random() * this.region.dimension.width,
-                Math.random() * this.region.dimension.height);
+			return isAlive;
+		},
 
-            //set a random direction inside the angle
-            var velocity = this.velocity.copy();
-            var halfAngle = this.angle / 2.0;
-            velocity.rotate(-halfAngle + Math.random() * this.angle);
-            particle.initVelocity(velocity);
+		/**
+		 * @public
+		 * @method initParticle
+		 * @param {CGSGParticle} particle
+		 * @param {Number} index
+		 */
+		initParticle : function(particle, index) {
+			particle.init();
+			//set a random position inside the region of this emitter
+			particle.initPosition(Math.random() * this.region.dimension.width,
+			                      Math.random() * this.region.dimension.height);
 
-            particle.initSpeedThreshold(-this.speedThreshold + Math.random() * this.speedThreshold * 2.0);
+			//set a random direction inside the angle
+			var velocity = this.velocity.copy();
+			var halfAngle = this.angle / 2.0;
+			velocity.rotate(-halfAngle + Math.random() * this.angle);
+			particle.initVelocity(velocity);
 
-            if (this.onInitParticle !== null) {
-                this.onInitParticle({index:index, particle:particle});
-            }
-        },
+			particle.initSpeedThreshold(-this.speedThreshold + Math.random() * this.speedThreshold * 2.0);
 
-        addForce:function (vector, ttl) {
-            var force = {vector:vector, ttl:ttl, age:0};
-            this._forces.push(force);
-            return force;
-        },
+			if (this.onInitParticle !== null) {
+				this.onInitParticle({index : index, particle : particle});
+			}
+		},
 
-        removeForce:function (force) {
-            this._forces.without(force);
-        },
+		/**
+		 * Add a force to the emitter
+		 * @public
+		 * @method addForce
+		 * @param {CGSGVector2D} vector
+		 * @param {Number} ttl time to live of the force
+		 * @return {Object}
+		 */
+		addForce : function(vector, ttl) {
+			var force = {vector : vector, ttl : ttl, age : 0};
+			this._forces.push(force);
+			return force;
+		},
 
-        addImpulse:function (point, force, ttl) {
-            for (var p = 0; p < this._particles.length; p++) {
-                this._particles[p].addImpulse(point, force, ttl);
-            }
-        }
-    }
+		/**
+		 * Remove a previously added force
+		 * @public
+		 * @method removeForce
+		 * @param {Object} force
+		 */
+		removeForce : function(force) {
+			this._forces.without(force);
+		}/*,
+
+	 addImpulse : function(point, force, ttl) {
+	 for (var p = 0; p < this._particles.length; p++) {
+	 this._particles[p].addImpulse(point, force, ttl);
+	 }
+	 }*/
+	}
 );
 
+/**
+ * A particle System object.
+ * @class CGSGParticleSystem
+ * @extends {CGSGNode}
+ * @module Animation
+ * @submodule ParticleSystem
+ * @type {CGSGParticleSystem}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
 var CGSGParticleSystem = CGSGNode.extend(
-    {
-        initialize:function (x, y) {
-            this._super(x, y, 1, 1);
+	{
+		initialize : function(x, y) {
+			this._super(x, y, 1, 1);
 
-            this.classType = "CGSGParticleSystem";
+			/**
+			 * @property classType
+			 * @type {String}
+			 */
+			this.classType = "CGSGParticleSystem";
 
-            this.emitters = [];
-            this.attractors = [];
-            this.repulsors = [];
+			/**
+			 * list of emitters
+			 * @property emitters
+			 * @type {Array}
+			 */
+			this.emitters = [];
+			/**
+			 * list of attractors
+			 * @property attractors
+			 * @type {Array}
+			 */
+			this.attractors = [];
+			/**
+			 * list of repulsors
+			 * @property repulsors
+			 * @type {Array}
+			 */
+			this.repulsors = [];
 
-            this.isClickable = false;
-            this.isResizable = false;
-            this.isDraggable = false;
-            this.isTraversable = false;
+			this.isClickable = false;
+			this.isResizable = false;
+			this.isDraggable = false;
+			this.isTraversable = false;
 
-            //factory pattern
-            //this.integrator = new CGSGParticleIntegratorEuler();
-            //this.integrator = new CGSGParticleIntegratorRK4();
-        },
+			//factory pattern
+			//this.integrator = new CGSGParticleIntegratorEuler();
+			//this.integrator = new CGSGParticleIntegratorRK4();
+		},
 
-        addForce:function (vector) {
-            for (var e = 0; e < this.emitters.length; e++) {
-                this.emitters[e].addForce(vector);
-            }
-        },
+		/**
+		 * Add a force to all emitters
+		 * @public
+		 * @method addForce
+		 * @param {CGSGVector2D} vector
+		 */
+		addForce : function(vector) {
+			for (var e = 0; e < this.emitters.length; e++) {
+				this.emitters[e].addForce(vector);
+			}
+		},
 
-        addImpulse:function (point, force, ttl) {
-            for (var e = 0; e < this.emitters.length; e++) {
-                this.emitters[e].addImpulse(point, force, ttl);
-            }
-        },
+		/*addImpulse : function(point, force, ttl) {
+		 for (var e = 0; e < this.emitters.length; e++) {
+		 this.emitters[e].addImpulse(point, force, ttl);
+		 }
+		 },*/
 
-        /**
-         *
-         * @param region
-         * @param nbParticlesMax
-         * @return the new created emitter (a CGSGParticleEmitter object)
-         */
-        addEmitter:function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
-            var emitter = new CGSGParticleEmitter(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow);
-            this.addChild(emitter);
-            this.emitters.push(emitter);
-            return emitter;
-        },
+		/**
+		 * Create a new emitter and return it
+		 * @public
+		 * @method addEmitter
+		 * @param {CGSGNode} node
+		 * @param {CGSGRegion} region
+		 * @param {Number} nbParticlesMax
+		 * @param {Number} velocity
+		 * @param {Number} angle
+		 * @param {Number} speed
+		 * @param {Number} speedThreshold
+		 * @param {Number} outflow
+		 * @return {CGSGParticleEmitter}
+		 */
+		addEmitter : function(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
+			var emitter = new CGSGParticleEmitter(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold,
+			                                      outflow);
+			this.addChild(emitter);
+			this.emitters.push(emitter);
+			return emitter;
+		},
 
-        /**
-         * Remove the emitter passed in parameter
-         * @param emitter
-         */
-        removeEmitter:function (emitter) {
-            this.emitters.without(emitter);
-            this.removeChild(emitter);
-        },
+		/**
+		 * Remove the emitter passed in parameter
+		 * @public
+		 * @method removeEmitter
+		 * @param {CGSGParticleEmitter} emitter
+		 */
+		removeEmitter : function(emitter) {
+			this.emitters.without(emitter);
+			this.removeChild(emitter);
+		},
 
-        /**
-         *
-         * @param position
-         * @param strength
-         * @param distance
-         */
-        addAttractor:function (position, strength, distance) {
-            var attractor = {
-                position:position,
-                strength:strength,
-                distance:distance
-            };
-            this.attractors.push(attractor);
-        },
+		/**
+		 * @public
+		 * @method addAttractor
+		 * @param {CGSGPosition} position
+		 * @param {Number} strength
+		 * @param {Number} distance
+		 * @return {Object}
+		 */
+		addAttractor : function(position, strength, distance) {
+			var attractor = {
+				position : position,
+				strength : strength,
+				distance : distance
+			};
+			this.attractors.push(attractor);
+			return attractor;
+		},
 
-        removeAttractor:function (attractor) {
-            this.attractors.without(attractor);
-        },
+		/**
+		 * @public
+		 * @method removeAttractor
+		 * @param {Object} attractor
+		 */
+		removeAttractor : function(attractor) {
+			this.attractors.without(attractor);
+		},
 
-        /**
-         *
-         * @param position
-         * @param strength
-         * @param distance
-         */
-        addRepulsor:function (position, strength, distance) {
-            var repulsor = {
-                position:position,
-                strength:strength,
-                distance:distance
-            };
-            this.repulsors.push(repulsor);
-        },
+		/**
+		 * @public
+		 * @method addRepulsor
+		 * @param {CGSGPosition} position
+		 * @param {Number} strength
+		 * @param {Number} distance
+		 * @return {Object}
+		 */
+		addRepulsor : function(position, strength, distance) {
+			var repulsor = {
+				position : position,
+				strength : strength,
+				distance : distance
+			};
+			this.repulsors.push(repulsor);
+			return repulsor;
+		},
 
-        removRepulsor:function (repulsor) {
-            this.repulsors.without(repulsor);
-        },
+		/**
+		 * @public
+		 * @method removeRepulsor
+		 * @param {Object} repulsor
+		 */
+		removeRepulsor : function(repulsor) {
+			this.repulsors.without(repulsor);
+		},
 
-        /**
-         * @private
-         * override the CGSGNode 'pickNode' method to return null due to performance
-         * @param mousePosition
-         * @param absoluteScale
-         * @param ghostContext
-         * @param recursively
-         * @param canvasWidth
-         * @param canvasHeight
-         * @param condition
-         * @return {*}
-         */
-        pickNode:function (mousePosition, absoluteScale, ghostContext, recursively, canvasWidth, canvasHeight, condition) {
-            return null;
-        },
+		/**
+		 * override the CGSGNode 'pickNode' method to return null due to performance
+		 * @override
+		 * @protected
+		 * @method pickNode
+		 * @param mousePosition
+		 * @param absoluteScale
+		 * @param ghostContext
+		 * @param recursively
+		 * @param canvasWidth
+		 * @param canvasHeight
+		 * @param condition
+		 * @return {*}
+		 */
+		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, canvasWidth, canvasHeight,
+		                    condition) {
+			return null;
+		},
 
-        copy:function () {
-            var node = new CGSGParticleSystem();
-        }
-    }
+		/**
+		 * @public
+		 * @method copy
+		 * @todo : TODO fill the method
+		 * @return {CGSGParticleSystem}
+		 */
+		copy : function() {
+			var node = new CGSGParticleSystem();
+		}
+	}
 );

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -21,113 +21,327 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
+ */
+
+/**
+ * List the methods to check the pick on a node
+ * @class CGSGPickNodeMethod
+ * @type {Object}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 01/07/2012
- *
- * Represent a node in the scene graph.
- * It encapsulates a position and a dimension.
- * @param x the X position of this nodes, relatively to its parent position
- * @param y the Y position of this nodes, relatively to its parent position
- * @param width width of this nodes with a scale of [1; 1]
- * @param height height of this nodes with a scale of [1; 1]
  */
 var CGSGPickNodeMethod = {
-	GHOST  : "region",
+	/**
+	 * @property GHOST
+	 */
+	GHOST  : "ghost",
+	/**
+	 * @property REGION
+	 */
 	REGION : "region"
 };
 
+
+/**
+ * Base class for a Node in the Scene Graph.
+ * Each node encapsulates its position, dimension, scale and rotation, ...
+ * @class CGSGNode
+ * @extends Object
+ * @module Node
+ * @main Node
+ * @constructor
+ * @param {Number} x Relative position on X
+ * @param {Number} y Relative position on Y
+ * @param {Number} width Relative dimension
+ * @param {Number} height Relative Dimension
+ * @type {CGSGNode}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
 var CGSGNode = Object.extend(
 	{
 		initialize : function(x, y, width, height) {
 
-			///// @public //////
-
-			//the name of this nodes
+			/**
+			 * The name of this nodes. Should be unique, but no control is done.
+			 * @property name
+			 * @default ""
+			 * @type {String}
+			 */
 			this.name = "";
+			/**
+			 * Indicate whether this node is selected or not.
+			 * Use CGSGScene::scenegraph.selectNode(nodeToSelect) to select a node
+			 * @property isSelected
+			 * @readonly
+			 * @default false
+			 * @type {Boolean}
+			 */
 			this.isSelected = false;
-			//the type of this class. Must be redefined by inherited classes
+			/**
+			 * The type of this class. Must be redefined by inherited classes
+			 * @property classType
+			 * @readonly
+			 * @type {String}
+			 */
 			this.classType = "CGSGNODE";
 
-			// The 8 handleboxes that will be the resize handles
-			// the resize handles will be in this order:
-			// 0  1  2
-			// 3     4
-			// 5  6  7
+			/**
+			 * The 8 handleboxes that will be the resize handles
+			 * the resize handles will be in this order:
+			 *  0  1  2
+			 *  3     4
+			 *  5  6  7
+			 * @property resizeHandles
+			 * @readonly
+			 * @type {Array}
+			 */
 			this.resizeHandles = [];
 
+			/**
+			 * Level of transparency of the node.
+			 * @default 1.0
+			 * @property globalAlpha
+			 * @type {Number}
+			 */
 			this.globalAlpha = 1.0;
+			/**
+			 * Indicate if the node is visible (and so selectable) or not
+			 * @property isVisible
+			 * @default true
+			 * @type {Boolean}
+			 */
 			this.isVisible = true;
 
-			//if true, the node will be proportionally resized
+			/**
+			 * If true, the node will be proportionally resized
+			 * @property isProportionalResize
+			 * @type {Boolean}
+			 */
 			this.isProportionalResize = false;
 
-			//"region", "ghost"
+			/**
+			 * Define the method the detection (or "pick") method will be used for this node.
+			 * Possible values CGSGPickNodeMethod.REGION and CGSGPickNodeMethod.GHOST.
+			 *
+			 * <ul>
+			 *     <li>REGION : the detection returns true if the mouse cursor is inside the bounding box of the node</li>
+			 *     <li>GHOST : the detection will use the "renderGhost" method of the node to achieve a more accurate detection</li>
+			 * </ul>
+			 *
+			 * @property pickNodeMethod
+			 * @default CGSGPickNodeMethod.REGION
+			 * @type {CGSGPickNodeMethod}
+			 */
 			this.pickNodeMethod = CGSGPickNodeMethod.REGION;
 
-			//list of the children (empty if this nodes is a leaf)
+			/**
+			 * List of the children (empty if this nodes is a leaf)
+			 * @property children
+			 * @readonly
+			 * @type {Array}
+			 */
 			this.children = [];
 
-			//the constraint region when moving the node
+			/**
+			 * The constraint region when moving the node
+			 * @property regionConstraint
+			 * @default null
+			 * @type {null}
+			 */
 			this.regionConstraint = null;
 
-			//pivot point to apply a rotation
+			/**
+			 * Pivot point to apply a rotation.
+			 * The point is a value between [0, 0] and [1, 1].
+			 * [0, 0] is the top left corner of the boundging box and [1, 1] the bottom rignt corner.
+			 * STILL EXPERIMENTAL.
+			 * @property rotationCenter
+			 * @default CGSGPosition(0, 0)
+			 * @type {CGSGPosition}
+			 */
 			this.rotationCenter = new CGSGPosition(0, 0);
 
-			//can be fulfilled by the developer to put in whatever he needs
+			/**
+			 * can be fulfilled by the developer to put in whatever he needs
+			 * @property userdata
+			 * @default null
+			 * @type {any}
+			 */
 			this.userdata = null;
 
-			//selection attributes
-			//if true, this nodes is clickable and so will be checked by the pickNode function
+			/**
+			 * selection attributes
+			 * If true, this node is clickable and so will be checked by the pickNode function
+			 * @property isClickable
+			 * @default true
+			 * @type {Boolean}
+			 */
 			this.isClickable = true;
-			//if true, this nodes can be selected and so can be transformed (dimension)
+			/**
+			 * If true, this node can be resized by the user. In that case, the dimension property will be affected, not the scale one.
+			 * @property isResizable
+			 * @default false
+			 * @type {Boolean}
+			 */
 			this.isResizable = false;
+			/**
+			 * If true, the node can be dragged by the user
+			 * @property isDraggable
+			 * @default false
+			 * @type {Boolean}
+			 */
 			this.isDraggable = false;
 
+			/**
+			 * Color for the line around this node when selected
+			 * @property selectionLineColor
+			 * @default "#FF6890"
+			 * @type {Color}
+			 */
 			this.selectionLineColor = CGSG_DEFAULT_SELECTED_STROKE_COLOR;
+			/**
+			 * Width for the line around this node when selected
+			 * @property selectionLineWidth
+			 * @default 2
+			 * @type {Number}
+			 */
 			this.selectionLineWidth = CGSG_DEFAULT_SELECTED_STROKE_SIZE;
+			/**
+			 * Color for the handle boxes around this node when selected
+			 * @property selectionHandleSize
+			 * @default 6
+			 * @type {Number}
+			 */
 			this.selectionHandleSize = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE;
+			/**
+			 * Color for the handle boxes around this node when selected
+			 * @property selectionHandleColor
+			 * @default "#9068FF""
+			 * @type {Color}
+			 */
 			this.selectionHandleColor = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR;
 
-			//Updated by the scene itself. Don't update it manually.
-			//True if the mice is over the node, false otherwise
+			/**
+			 * Updated by the scene itself. Don't update it manually.
+			 * True if the mice is over the node, false otherwise
+			 * @property isMouseOver
+			 * @readonly
+			 * @type {Boolean}
+			 */
 			this.isMouseOver = false;
+			/**
+			 * Updated by the scene itself. Don't update it manually.
+			 * True if the node is being moved manually, false otherwise
+			 * @property isMoving
+			 * @readonly
+			 * @type {Boolean}
+			 */
 			this.isMoving = false;
+			/**
+			 * Updated by the scene itself. Don't update it manually.
+			 * True if the node is being resized manually, false otherwise
+			 * @property isResizing
+			 * @readonly
+			 * @type {Boolean}
+			 */
 			this.isResizing = false;
 
-			///// @private & @protected /////
-
+			/**
+			 * ID for the node. Should be filled by the developer. The framework will never use it.
+			 * @property _id
+			 * @type {Number}
+			 * @private
+			 */
 			this._id = 0;
-			//parent of this nodes
+			/**
+			 * parent of this node
+			 * @property _parentNode
+			 * @type {CGSGNode}
+			 * @private
+			 */
 			this._parentNode = null;
 
-			//position of this nodes on the screen, relatively to the position of its parent nodes
+			/**
+			 * Relative position of this nodes on the canvas container, relatively to the position of its parent node.
+			 * Never use it to move the node, use translateBy/translateWith/translateTo instead
+			 * @readonly
+			 * @property position
+			 * @default CGSGPosition(0, 0)
+			 * @type {CGSGPosition}
+			 */
 			this.position = new CGSGPosition(0, 0);
-			//absolute position on the canvas container. Generated value. don't modify it manually
+			/**
+			 * Absolute position of this nodes on the canvas container. Generated value. Don't modify it manually
+			 * Never use it to move the node, use translateBy/translateWith/translateTo instead
+			 * @readonly
+			 * @property _absolutePosition
+			 * @private
+			 * @type {CGSGPosition}
+			 */
 			this._absolutePosition = new CGSGPosition(0, 0);
-			//dimension of this nodes when scale = 1
+			/**
+			 * Dimension of this nodes on the canvas container
+			 * Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead
+			 * @readonly
+			 * @property dimension
+			 * @default CGSGDimension(0, 0)
+			 * @type {CGSGDimension}
+			 */
 			this.dimension = new CGSGDimension(0, 0);
-			//scale of this nodes, relatively to the scale of its parent nodes
+			/**
+			 * Relative scale of this nodes on the canvas container, relatively to the scale of its parent node.
+			 * Never use it to scale or resize the node, use scaleBy/scaleWith/scaleTo instead
+			 * @readonly
+			 * @property scale
+			 * @default CGSGScale(1, 1)
+			 * @type {CGSGScale}
+			 */
 			this.scale = new CGSGScale(1, 1);
-			//Generated value. don't modify it manually
+			/**
+			 * Absolute scale of this nodes on the canvas container. Generated value. Don't modify it manually
+			 * Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead
+			 * @readonly
+			 * @property _absoluteScale
+			 * @private
+			 * @type {CGSGScale}
+			 */
 			this._absoluteScale = new CGSGScale(1, 1);
-			//rotation of this nodes, relatively to the rotation of its parent nodes
+			/**
+			 * Relative rotation of this nodes on the canvas container, relatively to the rotation of its parent node.
+			 * Never use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo instead
+			 * @readonly
+			 * @property rotation
+			 * @default CGSGRotation(0)
+			 * @type {CGSGRotation}
+			 */
 			this.rotation = new CGSGRotation(0);
-			//Generated value. don't modify it manually
+			/**
+			 * Absolute rotation of this nodes on the canvas container. Generated value. Don't modify it manually
+			 * Never use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo instead
+			 * @readonly
+			 * @private
+			 * @property _absoluteRotation
+			 * @type {CGSGRotation}
+			 */
 			this._absoluteRotation = new CGSGRotation(0);
 
+			/**
+			 * @property _isDrag
+			 * @type {Boolean}
+			 * @private
+			 */
 			this._isDrag = false;
-
-			this._ghostColor = "#FF0000";
 
 			//true if it has been moved and the absolute SRT of the children must be recomputed
 			this._isAbsoluteSRTObsolete = true;
 
-			///// INITIALIZATION //////
 			this.selectableZone =
 			new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
 
-			//true if this node is traversable (recursively) (ie : by the picknode, a traverser, ...)
+			/**
+			 * true if this node is traversable (recursively) (ie : by the picknode, a traverser, ...)
+			 * @property isTraversable
+			 * @type {Boolean}
+			 */
 			this.isTraversable = true;
 
 			//initialize the position and dimension
@@ -140,24 +354,92 @@ var CGSGNode = Object.extend(
 				this.resizeHandles.push(handleBox);
 			}
 
-			//all the events for the node
+			/**
+			 * Callback on mouse over
+			 * @property onMouseOver
+			 * @default null
+			 * @type {function}
+			 */
 			this.onMouseOver = null;
+			/**
+			 * Callback on mouse out
+			 * @property onMouseOut
+			 * @default null
+			 * @type {function}
+			 */
 			this.onMouseOut = null;
+			/**
+			 * Callback on mouse up
+			 * @property onMouseUp
+			 * @default null
+			 * @type {function}
+			 */
+			this.onMouseUp = null;
+			/**
+			 * Callback on mouse or touch click
+			 * @property onClick
+			 * @default null
+			 * @type {function}
+			 */
 			this.onClick = null;
-			this.onDblClick = null;
+			/**
+			 * Callback on mouse or touch double click
+			 * @property onDblClick
+			 * @default null
+			 * @type {function}
+			 */
+			this.onDblClick = null
+			;
+			/**
+			 * Callback on drag this node
+			 * @property onDrag
+			 * @default null
+			 * @type {function}
+			 */
 			this.onDrag = null;
+			/**
+			 * Callback on end of drag this node
+			 * @property onDragEnd
+			 * @default null
+			 * @type {function}
+			 */
 			this.onDragEnd = null;
+			/**
+			 * Callback on resize this node
+			 * @property onResize
+			 * @default null
+			 * @type {function}
+			 */
 			this.onResize = null;
+			/**
+			 * Callback on end resize this node
+			 * @property onResizeEnd
+			 * @default null
+			 * @type {function}
+			 */
 			this.onResizeEnd = null;
+			/**
+			 * Callback on select this node
+			 * @property onSelect
+			 * @default null
+			 * @type {function}
+			 */
 			this.onSelect = null;
+			/**
+			 * Callback on deselect this node
+			 * @property onDeselect
+			 * @default null
+			 * @type {function}
+			 */
 			this.onDeselect = null;
 
 			this.computeAbsoluteMatrix(true);
 		},
 
 		/**
-		 * @public
 		 * return the relative region of this node
+		 * @public
+		 * @method getRegion
 		 * @return {CGSGRegion}
 		 */
 		getRegion : function() {
@@ -165,8 +447,9 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * return the absolute region of this node
+		 * @public
+		 * @method getAbsoluteRegion
 		 * @return {CGSGRegion}
 		 */
 		getAbsoluteRegion : function() {
@@ -178,16 +461,20 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Wipes the canvas context
-		 * */
+		 * @method _clearContext
+		 * @param context
+		 * @param canvasWidth
+		 * @param canvasHeight
+		 * @private
+		 */
 		_clearContext : function(context, canvasWidth, canvasHeight) {
-			context.clearRect(0, 0, canvasWidth, canvasHeight
-				/*, context.width, context.height*/);
+			context.clearRect(0, 0, canvasWidth, canvasHeight);
 		},
 
 		/**
-		 * Empty rendering function. Must be overrided into the subclasses
-		 * @param context the context into render the nodes
-		 * @param currentFrame the number for the current frame
+		 * Empty rendering function. Must be overrided by the inherited classes
+		 * @method render
+		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function(context) {
 			//save current state
@@ -199,13 +486,11 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Empty ghost rendering function.
-		 * Render here your custom nodes with a single color (this._ghostColor, defined in the CGSGNode class).
+		 * Render here your custom nodes with a single color (cgsgGhostColor).
 		 * This will be used by the SceneGraph to know if the mouse cursor is over this nodes.
 		 *
+		 * @method renderGhost
 		 * @param ghostContext The context for the ghost rendering
-		 * @param cumulatedPosition The CGSGPosition absolute position of the nodes in the canvas
-		 * @param cumulatedRotation The CGSGRotation absolute rotation of the nodes in the canvas
-		 * @param cumulatedScale The CGSGScale absolute scale of the nodes in the canvas
 		 */
 		renderGhost : function(ghostContext) {
 			//save current state
@@ -216,8 +501,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
+		 * Render the selection box and handle boxes around the bounding box of this node when selected
 		 * @protected
-		 * Render the resize handler
+		 * @method renderSelected
+		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		renderSelected : function(context) {
 			this._absolutePosition = this.getAbsolutePosition();
@@ -285,10 +572,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Must be called before to start the rendering of the nodes
-		 * @param context the context into render the nodes
-		 * @param currentFrame the number for the current frame
+		 * @protected
+		 * @method beforeRender
+		 * @param {CanvasRenderingContext2D} context the context into render the nodes
 		 * */
 		beforeRender : function(context) {
 			//first save the current context state
@@ -304,8 +591,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
+		 * Must be called after a render
 		 * @protected
-		 * Must be called before begin to render
+		 * @method afterRender
+		 * @param {CanvasRenderingContext2D} context the context into render the nodes
 		 * */
 		afterRender : function(context) {
 			//render all children
@@ -324,9 +613,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
+		 * Must be called before begin to render the nodes in GHOST mode
 		 * @protected
-		 * Must be called before begin to render the nodes
-		 * @param context
+		 * @method beforeRenderGhost
+		 * @param {CanvasRenderingContext2D} context the context into render the nodes
 		 */
 		beforeRenderGhost : function(context) {
 			//first save the current context state
@@ -338,8 +628,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
-		 * @protected
 		 * Must be called before begin to render
+		 * @protected
+		 * @method afterRenderGhost
+		 * @param {CanvasRenderingContext2D} context the context into render the nodes
 		 * */
 		afterRenderGhost : function(context) {
 			//restore the context state
@@ -348,33 +640,36 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Mark this nodes as selected
+		 * @method setSelected
+		 * @param {Boolean} isSelected
 		 * */
 		setSelected : function(isSelected) {
 			this.isSelected = isSelected;
 			this._isDrag = true;
 
 			if (isSelected && this.onSelect !== null) {
-				this.onSelect({node:this});
+				this.onSelect({node : this});
 			}
 			else if (this.onDeselect !== null) {
-				this.onDeselect({node:this});
+				this.onDeselect({node : this});
 			}
 		},
 
 		/**
-		 * @protected
 		 * return this if this nodes is under the mice cursor
 		 * Can be overrided by inherited klass to optimize this perform.
 		 * This default function used the ghost rendering method
-		 * @param mousePosition A CGSGPosition object
-		 * @param ghostContext
-		 * @param absoluteScale
-		 * @param canvasWidth
-		 * @param canvasHeight
+		 * @protected
+		 * @method detectSelection
+		 * @param {CGSGPosition} mousePosition A CGSGPosition object
+		 * @param {CanvasRenderingContext2D} ghostContext
+		 * @param {CGSGScale} absoluteScale
+		 * @param {Number} canvasWidth
+		 * @param {Number} canvasHeight
 		 */
 		detectSelection : function(mousePosition, ghostContext, absoluteScale, canvasWidth, canvasHeight) {
 
-			if (this.pickNodeMethod == "region" /*CGSGPickNodeMethod.REGION*/) {
+			if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 				if (mousePosition.x >= this._absolutePosition.x
 					    && mousePosition.x <= this._absolutePosition.x + this.dimension.width * absoluteScale.x
 					    && mousePosition.y >= this._absolutePosition.y
@@ -403,12 +698,16 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Check if this nodes is under the cursor position.
-		 * @param mousePosition position of the mouse on the canvas
-		 * @param absoluteScale a CGSGScale absolute relativeScale of all parents
-		 * @param ghostContext a copy of the canvas context
-		 * @param recursively if false, don't traverse the children of this nodes
-		 * @param canvasWidth the width of the canvas container
-		 * @param canvasHeight the height of the canvas container
+		 * @public
+		 * @method pickNode
+		 * @param {CGSGPosition} mousePosition position of the mouse on the canvas
+		 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
+		 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
+		 * @param {Boolean} recursively if false, don't traverse the children of this nodes
+		 * @param {Number} canvasWidth the width of the canvas container
+		 * @param {Number} canvasHeight the height of the canvas container
+		 * @param {String} condition Condition to be picked
+		 * ie: "color=='yellow'" or "classType=='CGSGNodeImage' && this.globalAlpha>0.5"
 		 * */
 		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, canvasWidth, canvasHeight,
 		                    condition) {
@@ -454,6 +753,7 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Return true if this nodes has no child
+		 * @method isALeaf
 		 * */
 		isALeaf : function() {
 			return this.children.length <= 0;
@@ -463,7 +763,11 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Replace current relative position by this new one
-		 * */
+		 * @method translateTo
+		 * @param {Number} newRelativeX
+		 * @param {Number} newRelativeY
+		 * @param {Boolean} computeAbosluteValue (default: true)
+		 */
 		translateTo : function(newRelativeX, newRelativeY, computeAbosluteValue) {
 			this.position.translateTo(newRelativeX, newRelativeY);
 			if (computeAbosluteValue !== false) {
@@ -473,6 +777,10 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Add new coordinate to the current relative one
+		 * @method translateWith
+		 * @param {Number} x
+		 * @param {Number} y
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		translateWith : function(x, y, computeAbosluteValue) {
 			this.position.translateWith(x, y);
@@ -483,6 +791,10 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Add new coordinate to the current relative one
+		 * @method translateBy
+		 * @param {Number} x
+		 * @param {Number} y
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		translateBy : function(x, y, computeAbosluteValue) {
 			this.position.translateBy(x, y);
@@ -493,6 +805,9 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Replace current dimension by these new ones
+		 * @method resizeTo
+		 * @param {Number} newWidth
+		 * @param {Number} newHeight
 		 * */
 		resizeTo : function(newWidth, newHeight) {
 			this.dimension.resizeTo(newWidth, newHeight);
@@ -500,6 +815,9 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Multiply current dimension by these new ones
+		 * @method resizeTBy
+		 * @param {Number} widthFactor
+		 * @param {Number} heightFactor
 		 * */
 		resizeBy : function(widthFactor, heightFactor) {
 			this.dimension.resizeBy(widthFactor, heightFactor);
@@ -507,6 +825,9 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Increase/decrease current dimension with adding values
+		 * @method resizeWith
+		 * @param {Number} width
+		 * @param {Number} height
 		 * */
 		resizeWith : function(width, height) {
 			var w = width, h = height;
@@ -515,6 +836,10 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Replace current relative relativeScale by this new one
+		 * @method scaleTo
+		 * @param {Number} scaleX
+		 * @param {Number} scaleY
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		scaleTo : function(scaleX, scaleY, computeAbosluteValue) {
 			this.scale.x = scaleX;
@@ -526,6 +851,10 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Multiply this relativeScale factor by the current relative relativeScale
+		 * @method scaleBy
+		 * @param {Number} scaleFactorX
+		 * @param {Number} scaleFactorY
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		scaleBy : function(scaleFactorX, scaleFactorY, computeAbosluteValue) {
 			this.scale.x *= scaleFactorX;
@@ -537,6 +866,10 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Add to the current relative Scale
+		 * @method scaleWith
+		 * @param {Number} x
+		 * @param {Number} y
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		scaleWith : function(x, y, computeAbosluteValue) {
 			this.scale.x += scaleFactorX;
@@ -547,7 +880,11 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
-		 * Replace current relative relativeRotation by this new one
+		 * Replace current relative relativeRotation by this new oneScale
+		 * @method rotateTo
+		 * @param {Number} newAngle
+		 * @param {Boolean} computeAbosluteValue (default: true)
+		 *
 		 * */
 		rotateTo : function(newAngle, computeAbosluteValue) {
 			this.rotation.rotateTo(newAngle);
@@ -558,6 +895,9 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Multiply this relativeScale factor by the current relative relativeScale
+		 * @method rotateBy
+		 * @param {Number} rotateFactor
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		rotateBy : function(rotateFactor, computeAbosluteValue) {
 			this.rotation.rotateBy(rotateFactor);
@@ -568,6 +908,9 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Add this angle to the current relative relativeRotation
+		 * @method rotateWith
+		 * @param {Number} angle
+		 * @param {Boolean} computeAbosluteValue (default: true)
 		 * */
 		rotateWith : function(angle, computeAbosluteValue) {
 			this.rotation.rotateWith(angle);
@@ -580,7 +923,8 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Add a new nodes into this one, at the end of the list
-		 * @param newNode the nodes to add as a child
+		 * @method addChild
+		 * @param {CGSGNode} newNode the nodes to add as a child
 		 * */
 		addChild : function(newNode) {
 			newNode._parentNode = this;
@@ -590,8 +934,9 @@ var CGSGNode = Object.extend(
 		/**
 		 * Add a new nodes at a particular index in the list of children.
 		 * If the index is too large, the nodes will be inserted at the end of the list
-		 * @param newNode the nodes to insert as a child
-		 * @param index the position of the new child in the list
+		 * @method addChildAt
+		 * @param {CGSGNode} newNode the nodes to insert as a child
+		 * @param {Number} index the position of the new child in the list
 		 * */
 		addChildAt : function(newNode, index) {
 			if (index > this.children.length) {
@@ -608,9 +953,10 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Remove the child passed in parameter and delete it
-		 * @param node the nodes to remove
-		 * @param recursively if true, search the nodes on all the tree from this nodes
-		 * @return true if the child was correctly removed or false if the nodes was not found.
+		 * @method removeChild
+		 * @param {CGSGNode} node the nodes to remove
+		 * @param {Boolean} recursively if true, search the nodes on all the tree from this nodes
+		 * @return {Boolean} true if the child was correctly removed or false if the nodes was not found.
 		 * */
 		removeChild : function(node, recursively) {
 			var index = this.children.indexOf(node);
@@ -635,6 +981,7 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * remove all children, delete them and reset the current parameters
+		 * @method removeAll
 		 * */
 		removeAll : function() {
 			for (var i = 0, len = this.children.length; i < len; ++i) {
@@ -654,7 +1001,8 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Detach the nodes in index 'index' without delete it. So it's not a child anymore
-		 * @param index
+		 * @method detachChildAt
+		 * @param {Number} index
 		 */
 		detachChildAt : function(index) {
 			if (index >= 0 && index < this.children.length) {
@@ -664,20 +1012,24 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * Detach the nodes without delete it. So it's not a child anymore
-		 * @param childNode
+		 * @method detachChild
+		 * @param {CGSGNode} childNode
 		 */
 		detachChild : function(childNode) {
-			childNode._parentNode = null;
-			/*this.children = */
-			this.children.without(childNode);
+			if (cgsgExist(childNode)) {
+				childNode._parentNode = null;
+				/*this.children = */
+				this.children.without(childNode);
+			}
 		},
 
 		/**
 		 * Eval the script passed in parameter in "this" scope.
-		 * @param attribute The attribute to be changed
-		 * @param value The new value for the attribute
+		 * @method evalSet
+		 * @param {String} attribute The attribute to be changed
+		 * @param {any} value The new value for the attribute
 		 *
-		 * @example nodes.eval("position.y", 12);
+		 * @example node.evalSet("position.y", 12);
 		 */
 		evalSet : function(attribute, value) {
 			eval("this." + attribute + "=" + value);
@@ -693,6 +1045,11 @@ var CGSGNode = Object.extend(
 			}
 		},
 
+		/**
+		 * @method eval
+		 * @param {String} operation
+		 * @return {any}
+		 */
 		eval : function(operation) {
 			if (operation === undefined || operation === null) {
 				return true;
@@ -701,9 +1058,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Set the region inside which one this node ca be placed an can move
-		 * @param region a CGSGRegion relatively to this parent region. Can be null.
+		 * @public
+		 * @method setRegionConstraint
+		 * @param {CGSGRegion} region a CGSGRegion relatively to this parent region. Can be null.
 		 */
 		setRegionConstraint : function(region) {
 			this.regionConstraint = region;
@@ -711,7 +1069,8 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * @public
-		 * @return the absolute positions of this node
+		 * @method getAbsolutePosition
+		 * @return {CGSGPosition} the absolute positions of this node
 		 */
 		getAbsolutePosition : function() {
 			var n = this;
@@ -730,7 +1089,8 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * @public
-		 * @return the absolute scale of this node
+		 * @method getAbsoluteScale
+		 * @return {CGSGScale} the absolute scale of this node
 		 */
 		getAbsoluteScale : function() {
 			var n = this;
@@ -744,7 +1104,8 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * @public
-		 * @return the absolute rotation of this node
+		 * @method getAbsoluteRotation
+		 * @return {CGSGRotation} the absolute rotation of this node
 		 */
 		getAbsoluteRotation : function() {
 			var n = this;
@@ -757,9 +1118,10 @@ var CGSGNode = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Compute the absolute position, rotation and scale in the canvas container
-		 * @param recursive if !== false, compute recursively
+		 * @public
+		 * @method computeAbsoluteMatrix
+		 * @param {Boolean} recursive if !== false, compute recursively
 		 * */
 		computeAbsoluteMatrix : function(recursive) {
 			this._absolutePosition = this.getAbsolutePosition();
@@ -775,37 +1137,69 @@ var CGSGNode = Object.extend(
 			}
 		},
 
+		/**
+		 * @method getAbsoluteLeft
+		 * @return {Number}
+		 */
 		getAbsoluteLeft   : function() {
 			return this._absolutePosition.x;
 		},
+		/**
+		 * @method getAbsoluteRight
+		 * @return {Number}
+		 */
 		getAbsoluteRight  : function() {
 			return this._absolutePosition.x + this.getAbsoluteWidth();
 		},
+		/**
+		 * @method getAbsoluteTop
+		 * @return {Number}
+		 */
 		getAbsoluteTop    : function() {
 			return this._absolutePosition.y;
 		},
+		/**
+		 * @method getAbsoluteBottom
+		 * @return {Number}
+		 */
 		getAbsoluteBottom : function() {
 			return this._absolutePosition.y + this.getAbsoluteHeight();
 		},
+		/**
+		 * @method getAbsoluteWidth
+		 * @return {Number}
+		 */
 		getAbsoluteWidth  : function() {
 			return this.getWidth() * this._absoluteScale.x;
 		},
+		/**
+		 * @method getAbsoluteHeight
+		 * @return {Number}
+		 */
 		getAbsoluteHeight : function() {
 			return this.getHeight() * this._absoluteScale.y;
 		},
+		/**
+		 * @method getWidth
+		 * @return {Number}
+		 */
 		getWidth          : function() {
 			return this.dimension.width;
 		},
-
-		getHeight : function() {
+		/**
+		 * @method getHeight
+		 * @return {Number}
+		 */
+		getHeight         : function() {
 			return this.dimension.height;
 		},
 
 		/**
 		 * @public
-		 * @return true if the 2 nodes are colliding. They are colliding if the distance between them is minus than the threshold parameter
-		 * @param node a CGSGNode
-		 * @param space between the 2 nodes before considering they are colliding
+		 * @method isColliding
+		 * @return {Boolean} true if the 2 nodes are colliding. They are colliding if the distance between them is minus than the threshold parameter
+		 * @param {CGSGNode} node a CGSGNode
+		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
 		 */
 		isColliding : function(node, threshold) {
 			if (threshold === undefined || threshold === null) {
@@ -830,8 +1224,9 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * @public
-		 * @return a Array of nodes this one is colliding with (can be empty)
-		 * @param threshold space between the 2 nodes before considering they are colliding
+		 * @method getListOfCollidingBrothers
+		 * @return {Array} a Array of nodes this one is colliding with (can be empty)
+		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
 		 */
 		getListOfCollidingBrothers : function(threshold) {
 			var listOfCollidingNodes = [];
@@ -848,7 +1243,8 @@ var CGSGNode = Object.extend(
 
 		/**
 		 * @public
-		 * @param threshold space between the 2 nodes before considering they are colliding
+		 * @method isCollidingABrother
+		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
 		 * @return {Boolean} true if this node is colliding one of the other children of its parent node
 		 */
 		isCollidingABrother : function(threshold) {
@@ -863,9 +1259,43 @@ var CGSGNode = Object.extend(
 			return false;
 		},
 
+		/*
+		 * TODO : to be completed
+		 * Return the list of lines going joigning nodes' peaks
+		 * param onlyBrothers a Boolean. Default = true
+		 * param threshold distance from which the detectection is done
+		 * return an array of CGSGVector2D (can be empty)
+		 */
+		/*getMagneticLines : function(onlyBrothers, threshold) {
+		 if (!cgsgExist(onlyBrothers)) {
+		 onlyBrothers = true;
+		 }
+
+		 //compute vectors
+		 var topVector = this.getAbsoluteTop();
+		 var bottomVector = this.getAbsoluteBottom();
+		 var leftVector = this.getAbsoluteLeft();
+		 var rightVector = this.getAbsoluteRight();
+
+		 //line = a point and a normalized CGSGVector2D (ie : [0, 1] or [1, 0])
+		 var listOfLines = [];
+
+		 var brother = null;
+		 for (var n = 0; n < this._parentNode.children.length; n++) {
+		 brother = this._parentNode.children[n];
+
+		 //vectors v & v' are colinear if and only if xy’ - yx’ = 0.
+
+		 }
+
+		 return listOfLines;
+		 },*/
+
 		/**
-		 *
-		 * @return a copy of this node
+		 * Must be overrided by inherited classes
+		 * @method copy
+		 * @param {CGSGNode} node
+		 * @return {CGSGNode} a copy of this node
 		 */
 		copy : function(node) {
 			if (node === null || node === undefined) {
@@ -903,7 +1333,7 @@ var CGSGNode = Object.extend(
 			node.selectionHandleSize = this.selectionHandleSize;
 			node.selectionHandleColor = this.selectionHandleColor;
 			node._id = this._id;
-			node._ghostColor = this._ghostColor;
+			node._ghostColor = cgsgGhostColor;
 			node.translateTo(this.position.x, this.position.y);
 			node.resizeTo(this.dimension.width, this.dimension.height);
 			node.scaleTo(this.scale.x, this.scale.y);
@@ -927,6 +1357,19 @@ var CGSGNode = Object.extend(
 			node.computeAbsoluteMatrix(true);
 
 			return node;
+		},
+
+		/**
+		 * free memory taken by this object and it's children.
+		 * The 'userData' propoerty won't be freed
+		 * @method free
+		 */
+		free : function() {
+			for (var c = this.children.length - 1; c >= 0; c--) {
+				c.free();
+			}
+
+			delete(this);
 		}
 	}
 );

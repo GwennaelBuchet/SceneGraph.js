@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,28 +21,66 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 20/07/2012
- *
- * Purpose :
- * Constants and default values for the framework
  */
 
-//default framerate for the rendering
+/**
+ * Global constants used by the framework
+ *
+ * @class __GLOBAL_CONSTANTS__
+ * @module Util
+ * @static
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
+
+/**
+ * default framerate for the rendering
+ * @property CGSG_DEFAULT_FRAMERATE
+ * @default 60
+ * @type {Number}
+ */
 var CGSG_DEFAULT_FRAMERATE = 60;
 
-//default ratio value for the display
+/**
+ * default ratio value for the display
+ * @property CGSG_DEFAULT_DISPLAYRATIO
+ * @default CGSGScale(1.0, 1.0)
+ * @type {CGSGScale}
+ */
 var CGSG_DEFAULT_DISPLAYRATIO = new CGSGScale(1.0, 1.0);
 
-//default color for the selection stroke
+/**
+ * default color for the selection stroke
+ * @property CGSG_DEFAULT_SELECTED_STROKE_COLOR
+ * @default "#FF6890"
+ * @type {String}
+ */
 var CGSG_DEFAULT_SELECTED_STROKE_COLOR = "#FF6890";
-//default size for the selection stroke
+/**
+ * default size for the selection stroke
+ * @property CGSG_DEFAULT_SELECTED_STROKE_SIZE
+ * @default 2
+ * @type {Number}
+ */
 var CGSG_DEFAULT_SELECTED_STROKE_SIZE = 2;
-//default size for the resize handles at the corners of a selected node
+/**
+ * default size for the resize handles at the corners of a selected node
+ * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE
+ * @default 6
+ * @type {Number}
+ */
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE = 6;
-//default size for the resize handles at the corners of a selected node
+/**
+ * default size for the resize handles at the corners of a selected node
+ * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR
+ * default "#9068FF"
+ * @type {String}
+ */
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR = "#9068FF";
 
-//default threshold to detect the handle boxes on a resizable node
+/**
+ * default threshold to detect the handle boxes on a resizable node
+ * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD
+ * @default 3
+ * @type {Number}
+ */
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD = 3;

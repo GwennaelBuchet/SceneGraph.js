@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,39 +21,94 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 21/06/2012
- *
- * Purpose:
- * global parameters for the application
  */
-//current version of the framework
+
+/**
+ * Global properties of the framework
+ *
+ * @class __GLOBAL_PROPERTIES__
+ * @module Util
+ * @static
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
+
+/**
+ * Current version of the framework
+ * @property cgsgVersion
+ * @static
+ * @type {String}
+ */
 var cgsgVersion = "1.1.0";
 
-//current display ratio
+/**
+ * Current display ratio
+ * @property cgsgDisplayRatio
+ * @static
+ * @type {CGSGScale}
+ */
 var cgsgDisplayRatio = CGSG_DEFAULT_DISPLAYRATIO;
 
-//default threshold to detect the handle boxes on a resizable node
+/**
+ * Default threshold to detect the handle boxes on a resizable node
+ * @property cgsgResizeHandleThreshold
+ * @static
+ * @type {Number}
+ */
 var cgsgResizeHandleThreshold = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD;
 
+/**
+ * List of the parameters of different browsers
+ * @property cgsgExplorerParams
+ * @type {Object}
+ */
 var cgsgExplorerParams = {
-	IE10      : {name : "IE 10 or above", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker:false},
-	IE9       : {name : "IE 9", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker:false},
-	SAFARI    : {name : "Safari", textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker:false},
-	CHROME    : {name : "Chrome", textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker:false},
-	OPERA     : {name : "Opera", textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker:false},
-	FIREFOX   : {name : "Firefox", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker:false},
-	KONQUEROR : {name : "Konqueror", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker:false},
-	UNKNOWN   : {name : "Unknown", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker:false}
+	IE10      : {name : "IE 10 or above", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+	IE9       : {name : "IE 9", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+	SAFARI    : {name : "Safari", textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	CHROME    : {name : "Chrome", textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
+	OPERA     : {name : "Opera", textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
+	FIREFOX   : {name : "Firefox", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	KONQUEROR : {name : "Konqueror", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	UNKNOWN   : {name : "Unknown", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
 };
 
+/**
+ * Current version of the browser. The framework check the browser at the start and fill this property.
+ * @property cgsgCurrentExplorer
+ * @readonly
+ * @default cgsgExplorerParams.UNKNOWN
+ * @type {Object}
+ */
 var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 
-//the global ghost context for fake rendering
+/**
+ * The global ghost context for fake rendering
+ * @property cgsgGhostContext
+ * @readonly
+ * @type {CanvasRenderingContext2D}
+ */
 var cgsgGhostContext = null;
 
+/**
+ * The current frame in hte global timeline
+ * @property cgsgCurrentFrame
+ * @readonly
+ * @type {Number}
+ */
 var cgsgCurrentFrame = 0;
 
-var currentColorIndex = 0;
-var currentColorLerp = 0;
+/**
+ * The canvas container for this scene graph
+ * @property cgsgCanvas
+ * @readonly
+ * @type {HTMLElement}
+ */
+var cgsgCanvas = null;
+
+/**
+ * the color used for the ghost mode rendering
+ * @property _ghostColor
+ * @type {String}
+ * @public
+ */
+var cgsgGhostColor = "#FF0000";

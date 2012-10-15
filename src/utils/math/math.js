@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -21,39 +21,65 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
+ */
+
+/**
+ * Static class that encapsulates some useful methods.
+ * @module Math
+ * @main Math
+ * @class CGSGMath
+ * @type {CGSGMath}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 07/08/2012
- *
- * Purpose :
- * Math helper functions.
  */
 CGSGMath = {
-	PI2 : Math.PI * 2,
+	/**
+	 * PI x 2
+	 * @static
+	 * @property PI2
+	 */
+	PI2 : 6.28318530718, //Math.PI * 2.0,
 
+	/**
+	 * Convert degree to radian
+	 * @method deg2rad
+	 * @static
+	 * @param {Number} angle
+	 * @return {Number} The radian value
+	 */
 	deg2rad : function(angle) {
 		return (angle / 180.0) * Math.PI;
 	},
 
+	/**
+	 * Convert radian to degree
+	 * @method rad2deg
+	 * @static
+	 * @param {Number} angle
+	 * @return {Number} The degree value
+	 */
 	rad2deg : function(angle) {
 		return angle * 57.29577951308232;
 	},
 
 	/**
-	 * return the rounded interer of n
-	 * @param n
-	 * @return {Number}
+	 * Compute the rounded integer of n
+	 * @method fixedPoint
+	 * @static
+	 * @param {Number} n
+	 * @return {Number} The integer value
 	 */
 	fixedPoint : function(n) {
 		return (0.5 + n) << 0;
 	},
 
 	/**
-	 * linear interpolation between 'from' and 'to'
-	 * @param from
-	 * @param to
-	 * @param weight
-	 * @return {*}
+	 * Linear interpolation between 'from' and 'to'
+	 * @method lerp
+	 * @static
+	 * @param {Number} from
+	 * @param {Number} to
+	 * @param {Number} weight Percentage to apply to the first value
+	 * @return {Number} The interpolated value
 	 */
 	lerp : function(from, to, weight) {
 		return from + (to - from) * weight;

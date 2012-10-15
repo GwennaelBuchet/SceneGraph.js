@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,87 +21,117 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
+ */
+
+/**
+ * A 2D vector object
+ * @module Math
+ * @class CGSGVector2D
+ * @extends {Object}
+ * @constructor
+ * @param {Number} x
+ * @param {Number} y
+ * @type {CGSGVector2D}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 09/08/2012
- *
- * Purpose:
- * A vector 2D encapsulate 2 numbers : x, y
- *
  */
 var CGSGVector2D = Object.extend(
 	{
-		initialize : function (x, y) {
-			///// @public //////
+		initialize : function(x, y) {
+			/**
+			 * @property x
+			 * @type {Number}
+			 */
 			this.x = x;
+			/**
+			 * @property y
+			 * @type {Number}
+			 */
 			this.y = y;
 		},
 
 		/**
 		 * @public
-		 *
-		 * @return a new CGSGVector2D, clone of this one
+		 * @method copy
+		 * @return {CGSGVector2D} a new CGSGVector2D, clone of this one
 		 */
-		copy : function () {
+		copy : function() {
 			return new CGSGVector2D(this.x, this.y);
 		},
 
 		/**
-		 * @public
 		 * add to this vector, the value passed in parameter
-		 * @param vector
+		 * @public
+		 * @method add
+		 * @param {CGSGVector2D} vector
 		 */
-		add : function (vector) {
+		add : function(vector) {
 			this.x += vector.x;
 			this.y += vector.y;
 		},
 
 		/**
-		 * @public
 		 * substract to this vector, the value passed in parameter
-		 * @param vector
+		 * @public
+		 * @method substract
+		 * @param {CGSGVector2D} vector
 		 */
-		substract : function (vector) {
+		substract : function(vector) {
 			this.x -= vector.x;
 			this.y -= vector.y;
 		},
 
 		/**
-		 * @public
 		 * multiply to this vector, the value passed in parameter
-		 * @param vector
+		 * @public
+		 * @method multiply
+		 * @param {CGSGVector2D} vector
 		 */
-		multiply : function (vector) {
+		multiply : function(vector) {
 			this.x *= vector.x;
 			this.y *= vector.y;
 		},
 
 		/**
-		 * @public
 		 * divide to this vector, the value passed in parameter
-		 * @param vector
+		 * @public
+		 * @method divide
+		 * @param {CGSGVector2D} vector
 		 */
-		divide : function (vector) {
+		divide : function(vector) {
 			this.x /= vector.x;
 			this.y /= vector.y;
 		},
 
-		multiplyByFloat : function (f) {
+		/**
+		 * Multiply x and y by f
+		 * @public
+		 * @method multiplyByFloat
+		 * @param {Number} f
+		 */
+		multiplyByFloat : function(f) {
 			this.x *= f;
 			this.y *= f;
 		},
 
-		divideByFloat : function (f) {
+		/**
+		 * Divide x and y by f
+		 * @public
+		 * @method divideByFloat
+		 * @param {Number} f
+		 */
+		divideByFloat : function(f) {
 			this.x /= f;
 			this.y /= f;
 		},
 
 		/**
+		 * Compute the euclidian distance between this vector and the one passe in parameter
 		 * @public
-		 * @param vector
-		 * @return the euclidian distance between this vector and the one passe in parameter
+		 * @method getDistance
+		 * @param {CGSGVector2D} vector
+		 * @return {Number}
 		 */
-		getDistance : function (vector) {
+		getDistance : function(vector) {
 			return Math.sqrt(
 				Math.pow(this.x - vector.x, 2) +
 				Math.pow(this.y - vector.y, 2)
@@ -110,9 +140,11 @@ var CGSGVector2D = Object.extend(
 
 		/**
 		 * rotate this vector around its origin
-		 * @param angle
+		 * @public
+		 * @method rotate
+		 * @param {Number} angle
 		 */
-		rotate : function (angle) {
+		rotate : function(angle) {
 			var ca = Math.cos(angle);
 			var sa = Math.sin(angle);
 			this.x = this.x * ca + this.y * sa;
@@ -120,22 +152,29 @@ var CGSGVector2D = Object.extend(
 		},
 
 		/**
-		 *
+		 * @public
+		 * @method getLength
 		 * @return {Number}
 		 */
-		getLength : function () {
+		getLength : function() {
 			return Math.sqrt((this.x * this.x) + (this.y * this.y));
 		},
 
 		/**
-		 *
-		 * @return {*}
+		 * @public
+		 * @method getSquaredLength
+		 * @return {Number}
 		 */
-		getSquaredLength : function () {
+		getSquaredLength : function() {
 			return (this.x * this.x) + (this.y * this.y);
 		},
 
-		normalize : function () {
+		/**
+		 * Normalize this vector
+		 * @public
+		 * @method normalize
+		 */
+		normalize : function() {
 			var scalefactor;
 			var length = this.getLength();
 

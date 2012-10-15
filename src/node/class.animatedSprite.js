@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,17 +21,9 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 29/08/2012
- *
- * Purpose:
- * Subclassing CGSGNode and reprenseting an animated sprite.
- * @param x
- * @param y
- * @param urlImage can be null.
- * @param context
- *
+ */
+
+/**
  * A CGSGAnimatedSprite represent an animated sprite, with all animations in the image
  *
  * Usage:
@@ -48,133 +40,269 @@
  *   player.play("walk", null); //("name of the animation", number of loops;null for infinite);
  *   player.play("walk", -1); //("name of the animation", number of loops;-1 for infinite);
  *   player.play("jump", 1); //("name of the animation", number of loops;-1 for infinite);
+ *
+ * @class CGSGNodeAnimatedSprite
+ * @module Node
+ * @extends {CGSGNode}
+ * @constructor
+ * @param {Number} x Relative position on X
+ * @param {Number} y Relative position on Y
+ * @param {String} urlImage URL of the image. Can be null to be set later
+ * @param {CanvasRenderingContext2D} context context to render on
+ * @type {CGSGNodeAnimatedSprite}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGNodeAnimatedSprite = CGSGNode.extend(
 	{
-		initialize : function (x, y, urlImage, context) {
+		initialize : function(x, y, urlImage, context) {
 			this._super(x, y, 1, 1);
 
-			///// @public //////
+			/**
+			 * @property classType
+			 * @type {String}
+			 */
 			this.classType = "CGSGNodeAnimatedSprite";
 
-			//array of animations
+			/**
+			 * array of animations
+			 * @property listAnimations
+			 * @type {Array}
+			 */
 			this.listAnimations = [];
+			/**
+			 * @property currentAnimation
+			 * @default null
+			 * @type {Object}
+			 */
 			this.currentAnimation = null;
+			/**
+			 * @property isProportionalResize
+			 * @default true
+			 * @type {Boolean}
+			 */
 			this.isProportionalResize = true;
 
-			//current animated frame
-			this.currentFrame = 0;
-			this.isPlaying = false;
-			//number of loops for the current animation. if -1 then it's an infinite loop.
-			this.numberOfLoops = 1;
-			this.currentLoop = 0;
+			/**
+			 * Current animated frame
+			 * @property _currentFrame
+			 * @private
+			 * @type {Number}
+			 */
+			this._currentFrame = 0;
+			/**
+			 * Whether the sprite is being animated or not
+			 * @property _isPlaying
+			 * @private
+			 * @readonly
+			 * @type {Boolean}
+			 */
+			this._isPlaying = false;
 
-			//url of the image
-			this.urlImage = urlImage;
-			//the image object itself
-			this.img = new Image();
-			///// @private //////
+			/**
+			 * number of loops for the current animation. if -1 then it's an infinite loop.
+			 * @property _numberOfLoops
+			 * @private
+			 * @type {Number}
+			 */
+			this._numberOfLoops = 1;
+			/**
+			 * Current loop number
+			 * @property _currentLoop
+			 * @private
+			 * @type {Number}
+			 */
+			this._currentLoop = 0;
+
+			/**
+			 * URL of the image
+			 * @property _urlImage
+			 * @type {String}
+			 * @private
+			 */
+			this._urlImage = urlImage;
+			/**
+			 * The image object itself
+			 * @property _img
+			 * @type {Image}
+			 * @private
+			 */
+			this._img = new Image();
+
+			/**
+			 * @property _isLoaded
+			 * @type {Boolean}
+			 * @private
+			 */
 			this._isLoaded = false;
+			/**
+			 * @property _context
+			 * @type {CanvasRenderingContext2D}
+			 * @private
+			 */
 			this._context = context;
 
+			/**
+			 * Handler function fired when the image is loaded
+			 * @property onLoadEnd
+			 * @default null
+			 * @type {Function}
+			 */
 			this.onLoadEnd = null;
+			/**
+			 * Handler function fired after an animation loop is ended
+			 * @property onAnimationEnd
+			 * @default null
+			 * @type {Function}
+			 */
 			this.onAnimationEnd = null;
+			/**
+			 * Handler function fired before an animation loop start
+			 * @property onAnimationStart
+			 * @default null
+			 * @type {Function}
+			 */
 			this.onAnimationStart = null;
 
-            this.tmpCanvas = document.createElement('canvas');
+			/**
+			 * fake canvas to pre-render the animated sprite (not used yet)
+			 * @property _tmpCanvas
+			 * @type {HTMLElement}
+			 * @private
+			 */
+			this._tmpCanvas = document.createElement('canvas');
 
 			///// INITIALIZATION //////
 			//finally load the image
-			if (this.urlImage !== null && this.urlImage != "") {
-				this.img.onload = this.createDelegate(this, this._onImageLoaded, context);
-				this.img.src = this.urlImage;
+			if (this._urlImage !== null && this._urlImage != "") {
+				this._img.onload = this._createDelegate(this, this._onImageLoaded, context);
+				this._img.src = this._urlImage;
 			}
 		},
 
 		/**
+		 * used to call delegate method when the image is finally loaded
 		 * @private
-		 * @param contextObject
+		 * @method _createDelegate
+		 * @param objectContext
 		 * @param delegateMethod
+		 * @param renderContext
 		 * @return {Function}
 		 */
-		createDelegate : function (objectContext, delegateMethod, renderContext) {
-			return function () {
+		_createDelegate : function(objectContext, delegateMethod, renderContext) {
+			return function() {
 				return delegateMethod.call(objectContext, renderContext);
 			}
 		},
 
 		/**
-		 * @private
-		 * fired when the image is loaded
+		 * fired when the image is loaded.
+		 * Check the dimension of the image and fired the onLoadEnd event
+		 * @protected
+		 * @method _onImageLoaded
+		 * @param {CanvasRenderingContext2D} context context to render on
 		 */
-		_onImageLoaded : function (context) {
+		_onImageLoaded : function(context) {
 			this._checkDimension();
 			this._isLoaded = true;
-            //this.initShape();
+			//this._initShape();
 			if (this.onLoadEnd !== null) {
 				this.onLoadEnd();
 			}
 			this.render(this._context);
 		},
 
-		_onImageError : function (context) {
+		/**
+		 * To be overrided when the image failed to load
+		 * @method _onImageError
+		 * @protected
+		 * @param {CanvasRenderingContext2D} context context to render on
+		 */
+		_onImageError : function(context) {
 		},
 
-        /**
-         * pre-render the image to optimize the perfs
-         */
-        /*initShape:function () {
-            this.tmpCanvas.width = this.dimension.width;
-            this.tmpCanvas.height = this.dimension.height;
-            var tmpContext = this.tmpCanvas.getContext('2d');
+		/*
+		 * pre-render the image to optimize the perfs
+		 */
+		/*_initShape:function () {
+		 this.tmpCanvas.width = this.dimension.width;
+		 this.tmpCanvas.height = this.dimension.height;
+		 var tmpContext = this.tmpCanvas.getContext('2d');
 
-            tmpContext.drawImage(
-                this.img, // image
-                0, 0, // start position on the image
-                this.dimension.width, this.dimension.height, // dimension on the image
-                0, 0,
-                // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
-                this.dimension.width, this.dimension.height                // dimension on the screen
-            );
-        },*/
+		 tmpContext.drawImage(
+		 this.img, // image
+		 0, 0, // start position on the image
+		 this.dimension.width, this.dimension.height, // dimension on the image
+		 0, 0,
+		 // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
+		 this.dimension.width, this.dimension.height                // dimension on the screen
+		 );
+		 },*/
 
 		/**
+		 * Check the true dimension of the image and fill the this.dimension property with it,
+		 * only if dimension is not already defined in the constructor
 		 * @private
+		 * @method _checkDimension
 		 */
-		_checkDimension : function () {
+		_checkDimension : function() {
 			//if no width or height are specified in the constructor
 			if (this.dimension.width <= 0 && this.dimension.height <= 0) {
-				this.dimension.width = this.img.width;
-				this.dimension.height = this.img.height;
+				this.dimension.width = this._img.width;
+				this.dimension.height = this._img.height;
 			}
 		},
 
 		/**
-		 * @public
-		 * @param newImage new Image object. Must be an already loaded one
+		 * Set the image for this animated sprite.
+		 * @example
+		 *
+		 * this.pingoo = new CGSGNodeAnimatedSprite(60, 60, null, this.context);
+		 * this.pingoo.isDraggable = true;
+		 * //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+		 * this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
+		 * this.pingoo.play("front", null);
+		 *
+		 * //now, load the image containing the sprite sheet.
+		 * //The affectation to the sprite will be done in the loaded handler function
+		 * this.spriteSheet = new Image();
+		 * this.spriteSheet.onload = this.onImageLoaded();
+		 * this.spriteSheet.src = "images/board.png";
+		 *
+		 * onImageLoaded : function () {
+		 *	 this.pingoo.setImage(this.spriteSheet);
+		 *	 this.numbers.setImage(this.spriteSheet);
+         *   this.water.setImage(this.spriteSheet);
+		 * }
+		 *
+		 * @method setImage
+		 * @param {Image} newImage new Image object. Must be an already loaded one
 		 */
-		setImage : function (newImage) {
-			this.img = newImage;
-			this._isLoaded = true;
-            //this.initShape();
+		setImage : function(newImage) {
+			this._img = newImage;
+			if (cgsgExist(this._img)) {
+				this._urlImage = this._img.src;
+				this._isLoaded = true;
+				//this._initShape();
+			}
 		},
 
 		/**
+		 * Go to the next frame of the current animation
 		 * @public
-		 * go to the next frame of the current animation
+		 * @method goToNextFrame
 		 */
-		goToNextFrame : function () {
-			this.currentFrame += 1.0 / this.currentAnimation.speed;
+		goToNextFrame : function() {
+			this._currentFrame += 1.0 / this.currentAnimation.speed;
 			var isEndOfLoop = false;
-			if (this.currentFrame >= this.currentAnimation.frames) {
+			if (this._currentFrame >= this.currentAnimation.frames) {
 				isEndOfLoop = true;
 			}
 
 			//end of animation if the previous modulo returns to frame 0
 			if (isEndOfLoop) {
 				//if this is the end ("... my only friend.. la la...") of the loop, stop it
-				if (this.numberOfLoops < 0 || this.currentLoop < this.numberOfLoops) {
-					this.currentLoop++;
+				if (this._numberOfLoops < 0 || this._currentLoop < this._numberOfLoops) {
+					this._currentLoop++;
 					this.goToFirstFrame();
 					;
 				}
@@ -186,21 +314,22 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		},
 
 		/**
+		 * Go to the previous frame of the current animation
 		 * @public
-		 * go to the previous frame of the current animation
+		 * @method goToPreviousFrame
 		 */
-		goToPreviousFrame : function () {
-			this.currentFrame -= this.currentAnimation.speed;
+		goToPreviousFrame : function() {
+			this._currentFrame -= this.currentAnimation.speed;
 			var isStartOfLoop = false;
-			if (this.currentFrame < 0) {
+			if (this._currentFrame < 0) {
 				isStartOfLoop = true;
 			}
 
 			//end of animation if the previous modulo returns to frame 0
 			if (isStartOfLoop) {
 				//if this is the end ("... my only friend.. la la...") of the loop, stop it
-				if (this.numberOfLoops <= 0 || this.currentLoop >= 0) {
-					this.currentLoop--;
+				if (this._numberOfLoops <= 0 || this._currentLoop >= 0) {
+					this._currentLoop--;
 					this.goToLastFrame();
 				}
 				else {
@@ -211,38 +340,43 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		},
 
 		/**
+		 * Go to the first frame of the current loop
 		 * @public
-		 * Go to the first frame of the current loop;
+		 * @method goToFirstFrame
 		 */
-		goToFirstFrame : function () {
-			this.currentFrame = 0;
+		goToFirstFrame : function() {
+			this._currentFrame = 0;
 		},
 
 		/**
-		 * @public
 		 * Go to the last frame of the current loop
+		 * @public
+		 * @method goToLastFrame
 		 */
-		goToLastFrame : function () {
-			this.currentFrame = this.currentAnimation.frames - 1;
+		goToLastFrame : function() {
+			this._currentFrame = this.currentAnimation.frames - 1;
 		},
 
 		/**
-		 * @override
 		 * Must be defined to allow the scene graph to render the image nodes
+		 * @override
+		 * @protected
+		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * @method render
 		 * */
-		render : function (context) {
-			if (this._isLoaded && this.img.src != "") {
+		render : function(context) {
+			if (this._isLoaded && this._img.src != "") {
 				//save current state
 				this.beforeRender(context);
 
 				//compute the current slice of the current sprite
 				if (cgsgExist(this.currentAnimation)) {
-                    context.globalAlpha = this.globalAlpha;
+					context.globalAlpha = this.globalAlpha;
 
-                    var slice = this.currentAnimation.slices[Math.floor(this.currentFrame)];
+					var slice = this.currentAnimation.slices[Math.floor(this._currentFrame)];
 
 					context.drawImage(
-                        this.img, // image
+						this._img, // image
 						slice.x,
 						slice.y, // start position on the image
 						this.currentAnimation.width,
@@ -255,7 +389,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 					);
 
 					//go to next frame
-					if (this.isPlaying) {
+					if (this._isPlaying) {
 						this.goToNextFrame();
 					}
 				}
@@ -265,12 +399,16 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 			}
 		},
 
+
 		/**
+		 * Return position x and y in the image for the slice of the animation and frame passed in parameter.
 		 * @private
-		 * @param frame
+		 * @method _getSlice
+		 * @param {Number} frame
+		 * @param {Object} animation
 		 * @return {Object}
 		 */
-		getSlice : function (frame, animation) {
+		_getSlice : function(frame, animation) {
 			var frameX = frame % animation.framesPerLine;
 			var frameY = Math.floor(frame / animation.framesPerLine);
 
@@ -281,17 +419,19 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		},
 
 		/**
-		 *
-		 * @param name
-		 * @param speed
-		 * @param frames
-		 * @param sliceX
-		 * @param sliceY
-		 * @param width
-		 * @param height
-		 * @param framesPerLine
+		 * Add an animation for this sprite
+		 * @public
+		 * @method addAnimation
+		 * @param {String} name Name for this animation
+		 * @param {Number} speed Number of frames between 2 steps
+		 * @param {Number} frames Number of frame for this animation
+		 * @param {Number} sliceX slice position inside the image for this animation
+		 * @param {Number} sliceY slice position inside the image for this animation
+		 * @param {Number} width width of 1 frame
+		 * @param {Number} height height of 1 frame
+		 * @param {Number} framesPerLine Number of frames per line in the image
 		 */
-		addAnimation : function (name, speed, frames, sliceX, sliceY, width, height, framesPerLine) {
+		addAnimation : function(name, speed, frames, sliceX, sliceY, width, height, framesPerLine) {
 			var animation = {
 				name          : name,
 				speed         : speed,
@@ -305,7 +445,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 			};
 
 			for (var f = 0; f < frames; f++) {
-				animation.slices.push(this.getSlice(f, animation));
+				animation.slices.push(this._getSlice(f, animation));
 			}
 
 			this.listAnimations.push(animation);
@@ -315,12 +455,14 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		},
 
 		/**
+		 * Start an animation
 		 * @public
-		 * @param animationName
-		 * @param loop number of animation loop. Can be null or negative to set infinite loop
-		 * @return true if the animation exists; false otherwise
+		 * @method play
+		 * @param {String} animationName Name of the animation to start
+		 * @param {Number} loop number of animation loop. Can be null or negative to set infinite loop
+		 * @return {Boolean} true if the animation exists; false otherwise
 		 */
-		play : function (animationName, loop) {
+		play : function(animationName, loop) {
 			if (loop === undefined || loop === null) {
 				loop = -1;
 			}
@@ -330,8 +472,8 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 				if (this.listAnimations[i].name === animationName) {
 					this.currentAnimation = this.listAnimations[i];
 					this.reset();
-					this.numberOfLoops = loop;
-					this.isPlaying = true;
+					this._numberOfLoops = loop;
+					this._isPlaying = true;
 					this.resizeTo(this.currentAnimation.width, this.currentAnimation.height);
 					if (this.onAnimationStart !== null) {
 						this.onAnimationStart({animationName : animationName, loop : loop});
@@ -343,58 +485,63 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		},
 
 		/**
-		 * @public
 		 * Stop the current animation and stay on the current frame
+		 * @public
+		 * @method stop
 		 */
-		stop : function () {
-			this.isPlaying = false;
+		stop : function() {
+			this._isPlaying = false;
 			if (this.onAnimationEnd !== null) {
-				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this.currentLoop, frame : this.currentFrame});
+				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame});
 			}
 		},
 
 		/**
+		 * return to the first frame of the first loop of the current animation
 		 * @public
+		 * @method reset
 		 */
-		reset : function () {
-			this.currentFrame = 0;
-			this.currentLoop = 1;
+		reset : function() {
+			this._currentFrame = 0;
+			this._currentLoop = 1;
 		},
 
 		/**
-		 *
-		 * @return a copy of this node
+		 * @override
+		 * @public
+		 * @method copy
+		 * @return {CGSGNodeAnimatedSprite} a copy of this node
 		 */
-		copy : function () {
-			var node = new CGSGNodeAnimatedSprite(this.position.x, this.position.y, this.urlImage, this._context);
+		copy : function() {
+			var node = new CGSGNodeAnimatedSprite(this.position.x, this.position.y, this._urlImage, this._context);
 			//call the super method
 			node = this._super(node);
 
 			node.listAnimations = [];
 			for (var a = 0; a < this.listAnimations.length; a++) {
 				node.addAnimation(this.listAnimations[a].name, this.listAnimations[a].speed,
-								  this.listAnimations[a].frames, this.listAnimations[a].sliceX,
-								  this.listAnimations[a].sliceY, this.listAnimations[a].width,
-								  this.listAnimations[a].height, this.listAnimations[a].framesPerLine);
+				                  this.listAnimations[a].frames, this.listAnimations[a].sliceX,
+				                  this.listAnimations[a].sliceY, this.listAnimations[a].width,
+				                  this.listAnimations[a].height, this.listAnimations[a].framesPerLine);
 			}
 
 			node.currentAnimation = this.currentAnimation;
 			node.isProportionalResize = this.isProportionalResize;
 
-			node.currentFrame = this.currentFrame;
-			node.isPlaying = this.isPlaying;
-			node.numberOfLoops = this.numberOfLoops;
-			node.currentLoop = this.currentLoop;
-			node.img = this.img;
+			node._currentFrame = this._currentFrame;
+			node._isPlaying = this._isPlaying;
+			node._numberOfLoops = this._numberOfLoops;
+			node._currentLoop = this._currentLoop;
+			node._img = this._img;
 			node._isLoaded = this._isLoaded;
 
 			node.onLoadEnd = this.onLoadEnd;
 			node.onAnimationEnd = this.onAnimationEnd;
 			node.onAnimationStart = this.onAnimationStart;
 
-			if (this.urlImage !== null && this.urlImage != "") {
-				node.img.onload = node.createDelegate(node, node._onImageLoaded, node.context);
-				node.img.src = node.urlImage;
+			if (this._urlImage !== null && this._urlImage != "") {
+				node._img.onload = node._createDelegate(node, node._onImageLoaded, node.context);
+				node._img.src = node._urlImage;
 			}
 
 			return node;

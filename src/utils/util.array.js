@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,44 +21,55 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 09/07/2012
- *
- * Purpose :
- * Extend Array prototype
  */
 
-Array.prototype.without = function (item) {
+/**
+ * Some utils methods extending the Array prototype
+ *
+ * @class __UTIL_ARRAY__
+ * @module Util
+ * @static
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
+
+/**
+ * Remove all the occurrences of the item from the array
+ * @method Array.prototype.without
+ * @param item
+ */
+Array.prototype.without = function(item) {
 	for (var i = 0; i < this.length; i++) {
 		if (this[i] == item) {
 			this.splice(i, 1);
-			break;
+			//break;
 		}
 	}
 };
 
 /**
- * empties an array
+ * Empties the array
+ * @method Array.prototype.clear
  */
-Array.prototype.clear = function () {
+Array.prototype.clear = function() {
 	this.length = 0;
 };
 
 /**
- * return a clone of this array
+ * Return a clone of this array
+ * @method Array.prototype.clone
  * @return {Array}
  */
-Array.prototype.clone = function () {
+Array.prototype.clone = function() {
 	return this.slice(0);
 }
 
 /**
- * checks whether the specified elements exists in the array or not
+ * Checks whether the specified elements exists in the array or not
+ * @method Array.prototype.contains
  * @param item
  * @return {Boolean}
  */
-Array.prototype.contains = function (item) {
+Array.prototype.contains = function(item) {
 	for (var i = 0; i < this.length; i++) {
 		if (this[i] == item) {
 			return true;
@@ -68,9 +79,11 @@ Array.prototype.contains = function (item) {
 };
 
 /**
- *  Removes doublon elements from the array
+ *  Removes doubles elements from the array
+ *  @method Array.prototype.unique
+ *  @return {Array}
  */
-Array.prototype.unique = function () {
+Array.prototype.unique = function() {
 	var tmp = [], i;
 	this.sort();
 	for (i = 0; i < this.length; i++) {

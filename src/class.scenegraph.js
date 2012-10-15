@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -21,40 +21,76 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
+ */
+
+/**
+ * Represent the scene graph it self.
+ * It encapsulates the root node and list of timelines for animations
  *
+ * @class CGSGSceneGraph
+ * @module Scene
+ * @constructor
+ * @extends {Object}
+ * @param {HTMLElement} canvas a handler to the canvas HTML element
+ * @param {CanvasRenderingContext2D} context context to render on
+ * @type {CGSGSceneGraph}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 02/07/2012
- *
- * Purpose:
- * Represent the scene graph itself.
- *
- * It encapsulates the root node of the graph and timelines for animations.
- *
  */
 var CGSGSceneGraph = Object.extend(
 	{
 		initialize : function(canvas, context) {
-			///// @public //////
+
+			/**
+			 * Root node of the graph
+			 * @property root
+			 * @type {CGSGNode}
+			 */
 			this.root = null;
+
+			/**
+			 * @property context
+			 * @type {CanvasRenderingContext2D}
+			 */
 			this.context = context;
+			/**
+			 * @property canvas
+			 * @type {HTMLElement}
+			 */
 			this.canvas = canvas;
 
-			///// @protected //////
+			//initialize the current frame to 0
 			cgsgCurrentFrame = 0;
 
-			///// @private //////
-
-			//the nodes selected by the user
+			/**
+			 * The nodes currently selected by the user
+			 * @property selectedNodes
+			 * @type {Array}
+			 */
 			this.selectedNodes = new Array();
+			/**
+			 *
+			 * @property _nextNodeID
+			 * @type {Number}
+			 * @private
+			 */
 			this._nextNodeID = 1;
 
-			//list of the timelines for the animations
-			//a timeline consist of a list of animation keys for 1 attribute of the nodes
+			/**
+			 * List of the timelines for the animations.
+			 * A timeline consists of a list of animation keys for 1 attribute of the nodes
+			 * @property _listTimelines
+			 * @type {Array}
+			 * @private
+			 */
 			this._listTimelines = [];
 
 			///// INITIALIZATION //////
 
-			//initialize the ghost canvas used to determine which nodes are selected by the user
+			/**
+			 * Initialize a ghost canvas used to determine which nodes are selected by the user
+			 * @property ghostCanvas
+			 * @type {HTMLElement}
+			 */
 			this.ghostCanvas = document.createElement('canvas');
 			this.initializeGhost();
 
@@ -65,10 +101,11 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @private
-		 * @param width The width for the canvas. Must be the same as the rendering canvas
-		 * @param height The height for the canvas. Must be the same as the rendering canvas
 		 * Initialize the ghost rendering, used by the PickNode function
+		 * @private
+		 * @method initializeGhost
+		 * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
+		 * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
 		 * */
 		initializeGhost : function(width, height) {
 			this.ghostCanvas.height = height;
@@ -77,8 +114,10 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
+		 * Wipes the canvas context
 		 * @private
-		 * wipes the canvas context
+		 * @method _clearContext
+		 * @param {CanvasRenderingContext2D} context context to render on
 		 * */
 		_clearContext : function(context) {
 			context.setTransform(1, 0, 0, 1, 0, 0);
@@ -87,8 +126,9 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
+		 * Render the SceneGraph
 		 * @public
-		 * render the SceneGraph
+		 * @method render
 		 * */
 		render : function() {
 			//erase previous rendering
@@ -166,11 +206,11 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @private
 		 * Change the dimension of the canvas.
 		 * Does not really change the dimension of the rendering canvas container,
-		 *  but is used by the different computations
-		 * @param newDimension a CGSGVector2D
+		 *  but is used for different computations
+		 * @method setCanvasDimension
+		 * @param {CGSGVector2D} newDimension a CGSGVector2D
 		 * */
 		setCanvasDimension : function(newDimension) {
 			this.canvas.width = newDimension.x;
@@ -179,10 +219,9 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Mark the nodes as selected so the select marker (also called selectedHandlers)
-		 *  will be shown and the SceneGraph will manage the moving and resizing of the seledted objects.
-		 * To manually manage the selected object, do not call this function
+		 *  will be shown and the SceneGraph will manage the moving and resizing of the selected objects.
+		 * @method selectNode
 		 * @param nodeToSelect The CGSGNode to be selected
 		 * */
 		selectNode : function(nodeToSelect) {
@@ -194,8 +233,9 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Mark the nodes as not selected
+		 * @method deselectNode
+		 * @param {CGSGNode} nodeToDeselect
 		 * */
 		deselectNode : function(nodeToDeselect) {
 			nodeToDeselect.setSelected(false);
@@ -204,9 +244,9 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Mark all nodes as not selected
-		 * @param excludedArray CGSGNodes not to deselect
+		 * @method deselectAll
+		 * @param {Array} excludedArray CGSGNodes to not deselect
 		 * */
 		deselectAll : function(excludedArray) {
 			var node = null;
@@ -222,10 +262,15 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Recursively traverse the nodes and return the one who is under the mouse coordinates
-		 * @param mousePosition A CGSGPosition object
-		 * */
+		 * @method pickNode
+		 * @param {CGSGPosition} mousePosition
+		 * @param {String} condition
+		 * @return {CGSGNode}
+		 * @example
+		 *  this.scenegraph.picknode(mousePosition, 'position.x > 100'); <br/>
+		 *  this.scenegraph.picknode(mousePosition, 'position.x > 100 && this.position.y > 100');
+		 */
 		pickNode : function(mousePosition, condition) {
 			//empty the current selection first
 			//this.selectedNodes = new Array();
@@ -247,11 +292,11 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Remove the child nodes passed in parameter, from the root nodes
-		 * @param node the nodes to remove
-		 * @param recursively if true, try to remove the nodes inside the entire tree
-		 * @return true if the nodes was foud and removed
+		 * @method removeNode
+		 * @param {CGSGNode} node the nodes to remove
+		 * @param {Boolean} recursively if true, try to remove the nodes inside the entire tree
+		 * @return {Boolean} true if the nodes was found and removed
 		 * */
 		removeNode : function(node, recursively) {
 			if (node !== null && node !== undefined) {
@@ -264,11 +309,11 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
-		 * Add a nodes on the scene
-		 * @param node the nodes to add
-		 * @param parent the parent nodes of the new one. If it's null, the root will be used as nodes.
+		 * Add a nodes on the scene.
 		 * If the root does not already exist, this nodes will be used as root
+		 * @method addNode
+		 * @param {CGSGNode} node the nodes to add
+		 * @param {CGSGNode} parent the parent nodes of the new one. If it's null, the root will be used as nodes.
 		 * */
 		addNode : function(node, parent) {
 			node._id = this._nextNodeID++;
@@ -284,16 +329,14 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
-		 *
 		 * Add a key
-		 *
-		 * @param node handler to the nodes to animate
-		 * @param attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
-		 * @param frame integer. the date for the key
-		 * @param value value for the attribute at the frame
-		 * @param method String. animation method: 'linear', 'catmullrom'
-		 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
+		 * @method addAnimationKey
+		 * @param {CGSGNode} node handler to the nodes to animate
+		 * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
+		 * @param {Number} frame the date for the key
+		 * @param {Numnber} value value for the attribute at the frame
+		 * @param {String} method animation method. Must be 'linear' for now
+		 * @param {Boolean} precompute  Set to true if you want to precompute the animations steps
 		 *
 		 * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
 		 */
@@ -312,17 +355,16 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
 		 * Animate an attribute of a nodes
-		 * @param node Handler to the nodes to animate
-		 * @param attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
-		 * @param duration Integer. Duration of the animation, in frames
-		 * @param from Start value
-		 * @param to End value
-		 * @param method String. animation method: 'linear', 'catmullrom'
-		 * @param delay Integer. Delay before start the animation, in frames
-		 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
-		 *
+		 * @method animate
+		 * @param {CGSGNode} node Handler to the nodes to animate
+		 * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
+		 * @param {Number} duration Duration of the animation, in frame
+		 * @param {Number} from Start value
+		 * @param {Number} to End value
+		 * @param {String} method Animation method. Must be 'linear' for now
+		 * @param {Number} delay Delay before start the animation, in frames
+		 * @param {Boolean} precompute Set to true if you want to precompute the animations steps
 		 * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
 		 */
 		animate : function(node, attribute, duration, from, to, method, delay, precompute) {
@@ -333,8 +375,8 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
-		 * Return true if there are still animation key after the current frame
+		 * @method stillHaveAnimation
+		 * @return {Boolean} true if there are still animation key after the current frame
 		 */
 		stillHaveAnimation : function() {
 			if (this._listTimelines.length == 0) {
@@ -353,10 +395,11 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * @public
-		 * Return the timeline corresponding with the nodes and attribute. Create it if not exists
-		 * @param node Handle to the nodes
-		 * @param attribute String. the attribute name
+		 * Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet
+		 * @method getTimeline
+		 * @param {CGSGNode} node Handle to the nodes
+		 * @param {String} attribute String. the attribute name
+		 * @return {CGSGTimeline}
 		 */
 		getTimeline : function(node, attribute) {
 			for (var i = 0, len = this._listTimelines.length; i < len; ++i) {

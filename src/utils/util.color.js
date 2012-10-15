@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,31 +21,38 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 20/08/2012
- *
- * Purpose :
- * Color helper functions.
  */
-CGSGColors = {
+
+/**
+ * Some utils methods extending the Array prototype
+ *
+ * @class CGSGColor
+ * @module Util
+ * @static
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
+CGSGColor = {
 	/**
 	 * Convert R, G and B value to an hexadecimal code
+	 * @method rgb2hex
+	 * @static
 	 * @param r red value. from 0 to 255.
 	 * @param g green value. from 0 to 255.
 	 * @param b blue value. from 0 to 255.
 	 * @return an hexadecimal value for the color, starting with a sharp (#)
 	 */
-	rgb2hex : function (r, g, b) {
+	rgb2hex : function(r, g, b) {
 		return "#" + this._toHex(r) + this._toHex(g) + this._toHex(b);
 	},
 
 	/**
 	 * Convert an hexadecimal code for color to R, G and B
+	 * @method hex2rgb
+	 * @static
 	 * @param hex an hexadecimal code, with or without the starting sharp (#)
 	 * @return an object encapsulating r, g and b values (from 0 to 255)
 	 */
-	hex2rgb : function (hex) {
+	hex2rgb : function(hex) {
 		hex = this._withoutSharp(hex);
 		return {
 			r : parseInt(hex.substring(0, 2), 16),
@@ -53,11 +60,11 @@ CGSGColors = {
 			b : parseInt(hex.substring(4, 6), 16)};
 	},
 
-	_withoutSharp : function (hex) {
+	_withoutSharp : function(hex) {
 		return (hex.charAt(0) == "#") ? hex.substring(1, hex.length) : hex;
 	},
 
-	_toHex : function (n) {
+	_toHex : function(n) {
 		n = parseInt(n, 10);
 		if (isNaN(n)) {
 			return "00";
@@ -69,6 +76,8 @@ CGSGColors = {
 
 	/**
 	 * Linear interpolation between 2 colors
+	 * @method lerp
+	 * @static
 	 * @param colorFrom a hex color
 	 * @param colorTo a hex color
 	 * @param weight

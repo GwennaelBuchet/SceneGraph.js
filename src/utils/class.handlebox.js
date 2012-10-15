@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,54 +21,89 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
+ */
+
+/**
+ * A Tiny box on selected square borders
+ * @class CGSGHandleBox
+ * @extends {Object}
+ * @constructor
+ * @param {CGSGNode} parentNode
+ * @param {Number} size
+ * @param {String} color
+ * @param {Number} x
+ * @param {Number} y
+ * @type {CGSGHandleBox}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 02/08/2012
- *
- * Purpose:
- * Represent a tiny box on a selected object
  */
 var CGSGHandleBox = Object.extend(
 	{
-		initialize : function (parentNode, size, color, x, y) {
-			///// @public //////
+		initialize : function(parentNode, size, color, x, y) {
+			/**
+			 * @property color
+			 * @type {String}
+			 */
 			this.color = color;
+			/**
+			 * @property size
+			 * @type {Number}
+			 */
 			this.size = size;
 
-			///// @private //////
+			/**
+			 * @property _parentNode
+			 * @type {CGSGNode}
+			 * @private
+			 */
 			this._parentNode = parentNode;
+			/**
+			 * @property _position
+			 * @type {CGSGPosition}
+			 * @private
+			 */
 			this._position = new CGSGPosition(x, y);
 		},
 
-		render : function (context) {
+		/**
+		 * @method render
+		 * @param {CanvasRenderingContext2D} context the context into render the handle box
+		 */
+		render : function(context) {
 			context.fillStyle = this.color;
 			context.fillRect(this._position.x,
-							 this._position.y,
-							 this.size / this._parentNode._absoluteScale.x,
-							 this.size / this._parentNode._absoluteScale.y);
+			                 this._position.y,
+			                 this.size / this._parentNode._absoluteScale.x,
+			                 this.size / this._parentNode._absoluteScale.y);
 		},
 
 		/**
 		 * Return true if this handleBox is under the coordinate of the mouse.
-		 * Before to call this function, be sure to make a call to the "computeAbsoluteMatrix" function
-		 * of the parent Node
-		 * */
-		checkIfSelected : function (mousePosition, threshold) {
+		 * @method checkIfSelected
+		 * @param {CGSGPosition} mousePosition
+		 * @param {Number} threshold Threshold of detection around the box
+		 * @return {Boolean}
+		 */
+		checkIfSelected : function(mousePosition, threshold) {
 			return (mousePosition.x >=
-					this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
-					threshold &&
-					mousePosition.x <=
-					this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
-					this.size + threshold &&
-					mousePosition.y >=
-					this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
-					threshold &&
-					mousePosition.y <=
-					this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
-					this.size + threshold);
+			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
+			        threshold &&
+			        mousePosition.x <=
+			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
+			        this.size + threshold &&
+			        mousePosition.y >=
+			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
+			        threshold &&
+			        mousePosition.y <=
+			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
+			        this.size + threshold);
 		},
 
-		translateTo : function (newRelativeX, newRelativeY) {
+		/**
+		 * @method translateTo
+		 * @param {Number} newRelativeX
+		 * @param {Number} newRelativeY
+		 */
+		translateTo : function(newRelativeX, newRelativeY) {
 			this._position.x = newRelativeX;
 			this._position.y = newRelativeY;
 		}

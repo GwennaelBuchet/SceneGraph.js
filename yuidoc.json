@@ -1,0 +1,13 @@
+{
+    "name": "cgSceneGraph",
+    "description": "HTML5 Scene Graph Framework",
+    "version": "1.1.0",
+    "url": "http://gwennaelbuchet.github.com/cgSceneGraph/",
+    "options": {
+        "linkNatives": "true",        
+        "attributesEmit": "true",
+        "selleck": "false",
+        "paths": ["./src"],
+        "outdir": "./docs/api"
+    }
+}

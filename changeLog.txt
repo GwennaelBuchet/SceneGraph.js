@@ -37,8 +37,10 @@ TODO LIST:
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
 - Optimization. Animated sprites : pre-rendered
-- Evolution. CGSGNodeVideo
 - Evolution. CGSGNodeLink
+- Evolution. New "magnet" example
+- Evolution. New "Undo" example
+- Evolution. Add a "cgsgRenderAlways" property and correctly manage the "invalidate()" method
 
 
 =====================================================================
@@ -58,6 +60,15 @@ CHANGES:
 - Evolution. CGSGColor : add lerp method
 - Evolution. CGSGMath : add lerp method
 - Evolution. Add a "exlusionList" parameter to the CGSGScene::DeselectAll method.
+- Evolution. Add 'node', 'position' and 'events' on events : onDrag, onDragEnd, onResize, onResizeEnd
+- Evolution. Add a "free" method to the CGSGNode to free the memory taken by the node and its children
+- Evolution. Add a first version of the Webview Node
+- Evolution. Add of the cgsgCanvas global property, that is a handler to the canvas.
+- Evolution. Add of the "onMouseUp" event for a node
+- Evolution. Add of the "cgsgLoadExternalDoc" global method to load external web content in AJAX.
+- Evolution. Add of JSDoc, based on YUIDoc (http://yui.github.com/yuidoc)
+- Evolution. CGSGNodeCircle : re-design
+- Evolution. Add of YUIDoc Documentation format
 
 
 ---------------------------------------------------------------------
