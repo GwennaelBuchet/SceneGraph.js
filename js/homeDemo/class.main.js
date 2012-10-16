@@ -71,8 +71,8 @@ var CGMain = CGSGScene.extend(
 		},
 
 		initializeCanvas : function() {
-			canvasWidth = this.canvas.width;
-			canvasHeight = this.canvas.height;
+			canvasWidth = cgsgCanvas.width;
+			canvasHeight = cgsgCanvas.height;
 			var dim = new CGSGDimension(canvasWidth, canvasHeight);
 			this.setCanvasDimension(dim);
 		},

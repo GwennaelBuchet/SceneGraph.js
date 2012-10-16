@@ -66,13 +66,13 @@ var FloorNode = CGSGNode.extend(
 		 * */
 		render : function(context) {
 			this.firstColorCurrent =
-			CGSGColors.lerp(this.firstColors[currentColorIndex], this.firstColors[currentColorIndex + 1],
+			CGSGColor.lerp(this.firstColors[currentColorIndex], this.firstColors[currentColorIndex + 1],
 			                currentColorLerp);
 			this.lastColorCurrent =
-			CGSGColors.lerp(this.lastColors[currentColorIndex], this.lastColors[currentColorIndex + 1],
+			CGSGColor.lerp(this.lastColors[currentColorIndex], this.lastColors[currentColorIndex + 1],
 			                currentColorLerp);
 			this.flowerColorCurrent =
-			CGSGColors.lerp(this.flowerColors[currentColorIndex], this.flowerColors[currentColorIndex + 1],
+			CGSGColor.lerp(this.flowerColors[currentColorIndex], this.flowerColors[currentColorIndex + 1],
 			                currentColorLerp);
 
 

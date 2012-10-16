@@ -13,7 +13,7 @@ body {
 }
 
 body {
-    color: #ffffff;
+    color: #B6B6B6;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-style: normal;
@@ -29,11 +29,10 @@ p {
     font-style: normal;
     font-variant: normal;
     font-weight: normal;
-    font-size: 46px;
+    font-size: 24px;
     line-height: 1.5em;
-    font-family: Anton, sans-serif;
+    font-family: Signika, sans-serif;
     color: #fff;
-    margin: 25px 0 10px 0;
     clear: both;
 }
 
@@ -47,7 +46,7 @@ h1 {
     font-weight: normal;
     font-size: 30px;
     line-height: 1.2em;
-    font-family: Anton, sans-serif;
+    font-family: Signika, sans-serif;
     color: #00a9ff;
     margin: 10px 0 0px 0;
     clear: both;
@@ -59,8 +58,8 @@ h2 {
     font-weight: normal;
     font-size: 24px;
     line-height: 1.2em;
-    font-family: Anton, sans-serif;
-    color: #00a9ff;
+    font-family: Signika, sans-serif;
+    color: #fff;
     margin: 10px 0 0px 0;
     clear: both;
 }
@@ -71,7 +70,7 @@ h3 {
     font-weight: normal;
     font-size: 20px;
     line-height: 1.2em;
-    font-family: Anton, sans-serif;
+    font-family: Signika, sans-serif;
     color: #00a9ff;
     margin: 15px 0 3px 0;
     clear: both;
@@ -137,7 +136,8 @@ body {
     width: 960px;
     margin: 0 auto;
     height: 120px;
-    background-image: url(../img/css/topBanner.jpg);
+    background-color: #000;
+    background-image: url(../img/css/topBanner.png);
     background-repeat: no-repeat;
 }
 
@@ -413,13 +413,22 @@ a img {
 }
 
 #tryIt {
-    width: 200px;
-    height: 150px;
-    padding-top: 1px;
-    margin-left: 20px;
+    width: 300px;
+    height: 50px;
+    padding-top: 16px;
     float: right;
-    background-color: #2d2d2d;
+    background-color: #0D7AEA;
     border: 0px;
+    text-align: center;
+    margin: 0px 0 10px 0;
+}
+
+#apiframe {
+    min-height: 700px;
+    border: 0px;
+    margin-bottom: -10px;
+    margin-left: -10px;
+    margin-right: -50px;
 }
 
 .DocumentationText {
@@ -462,6 +471,13 @@ a img {
     font-size: 16px;
     color: #a0cdf2;
     line-height: 1.6em;
+}
+
+.separator {
+    background-color: #494949;
+    width: 960px;
+    height: 10px;
+    margin: 0 auto;
 }
 
 .alert {
