@@ -51,13 +51,13 @@
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGNodeAnimatedSprite.html">CGSGNodeAnimatedSprite</a></li>
-            
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
             
@@ -176,35 +176,20 @@
  *&#x2F;
 
 &#x2F;**
- * A CGSGAnimatedSprite represent an animated sprite, with all animations in the image
+ * A CGSGNodeSprite represent an animated sprite, with all animations in the image
  *
- * Usage:
- *   var player = new CGSGAnimatedSprite(0, 0, &quot;http:&#x2F;&#x2F;server.com&#x2F;monimage.fr&quot;, this.context);
- * or
- *   var player = new CGSGAnimatedSprite(0, 0, null, this.context);
- *   player.setImage(mySharedImage); &#x2F;&#x2F;to load 1 image with all sprites inside
- *
- *   &#x2F;&#x2F;addAnimation(name, speed, number of frames, posX of first frame, posY of first frame,
- *                  width of a sprite, height of a sprite, number of frame on one line in the image)
- *   player.addAnimation( { name:&quot;walk&quot;, speed:0.2, frames:6, sliceX:0, sliceY:0, width:32, height:32, framesPerLine } );
- *
- *   player.play(&quot;walk&quot;); &#x2F;&#x2F;(&quot;name of the animation&quot;); if no 2nd parameter, will be played infinitely
- *   player.play(&quot;walk&quot;, null); &#x2F;&#x2F;(&quot;name of the animation&quot;, number of loops;null for infinite);
- *   player.play(&quot;walk&quot;, -1); &#x2F;&#x2F;(&quot;name of the animation&quot;, number of loops;-1 for infinite);
- *   player.play(&quot;jump&quot;, 1); &#x2F;&#x2F;(&quot;name of the animation&quot;, number of loops;-1 for infinite);
- *
- * @class CGSGNodeAnimatedSprite
+ * @class CGSGNodeSprite
+ * @extends CGSGNode
  * @module Node
- * @extends {CGSGNode}
  * @constructor
  * @param {Number} x Relative position on X
  * @param {Number} y Relative position on Y
  * @param {String} urlImage URL of the image. Can be null to be set later
  * @param {CanvasRenderingContext2D} context context to render on
- * @type {CGSGNodeAnimatedSprite}
+ * @type {CGSGNodeSprite}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
-var CGSGNodeAnimatedSprite = CGSGNode.extend(
+var CGSGNodeSprite = CGSGNode.extend(
 	{
 		initialize : function(x, y, urlImage, context) {
 			this._super(x, y, 1, 1);
@@ -213,7 +198,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 			 * @property classType
 			 * @type {String}
 			 *&#x2F;
-			this.classType = &quot;CGSGNodeAnimatedSprite&quot;;
+			this.classType = &quot;CGSGNodeSprite&quot;;
 
 			&#x2F;**
 			 * array of animations
@@ -251,7 +236,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 			this._isPlaying = false;
 
 			&#x2F;**
-			 * number of loops for the current animation. if -1 then it&#x27;s an infinite loop.
+			 * Number of loops for the current animation. if -1 then it&#x27;s an infinite loop.
 			 * @property _numberOfLoops
 			 * @private
 			 * @type {Number}
@@ -316,7 +301,8 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 			this.onAnimationStart = null;
 
 			&#x2F;**
-			 * fake canvas to pre-render the animated sprite (not used yet)
+			 * Fake canvas to pre-render the animated sprite (not used yet)
+			 * Still beta
 			 * @property _tmpCanvas
 			 * @type {HTMLElement}
 			 * @private
@@ -332,7 +318,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		},
 
 		&#x2F;**
-		 * used to call delegate method when the image is finally loaded
+		 * Used to call delegate method when the image is finally loaded
 		 * @private
 		 * @method _createDelegate
 		 * @param objectContext
@@ -408,7 +394,7 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		 * Set the image for this animated sprite.
 		 * @example
 		 *
-		 * this.pingoo = new CGSGNodeAnimatedSprite(60, 60, null, this.context);
+		 * this.pingoo = new CGSGNodeSprite(60, 60, null, this.context);
 		 * this.pingoo.isDraggable = true;
 		 * &#x2F;&#x2F;name, speed, frames, sliceX, sliceY, width, height, framesPerLine
 		 * this.pingoo.addAnimation(&quot;front&quot;, 6, 4, 476, 0, 34, 34, 4);
@@ -662,10 +648,10 @@ var CGSGNodeAnimatedSprite = CGSGNode.extend(
 		 * @override
 		 * @public
 		 * @method copy
-		 * @return {CGSGNodeAnimatedSprite} a copy of this node
+		 * @return {CGSGNodeSprite} a copy of this node
 		 *&#x2F;
 		copy : function() {
-			var node = new CGSGNodeAnimatedSprite(this.position.x, this.position.y, this._urlImage, this._context);
+			var node = new CGSGNodeSprite(this.position.x, this.position.y, this._urlImage, this._context);
 			&#x2F;&#x2F;call the super method
 			node = this._super(node);
 

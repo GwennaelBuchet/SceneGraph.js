@@ -72,7 +72,7 @@ var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE = 6;
 /**
  * default size for the resize handles at the corners of a selected node
  * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR
- * default "#9068FF"
+ * @default "#9068FF"
  * @type {String}
  */
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR = "#9068FF";

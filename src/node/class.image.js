@@ -27,6 +27,7 @@
  * A CGSGNodeImage represent an image node
  *
  * @class CGSGNodeImage
+ * @extends CGSGNode
  * @module Node
  * @constructor
  * @param {Number} x Relative position on X

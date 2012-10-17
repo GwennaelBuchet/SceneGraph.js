@@ -6,7 +6,7 @@
  * Time: 11:52
  * To change this template use File | Settings | File Templates.
  */
-var BeeNode = CGSGNodeAnimatedSprite.extend(
+var BeeNode = CGSGNodeSprite.extend(
 	{
 		initialize : function(x, y, context, parentState, id) {
 			this._super(x, y, null, context);

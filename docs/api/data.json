@@ -65,7 +65,7 @@
             "name": "src\\node\\class.animatedSprite.js",
             "modules": {},
             "classes": {
-                "CGSGNodeAnimatedSprite": 1
+                "CGSGNodeSprite": 1
             },
             "fors": {},
             "namespaces": {}
@@ -330,7 +330,7 @@
             "name": "Node",
             "submodules": {},
             "classes": {
-                "CGSGNodeAnimatedSprite": 1,
+                "CGSGNodeSprite": 1,
                 "CGSGNodeImage": 1,
                 "CGSGPickNodeMethod": 1,
                 "CGSGNode": 1,
@@ -545,9 +545,9 @@
             "type": "{CGSGParticleSystem}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "CGSGNodeAnimatedSprite": {
-            "name": "CGSGNodeAnimatedSprite",
-            "shortname": "CGSGNodeAnimatedSprite",
+        "CGSGNodeSprite": {
+            "name": "CGSGNodeSprite",
+            "shortname": "CGSGNodeSprite",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -557,8 +557,8 @@
             "namespace": "",
             "file": "src\\node\\class.animatedSprite.js",
             "line": 26,
-            "description": "A CGSGAnimatedSprite represent an animated sprite, with all animations in the image\n\nUsage:\n  var player = new CGSGAnimatedSprite(0, 0, \"http://server.com/monimage.fr\", this.context);\nor\n  var player = new CGSGAnimatedSprite(0, 0, null, this.context);\n  player.setImage(mySharedImage); //to load 1 image with all sprites inside\n\n  //addAnimation(name, speed, number of frames, posX of first frame, posY of first frame,\n                 width of a sprite, height of a sprite, number of frame on one line in the image)\n  player.addAnimation( { name:\"walk\", speed:0.2, frames:6, sliceX:0, sliceY:0, width:32, height:32, framesPerLine } );\n\n  player.play(\"walk\"); //(\"name of the animation\"); if no 2nd parameter, will be played infinitely\n  player.play(\"walk\", null); //(\"name of the animation\", number of loops;null for infinite);\n  player.play(\"walk\", -1); //(\"name of the animation\", number of loops;-1 for infinite);\n  player.play(\"jump\", 1); //(\"name of the animation\", number of loops;-1 for infinite);",
-            "extends": "{CGSGNode}",
+            "description": "A CGSGNodeSprite represent an animated sprite, with all animations in the image",
+            "extends": "CGSGNode",
             "is_constructor": 1,
             "params": [
                 {
@@ -582,7 +582,7 @@
                     "type": "CanvasRenderingContext2D"
                 }
             ],
-            "type": "{CGSGNodeAnimatedSprite}",
+            "type": "{CGSGNodeSprite}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
         "CGSGNodeImage": {
@@ -598,6 +598,7 @@
             "file": "src\\node\\class.image.js",
             "line": 26,
             "description": "A CGSGNodeImage represent an image node",
+            "extends": "CGSGNode",
             "is_constructor": 1,
             "params": [
                 {
@@ -2375,7 +2376,7 @@
                     "type": "Number"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Animation"
         },
         {
@@ -2401,7 +2402,7 @@
                     "type": "Number"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Animation"
         },
         {
@@ -2427,63 +2428,63 @@
                     "type": "Number"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Animation"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 60,
+            "line": 45,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 66,
+            "line": 51,
             "description": "array of animations",
             "itemtype": "property",
             "name": "listAnimations",
             "type": "{Array}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 72,
+            "line": 57,
             "itemtype": "property",
             "name": "currentAnimation",
             "default": "null",
             "type": "{Object}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 78,
+            "line": 63,
             "itemtype": "property",
             "name": "isProportionalResize",
             "default": "true",
             "type": "{Boolean}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 85,
+            "line": 70,
             "description": "Current animated frame",
             "itemtype": "property",
             "name": "_currentFrame",
             "access": "private",
             "tagname": "",
             "type": "{Number}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 92,
+            "line": 77,
             "description": "Whether the sprite is being animated or not",
             "itemtype": "property",
             "name": "_isPlaying",
@@ -2491,128 +2492,128 @@
             "tagname": "",
             "readonly": "",
             "type": "{Boolean}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 101,
-            "description": "number of loops for the current animation. if -1 then it's an infinite loop.",
+            "line": 86,
+            "description": "Number of loops for the current animation. if -1 then it's an infinite loop.",
             "itemtype": "property",
             "name": "_numberOfLoops",
             "access": "private",
             "tagname": "",
             "type": "{Number}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 108,
+            "line": 93,
             "description": "Current loop number",
             "itemtype": "property",
             "name": "_currentLoop",
             "access": "private",
             "tagname": "",
             "type": "{Number}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 116,
+            "line": 101,
             "description": "URL of the image",
             "itemtype": "property",
             "name": "_urlImage",
             "type": "{String}",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 123,
+            "line": 108,
             "description": "The image object itself",
             "itemtype": "property",
             "name": "_img",
             "type": "{Image}",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 131,
+            "line": 116,
             "itemtype": "property",
             "name": "_isLoaded",
             "type": "{Boolean}",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 137,
+            "line": 122,
             "itemtype": "property",
             "name": "_context",
             "type": "{CanvasRenderingContext2D}",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 144,
+            "line": 129,
             "description": "Handler function fired when the image is loaded",
             "itemtype": "property",
             "name": "onLoadEnd",
             "default": "null",
             "type": "{Function}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 151,
+            "line": 136,
             "description": "Handler function fired after an animation loop is ended",
             "itemtype": "property",
             "name": "onAnimationEnd",
             "default": "null",
             "type": "{Function}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 158,
+            "line": 143,
             "description": "Handler function fired before an animation loop start",
             "itemtype": "property",
             "name": "onAnimationStart",
             "default": "null",
             "type": "{Function}",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 166,
-            "description": "fake canvas to pre-render the animated sprite (not used yet)",
+            "line": 151,
+            "description": "Fake canvas to pre-render the animated sprite (not used yet)\nStill beta",
             "itemtype": "property",
             "name": "_tmpCanvas",
             "type": "{HTMLElement}",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 182,
-            "description": "used to call delegate method when the image is finally loaded",
+            "line": 168,
+            "description": "Used to call delegate method when the image is finally loaded",
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -2635,12 +2636,12 @@
                 "description": "",
                 "type": "Function"
             },
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 197,
+            "line": 183,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "protected",
             "tagname": "",
@@ -2653,12 +2654,12 @@
                     "type": "CanvasRenderingContext2D"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 214,
+            "line": 200,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
             "name": "_onImageError",
@@ -2671,26 +2672,26 @@
                     "type": "CanvasRenderingContext2D"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 241,
+            "line": 227,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "access": "private",
             "tagname": "",
             "itemtype": "method",
             "name": "_checkDimension",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 255,
+            "line": 241,
             "description": "Set the image for this animated sprite.",
             "example": [
-                "\n\nthis.pingoo = new CGSGNodeAnimatedSprite(60, 60, null, this.context);\nthis.pingoo.isDraggable = true;\n//name, speed, frames, sliceX, sliceY, width, height, framesPerLine\nthis.pingoo.addAnimation(\"front\", 6, 4, 476, 0, 34, 34, 4);\nthis.pingoo.play(\"front\", null);\n\n//now, load the image containing the sprite sheet.\n//The affectation to the sprite will be done in the loaded handler function\nthis.spriteSheet = new Image();\nthis.spriteSheet.onload = this.onImageLoaded();\nthis.spriteSheet.src = \"images/board.png\";\n\nonImageLoaded : function () {\n\t this.pingoo.setImage(this.spriteSheet);\n\t this.numbers.setImage(this.spriteSheet);\n  this.water.setImage(this.spriteSheet);\n}"
+                "\n\nthis.pingoo = new CGSGNodeSprite(60, 60, null, this.context);\nthis.pingoo.isDraggable = true;\n//name, speed, frames, sliceX, sliceY, width, height, framesPerLine\nthis.pingoo.addAnimation(\"front\", 6, 4, 476, 0, 34, 34, 4);\nthis.pingoo.play(\"front\", null);\n\n//now, load the image containing the sprite sheet.\n//The affectation to the sprite will be done in the loaded handler function\nthis.spriteSheet = new Image();\nthis.spriteSheet.onload = this.onImageLoaded();\nthis.spriteSheet.src = \"images/board.png\";\n\nonImageLoaded : function () {\n\t this.pingoo.setImage(this.spriteSheet);\n\t this.numbers.setImage(this.spriteSheet);\n  this.water.setImage(this.spriteSheet);\n}"
             ],
             "itemtype": "method",
             "name": "setImage",
@@ -2701,56 +2702,56 @@
                     "type": "Image"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 289,
+            "line": 275,
             "description": "Go to the next frame of the current animation",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
             "name": "goToNextFrame",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 316,
+            "line": 302,
             "description": "Go to the previous frame of the current animation",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
             "name": "goToPreviousFrame",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 342,
+            "line": 328,
             "description": "Go to the first frame of the current loop",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
             "name": "goToFirstFrame",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 351,
+            "line": 337,
             "description": "Go to the last frame of the current loop",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
             "name": "goToLastFrame",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 360,
+            "line": 346,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
             "access": "protected",
@@ -2764,12 +2765,12 @@
             ],
             "itemtype": "method",
             "name": "render",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 403,
+            "line": 389,
             "description": "Return position x and y in the image for the slice of the animation and frame passed in parameter.",
             "access": "private",
             "tagname": "",
@@ -2791,12 +2792,12 @@
                 "description": "",
                 "type": "Object"
             },
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 421,
+            "line": 407,
             "description": "Add an animation for this sprite",
             "access": "public",
             "tagname": "",
@@ -2844,12 +2845,12 @@
                     "type": "Number"
                 }
             ],
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 457,
+            "line": 443,
             "description": "Start an animation",
             "access": "public",
             "tagname": "",
@@ -2871,34 +2872,34 @@
                 "description": "true if the animation exists; false otherwise",
                 "type": "Boolean"
             },
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 487,
+            "line": 473,
             "description": "Stop the current animation and stay on the current frame",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
             "name": "stop",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 499,
+            "line": 485,
             "description": "return to the first frame of the first loop of the current animation",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
             "name": "reset",
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.animatedSprite.js",
-            "line": 509,
+            "line": 495,
             "override": "",
             "access": "public",
             "tagname": "",
@@ -2906,14 +2907,14 @@
             "name": "copy",
             "return": {
                 "description": "a copy of this node",
-                "type": "CGSGNodeAnimatedSprite"
+                "type": "CGSGNodeSprite"
             },
-            "class": "CGSGNodeAnimatedSprite",
+            "class": "CGSGNodeSprite",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 50,
+            "line": 51,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -2922,7 +2923,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 56,
+            "line": 57,
             "description": "the selected effect to be applied",
             "itemtype": "property",
             "name": "effect",
@@ -2933,7 +2934,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 63,
+            "line": 64,
             "description": "URL of the image",
             "itemtype": "property",
             "name": "_urlImage",
@@ -2945,7 +2946,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 71,
+            "line": 72,
             "itemtype": "property",
             "name": "isProportionalResize",
             "default": "true",
@@ -2955,7 +2956,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 77,
+            "line": 78,
             "description": "the image object itself",
             "itemtype": "property",
             "name": "_img",
@@ -2967,7 +2968,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 84,
+            "line": 85,
             "description": "the region on the image to render",
             "itemtype": "property",
             "name": "slice",
@@ -2977,7 +2978,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 92,
+            "line": 93,
             "itemtype": "property",
             "name": "_isLoaded",
             "type": "{Boolean}",
@@ -2988,7 +2989,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 98,
+            "line": 99,
             "itemtype": "property",
             "name": "_context",
             "type": "{CanvasRenderingContext2D}",
@@ -2999,7 +3000,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 105,
+            "line": 106,
             "description": "Event Fired when the image is finally loaded",
             "itemtype": "property",
             "name": "onLoadEnd",
@@ -3010,7 +3011,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 113,
+            "line": 114,
             "description": "Fake canvas to pre-render the image",
             "itemtype": "property",
             "name": "_tmpCanvas",
@@ -3022,7 +3023,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 131,
+            "line": 132,
             "description": "used to call delegate method when the image is finally loaded",
             "access": "private",
             "tagname": "",
@@ -3051,7 +3052,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 146,
+            "line": 147,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "private",
             "tagname": "",
@@ -3062,7 +3063,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 163,
+            "line": 164,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
             "name": "_onImageError",
@@ -3079,7 +3080,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 172,
+            "line": 173,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "access": "private",
             "tagname": "",
@@ -3090,7 +3091,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 192,
+            "line": 193,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -3107,7 +3108,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 207,
+            "line": 208,
             "description": "pre-render the image into _tmpCanvas to optimize the perfs",
             "access": "private",
             "tagname": "",
@@ -3118,7 +3119,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 227,
+            "line": 228,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
             "access": "protected",
@@ -3137,7 +3138,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 257,
+            "line": 258,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -3154,7 +3155,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 266,
+            "line": 267,
             "description": "Ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "override": "",
             "access": "protected",
@@ -3173,7 +3174,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 294,
+            "line": 295,
             "description": "Increase/decrease current dimension with adding values. It is used when the user resize\nthe image with the handle boxes",
             "override": "",
             "access": "public",
@@ -3197,7 +3198,7 @@
         },
         {
             "file": "src\\node\\class.image.js",
-            "line": 309,
+            "line": 310,
             "override": "",
             "access": "public",
             "tagname": "",
@@ -8354,7 +8355,8 @@
             "line": 72,
             "description": "default size for the resize handles at the corners of a selected node",
             "itemtype": "property",
-            "name": "CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR\ndefault \"#9068FF\"",
+            "name": "CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR",
+            "default": "\"#9068FF\"",
             "type": "{String}",
             "class": "__GLOBAL_CONSTANTS__",
             "module": "Util"

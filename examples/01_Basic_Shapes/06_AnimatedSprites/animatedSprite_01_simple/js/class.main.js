@@ -64,7 +64,7 @@ var CGMain = CGSGScene.extend(
 			 * @param image url
 			 * @param context
 			 */
-			var pingoo = new CGSGNodeAnimatedSprite(60, 60, "images/board.png", this.context);
+			var pingoo = new CGSGNodeSprite(60, 60, "images/board.png", this.context);
             //add the sprite to the scene
             pingoo.isResizable = true;
             this.sceneGraph.addNode(pingoo, this.rootNode);

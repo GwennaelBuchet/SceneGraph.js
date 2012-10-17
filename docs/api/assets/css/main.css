@@ -97,7 +97,7 @@ h2 {
 h3 {
     font-style: normal;
     font-variant: normal;
-    font-weight: normal;
+    font-weight: bolder;
     font-size: 1.2em;
     line-height: 1.3em;
     font-family: Signika, sans-serif;
@@ -858,20 +858,25 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     font-weight: bold;
 }
 
-.method_name {
-    font-size: 1.3em;
-    line-height: 1.3em;
+.method-item {
+    font-size: 1.2em;
+    line-height: 1.2em;
     font-family: Signika, sans-serif;
     color: #00a9ff;
     margin: 15px 0 3px 0;
 }
 
-.method_return {
-    font-size: 1.0em;
-    line-height: 1.1em;
+.attribute-name {
+    font-size: 1.3em;
+    line-height: 1.2em;
     font-family: Signika, sans-serif;
     color: #00a9ff;
     margin: 15px 0 3px 0;
+    font-weight: bolder;
+}
+
+.sidebar-list {
+    background-color: #fff000;
 }
 
 .grey {
