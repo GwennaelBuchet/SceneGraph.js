@@ -29,7 +29,7 @@ body {
     font: 13px/1.4 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', 'Bitstream Vera Sans', 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    width: 960px;
+    width: 940px;
 }
 
 /* -- Links ----------------------------------------------------------------- */
@@ -151,7 +151,7 @@ p code, p kbd, p samp {
     background: #FCFBFA;
     border: 1px solid #EFEEED;
     padding: 0 3px;
-    color:#B6B6B6;
+    color:#494949;
 }
 
 a code, a kbd, a samp,
@@ -237,7 +237,7 @@ th {
 /* -- Layout and Content ---------------------------------------------------- */
 #doc {
     margin: auto;
-    min-width: 1024px;
+    min-width: 940px;
 }
 
 .content { padding: 0 20px 0 25px; }
@@ -248,7 +248,7 @@ th {
 #bd {
     padding: 7px 0 130px;
     position: relative;
-    width: 99%;
+    width: 940px;
 }
 
 /* -- Table of Contents ----------------------------------------------------- */
