@@ -137,16 +137,16 @@ var FlowerNode = CGSGNode.extend(
 		initPosAndSpeed : function(speed) {
 			this.globalAlpha = 1.0;
 			this.scaleTo(1, 1);
-			var x = CGSGMath.fixedPoint(40 + (Math.random() * (canvasWidth - 90)));
+			var x = CGSGMath.fixedPoint(40 + (Math.random() * (cgsgCanvas.width - 90)));
 			var y = -40;
 			this.translateTo(x, y);
-			this.speed = CGSGMath.fixedPoint(canvasHeight + Math.random() * canvasHeight * 2);
+			this.speed = CGSGMath.fixedPoint(cgsgCanvas.height + Math.random() * cgsgCanvas.height * 2);
 			this.speed *= speed;
 		},
 
 		startAnim : function() {
 			sceneGraph.animate(this, "position.y", this.speed, this.position.y,
-			                   CGSGMath.fixedPoint(canvasHeight - 15), "linear", 0, true);
+			                   CGSGMath.fixedPoint(cgsgCanvas.height - 15), "linear", 0, true);
 		},
 
 		reStartAnim : function(speed) {

@@ -9,7 +9,7 @@
 var StarsNode = CGSGNode.extend(
 	{
 		initialize : function() {
-			this._super(0, 0, canvasWidth, canvasHeight);
+			this._super(0, 0, cgsgCanvas.width, cgsgCanvas.height);
 
 			this.initShape();
 		},
@@ -19,8 +19,8 @@ var StarsNode = CGSGNode.extend(
 		 */
 		initShape : function() {
 			this._tmpCanvas = document.createElement('canvas');
-			this._tmpCanvas.width = canvasWidth;
-			this._tmpCanvas.height = canvasHeight;
+			this._tmpCanvas.width = cgsgCanvas.width;
+			this._tmpCanvas.height = cgsgCanvas.height;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
 			//draw the stars
@@ -28,8 +28,8 @@ var StarsNode = CGSGNode.extend(
 			var centerY = 0;
 			var radius = 1;
 			for (var s = 0; s < 200; s++) {
-				centerX = Math.random() * canvasWidth;
-				centerY = Math.random() * (canvasHeight - 40);
+				centerX = Math.random() * cgsgCanvas.width;
+				centerY = Math.random() * (cgsgCanvas.height - 40);
 				radius = 0.01 + Math.random() * 1.3;
 
 				tmpContext.beginPath();

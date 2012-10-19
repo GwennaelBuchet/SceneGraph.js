@@ -53,8 +53,8 @@ var FloorNode = CGSGNode.extend(
 		 */
 		initShape : function() {
 			this._tmpCanvas = document.createElement('canvas');
-			this._tmpCanvas.width = canvasWidth;
-			this._tmpCanvas.height = canvasHeight;
+			this._tmpCanvas.width = cgsgCanvas.width;
+			this._tmpCanvas.height = cgsgCanvas.height;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
 			var startX = -50;
@@ -79,7 +79,7 @@ var FloorNode = CGSGNode.extend(
 			                         startX - 20 + Math.random() * 40, startY - 30, startX, startY); //left-top
 			tmpContext.closePath();
 
-			var gradient = tmpContext.createLinearGradient(startX, startY / 1.3, startX, canvasHeight / 2);
+			var gradient = tmpContext.createLinearGradient(startX, startY / 1.3, startX, cgsgCanvas.height / 2);
 			gradient.addColorStop(0, this._firstColor);
 			gradient.addColorStop(1, this._lastColor);
 			tmpContext.fillStyle = gradient;

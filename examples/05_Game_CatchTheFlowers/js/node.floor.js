@@ -53,8 +53,8 @@ var FloorNode = CGSGNode.extend(
 			var centerY = 0;
 			var radius = 1;
 			for (var s = 0; s < 5; s++) {
-				centerX = Math.random() * canvasWidth;
-				centerY = canvasHeight - Math.random() * 100;
+				centerX = Math.random() * cgsgCanvas.width;
+				centerY = cgsgCanvas.height - Math.random() * 100;
 				radius = 2 + Math.random() * 2.3;
 				this.flowersPosition.push({x : centerX, y : centerY, r : radius});
 			}
@@ -107,7 +107,7 @@ var FloorNode = CGSGNode.extend(
 
 			context.closePath();
 
-			var gradient = context.createLinearGradient(startX, startY / 1.3, startX, canvasHeight / 2);
+			var gradient = context.createLinearGradient(startX, startY / 1.3, startX, cgsgCanvas.height / 2);
 			gradient.addColorStop(0, this.firstColorCurrent);
 			gradient.addColorStop(1, this.lastColorCurrent);
 			context.fillStyle = gradient;

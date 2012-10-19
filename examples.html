@@ -93,7 +93,8 @@
 
 <h2>BASIC SHAPES</h2>
 
-<div>cgSceneGraph is very extensible and provide several basic Nodes.<br/>
+<div>cgSceneGraph is very extensible, you can easily create your own node with their specific rendering loop.<br/>
+    However, the framework also provides several basic or more complex Nodes.<br/><br/>
     Here are some basic examples showing how to easily integrate basic nodes into your programs
 </div>
 
@@ -199,7 +200,8 @@
 
     <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/index.html" target="_blank">
         <div class="exampleLink alignleft">DEMO</div>
-    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/js/class.main.js" target="_blank">
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/js/class.main.js"
+            target="_blank">
         <div class="exampleLink alignright">SOURCES</div>
     </a></div>
 
@@ -212,9 +214,11 @@
     <h3>Animated Sprite: multiple</h3>
     <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/screenshot.png"/>
 
-    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/index.html" target="_blank">
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/index.html"
+            target="_blank">
         <div class="exampleLink alignleft">DEMO</div>
-    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/js/class.main.js" target="_blank">
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/js/class.main.js"
+            target="_blank">
         <div class="exampleLink alignright">SOURCES</div>
     </a></div>
 
@@ -229,9 +233,11 @@
     <h3>Animated Sprite: player</h3>
     <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/screenshot.png"/>
 
-    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/index.html" target="_blank">
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/index.html"
+            target="_blank">
         <div class="exampleLink alignleft">DEMO</div>
-    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/js/class.main.js" target="_blank">
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/js/class.main.js"
+            target="_blank">
         <div class="exampleLink alignright">SOURCES</div>
     </a></div>
 
@@ -241,7 +247,7 @@
 </div>
 
 <div class="exampleBlock">
-    <h3>Web View</h3>
+    <h3>Web View (still beta)</h3>
     <img src="examples/01_Basic_Shapes/07_WebView/screenshot.png"/>
 
     <div><a href="examples/01_Basic_Shapes/07_WebView/index.html" target="_blank">
@@ -277,7 +283,7 @@
     </a></div>
 
     <div>
-        All node events in one sample.<br/>
+        All node events in one sample.
     </div>
 </div>
 
@@ -300,52 +306,86 @@
 <div>&nbsp;</div>
 <hr/>
 
-<!--h2>ANIMATION</h2>
+<h2>ANIMATION</h2>
+
+<div>Animate a node is very easy. Almost everything ine animatable : position, transparency, scale, ...
+    <p>cgSceneGraph provides a complete animation framework, with timelines and key frame.<br/>
+        Animations can be chained or launched in the same time ; keys in timeline can be modified at runtime ; animation
+        can be pre-computed and shared between several nodes ; Events are fired (onAnimationStart, onAnimationEnd) ; ...
+    </p>
+
+    <p>The following examples are very simple (the most simple as I could) just to show the simplicity and the power of
+        the code.<br/>
+        So they are not visually sexy... :(</p>
+
+</div>
 
 <div class="exampleBlock">
-    <h3>Scale Rotation Translation</h3>
-    <img src="examples/default.png"/>
+    <h3>S R T</h3>
+    <img src="examples/03_Animation/animation_01_SRT/screenshot.png"/>
+
+    <div><a href="examples/03_Animation/animation_01_SRT/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_01_SRT/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
     <div>
-        Drag or resize a node in 1 line.<br/>
-        Add a lot of events on node, scene or animation<br/>
-        Keep trace of absolute transformation
+        A simple animated translation + example of animation events (start and end).<br/>Open the console to view the
+        event results.
     </div>
 </div>
 
 <div class="exampleBlock">
-    <h3>Collision detection</h3>
-    <img src="examples/default.png"/>
+    <h3>Collision</h3>
+    <img src="examples/03_Animation/animation_02_testCollision/screenshot.png"/>
+
+    <div><a href="examples/03_Animation/animation_02_testCollision/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_02_testCollision/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
     <div>
-        SRT Animation (Scale, Rotation, Translation)<br/>
-        Animated Sprites<br/>
-        Particles system<br/>...
+        Test collision during animation.
     </div>
 </div>
 
 <div class="exampleBlock">
-    <h3>Animated Sprite: character</h3>
-    <img src="examples/default.png"/>
+    <h3>Chained animations</h3>
+    <img src="examples/03_Animation/animation_03_Multiple/screenshot.png"/>
+
+    <div><a href="examples/03_Animation/animation_03_Multiple/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_03_Multiple/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
     <div>
-        Extend the framework by creating your own nodes.<br/>
-        Very easy to extend.
+        Chained animations on a node.
     </div>
 </div>
 
-<div class="clear" style="height:4px"></div>
-
 <div class="exampleBlock">
-    <h3>Animated Sprite simple</h3>
-    <img src="examples/default.png"/>
+    <h3>Precompute & Share</h3>
+    <img src="examples/03_Animation/animation_04_Precompute/screenshot.png"/>
+
+    <div><a href="examples/03_Animation/animation_04_Precompute/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_04_Precompute/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
     <div>
-        Drag or resize a node in 1 line.<br/>
-        Add a lot of events on node, scene or animation<br/>
-        Keep trace of absolute transformation
+        Precompute an animation and share it between several nodes.<br/>
+        The advantages : faster because animation is precomputed (can be useful for complex animations) and the
+        computation is achieve just once.
     </div>
 </div>
 
 <div class="clear" style="height:4px"></div>
 <div>&nbsp;</div>
-<hr/-->
+<hr/>
 
 <h2>ADVANCED</h2>
 
@@ -422,7 +462,7 @@
     </a></div>
 
     <div>
-        Allow responsive size in your game or application ! :)
+        Allow responsive display in your game or application ! :)
     </div>
 </div>
 
@@ -449,16 +489,18 @@
 
 <div class="exampleBlock">
     <h3>Catch'em All</h3>
-    <img src="examples/default.png"/>
+    <img src="examples/05_Game_CatchTheFlowers/screenshot.png"/>
 
-    <div><a href="*" target="_blank">
+    <div><a href="examples/05_Game_CatchTheFlowers/index.html" target="_blank">
         <div class="exampleLink alignleft">DEMO</div>
-    </a> <a href="*" target="_blank">
+    </a> <a href="examples/05_Game_CatchTheFlowers/js/class.main.js" target="_blank">
         <div class="exampleLink alignright">SOURCES</div>
     </a></div>
 
     <div>
-        COMING SOON
+        A (almost) complete game !<br/>
+        Avoid the bees and catch all the flowers :)
+        <p>(Game developed in 1.5 day)</p>
     </div>
 </div>
 
@@ -496,24 +538,19 @@
         <div class="footerBlock alignleft">
             <h2>WHAT'S UP?</h2>
             <hr/>
-            <h4>cgSceneGraph v1.0.0</h4>
-
-            Here we are. After several months of design, development and optimization, the v1.0.0 is finally released :)<br/>
-            Please, send us you feedbacks and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+            <h4>cgSceneGraph v1.1.0</h4>
+            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.1.0</span> is released :)<br/>
+            Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
                                                              target="_blank">GitHub</a>
         </div>
 
-        <div class="footerBlock alignright">
-            <h2>CONTACT</h2>
-            <hr/>
-            mail to: <a href="mailto:gwennael.buchet@capgemini.com" title="gwennael.buchet@capgemini.com">gwennael.buchet@capgemini.com</a><br/>
-            <br/>
-            <hr/>
-            <br/><br/>
 
+
+        <div class="footerBlock alignright logoCap">
+            <h2>CONTACT</h2>
             <p>
-            <center><img src="img/cap_white.png" alt="Capgemini" width="50"/></center>
-            </p>
+            mail to: <a href="mailto:gwennael.buchet@capgemini.com" title="gwennael.buchet@capgemini.com">gwennael.buchet@capgemini.com</a><br/>
+            <p/>
         </div>
 
         <div class="clear" style="height:4px"></div>

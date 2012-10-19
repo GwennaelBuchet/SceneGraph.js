@@ -59,7 +59,7 @@ h2 {
     font-size: 24px;
     line-height: 1.2em;
     font-family: Signika, sans-serif;
-    color: #fff;
+    color: #B6B6B6;
     margin: 10px 0 0px 0;
     clear: both;
 }
@@ -269,6 +269,7 @@ body {
 
 .footerBlock {
     width: 300px;
+    height: 200px;
     padding-top: 1px;
     margin-left: 20px;
 }
@@ -501,3 +502,8 @@ a img {
     color: #ff1f49;
 }
 
+.logoCap {
+    background-image:url("../img/cap_white.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}

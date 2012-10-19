@@ -45,7 +45,7 @@ var StateHome = Object.extend(
 		},
 
 		_createEnvironment : function() {
-			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 			this.rootNode.isClickable = false;
 
 			this.maxClouds = 5;
@@ -71,8 +71,8 @@ var StateHome = Object.extend(
 			var wButton = 250;
 			var hButton = 50;
 			this.buttonGo =
-			new ButtonNode(CGSGMath.fixedPoint((canvasWidth - wButton - 10) / 2.0),
-			               CGSGMath.fixedPoint((canvasHeight - hButton) / 2.5), wButton, hButton, 10);
+			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
+			               CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 2.5), wButton, hButton, 10);
 			this.rootNode.addChild(this.buttonGo);
 
 			var textGo = new CGSGNodeText(22, 22, "Let's Catch Flowers !");
@@ -86,8 +86,8 @@ var StateHome = Object.extend(
 			wButton = 100;
 			hButton = 40;
 			this.buttonAbout =
-			new ButtonNode(CGSGMath.fixedPoint((canvasWidth - wButton - 10) / 2.0),
-			               CGSGMath.fixedPoint((canvasHeight - hButton) / 1.25), wButton, hButton, 10);
+			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
+			               CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 1.25), wButton, hButton, 10);
 			this.rootNode.addChild(this.buttonAbout);
 
 			var textAbout = new CGSGNodeText(28, 18, "About");

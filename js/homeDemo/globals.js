@@ -10,9 +10,6 @@
  */
 var sceneGraph = null;
 
-var canvasWidth = 476;
-var canvasHeight = 630;
-
 var maxLive = 6;
 
 var currentColorLerp = 0;

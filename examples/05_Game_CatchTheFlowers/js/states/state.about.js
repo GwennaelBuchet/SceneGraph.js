@@ -35,7 +35,7 @@ var StateAbout = Object.extend(
 		},
 
 		_createEnvironment : function() {
-			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 			this.rootNode.isClickable = false;
 
 			var floor = new FloorNode(0, 0, 1, 1);
@@ -95,8 +95,8 @@ var StateAbout = Object.extend(
 			var wButton = 130;
 			var hButton = 40;
 			this.buttonGoBack =
-			new ButtonNode(CGSGMath.fixedPoint((canvasWidth - wButton - 10) / 2.0),
-			               canvasHeight - 65, wButton, hButton, 10);
+			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
+			               cgsgCanvas.height - 65, wButton, hButton, 10);
 			this.rootNode.addChild(this.buttonGoBack);
 
 			var textGoBack = new CGSGNodeText(30, 18, "Go Back");

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -25,12 +25,11 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  * @date 10/08/2012
  *
- * Purpose :
- * Template project
- * */
+ */
 
 /**
- * The different states of the games
+ * The different states of the game.
+ * A state is the equivalent of a page in the game : "home page", "game playing page", "score page", ...
  * @type {Object}
  */
 var GAME_STATE = {
@@ -50,9 +49,6 @@ var CGMain = CGSGScene.extend(
 
 
 			////// INITIALIZATION /////////
-
-			this.initializeCanvas();
-
 			sceneGraph = this.sceneGraph;
 			this.createScene();
 
@@ -70,15 +66,8 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
-			canvasWidth = cgsgCanvas.width;
-			canvasHeight = cgsgCanvas.height;
-			var dim = new CGSGDimension(canvasWidth, canvasHeight);
-			this.setCanvasDimension(dim);
-		},
-
 		/**
-		 * Just create a single node (a square node)
+		 * Initialize all the states of the game and start loading image
 		 *
 		 */
 		createScene : function() {
@@ -111,7 +100,7 @@ var CGMain = CGSGScene.extend(
 		},
 
 		/**
-		 *
+		 * change the state of the game
 		 * @param newState
 		 */
 		changeGameState : function(newState) {

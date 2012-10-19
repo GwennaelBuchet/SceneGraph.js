@@ -70,7 +70,7 @@ var StateGameRun = Object.extend(
 		 * @private
 		 */
 		_createEnvironment : function() {
-			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 
 			var floor = new FloorNode(0, 0, 1, 1);
 			this.rootNode.addChild(floor);
@@ -78,7 +78,7 @@ var StateGameRun = Object.extend(
 			this.scoreNode = new ScorePanelNode(0, 0, 103, 18);
 			this.rootNode.addChild(this.scoreNode);
 
-			this.liveNode = new LivePanelNode(canvasWidth - 135, 0, 135, 18);
+			this.liveNode = new LivePanelNode(cgsgCanvas.width - 135, 0, 135, 18);
 			this.rootNode.addChild(this.liveNode);
 
 			this._createGameEnvironment();
@@ -146,8 +146,8 @@ var StateGameRun = Object.extend(
 			var wButton = 130;
 			var hButton = 40;
 			this.buttonGoBack =
-			new ButtonNode(CGSGMath.fixedPoint((canvasWidth - wButton - 10) / 2.0),
-			               CGSGMath.fixedPoint((canvasHeight - hButton) / 1.5), wButton, hButton, 10);
+			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
+			               CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 1.5), wButton, hButton, 10);
 			this.loseNode.addChild(this.buttonGoBack);
 
 			var textGoBack = new CGSGNodeText(28, 18, "Go Home");

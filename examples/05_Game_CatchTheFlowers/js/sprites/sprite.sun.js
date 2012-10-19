@@ -33,7 +33,7 @@ var SunNode = CGSGNode.extend(
 	{
 		initialize : function(x, y) {
 			//call the initialize of the parent
-			this._super(x, y, canvasWidth, canvasHeight);
+			this._super(x, y, cgsgCanvas.width, cgsgCanvas.height);
 
 			//define the classType with the name of the class
 			this.classType = "SunNode";
@@ -51,15 +51,15 @@ var SunNode = CGSGNode.extend(
 		 */
 		initShape : function() {
 			this._tmpCanvas = document.createElement('canvas');
-			this._tmpCanvas.width = canvasWidth;
-			this._tmpCanvas.height = canvasHeight;
+			this._tmpCanvas.width = cgsgCanvas.width;
+			this._tmpCanvas.height = cgsgCanvas.height;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
 
 			tmpContext.strokeStyle = "#fdf9d0";
 
-			var center = {x : CGSGMath.fixedPoint(canvasWidth / 2.0),
-				y           : CGSGMath.fixedPoint(canvasHeight * 0.66667)};
+			var center = {x : CGSGMath.fixedPoint(cgsgCanvas.width / 2.0),
+				y           : CGSGMath.fixedPoint(cgsgCanvas.height * 0.66667)};
 
 			tmpContext.shadowColor = "#fffce0";
 			tmpContext.shadowBlur = 40;
@@ -68,22 +68,22 @@ var SunNode = CGSGNode.extend(
 
 			//first circle in the center
 			tmpContext.globalAlpha = 0.4;
-			tmpContext.lineWidth = canvasWidth / 16;
+			tmpContext.lineWidth = cgsgCanvas.width / 16;
 			tmpContext.beginPath();
-			tmpContext.arc(center.x, center.y, canvasHeight / 8.5, 0, CGSGMath.PI2, true);
+			tmpContext.arc(center.x, center.y, cgsgCanvas.height / 8.5, 0, CGSGMath.PI2, true);
 			tmpContext.stroke();
 
 			tmpContext.globalAlpha = 0.17;
-			tmpContext.lineWidth = canvasWidth / 12;
+			tmpContext.lineWidth = cgsgCanvas.width / 12;
 			tmpContext.beginPath();
-			tmpContext.arc(center.x, center.y, canvasHeight / 3.5, 0, CGSGMath.PI2, true);
+			tmpContext.arc(center.x, center.y, cgsgCanvas.height / 3.5, 0, CGSGMath.PI2, true);
 			tmpContext.stroke();
 
 			//third circle in the exterior
 			tmpContext.globalAlpha = 0.1;
-			tmpContext.lineWidth = canvasWidth / 8;
+			tmpContext.lineWidth = cgsgCanvas.width / 8;
 			tmpContext.beginPath();
-			tmpContext.arc(center.x, center.y, canvasHeight / 2.0, 0, CGSGMath.PI2, true);
+			tmpContext.arc(center.x, center.y, cgsgCanvas.height / 2.0, 0, CGSGMath.PI2, true);
 			tmpContext.stroke();
 
 			tmpContext.shadowBlur = 0;

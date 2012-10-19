@@ -16,7 +16,7 @@ var StateLoading = Object.extend(
 		},
 
 		_createEnvironment : function() {
-			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 
 			var floor = new FloorNode(0, 0, 1, 1);
 			this.rootNode.addChild(floor);
