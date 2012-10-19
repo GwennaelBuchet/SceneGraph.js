@@ -15,13 +15,13 @@
     <meta name="abstract" content="cgSceneGraph framework html 5"/>
     <meta name="MSSmartTagsPreventParsing" content="true"/>
 
-    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph" />
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png" />
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
 
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="favicon.png"/>
 
     <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
     <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
@@ -72,242 +72,376 @@
 
 
 <div id="wrapper">
-    <div id="bg">
-        <div id="header"></div>
-        <div id="page">
-            <!-- begin container -->
-            <div id="container">
-                <!--  content -->
-                <div id="content">
+<div id="bg">
+<div id="header"></div>
+<div id="page">
+<!-- begin container -->
+<div id="container">
+<!--  content -->
+<div id="content">
 
-                    <p class="blueText">These samples aim to provide light demonstrations to teach how to very easy use the features of the framework.<br/>
-                    They don't aim to provide very complex applications that are difficult to understand.</p>
+<p class="blueText">These samples aim to provide light demonstrations to teach how to very easy use the features of the
+    framework.<br/>
+    They don't aim to provide very complex applications that are difficult to understand.</p>
 
-                    <h2>BASIC SHAPES</h2>
-                        <div>cgSceneGraph is very extensible and provide several basic Nodes.<br/>
-                            Here are some basic examples showing how to easily integrate basic nodes into your programs</div>
+<p>
+    All these samples, and more, are downloadable in the <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                                                            title="Fork me on GitHub"
+                                                            target="_blank">GitHub page</a>
+</p>
+<br/>
 
-                        <div class="exampleBlock">
-                            <h3>Text</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                                Text manipulation and attribute sample.
-                            </div>
-                        </div>
+<h2>BASIC SHAPES</h2>
 
-                        <div class="exampleBlock">
-                            <h3>Square</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                               Simple Square.
-                            </div>
-                        </div>
+<div>cgSceneGraph is very extensible and provide several basic Nodes.<br/>
+    Here are some basic examples showing how to easily integrate basic nodes into your programs
+</div>
 
-                        <div class="exampleBlock">
-                            <h3>Circle</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                               Simple Circle.
-                            </div>
-                        </div>
+<div class="exampleBlock">
+    <h3>Text</h3>
+    <img src="examples/01_Basic_Shapes/01_Text_01_simple/screenshot.png"/>
 
-
-                        <div class="exampleBlock">
-                            <h3>Ellipse</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                               Simple Ellipse.
-                            </div>
-                        </div>
-
-                        <div class="clear" style="height:4px"></div>
-
-                        <div class="exampleBlock">
-                            <h3>Image simple</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                                A simple image.
-                            </div>
-                        </div>
-
-                        <div class="exampleBlock">
-                            <h3>Image Tiles</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                               Several nodes sharing the same image source.
-                            </div>
-                        </div>
-
-                        <div class="exampleBlock">
-                            <h3>Animated Sprite simple</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                                A simple animated sprite.
-                            </div>
-                        </div>
-
-                        <div class="exampleBlock">
-                            <h3>Animated Sprite: multiple</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                                Multiple CGSGNodeSprite sharing the same image source.
-                            </div>
-                        </div>
-
-                    <div class="clear" style="height:4px"></div>
-
-                        <div class="exampleBlock">
-                            <h3>Animated Sprite: player</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                               A character sample : different animations in the same CGSGNodeSprite.
-                            </div>
-                        </div>
-
-                        <div class="exampleBlock">
-                            <h3>Web View</h3>
-                            <img src="examples/default.png"/>
-                            <div>
-                                Embed a webview into your application !
-                            </div>
-                        </div>
-
-
-                    <div class="clear" style="height:4px"></div>
-                    <div>&nbsp;</div>
-                    <hr/>
-
-                    <h2>EVENTS</h2>
-                    <div>There are a lot of events provided by the framework for nodes, scene, animation, animated sprites, ...<br/>
-                    This section presents some of these.</div>
-
-                    <div class="exampleBlock">
-                        <h3>Mouse & Touch</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            All node events in one sample.<br/>
-                        </div>
-                    </div>
-
-                    <div class="exampleBlock">
-                        <h3>Mouse Over</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Just a simple example launching animation when mouse over.
-                        </div>
-                    </div>
-
-                    <div class="clear" style="height:4px"></div>
-                    <div>&nbsp;</div>
-                    <hr/>
-
-                    <!--h2>ANIMATION</h2>
-
-                    <div class="exampleBlock">
-                        <h3>Scale Rotation Translation</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Drag or resize a node in 1 line.<br/>
-                            Add a lot of events on node, scene or animation<br/>
-                            Keep trace of absolute transformation
-                        </div>
-                    </div>
-
-                    <div class="exampleBlock">
-                        <h3>Collision detection</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            SRT Animation (Scale, Rotation, Translation)<br/>
-                            Animated Sprites<br/>
-                            Particles system<br/>...
-                        </div>
-                    </div>
-
-                    <div class="exampleBlock">
-                        <h3>Animated Sprite: character</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Extend the framework by creating your own nodes.<br/>
-                            Very easy to extend.
-                        </div>
-                    </div>
-
-                    <div class="clear" style="height:4px"></div>
-
-                    <div class="exampleBlock">
-                        <h3>Animated Sprite simple</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Drag or resize a node in 1 line.<br/>
-                            Add a lot of events on node, scene or animation<br/>
-                            Keep trace of absolute transformation
-                        </div>
-                    </div>
-
-                    <div class="clear" style="height:4px"></div>
-                    <div>&nbsp;</div>
-                    <hr/-->
-
-                    <h2>ADVANCED</h2>
-
-                    <div class="exampleBlock">
-                        <h3>Particle Fountain</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Simulate a fountain with particles, and apply force on the system !
-                        </div>
-                    </div>
-
-                    <div class="exampleBlock">
-                        <h3>Particle Fire Simulation</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Simulate a fire (a "toony" fire ;))
-                        </div>
-                    </div>
-
-                    <div class="exampleBlock">
-                        <h3>Particle images</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                           You also can use images as particles.
-                        </div>
-                    </div>
-
-                    <div class="exampleBlock">
-                        <h3>Traverser</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            A "traverser" traverse the graph and list nodes that check a specific condition.
-                        </div>
-                    </div>
-
-                    <div class="clear" style="height:4px"></div>
-
-                    <div class="exampleBlock">
-                        <h3>Display Ratio</h3>
-                        <img src="examples/default.png"/>
-                        <div>
-                            Allow responsive size in your game or application ! :)
-                        </div>
-                    </div>
-
-                    <div class="clear" style="height:4px"></div>
-                    <div>&nbsp;</div>
-                    <hr/>
-
-                    <h2>GAMES</h2>
-
-                    <div class="clear" style="height:4px"></div>
-                </div>
-                <!-- end content -->
-            </div>
-            <!-- end container -->
-        </div>
-
-        <div id="pageFooter">
-        </div>
+    <div>
+        <a href="examples/01_Basic_Shapes/01_Text_01_simple/index.html" target="_blank">
+            <div class="exampleLink alignleft">DEMO</div>
+        </a>
+        <a href="examples/01_Basic_Shapes/01_Text_01_simple/js/class.main.js" target="_blank">
+            <div class="exampleLink alignright">SOURCES</div>
+        </a>
     </div>
+    <div>
+        Text manipulation and attribute sample.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Square</h3>
+    <img src="examples/01_Basic_Shapes/02_Square/screenshot.png"/>
+
+    <div>
+        <a href="examples/01_Basic_Shapes/02_Square/index.html" target="_blank">
+            <div class="exampleLink alignleft">DEMO</div>
+        </a>
+        <a href="examples/01_Basic_Shapes/02_Square/js/class.main.js" target="_blank">
+            <div class="exampleLink alignright">SOURCES</div>
+        </a>
+    </div>
+    <div>
+        Simple Square.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Circle</h3>
+    <img src="examples/01_Basic_Shapes/03_Circle/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/03_Circle/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/03_Circle/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simple Circle.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Ellipse</h3>
+    <img src="examples/01_Basic_Shapes/04_Ellipse/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/04_Ellipse/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/04_Ellipse/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simple Ellipse.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Image simple</h3>
+    <img src="examples/01_Basic_Shapes/05_Images/01_Simple/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/05_Images/01_Simple/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/05_Images/01_Simple/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A simple image.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Image Tiles</h3>
+    <img src="examples/01_Basic_Shapes/05_Images/02_Tiles/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/05_Images/02_Tiles/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/05_Images/02_Tiles/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Several nodes sharing the same image source.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite simple</h3>
+    <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A simple animated sprite.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite: multiple</h3>
+    <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Multiple CGSGNodeSprite sharing the same image source.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite: player</h3>
+    <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A character sample : different animations in the same CGSGNodeSprite.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Web View</h3>
+    <img src="examples/01_Basic_Shapes/07_WebView/screenshot.png"/>
+
+    <div><a href="examples/01_Basic_Shapes/07_WebView/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/07_WebView/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Embed a webview into your application !
+    </div>
+</div>
+
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/>
+
+<h2>EVENTS</h2>
+
+<div>There are a lot of events provided by the framework for nodes, scene, animation, animated sprites, ...<br/>
+    This section presents some of these.
+</div>
+
+<div class="exampleBlock">
+    <h3>Mouse & Touch</h3>
+    <img src="examples/02_Events/01_mouse&touch/screenshot.png"/>
+
+    <div><a href="examples/02_Events/01_mouse&touch/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/02_Events/01_mouse&touch/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        All node events in one sample.<br/>
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Mouse Over</h3>
+    <img src="examples/02_Events/02_mouseover/screenshot.png"/>
+
+    <div><a href="examples/02_Events/02_mouseover/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/02_Events/02_mouseover/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Just a simple example launching animation when mouse over.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/>
+
+<!--h2>ANIMATION</h2>
+
+<div class="exampleBlock">
+    <h3>Scale Rotation Translation</h3>
+    <img src="examples/default.png"/>
+    <div>
+        Drag or resize a node in 1 line.<br/>
+        Add a lot of events on node, scene or animation<br/>
+        Keep trace of absolute transformation
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Collision detection</h3>
+    <img src="examples/default.png"/>
+    <div>
+        SRT Animation (Scale, Rotation, Translation)<br/>
+        Animated Sprites<br/>
+        Particles system<br/>...
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite: character</h3>
+    <img src="examples/default.png"/>
+    <div>
+        Extend the framework by creating your own nodes.<br/>
+        Very easy to extend.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite simple</h3>
+    <img src="examples/default.png"/>
+    <div>
+        Drag or resize a node in 1 line.<br/>
+        Add a lot of events on node, scene or animation<br/>
+        Keep trace of absolute transformation
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/-->
+
+<h2>ADVANCED</h2>
+
+<div class="exampleBlock">
+    <h3>Particle Fountain</h3>
+    <img src="examples/04_Advanced/01_Particles_Fountain/screenshot.png"/>
+
+    <div><a href="examples/04_Advanced/01_Particles_Fountain/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/01_Particles_Fountain/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simulate a fountain with particles, and apply force on the system !
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Particle Fire Simulation</h3>
+    <img src="examples/04_Advanced/02_Particles_Fire/screenshot.png"/>
+
+    <div><a href="examples/04_Advanced/02_Particles_Fire/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/02_Particles_Fire/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simulate a fire (a "toony" fire ;))
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Particle images</h3>
+    <img src="examples/04_Advanced/03_Particles_Images/screenshot.png"/>
+
+    <div><a href="examples/04_Advanced/03_Particles_Images/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/03_Particles_Images/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        You also can use images as particles.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Traverser</h3>
+    <img src="examples/04_Advanced/04_Traverser/screenshot.png"/>
+
+    <div><a href="examples/04_Advanced/04_Traverser/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/04_Traverser/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A "traverser" traverse the graph and list nodes that check a specific condition.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Display Ratio</h3>
+    <img src="examples/04_Advanced/05_DisplayRatio/screenshot.png"/>
+
+    <div><a href="examples/04_Advanced/05_DisplayRatio/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/05_DisplayRatio/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Allow responsive size in your game or application ! :)
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/>
+
+<h2>GAMES</h2>
+
+<div class="clear" style="height:4px"></div>
+</div>
+<!-- end content -->
+</div>
+<!-- end container -->
+</div>
+
+<div id="pageFooter">
+</div>
+</div>
 </div>
 <!-- end wrapper -->
 <div class="footerShadow"></div>

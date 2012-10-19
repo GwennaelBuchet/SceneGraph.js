@@ -348,7 +348,7 @@ body {
 #sidebar .title {
     color: #a0cdf2;
     text-align: center;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 hr {
@@ -419,6 +419,16 @@ a img {
     float: left;
 }
 
+.exampleLink {
+    width: 98px;
+    padding: 5px;
+    height: 18px;
+    background-color: #f4f4f4;
+    color: #494949;
+    border: 1px #494949 solid;
+    text-align: center;
+}
+
 #tryIt {
     width: 300px;
     height: 50px;
@@ -446,7 +456,7 @@ a img {
     font-style: normal;
     font-variant: normal;
     font-weight: normal;
-    width:90%;
+    width: 90%;
     background-color: #464646;
     border: 0px;
     margin: 10px;
@@ -459,7 +469,7 @@ a img {
 .docBlock .title {
     font-size: 18px;
     margin: 5px 0 0px 0;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 .docBlock .subtitle {
@@ -488,6 +498,6 @@ a img {
 }
 
 .alert {
-    color:#ff1f49;
+    color: #ff1f49;
 }
 
