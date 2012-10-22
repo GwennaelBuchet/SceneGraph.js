@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize : function(canvas) {
 
 			this._super(canvas);
 
@@ -43,7 +43,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas : function() {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -53,7 +53,7 @@ var CGMain = CGSGScene.extend(
 		 * create a random scene with some nodes
 		 *
 		 */
-		createScene : function () {
+		createScene : function() {
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -70,7 +70,10 @@ var CGMain = CGSGScene.extend(
 				}
 			}
 
-			var condition = "color == 'yellow'"
+			//condition to use while traverse the graph
+			var condition = function(node) {
+				return node.color == "yellow";
+			};
 
 			var traverser = new CGSGTraverser();
 			var listSquares = traverser.traverse(this.rootNode, condition, null);
@@ -78,14 +81,16 @@ var CGMain = CGSGScene.extend(
 				this.sceneGraph.selectNode(listSquares[s]);
 			}
 
-			this.textNode = new CGSGNodeText(20, 10, "Number of nodes found by the Traverser with the condition \"" + condition +"\" = " + listSquares.length);
+			this.textNode = new CGSGNodeText(20, 10,
+			                                 "Number of nodes found by the Traverser with the condition \"color == 'yellow'\" = "
+				                                 + listSquares.length);
 			this.textNode.setSize(14);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.textNode);
 
 		},
 
-		createRandomSquare : function (parentX, parentY) {
+		createRandomSquare : function(parentX, parentY) {
 			var w = 20 + Math.random() * 40;
 			var h = 20 + Math.random() * 40;
 

@@ -58,8 +58,8 @@ var CloudNode = CGSGNode.extend(
 		 */
 		initShape : function() {
 			this._tmpCanvas = document.createElement('canvas');
-			this._tmpCanvas.width = canvasWidth;
-			this._tmpCanvas.height = canvasHeight;
+			this._tmpCanvas.width = cgsgCanvas.width;
+			this._tmpCanvas.height = cgsgCanvas.height;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
 			var startX = 100;
@@ -110,17 +110,17 @@ var CloudNode = CGSGNode.extend(
 			this.globalAlpha = 0.7 + Math.random() * 0.295;
 			var x = CGSGMath.fixedPoint(-150 + Math.random() * 20);
 			if (isFirst) {
-				x += Math.random() * canvasWidth;
+				x += Math.random() * cgsgCanvas.width;
 			}
 			var y = CGSGMath.fixedPoint(Math.random() * 50);
 			this.translateTo(x, y);
-			this.speed = CGSGMath.fixedPoint(canvasWidth * 2.5 + Math.random() * canvasWidth * 2);
+			this.speed = CGSGMath.fixedPoint(cgsgCanvas.width * 2.5 + Math.random() * cgsgCanvas.width * 2);
 
 		},
 
 		startAnim : function() {
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-			                   CGSGMath.fixedPoint(canvasWidth + Math.random() * 50), "linear", 0, true);
+			                   CGSGMath.fixedPoint(cgsgCanvas.width + Math.random() * 50), "linear", 0, true);
 		},
 
 		reStartAnim : function() {

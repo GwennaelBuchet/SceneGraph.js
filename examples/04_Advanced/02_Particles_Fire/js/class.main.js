@@ -91,7 +91,10 @@ var CGMain = CGSGScene.extend(
 				event.particle.node.globalAlpha = 1.0;
 				event.particle.node.color = colors[Math.floor(Math.random() * colors.length)];
 				event.particle.node.lineColor = event.particle.node.color;
-				event.particle.initTTL(50 + Math.random() * 40);
+				event.particle.userdata = {ttl : 50 + Math.random() * 40};
+				event.particle.checkCTL = function(particle) {
+					return particle.age <= particle.userdata.ttl;
+				};
 
 				//event.particle.node.scaleTo(1.0, 1.0);
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
@@ -105,13 +108,10 @@ var CGMain = CGSGScene.extend(
 			//the gravity is just a force, encapsulated by the class
 			emitter.removeForce(emitter.gravity);
 
-			//tell the system how to render the particles for emitter (can be different for another emitter on the same system)
-			//emitter.initParticles(new CGSGNodeSquare(0, 0, 3, 3));
-
 			//add an update handler, fired each time a particle position was updated by the emitter
             emitter.onUpdateParticleEnd = function (particle) {
-				var a = 1.0 - (particle.age / particle.ttl);
-				particle.node.globalAlpha = a;
+				var a = 1.0 - (particle.age / particle.userdata.ttl);
+				particle.node.globalAlpha = Math.max(a, 0);
 				var rgb = CGSGColor.hex2rgb(particle.node.color);
 				rgb.r = particle.initColor.r * a;
 				rgb.g = particle.initColor.g * a;

@@ -361,7 +361,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_utils_class.traverser.js.html#l62"><code>src\utils\class.traverser.js:62</code></a>
+        <a href="..&#x2F;files&#x2F;src_utils_class.traverser.js.html#l75"><code>src\utils\class.traverser.js:75</code></a>
         
         </p>
 
@@ -399,7 +399,7 @@
                 <li class="param">
                     
                         <code class="param-name">condition</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
@@ -534,7 +534,7 @@
                 <li class="param">
                     
                         <code class="param-name">condition.</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
                     
 
                     
@@ -580,6 +580,23 @@
         </div>
     
 
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>var condition = function(node) {
+                    return node.color == "yellow";
+                };</p>
+
+<pre class="code"><code class="prettyprint">         var traverser = new CGSGTraverser();
+         var listSquares = traverser.traverse(this.rootNode, condition, null);
+         for (var s = 0; s &lt; listSquares.length; s++) {
+                ...
+            }
+</code></pre>
+            </div>
+        </div>
     
 </div>
 

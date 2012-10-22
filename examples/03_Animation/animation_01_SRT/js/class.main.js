@@ -75,6 +75,8 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(this.textNode);
 
 			this.squareNode = new CGSGNodeSquare(0, 60, 100, 100);
+
+			this.squareNode.rotationCenter = new CGSGPosition(0.5, 0.5);
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;
 			this.rootNode.addChild(this.squareNode);
@@ -100,11 +102,12 @@ var CGMain = CGSGScene.extend(
 			 */
 
 			this.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, true);
+			this.sceneGraph.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, "linear", 0, true);
 
-			this.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationStart = function (event) {
+			this.sceneGraph.getTimeline(this.squareNode, "rotation.angle").onAnimationStart = function (event) {
 				console.log("animation started");
 			};
-			this.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationEnd = function (event) {
+			this.sceneGraph.getTimeline(this.squareNode, "rotation.angle").onAnimationEnd = function (event) {
 				console.log("animation ended");
 			};
 		}

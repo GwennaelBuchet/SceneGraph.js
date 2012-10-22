@@ -48,11 +48,6 @@ var CGMain = CGSGScene.extend(
 
 			this.gameState = GAME_STATE.LOADING;
 
-
-			////// INITIALIZATION /////////
-
-			this.initializeCanvas();
-
 			sceneGraph = this.sceneGraph;
 			this.createScene();
 
@@ -68,13 +63,6 @@ var CGMain = CGSGScene.extend(
 			this.onRenderStart = scope.onRenderStartHandler;
 
 			this.startPlaying();
-		},
-
-		initializeCanvas : function() {
-			canvasWidth = cgsgCanvas.width;
-			canvasHeight = cgsgCanvas.height;
-			var dim = new CGSGDimension(canvasWidth, canvasHeight);
-			this.setCanvasDimension(dim);
 		},
 
 		/**

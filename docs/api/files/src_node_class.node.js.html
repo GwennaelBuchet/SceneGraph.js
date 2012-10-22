@@ -304,13 +304,12 @@ var CGSGNode = Object.extend(
 			&#x2F;**
 			 * Pivot point to apply a rotation.
 			 * The point is a value between [0, 0] and [1, 1].
-			 * [0, 0] is the top left corner of the boundging box and [1, 1] the bottom rignt corner.
-			 * STILL EXPERIMENTAL.
+			 * [0, 0] is the top left corner of the bounding box and [1, 1] the bottom right corner.
 			 * @property rotationCenter
-			 * @default CGSGPosition(0, 0)
+			 * @default null
 			 * @type {CGSGPosition}
 			 *&#x2F;
-			this.rotationCenter = new CGSGPosition(0, 0);
+			this.rotationCenter = null;
 
 			&#x2F;**
 			 * can be fulfilled by the developer to put in whatever he needs
@@ -737,8 +736,16 @@ var CGSGNode = Object.extend(
 			context.translate(this.position.x, this.position.y);
 
 			&#x2F;&#x2F; translate context to center of canvas
-			context.translate(this.dimension.width * this.rotationCenter, this.dimension.height * this.rotationCenter);
-			context.rotate(this.rotation.angle);
+			if (cgsgExist(this.rotationCenter)) {
+				context.translate(this.dimension.width * this.rotationCenter.x,
+				                  this.dimension.height * this.rotationCenter.y);
+				context.rotate(this.rotation.angle);
+				context.translate(-this.dimension.width * this.rotationCenter.x,
+				                  -this.dimension.height * this.rotationCenter.y);
+			}
+			else {
+				context.rotate(this.rotation.angle);
+			}
 			context.scale(this.scale.x, this.scale.y);
 		},
 
@@ -858,7 +865,7 @@ var CGSGNode = Object.extend(
 		 * @param {Boolean} recursively if false, don&#x27;t traverse the children of this nodes
 		 * @param {Number} canvasWidth the width of the canvas container
 		 * @param {Number} canvasHeight the height of the canvas container
-		 * @param {String} condition Condition to be picked
+		 * @param {Function} condition Condition to be picked
 		 * ie: &quot;color==&#x27;yellow&#x27;&quot; or &quot;classType==&#x27;CGSGNodeImage&#x27; &amp;&amp; this.globalAlpha&gt;0.5&quot;
 		 * *&#x2F;
 		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, canvasWidth, canvasHeight,
@@ -875,7 +882,7 @@ var CGSGNode = Object.extend(
 			}
 
 			if (this.isTraversable &amp;&amp; (this.isClickable || this.isResizable || this.isDraggable)) {
-				if (this.eval(condition) === true) {
+				if (!cgsgExist(condition) || condition(this) === true) {
 					this.computeAbsoluteMatrix(false);
 					selectedNode =
 					this.detectSelection(mousePosition, ghostContext, childAbsoluteScale,
@@ -1176,7 +1183,8 @@ var CGSGNode = Object.extend(
 		},
 
 		&#x2F;**
-		 * Eval the script passed in parameter in &quot;this&quot; scope.
+		 * Execute&#x2F;Eval the script passed in parameter in &quot;this&quot; scope.
+		 * Used to set new value to an attribute of a node
 		 * @method evalSet
 		 * @param {String} attribute The attribute to be changed
 		 * @param {any} value The new value for the attribute
@@ -1197,17 +1205,19 @@ var CGSGNode = Object.extend(
 			}
 		},
 
-		&#x2F;**
+		&#x2F;*
+		 * Execute&#x2F;Eval an operation on the node.
 		 * @method eval
 		 * @param {String} operation
-		 * @return {any}
+		 * @return {*}
+		 * @example node.eval(&quot;position.y  = 12&quot;);
 		 *&#x2F;
-		eval : function(operation) {
-			if (operation === undefined || operation === null) {
-				return true;
-			}
-			return eval(&quot;this.&quot; + operation);
-		},
+		&#x2F;*eval : function(operation) {
+		 if (operation === undefined || operation === null) {
+		 return true;
+		 }
+		 return eval(&quot;this.&quot; + operation);
+		 },*&#x2F;
 
 		&#x2F;**
 		 * Set the region inside which one this node ca be placed an can move

@@ -47,14 +47,27 @@ var CGSGTraverser = Object.extend(
 		 * @method traverse
 		 *
 		 * @param {CGSGNode} rootNode
-		 * @param {String} condition. can be null
+		 * @param {Function} condition. can be null
 		 * @param {Array} excludedNodes Array of CGSGNode
 		 * @return {Array} the list of nodes recursively under 'rootNode', accepting the 'condition' and not in 'excludedNodes'
+		 *
+		 * @example
+		 *  var condition = function(node) {
+					return node.color == "yellow";
+				};
+
+			 var traverser = new CGSGTraverser();
+			 var listSquares = traverser.traverse(this.rootNode, condition, null);
+			 for (var s = 0; s < listSquares.length; s++) {
+					...
+				}
 		 */
 		traverse : function(rootNode, condition, excludedNodes) {
 			this.lastResults.clear();
 
-			this._check(rootNode, condition, excludedNodes);
+			if (cgsgExist(condition)) {
+				this._check(rootNode, condition, excludedNodes);
+			}
 
 			return this.lastResults;
 		},
@@ -63,14 +76,14 @@ var CGSGTraverser = Object.extend(
 		 * @private
 		 * @method _check
 		 * @param {CGSGNode} rootNode
-		 * @param {String} condition
+		 * @param {Function} condition
 		 * @param {Array} excludedNodes
 		 */
 		_check : function(rootNode, condition, excludedNodes) {
 			if (rootNode.isTraversable === true) {
 				var exclusionExist = cgsgExist(excludedNodes) && excludedNodes.length > 0;
 
-				if (!(exclusionExist && excludedNodes.contains(rootNode)) && rootNode.eval(condition) === true) {
+				if (!(exclusionExist && excludedNodes.contains(rootNode)) && condition(rootNode) === true) {
 					this.lastResults.push(rootNode);
 				}
 

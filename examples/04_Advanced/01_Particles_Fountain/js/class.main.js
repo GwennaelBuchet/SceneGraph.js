@@ -91,14 +91,17 @@ var CGMain = CGSGScene.extend(
 				event.particle.node.globalAlpha = 1.0;
 				event.particle.node.color = "#B5D2FF";
 				event.particle.node.lineColor = event.particle.node.color;
-				event.particle.initTTL(180 + Math.random() * 240);
+				event.particle.userdata = {ttl : 180 + Math.random() * 240};
+				event.particle.checkCTL = function(particle) {
+					return particle.age <= particle.userdata.ttl;
+				};
 			};
 
 			//add a force  representing the wind
 			//emitter.addForce(new CGSGVector2D(5, 0.0), null); //force vector, ttl
 
 			emitter.onUpdateParticleEnd = function (particle) {
-				particle.node.globalAlpha = 1.0 - (particle.age / particle.ttl);
+				particle.node.globalAlpha = 1.0 - (particle.age / particle.userdata.ttl);
 			};
 
 			//add a force vector on the mouse click

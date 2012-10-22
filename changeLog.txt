@@ -47,7 +47,16 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.2.0
 
+CHANGES:
+- Evolution. Particle : Change initTTL to initCTL.
+- Evolution. Traverser : Condition is now a Function.
+- Optimization. Traverser is slightly faster.
+- Optimization. pickNode is slightly faster.
+- Evolution. CGSGNode.rotationCenter is available.
+
+---------------------------------------------------------------------
 v1.1.0
 
 CHANGES:

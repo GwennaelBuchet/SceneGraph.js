@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize : function(canvas) {
 
 			this._super(canvas);
 
@@ -43,8 +43,8 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
-            var dim = new CGSGDimension(600, 480);
+		initializeCanvas : function() {
+			var dim = new CGSGDimension(600, 480);
 			this.setCanvasDimension(dim);
 		},
 
@@ -52,7 +52,7 @@ var CGMain = CGSGScene.extend(
 		 * create a random scene with some nodes
 		 *
 		 */
-		createScene : function () {
+		createScene : function() {
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -60,52 +60,55 @@ var CGMain = CGSGScene.extend(
 			//create the particle system instance
 			this.particlesSystem = new CGSGParticleSystem(0, 100); //x, y
 
-            //load images that will be used for particles
-            this.img = new Image();
-            var bindOnImageLoaded = this.onImageLoaded.bind(this);
-            this.img.onload = bindOnImageLoaded;
-            this.img.src = "images/pingoo.png";
+			//load images that will be used for particles
+			this.img = new Image();
+			var bindOnImageLoaded = this.onImageLoaded.bind(this);
+			this.img.onload = bindOnImageLoaded;
+			this.img.src = "images/pingoo.png";
 
 			//finally, add the particle system into the scenegraph
 			this.rootNode.addChild(this.particlesSystem);
 		},
 
-        /**
-         * Fired when the image loading is complete.
-         * Set the image object (img) to our image nodes
-         */
-        onImageLoaded:function () {
-            //create an emitter, "simulating a fountain", and add it to the particle system
-            this.createFountainEmitter();
-        },
+		/**
+		 * Fired when the image loading is complete.
+		 * Set the image object (img) to our image nodes
+		 */
+		onImageLoaded : function() {
+			//create an emitter, "simulating a fountain", and add it to the particle system
+			this.createFountainEmitter();
+		},
 
 		createFountainEmitter : function() {
-            var imgNode = new CGSGNodeImage(0, 0, 0, 0, 0, 0, 0, 0, null, this.context);
-            imgNode.setImage(this.img);
+			var imgNode = new CGSGNodeImage(0, 0, 0, 0, 0, 0, 0, 0, null, this.context);
+			imgNode.setImage(this.img);
 
 			//create the new emitter
 			var emitter = this.particlesSystem.addEmitter(
-                imgNode //node as a particle
-                , new CGSGRegion(300, 200, 8, 8) //emission area
-				, 100                                   //nbParticlesMax
-				, new CGSGVector2D(0.0, 1.0)            //initial velocity of a particle
-				, Math.PI / 4.0                         //angle area to rotate the direction vector
-				, 5.0       //speed
-				, 1.0       //random pour le speed
-                , 10         //outflow
+				imgNode //node as a particle
+				, new CGSGRegion(300, 200, 8, 8)//emission area
+				, 100                           //nbParticlesMax
+				, new CGSGVector2D(0.0, 1.0)    //initial velocity of a particle
+				, Math.PI / 4.0                 //angle area to rotate the direction vector
+				, 5.0                           //speed
+				, 1.0                           //random pour le speed
+				, 10                            //outflow
 			);
 
-			emitter.onInitParticle = function (event) {
+			emitter.onInitParticle = function(event) {
 				event.particle.node.globalAlpha = 1.0;
-				event.particle.initTTL(280 + Math.random() * 240);
+				event.particle.userdata = {ttl : 280 + Math.random() * 240};
+				event.particle.checkCTL = function(particle) {
+					return particle.age <= particle.userdata.ttl;
+				};
 			};
 
 			//add a force representing the wind
 			//emitter.addForce(new CGSGVector2D(5, 0.0), null); //force vector, ttl
-            emitter.addForce(new CGSGVector2D(0, -8), null); //force vector, ttl
+			emitter.addForce(new CGSGVector2D(0, -8), null); //force vector, ttl
 
-			emitter.onUpdateParticleEnd = function (particle) {
-				particle.node.globalAlpha = 1.0 - (particle.age / particle.ttl);
+			emitter.onUpdateParticleEnd = function(particle) {
+				particle.node.globalAlpha = 1.0 - (particle.age / particle.userdata.ttl);
 			};
 
 			//launch the emitters

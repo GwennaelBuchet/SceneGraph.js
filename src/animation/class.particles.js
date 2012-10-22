@@ -45,6 +45,14 @@ var CGSGParticle = Object.extend(
 			this.node.isResizable = false;
 			this.node.isDraggable = false;
 
+			/**
+			 * A void* property to let the developer store whatever he needs (new properties, ...)
+			 * @property userdata
+			 * @type {*}
+			 * @default null
+			 */
+			this.userdata = null;
+
 			this.init();
 		},
 
@@ -58,25 +66,15 @@ var CGSGParticle = Object.extend(
 			this.position = new CGSGPosition(0.0, 0.0);
 			this.mass = 1000;
 			this.initVelocity(new CGSGVector2D(1.0, 1.0));
-			this.initTTL(50 + Math.random() * 160);
+			this.checkCTL = null;
 			this.isAlive = true;
+			this.age = 0;
 
 			this._gravity = new CGSGVector2D(0.0, 0.0);
 			this._forceTotal = new CGSGVector2D(0.0, 0.0);
 			this._acceleration = new CGSGVector2D(0.0, 0.0);
 
 			this.speedThreshold = 0.0;
-		},
-
-		/**
-		 * Initialize the TTL of
-		 * @public
-		 * @method initTTL
-		 * @param {Number} ttl
-		 */
-		initTTL : function(ttl) {
-			this.age = 0;
-			this.ttl = ttl;
 		},
 
 		/**
@@ -94,7 +92,7 @@ var CGSGParticle = Object.extend(
 		/**
 		 * @public
 		 * @method initVelocity
-		 * @param {Number} velocity
+		 * @param {CGSGVector2D} velocity
 		 */
 		initVelocity : function(velocity) {
 			this.velocity = velocity.copy();
@@ -139,11 +137,13 @@ var CGSGParticle = Object.extend(
 				this.node.translateTo(this.position.x, this.position.y);
 			}
 
+			//increment age of the particle
 			this.age += deltaTime;
-			if (this.age >= this.ttl) {
-				this.isAlive = false;
-			}
 
+			//check the viablity of the particle
+			if (cgsgExist(this.checkCTL)) {
+				this.isAlive = this.checkCTL(this);
+			}
 			return this.isAlive;
 		}
 	}
@@ -326,9 +326,9 @@ var CGSGParticleEmitter = CGSGNode.extend(
 				this._acceleration.x += this._forces[f].vector.x;
 				this._acceleration.y += this._forces[f].vector.y;
 
-				if (this._forces[f].ttl !== null) {
+				if (this._forces[f].ctl !== null) {
 					this._forces[f].age++;
-					if (this._forces[f].age >= this._forces[f].ttl) {
+					if (this._forces[f].age >= this._forces[f].ctl) {
 						this.removeForce(this._forces[f]);
 					}
 				}
@@ -424,7 +424,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @return {Object}
 		 */
 		addForce : function(vector, ttl) {
-			var force = {vector : vector, ttl : ttl, age : 0};
+			var force = {vector : vector, ctl : ttl, age : 0};
 			this._forces.push(force);
 			return force;
 		},

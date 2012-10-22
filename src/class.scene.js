@@ -466,8 +466,8 @@ var CGSGScene = Object.extend(
 			}
 
 			//try to pick up the nodes under the cursor
-			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition,
-			                                              "isClickable===true || this.isDraggable===true || this.isResizable===true");
+			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition, function(node) {
+			                                              return (node.isClickable===true || node.isDraggable===true || node.isResizable===true)});
 			//if a nodes is under the cursor, select it
 			if (this._selectedNode !== null && this._selectedNode !== undefined) {
 				if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
@@ -751,7 +751,7 @@ var CGSGScene = Object.extend(
 
 				//if the previous node under the mouse is no more under the mouse, test the other nodes
 				if (n === null) {
-					if ((n = this.sceneGraph.pickNode(this._mousePosition, "onMouseOver !== null")) !== null) {
+					if ((n = this.sceneGraph.pickNode(this._mousePosition, function(node){return node.onMouseOver !== null})) !== null) {
 						n.isMouseOver = true;
 						this._nodeMouseOver = n;
 						this._nodeMouseOver.onMouseOver({node : this._nodeMouseOver, position : this._mousePosition.copy()})
@@ -881,7 +881,7 @@ var CGSGScene = Object.extend(
 				this.onSceneDblClickStart(event);
 			}
 			this._mousePosition = cgsgGetCursorPosition(event, cgsgCanvas);
-			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition);
+			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition, function(node){return true;});
 			if (cgsgExist(this._selectedNode) && this._selectedNode.onDblClick !== null) {
 				this._selectedNode.onDblClick({node : this._selectedNode, position : this._mousePosition.copy(), event : event});
 			}
