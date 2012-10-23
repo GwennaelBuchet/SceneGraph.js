@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\animation\class.anim.timeline.js - cgSceneGraph</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/__GLOBAL_CONSTANTS__.html">__GLOBAL_CONSTANTS__</a></li>
+            
+                <li><a href="..&#x2F;classes/__GLOBAL_METHODS__.html">__GLOBAL_METHODS__</a></li>
+            
+                <li><a href="..&#x2F;classes/__GLOBAL_PROPERTIES__.html">__GLOBAL_PROPERTIES__</a></li>
+            
+                <li><a href="..&#x2F;classes/__UTIL_ARRAY__.html">__UTIL_ARRAY__</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScene.html">CGSGScene</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Math.html">Math</a></li>
+            
+                <li><a href="..&#x2F;modules/Node.html">Node</a></li>
+            
+                <li><a href="..&#x2F;modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;modules/Scene.html">Scene</a></li>
+            
+                <li><a href="..&#x2F;modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\animation\class.anim.timeline.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License&#x2F;Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ *&#x2F;
+
+&#x2F;**
+ * @module Animation
+ * @class CGSGTimeline
+ * @extends {Object}
+ * @constructor
+ * @param {CGSGNode} parentNode
+ * @param {string} attribute string representing the attribute to be animated (eg: &quot;position.x&quot;, &quot;rotation.angle&quot;, &quot;fill&quot;, ...)
+ * @param {string} method A string representing the interpolation method = &quot;linear&quot;
+ * @type {CGSGTimeline}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ *&#x2F;
+var CGSGTimeline = Object.extend(
+	{
+		initialize : function(parentNode, attribute, method) {
+
+			&#x2F;**
+			 * The animated nodes
+			 * @property parentNode
+			 * @type {CGSGNode}
+			 *&#x2F;
+			this.parentNode = parentNode;
+
+			&#x2F;**
+			 * A string representing the attribute to be animated (eg: &quot;position.x&quot;, &quot;rotation.angle&quot;, &quot;fill&quot;, ...)
+			 * @property attribute
+			 * @type {String}
+			 *&#x2F;
+			this.attribute = attribute;
+
+			if (arguments.length == 3) {
+				this.method = method;
+			}
+			else {
+				this.method = &quot;linear&quot;;
+			}
+			&#x2F;**
+			 * list of the [frame, value] pairs for the animation
+			 * the index of the list begins at 0, not at the first key frame
+			 *
+			 * @property listValues
+			 * @type {Array}
+			 *&#x2F;
+			this.listValues = [];
+
+			&#x2F;&#x2F;List of the animation keys
+			this._listKeys = [];
+			&#x2F;&#x2F;precomputed values for animation since first key to latest-1.
+			&#x2F;&#x2F;Each  cell contains the step, in pixel, from the previous key to the next one
+			this._listSteps = [];
+
+			&#x2F;**
+			 * Callback on animation start event
+			 * @property onAnimationStart
+			 * @type {function}
+			 *&#x2F;
+			this.onAnimationStart = null;
+			&#x2F;**
+			 * Callback on animation end event
+			 * @property onAnimationEnd
+			 * @type {function}
+			 *&#x2F;
+			this.onAnimationEnd = null;
+		},
+
+		&#x2F;**
+		 * Add a new animation key frame to the timeline and sort the timeline by frame number
+		 * @public
+		 * @method addKey
+		 * @param {Number} frame. Must be an integer value.
+		 * @param {Number} value
+		 *&#x2F;
+		addKey : function(frame, value) {
+			this._listKeys.push(new CGSGAnimationKey(frame, value));
+			this.sortByFrame();
+
+			if (this.getNbKeys() &gt; 1) {
+				this._computeStepsValues();
+			}
+
+			this.listValues.clear();
+		},
+
+		&#x2F;**
+		 * Remove the key at the specified frame
+		 * @method removeKey
+		 * @param frame {Number} Must be an integer value.
+		 *&#x2F;
+		removeKey : function(frame) {
+			var key = null;
+			for (var k = 0; k &lt; this._listKeys.length - 1; k++) {
+				if (this._listKeys[k].frame == frame) {
+					key = this._listKeys[k];
+					break;
+				}
+			}
+			this._listKeys.without(key);
+
+			this._computeStepsValues();
+
+			if (this.listValues.length &gt; 0) {
+				this.computeValues(0);
+			}
+		},
+
+		&#x2F;**
+		 * Remove all keys and values
+		 * @public
+		 * @method removeAll
+		 *&#x2F;
+		removeAll : function() {
+			this.listValues.clear();
+			this._listKeys.clear();
+			this._listSteps.clear();
+		},
+
+		&#x2F;**
+		 * Compute the number of steps between all keys, 2 by 2
+		 * @private
+		 * @method _computeStepsValues
+		 *&#x2F;
+		_computeStepsValues : function() {
+			this._listSteps.clear();
+			var nbFrameInSection = 0;
+			var totalDistance = 0;
+			for (var k = 0; k &lt; this._listKeys.length - 1; k++) {
+				nbFrameInSection = this._listKeys[k + 1].frame - this._listKeys[k].frame;
+				totalDistance = this._listKeys[k + 1].value - this._listKeys[k].value;
+				this._listSteps.push(totalDistance &#x2F; nbFrameInSection);
+			}
+		},
+
+		&#x2F;**
+		 * @public
+		 * @method getNbKeys
+		 * @return {Number} the number of keys in this timeline. Must be an integer value.
+		 *&#x2F;
+		getNbKeys : function() {
+			return this._listKeys.length;
+		},
+
+		&#x2F;**
+		 * Sort the list of keys by frame number
+		 * @public
+		 * @method sortByFrame
+		 *&#x2F;
+		sortByFrame : function() {
+			this._listKeys.sort(function(a, b) {
+				return a.frame - b.frame;
+			});
+		},
+
+		&#x2F;**
+		 * Compute all the values (steps) for the animation of this timeline
+		 * @public
+		 * @method computeValues
+		 * @param fromFrame {Number} first frame at which one the computing must start. Must be an integer value.
+		 * @param method {String} interpolation method : &quot;linear&quot;, &quot;catmullrom&quot;. If method is specified, it replaces the method
+		 *  for this timeline instance
+		 *&#x2F;
+		computeValues : function(fromFrame, method) {
+			if (arguments.length == 2) {
+				this.method = method;
+			}
+			&#x2F;&#x2F;empty the list of values
+			this.listValues.clear();
+
+			var nbKeys = this.getNbKeys();
+
+			if (nbKeys &lt;= 1) {
+				return;
+			}
+
+			var value = 0;
+			var duration = 0;
+			var f = 0;
+			var v = 0;
+			for (var k = 0; k &lt; nbKeys - 1; ++k) {
+				duration = this._listKeys[k + 1].frame - this._listKeys[k].frame;
+				for (f = 0; f &lt;= duration; ++f) {
+					value = this.computeValue(k, this._listKeys[k].frame + f, method);
+					this.listValues[v++] = value;
+				}
+			}
+		},
+
+		&#x2F;**
+		 * Compute animated value for one frame between key ay index keyIndex and keyIndex+1
+		 * @private
+		 * @method computeValue
+		 * @param keyIndex {Number} Must be an integer value.
+		 * @param frame {Number} Must be an integer value.
+		 * @param method {String} = &quot;linear&quot;
+		 *&#x2F;
+		computeValue : function(keyIndex, frame, method) {
+			if (keyIndex &lt; 0) {
+				return undefined;
+			}
+			var previousKey = this._listKeys[keyIndex];
+			var nextKey = this._listKeys[keyIndex + 1];
+
+			if (frame == previousKey.frame) {
+				return {frame : frame, value : previousKey.value};
+			}
+			if (frame == nextKey.frame) {
+				return {frame : frame, value : nextKey.value};
+			}
+
+			var currentStep = frame - previousKey.frame;
+			if (method == &quot;linear&quot;) {
+				return {frame : frame, value : currentStep * this._listSteps[keyIndex] + previousKey.value};
+			}
+		},
+
+		&#x2F;**
+		 * @method getFirstKey
+		 * @return {CGSGAnimationKey} the first key frame of this timeline
+		 *&#x2F;
+		getFirstKey : function() {
+			if (this.getNbKeys() == 0) {
+				return null;
+			}
+
+			return this._listKeys[0];
+		},
+
+		&#x2F;**
+		 * @method getLastKey
+		 * @return {CGSGAnimationKey} the last key frame of this timeline
+		 *&#x2F;
+		getLastKey : function() {
+			if (this.getNbKeys() == 0) {
+				return null;
+			}
+
+			return this._listKeys[this.getNbKeys() - 1];
+		},
+
+		&#x2F;**
+		 * Get the value for the frame number passed in parameter
+		 * @public
+		 * @method getValue
+		 * @param {Number} frame the frame bound with the returned value. Must be an integer value.
+		 * @return {Number} the interpolated value of the attribute at the specified frame
+		 * If no key is defined, return undefined
+		 * If there is only one key, return it&#x27;s value
+		 * If the frame is before the first key, return the first key value
+		 * If the frame is after the last key, return the last key value
+		 *&#x2F;
+		getValue : function(frame) {
+			var nbKeys = this.getNbKeys()
+
+			&#x2F;&#x2F;if no keys : no animation
+			if (nbKeys == 0 &amp;&amp; this.listValues.length == 0) {
+				return undefined;
+			}
+
+			&#x2F;&#x2F;I have keys, but no precomputed values, so compute value for this frame
+			if (this.listValues.length == 0) {
+				&#x2F;&#x2F;get keys from which the frame is between
+				var previousKeyIndex = -1;
+				if (frame &lt; this._listKeys[0].frame) {
+					return undefined;
+				}
+				for (var k = 1; k &lt; nbKeys; k++) {
+					if (frame &lt; this._listKeys[k].frame) {
+						previousKeyIndex = k - 1;
+						break;
+					}
+				}
+				return this.computeValue(previousKeyIndex, frame, this.method);
+			}
+
+			&#x2F;&#x2F;Here, I have precomputed values
+
+			&#x2F;&#x2F;if frame &lt; first frame, return no value
+			if (frame &lt; this.listValues[0].frame) {
+				return undefined;
+				&#x2F;&#x2F;return this.listValues[0];
+			}
+
+			&#x2F;&#x2F;if frame &gt; last frame (ie last key), return no value
+			if (frame &gt;= this.listValues[this.listValues.length - 1].frame) {
+				&#x2F;&#x2F;return undefined;
+				return this.listValues[this.listValues.length - 1];
+			}
+
+			var index = 0;
+			&#x2F;&#x2F;search for value at the frame
+			for (var i = 0; i &lt; this.listValues.length; i++) {
+				if (this.listValues[i].frame == frame) {
+					return this.listValues[i];
+				}
+			}
+		},
+
+		&#x2F;**
+		 * Return the precomputed array of values for this timeline
+		 * @method exportValues
+		 * @return {Array}
+		 *&#x2F;
+		exportValues : function() {
+			if (this.listValues.length == 0) {
+				this.computeValues(cgsgCurrentFrame, this.method);
+			}
+
+			var values = [];
+			for (var i = 0; i &lt; this.listValues.length; i++) {
+				values.push(this.listValues[i].value);
+			}
+			return values;
+		},
+
+		&#x2F;**
+		 * Import new precomputed values for this timeline.
+		 * The number of values must match the number of frame defined by the keys of this timeline
+		 * @method importValues
+		 * @param newValues {Array} of new values
+		 * @param startFrame {Number} Must be an integer value.
+		 *&#x2F;
+		importValues : function(newValues, startFrame) {
+			this.listValues.clear();
+			for (var i = 0; i &lt; newValues.length; i++) {
+				this.listValues.push({frame : startFrame + i, value : newValues[i]});
+			}
+		}
+	}
+);
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -30,7 +30,7 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
@@ -42,7 +42,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
+		initializeCanvas : function () {
 			//scale canvas to fulfill the viewport in width
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -52,44 +52,42 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
-			this.textNode = new CGSGNodeText(10, 50, "Click Me");
+			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
 			//bind the "this.moveSquare" function to this.
 			var bindMoveSquare = this.moveSquare.bind(this);
-			//add the onClick event to the text
-			this.textNode.isClickable = true;
-			this.textNode.onClick = function(event) {
+			buttonNode.onClick = function (event) {
 				bindMoveSquare();
 			}
 			//add the textNode as child of the root
-			this.rootNode.addChild(this.textNode);
+			this.rootNode.addChild(buttonNode);
 
 			//the blue square
-			this.blueSquareNode = new CGSGNodeSquare(220, 140, 260, 160);
+			this.blueSquareNode = new CGSGNodeSquare(220, 80, 260, 160);
 			this.blueSquareNode.color = "blue";
 			this.blueSquareNode.isResizable = true;
 			this.blueSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.blueSquareNode);
 
 			//the red square
-			this.redSquareNode = new CGSGNodeSquare(0, 160, 100, 100);
+			this.redSquareNode = new CGSGNodeSquare(0, 60, 100, 100);
 			this.redSquareNode.color = "red";
 			this.redSquareNode.isResizable = true;
 			this.redSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.redSquareNode);
 
 			//the log text
-			this.logNode = new CGSGNodeText(160, 50, "Collision : false");
+			this.logNode = new CGSGNodeText(160, 10, "Collision : false");
 			this.rootNode.addChild(this.logNode);
 
 			//detect collision each frame
 			var bindCheckCollision = this.checkCollision.bind(this);
-			this.onRenderEnd = function() {
+			this.onRenderEnd = function () {
 				bindCheckCollision();
 			};
 		},
@@ -97,7 +95,7 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * The method called to move the square
 		 */
-		moveSquare : function() {
+		moveSquare : function () {
 
 			/*
 			 * Animate an attribute of a nodes
@@ -114,18 +112,18 @@ var CGMain = CGSGScene.extend(
 			 */
 			this.sceneGraph.animate(this.redSquareNode, "position.x", 80, 0, 500, "linear", 0, true);
 
-			this.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationStart = function(event) {
+			this.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationStart = function (event) {
 				console.log("animation started");
 			};
-			this.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationEnd = function(event) {
+			this.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationEnd = function (event) {
 				console.log("animation ended");
 			};
-			this.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationStart = function(event) {
+			this.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationStart = function (event) {
 				console.log("animation started");
 			};
 		},
 
-		checkCollision : function() {
+		checkCollision : function () {
 			//uncomment to chek the collision with all brothers (text node included)
 			//var isColliding = this.redSquareNode.isCollidingABrother();
 

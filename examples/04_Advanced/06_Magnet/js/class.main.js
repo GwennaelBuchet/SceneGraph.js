@@ -44,7 +44,7 @@ var CGMain = CGSGScene.extend(
 		},
 
 		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -108,9 +108,9 @@ var CGMain = CGSGScene.extend(
 			for (var i = 0; i < listColliders.length; i++) {
 				collider = listColliders[i];
 
-				if (collider.getAbsoluteLeft() < collider) {
-					event.node.translateTo(collider.getAbsoluteLeft(), collider.getAbsoluteTop());
-				}
+				if (collider.getAbsoluteLeft() < collider)
+
+				event.node.translateTo(collider.getAbsoluteLeft(), collider.getAbsoluteTop());
 			}
 		}
 

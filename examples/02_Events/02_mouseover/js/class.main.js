@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -30,22 +30,21 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
-			//initialize size of the viewport : not mandatory
+			////// INITIALIZATION /////////
+
 			this.initializeCanvas();
 
-			//create the scene by adding node to the graph
 			this.createScene();
 
-			//always call this to run the framework animation and interaction
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+		initializeCanvas : function () {
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -54,7 +53,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -75,7 +74,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(s3);
 		},
 
-		addSquare : function(attributes) {
+		addSquare : function (attributes) {
 
 			//create the square
 			var square = new CGSGNodeSquare(attributes.x, attributes.y, attributes.w, attributes.w);
@@ -96,7 +95,7 @@ var CGMain = CGSGScene.extend(
 				//add mouse over and out events
 				var that = this;
 				//animate a scale + with shadow
-				square.onMouseOver = function(event) {
+				square.onMouseOver = function (event) {
 					that.textNode.setText("Over on : " + event.node.name);
 					//some cool animation effect
 					that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
@@ -104,7 +103,7 @@ var CGMain = CGSGScene.extend(
 					that.sceneGraph.animate(event.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
 				};
 				//initial scale + without shadow
-				square.onMouseOut = function(event) {
+				square.onMouseOut = function (event) {
 					that.textNode.setText("Over on : (nothing)");
 					//some cool animation effect
 					that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);

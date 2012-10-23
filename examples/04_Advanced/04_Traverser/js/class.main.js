@@ -44,7 +44,7 @@ var CGMain = CGSGScene.extend(
 		},
 
 		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -70,7 +70,10 @@ var CGMain = CGSGScene.extend(
 				}
 			}
 
-			var condition = "color == 'yellow'"
+			//condition to use while traverse the graph
+			var condition = function(node) {
+				return node.color == "yellow";
+			};
 
 			var traverser = new CGSGTraverser();
 			var listSquares = traverser.traverse(this.rootNode, condition, null);
@@ -79,8 +82,8 @@ var CGMain = CGSGScene.extend(
 			}
 
 			this.textNode = new CGSGNodeText(20, 10,
-			                                 "Number of nodes found by the Traverser with the condition \"" + condition
-				                                 + "\" = " + listSquares.length);
+			                                 "Number of nodes found by the Traverser with the condition \"color == 'yellow'\" = "
+				                                 + listSquares.length);
 			this.textNode.setSize(14);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.textNode);

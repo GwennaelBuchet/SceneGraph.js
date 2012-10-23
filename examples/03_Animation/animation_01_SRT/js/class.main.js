@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -30,22 +30,24 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
-			//initialize size of the viewport : not mandatory
+			////// INITIALIZATION /////////
+
 			this.initializeCanvas();
 
-			//create the scene by adding node to the graph
+			this.textNode = null;
+			this.squareNode = null;
+
 			this.createScene();
 
-			//always call this to run the framework animation and interaction
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+		initializeCanvas : function () {
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -54,25 +56,24 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
-			this.textNode = new CGSGNodeText(10, 10, "Click Me");
-			this.textNode.textBaseline = "bottom";
+			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
 			//bind the "this.moveSquare" function to this.
 			var bindMoveSquare = this.moveSquare.bind(this);
-			//add the onClick event to the text
-			this.textNode.isClickable = true;
-			this.textNode.onClick = function(event) {
+			buttonNode.onClick = function (event) {
 				bindMoveSquare();
 			}
 			//add the textNode as child of the root
-			this.rootNode.addChild(this.textNode);
+			this.rootNode.addChild(buttonNode);
 
 			this.squareNode = new CGSGNodeSquare(0, 60, 100, 100);
+
+			this.squareNode.rotationCenter = new CGSGPosition(0.5, 0.5);
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;
 			this.rootNode.addChild(this.squareNode);
@@ -81,7 +82,7 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * The method called to move the square
 		 */
-		moveSquare : function() {
+		moveSquare : function () {
 
 			/*
 			 * Animate an attribute of a nodes
@@ -98,11 +99,12 @@ var CGMain = CGSGScene.extend(
 			 */
 
 			this.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, true);
+			this.sceneGraph.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, "linear", 0, true);
 
-			this.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationStart = function(event) {
+			this.sceneGraph.getTimeline(this.squareNode, "rotation.angle").onAnimationStart = function (event) {
 				console.log("animation started");
 			};
-			this.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationEnd = function(event) {
+			this.sceneGraph.getTimeline(this.squareNode, "rotation.angle").onAnimationEnd = function (event) {
 				console.log("animation ended");
 			};
 		}

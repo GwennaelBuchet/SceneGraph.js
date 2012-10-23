@@ -86,18 +86,21 @@ var CGMain = CGSGScene.extend(
 			//create the new emitter
 			var emitter = this.particlesSystem.addEmitter(
 				imgNode //node as a particle
-				, new CGSGRegion(300, 200, 8, 8) //emission area
-				, 100                                   //nbParticlesMax
-				, new CGSGVector2D(0.0, 1.0)            //initial velocity of a particle
-				, Math.PI / 4.0                         //angle area to rotate the direction vector
-				, 5.0       //speed
-				, 1.0       //random pour le speed
-				, 10         //outflow
+				, new CGSGRegion(300, 200, 8, 8)//emission area
+				, 100                           //nbParticlesMax
+				, new CGSGVector2D(0.0, 1.0)    //initial velocity of a particle
+				, Math.PI / 4.0                 //angle area to rotate the direction vector
+				, 5.0                           //speed
+				, 1.0                           //random pour le speed
+				, 10                            //outflow
 			);
 
 			emitter.onInitParticle = function(event) {
 				event.particle.node.globalAlpha = 1.0;
-				event.particle.initTTL(280 + Math.random() * 240);
+				event.particle.userdata = {ttl : 280 + Math.random() * 240};
+				event.particle.checkCTL = function(particle) {
+					return particle.age <= particle.userdata.ttl;
+				};
 			};
 
 			//add a force representing the wind
@@ -105,7 +108,7 @@ var CGMain = CGSGScene.extend(
 			emitter.addForce(new CGSGVector2D(0, -8), null); //force vector, ttl
 
 			emitter.onUpdateParticleEnd = function(particle) {
-				particle.node.globalAlpha = 1.0 - (particle.age / particle.ttl);
+				particle.node.globalAlpha = 1.0 - (particle.age / particle.userdata.ttl);
 			};
 
 			//launch the emitters

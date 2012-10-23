@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
@@ -42,13 +42,13 @@ var CGMain = CGSGScene.extend(
 
 			this.startPlaying();
 
-			//add an handler on the window resize event
-			var bindInitializeCanvas = this.initializeCanvas.bind(this);
-			window.onresize = bindInitializeCanvas;
+            //add an handler on the window resize event
+            var bindInitializeCanvas = this.initializeCanvas.bind(this);
+            window.onresize = bindInitializeCanvas;
 		},
 
-		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+		initializeCanvas : function () {
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 
@@ -75,14 +75,13 @@ var CGMain = CGSGScene.extend(
 		 * create a random scene with some nodes
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 
-			var text = new CGSGNodeText(10, 10, "The square and text will be full sized at 1600x1200.\n" +
-			                                    "In other size, the scene will be automatically resized to allow all rezolutions to see the entiere scene.\n\n"
-				+
-				                                "Resize your screen to see the changes.");
-			this.sceneGraph.addNode(text, null);
-			text.setLineHeight(25);
+            var text = new CGSGNodeText(10, 10, "The square and text will be full sized at 1600x1200.\n" +
+                "In other size, the scene will be automatically resized to allow all rezolutions to see the entiere scene.\n\n" +
+                "Resize your screen to see the changes.");
+            this.sceneGraph.addNode(text, null);
+            text.setLineHeight(25);
 
 
 			var squareNode = new CGSGNodeSquare(60, 140, 200, 200);

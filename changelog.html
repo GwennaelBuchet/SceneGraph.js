@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>cgSceneGraph</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="title" content="Web site"/>
+    <meta name="description" content="cgSceneGraph homepage"/>
+    <meta name="keywords" content="html5 canvas cgscenegraph cgSceneGraph framework html 5"/>
+    <meta name="language" content="en"/>
+    <meta name="subject" content="cgscenegraph html 5 framework"/>
+    <meta name="robots" content="All"/>
+    <meta name="copyright" content="Capgemini industries et Distribution"/>
+    <meta name="abstract" content="cgSceneGraph framework html 5"/>
+    <meta name="MSSmartTagsPreventParsing" content="true"/>
+
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+    <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
+</head>
+<body>
+<!-- top wrapper -->
+<div id="topWrapper">
+    <div id="topBanner">
+      <span class="downloadLink">
+
+            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/zipball/master"
+               title="Download latest version as a Zip file">
+                <img src="img/dlzip.png" width="60"/>
+            </a>
+            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tarball/master"
+               title="Download latest version as a tar.gz file">
+                <img src="img/dltar.png" width="60"/>
+            </a>
+          <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+             title="Fork me on GitHub"
+             target="_blank"><img src="img/blacktocat.png" width="50"/></a>
+        </span>
+    </div>
+    <!-- end topBanner -->
+</div>
+<!-- end top wrapper -->
+
+<div id="topnav">
+    <ul>
+        <li>
+            <a href="index.html" shape="rect">HOME</a>
+        </li>
+        <li>
+            <a href="tutorials.html" shape="rect">TUTORIALS</a>
+        </li>
+        <li>
+            <a href="examples.html" shape="rect">EXAMPLES</a>
+        </li>
+        <li>
+            <a href="api.html" shape="rect">API DOCS</a>
+        </li>
+        <li class="current" style="border:none">
+            <a href="changelog.html" shape="rect">CHANGE-LOG</a>
+        </li>
+        <li>
+            <a href="about.html" shape="rect">ABOUT</a>
+        </li>
+    </ul>
+</div>
+<!-- end topnav -->
+
+
+<div id="wrapper">
+    <div id="bg">
+        <div id="header"></div>
+        <div id="page">
+            <!-- begin container -->
+            <div id="container">
+                <!--  content -->
+                <div id="content">
+                    <div id="center">
+                        <h1>Change Log.</h1>
+
+                        <h2>v1.2.0</h2>
+
+                        <lu>
+                            <li><span class="blueText">Evolution.</span> Particle : Change initTTL to initCTL.</li>
+                            <li><span class="whiteText">Optimization.</span> CGSGParticle : performance improvement.
+                            </li>
+                            <li><span class="blueText">Evolution.</span> Traverser : Condition is now a Function.</li>
+                            <li><span class="whiteText">Optimization.</span> Traverser is slightly faster.</li>
+                            <li><span class="whiteText">Optimization.</span> pickNode is slightly faster.</li>
+                            <li><span class="blueText">Evolution.</span> CGSGNode.rotationCenter is available.</li>
+                            <li><span class="blueText">Evolution.</span> CGSGNodeButton.</li>
+                            <li><span class="whiteText">Optimization.</span> cgsgClearContext is now global.</li>
+                        </lu>
+
+                        <p></p>
+                        <hr/>
+                        <h2>v1.1.0</h2>
+
+                        <li><span class="blueText">Evolution.</span> Add CGSGNode::getAbsoluteWidth() and
+                            getAbsoluteHeight().
+                        </li>
+                        <li><span class="alert">Correction.</span> Force fixed point on delay and time for animation
+                            timeline.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add information on onClick and onDblClick events on
+                            Node and Scene.
+                        </li>
+                        <li><span class="alert">Correction.</span> Timeline : at the end of an animation, delete all
+                            keys before calling event
+                            onAnimationEnd.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> CGSGNode : Add getAbsoluteRegion method.</li>
+                        <li><span class="blueText">Evolution.</span> CGSGNode : add recursive parameter to the
+                            computeAbsoluteMatrix method.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> CGSGColor : add lerp method.</li>
+                        <li><span class="blueText">Evolution.</span> CGSGMath : add lerp method.</li>
+                        <li><span class="blueText">Evolution.</span> Add a "exlusionList" parameter to the
+                            CGSGScene::DeselectAll method.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add 'node', 'position' and 'events' on events :
+                            onDrag, onDragEnd, onResize,
+                            onResizeEnd.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add a "free" method to the CGSGNode to free the
+                            memory taken by the node and its
+                            children.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add a first version of the Webview Node.</li>
+                        <li><span class="blueText">Evolution.</span> Add of the cgsgCanvas global property, that is a
+                            handler to the canvas.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add of the "onMouseUp" event for a node.</li>
+                        <li><span class="blueText">Evolution.</span> Add of the "cgsgLoadExternalDoc" global method to
+                            load external web content in
+                            AJAX.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add of JSDoc, based on YUIDoc
+                            (http://yui.github.com/yuidoc).
+                        </li>
+                        <li><span class="blueText">Evolution.</span> CGSGNodeCircle : re-design.</li>
+                        <li><span class="blueText">Evolution.</span> Add of YUIDoc Documentation format.</li>
+
+                        <p></p>
+                        <hr/>
+                        <h2>v1.0.0</h2>
+
+                        <li><span class="blueText">Evolution.</span> Add pivotPoint to rotation of a node.</li>
+                        <li><span class="blueText">Evolution.</span> Add of 2 new nodes : CGSGNodeCircle and
+                            CGSGNodeEllipse.
+                        </li>
+                        <li><span class="whiteText">Optimization.</span> Particle system : more accurate.</li>
+                        <li><span class="blueText">Evolution.</span> Particle system : add outflow parameter.</li>
+                        <li><span class="whiteText">Optimization.</span> Images are pre-rendered, to be displayed faster
+                            each frame.
+                        </li>
+
+                        <p></p>
+                        <hr/>
+                        <h2>v0.9.7.3</h2>
+
+                        <li><span class="alert">Correction.</span> Correct pick node on mouse over.</li>
+                        <li><span class="blueText">Evolution.</span> Refactorization of some examples.</li>
+                        <li><span class="alert">Correction.</span> AnimatedSprite : don't try to render if the name of
+                            the animation passed in
+                            "play" method does not exists.
+                        </li>
+                        <li><span class="alert">Correction.</span> Timeline in animation : allow to use the same
+                            animation values list for several
+                            nodes (less memory consumed).
+                        </li>
+
+                        <p></p>
+                        <hr/>
+                        <h2>v0.9.7.2</h2>
+
+                        <li><span class="whiteText">Optimization.</span> Don't traverse the particles on the event
+                            handlers (mouse over, ...).
+                        </li>
+                        <li><span class="whiteText">Optimization.</span> In the particle system, the emitters and the
+                            particles' nodes are children
+                            of the particle system.
+                        </li>
+                        <li><span class="whiteText">Optimization.</span> CGSGParticleSystem, CGSGParticleEmitter and
+                            nodes of CGSGParticle get
+                            'isClickable', 'isDraggable' and 'isResizable' to false by default.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Update the particle example.</li>
+                        <li><span class="whiteText">Optimization.</span> OnMouseOver: check first the current
+                            _nodeMouseOver node.
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add Events/Events_03_StressTest example.</li>
+                        <li><span class="blueText">Evolution.</span> Add of the attribute CGSGNode.isTraversable (true
+                            by default). If
+                            isTraversable===true, the node will be recursively check by the Traverser class and the
+                            pickNode method.
+                        </li>
+                        <li><span class="whiteText">Optimization.</span> Optimization of the CGSGTraverser class.</li>
+                        <li><span class="blueText">Evolution.</span> Add of the License in header of all files in the
+                            framework.
+                        </li>
+
+                        <p></p>
+                        <hr/>
+                        <h2>v0.9.7.1</h2>
+
+                        <li><span class="blueText">Evolution.</span> New ParticlesSystem Node (first version).</li>
+                        <li><span class="blueText">Evolution.</span> New particle example.</li>
+                        <li><span class="blueText">Evolution.</span> Add of a "copy()" method on each node class.</li>
+                        <li><span class="blueText">Evolution.</span> Add of this changeLog.txt file.</li>
+                        <li><span class="blueText">Evolution.</span> New methods on the CGSGVector2D class :
+                            rotate(angle), getLength(),
+                            getSquaredLength(), normalize().
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Detection of the explorer version.</li>
+                        <li><span class="blueText">Evolution.</span> Add of 2 new globals functions :
+                            cgsgDetectCurrentExplorer(),
+                            cgsgExist(object).
+                        </li>
+                        <li><span class="blueText">Evolution.</span> Add of new functions on the cgsgColors utility :
+                            rgb2hex(r, g, b), hex2rgb(hex),
+                            hex2R(hex), hex2G(hex), hex2B(hex).
+                        </li>
+
+                    </div>
+
+                    <div class="clear" style="height:4px"></div>
+                </div>
+                <!-- end content -->
+            </div>
+            <!-- end container -->
+        </div>
+
+        <div id="pageFooter">
+        </div>
+    </div>
+</div>
+<!-- end wrapper -->
+<div class="footerShadow"></div>
+
+<div id="footerWrapper">
+    <div id="footerBanner">
+        <div class="footerBlock alignleft">
+            <h2>WHAT'S UP?</h2>
+            <hr/>
+            <h4>cgSceneGraph v1.2.0</h4>
+            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.2.0</span> is released
+            :)<br/>
+            Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                                                             target="_blank">GitHub</a>
+        </div>
+
+        <div class="footerBlock alignright logoCap">
+            <h2>CONTACT</h2>
+
+            <p>
+                mail to: <a href="mailto:gwennael.buchet@capgemini.com" title="gwennael.buchet@capgemini.com">gwennael.buchet@capgemini.com</a><br/>
+
+            <p/>
+        </div>
+
+        <div class="clear" style="height:4px"></div>
+    </div>
+</div>
+</body>
+</html>
