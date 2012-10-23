@@ -41,6 +41,7 @@ TODO LIST:
 - Evolution. New "magnet" example
 - Evolution. New "Undo" example
 - Evolution. Add a "cgsgRenderAlways" property and correctly manage the "invalidate()" method
+- Example. Map
 
 
 =====================================================================

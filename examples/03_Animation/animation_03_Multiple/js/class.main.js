@@ -64,7 +64,7 @@ var CGMain = CGSGScene.extend(
 			//add a text node ("click me") with a onClick event
 			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
 			buttonNode.textBaseline = "bottom";
-			//bind the "this.moveSquare" function to this. See Prototype.js "bind" function.
+			//bind the "this.moveSquare" function to this.
 			var bindMoveSquare = this.moveSquare.bind(this);
 			buttonNode.onClick = function (event) {
 				bindMoveSquare();
