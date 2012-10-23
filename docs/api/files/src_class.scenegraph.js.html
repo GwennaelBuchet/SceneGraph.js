@@ -41,6 +41,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -50,6 +52,8 @@
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
@@ -266,25 +270,13 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		&#x2F;**
-		 * Wipes the canvas context
-		 * @private
-		 * @method _clearContext
-		 * @param {CanvasRenderingContext2D} context context to render on
-		 * *&#x2F;
-		_clearContext : function(context) {
-			context.setTransform(1, 0, 0, 1, 0, 0);
-			&#x2F;&#x2F; Will always clear the right space
-			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		},
-
-		&#x2F;**
 		 * Render the SceneGraph
 		 * @public
 		 * @method render
 		 * *&#x2F;
 		render : function() {
 			&#x2F;&#x2F;erase previous rendering
-			this._clearContext(this.context);
+			cgsgClearContext(this.context);
 
 			if (this.root !== null &amp;&amp; this.root !== undefined) {
 				var node = null;
@@ -426,9 +418,9 @@ var CGSGSceneGraph = Object.extend(
 		pickNode : function(mousePosition, condition) {
 			&#x2F;&#x2F;empty the current selection first
 			&#x2F;&#x2F;this.selectedNodes = new Array();
-			this._clearContext(cgsgGhostContext);
+			cgsgClearContext(cgsgGhostContext);
 			&#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
-			if (this.root === null || this.root === undefined) {
+			if (!cgsgExist(this.root)) {
 				return null;
 			}
 			else {
@@ -437,7 +429,7 @@ var CGSGSceneGraph = Object.extend(
 					new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
 					cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
 					true, &#x2F;&#x2F;recursively ?
-					this.canvas.width &#x2F; cgsgDisplayRatio.x, this.canvas.height &#x2F; cgsgDisplayRatio.y,
+					&#x2F;&#x2F;this.canvas.width &#x2F; cgsgDisplayRatio.x, this.canvas.height &#x2F; cgsgDisplayRatio.y,
 					&#x2F;&#x2F;dimension of the canvas container
 					condition);  &#x2F;&#x2F; condition to the picknode be executed
 			}

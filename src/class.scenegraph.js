@@ -114,25 +114,13 @@ var CGSGSceneGraph = Object.extend(
 		},
 
 		/**
-		 * Wipes the canvas context
-		 * @private
-		 * @method _clearContext
-		 * @param {CanvasRenderingContext2D} context context to render on
-		 * */
-		_clearContext : function(context) {
-			context.setTransform(1, 0, 0, 1, 0, 0);
-			// Will always clear the right space
-			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		},
-
-		/**
 		 * Render the SceneGraph
 		 * @public
 		 * @method render
 		 * */
 		render : function() {
 			//erase previous rendering
-			this._clearContext(this.context);
+			cgsgClearContext(this.context);
 
 			if (this.root !== null && this.root !== undefined) {
 				var node = null;
@@ -274,9 +262,9 @@ var CGSGSceneGraph = Object.extend(
 		pickNode : function(mousePosition, condition) {
 			//empty the current selection first
 			//this.selectedNodes = new Array();
-			this._clearContext(cgsgGhostContext);
+			cgsgClearContext(cgsgGhostContext);
 			//recursively traverse the nodes to get the selected nodes
-			if (this.root === null || this.root === undefined) {
+			if (!cgsgExist(this.root)) {
 				return null;
 			}
 			else {
@@ -285,7 +273,7 @@ var CGSGSceneGraph = Object.extend(
 					new CGSGScale(1, 1), //absolute scale for the nodes
 					cgsgGhostContext, //context for the ghost rendering
 					true, //recursively ?
-					this.canvas.width / cgsgDisplayRatio.x, this.canvas.height / cgsgDisplayRatio.y,
+					//this.canvas.width / cgsgDisplayRatio.x, this.canvas.height / cgsgDisplayRatio.y,
 					//dimension of the canvas container
 					condition);  // condition to the picknode be executed
 			}

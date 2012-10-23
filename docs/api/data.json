@@ -61,8 +61,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.animatedSprite.js": {
-            "name": "src\\node\\class.animatedSprite.js",
+        "src\\node\\class.node.animatedSprite.js": {
+            "name": "src\\node\\class.node.animatedSprite.js",
             "modules": {},
             "classes": {
                 "CGSGNodeSprite": 1
@@ -70,19 +70,40 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.image.js": {
-            "name": "src\\node\\class.image.js",
+        "src\\node\\class.node.button.js": {
+            "name": "src\\node\\class.node.button.js",
             "modules": {},
             "classes": {
-                "CGSGNodeImage": 1
+                "CGSGButtonMode": 1,
+                "CGSGNodeButton": 1
             },
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.logger.js": {
-            "name": "src\\node\\class.logger.js",
+        "src\\node\\class.node.circle.js": {
+            "name": "src\\node\\class.node.circle.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "CGSGNodeCircle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\node\\class.node.ellipse.js": {
+            "name": "src\\node\\class.node.ellipse.js",
+            "modules": {},
+            "classes": {
+                "CGSGNodeEllipse": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\node\\class.node.image.js": {
+            "name": "src\\node\\class.node.image.js",
+            "modules": {},
+            "classes": {
+                "CGSGNodeImage": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -98,26 +119,15 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.shape.circle.js": {
-            "name": "src\\node\\class.shape.circle.js",
+        "src\\node\\class.node.logger.js": {
+            "name": "src\\node\\class.node.logger.js",
             "modules": {},
-            "classes": {
-                "CGSGNodeCircle": 1
-            },
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.shape.ellipse.js": {
-            "name": "src\\node\\class.shape.ellipse.js",
-            "modules": {},
-            "classes": {
-                "CGSGNodeEllipse": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src\\node\\class.shape.square.js": {
-            "name": "src\\node\\class.shape.square.js",
+        "src\\node\\class.node.square.js": {
+            "name": "src\\node\\class.node.square.js",
             "modules": {},
             "classes": {
                 "CGSGNodeSquare": 1
@@ -125,8 +135,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.text.js": {
-            "name": "src\\node\\class.text.js",
+        "src\\node\\class.node.text.js": {
+            "name": "src\\node\\class.node.text.js",
             "modules": {},
             "classes": {
                 "CGSGWrapMode": 1,
@@ -135,8 +145,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\node\\class.webview.js": {
-            "name": "src\\node\\class.webview.js",
+        "src\\node\\class.node.webview.js": {
+            "name": "src\\node\\class.node.webview.js",
             "modules": {},
             "classes": {
                 "CGSGWEBVIEWMODE": 1,
@@ -331,11 +341,13 @@
             "submodules": {},
             "classes": {
                 "CGSGNodeSprite": 1,
+                "CGSGButtonMode": 1,
+                "CGSGNodeButton": 1,
+                "CGSGNodeCircle": 1,
+                "CGSGNodeEllipse": 1,
                 "CGSGNodeImage": 1,
                 "CGSGPickNodeMethod": 1,
                 "CGSGNode": 1,
-                "CGSGNodeCircle": 1,
-                "CGSGNodeEllipse": 1,
                 "CGSGNodeSquare": 1,
                 "CGSGWrapMode": 1,
                 "CGSGNodeText": 1,
@@ -345,7 +357,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 50,
             "description": "Base class for a Node in the Scene Graph.\nEach node encapsulates its position, dimension, scale and rotation, ...",
             "extends": "Object",
@@ -555,7 +567,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 26,
             "description": "A CGSGNodeSprite represent an animated sprite, with all animations in the image",
             "extends": "CGSGNode",
@@ -585,6 +597,145 @@
             "type": "{CGSGNodeSprite}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
+        "CGSGButtonMode": {
+            "name": "CGSGButtonMode",
+            "shortname": "CGSGButtonMode",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.button.js",
+            "line": 26,
+            "description": "List the modes for a button : NORMAL, OVER, DEACTIVATED.",
+            "type": "{Object}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "example": [
+                "\n     myTextNode.setWrapMode(CGSGWrapMode.WORD, true);"
+            ]
+        },
+        "CGSGNodeButton": {
+            "name": "CGSGNodeButton",
+            "shortname": "CGSGNodeButton",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.button.js",
+            "line": 49,
+            "description": "A CGSGNodeButton represent a basic square",
+            "extends": "CGSGNode",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "width",
+                    "description": "Relative dimension",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "Relative Dimension",
+                    "type": "Number"
+                },
+                {
+                    "name": "radius",
+                    "description": "Radius for the round corner",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeButton}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
+        "CGSGNodeCircle": {
+            "name": "CGSGNodeCircle",
+            "shortname": "CGSGNodeCircle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.circle.js",
+            "line": 26,
+            "description": "A CGSGNodeCircle represent a basic circle.\nBy default, the pickNodeMethod used to detect the node under the mice is CGSGPickNodeMethod.GHOST.\nIf you don't need precision on detection on your circles, just change the property to pickNodeMethod.REGION.",
+            "extends": "CGSGNode",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "centerX",
+                    "description": "Relative position",
+                    "type": "Number"
+                },
+                {
+                    "name": "centerY",
+                    "description": "Relative position",
+                    "type": "Number"
+                },
+                {
+                    "name": "radius",
+                    "description": "Radius",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeCircle}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
+        "CGSGNodeEllipse": {
+            "name": "CGSGNodeEllipse",
+            "shortname": "CGSGNodeEllipse",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 26,
+            "description": "A CGSGNodeEllipse represent a basic ellipse.\nBy default, the pickNodeMethod used to detect the node under the mice is CGSGPickNodeMethod.GHOST.\nIf you don't need precision on detection on your ellipses, just change the property to pickNodeMethod.REGION.",
+            "extends": "CGSGNode",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "width",
+                    "description": "Relative dimension",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "Relative Dimension",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeEllipse}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
         "CGSGNodeImage": {
             "name": "CGSGNodeImage",
             "shortname": "CGSGNodeImage",
@@ -595,7 +746,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 26,
             "description": "A CGSGNodeImage represent an image node",
             "extends": "CGSGNode",
@@ -715,81 +866,6 @@
             "type": "{CGSGNode}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "CGSGNodeCircle": {
-            "name": "CGSGNodeCircle",
-            "shortname": "CGSGNodeCircle",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Node",
-            "namespace": "",
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 26,
-            "description": "A CGSGNodeCircle represent a basic circle.\nBy default, the pickNodeMethod used to detect the node under the mice is CGSGPickNodeMethod.GHOST.\nIf you don't need precision on detection on your circles, just change the property to pickNodeMethod.REGION.",
-            "extends": "CGSGNode",
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "centerX",
-                    "description": "Relative position",
-                    "type": "Number"
-                },
-                {
-                    "name": "centerY",
-                    "description": "Relative position",
-                    "type": "Number"
-                },
-                {
-                    "name": "radius",
-                    "description": "Radius",
-                    "type": "Number"
-                }
-            ],
-            "type": "{CGSGNodeCircle}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
-        },
-        "CGSGNodeEllipse": {
-            "name": "CGSGNodeEllipse",
-            "shortname": "CGSGNodeEllipse",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Node",
-            "namespace": "",
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 26,
-            "description": "A CGSGNodeEllipse represent a basic ellipse.\nBy default, the pickNodeMethod used to detect the node under the mice is CGSGPickNodeMethod.GHOST.\nIf you don't need precision on detection on your ellipses, just change the property to pickNodeMethod.REGION.",
-            "extends": "CGSGNode",
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "x",
-                    "description": "Relative position on X",
-                    "type": "Number"
-                },
-                {
-                    "name": "y",
-                    "description": "Relative position on X",
-                    "type": "Number"
-                },
-                {
-                    "name": "width",
-                    "description": "Relative dimension",
-                    "type": "Number"
-                },
-                {
-                    "name": "height",
-                    "description": "Relative Dimension",
-                    "type": "Number"
-                }
-            ],
-            "type": "{CGSGNodeEllipse}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
-        },
         "CGSGNodeSquare": {
             "name": "CGSGNodeSquare",
             "shortname": "CGSGNodeSquare",
@@ -800,7 +876,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 26,
             "description": "A CGSGNodeSquare represent a basic square",
             "extends": "CGSGNode",
@@ -840,7 +916,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 27,
             "description": "List the methods to wrap the text. Used by {CGSGNodeText} Node.",
             "type": "{Object}",
@@ -859,7 +935,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 50,
             "description": "A CGSGNodeText represent a basic circle",
             "extends": "CGSGNode",
@@ -894,7 +970,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 26,
             "description": "The different rendering mode",
             "type": "{Object}",
@@ -910,7 +986,7 @@
             "extension_for": [],
             "module": "Node",
             "namespace": "",
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 50,
             "extends": "CGSGNode",
             "is_constructor": 1,
@@ -2308,14 +2384,6 @@
                     "description": ""
                 },
                 {
-                    "name": "canvasWidth",
-                    "description": ""
-                },
-                {
-                    "name": "canvasHeight",
-                    "description": ""
-                },
-                {
                     "name": "condition",
                     "description": ""
                 }
@@ -2330,7 +2398,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 623,
+            "line": 620,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2425,7 +2493,7 @@
             "module": "Animation"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 45,
             "itemtype": "property",
             "name": "classType",
@@ -2434,7 +2502,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 51,
             "description": "array of animations",
             "itemtype": "property",
@@ -2444,7 +2512,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 57,
             "itemtype": "property",
             "name": "currentAnimation",
@@ -2454,7 +2522,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 63,
             "itemtype": "property",
             "name": "isProportionalResize",
@@ -2464,7 +2532,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 70,
             "description": "Current animated frame",
             "itemtype": "property",
@@ -2476,7 +2544,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 77,
             "description": "Whether the sprite is being animated or not",
             "itemtype": "property",
@@ -2489,7 +2557,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 86,
             "description": "Number of loops for the current animation. if -1 then it's an infinite loop.",
             "itemtype": "property",
@@ -2501,7 +2569,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 93,
             "description": "Current loop number",
             "itemtype": "property",
@@ -2513,7 +2581,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 101,
             "description": "URL of the image",
             "itemtype": "property",
@@ -2525,7 +2593,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 108,
             "description": "The image object itself",
             "itemtype": "property",
@@ -2537,7 +2605,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 116,
             "itemtype": "property",
             "name": "_isLoaded",
@@ -2548,7 +2616,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 122,
             "itemtype": "property",
             "name": "_context",
@@ -2559,7 +2627,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 129,
             "description": "Handler function fired when the image is loaded",
             "itemtype": "property",
@@ -2570,7 +2638,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 136,
             "description": "Handler function fired after an animation loop is ended",
             "itemtype": "property",
@@ -2581,7 +2649,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 143,
             "description": "Handler function fired before an animation loop start",
             "itemtype": "property",
@@ -2592,7 +2660,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 151,
             "description": "Fake canvas to pre-render the animated sprite (not used yet)\nStill beta",
             "itemtype": "property",
@@ -2604,7 +2672,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 168,
             "description": "Used to call delegate method when the image is finally loaded",
             "access": "private",
@@ -2633,7 +2701,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 183,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "protected",
@@ -2651,7 +2719,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 200,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
@@ -2669,7 +2737,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 227,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "access": "private",
@@ -2680,7 +2748,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 241,
             "description": "Set the image for this animated sprite.",
             "example": [
@@ -2699,7 +2767,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 275,
             "description": "Go to the next frame of the current animation",
             "access": "public",
@@ -2710,7 +2778,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 302,
             "description": "Go to the previous frame of the current animation",
             "access": "public",
@@ -2721,7 +2789,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 328,
             "description": "Go to the first frame of the current loop",
             "access": "public",
@@ -2732,7 +2800,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 337,
             "description": "Go to the last frame of the current loop",
             "access": "public",
@@ -2743,7 +2811,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 346,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
@@ -2762,7 +2830,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 389,
             "description": "Return position x and y in the image for the slice of the animation and frame passed in parameter.",
             "access": "private",
@@ -2789,7 +2857,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 407,
             "description": "Add an animation for this sprite",
             "access": "public",
@@ -2842,7 +2910,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 443,
             "description": "Start an animation",
             "access": "public",
@@ -2869,7 +2937,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 473,
             "description": "Stop the current animation and stay on the current frame",
             "access": "public",
@@ -2880,7 +2948,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 485,
             "description": "return to the first frame of the first loop of the current animation",
             "access": "public",
@@ -2891,7 +2959,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.animatedSprite.js",
+            "file": "src\\node\\class.node.animatedSprite.js",
             "line": 495,
             "override": "",
             "access": "public",
@@ -2906,7 +2974,854 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.button.js",
+            "line": 35,
+            "itemtype": "property",
+            "name": "NORMAL",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 39,
+            "itemtype": "property",
+            "name": "OVER",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 43,
+            "itemtype": "property",
+            "name": "DEACTIVATED",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 69,
+            "description": "High colors for the button in 3 mode : normal, over, deactivated",
+            "itemtype": "property",
+            "name": "_firstColors",
+            "default": "[\"#858585\", \"#5F5F5F\", \"#9C9C9C\"]",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 77,
+            "description": "Low color for the button in 3 mode : normal, over, deactivated",
+            "itemtype": "property",
+            "name": "_lastColors",
+            "default": "[\"#606060\", \"#4B4B4B\", \"#747474\"]",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 86,
+            "description": "Shadow color for the button in 3 mode : normal, over, deactivated. Can be null.",
+            "itemtype": "property",
+            "name": "_shadowColors",
+            "default": "[null, null, null]",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 95,
+            "description": "Radius for the round corner in 3 mode : normal, over, deactivated",
+            "itemtype": "property",
+            "name": "_radiuses",
+            "type": "{Array}",
+            "default": "[10, 10, 10]",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 104,
+            "description": "Text for the button in 3 mode : normal, over, deactivated",
+            "itemtype": "property",
+            "name": "_texts",
+            "default": "[text, text, text]",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 113,
+            "description": "Text size for the button in 3 mode : normal, over, deactivated",
+            "itemtype": "property",
+            "name": "_textSizes",
+            "default": "[12, 12, 12]",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 122,
+            "description": "Color for the text in the 3 mode  : normal, over, deactivated",
+            "itemtype": "property",
+            "name": "_textColors",
+            "type": "{Array}",
+            "default": "[\"white\", \"white\", \"gray\"]",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 131,
+            "description": "Text Node encapsulating the text rendering",
+            "itemtype": "property",
+            "name": "_textsNode",
+            "type": "{CGSGNodeText}",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 140,
+            "description": "Fake canvases to pre-render static display",
+            "itemtype": "property",
+            "name": "_tmpCanvas",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 149,
+            "description": "Padding applied to the left and right of the text",
+            "itemtype": "property",
+            "name": "_horizontalPadding",
+            "type": "{Number}",
+            "default": "15",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 157,
+            "description": "Padding applied to the top and bottom of the text",
+            "itemtype": "property",
+            "name": "_verticalPadding",
+            "type": "{Number}",
+            "default": "5",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 166,
+            "itemtype": "property",
+            "name": "classType",
+            "readonly": "",
+            "type": "{String}",
+            "default": "\"CGSGNodeButton\"",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 176,
+            "description": "Current mode of the button",
+            "itemtype": "property",
+            "name": "_currentMode",
+            "type": "{CGSGButtonMode}",
+            "default": "CGSGButtonMode.NORMAL",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 201,
+            "description": "Return the High color for the button",
+            "itemtype": "method",
+            "name": "getFirstColor",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 209,
+            "description": "Set the value for the high color of the button",
+            "itemtype": "method",
+            "name": "setFirstColor",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 219,
+            "description": "Return the Low color for the button",
+            "itemtype": "method",
+            "name": "getLastColor",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 227,
+            "description": "Set the value for the low color of the button",
+            "itemtype": "method",
+            "name": "setLastColor",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 237,
+            "description": "Return the Shadow color for the button",
+            "itemtype": "method",
+            "name": "getShadowColor",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 245,
+            "description": "Set the value for the shadow color of the button",
+            "itemtype": "method",
+            "name": "setShadowColor",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 255,
+            "description": "Return the Low color for the button",
+            "itemtype": "method",
+            "name": "getRadius",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 263,
+            "description": "Set the value for the low color of the button",
+            "itemtype": "method",
+            "name": "setRadius",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 273,
+            "description": "Return the text of the button",
+            "itemtype": "method",
+            "name": "getText",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 281,
+            "description": "Set the value for text of the button",
+            "itemtype": "method",
+            "name": "setText",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "example": [
+                "\n button.setText([\"normal\", \"over\", \"deactivated\"]);"
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 293,
+            "description": "Return the text sizes of the button",
+            "itemtype": "method",
+            "name": "getTextSize",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 301,
+            "description": "Set the value for text sizes of the button",
+            "itemtype": "method",
+            "name": "setTextSize",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 311,
+            "description": "Return the text of the button",
+            "itemtype": "method",
+            "name": "getTextColor",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 319,
+            "description": "Set the color for text of the button",
+            "itemtype": "method",
+            "name": "setTextColor",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "example": [
+                "\n button.setTextColor([\"white\", \"green\", \"yellow\"]);"
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 331,
+            "description": "Return the horizontal padding of the button",
+            "itemtype": "method",
+            "name": "getHorizontalPadding",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 339,
+            "description": "Set the horizontal padding of the button",
+            "itemtype": "method",
+            "name": "setHorizontalPadding",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 349,
+            "description": "Return the vertical padding of the button",
+            "itemtype": "method",
+            "name": "getVerticalPadding",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 357,
+            "description": "Set the vertical padding of the button",
+            "itemtype": "method",
+            "name": "setHorizontalPadding",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 367,
+            "description": "Pre-render the button into a temp canvas to optimize the perfs",
+            "itemtype": "method",
+            "name": "_initShape",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 378,
+            "description": "Pre-render the shape for normal rendering",
+            "itemtype": "method",
+            "name": "_initShape",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 453,
+            "description": "Switch current mode",
+            "itemtype": "method",
+            "name": "setMode",
+            "params": [
+                {
+                    "name": "mode",
+                    "description": "",
+                    "type": "CGSGButtonMode"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 462,
+            "itemtype": "method",
+            "name": "getMode",
+            "return": {
+                "description": "",
+                "type": "CGSGButtonMode"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 470,
+            "description": "Custom rendering",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "override": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 489,
+            "itemtype": "method",
+            "name": "copy",
+            "return": {
+                "description": "a copy of this node",
+                "type": "CGSGNodeSquare"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 45,
+            "itemtype": "property",
+            "name": "radius",
+            "type": "{Number}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 51,
+            "itemtype": "property",
+            "name": "center",
+            "type": "{CGSGPosition}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 61,
+            "description": "Color  to fill the circle",
+            "itemtype": "property",
+            "name": "color",
+            "default": "\"#444444\"",
+            "type": "{String}",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 68,
+            "description": "Color to stroke the circle",
+            "itemtype": "property",
+            "name": "lineColor",
+            "default": "\"#222222\"",
+            "type": "{String}",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 75,
+            "description": "Width of the line that stroke the circle.\nLet 0 if you don't want to stroke the circle.",
+            "itemtype": "property",
+            "name": "lineWidth",
+            "default": "0",
+            "type": "{Number}",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 87,
+            "itemtype": "property",
+            "name": "classType",
+            "readonly": "",
+            "type": "{String}",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 95,
+            "description": "Set the new radius and compute new dimension of the circle",
+            "itemtype": "method",
+            "name": "setRadius",
+            "params": [
+                {
+                    "name": "radius",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 106,
+            "description": "Set the new center and compute new position of the circle",
+            "itemtype": "method",
+            "name": "setCenter",
+            "params": [
+                {
+                    "name": "center",
+                    "description": "",
+                    "type": "CGSGPosition"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 117,
+            "description": "Custom rendering",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "override": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 145,
+            "description": "Replace current dimension by these new ones and compute new radius",
+            "itemtype": "method",
+            "name": "resizeTo",
+            "params": [
+                {
+                    "name": "newWidth",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "newHeight",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 157,
+            "description": "Multiply current dimension by these new ones",
+            "itemtype": "method",
+            "name": "resizeTBy",
+            "params": [
+                {
+                    "name": "widthFactor",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "heightFactor",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 169,
+            "description": "Increase/decrease current dimension with adding values",
+            "itemtype": "method",
+            "name": "resizeWith",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 181,
+            "itemtype": "method",
+            "name": "_computeResizedRadius",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 193,
+            "itemtype": "method",
+            "name": "renderGhost",
+            "params": [
+                {
+                    "name": "ghostContext",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.circle.js",
+            "line": 219,
+            "itemtype": "method",
+            "name": "copy",
+            "return": {
+                "description": "a copy of this node",
+                "type": "CGSGNodeCircle"
+            },
+            "class": "CGSGNodeCircle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 47,
+            "description": "Color  to fill the ellipse",
+            "itemtype": "property",
+            "name": "color",
+            "default": "\"#444444\"",
+            "type": "{String}",
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 54,
+            "description": "Color to stroke the ellipse",
+            "itemtype": "property",
+            "name": "lineColor",
+            "default": "\"#222222\"",
+            "type": "{String}",
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 61,
+            "description": "Width of the line that stroke the ellipse.\nLet 0 if you don't want to stroke the ellipse.",
+            "itemtype": "property",
+            "name": "lineWidth",
+            "default": "0",
+            "type": "{Number}",
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 70,
+            "itemtype": "property",
+            "name": "classType",
+            "readonly": "",
+            "type": "{String}",
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 80,
+            "description": "Custom rendering",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "override": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 124,
+            "itemtype": "method",
+            "name": "renderGhost",
+            "params": [
+                {
+                    "name": "ghostContext",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.ellipse.js",
+            "line": 165,
+            "itemtype": "method",
+            "name": "copy",
+            "return": {
+                "description": "a copy of this node",
+                "type": "CGSGNodeEllipse"
+            },
+            "class": "CGSGNodeEllipse",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.image.js",
             "line": 51,
             "itemtype": "property",
             "name": "classType",
@@ -2915,7 +3830,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 57,
             "description": "the selected effect to be applied",
             "itemtype": "property",
@@ -2926,7 +3841,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 64,
             "description": "URL of the image",
             "itemtype": "property",
@@ -2938,7 +3853,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 72,
             "itemtype": "property",
             "name": "isProportionalResize",
@@ -2948,7 +3863,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 78,
             "description": "the image object itself",
             "itemtype": "property",
@@ -2960,7 +3875,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 85,
             "description": "the region on the image to render",
             "itemtype": "property",
@@ -2970,7 +3885,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 93,
             "itemtype": "property",
             "name": "_isLoaded",
@@ -2981,7 +3896,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 99,
             "itemtype": "property",
             "name": "_context",
@@ -2992,7 +3907,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 106,
             "description": "Event Fired when the image is finally loaded",
             "itemtype": "property",
@@ -3003,7 +3918,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 114,
             "description": "Fake canvas to pre-render the image",
             "itemtype": "property",
@@ -3015,7 +3930,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 132,
             "description": "used to call delegate method when the image is finally loaded",
             "access": "private",
@@ -3044,7 +3959,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 147,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "private",
@@ -3055,7 +3970,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 164,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
@@ -3072,7 +3987,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 173,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "access": "private",
@@ -3083,7 +3998,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 193,
             "access": "public",
             "tagname": "",
@@ -3100,7 +4015,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 208,
             "description": "pre-render the image into _tmpCanvas to optimize the perfs",
             "access": "private",
@@ -3111,7 +4026,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 228,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
@@ -3130,7 +4045,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 258,
             "access": "public",
             "tagname": "",
@@ -3147,7 +4062,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 267,
             "description": "Ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "override": "",
@@ -3166,7 +4081,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 295,
             "description": "Increase/decrease current dimension with adding values. It is used when the user resize\nthe image with the handle boxes",
             "override": "",
@@ -3190,7 +4105,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.image.js",
+            "file": "src\\node\\class.node.image.js",
             "line": 310,
             "override": "",
             "access": "public",
@@ -3202,167 +4117,6 @@
                 "type": "CGSGNodeImage"
             },
             "class": "CGSGNodeImage",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 50,
-            "description": "background color of the panel",
-            "itemtype": "property",
-            "name": "color",
-            "default": "\"#444444\"",
-            "type": "{String}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 57,
-            "description": "Radius of the corners of the panel",
-            "itemtype": "property",
-            "name": "cornerRadius",
-            "default": "5",
-            "type": "{Number}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 64,
-            "description": "Color of the line around the panel",
-            "itemtype": "property",
-            "name": "lineColor",
-            "default": "\"#222222\"",
-            "type": "{String}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 71,
-            "description": "Width of the line around the panel",
-            "itemtype": "property",
-            "name": "lineWidth",
-            "default": "2",
-            "type": "{Number}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 78,
-            "description": "Transparency level of the panel (between 0 and 1)",
-            "itemtype": "property",
-            "name": "globalAlpha",
-            "default": "0.6",
-            "type": "{Number}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 85,
-            "description": "Size of the typo",
-            "itemtype": "property",
-            "name": "textSize",
-            "default": "12",
-            "type": "{Number}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 92,
-            "description": "Color for the text",
-            "itemtype": "property",
-            "name": "textColor",
-            "default": "\"white\"",
-            "type": "{String}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 100,
-            "description": "List of attributes displayed in the panel",
-            "itemtype": "property",
-            "name": "_attributes",
-            "type": "{Array}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 108,
-            "itemtype": "property",
-            "name": "classType",
-            "type": "{String}",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 118,
-            "description": "Create the panel graph that drw the attributes",
-            "itemtype": "method",
-            "name": "_createPanel",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 127,
-            "description": "Set a new couple name/value to render onto the logger.\nIf an attribute already exists with that name, just update the value",
-            "itemtype": "method",
-            "name": "set",
-            "params": [
-                {
-                    "name": "name",
-                    "description": "",
-                    "type": "String"
-                },
-                {
-                    "name": "value",
-                    "description": "",
-                    "type": "String"
-                }
-            ],
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 160,
-            "description": "Custom rendering",
-            "itemtype": "method",
-            "name": "render",
-            "access": "protected",
-            "tagname": "",
-            "override": "",
-            "params": [
-                {
-                    "name": "context",
-                    "description": "the context into render the node",
-                    "type": "CanvasRenderingContext2D"
-                }
-            ],
-            "class": "CGSGPickNodeMethod",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.logger.js",
-            "line": 195,
-            "itemtype": "method",
-            "name": "copy",
-            "return": {
-                "description": "a copy of this node",
-                "type": "CGSGNodeLogger"
-            },
-            "class": "CGSGPickNodeMethod",
             "module": "Node"
         },
         {
@@ -4091,16 +4845,6 @@
                     "name": "absoluteScale",
                     "description": "",
                     "type": "CGSGScale"
-                },
-                {
-                    "name": "canvasWidth",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "canvasHeight",
-                    "description": "",
-                    "type": "Number"
                 }
             ],
             "class": "CGSGNode",
@@ -4108,7 +4852,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 706,
+            "line": 704,
             "description": "Check if this nodes is under the cursor position.",
             "access": "public",
             "tagname": "",
@@ -4136,16 +4880,6 @@
                     "type": "Boolean"
                 },
                 {
-                    "name": "canvasWidth",
-                    "description": "the width of the canvas container",
-                    "type": "Number"
-                },
-                {
-                    "name": "canvasHeight",
-                    "description": "the height of the canvas container",
-                    "type": "Number"
-                },
-                {
                     "name": "condition",
                     "description": "Condition to be picked\nie: \"color=='yellow'\" or \"classType=='CGSGNodeImage' && this.globalAlpha>0.5\"",
                     "type": "Function"
@@ -4156,7 +4890,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 761,
+            "line": 755,
             "description": "Return true if this nodes has no child",
             "itemtype": "method",
             "name": "isALeaf",
@@ -4165,7 +4899,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 771,
+            "line": 765,
             "description": "Replace current relative position by this new one",
             "itemtype": "method",
             "name": "translateTo",
@@ -4191,7 +4925,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 785,
+            "line": 779,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateWith",
@@ -4217,7 +4951,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 799,
+            "line": 793,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateBy",
@@ -4243,7 +4977,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 813,
+            "line": 807,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -4264,7 +4998,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 823,
+            "line": 817,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTBy",
@@ -4285,7 +5019,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 833,
+            "line": 827,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -4306,7 +5040,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 844,
+            "line": 838,
             "description": "Replace current relative relativeScale by this new one",
             "itemtype": "method",
             "name": "scaleTo",
@@ -4332,7 +5066,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 859,
+            "line": 853,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "scaleBy",
@@ -4358,7 +5092,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 874,
+            "line": 868,
             "description": "Add to the current relative Scale",
             "itemtype": "method",
             "name": "scaleWith",
@@ -4384,7 +5118,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 889,
+            "line": 883,
             "description": "Replace current relative relativeRotation by this new oneScale",
             "itemtype": "method",
             "name": "rotateTo",
@@ -4405,7 +5139,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 903,
+            "line": 897,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "rotateBy",
@@ -4426,7 +5160,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 916,
+            "line": 910,
             "description": "Add this angle to the current relative relativeRotation",
             "itemtype": "method",
             "name": "rotateWith",
@@ -4447,7 +5181,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 931,
+            "line": 925,
             "description": "Add a new nodes into this one, at the end of the list",
             "itemtype": "method",
             "name": "addChild",
@@ -4463,7 +5197,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 941,
+            "line": 935,
             "description": "Add a new nodes at a particular index in the list of children.\nIf the index is too large, the nodes will be inserted at the end of the list",
             "itemtype": "method",
             "name": "addChildAt",
@@ -4484,7 +5218,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 961,
+            "line": 955,
             "description": "Remove the child passed in parameter and delete it",
             "itemtype": "method",
             "name": "removeChild",
@@ -4509,7 +5243,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 989,
+            "line": 983,
             "description": "remove all children, delete them and reset the current parameters",
             "itemtype": "method",
             "name": "removeAll",
@@ -4518,7 +5252,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1009,
+            "line": 1003,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -4534,7 +5268,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1020,
+            "line": 1014,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -4550,7 +5284,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1033,
+            "line": 1027,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -4574,7 +5308,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1070,
+            "line": 1064,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -4592,7 +5326,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1080,
+            "line": 1074,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4606,7 +5340,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1100,
+            "line": 1094,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4620,7 +5354,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1115,
+            "line": 1109,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4634,7 +5368,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1130,
+            "line": 1124,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -4652,7 +5386,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1150,
+            "line": 1144,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -4664,7 +5398,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1157,
+            "line": 1151,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -4676,7 +5410,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1164,
+            "line": 1158,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -4688,7 +5422,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1171,
+            "line": 1165,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -4700,7 +5434,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1178,
+            "line": 1172,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -4712,7 +5446,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1185,
+            "line": 1179,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -4724,7 +5458,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1192,
+            "line": 1186,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -4736,7 +5470,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1199,
+            "line": 1193,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -4748,7 +5482,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1207,
+            "line": 1201,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4774,7 +5508,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1235,
+            "line": 1229,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4795,7 +5529,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1254,
+            "line": 1248,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4816,7 +5550,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1304,
+            "line": 1298,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -4836,7 +5570,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1372,
+            "line": 1366,
             "description": "free memory taken by this object and it's children.\nThe 'userData' propoerty won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -4844,105 +5578,138 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 45,
-            "itemtype": "property",
-            "name": "radius",
-            "type": "{Number}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 51,
-            "itemtype": "property",
-            "name": "center",
-            "type": "{CGSGPosition}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 61,
-            "description": "Color  to fill the circle",
+            "file": "src\\node\\class.node.logger.js",
+            "line": 50,
+            "description": "background color of the panel",
             "itemtype": "property",
             "name": "color",
             "default": "\"#444444\"",
             "type": "{String}",
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 68,
-            "description": "Color to stroke the circle",
+            "file": "src\\node\\class.node.logger.js",
+            "line": 57,
+            "description": "Radius of the corners of the panel",
+            "itemtype": "property",
+            "name": "cornerRadius",
+            "default": "5",
+            "type": "{Number}",
+            "class": "CGSGNodeSquare",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.logger.js",
+            "line": 64,
+            "description": "Color of the line around the panel",
             "itemtype": "property",
             "name": "lineColor",
             "default": "\"#222222\"",
             "type": "{String}",
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 75,
-            "description": "Width of the line that stroke the circle.\nLet 0 if you don't want to stroke the circle.",
+            "file": "src\\node\\class.node.logger.js",
+            "line": 71,
+            "description": "Width of the line around the panel",
             "itemtype": "property",
             "name": "lineWidth",
-            "default": "0",
+            "default": "2",
             "type": "{Number}",
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 87,
+            "file": "src\\node\\class.node.logger.js",
+            "line": 78,
+            "description": "Transparency level of the panel (between 0 and 1)",
+            "itemtype": "property",
+            "name": "globalAlpha",
+            "default": "0.6",
+            "type": "{Number}",
+            "class": "CGSGNodeSquare",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.logger.js",
+            "line": 85,
+            "description": "Size of the typo",
+            "itemtype": "property",
+            "name": "textSize",
+            "default": "12",
+            "type": "{Number}",
+            "class": "CGSGNodeSquare",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.logger.js",
+            "line": 92,
+            "description": "Color for the text",
+            "itemtype": "property",
+            "name": "textColor",
+            "default": "\"white\"",
+            "type": "{String}",
+            "class": "CGSGNodeSquare",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.logger.js",
+            "line": 100,
+            "description": "List of attributes displayed in the panel",
+            "itemtype": "property",
+            "name": "_attributes",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeSquare",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.logger.js",
+            "line": 108,
             "itemtype": "property",
             "name": "classType",
-            "readonly": "",
             "type": "{String}",
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 95,
-            "description": "Set the new radius and compute new dimension of the circle",
+            "file": "src\\node\\class.node.logger.js",
+            "line": 118,
+            "description": "Create the panel graph that drw the attributes",
             "itemtype": "method",
-            "name": "setRadius",
+            "name": "_createPanel",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeSquare",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.logger.js",
+            "line": 127,
+            "description": "Set a new couple name/value to render onto the logger.\nIf an attribute already exists with that name, just update the value",
+            "itemtype": "method",
+            "name": "set",
             "params": [
                 {
-                    "name": "radius",
+                    "name": "name",
                     "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 106,
-            "description": "Set the new center and compute new position of the circle",
-            "itemtype": "method",
-            "name": "setCenter",
-            "params": [
+                    "type": "String"
+                },
                 {
-                    "name": "center",
+                    "name": "value",
                     "description": "",
-                    "type": "CGSGPosition"
+                    "type": "String"
                 }
             ],
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 117,
+            "file": "src\\node\\class.node.logger.js",
+            "line": 160,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -4956,200 +5723,23 @@
                     "type": "CanvasRenderingContext2D"
                 }
             ],
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 145,
-            "description": "Replace current dimension by these new ones and compute new radius",
-            "itemtype": "method",
-            "name": "resizeTo",
-            "params": [
-                {
-                    "name": "newWidth",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "newHeight",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 157,
-            "description": "Multiply current dimension by these new ones",
-            "itemtype": "method",
-            "name": "resizeTBy",
-            "params": [
-                {
-                    "name": "widthFactor",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "heightFactor",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 169,
-            "description": "Increase/decrease current dimension with adding values",
-            "itemtype": "method",
-            "name": "resizeWith",
-            "params": [
-                {
-                    "name": "width",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "height",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 181,
-            "itemtype": "method",
-            "name": "_computeResizedRadius",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 193,
-            "itemtype": "method",
-            "name": "renderGhost",
-            "params": [
-                {
-                    "name": "ghostContext",
-                    "description": "the context into render the node",
-                    "type": "CanvasRenderingContext2D"
-                }
-            ],
-            "class": "CGSGNodeCircle",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.circle.js",
-            "line": 219,
+            "file": "src\\node\\class.node.logger.js",
+            "line": 195,
             "itemtype": "method",
             "name": "copy",
             "return": {
                 "description": "a copy of this node",
-                "type": "CGSGNodeCircle"
+                "type": "CGSGNodeLogger"
             },
-            "class": "CGSGNodeCircle",
+            "class": "CGSGNodeSquare",
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 47,
-            "description": "Color  to fill the ellipse",
-            "itemtype": "property",
-            "name": "color",
-            "default": "\"#444444\"",
-            "type": "{String}",
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 54,
-            "description": "Color to stroke the ellipse",
-            "itemtype": "property",
-            "name": "lineColor",
-            "default": "\"#222222\"",
-            "type": "{String}",
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 61,
-            "description": "Width of the line that stroke the ellipse.\nLet 0 if you don't want to stroke the ellipse.",
-            "itemtype": "property",
-            "name": "lineWidth",
-            "default": "0",
-            "type": "{Number}",
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 70,
-            "itemtype": "property",
-            "name": "classType",
-            "readonly": "",
-            "type": "{String}",
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 80,
-            "description": "Custom rendering",
-            "itemtype": "method",
-            "name": "render",
-            "access": "protected",
-            "tagname": "",
-            "override": "",
-            "params": [
-                {
-                    "name": "context",
-                    "description": "the context into render the node",
-                    "type": "CanvasRenderingContext2D"
-                }
-            ],
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 124,
-            "itemtype": "method",
-            "name": "renderGhost",
-            "params": [
-                {
-                    "name": "ghostContext",
-                    "description": "the context into render the node",
-                    "type": "CanvasRenderingContext2D"
-                }
-            ],
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.ellipse.js",
-            "line": 165,
-            "itemtype": "method",
-            "name": "copy",
-            "return": {
-                "description": "a copy of this node",
-                "type": "CGSGNodeEllipse"
-            },
-            "class": "CGSGNodeEllipse",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 45,
             "description": "Color  to fill the square",
             "itemtype": "property",
@@ -5160,7 +5750,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 52,
             "description": "Color to stroke the square",
             "itemtype": "property",
@@ -5171,7 +5761,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 59,
             "description": "Width of the line that stroke the square.\nLet 0 if you don't want to stroke the square.",
             "itemtype": "property",
@@ -5182,7 +5772,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 68,
             "itemtype": "property",
             "name": "classType",
@@ -5192,7 +5782,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 76,
             "description": "Custom rendering",
             "itemtype": "method",
@@ -5211,7 +5801,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.shape.square.js",
+            "file": "src\\node\\class.node.square.js",
             "line": 102,
             "itemtype": "method",
             "name": "copy",
@@ -5223,7 +5813,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 36,
             "itemtype": "property",
             "name": "WORD",
@@ -5231,7 +5821,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 40,
             "itemtype": "property",
             "name": "LETTER",
@@ -5239,7 +5829,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 44,
             "itemtype": "property",
             "name": "SENTENCE",
@@ -5247,7 +5837,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 68,
             "itemtype": "property",
             "name": "_text",
@@ -5258,7 +5848,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 74,
             "description": "Color for the text",
             "itemtype": "property",
@@ -5268,7 +5858,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 80,
             "description": "Size of the text, in pt",
             "itemtype": "property",
@@ -5281,7 +5871,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 88,
             "description": "Possible values : \"left\", \"right\", \"center\"",
             "itemtype": "property",
@@ -5294,7 +5884,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 96,
             "description": "Possible values : \"top\", \"hanging\", \"middle\", \"alphabetic\", \"ideographic\", \"bottom\"",
             "itemtype": "property",
@@ -5307,7 +5897,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 104,
             "itemtype": "property",
             "name": "_stroke",
@@ -5319,7 +5909,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 111,
             "itemtype": "property",
             "name": "_typo",
@@ -5331,7 +5921,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 118,
             "description": "Max width for the text. If -1, so no max will be used",
             "itemtype": "property",
@@ -5343,7 +5933,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 125,
             "description": "Line height when wrap the text.\nA line height is the size between 2 tops of line",
             "itemtype": "property",
@@ -5356,7 +5946,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 134,
             "itemtype": "property",
             "name": "_wrapMode",
@@ -5368,7 +5958,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 142,
             "description": "List of sections in the text. a section is delimited by a Carriage Return",
             "itemtype": "property",
@@ -5380,7 +5970,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 149,
             "description": "The string to replace the tabulation characters",
             "itemtype": "property",
@@ -5392,7 +5982,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 157,
             "description": "Method to select the text",
             "itemtype": "property",
@@ -5402,7 +5992,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 164,
             "description": "Metrics of the text.\nComputed each frame it is rendered. Contains only width.\nUse getWidth() and getHeight() methods to get correct values",
             "readonly": "",
@@ -5413,7 +6003,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 174,
             "description": "number of lines in the text",
             "itemtype": "property",
@@ -5425,7 +6015,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 182,
             "itemtype": "property",
             "name": "classType",
@@ -5434,7 +6024,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 192,
             "description": "Set the wrap mode for the text if maxWidth > 0",
             "itemtype": "method",
@@ -5458,7 +6048,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 207,
             "description": "Set the string to replace the tabulation characters",
             "itemtype": "method",
@@ -5479,7 +6069,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 221,
             "itemtype": "method",
             "name": "setStroke",
@@ -5499,7 +6089,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 233,
             "itemtype": "method",
             "name": "setText",
@@ -5519,7 +6109,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 248,
             "itemtype": "method",
             "name": "setSize",
@@ -5539,7 +6129,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 260,
             "itemtype": "method",
             "name": "setTextAlign",
@@ -5554,7 +6144,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 268,
             "itemtype": "method",
             "name": "setTextBaseline",
@@ -5574,7 +6164,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 280,
             "itemtype": "method",
             "name": "setTypo",
@@ -5594,7 +6184,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 292,
             "itemtype": "method",
             "name": "setMaxWidth",
@@ -5614,7 +6204,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 305,
             "description": "Line height when wrap the text.\nA line height is the size between 2 tops of line",
             "itemtype": "method",
@@ -5635,7 +6225,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 319,
             "description": "compute the real dimension of the text",
             "itemtype": "method",
@@ -5644,7 +6234,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 338,
             "description": "Custom rendering",
             "itemtype": "method",
@@ -5663,7 +6253,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 357,
             "description": "Do the effective render",
             "itemtype": "method",
@@ -5686,7 +6276,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 412,
             "itemtype": "method",
             "name": "_drawText",
@@ -5732,7 +6322,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 445,
             "itemtype": "method",
             "name": "_drawSquare",
@@ -5764,7 +6354,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
+            "file": "src\\node\\class.node.text.js",
             "line": 457,
             "itemtype": "method",
             "name": "getHeight",
@@ -5777,8 +6367,8 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
-            "line": 473,
+            "file": "src\\node\\class.node.text.js",
+            "line": 474,
             "itemtype": "method",
             "name": "getWidth",
             "override": "",
@@ -5790,8 +6380,8 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
-            "line": 482,
+            "file": "src\\node\\class.node.text.js",
+            "line": 483,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -5804,8 +6394,8 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
-            "line": 502,
+            "file": "src\\node\\class.node.text.js",
+            "line": 503,
             "description": "Browsers don't render the text in the exact same way.\nIt can be few pixels of difference in Y position",
             "access": "private",
             "tagname": "",
@@ -5819,8 +6409,8 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
-            "line": 527,
+            "file": "src\\node\\class.node.text.js",
+            "line": 528,
             "description": "Empty ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "itemtype": "method",
             "name": "renderGhost",
@@ -5837,8 +6427,8 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
-            "line": 549,
+            "file": "src\\node\\class.node.text.js",
+            "line": 550,
             "description": "Render the resize handler",
             "access": "protected",
             "tagname": "",
@@ -5855,8 +6445,8 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.text.js",
-            "line": 626,
+            "file": "src\\node\\class.node.text.js",
+            "line": 627,
             "override": "",
             "itemtype": "method",
             "name": "copy",
@@ -5868,7 +6458,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 33,
             "itemtype": "property",
             "name": "LIVE",
@@ -5876,7 +6466,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 37,
             "itemtype": "property",
             "name": "PREVIEW",
@@ -5884,7 +6474,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 68,
             "description": "Size of the area around the webview in LIVE mode",
             "itemtype": "property",
@@ -5895,7 +6485,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 75,
             "description": "Color of the area around the webview in LIVE mode",
             "itemtype": "property",
@@ -5906,7 +6496,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 82,
             "description": "Color of line around the webview in LIVE mode",
             "itemtype": "property",
@@ -5917,7 +6507,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 90,
             "itemtype": "property",
             "name": "classType",
@@ -5926,7 +6516,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 96,
             "description": "A HTML tag that contains the web view : an iframe",
             "itemtype": "property",
@@ -5938,7 +6528,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 104,
             "description": "A CGSGNodeImage rendering the preview of the webpage",
             "itemtype": "property",
@@ -5950,7 +6540,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 112,
             "description": "URL of the web page",
             "itemtype": "property",
@@ -5962,7 +6552,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 120,
             "itemtype": "property",
             "name": "_context",
@@ -5973,7 +6563,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 130,
             "description": "Initialize and add the live container to the HTML body",
             "itemtype": "method",
@@ -5984,7 +6574,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 143,
             "description": "Initialize and add the CGSGNodeImage",
             "itemtype": "method",
@@ -5995,7 +6585,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 161,
             "description": "Create an IFRAME tag in the _liveContainer property",
             "itemtype": "method",
@@ -6006,7 +6596,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 178,
             "access": "private",
             "tagname": "",
@@ -6016,7 +6606,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 187,
             "itemtype": "method",
             "name": "setURL",
@@ -6031,7 +6621,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 199,
             "description": "Get a String representing the URL",
             "itemtype": "method",
@@ -6044,7 +6634,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 208,
             "description": "Switch between rendering mode",
             "itemtype": "method",
@@ -6060,7 +6650,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 225,
             "override": "",
             "access": "protected",
@@ -6071,7 +6661,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 261,
             "description": "Free the memory taken by this node",
             "override": "",
@@ -6081,7 +6671,7 @@
             "module": "Node"
         },
         {
-            "file": "src\\node\\class.webview.js",
+            "file": "src\\node\\class.node.webview.js",
             "line": 276,
             "description": "Return the copy of this node",
             "override": "",
@@ -7251,6 +7841,24 @@
             "module": "Util"
         },
         {
+            "file": "src\\utils\\util.global.js",
+            "line": 238,
+            "description": "Wipes the canvas context",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "cgsgClearContext",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "context to render on",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "__GLOBAL_METHODS__",
+            "module": "Util"
+        },
+        {
             "file": "src\\class.scene.js",
             "line": 26,
             "description": "Provides requestAnimationFrame in a cross browser way.",
@@ -7701,7 +8309,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 765,
+            "line": 764,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -7745,7 +8353,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 794,
+            "line": 793,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -7763,7 +8371,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 804,
+            "line": 803,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -7781,7 +8389,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 814,
+            "line": 813,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -7798,7 +8406,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 863,
+            "line": 862,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -7816,7 +8424,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 873,
+            "line": 872,
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -7837,7 +8445,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 894,
+            "line": 893,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -7858,7 +8466,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 912,
+            "line": 911,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",
@@ -7974,24 +8582,6 @@
         {
             "file": "src\\class.scenegraph.js",
             "line": 116,
-            "description": "Wipes the canvas context",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_clearContext",
-            "params": [
-                {
-                    "name": "context",
-                    "description": "context to render on",
-                    "type": "CanvasRenderingContext2D"
-                }
-            ],
-            "class": "CGSGSceneGraph",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scenegraph.js",
-            "line": 128,
             "description": "Render the SceneGraph",
             "access": "public",
             "tagname": "",
@@ -8002,7 +8592,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 208,
+            "line": 196,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used for different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -8018,7 +8608,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 221,
+            "line": 209,
             "description": "Mark the nodes as selected so the select marker (also called selectedHandlers)\n will be shown and the SceneGraph will manage the moving and resizing of the selected objects.",
             "itemtype": "method",
             "name": "selectNode",
@@ -8033,7 +8623,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 235,
+            "line": 223,
             "description": "Mark the nodes as not selected",
             "itemtype": "method",
             "name": "deselectNode",
@@ -8049,7 +8639,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 246,
+            "line": 234,
             "description": "Mark all nodes as not selected",
             "itemtype": "method",
             "name": "deselectAll",
@@ -8065,7 +8655,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 264,
+            "line": 252,
             "description": "Recursively traverse the nodes and return the one who is under the mouse coordinates",
             "itemtype": "method",
             "name": "pickNode",
@@ -8093,7 +8683,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 294,
+            "line": 282,
             "description": "Remove the child nodes passed in parameter, from the root nodes",
             "itemtype": "method",
             "name": "removeNode",
@@ -8118,7 +8708,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 311,
+            "line": 299,
             "description": "Add a nodes on the scene.\nIf the root does not already exist, this nodes will be used as root",
             "itemtype": "method",
             "name": "addNode",
@@ -8139,7 +8729,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 331,
+            "line": 319,
             "description": "Add a key",
             "itemtype": "method",
             "name": "addAnimationKey",
@@ -8183,7 +8773,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 357,
+            "line": 345,
             "description": "Animate an attribute of a nodes",
             "itemtype": "method",
             "name": "animate",
@@ -8237,7 +8827,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 377,
+            "line": 365,
             "itemtype": "method",
             "name": "stillHaveAnimation",
             "return": {
@@ -8249,7 +8839,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 397,
+            "line": 385,
             "description": "Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet",
             "itemtype": "method",
             "name": "getTimeline",

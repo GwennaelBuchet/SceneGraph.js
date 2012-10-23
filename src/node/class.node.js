@@ -671,10 +671,8 @@ var CGSGNode = Object.extend(
 		 * @param {CGSGPosition} mousePosition A CGSGPosition object
 		 * @param {CanvasRenderingContext2D} ghostContext
 		 * @param {CGSGScale} absoluteScale
-		 * @param {Number} canvasWidth
-		 * @param {Number} canvasHeight
 		 */
-		detectSelection : function(mousePosition, ghostContext, absoluteScale, canvasWidth, canvasHeight) {
+		detectSelection : function(mousePosition, ghostContext, absoluteScale) {
 
 			if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 				if (mousePosition.x >= this._absolutePosition.x
@@ -692,7 +690,7 @@ var CGSGNode = Object.extend(
 				// get image data at the mouse x,y pixel
 				var imageData = ghostContext.getImageData(mousePosition.x, mousePosition.y, 1, 1);
 
-				this._clearContext(ghostContext, canvasWidth, canvasHeight);
+				cgsgClearContext(ghostContext);
 
 				// if the mouse pixel exists, select this nodes
 				if (imageData.data[0] != 0 || imageData.data[1] != 0 || imageData.data[2] != 0) {
@@ -711,12 +709,10 @@ var CGSGNode = Object.extend(
 		 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
 		 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
 		 * @param {Boolean} recursively if false, don't traverse the children of this nodes
-		 * @param {Number} canvasWidth the width of the canvas container
-		 * @param {Number} canvasHeight the height of the canvas container
 		 * @param {Function} condition Condition to be picked
 		 * ie: "color=='yellow'" or "classType=='CGSGNodeImage' && this.globalAlpha>0.5"
 		 * */
-		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, canvasWidth, canvasHeight,
+		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively,
 		                    condition) {
 			var selectedNode = null;
 
@@ -733,8 +729,7 @@ var CGSGNode = Object.extend(
 				if (!cgsgExist(condition) || condition(this) === true) {
 					this.computeAbsoluteMatrix(false);
 					selectedNode =
-					this.detectSelection(mousePosition, ghostContext, childAbsoluteScale,
-					                     canvasWidth, canvasHeight);
+					this.detectSelection(mousePosition, ghostContext, childAbsoluteScale);
 				}
 			}
 
@@ -744,8 +739,7 @@ var CGSGNode = Object.extend(
 					var childNode = this.children[i];
 					var selectedChild = childNode.pickNode(mousePosition,
 					                                       childAbsoluteScale, ghostContext,
-					                                       recursively, canvasWidth,
-					                                       canvasHeight, condition);
+					                                       recursively, condition);
 					if (selectedChild !== null && selectedChild !== undefined) {
 						selectedNode = selectedChild;
 						break;

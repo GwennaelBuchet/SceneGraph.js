@@ -62,17 +62,15 @@ var CGMain = CGSGScene.extend(
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
-			this.textNode = new CGSGNodeText(10, 10, "Click Me");
-			this.textNode.textBaseline = "bottom";
+			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
+			buttonNode.textBaseline = "bottom";
 			//bind the "this.moveSquare" function to this. See Prototype.js "bind" function.
 			var bindMoveSquare = this.moveSquare.bind(this);
-			//add the onClick event to the text
-			this.textNode.isClickable = true;
-			this.textNode.onClick = function (event) {
+			buttonNode.onClick = function (event) {
 				bindMoveSquare();
 			}
 			//add the textNode as child of the root
-			this.rootNode.addChild(this.textNode);
+			this.rootNode.addChild(buttonNode);
 
 			this.squareNode = new CGSGNodeSquare(0, 60, 100, 100);
 			this.squareNode.isResizable = true;

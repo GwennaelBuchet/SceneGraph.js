@@ -234,3 +234,15 @@ function cgsgGetCursorPosition(event, canvas) {
 
 	return new CGSGPosition((event.pageX - offsetX) / cgsgDisplayRatio.x, (event.pageY - offsetY) / cgsgDisplayRatio.y);
 }
+
+/**
+ * Wipes the canvas context
+ * @private
+ * @method cgsgClearContext
+ * @param {CanvasRenderingContext2D} context context to render on
+ * */
+function cgsgClearContext(context) {
+	context.setTransform(1, 0, 0, 1, 0, 0);
+	// Will always clear the right space
+	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
+}

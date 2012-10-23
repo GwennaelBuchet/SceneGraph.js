@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.image.js - cgSceneGraph</title>
+    <title>src\node\class.node.webview.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -41,6 +41,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -50,6 +52,8 @@
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
@@ -146,7 +150,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.image.js</h1>
+                        <h1 class="file-heading">File: src\node\class.node.webview.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -176,78 +180,99 @@
  *&#x2F;
 
 &#x2F;**
- * A CGSGNodeImage represent an image node
- *
- * @class CGSGNodeImage
- * @extends CGSGNode
+ * The different rendering mode
+ * @class CGSGWEBVIEWMODE
+ * @type {Object}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ *&#x2F;
+var CGSGWEBVIEWMODE = {
+	&#x2F;**
+	 * @property LIVE
+	 *&#x2F;
+	LIVE    : 0,
+	&#x2F;**
+	 * @property PREVIEW
+	 *&#x2F;
+	PREVIEW : 1
+};
+
+&#x2F;*
+ * TODO :
+ * - When resize or drag : switch to PREVIEW mode to allow mouse over the webview
+ * - Create a CGSGNodeImage to encapsulate the preview mode
+ * - load a page in AJAX and make an image from it to assign to the PREVIEW mode
+ *&#x2F;
+
+&#x2F;**
+ * @class CGSGNodeWebview
  * @module Node
+ * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
  * @param {Number} y Relative position on X
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
- * @param {Number} sliceX Position of the content of this node on the src image
- * @param {Number} sliceY Position of the content of this node on the src image
- * @param {Number} sliceWidth Dimension of the content of this node on the src image
- * @param {Number} sliceHeight Dimension of the content of this node on the src image
- * @param {String} urlImage URL of the src image. Can be null tobe loaded later.
- * @param {CanvasRenderingContext2D} context context to render on
- * @type {CGSGNodeImage}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @param {String} url URL of the webpage
+ * @param {CanvasRenderingContext2D} context the context into render the node
+ * @type {CGSGNodeWebview}
  *&#x2F;
-var CGSGNodeImage = CGSGNode.extend(
+var CGSGNodeWebview = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
+		initialize : function(x, y, width, height, url, context) {
 			this._super(x, y, width, height);
+
+			&#x2F;**
+			 * Size of the area around the webview in LIVE mode
+			 * @property threshold
+			 * @default 20
+			 * @type {Number}
+			 *&#x2F;
+			this.threshold = 20;
+			&#x2F;**
+			 * Color of the area around the webview in LIVE mode
+			 * @property color
+			 * @default &quot;lightGray&quot;
+			 * @type {String}
+			 *&#x2F;
+			this.color = &quot;lightGray&quot;;
+			&#x2F;**
+			 * Color of line around the webview in LIVE mode
+			 * @property color
+			 * @default &quot;Gray&quot;
+			 * @type {String}
+			 *&#x2F;
+			this.lineColor = &quot;Gray&quot;;
 
 			&#x2F;**
 			 * @property classType
 			 * @type {String}
 			 *&#x2F;
-			this.classType = &quot;CGSGNodeImage&quot;;
+			this.classType = &quot;CGSGNodeWebview&quot;;
 
 			&#x2F;**
-			 * the selected effect to be applied
-			 * @property effect
-			 * @default null
-			 * @type {CGSGEffect}
+			 * A HTML tag that contains the web view : an iframe
+			 * @property _liveContainer
+			 * @type {HTMLElement}
+			 * @private
 			 *&#x2F;
-			this.effect = null;
+			this._liveContainer = null;
+
 			&#x2F;**
-			 * URL of the image
-			 * @property _urlImage
+			 * A CGSGNodeImage rendering the preview of the webpage
+			 * @property _previewContainer
+			 * @type {CGSGNodeImage}
+			 * @private
+			 *&#x2F;
+			this._previewContainer = null;
+
+			&#x2F;**
+			 * URL of the web page
+			 * @property _url
 			 * @type {String}
 			 * @private
 			 *&#x2F;
-			this._urlImage = urlImage;
+			this._url = url;
 
-			&#x2F;**
-			 * @property isProportionalResize
-			 * @default true
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isProportionalResize = true;
-			&#x2F;**
-			 * the image object itself
-			 * @property _img
-			 * @type {Image}
-			 * @private
-			 *&#x2F;
-			this._img = new Image();
-			&#x2F;**
-			 * the region on the image to render
-			 * @property slice
-			 * @type {CGSGRegion}
-			 *&#x2F;
-			this.slice = new CGSGRegion(sliceX, sliceY, sliceWidth, sliceHeight);
-
-
-			&#x2F;**
-			 * @property _isLoaded
-			 * @type {Boolean}
-			 * @private
-			 *&#x2F;
-			this._isLoaded = false;
 			&#x2F;**
 			 * @property _context
 			 * @type {CanvasRenderingContext2D}
@@ -255,239 +280,172 @@ var CGSGNodeImage = CGSGNode.extend(
 			 *&#x2F;
 			this._context = context;
 
-			&#x2F;**
-			 * Event Fired when the image is finally loaded
-			 * @property onLoadEnd
-			 * @default null
-			 * @type {Function}
-			 *&#x2F;
-			this.onLoadEnd = null;
-
-			&#x2F;**
-			 * Fake canvas to pre-render the image
-			 * @property _tmpCanvas
-			 * @type {HTMLElement}
-			 * @private
-			 *&#x2F;
-			this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
-
-			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
-			&#x2F;&#x2F;finally load the image
-			if (this._urlImage !== undefined &amp;&amp; this._urlImage !== null &amp;&amp; this._urlImage != &quot;&quot;) {
-				this._img.onload = this._createDelegate(this, this._onImageLoaded, context);
-				&#x2F;&#x2F;this.img.onload = this._onImageLoaded(context);
-				this._img.src = this._urlImage;
-			}
+			this.switchMode(CGSGWEBVIEWMODE.LIVE);
 		},
 
-
 		&#x2F;**
-		 * used to call delegate method when the image is finally loaded
+		 * Initialize and add the live container to the HTML body
+		 * @method _initLiveContainer
 		 * @private
-		 * @method _createDelegate
-		 * @param objectContext
-		 * @param delegateMethod
-		 * @param renderContext
-		 * @return {Function}
 		 *&#x2F;
-		_createDelegate : function(objectContext, delegateMethod, renderContext) {
-			return function() {
-				return delegateMethod.call(objectContext, renderContext);
+		_initLiveContainer : function() {
+			if (!cgsgExist(this._liveContainer)) {
+				this._createLiveContainer();
 			}
+
+			document.body.appendChild(this._liveContainer);
 		},
 
 		&#x2F;**
-		 * fired when the image is loaded.
-		 * Check the dimension of the image and fired the onLoadEnd event
+		 * Initialize and add the CGSGNodeImage
+		 * @method _initPreviewContainer
 		 * @private
-		 * @method _onImageLoaded
 		 *&#x2F;
-		_onImageLoaded : function(context) {
-			this._checkDimension();
-			this._isLoaded = true;
-
-			if (this.onLoadEnd !== null) {
-				this.onLoadEnd();
+		_initPreviewContainer : function() {
+			if (!cgsgExist(this._previewContainer)) {
+				this._previewContainer =
+				new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height, 0, 0,
+				                  this.dimension.width, this.dimension.height, null, this._context);
 			}
-			this._initShape();
-			this.render(this._context);
+
+			this.addChild(this._previewContainer);
+
+			&#x2F;&#x2F;load the webcontent via Ajax
+			this._loadPageAsync();
 		},
 
 		&#x2F;**
-		 * To be overrided when the image failed to load
-		 * @method _onImageError
-		 * @protected
-		 * @param context
-		 *&#x2F;
-		_onImageError : function(context) {
-		},
-
-		&#x2F;**
-		 * Check the true dimension of the image and fill the this.dimension property with it,
-		 * only if dimension is not already defined in the constructor
+		 * Create an IFRAME tag in the _liveContainer property
+		 * @method _createLiveContainer
 		 * @private
-		 * @method _checkDimension
 		 *&#x2F;
-		_checkDimension : function() {
-			&#x2F;&#x2F;if no width or height are specified in the constructor
-			if (this.dimension.width &lt;= 0 &amp;&amp; this.dimension.height &lt;= 0) {
-				this.dimension.width = this._img.width;
-				this.dimension.height = this._img.height;
+		_createLiveContainer : function() {
+			var uri = &quot;&quot;;
+			if (cgsgExist(this._url)) {
+				uri = this._url;
 			}
 
-			&#x2F;&#x2F;if no slice was specified, adjust it with the full image
-			if (this.slice.dimension.width &lt;= 0 || this.slice.dimension.height &lt;= 0) {
-				this.slice.dimension.width = this.dimension.width;
-				this.slice.dimension.height = this.dimension.height;
-			}
+			this._liveContainer = document.createElement(&quot;IFRAME&quot;);
+
+			this._liveContainer.style.position = &quot;absolute&quot;;
+			this._liveContainer.setAttribute(&quot;src&quot;, uri);
 		},
 
 		&#x2F;**
-		 * @public
-		 * @method setImage
-		 * @param {Image} newImage new Image object. Must bea already loaded before
-		 *&#x2F;
-		setImage : function(newImage) {
-			this._img = newImage;
-			if (cgsgExist(this._img)) {
-				this._urlImage = this._img.src;
-				this._checkDimension();
-				this._isLoaded = true;
-				this._initShape();
-			}
-		},
-
-		&#x2F;**
-		 *  pre-render the image into _tmpCanvas to optimize the perfs
+		 *
 		 * @private
-		 * @method _initShape
+		 * @method _loadPageAsync
 		 *&#x2F;
-		_initShape : function() {
-			this._tmpCanvas.width = this.dimension.width;
-			this._tmpCanvas.height = this.dimension.height;
-			var tmpContext = this._tmpCanvas.getContext(&#x27;2d&#x27;);
+		_loadPageAsync : function() {
 
-			tmpContext.drawImage(
-				this._img, &#x2F;&#x2F; image
-				this.slice.position.x, this.slice.position.y, &#x2F;&#x2F; start position on the image
-				this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
-				0, 0,
-				&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
-				this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
-			);
 		},
 
 		&#x2F;**
-		 * Must be defined to allow the scene graph to render the image nodes
+		 * @method setURL
+		 * @param {String} url
+		 *&#x2F;
+		setURL : function(url) {
+			this._url = url;
+
+			if (cgsgExist(this._liveContainer)) {
+				this._liveContainer.setAttribute(&quot;src&quot;, this._url);
+			}
+		},
+
+		&#x2F;**
+		 * Get a String representing the URL
+		 * @method getURL
+		 * @return {string}
+		 *&#x2F;
+		getURL : function() {
+			return this._url;
+		},
+
+		&#x2F;**
+		 * Switch between rendering mode
+		 * @method switchMode
+		 * @param {Object} mode a CGSGWEBVIEWMODE enum : LIVE or PREVIEW
+		 *&#x2F;
+		switchMode : function(mode) {
+			this.mode = mode;
+			if (mode == CGSGWEBVIEWMODE.LIVE) {
+				this.detachChild(this._previewContainer);
+				this._initLiveContainer();
+			}
+			else {
+				cgsgCanvas.removeChild(this._liveContainer);
+				this._initPreviewContainer();
+			}
+		},
+
+		&#x2F;**
 		 * @override
 		 * @protected
 		 * @method render
-		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * Custom rendering
 		 * *&#x2F;
 		render : function(context) {
-			if (this._isLoaded &amp;&amp; this._img.src != &quot;&quot;) {
-				&#x2F;&#x2F;save current state
-				this.beforeRender(context);
+			&#x2F;&#x2F;save current state
+			this.beforeRender(context);
 
-				context.globalAlpha = this.globalAlpha;
+			&#x2F;&#x2F;draw this zone
+			context.fillStyle = this.color;
+			context.strokeStyle = this.lineColor;
+			context.lineWidth = this.lineWidth;
 
-				&#x2F;&#x2F;custom rendering
-				&#x2F;&#x2F;context.drawImage(this.tmpCanvas, 0, 0);
+			&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
+			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
 
-				context.drawImage(
-					this._img, &#x2F;&#x2F; image
-					this.slice.position.x, this.slice.position.y, &#x2F;&#x2F; start position on the image
-					this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
-					0, 0,
-					&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
-					this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
-				);
-				&#x2F;&#x2F;restore state
-				this.afterRender(context);
+			context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+
+			context.strokeRect(this.threshold - 2, this.threshold - 2, 8 + this.dimension.width - this.threshold * 2,
+			                   8 + this.dimension.height - this.threshold * 2);
+
+			if (cgsgExist(this._liveContainer)) {
+				this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + &quot;px&quot;;
+				this._liveContainer.style.top = (this.getAbsoluteTop() + this.threshold) + &quot;px&quot;;
+				this._liveContainer.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + &quot;px&quot;;
+				this._liveContainer.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + &quot;px&quot;;
 			}
+
+			context.globalAlpha = this.globalAlpha;
+
+			&#x2F;&#x2F;restore state
+			this.afterRender(context);
 		},
 
 		&#x2F;**
-		 * @public
-		 * @method setEffect
-		 * @param {CGSGEffect} effect
-		 *&#x2F;
-		setEffect : function(effect) {
-			this.effect = effect;
-		},
-
-		&#x2F;**
-		 * Ghost rendering function.
-		 * Render here your custom nodes with a single color (cgsgGhostColor).
-		 * This will be used by the SceneGraph to know if the mouse cursor is over this nodes.
+		 * Free the memory taken by this node
 		 * @override
-		 * @protected
-		 * @method renderGhost
-		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
+		 * @method free
 		 *&#x2F;
-		renderGhost : function(ghostContext) {
-			if (this._isLoaded &amp;&amp; this._img.src != &quot;&quot;) {
-				&#x2F;&#x2F;save current state
-				this.beforeRenderGhost(ghostContext);
+		free : function() {
+			this._super();
 
-				ghostContext.drawImage(
-					this._img, &#x2F;&#x2F; image
-					this.slice.position.x, this.slice.position.y, &#x2F;&#x2F; start position on the image
-					this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
-					0, 0,
-					&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will tanslate the image
-					this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
-				);
-
-				&#x2F;&#x2F;restore state
-				this.afterRenderGhost(ghostContext);
+			if (cgsgExist(this._liveContainer)) {
+				cgsgCanvas.removeChild(this._liveContainer);
+				delete (this._liveContainer);
 			}
+			&#x2F;&#x2F;delete this;
 		},
 
 		&#x2F;**
-		 * Increase&#x2F;decrease current dimension with adding values. It is used when the user resize
-		 * the image with the handle boxes
+		 * Return the copy of this node
 		 * @override
-		 * @public
-		 * @method resizeWith
-		 * @param {Number} width
-		 * @param {Number} height
-		 * *&#x2F;
-		resizeWith : function(width, height) {
-			this._super(width, height);
-			this._initShape();
-		},
-
-
-		&#x2F;**
-		 * @override
-		 * @public
 		 * @method copy
-		 * @return {CGSGNodeImage} a copy of this node
+		 * @return {CGSGNodeWebview}
 		 *&#x2F;
 		copy : function() {
-			var node = new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height,
-			                             this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
-			                             this.slice.dimension.height, &#x2F;*this.urlImage*&#x2F;null,
-			                             this._context);
+			var node = new CGSGNodeWebview(this.position.x, this.position.y, this.dimension.width,
+			                               this.dimension.height, this.url);
 			&#x2F;&#x2F;call the super method
 			node = this._super(node);
 
-			node._urlImage = this._urlImage;
+			node.threshold = this.threshold;
+			node.color = this.color;
+			node.lineColor = this.lineColor;
 
-			node.effect = this.effect;
-			node.isProportionalResize = this.isProportionalResize;
-			node._isLoaded = this._isLoaded;
-
-			&#x2F;&#x2F;the image object itself
-			node.setImage(this._img);
-
-			node.onLoadEnd = this.onLoadEnd;
-			&#x2F;*if (this.urlImage !== undefined &amp;&amp; this.urlImage !== null &amp;&amp; this.urlImage != &quot;&quot;) {
-			 node.img.onload = node.createDelegate(node, node._onImageLoaded, node.context);
-			 &#x2F;&#x2F;this.img.onload = this._onImageLoaded(context);
-			 node.img.src = node.urlImage;
-			 }*&#x2F;
+			node.switchMode(this.mode);
 
 			return node;
 		}

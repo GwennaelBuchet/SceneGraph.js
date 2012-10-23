@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CGSGNodeImage - cgSceneGraph</title>
+    <title>CGSGNodeButton - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -150,7 +150,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>CGSGNodeImage Class</h1>
+                        <h1>CGSGNodeButton Class</h1>
 <div class="box meta">
     
 
@@ -162,7 +162,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l26"><code>src\node\class.node.image.js:26</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l49"><code>src\node\class.node.button.js:49</code></a>
         </div>
     
 
@@ -178,14 +178,14 @@
 
 
 <div class="box intro">
-    <p>A CGSGNodeImage represent an image node</p>
+    <p>A CGSGNodeButton represent a basic square</p>
 </div>
 
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_CGSGNodeImage" class="method item">
-    <span class="attribute-name">CGSGNodeImage</span>
+        <div id="method_CGSGNodeButton" class="method item">
+    <span class="attribute-name">CGSGNodeButton</span>
 
     
         <div class="args">
@@ -217,37 +217,7 @@
             
                 <li class="arg">
                     
-                        <code>sliceX</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>sliceY</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>sliceWidth</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>sliceHeight</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>urlImage</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>context</code>
+                        <code>radius</code>
                     
                 </li>
             
@@ -280,7 +250,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l26"><code>src\node\class.node.image.js:26</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l49"><code>src\node\class.node.button.js:49</code></a>
         
         </p>
 
@@ -362,89 +332,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">sliceX</code>
+                        <code class="param-name">radius</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Position of the content of this node on the src image</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">sliceY</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Position of the content of this node on the src image</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">sliceWidth</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Dimension of the content of this node on the src image</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">sliceHeight</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Dimension of the content of this node on the src image</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">urlImage</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>URL of the src image. Can be null tobe loaded later.</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">context</code>
-                        <span class="type">CanvasRenderingContext2D</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>context to render on</p>
+                        <p>Radius for the round corner</p>
                     </div>
 
                     
@@ -486,22 +381,8 @@
 
                     <ul class="index-list methods extends">
                         
-                            <li class="index-item method private">
-                                <a href="#method__checkDimension">_checkDimension</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method private inherited">
                                 <a href="#method__clearContext">_clearContext</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__createDelegate">_createDelegate</a>
 
                                 
                                 
@@ -514,15 +395,8 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#method__onImageError">_onImageError</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method private">
-                                <a href="#method__onImageLoaded">_onImageLoaded</a>
+                                <a href="#method__initShape">_initShape</a>
 
                                 
                                 
@@ -577,7 +451,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method public inherited">
+                            <li class="index-item method inherited">
                                 <a href="#method_copy">copy</a>
 
                                 
@@ -689,8 +563,29 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_getFirstColor">getFirstColor</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method inherited">
                                 <a href="#method_getHeight">getHeight</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getHorizontalPadding">getHorizontalPadding</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getLastColor">getLastColor</a>
 
                                 
                                 
@@ -703,8 +598,57 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_getMode">getMode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getRadius">getRadius</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public inherited">
                                 <a href="#method_getRegion">getRegion</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getShadowColor">getShadowColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getText">getText</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getTextColor">getTextColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getTextSize">getTextSize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getVerticalPadding">getVerticalPadding</a>
 
                                 
                                 
@@ -766,7 +710,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected inherited">
+                            <li class="index-item method inherited">
                                 <a href="#method_renderGhost">renderGhost</a>
 
                                 
@@ -794,7 +738,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method public inherited">
+                            <li class="index-item method inherited">
                                 <a href="#method_resizeWith">resizeWith</a>
 
                                 
@@ -843,15 +787,43 @@
                                 
                             </li>
                         
-                            <li class="index-item method public">
-                                <a href="#method_setEffect">setEffect</a>
+                            <li class="index-item method">
+                                <a href="#method_setFirstColor">setFirstColor</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method public">
-                                <a href="#method_setImage">setImage</a>
+                            <li class="index-item method">
+                                <a href="#method_setHorizontalPadding">setHorizontalPadding</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setHorizontalPadding">setHorizontalPadding</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setLastColor">setLastColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setMode">setMode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setRadius">setRadius</a>
 
                                 
                                 
@@ -866,6 +838,34 @@
                         
                             <li class="index-item method inherited">
                                 <a href="#method_setSelected">setSelected</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setShadowColor">setShadowColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setText">setText</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setTextColor">setTextColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setTextSize">setTextSize</a>
 
                                 
                                 
@@ -924,7 +924,21 @@
                             </li>
                         
                             <li class="index-item property private">
-                                <a href="#property__context">_context</a>
+                                <a href="#property__currentMode">_currentMode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__firstColors">_firstColors</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__horizontalPadding">_horizontalPadding</a>
 
                                 
                                 
@@ -932,13 +946,6 @@
                         
                             <li class="index-item property private inherited">
                                 <a href="#property__id">_id</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__img">_img</a>
 
                                 
                                 
@@ -952,7 +959,7 @@
                             </li>
                         
                             <li class="index-item property private">
-                                <a href="#property__isLoaded">_isLoaded</a>
+                                <a href="#property__lastColors">_lastColors</a>
 
                                 
                                 
@@ -966,6 +973,48 @@
                             </li>
                         
                             <li class="index-item property private">
+                                <a href="#property__radiuses">_radiuses</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__shadowColors">_shadowColors</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__textColors">_textColors</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__texts">_texts</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__textSizes">_textSizes</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property__textsNode">_textsNode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
                                 <a href="#property__tmpCanvas">_tmpCanvas</a>
 
                                 
@@ -973,7 +1022,7 @@
                             </li>
                         
                             <li class="index-item property private">
-                                <a href="#property__urlImage">_urlImage</a>
+                                <a href="#property__verticalPadding">_verticalPadding</a>
 
                                 
                                 
@@ -995,13 +1044,6 @@
                         
                             <li class="index-item property inherited">
                                 <a href="#property_dimension">dimension</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_effect">effect</a>
 
                                 
                                 
@@ -1126,13 +1168,6 @@
                                 
                             </li>
                         
-                            <li class="index-item property">
-                                <a href="#property_onLoadEnd">onLoadEnd</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item property inherited">
                                 <a href="#property_onMouseOut">onMouseOut</a>
 
@@ -1252,13 +1287,6 @@
                                 
                             </li>
                         
-                            <li class="index-item property">
-                                <a href="#property_slice">slice</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item property inherited">
                                 <a href="#property_userdata">userdata</a>
 
@@ -1278,63 +1306,6 @@
         
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__checkDimension" class="method item private">
-    <span class="attribute-name">_checkDimension</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l173"><code>src\node\class.node.image.js:173</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Check the true dimension of the image and fill the this.dimension property with it,
-only if dimension is not already defined in the constructor</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
 
                 
                     <div id="method__clearContext" class="method item private inherited">
@@ -1419,7 +1390,7 @@ only if dimension is not already defined in the constructor</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -1434,7 +1405,7 @@ only if dimension is not already defined in the constructor</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -1449,7 +1420,7 @@ only if dimension is not already defined in the constructor</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -1465,8 +1436,8 @@ only if dimension is not already defined in the constructor</p>
 </div>
 
                 
-                    <div id="method__createDelegate" class="method item private">
-    <span class="attribute-name">_createDelegate</span>
+                    <div id="method__initShape" class="method item private">
+    <span class="attribute-name">_initShape</span>
 
     
         <div class="args">
@@ -1474,19 +1445,7 @@ only if dimension is not already defined in the constructor</p>
             
                 <li class="arg">
                     
-                        <code>objectContext</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>delegateMethod</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>renderContext</code>
+                        <code>index</code>
                     
                 </li>
             
@@ -1494,10 +1453,6 @@ only if dimension is not already defined in the constructor</p>
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-        </span>
     
 
     
@@ -1525,7 +1480,7 @@ only if dimension is not already defined in the constructor</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l132"><code>src\node\class.node.image.js:132</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l378"><code>src\node\class.node.button.js:378</code></a>
         
         </p>
 
@@ -1536,7 +1491,7 @@ only if dimension is not already defined in the constructor</p>
     </div>
 
     <div class="description">
-        <p>used to call delegate method when the image is finally loaded</p>
+        <p>Pre-render the shape for normal rendering</p>
     </div>
 
     
@@ -1547,38 +1502,8 @@ only if dimension is not already defined in the constructor</p>
             
                 <li class="param">
                     
-                        <code class="param-name">objectContext</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">delegateMethod</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">renderContext</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <code class="param-name">index</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
@@ -1594,18 +1519,6 @@ only if dimension is not already defined in the constructor</p>
         </div>
     
 
-    
-        <div class="returns">
-            <div class="method-item">Returns:</div>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>:
-                    
-                
-            </div>
-        </div>
     
 
     
@@ -1646,7 +1559,7 @@ only if dimension is not already defined in the constructor</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l208"><code>src\node\class.node.image.js:208</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l367"><code>src\node\class.node.button.js:367</code></a>
         
         </p>
 
@@ -1657,153 +1570,7 @@ only if dimension is not already defined in the constructor</p>
     </div>
 
     <div class="description">
-        <p>pre-render the image into _tmpCanvas to optimize the perfs</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method__onImageError" class="method item protected">
-    <span class="attribute-name">_onImageError</span>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>context</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l164"><code>src\node\class.node.image.js:164</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>To be overrided when the image failed to load</p>
-    </div>
-
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">context</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method__onImageLoaded" class="method item private">
-    <span class="attribute-name">_onImageLoaded</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l147"><code>src\node\class.node.image.js:147</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>fired when the image is loaded.
-Check the dimension of the image and fired the onLoadEnd event</p>
+        <p>Pre-render the button into a temp canvas to optimize the perfs</p>
     </div>
 
     
@@ -2434,7 +2201,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
 </div>
 
                 
-                    <div id="method_copy" class="method item public">
+                    <div id="method_copy" class="method item">
     <span class="attribute-name">copy</span>
 
     
@@ -2443,14 +2210,12 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="..\classes\CGSGNodeImage.html" class="crosslink">CGSGNodeImage</a></span>
+            <span class="type"><a href="..\classes\CGSGNodeSquare.html" class="crosslink">CGSGNodeSquare</a></span>
         </span>
     
 
     
 
-    
-        <span class="flag public">public</span>
     
 
     
@@ -2472,7 +2237,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l310"><code>src\node\class.node.image.js:310</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l489"><code>src\node\class.node.button.js:489</code></a>
         
         </p>
 
@@ -2495,7 +2260,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="..\classes\CGSGNodeImage.html" class="crosslink">CGSGNodeImage</a></span>:
+                        <span class="type"><a href="..\classes\CGSGNodeSquare.html" class="crosslink">CGSGNodeSquare</a></span>:
                     
                     a copy of this node
                 
@@ -2575,7 +2340,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -2659,7 +2424,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -2774,7 +2539,7 @@ This default function used the ghost rendering method</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -2789,7 +2554,7 @@ This default function used the ghost rendering method</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -3652,6 +3417,76 @@ The 'userData' propoerty won't be freed</p>
 </div>
 
                 
+                    <div id="method_getFirstColor" class="method item">
+    <span class="attribute-name">getFirstColor</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l201"><code>src\node\class.node.button.js:201</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the High color for the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_getHeight" class="method item inherited">
     <span class="attribute-name">getHeight</span>
 
@@ -3709,6 +3544,146 @@ The 'userData' propoerty won't be freed</p>
                 
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getHorizontalPadding" class="method item">
+    <span class="attribute-name">getHorizontalPadding</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l331"><code>src\node\class.node.button.js:331</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the horizontal padding of the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getLastColor" class="method item">
+    <span class="attribute-name">getLastColor</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l219"><code>src\node\class.node.button.js:219</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the Low color for the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
                     
                 
             </div>
@@ -3822,6 +3797,146 @@ The 'userData' propoerty won't be freed</p>
 </div>
 
                 
+                    <div id="method_getMode" class="method item">
+    <span class="attribute-name">getMode</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="..\classes\CGSGButtonMode.html" class="crosslink">CGSGButtonMode</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l462"><code>src\node\class.node.button.js:462</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="..\classes\CGSGButtonMode.html" class="crosslink">CGSGButtonMode</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getRadius" class="method item">
+    <span class="attribute-name">getRadius</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l255"><code>src\node\class.node.button.js:255</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the Low color for the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_getRegion" class="method item public inherited">
     <span class="attribute-name">getRegion</span>
 
@@ -3881,6 +3996,356 @@ The 'userData' propoerty won't be freed</p>
                 
                     
                         <span class="type"><a href="..\classes\CGSGRegion.html" class="crosslink">CGSGRegion</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getShadowColor" class="method item">
+    <span class="attribute-name">getShadowColor</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l237"><code>src\node\class.node.button.js:237</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the Shadow color for the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getText" class="method item">
+    <span class="attribute-name">getText</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l273"><code>src\node\class.node.button.js:273</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the text of the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTextColor" class="method item">
+    <span class="attribute-name">getTextColor</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l311"><code>src\node\class.node.button.js:311</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the text of the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getTextSize" class="method item">
+    <span class="attribute-name">getTextSize</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l293"><code>src\node\class.node.button.js:293</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the text sizes of the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getVerticalPadding" class="method item">
+    <span class="attribute-name">getVerticalPadding</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l349"><code>src\node\class.node.button.js:349</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return the vertical padding of the button</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
                     
                 
             </div>
@@ -4624,7 +5089,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l228"><code>src\node\class.node.image.js:228</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l470"><code>src\node\class.node.button.js:470</code></a>
         
         </p>
 
@@ -4635,7 +5100,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     </div>
 
     <div class="description">
-        <p>Must be defined to allow the scene graph to render the image nodes</p>
+        <p>Custom rendering</p>
     </div>
 
     
@@ -4653,7 +5118,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
                     
 
                     <div class="param-description">
-                        <p>the context to render on</p>
+                        <p>the context into render the node</p>
                     </div>
 
                     
@@ -4669,7 +5134,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
 </div>
 
                 
-                    <div id="method_renderGhost" class="method item protected">
+                    <div id="method_renderGhost" class="method item inherited">
     <span class="attribute-name">renderGhost</span>
 
     
@@ -4691,8 +5156,6 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     
 
     
-        <span class="flag protected">protected</span>
-    
 
     
 
@@ -4704,16 +5167,13 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
 
     <div class="meta">
         
-            <p>Inherited from
-            <a href="..\classes\CGSGNode.html#method_renderGhost">
-                CGSGNode
-            </a>
             
-            but overwritten in
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_renderGhost">CGSGNode</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l267"><code>src\node\class.node.image.js:267</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l486"><code>src\node\class.node.js:486</code></a>
         
         </p>
 
@@ -4724,7 +5184,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     </div>
 
     <div class="description">
-        <p>Ghost rendering function.
+        <p>Empty ghost rendering function.
 Render here your custom nodes with a single color (cgsgGhostColor).
 This will be used by the SceneGraph to know if the mouse cursor is over this nodes.</p>
     </div>
@@ -4738,7 +5198,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
                 <li class="param">
                     
                         <code class="param-name">ghostContext</code>
-                        <span class="type">CanvasRenderingContext2D</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
@@ -4920,7 +5380,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -4935,7 +5395,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5025,7 +5485,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5040,7 +5500,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5056,7 +5516,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
 </div>
 
                 
-                    <div id="method_resizeWith" class="method item public">
+                    <div id="method_resizeWith" class="method item inherited">
     <span class="attribute-name">resizeWith</span>
 
     
@@ -5084,8 +5544,6 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
     
 
     
-        <span class="flag public">public</span>
-    
 
     
 
@@ -5097,16 +5555,13 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
 
     <div class="meta">
         
-            <p>Inherited from
-            <a href="..\classes\CGSGNode.html#method_resizeWith">
-                CGSGNode
-            </a>
             
-            but overwritten in
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_resizeWith">CGSGNode</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l295"><code>src\node\class.node.image.js:295</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l827"><code>src\node\class.node.js:827</code></a>
         
         </p>
 
@@ -5117,8 +5572,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
     </div>
 
     <div class="description">
-        <p>Increase/decrease current dimension with adding values. It is used when the user resize
-the image with the handle boxes</p>
+        <p>Increase/decrease current dimension with adding values</p>
     </div>
 
     
@@ -5136,7 +5590,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5151,7 +5605,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5241,7 +5695,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5346,7 +5800,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5451,7 +5905,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5562,7 +6016,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5577,7 +6031,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5688,7 +6142,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5703,7 +6157,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5814,7 +6268,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5829,7 +6283,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -5860,8 +6314,8 @@ the image with the handle boxes</p>
 </div>
 
                 
-                    <div id="method_setEffect" class="method item public">
-    <span class="attribute-name">setEffect</span>
+                    <div id="method_setFirstColor" class="method item">
+    <span class="attribute-name">setFirstColor</span>
 
     
         <div class="args">
@@ -5869,7 +6323,7 @@ the image with the handle boxes</p>
             
                 <li class="arg">
                     
-                        <code>effect</code>
+                        <code>value</code>
                     
                 </li>
             
@@ -5881,8 +6335,6 @@ the image with the handle boxes</p>
 
     
 
-    
-        <span class="flag public">public</span>
     
 
     
@@ -5904,7 +6356,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l258"><code>src\node\class.node.image.js:258</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l209"><code>src\node\class.node.button.js:209</code></a>
         
         </p>
 
@@ -5915,7 +6367,7 @@ the image with the handle boxes</p>
     </div>
 
     <div class="description">
-        
+        <p>Set the value for the high color of the button</p>
     </div>
 
     
@@ -5926,8 +6378,8 @@ the image with the handle boxes</p>
             
                 <li class="param">
                     
-                        <code class="param-name">effect</code>
-                        <span class="type">CGSGEffect</span>
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
@@ -5949,8 +6401,8 @@ the image with the handle boxes</p>
 </div>
 
                 
-                    <div id="method_setImage" class="method item public">
-    <span class="attribute-name">setImage</span>
+                    <div id="method_setHorizontalPadding" class="method item">
+    <span class="attribute-name">setHorizontalPadding</span>
 
     
         <div class="args">
@@ -5958,7 +6410,7 @@ the image with the handle boxes</p>
             
                 <li class="arg">
                     
-                        <code>newImage</code>
+                        <code>value</code>
                     
                 </li>
             
@@ -5970,8 +6422,6 @@ the image with the handle boxes</p>
 
     
 
-    
-        <span class="flag public">public</span>
     
 
     
@@ -5993,7 +6443,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l193"><code>src\node\class.node.image.js:193</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l357"><code>src\node\class.node.button.js:357</code></a>
         
         </p>
 
@@ -6004,7 +6454,7 @@ the image with the handle boxes</p>
     </div>
 
     <div class="description">
-        
+        <p>Set the vertical padding of the button</p>
     </div>
 
     
@@ -6015,14 +6465,362 @@ the image with the handle boxes</p>
             
                 <li class="param">
                     
-                        <code class="param-name">newImage</code>
-                        <span class="type">Image</span>
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>new Image object. Must bea already loaded before</p>
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setHorizontalPadding" class="method item">
+    <span class="attribute-name">setHorizontalPadding</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l339"><code>src\node\class.node.button.js:339</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the horizontal padding of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setLastColor" class="method item">
+    <span class="attribute-name">setLastColor</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l227"><code>src\node\class.node.button.js:227</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the value for the low color of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setMode" class="method item">
+    <span class="attribute-name">setMode</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>mode</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l453"><code>src\node\class.node.button.js:453</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Switch current mode</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">mode</code>
+                        <span class="type"><a href="..\classes\CGSGButtonMode.html" class="crosslink">CGSGButtonMode</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setRadius" class="method item">
+    <span class="attribute-name">setRadius</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l263"><code>src\node\class.node.button.js:263</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the value for the low color of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
                     </div>
 
                     
@@ -6192,6 +6990,370 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
+                        
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setShadowColor" class="method item">
+    <span class="attribute-name">setShadowColor</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l245"><code>src\node\class.node.button.js:245</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the value for the shadow color of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setText" class="method item">
+    <span class="attribute-name">setText</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l281"><code>src\node\class.node.button.js:281</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the value for text of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>button.setText(["normal", "over", "deactivated"]);</p>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_setTextColor" class="method item">
+    <span class="attribute-name">setTextColor</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l319"><code>src\node\class.node.button.js:319</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the color for text of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>button.setTextColor(["white", "green", "yellow"]);</p>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_setTextSize" class="method item">
+    <span class="attribute-name">setTextSize</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l301"><code>src\node\class.node.button.js:301</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the value for text sizes of the button</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
                          
                     </div>
 
@@ -6288,7 +7450,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -6303,7 +7465,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -6414,7 +7576,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -6429,7 +7591,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -6540,7 +7702,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -6555,7 +7717,7 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                         
+                        
                     </div>
 
                     
@@ -6726,9 +7888,9 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
-                    <div id="property__context" class="property item private">
-    <span class="attribute-name">_context</span>
-    <span class="type">CanvasRenderingContext2D</span>
+                    <div id="property__currentMode" class="property item private">
+    <span class="attribute-name">_currentMode</span>
+    <span class="type"><a href="..\classes\CGSGButtonMode.html" class="crosslink">CGSGButtonMode</a></span>
 
     
 
@@ -6751,7 +7913,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l99"><code>src\node\class.node.image.js:99</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l176"><code>src\node\class.node.button.js:176</code></a>
         
         </p>
 
@@ -6761,9 +7923,107 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
     </div>
 
     <div class="description">
+        <p>Current mode of the button</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> CGSGButtonMode.NORMAL</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__firstColors" class="property item private">
+    <span class="attribute-name">_firstColors</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l69"><code>src\node\class.node.button.js:69</code></a>
+        
+        </p>
+
+        
+
         
     </div>
 
+    <div class="description">
+        <p>High colors for the button in 3 mode : normal, over, deactivated</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> [&quot;#858585&quot;, &quot;#5F5F5F&quot;, &quot;#9C9C9C&quot;]</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__horizontalPadding" class="property item private">
+    <span class="attribute-name">_horizontalPadding</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l149"><code>src\node\class.node.button.js:149</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Padding applied to the left and right of the text</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 15</p>
     
 
     
@@ -6805,52 +8065,6 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 
     <div class="description">
         <p>ID for the node. Should be filled by the developer. The framework will never use it.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__img" class="property item private">
-    <span class="attribute-name">_img</span>
-    <span class="type">Image</span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l78"><code>src\node\class.node.image.js:78</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>the image object itself</p>
     </div>
 
     
@@ -6904,9 +8118,9 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
-                    <div id="property__isLoaded" class="property item private">
-    <span class="attribute-name">_isLoaded</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    <div id="property__lastColors" class="property item private">
+    <span class="attribute-name">_lastColors</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
     
 
@@ -6929,7 +8143,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l93"><code>src\node\class.node.image.js:93</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l77"><code>src\node\class.node.button.js:77</code></a>
         
         </p>
 
@@ -6939,9 +8153,11 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
     </div>
 
     <div class="description">
-        
+        <p>Low color for the button in 3 mode : normal, over, deactivated</p>
     </div>
 
+    
+        <p><strong>Default:</strong> [&quot;#606060&quot;, &quot;#4B4B4B&quot;, &quot;#747474&quot;]</p>
     
 
     
@@ -6993,9 +8209,9 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
-                    <div id="property__tmpCanvas" class="property item private">
-    <span class="attribute-name">_tmpCanvas</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/HTMLElement" class="crosslink external" target="_blank">HTMLElement</a></span>
+                    <div id="property__radiuses" class="property item private">
+    <span class="attribute-name">_radiuses</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
     
 
@@ -7018,7 +8234,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l114"><code>src\node\class.node.image.js:114</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l95"><code>src\node\class.node.button.js:95</code></a>
         
         </p>
 
@@ -7028,7 +8244,245 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
     </div>
 
     <div class="description">
-        <p>Fake canvas to pre-render the image</p>
+        <p>Radius for the round corner in 3 mode : normal, over, deactivated</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> [10, 10, 10]</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__shadowColors" class="property item private">
+    <span class="attribute-name">_shadowColors</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l86"><code>src\node\class.node.button.js:86</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Shadow color for the button in 3 mode : normal, over, deactivated. Can be null.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> [null, null, null]</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__textColors" class="property item private">
+    <span class="attribute-name">_textColors</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l122"><code>src\node\class.node.button.js:122</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Color for the text in the 3 mode  : normal, over, deactivated</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> [&quot;white&quot;, &quot;white&quot;, &quot;gray&quot;]</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__texts" class="property item private">
+    <span class="attribute-name">_texts</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l104"><code>src\node\class.node.button.js:104</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Text for the button in 3 mode : normal, over, deactivated</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> [text, text, text]</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__textSizes" class="property item private">
+    <span class="attribute-name">_textSizes</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l113"><code>src\node\class.node.button.js:113</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Text size for the button in 3 mode : normal, over, deactivated</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> [12, 12, 12]</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__textsNode" class="property item">
+    <span class="attribute-name">_textsNode</span>
+    <span class="type"><a href="..\classes\CGSGNodeText.html" class="crosslink">CGSGNodeText</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l131"><code>src\node\class.node.button.js:131</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Text Node encapsulating the text rendering</p>
     </div>
 
     
@@ -7039,9 +8493,9 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
-                    <div id="property__urlImage" class="property item private">
-    <span class="attribute-name">_urlImage</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div id="property__tmpCanvas" class="property item private">
+    <span class="attribute-name">_tmpCanvas</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
     
 
@@ -7064,7 +8518,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l64"><code>src\node\class.node.image.js:64</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l140"><code>src\node\class.node.button.js:140</code></a>
         
         </p>
 
@@ -7074,9 +8528,57 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
     </div>
 
     <div class="description">
-        <p>URL of the image</p>
+        <p>Fake canvases to pre-render static display</p>
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__verticalPadding" class="property item private">
+    <span class="attribute-name">_verticalPadding</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l157"><code>src\node\class.node.button.js:157</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Padding applied to the top and bottom of the text</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 5</p>
     
 
     
@@ -7149,7 +8651,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l51"><code>src\node\class.node.image.js:51</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l166"><code>src\node\class.node.button.js:166</code></a>
         
         </p>
 
@@ -7162,6 +8664,8 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
         
     </div>
 
+    
+        <p><strong>Default:</strong> &quot;CGSGNodeButton&quot;</p>
     
 
     
@@ -7206,52 +8710,6 @@ Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead</p>
 
     
         <p><strong>Default:</strong> CGSGDimension(0, 0)</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_effect" class="property item">
-    <span class="attribute-name">effect</span>
-    <span class="type">CGSGEffect</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l57"><code>src\node\class.node.image.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>the selected effect to be applied</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> null</p>
     
 
     
@@ -7474,7 +8932,7 @@ True if the node is being moved manually, false otherwise</p>
 </div>
 
                 
-                    <div id="property_isProportionalResize" class="property item">
+                    <div id="property_isProportionalResize" class="property item inherited">
     <span class="attribute-name">isProportionalResize</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
 
@@ -7488,16 +8946,13 @@ True if the node is being moved manually, false otherwise</p>
 
     <div class="meta">
         
-            <p>Inherited from
-            <a href="..\classes\CGSGNode.html#property_isProportionalResize">
-                CGSGNode
-            </a>
             
-            but overwritten in
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#property_isProportionalResize">CGSGNode</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l72"><code>src\node\class.node.image.js:72</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l114"><code>src\node\class.node.js:114</code></a>
         
         </p>
 
@@ -7507,11 +8962,9 @@ True if the node is being moved manually, false otherwise</p>
     </div>
 
     <div class="description">
-        
+        <p>If true, the node will be proportionally resized</p>
     </div>
 
-    
-        <p><strong>Default:</strong> true</p>
     
 
     
@@ -7979,52 +9432,6 @@ Use CGSGScene::scenegraph.selectNode(nodeToSelect) to select a node</p>
 
     <div class="description">
         <p>Callback on end of drag this node</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> null</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_onLoadEnd" class="property item">
-    <span class="attribute-name">onLoadEnd</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l106"><code>src\node\class.node.image.js:106</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Event Fired when the image is finally loaded</p>
     </div>
 
     
@@ -8773,50 +10180,6 @@ Never use it to scale or resize the node, use scaleBy/scaleWith/scaleTo instead<
 
     
         <p><strong>Default:</strong> 2</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_slice" class="property item">
-    <span class="attribute-name">slice</span>
-    <span class="type"><a href="..\classes\CGSGRegion.html" class="crosslink">CGSGRegion</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l85"><code>src\node\class.node.image.js:85</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>the region on the image to render</p>
-    </div>
-
     
 
     

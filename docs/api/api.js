@@ -2,11 +2,13 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "CGSGAnimationKey",
+        "CGSGButtonMode",
         "CGSGColor",
         "CGSGDimension",
         "CGSGHandleBox",
         "CGSGMath",
         "CGSGNode",
+        "CGSGNodeButton",
         "CGSGNodeCircle",
         "CGSGNodeEllipse",
         "CGSGNodeImage",

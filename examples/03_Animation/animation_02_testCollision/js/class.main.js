@@ -58,33 +58,31 @@ var CGMain = CGSGScene.extend(
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
-			this.textNode = new CGSGNodeText(10, 50, "Click Me");
-			//bind the "this.moveSquare" function to this. See Prototype.js "bind" function.
+			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
+			//bind the "this.moveSquare" function to this.
 			var bindMoveSquare = this.moveSquare.bind(this);
-			//add the onClick event to the text
-			this.textNode.isClickable = true;
-			this.textNode.onClick = function (event) {
+			buttonNode.onClick = function (event) {
 				bindMoveSquare();
 			}
 			//add the textNode as child of the root
-			this.rootNode.addChild(this.textNode);
+			this.rootNode.addChild(buttonNode);
 
 			//the blue square
-			this.blueSquareNode = new CGSGNodeSquare(220, 140, 260, 160);
+			this.blueSquareNode = new CGSGNodeSquare(220, 80, 260, 160);
 			this.blueSquareNode.color = "blue";
 			this.blueSquareNode.isResizable = true;
 			this.blueSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.blueSquareNode);
 
 			//the red square
-			this.redSquareNode = new CGSGNodeSquare(0, 160, 100, 100);
+			this.redSquareNode = new CGSGNodeSquare(0, 60, 100, 100);
 			this.redSquareNode.color = "red";
 			this.redSquareNode.isResizable = true;
 			this.redSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.redSquareNode);
 
 			//the log text
-			this.logNode = new CGSGNodeText(160, 50, "Collision : false");
+			this.logNode = new CGSGNodeText(160, 10, "Collision : false");
 			this.rootNode.addChild(this.logNode);
 
 			//detect collision each frame

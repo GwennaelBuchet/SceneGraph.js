@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.shape.square.js - cgSceneGraph</title>
+    <title>CGSGButtonMode - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -41,6 +41,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -50,6 +52,8 @@
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
@@ -146,130 +150,235 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.shape.square.js</h1>
+                        <h1>CGSGButtonMode Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
- *
- * License&#x2F;Terms of Use
- *
- * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
- * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
- * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
- *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
- *
- *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
- *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
- *
- *  These Terms of Use are subject to French law.
- *&#x2F;
+    
 
-&#x2F;**
- * A CGSGNodeSquare represent a basic square
- *
- * @class CGSGNodeSquare
- * @module Node
- * @extends CGSGNode
- * @constructor
- * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
- * @param {Number} width Relative dimension
- * @param {Number} height Relative Dimension
- * @type {CGSGNodeSquare}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- *&#x2F;
-var CGSGNodeSquare = CGSGNode.extend(
-	{
-		initialize : function(x, y, width, height) {
-			this._super(x, y, width, height);
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l26"><code>src\node\class.node.button.js:26</code></a>
+        </div>
+    
 
-			&#x2F;**
-			 * Color  to fill the square
-			 * @property color
-			 * @default &quot;#444444&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.color = &quot;#444444&quot;;
-			&#x2F;**
-			 * Color to stroke the square
-			 * @property lineColor
-			 * @default &quot;#222222&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.lineColor = &quot;#222222&quot;;
-			&#x2F;**
-			 * Width of the line that stroke the square.
-			 * Let 0 if you don&#x27;t want to stroke the square.
-			 * @property lineWidth
-			 * @default 0
-			 * @type {Number}
-			 *&#x2F;
-			this.lineWidth = 0;
+    
+        
+            Module: <a href="../modules/Node.html">Node</a>
+        
+    
 
-			&#x2F;**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 *&#x2F;
-			this.classType = &quot;CGSGNodeSquare&quot;;
-		},
+    
+</div>
 
-		&#x2F;**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @override
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * *&#x2F;
-		render : function(context) {
-			&#x2F;&#x2F;save current state
-			this.beforeRender(context);
 
-			context.globalAlpha = this.globalAlpha;
-			&#x2F;&#x2F;draw this zone
-			context.fillStyle = this.color;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
 
-			&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
-			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+<div class="box intro">
+    <p>List the modes for a button : NORMAL, OVER, DEACTIVATED.</p>
+</div>
 
-			context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
 
-			&#x2F;&#x2F;restore state
-			this.afterRender(context);
-		},
 
-		&#x2F;**
-		 * @method copy
-		 * @return {CGSGNodeSquare} a copy of this node
-		 *&#x2F;
-		copy : function() {
-			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
-			                              this.dimension.height);
-			&#x2F;&#x2F;call the super method
-			node = this._super(node);
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
-		}
-	}
-);
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
 
-    </pre>
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#property_DEACTIVATED">DEACTIVATED</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_NORMAL">NORMAL</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_OVER">OVER</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_DEACTIVATED" class="property item">
+    <span class="attribute-name">DEACTIVATED</span>
+    <span class="type">Unknown</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l43"><code>src\node\class.node.button.js:43</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_NORMAL" class="property item">
+    <span class="attribute-name">NORMAL</span>
+    <span class="type">Unknown</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l35"><code>src\node\class.node.button.js:35</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_OVER" class="property item">
+    <span class="attribute-name">OVER</span>
+    <span class="type">Unknown</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.button.js.html#l39"><code>src\node\class.node.button.js:39</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

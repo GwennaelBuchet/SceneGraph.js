@@ -610,13 +610,10 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @param absoluteScale
 		 * @param ghostContext
 		 * @param recursively
-		 * @param canvasWidth
-		 * @param canvasHeight
 		 * @param condition
 		 * @return {*}
 		 */
-		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, canvasWidth, canvasHeight,
-		                    condition) {
+		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, condition) {
 			return null;
 		},
 

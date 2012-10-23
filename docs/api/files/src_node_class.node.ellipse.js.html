@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.shape.circle.js - cgSceneGraph</title>
+    <title>src\node\class.node.ellipse.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -41,6 +41,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -50,6 +52,8 @@
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
@@ -146,7 +150,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.shape.circle.js</h1>
+                        <h1 class="file-heading">File: src\node\class.node.ellipse.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -176,94 +180,57 @@
  *&#x2F;
 
 &#x2F;**
- * A CGSGNodeCircle represent a basic circle.
+ * A CGSGNodeEllipse represent a basic ellipse.
  * By default, the pickNodeMethod used to detect the node under the mice is CGSGPickNodeMethod.GHOST.
- * If you don&#x27;t need precision on detection on your circles, just change the property to pickNodeMethod.REGION.
+ * If you don&#x27;t need precision on detection on your ellipses, just change the property to pickNodeMethod.REGION.
  *
- * @class CGSGNodeCircle
+ * @class CGSGNodeEllipse
  * @module Node
  * @extends CGSGNode
  * @constructor
- * @param {Number} centerX Relative position
- * @param {Number} centerY Relative position
- * @param {Number} radius Radius
- * @type {CGSGNodeCircle}
+ * @param {Number} x Relative position on X
+ * @param {Number} y Relative position on X
+ * @param {Number} width Relative dimension
+ * @param {Number} height Relative Dimension
+ * @type {CGSGNodeEllipse}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
-var CGSGNodeCircle = CGSGNode.extend(
+var CGSGNodeEllipse = CGSGNode.extend(
 	{
-		initialize : function(centerX, centerY, radius) {
+		initialize : function(x, y, width, height) {
+			this._super(x, y, width, height);
 
 			&#x2F;**
-			 * @property radius
-			 * @type {Number}
-			 * @private
-			 *&#x2F;
-			this._radius = radius;
-			&#x2F;**
-			 * @property center
-			 * @type {CGSGPosition}
-			 * @private
-			 *&#x2F;
-			this._center = new CGSGPosition(centerX, centerY);
-
-			this._super(0, 0, radius * 2.0, radius * 2.0);
-			this.translateTo(centerX - radius, centerY - radius);
-
-			&#x2F;**
-			 * Color  to fill the circle
+			 * Color  to fill the ellipse
 			 * @property color
 			 * @default &quot;#444444&quot;
 			 * @type {String}
 			 *&#x2F;
 			this.color = &quot;#444444&quot;;
 			&#x2F;**
-			 * Color to stroke the circle
+			 * Color to stroke the ellipse
 			 * @property lineColor
 			 * @default &quot;#222222&quot;
 			 * @type {String}
 			 *&#x2F;
 			this.lineColor = &quot;#222222&quot;;
 			&#x2F;**
-			 * Width of the line that stroke the circle.
-			 * Let 0 if you don&#x27;t want to stroke the circle.
+			 * Width of the line that stroke the ellipse.
+			 * Let 0 if you don&#x27;t want to stroke the ellipse.
 			 * @property lineWidth
 			 * @default 0
 			 * @type {Number}
 			 *&#x2F;
 			this.lineWidth = 0;
 
-			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
-			this.isProportionalResize = true;
-
 			&#x2F;**
 			 * @property classType
 			 * @readonly
 			 * @type {String}
 			 *&#x2F;
-			this.classType = &quot;CGSGNodeCircle&quot;;
-		},
+			this.classType = &quot;CGSGNodeEllipse&quot;;
 
-		&#x2F;**
-		 * Set the new radius and compute new dimension of the circle
-		 * @method setRadius
-		 * @param {Number} radius
-		 *&#x2F;
-		setRadius : function(radius) {
-			this._radius = radius;
-			this.dimension.width = this._radius * 2.0;
-			this.dimension.height = this.dimension.width;
-		},
-
-		&#x2F;**
-		 * Set the new center and compute new position of the circle
-		 * @method setCenter
-		 * @param {CGSGPosition} center
-		 *&#x2F;
-		setCenter : function(center) {
-			this._center = center;
-			this.position.x = this._center.x - this._radius;
-			this.position.y = this._center.y - this._radius;
+			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
 		},
 
 		&#x2F;**
@@ -279,9 +246,23 @@ var CGSGNodeCircle = CGSGNode.extend(
 
 			context.globalAlpha = this.globalAlpha;
 
+			var centerX = this.dimension.width &#x2F; 2;
+			var centerY = this.dimension.height &#x2F; 2;
+
 			context.beginPath();
-			context.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0, 2 * Math.PI,
-			            false);
+
+			context.moveTo(centerX, 0);
+
+			context.bezierCurveTo(
+				this.dimension.width, 0,
+				this.dimension.width, this.dimension.height,
+				centerX, this.dimension.height);
+
+			context.bezierCurveTo(
+				0, this.dimension.height,
+				0, 0,
+				centerX, 0);
+
 			context.fillStyle = this.color;
 			context.fill();
 			if (this.lineWidth &gt; 0) {
@@ -290,56 +271,10 @@ var CGSGNodeCircle = CGSGNode.extend(
 				context.stroke();
 			}
 
+			context.closePath();
+
 			&#x2F;&#x2F;restore state
 			this.afterRender(context);
-		},
-
-		&#x2F;**
-		 * Replace current dimension by these new ones and compute new radius
-		 * @method resizeTo
-		 * @param {Number} newWidth
-		 * @param {Number} newHeight
-		 * *&#x2F;
-		resizeTo : function(newWidth, newHeight) {
-			this.dimension.resizeTo(newWidth, newHeight);
-
-			this._computeResizedRadius();
-		},
-
-		&#x2F;**
-		 * Multiply current dimension by these new ones
-		 * @method resizeTBy
-		 * @param {Number} widthFactor
-		 * @param {Number} heightFactor
-		 * *&#x2F;
-		resizeBy : function(widthFactor, heightFactor) {
-			this.dimension.resizeBy(widthFactor, heightFactor);
-
-			this._computeResizedRadius();
-		},
-
-		&#x2F;**
-		 * Increase&#x2F;decrease current dimension with adding values
-		 * @method resizeWith
-		 * @param {Number} width
-		 * @param {Number} height
-		 * *&#x2F;
-		resizeWith : function(width, height) {
-			this.dimension.resizeWith(width, height);
-
-			this._computeResizedRadius();
-		},
-
-		&#x2F;**
-		 * @method _computeResizedRadius
-		 * @private
-		 *&#x2F;
-		_computeResizedRadius : function() {
-			var r = this._radius;
-			this._radius = Math.min(this.dimension.width, this.dimension.height) &#x2F; 2.0;
-			r = -2.0 * (r - this._radius);
-			this._center.x += r;
-			this._center.y += r;
 		},
 
 		&#x2F;**
@@ -351,10 +286,23 @@ var CGSGNodeCircle = CGSGNode.extend(
 			this.beforeRenderGhost(ghostContext);
 
 			if (this.globalAlpha &gt; 0) {
+				var centerX = this.dimension.width &#x2F; 2;
+				var centerY = this.dimension.height &#x2F; 2;
+
 				ghostContext.beginPath();
-				ghostContext.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0,
-				                 2 * Math.PI,
-				                 false);
+
+				ghostContext.moveTo(centerX, 0);
+
+				ghostContext.bezierCurveTo(
+					this.dimension.width, 0,
+					this.dimension.width, this.dimension.height,
+					centerX, this.dimension.height);
+
+				ghostContext.bezierCurveTo(
+					0, this.dimension.height,
+					0, 0,
+					centerX, 0);
+
 				ghostContext.fillStyle = this.color;
 				ghostContext.fill();
 				if (this.lineWidth &gt; 0) {
@@ -362,6 +310,8 @@ var CGSGNodeCircle = CGSGNode.extend(
 					ghostContext.strokeStyle = this.lineColor;
 					ghostContext.stroke();
 				}
+
+				ghostContext.closePath();
 			}
 
 			&#x2F;&#x2F;restore state
@@ -370,11 +320,11 @@ var CGSGNodeCircle = CGSGNode.extend(
 
 		&#x2F;**
 		 * @method copy
-		 * @return {CGSGNodeCircle} a copy of this node
+		 * @return {CGSGNodeEllipse} a copy of this node
 		 *&#x2F;
 		copy : function() {
-			var node = new CGSGNodeCircle(this.position.x, this.position.y, this.dimension.width,
-			                              this.dimension.height);
+			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
+			                               this.dimension.height);
 			&#x2F;&#x2F;call the super method
 			node = this._super(node);
 

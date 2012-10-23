@@ -737,8 +737,7 @@ var CGSGScene = Object.extend(
 				var n = null;
 				//first test the mouse over the current _nodeMouseOver. If it's ok, no need to traverse other
 				if (cgsgExist(this._nodeMouseOver)) {
-					n = this._nodeMouseOver.pickNode(this._mousePosition, null, cgsgGhostContext, false,
-					                                 cgsgCanvas.width, cgsgCanvas.height, null);
+					n = this._nodeMouseOver.pickNode(this._mousePosition, null, cgsgGhostContext, false, null);
 
 					if (n === null) {
 						this._nodeMouseOver.isMouseOver = false;

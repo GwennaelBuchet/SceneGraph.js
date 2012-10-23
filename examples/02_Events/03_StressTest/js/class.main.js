@@ -35,17 +35,9 @@ var CGMain = CGSGScene.extend(
             this._super(canvas);
 
             ////// INITIALIZATION /////////
-
-            this.initializeCanvas();
             this.createScene();
 
             this.startPlaying();
-        },
-
-        initializeCanvas:function () {
-            //redimensionnement du canvas pour être full viewport en largeur
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
         },
 
         /**

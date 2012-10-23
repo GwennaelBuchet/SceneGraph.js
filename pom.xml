@@ -85,13 +85,14 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>animation/class.anim.key.js</include>
                                 <include>animation/class.anim.timeline.js</include>
                                 <include>node/class.node.js</include>
-                                <include>node/class.text.js</include>
-                                <include>node/class.webview.js</include>
-                                <include>node/class.shape.square.js</include>
-                                <include>node/class.shape.circle.js</include>
-                                <include>node/class.shape.ellipse.js</include>
-                                <include>node/class.image.js</include>
-                                <include>node/class.animatedSprite.js</include>
+                                <include>node/class.node.text.js</include>
+                                <include>node/class.node.webview.js</include>
+                                <include>node/class.node.square.js</include>
+                                <include>node/class.node.circle.js</include>
+                                <include>node/class.node.ellipse.js</include>
+                                <include>node/class.node.image.js</include>
+                                <include>node/class.node.animatedSprite.js</include>
+                                <include>node/class.node.button.js</include>
                                 <include>animation/class.particles.js</include>
                                 <include>class.scenegraph.js</include>
                                 <include>class.scene.js</include>
