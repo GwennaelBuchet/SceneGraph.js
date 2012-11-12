@@ -5,17 +5,20 @@
  *
  * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
- * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory
+ * conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions
+ *   of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
  *
  *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
@@ -23,20 +26,22 @@
  *  These Terms of Use are subject to French law.
  */
 
+"use strict";
+
 /**
  * @module Animation
  * @class CGSGTimeline
  * @extends {Object}
  * @constructor
  * @param {CGSGNode} parentNode
- * @param {string} attribute string representing the attribute to be animated (eg: "position.x", "rotation.angle", "fill", ...)
+ * @param {string} attribute string representing the attribute to be animated (eg: "position.x", "rotation.angle", ...)
  * @param {string} method A string representing the interpolation method = "linear"
  * @type {CGSGTimeline}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGTimeline = Object.extend(
 	{
-		initialize : function(parentNode, attribute, method) {
+		initialize : function (parentNode, attribute, method) {
 
 			/**
 			 * The animated nodes
@@ -52,10 +57,9 @@ var CGSGTimeline = Object.extend(
 			 */
 			this.attribute = attribute;
 
-			if (arguments.length == 3) {
+			if (arguments.length === 3) {
 				this.method = method;
-			}
-			else {
+			} else {
 				this.method = "linear";
 			}
 			/**
@@ -94,7 +98,7 @@ var CGSGTimeline = Object.extend(
 		 * @param {Number} frame. Must be an integer value.
 		 * @param {Number} value
 		 */
-		addKey : function(frame, value) {
+		addKey : function (frame, value) {
 			this._listKeys.push(new CGSGAnimationKey(frame, value));
 			this.sortByFrame();
 
@@ -110,10 +114,10 @@ var CGSGTimeline = Object.extend(
 		 * @method removeKey
 		 * @param frame {Number} Must be an integer value.
 		 */
-		removeKey : function(frame) {
-			var key = null;
-			for (var k = 0; k < this._listKeys.length - 1; k++) {
-				if (this._listKeys[k].frame == frame) {
+		removeKey : function (frame) {
+			var key = null, k = 0;
+			for (k; k < this._listKeys.length - 1; k++) {
+				if (this._listKeys[k].frame === frame) {
 					key = this._listKeys[k];
 					break;
 				}
@@ -132,7 +136,7 @@ var CGSGTimeline = Object.extend(
 		 * @public
 		 * @method removeAll
 		 */
-		removeAll : function() {
+		removeAll : function () {
 			this.listValues.clear();
 			this._listKeys.clear();
 			this._listSteps.clear();
@@ -143,11 +147,10 @@ var CGSGTimeline = Object.extend(
 		 * @private
 		 * @method _computeStepsValues
 		 */
-		_computeStepsValues : function() {
+		_computeStepsValues : function () {
 			this._listSteps.clear();
-			var nbFrameInSection = 0;
-			var totalDistance = 0;
-			for (var k = 0; k < this._listKeys.length - 1; k++) {
+			var nbFrameInSection = 0, totalDistance = 0, k = 0;
+			for (k; k < this._listKeys.length - 1; k++) {
 				nbFrameInSection = this._listKeys[k + 1].frame - this._listKeys[k].frame;
 				totalDistance = this._listKeys[k + 1].value - this._listKeys[k].value;
 				this._listSteps.push(totalDistance / nbFrameInSection);
@@ -159,7 +162,7 @@ var CGSGTimeline = Object.extend(
 		 * @method getNbKeys
 		 * @return {Number} the number of keys in this timeline. Must be an integer value.
 		 */
-		getNbKeys : function() {
+		getNbKeys : function () {
 			return this._listKeys.length;
 		},
 
@@ -168,8 +171,8 @@ var CGSGTimeline = Object.extend(
 		 * @public
 		 * @method sortByFrame
 		 */
-		sortByFrame : function() {
-			this._listKeys.sort(function(a, b) {
+		sortByFrame : function () {
+			this._listKeys.sort(function (a, b) {
 				return a.frame - b.frame;
 			});
 		},
@@ -179,11 +182,11 @@ var CGSGTimeline = Object.extend(
 		 * @public
 		 * @method computeValues
 		 * @param fromFrame {Number} first frame at which one the computing must start. Must be an integer value.
-		 * @param method {String} interpolation method : "linear", "catmullrom". If method is specified, it replaces the method
+		 * @param method {String} interpolation method : "linear"
 		 *  for this timeline instance
 		 */
-		computeValues : function(fromFrame, method) {
-			if (arguments.length == 2) {
+		computeValues : function (fromFrame, method) {
+			if (arguments.length === 2) {
 				this.method = method;
 			}
 			//empty the list of values
@@ -195,11 +198,8 @@ var CGSGTimeline = Object.extend(
 				return;
 			}
 
-			var value = 0;
-			var duration = 0;
-			var f = 0;
-			var v = 0;
-			for (var k = 0; k < nbKeys - 1; ++k) {
+			var value = 0, duration = 0, f = 0, v = 0, k = 0;
+			for (k; k < nbKeys - 1; ++k) {
 				duration = this._listKeys[k + 1].frame - this._listKeys[k].frame;
 				for (f = 0; f <= duration; ++f) {
 					value = this.computeValue(k, this._listKeys[k].frame + f, method);
@@ -215,33 +215,36 @@ var CGSGTimeline = Object.extend(
 		 * @param keyIndex {Number} Must be an integer value.
 		 * @param frame {Number} Must be an integer value.
 		 * @param method {String} = "linear"
+		 * @return {*} Object with 2 properties : frame and value, or undefined if keyIndex < 0
 		 */
-		computeValue : function(keyIndex, frame, method) {
+		computeValue : function (keyIndex, frame, method) {
 			if (keyIndex < 0) {
 				return undefined;
 			}
 			var previousKey = this._listKeys[keyIndex];
 			var nextKey = this._listKeys[keyIndex + 1];
 
-			if (frame == previousKey.frame) {
+			if (frame === previousKey.frame) {
 				return {frame : frame, value : previousKey.value};
 			}
-			if (frame == nextKey.frame) {
+			if (frame === nextKey.frame) {
 				return {frame : frame, value : nextKey.value};
 			}
 
 			var currentStep = frame - previousKey.frame;
-			if (method == "linear") {
+			if (method === "linear") {
 				return {frame : frame, value : currentStep * this._listSteps[keyIndex] + previousKey.value};
 			}
+
+			return undefined;
 		},
 
 		/**
 		 * @method getFirstKey
 		 * @return {CGSGAnimationKey} the first key frame of this timeline
 		 */
-		getFirstKey : function() {
-			if (this.getNbKeys() == 0) {
+		getFirstKey : function () {
+			if (this.getNbKeys() === 0) {
 				return null;
 			}
 
@@ -252,8 +255,8 @@ var CGSGTimeline = Object.extend(
 		 * @method getLastKey
 		 * @return {CGSGAnimationKey} the last key frame of this timeline
 		 */
-		getLastKey : function() {
-			if (this.getNbKeys() == 0) {
+		getLastKey : function () {
+			if (this.getNbKeys() === 0) {
 				return null;
 			}
 
@@ -271,22 +274,23 @@ var CGSGTimeline = Object.extend(
 		 * If the frame is before the first key, return the first key value
 		 * If the frame is after the last key, return the last key value
 		 */
-		getValue : function(frame) {
-			var nbKeys = this.getNbKeys()
+		getValue : function (frame) {
+			var nbKeys = this.getNbKeys();
 
 			//if no keys : no animation
-			if (nbKeys == 0 && this.listValues.length == 0) {
+			if (nbKeys === 0 && this.listValues.length === 0) {
 				return undefined;
 			}
 
 			//I have keys, but no precomputed values, so compute value for this frame
-			if (this.listValues.length == 0) {
+			if (this.listValues.length === 0) {
 				//get keys from which the frame is between
 				var previousKeyIndex = -1;
 				if (frame < this._listKeys[0].frame) {
 					return undefined;
 				}
-				for (var k = 1; k < nbKeys; k++) {
+				var k;
+				for (k = 1; k < nbKeys; k++) {
 					if (frame < this._listKeys[k].frame) {
 						previousKeyIndex = k - 1;
 						break;
@@ -309,13 +313,15 @@ var CGSGTimeline = Object.extend(
 				return this.listValues[this.listValues.length - 1];
 			}
 
-			var index = 0;
+			var i;
 			//search for value at the frame
-			for (var i = 0; i < this.listValues.length; i++) {
-				if (this.listValues[i].frame == frame) {
+			for (i = 0; i < this.listValues.length; i++) {
+				if (this.listValues[i].frame === frame) {
 					return this.listValues[i];
 				}
 			}
+
+			return undefined;
 		},
 
 		/**
@@ -323,13 +329,13 @@ var CGSGTimeline = Object.extend(
 		 * @method exportValues
 		 * @return {Array}
 		 */
-		exportValues : function() {
-			if (this.listValues.length == 0) {
+		exportValues : function () {
+			if (this.listValues.length === 0) {
 				this.computeValues(cgsgCurrentFrame, this.method);
 			}
 
-			var values = [];
-			for (var i = 0; i < this.listValues.length; i++) {
+			var values = [], i;
+			for (i = 0; i < this.listValues.length; i++) {
 				values.push(this.listValues[i].value);
 			}
 			return values;
@@ -342,9 +348,10 @@ var CGSGTimeline = Object.extend(
 		 * @param newValues {Array} of new values
 		 * @param startFrame {Number} Must be an integer value.
 		 */
-		importValues : function(newValues, startFrame) {
+		importValues : function (newValues, startFrame) {
 			this.listValues.clear();
-			for (var i = 0; i < newValues.length; i++) {
+			var i;
+			for (i = 0; i < newValues.length; i++) {
 				this.listValues.push({frame : startFrame + i, value : newValues[i]});
 			}
 		}

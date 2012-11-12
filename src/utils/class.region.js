@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -22,6 +22,8 @@
  *
  *  These Terms of Use are subject to French law.
  * */
+
+"use strict";
 
 /**
  * A Position object
@@ -35,7 +37,7 @@
  */
 var CGSGPosition = CGSGVector2D.extend(
 	{
-		initialize : function(x, y) {
+		initialize : function (x, y) {
 			this._super(x, y);
 		},
 
@@ -45,7 +47,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @method copy
 		 * @return {CGSGPosition}
 		 */
-		copy : function() {
+		copy : function () {
 			return new CGSGPosition(this.x, this.y);
 		},
 
@@ -55,7 +57,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @param {Number} newX
 		 * @param {Number} newY
 		 */
-		translateTo : function(newX, newY) {
+		translateTo : function (newX, newY) {
 			this.x = newX;
 			this.y = newY;
 		},
@@ -67,7 +69,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @param {Number} x
 		 * @param {Number} y
 		 */
-		translateWith : function(x, y) {
+		translateWith : function (x, y) {
 			this.x += x;
 			this.y += y;
 		},
@@ -79,7 +81,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @param {Number} x
 		 * @param {Number} y
 		 */
-		translateBy : function(x, y) {
+		translateBy : function (x, y) {
 			this.x *= x;
 			this.y *= y;
 		}
@@ -98,7 +100,7 @@ var CGSGPosition = CGSGVector2D.extend(
  */
 var CGSGScale = CGSGPosition.extend(
 	{
-		initialize : function(x, y) {
+		initialize : function (x, y) {
 			this._super(x, y);
 		}
 	}
@@ -115,7 +117,7 @@ var CGSGScale = CGSGPosition.extend(
  */
 var CGSGRotation = Object.extend(
 	{
-		initialize : function(angle) {
+		initialize : function (angle) {
 			this.angle = angle;
 		},
 
@@ -125,7 +127,7 @@ var CGSGRotation = Object.extend(
 		 * @method copy
 		 * @return {CGSGRotation}
 		 */
-		copy : function() {
+		copy : function () {
 			return new CGSGRotation(this.angle);
 		},
 
@@ -135,7 +137,7 @@ var CGSGRotation = Object.extend(
 		 * @method rotateTo
 		 * @param {Number} newAngle
 		 */
-		rotateTo : function(newAngle) {
+		rotateTo : function (newAngle) {
 			this.angle = newAngle;
 		},
 
@@ -145,7 +147,7 @@ var CGSGRotation = Object.extend(
 		 * @method rotateBy
 		 * @param {Number} rotateFactor
 		 */
-		rotateBy : function(rotateFactor) {
+		rotateBy : function (rotateFactor) {
 			this.multiply(rotateFactor);
 		},
 
@@ -155,7 +157,7 @@ var CGSGRotation = Object.extend(
 		 * @method rotateWith
 		 * @param {Number} angle
 		 */
-		rotateWith : function(angle) {
+		rotateWith : function (angle) {
 			this.add(angle);
 		},
 
@@ -165,7 +167,7 @@ var CGSGRotation = Object.extend(
 		 * @method add
 		 * @param {Number} angle
 		 */
-		add : function(angle) {
+		add : function (angle) {
 			this.angle += angle;
 		},
 
@@ -175,7 +177,7 @@ var CGSGRotation = Object.extend(
 		 * @method substract
 		 * @param {Number} angle
 		 */
-		substract : function(angle) {
+		substract : function (angle) {
 			this.angle -= angle;
 		},
 
@@ -185,7 +187,7 @@ var CGSGRotation = Object.extend(
 		 * @method multiply
 		 * @param {Number} angle
 		 */
-		multiply : function(angle) {
+		multiply : function (angle) {
 			this.angle *= angle;
 		}
 	}
@@ -203,7 +205,7 @@ var CGSGRotation = Object.extend(
  */
 var CGSGDimension = CGSGVector2D.extend(
 	{
-		initialize : function(width, height) {
+		initialize : function (width, height) {
 
 			this._super(width, height);
 
@@ -227,7 +229,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @override
 		 * @return {CGSGDimension}
 		 */
-		copy : function() {
+		copy : function () {
 			return new CGSGDimension(this.width, this.height);
 		},
 
@@ -237,7 +239,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} newWidth
 		 * @param {Number} newHeight
 		 * */
-		resizeTo : function(newWidth, newHeight) {
+		resizeTo : function (newWidth, newHeight) {
 			if (newWidth > 0) {
 				this.width = newWidth;
 			}
@@ -252,7 +254,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} widthFactor
 		 * @param {Number} heightFactor
 		 * */
-		resizeBy : function(widthFactor, heightFactor) {
+		resizeBy : function (widthFactor, heightFactor) {
 			if (widthFactor > 0) {
 				this.width *= widthFactor;
 			}
@@ -267,7 +269,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} width
 		 * @param {Number} height
 		 * */
-		resizeWith : function(width, height) {
+		resizeWith : function (width, height) {
 			if (this.width + width > 0) {
 				this.width += width;
 			}
@@ -292,7 +294,7 @@ var CGSGDimension = CGSGVector2D.extend(
  */
 var CGSGRegion = Object.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize : function (x, y, width, height) {
 			/**
 			 * @property position
 			 * @type {CGSGPosition}
@@ -309,7 +311,7 @@ var CGSGRegion = Object.extend(
 		 * @method copy
 		 * @return {CGSGRegion}
 		 */
-		copy : function() {
+		copy : function () {
 			return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
 		},
 
@@ -317,7 +319,7 @@ var CGSGRegion = Object.extend(
 		 * @method add
 		 * @param region {CGSGRegion}
 		 */
-		add : function(region) {
+		add : function (region) {
 			this.position.translateWith(region.position.x, region.position.y);
 			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
 		},
@@ -326,7 +328,7 @@ var CGSGRegion = Object.extend(
 		 * @method substract
 		 * @param {CGSGRegion} region
 		 */
-		substract : function(region) {
+		substract : function (region) {
 			this.position.translateWith(-region.position.x, -region.position.y);
 			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
 		}

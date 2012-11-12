@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -23,6 +23,8 @@
  *  These Terms of Use are subject to French law.
  * */
 
+"use strict";
+
 /**
  * Provides requestAnimationFrame in a cross browser way.
  * @property cgsgGlobalRenderingTimer
@@ -30,8 +32,8 @@
  * @type {Number}
  */
 var cgsgGlobalRenderingTimer = null;
-var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
-(function() {
+//var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
+(function () {
 	var lastTime = 0;
 	var vendors = ['ms', 'moz', 'webkit', 'o'];
 	for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -41,10 +43,10 @@ var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
 	}
 
 	if (!window.requestAnimationFrame) {
-		window.requestAnimationFrame = function(callback, element) {
+		window.requestAnimationFrame = function (callback, element) {
 			var currTime = new Date().getTime();
-			var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-			cgsgGlobalRenderingTimer = window.setTimeout(function() {
+			var timeToCall = Math.max(0, 17 - (currTime - lastTime)); //1000/60 = 16.667
+			cgsgGlobalRenderingTimer = window.setTimeout(function () {
 				callback(currTime + timeToCall);
 			}, timeToCall);
 			lastTime = currTime + timeToCall;
@@ -53,7 +55,7 @@ var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
 	}
 
 	if (!window.cancelAnimationFrame) {
-		window.cancelAnimationFrame = function(id) {
+		window.cancelAnimationFrame = function (id) {
 			clearTimeout(id);
 		};
 	}
@@ -74,11 +76,12 @@ var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
  */
 var CGSGScene = Object.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			//detect the current explorer to apply correct parameters
 			cgsgDetectCurrentExplorer();
 
+			//noinspection JSUndeclaredVariable
 			cgsgCanvas = canvas;
 			/**
 			 * @property context
@@ -178,50 +181,35 @@ var CGSGScene = Object.extend(
 
 			//use an external variable to define the scope of the processes
 			var scope = this;
-			cgsgCanvas.onmousedown = function(event) {
+			cgsgCanvas.onmousedown = function (event) {
 				scope.onMouseDown(event);
 			};
-			cgsgCanvas.onmouseup = function(event) {
+			cgsgCanvas.onmouseup = function (event) {
 				scope.onMouseUp(event);
 			};
-			cgsgCanvas.ondblclick = function(event) {
+			cgsgCanvas.ondblclick = function (event) {
 				scope.onMouseDblClick(event);
 			};
-			cgsgCanvas.onmousemove = function(event) {
+			cgsgCanvas.onmousemove = function (event) {
 				scope.onMouseMove(event);
 			};
-			document.onkeydown = function(event) {
+			document.onkeydown = function (event) {
 				scope.onKeyDownHandler(event);
 			};
-			document.onkeyup = function(event) {
+			document.onkeyup = function (event) {
 				scope.onKeyUpHandler(event);
 			};
-			cgsgCanvas.addEventListener('touchstart', function(event) {
+			cgsgCanvas.addEventListener('touchstart', function (event) {
 				scope.onTouchStart(event);
 			}, false);
-			cgsgCanvas.addEventListener('touchmove', function(event) {
+			cgsgCanvas.addEventListener('touchmove', function (event) {
 				scope.onTouchMove(event);
 			}, false);
-			cgsgCanvas.addEventListener('touchend', function(event) {
+			cgsgCanvas.addEventListener('touchend', function (event) {
 				scope.onTouchEnd(event);
 			}, false);
 
-			// Padding and border style widths for mouse/touch offsets
-			// fixes mouse co-ordinate problems when there's a border or padding
-			// see this.mousePosition = getMousePosition for more detail
-			if (document.defaultView && document.defaultView.getComputedStyle) {
-				cgsgStylePaddingLeft =
-				parseInt(document.defaultView.getComputedStyle(cgsgCanvas, null)['paddingLeft'], 10) || 0;
-				cgsgStylePaddingTop =
-				parseInt(document.defaultView.getComputedStyle(cgsgCanvas, null)['paddingTop'], 10) || 0;
-				cgsgStyleBorderLeft =
-				parseInt(document.defaultView.getComputedStyle(cgsgCanvas, null)['borderLeftWidth'], 10) || 0;
-				cgsgStyleBorderTop =
-				parseInt(document.defaultView.getComputedStyle(cgsgCanvas, null)['borderTopWidth'], 10) || 0;
-			}
-
-			this._now = 0;
-			this._lastUpdate = (new Date) * 1 - 1;
+			this._lastUpdate = new Date().getTime();
 
 			this._nodeMouseOver = null;
 
@@ -276,7 +264,7 @@ var CGSGScene = Object.extend(
 		 * @method setCanvasDimension
 		 * @param {CGSGVector2D} newDimension a CGSGVector2D
 		 * */
-		setCanvasDimension : function(newDimension) {
+		setCanvasDimension : function (newDimension) {
 			cgsgCanvas.width = newDimension.x;
 			cgsgCanvas.height = newDimension.y;
 			this.sceneGraph.setCanvasDimension(newDimension);
@@ -291,7 +279,7 @@ var CGSGScene = Object.extend(
 		 * Remove the nodes selected in the scene graph
 		 * @method deleteSelected
 		 */
-		deleteSelected : function() {
+		deleteSelected : function () {
 			if (this.sceneGraph.selectedNodes.length > 0) {
 				for (var i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
 					this._selectedNode = this.sceneGraph.selectedNodes[i];
@@ -306,7 +294,7 @@ var CGSGScene = Object.extend(
 		 * @method deselectAll
 		 * @param {Array} excludedArray CGSGNodes not to deselect
 		 */
-		deselectAll : function(excludedArray) {
+		deselectAll : function (excludedArray) {
 			this._isDrag = false;
 			this._isResizeDrag = false;
 			this._resizingDirection = -1;
@@ -321,7 +309,7 @@ var CGSGScene = Object.extend(
 		 * @protected
 		 * @method render
 		 */
-		render : function() {
+		render : function () {
 			if (this._isRunning && this._needRedraw) {
 				if (this.onRenderStart !== null) {
 					this.onRenderStart();
@@ -338,6 +326,7 @@ var CGSGScene = Object.extend(
 			}
 
 			this._updateFramerate();
+			this._updateFramerateContainer();
 		},
 
 		/**
@@ -345,7 +334,7 @@ var CGSGScene = Object.extend(
 		 * @public
 		 * @method startPlaying
 		 */
-		startPlaying : function() {
+		startPlaying : function () {
 			//we want the callback of the requestAnimationFrame function to be this one.
 			//however, the scope of 'this' won't be the same on the requestAnimationFrame function (scope = window)
 			// and this one (scope = this). So we bind this function to this scope
@@ -360,7 +349,7 @@ var CGSGScene = Object.extend(
 		 * @public
 		 * @method stopPlaying
 		 */
-		stopPlaying : function() {
+		stopPlaying : function () {
 			window.cancelAnimationFrame(cgsgGlobalRenderingTimer);
 			this._isRunning = false;
 		},
@@ -370,24 +359,42 @@ var CGSGScene = Object.extend(
 		 * @public
 		 * @method invalidate
 		 */
-		invalidate : function() {
+		invalidate : function () {
 			this._needRedraw = true;
 		},
 
 		/**
 		 * Update the current framerate
-		 * @private
 		 * @method _updateFramerate
+		 * @private
 		 */
-		_updateFramerate : function() {
-			this._now = new Date();
-			this.fps = 1000.0 / (this._now - this._lastUpdate);
-
-			if (this._frameContainer !== null) {
-				this._frameContainer.innerText = Math.round(this.fps);
+		_updateFramerate : function () {
+			if (!cgsgExist(this._fpss)) {
+				this._fpss = [];
+				this.currentFps = 0;
 			}
 
-			this._lastUpdate = this._now;
+			var now = new Date().getTime();
+			var delta = (now - this._lastUpdate);
+			this._fpss[this.currentFps++] = 1000.0 / delta;
+
+			if (this.currentFps == cgsgFramerateDelay){
+				this.currentFps = 0;
+				this.fps = this._fpss.average();
+			}
+
+			this._lastUpdate = now;
+		},
+
+		/**
+		 * Update the innerHTML of the HTMLElement passed as parameter of the "showFPS" function
+		 * @method _updateFramerateContainer
+		 * @private
+		 */
+		_updateFramerateContainer : function () {
+			if (this._frameContainer !== null) {
+				this._frameContainer.innerHTML = Math.round(this.fps).toString();
+			}
 		},
 
 		/**
@@ -395,7 +402,7 @@ var CGSGScene = Object.extend(
 		 * @method showFPS
 		 * @param {HTMLElement} elt an HTML element to receive the FPS. Can be null if you want to remove the framerate
 		 */
-		showFPS : function(elt) {
+		showFPS : function (elt) {
 			this._frameContainer = elt;
 		},
 
@@ -408,7 +415,8 @@ var CGSGScene = Object.extend(
 		 * @method setDisplayRatio
 		 * @param {CGSGScale} newRatio a CGSGScale value
 		 */
-		setDisplayRatio : function(newRatio) {
+		setDisplayRatio : function (newRatio) {
+			//noinspection JSUndeclaredVariable
 			cgsgDisplayRatio = newRatio;
 			this.sceneGraph.initializeGhost(cgsgCanvas.width / cgsgDisplayRatio.x,
 			                                cgsgCanvas.height / cgsgDisplayRatio.y);
@@ -419,7 +427,7 @@ var CGSGScene = Object.extend(
 		 * @method getDisplayRatio
 		 * @return {CGSGScale} the current display ratio
 		 */
-		getDisplayRatio : function() {
+		getDisplayRatio : function () {
 			return cgsgDisplayRatio;
 		},
 
@@ -429,7 +437,7 @@ var CGSGScene = Object.extend(
 		 * @method onMouseDown
 		 * @param {MouseEvent} event
 		 */
-		onMouseDown : function(event) {
+		onMouseDown : function (event) {
 			this._clickOnScene(event);
 		},
 
@@ -437,9 +445,9 @@ var CGSGScene = Object.extend(
 		 * touch down Event handler function
 		 * @protected
 		 * @method onTouchStart
-		 * @param {TouchEvent} event
+		 * @param {Event} event
 		 */
-		onTouchStart : function(event) {
+		onTouchStart : function (event) {
 			this._clickOnScene(event);
 		},
 
@@ -448,7 +456,7 @@ var CGSGScene = Object.extend(
 		 * @method _clickOnScene
 		 * @param {Event} event MouseEvent or TouchEvent
 		 */
-		_clickOnScene : function(event) {
+		_clickOnScene : function (event) {
 			if (this.onSceneClickStart !== null) {
 				this.onSceneClickStart(event);
 			}
@@ -466,8 +474,9 @@ var CGSGScene = Object.extend(
 			}
 
 			//try to pick up the nodes under the cursor
-			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition, function(node) {
-			                                              return (node.isClickable===true || node.isDraggable===true || node.isResizable===true)});
+			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition, function (node) {
+				return (node.isClickable === true || node.isDraggable === true || node.isResizable === true)
+			});
 			//if a nodes is under the cursor, select it
 			if (this._selectedNode !== null && this._selectedNode !== undefined) {
 				if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
@@ -527,7 +536,7 @@ var CGSGScene = Object.extend(
 		 * @method onMouseMove
 		 * @param {MouseEvent} event
 		 */
-		onMouseMove : function(event) {
+		onMouseMove : function (event) {
 			this._moveOnScene(event);
 		},
 
@@ -535,9 +544,9 @@ var CGSGScene = Object.extend(
 		 * touch move Event handler function
 		 * @protected
 		 * @method onTouchMove
-		 * @param {TouchEvent} event
+		 * @param {Event} event
 		 */
-		onTouchMove : function(event) {
+		onTouchMove : function (event) {
 			event.preventDefault();
 			event.stopPropagation();
 			this._moveOnScene(event);
@@ -548,16 +557,15 @@ var CGSGScene = Object.extend(
 		 * @method _moveOnScene
 		 * @param {Event} event MouseEvent or TouchEvent
 		 */
-		_moveOnScene : function(event) {
+		_moveOnScene : function (event) {
+			var i, nodeOffsetX, nodeOffsetY;
 			this._mousePosition = cgsgGetCursorPosition(event, cgsgCanvas);
-			var i;
 			this._selectedNode = null;
 
 			if (this._isDrag) {
 				if (this.sceneGraph.selectedNodes.length > 0) {
 					this._offsetX = this._mousePosition.x - this._mouseOldPosition.x;
 					this._offsetY = this._mousePosition.y - this._mouseOldPosition.y;
-					var nodeOffsetX = 0, nodeOffsetY = 0;
 					var canMove = true;
 					for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
 						this._selectedNode = this.sceneGraph.selectedNodes[i];
@@ -597,7 +605,6 @@ var CGSGScene = Object.extend(
 				if (this.sceneGraph.selectedNodes.length > 0) {
 					this._offsetX = this._mousePosition.x - this._mouseOldPosition.x;
 					this._offsetY = this._mousePosition.y - this._mouseOldPosition.y;
-					var nodeOffsetX = 0, nodeOffsetY = 0;
 					for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
 						this._selectedNode = this.sceneGraph.selectedNodes[i];
 						if (this._selectedNode.isResizable) {
@@ -614,16 +621,16 @@ var CGSGScene = Object.extend(
 							               this._selectedNode._absoluteScale.x;
 							var realDimY = this._selectedNode.dimension.height *
 							               this._selectedNode._absoluteScale.y;
-							var ratio = 1.0;
+							var d = {dW : 0, dH : 0};
 							// 0  1  2
 							// 3     4
 							// 5  6  7
 							switch (this._resizingDirection) {
 								case 0:
 									if (this._selectedNode.isProportionalResize) {
-										var d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
-										                             realDimY,
-										                             -1, -1);
+										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										                         realDimY,
+										                         -1, -1);
 										this._selectedNode.translateWith(-d.dW, -d.dH, false);
 										this._selectedNode.resizeWith(d.dW, d.dH, false);
 									}
@@ -641,9 +648,9 @@ var CGSGScene = Object.extend(
 									break;
 								case 2:
 									if (this._selectedNode.isProportionalResize) {
-										var d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
-										                             realDimY,
-										                             1, -1);
+										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										                         realDimY,
+										                         1, -1);
 										this._selectedNode.translateWith(0, -d.dH, false);
 										this._selectedNode.resizeWith(d.dW, d.dH, false);
 									}
@@ -663,9 +670,9 @@ var CGSGScene = Object.extend(
 									break;
 								case 5:
 									if (this._selectedNode.isProportionalResize) {
-										var d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
-										                             realDimY,
-										                             1, -1);
+										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										                         realDimY,
+										                         1, -1);
 										this._selectedNode.translateWith(d.dW, 0, false);
 										this._selectedNode.resizeWith(-d.dW, -d.dH, false);
 									}
@@ -680,9 +687,9 @@ var CGSGScene = Object.extend(
 									break;
 								case 7:
 									if (this._selectedNode.isProportionalResize) {
-										var d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
-										                             realDimY,
-										                             1, 1);
+										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										                         realDimY,
+										                         1, 1);
 										this._selectedNode.resizeWith(d.dW, d.dH, false);
 									}
 									else {
@@ -750,7 +757,9 @@ var CGSGScene = Object.extend(
 
 				//if the previous node under the mouse is no more under the mouse, test the other nodes
 				if (n === null) {
-					if ((n = this.sceneGraph.pickNode(this._mousePosition, function(node){return node.onMouseOver !== null})) !== null) {
+					if ((n = this.sceneGraph.pickNode(this._mousePosition, function (node) {
+						return node.onMouseOver !== null
+					})) !== null) {
 						n.isMouseOver = true;
 						this._nodeMouseOver = n;
 						this._nodeMouseOver.onMouseOver({node : this._nodeMouseOver, position : this._mousePosition.copy()})
@@ -759,7 +768,6 @@ var CGSGScene = Object.extend(
 
 			}
 		},
-
 
 		/**
 		 * @method _getDeltaOnMove
@@ -773,7 +781,7 @@ var CGSGScene = Object.extend(
 		 * @return {Object}
 		 * @private
 		 */
-		_getDeltaOnMove : function(delta, nodeOffsetX, nodeOffsetY, w, h, signeX, signeY) {
+		_getDeltaOnMove : function (delta, nodeOffsetX, nodeOffsetY, w, h, signeX, signeY) {
 			var dW = nodeOffsetX, dH = nodeOffsetY;
 			var ratio = 1.0;
 			if (delta == nodeOffsetX) {
@@ -796,7 +804,7 @@ var CGSGScene = Object.extend(
 		 * @method onMouseUp
 		 * @param {MouseEvent} event
 		 */
-		onMouseUp : function(event) {
+		onMouseUp : function (event) {
 			this._upOnScene(event);
 		},
 
@@ -804,9 +812,9 @@ var CGSGScene = Object.extend(
 		 * touch up Event handler function
 		 * @protected
 		 * @method onTouchEnd
-		 * @param {TouchEvent} event
+		 * @param {Event} event
 		 */
-		onTouchEnd : function(event) {
+		onTouchEnd : function (event) {
 			this._upOnScene(event);
 		},
 
@@ -815,7 +823,7 @@ var CGSGScene = Object.extend(
 		 * @param {Event} event MouseEvent or TouchEvent
 		 * @private
 		 */
-		_upOnScene : function(event) {
+		_upOnScene : function (event) {
 			var i = 0;
 
 			//if current action was to drag nodes
@@ -865,7 +873,7 @@ var CGSGScene = Object.extend(
 		 * @method onMouseDblClick
 		 * @param {MouseEvent} event
 		 */
-		onMouseDblClick : function(event) {
+		onMouseDblClick : function (event) {
 			this.dblClickOnScene(event);
 		},
 
@@ -875,12 +883,14 @@ var CGSGScene = Object.extend(
 		 * @param {Event} event
 		 * @return {CGSGNode} the node that was double-clicked
 		 */
-		dblClickOnScene : function(event) {
+		dblClickOnScene : function (event) {
 			if (this.onSceneDblClickStart !== null) {
 				this.onSceneDblClickStart(event);
 			}
 			this._mousePosition = cgsgGetCursorPosition(event, cgsgCanvas);
-			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition, function(node){return true;});
+			this._selectedNode = this.sceneGraph.pickNode(this._mousePosition, function (node) {
+				return true;
+			});
 			if (cgsgExist(this._selectedNode) && this._selectedNode.onDblClick !== null) {
 				this._selectedNode.onDblClick({node : this._selectedNode, position : this._mousePosition.copy(), event : event});
 			}
@@ -896,7 +906,7 @@ var CGSGScene = Object.extend(
 		 * @param {KeyboardEvent} event
 		 * @return {Number}
 		 */
-		onKeyDownHandler : function(event) {
+		onKeyDownHandler : function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			switch (keynum) {
@@ -914,7 +924,7 @@ var CGSGScene = Object.extend(
 		 * @param {KeyboardEvent} event
 		 * @return {Number}
 		 */
-		onKeyUpHandler : function(event) {
+		onKeyUpHandler : function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			switch (keynum) {

@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -23,8 +23,10 @@
  *  These Terms of Use are subject to French law.
  */
 
+"use script";
+
 /**
- * Some utils methods extending the Array prototype
+ * Utils methods extending the Array prototype
  *
  * @class __UTIL_ARRAY__
  * @module Util
@@ -33,11 +35,20 @@
  */
 
 /**
+ * @method cgsgIsArray
+ * @param {Object} value
+ * @return {Boolean}
+ */
+function cgsgIsArray (value) {
+	return (Object.prototype.toString.call(value) === '[object Array]');
+}
+
+/**
  * Remove all the occurrences of the item from the array
  * @method Array.prototype.without
  * @param item
  */
-Array.prototype.without = function(item) {
+Array.prototype.without = function (item) {
 	for (var i = 0; i < this.length; i++) {
 		if (this[i] == item) {
 			this.splice(i, 1);
@@ -50,7 +61,7 @@ Array.prototype.without = function(item) {
  * Empties the array
  * @method Array.prototype.clear
  */
-Array.prototype.clear = function() {
+Array.prototype.clear = function () {
 	this.length = 0;
 };
 
@@ -59,9 +70,9 @@ Array.prototype.clear = function() {
  * @method Array.prototype.clone
  * @return {Array}
  */
-Array.prototype.clone = function() {
+Array.prototype.clone = function () {
 	return this.slice(0);
-}
+};
 
 /**
  * Checks whether the specified elements exists in the array or not
@@ -69,7 +80,7 @@ Array.prototype.clone = function() {
  * @param item
  * @return {Boolean}
  */
-Array.prototype.contains = function(item) {
+Array.prototype.contains = function (item) {
 	for (var i = 0; i < this.length; i++) {
 		if (this[i] == item) {
 			return true;
@@ -83,7 +94,7 @@ Array.prototype.contains = function(item) {
  *  @method Array.prototype.unique
  *  @return {Array}
  */
-Array.prototype.unique = function() {
+Array.prototype.unique = function () {
 	var tmp = [], i;
 	this.sort();
 	for (i = 0; i < this.length; i++) {
@@ -93,4 +104,27 @@ Array.prototype.unique = function() {
 	}
 
 	return tmp;
-}
+};
+
+/**
+ * Compute and return the sum of all elements in this array
+ * @method Array.prototype.sum
+ * @return {Number}
+ */
+Array.prototype.sum = function () {
+	var sum = 0;
+	for (var i = 0; i < this.length; i++) {
+		sum += parseInt(this[i]);
+	}
+
+	return sum;
+};
+
+/**
+ * Compute and return the average of all the elements in this array
+ * @method Array.prototype.average
+ * @return {Number}
+ */
+Array.prototype.average = function () {
+	return this.sum() / this.length;
+};

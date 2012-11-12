@@ -169,7 +169,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -188,16 +188,16 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 
-&#x2F;**
- * default framerate for the rendering
+&#x2F;*
+ * Default framerate for the rendering
  * @property CGSG_DEFAULT_FRAMERATE
  * @default 60
  * @type {Number}
  *&#x2F;
-var CGSG_DEFAULT_FRAMERATE = 60;
+&#x2F;&#x2F;var CGSG_DEFAULT_FRAMERATE = 60;
 
 &#x2F;**
- * default ratio value for the display
+ * Default ratio value for the display
  * @property CGSG_DEFAULT_DISPLAYRATIO
  * @default CGSGScale(1.0, 1.0)
  * @type {CGSGScale}
@@ -205,28 +205,28 @@ var CGSG_DEFAULT_FRAMERATE = 60;
 var CGSG_DEFAULT_DISPLAYRATIO = new CGSGScale(1.0, 1.0);
 
 &#x2F;**
- * default color for the selection stroke
+ * Default color for the selection stroke
  * @property CGSG_DEFAULT_SELECTED_STROKE_COLOR
  * @default &quot;#FF6890&quot;
  * @type {String}
  *&#x2F;
 var CGSG_DEFAULT_SELECTED_STROKE_COLOR = &quot;#FF6890&quot;;
 &#x2F;**
- * default size for the selection stroke
+ * Default size for the selection stroke
  * @property CGSG_DEFAULT_SELECTED_STROKE_SIZE
  * @default 2
  * @type {Number}
  *&#x2F;
 var CGSG_DEFAULT_SELECTED_STROKE_SIZE = 2;
 &#x2F;**
- * default size for the resize handles at the corners of a selected node
+ * Default size for the resize handles at the corners of a selected node
  * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE
  * @default 6
  * @type {Number}
  *&#x2F;
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE = 6;
 &#x2F;**
- * default size for the resize handles at the corners of a selected node
+ * Default size for the resize handles at the corners of a selected node
  * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR
  * @default &quot;#9068FF&quot;
  * @type {String}
@@ -234,12 +234,20 @@ var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE = 6;
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR = &quot;#9068FF&quot;;
 
 &#x2F;**
- * default threshold to detect the handle boxes on a resizable node
+ * Default threshold to detect the handle boxes on a resizable node
  * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD
  * @default 3
  * @type {Number}
  *&#x2F;
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD = 3;
+
+&#x2F;**
+ * Default number of frames to average the FPS
+ * @property CGSG_DEFAULT_FRAMERATE_DELAY
+ * @default 30 (ie: each 30 frames)
+ * @type {Number}
+ *&#x2F;
+var CGSG_DEFAULT_FRAMERATE_DELAY = 30;
     </pre>
 </div>
 

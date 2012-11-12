@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -22,7 +22,6 @@
  *
  *  These Terms of Use are subject to French law.
  */
-
 
 /**
  * List the methods to wrap the text. Used by {CGSGNodeText} Node.
@@ -62,7 +61,7 @@ var CGSGWrapMode = {
  */
 var CGSGNodeText = CGSGNode.extend(
 	{
-		initialize : function(x, y, text) {
+		initialize : function (x, y, text) {
 			this._super(x, y, -1, -1);
 
 			/**
@@ -185,7 +184,7 @@ var CGSGNodeText = CGSGNode.extend(
 			 */
 			this.classType = "CGSGNodeText";
 
-			this.setText(text);
+			this.setText(text, true);
 			this.resizeTo(this.getWidth(), this.getHeight());
 		},
 
@@ -197,7 +196,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @example
 		 *      myTextNode.setWrapMode(CGSGWrapMode.WORD, true);
 		 */
-		setWrapMode : function(mode, mustRecomputeDimension) {
+		setWrapMode : function (mode, mustRecomputeDimension) {
 			this._wrapMode = mode;
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
@@ -210,7 +209,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} tab TExt to replace tabulation (ie: 4 spaces, ...)
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setTabulationString : function(tab, mustRecomputeDimension) {
+		setTabulationString : function (tab, mustRecomputeDimension) {
 			this._tabulation = tab;
 			this._text = this._text.replace(/(\t)/g, this._tabulation);
 			if (mustRecomputeDimension !== false) {
@@ -223,7 +222,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Boolean} s
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setStroke : function(s, mustRecomputeDimension) {
+		setStroke : function (s, mustRecomputeDimension) {
 			this._stroke = s;
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
@@ -235,7 +234,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} t the new text
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setText : function(t, mustRecomputeDimension) {
+		setText : function (t, mustRecomputeDimension) {
 			this._text = t;
 			this._text = this._text.replace(/(\r\n|\n\r|\r|\n)/g, "\n");
 			this._text = this._text.replace(/(\t)/g, this._tabulation);
@@ -250,7 +249,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} s the new size (an integer)
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setSize : function(s, mustRecomputeDimension) {
+		setSize : function (s, mustRecomputeDimension) {
 			this._size = s;
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
@@ -261,7 +260,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method setTextAlign
 		 * @param {String} a A String (Possible values : "left", "right", "center")
 		 */
-		setTextAlign : function(a) {
+		setTextAlign : function (a) {
 			this._textAlign = a;
 		},
 
@@ -270,7 +269,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} b A String (Possible values : "top", "hanging", "middle", "alphabetic", "ideographic", "bottom")
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setTextBaseline : function(b, mustRecomputeDimension) {
+		setTextBaseline : function (b, mustRecomputeDimension) {
 			this._textBaseline = b;
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
@@ -282,7 +281,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} t "Arial" by default
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setTypo : function(t, mustRecomputeDimension) {
+		setTypo : function (t, mustRecomputeDimension) {
 			this._typo = t;
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
@@ -294,7 +293,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} m Max Width for the text
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setMaxWidth : function(m, mustRecomputeDimension) {
+		setMaxWidth : function (m, mustRecomputeDimension) {
 			this._maxWidth = m;
 			this.resizeTo(m, this.getHeight());
 			if (mustRecomputeDimension !== false) {
@@ -309,7 +308,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} l height of a line
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setLineHeight : function(l, mustRecomputeDimension) {
+		setLineHeight : function (l, mustRecomputeDimension) {
 			this._lineHeight = l;
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
@@ -320,14 +319,14 @@ var CGSGNodeText = CGSGNode.extend(
 		 * compute the real dimension of the text
 		 * @method computeRealDimension
 		 */
-		computeRealDimension : function() {
+		computeRealDimension : function () {
 			this.metrics.width = 0;
 			var fakeCanvas = document.createElement('canvas');
 			fakeCanvas.height = 800;
 			fakeCanvas.width = 1000;
 			var fakeContext = fakeCanvas.getContext('2d');
 
-			this._doRender(fakeContext);
+			this._doRender(fakeContext, false);
 			//this.resizeTo(this.getWidth(), this.getHeight());
 
 			fakeCanvas.width = 0;
@@ -342,7 +341,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render : function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -361,13 +360,13 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Boolean} ghostmode. If true a square will be rendered instead of the text.
 		 * @private
 		 */
-		_doRender : function(context, ghostmode) {
+		_doRender : function (context, ghostmode) {
 			context.font = this._size + "pt " + this._typo;
 			context.textAlign = this._textAlign;
 			context.textBaseline = this._textBaseline;
 			var s = 0;
 			var textW = 0;
-			var posX = 0
+			var posX = 0;
 			var posY = 0;
 
 			if (isNaN(this._maxWidth) || this._maxWidth <= 0) {
@@ -420,7 +419,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @return {*}
 		 * @private
 		 */
-		_drawText : function(text, x, y, context, ghostmode, width) {
+		_drawText : function (text, x, y, context, ghostmode, width) {
 			if (ghostmode === true) {
 				return this._drawSquare(x, y, width, context);
 			}
@@ -450,8 +449,8 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * @private
 		 */
-		_drawSquare : function(x, y, width, context) {
-			context.fillRect(x - this._computeDecalX(width), y + this._computeDecalY(), width, this._size * 1.0);
+		_drawSquare : function (x, y, width, context) {
+			context.fillRect(x - this._computeDecalX(width), y + this._computeDecalY(), width, this._size);
 		},
 
 		/**
@@ -459,13 +458,13 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @override
 		 * @return {Number}
 		 */
-		getHeight : function() {
+		getHeight : function () {
 			if (this._nbLines == 0) {
 				return this._nbLines;
 			}
 			/*else if (this._nbLines == 1) {
-				return this._size;
-			}*/
+			 return this._size;
+			 }*/
 
 			//return (this._nbLines * this._size) + ((this._nbLines - 1) * (this._lineHeight - this._size));
 			return ((this._nbLines - 1) * this._lineHeight) + this._size;
@@ -476,7 +475,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @override
 		 * @return {Number}
 		 */
-		getWidth : function() {
+		getWidth : function () {
 			return this.metrics.width;
 		},
 
@@ -485,7 +484,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method _computeDecalX
 		 * @return {Number}
 		 */
-		_computeDecalX : function(width) {
+		_computeDecalX : function (width) {
 			var decalX = 0;
 			if (this._textAlign == "start" || this._textAlign == "left") {
 				decalX = 0.0;
@@ -507,7 +506,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method _computeDecalY
 		 * @return {Number}
 		 */
-		_computeDecalY : function() {
+		_computeDecalY : function () {
 			var decalY = 0;
 			if (this._textBaseline == "top" || this._textBaseline == "hanging") {
 				decalY = this._size / cgsgCurrentExplorer.textDecalYTop;
@@ -534,7 +533,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
 		 */
-		renderGhost : function(ghostContext) {
+		renderGhost : function (ghostContext) {
 			//save current state
 			this.beforeRenderGhost(ghostContext);
 
@@ -553,7 +552,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method renderSelected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 */
-		renderSelected : function(context) {
+		renderSelected : function (context) {
 			var decalX = 0;
 			var decalY = this._computeDecalY();
 
@@ -629,7 +628,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeText} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeText(this.position.x, this.position.y, this._text);
 			//call the super method
 			node = this._super(node);

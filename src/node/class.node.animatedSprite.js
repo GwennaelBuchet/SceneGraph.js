@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -39,7 +39,7 @@
  */
 var CGSGNodeSprite = CGSGNode.extend(
 	{
-		initialize : function(x, y, urlImage, context) {
+		initialize : function (x, y, urlImage, context) {
 			this._super(x, y, 1, 1);
 
 			/**
@@ -160,7 +160,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 			///// INITIALIZATION //////
 			//finally load the image
 			if (this._urlImage !== null && this._urlImage != "") {
-				this._img.onload = this._createDelegate(this, this._onImageLoaded, context);
+				this._img.onload = this._createDelegate(this, this._onImageLoaded);
 				this._img.src = this._urlImage;
 			}
 		},
@@ -171,12 +171,11 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @method _createDelegate
 		 * @param objectContext
 		 * @param delegateMethod
-		 * @param renderContext
 		 * @return {Function}
 		 */
-		_createDelegate : function(objectContext, delegateMethod, renderContext) {
-			return function() {
-				return delegateMethod.call(objectContext, renderContext);
+		_createDelegate : function (objectContext, delegateMethod) {
+			return function () {
+				return delegateMethod.call(objectContext);
 			}
 		},
 
@@ -185,9 +184,8 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * Check the dimension of the image and fired the onLoadEnd event
 		 * @protected
 		 * @method _onImageLoaded
-		 * @param {CanvasRenderingContext2D} context context to render on
 		 */
-		_onImageLoaded : function(context) {
+		_onImageLoaded : function () {
 			this._checkDimension();
 			this._isLoaded = true;
 			//this._initShape();
@@ -201,9 +199,9 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * To be overrided when the image failed to load
 		 * @method _onImageError
 		 * @protected
-		 * @param {CanvasRenderingContext2D} context context to render on
 		 */
-		_onImageError : function(context) {
+		_onImageError : function () {
+			console.log("Error while loading image : " + this._urlImage);
 		},
 
 		/*
@@ -230,7 +228,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @private
 		 * @method _checkDimension
 		 */
-		_checkDimension : function() {
+		_checkDimension : function () {
 			//if no width or height are specified in the constructor
 			if (this.dimension.width <= 0 && this.dimension.height <= 0) {
 				this.dimension.width = this._img.width;
@@ -263,7 +261,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @method setImage
 		 * @param {Image} newImage new Image object. Must be an already loaded one
 		 */
-		setImage : function(newImage) {
+		setImage : function (newImage) {
 			this._img = newImage;
 			if (cgsgExist(this._img)) {
 				this._urlImage = this._img.src;
@@ -277,7 +275,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @public
 		 * @method goToNextFrame
 		 */
-		goToNextFrame : function() {
+		goToNextFrame : function () {
 			this._currentFrame += 1.0 / this.currentAnimation.speed;
 			var isEndOfLoop = false;
 			if (this._currentFrame >= this.currentAnimation.frames) {
@@ -290,7 +288,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 				if (this._numberOfLoops < 0 || this._currentLoop < this._numberOfLoops) {
 					this._currentLoop++;
 					this.goToFirstFrame();
-					;
 				}
 				else {
 					this.goToLastFrame();
@@ -304,7 +301,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @public
 		 * @method goToPreviousFrame
 		 */
-		goToPreviousFrame : function() {
+		goToPreviousFrame : function () {
 			this._currentFrame -= this.currentAnimation.speed;
 			var isStartOfLoop = false;
 			if (this._currentFrame < 0) {
@@ -330,7 +327,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @public
 		 * @method goToFirstFrame
 		 */
-		goToFirstFrame : function() {
+		goToFirstFrame : function () {
 			this._currentFrame = 0;
 		},
 
@@ -339,7 +336,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @public
 		 * @method goToLastFrame
 		 */
-		goToLastFrame : function() {
+		goToLastFrame : function () {
 			this._currentFrame = this.currentAnimation.frames - 1;
 		},
 
@@ -350,7 +347,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context to render on
 		 * @method render
 		 * */
-		render : function(context) {
+		render : function (context) {
 			if (this._isLoaded && this._img.src != "") {
 				//save current state
 				this.beforeRender(context);
@@ -385,7 +382,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 			}
 		},
 
-
 		/**
 		 * Return position x and y in the image for the slice of the animation and frame passed in parameter.
 		 * @private
@@ -394,7 +390,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @param {Object} animation
 		 * @return {Object}
 		 */
-		_getSlice : function(frame, animation) {
+		_getSlice : function (frame, animation) {
 			var frameX = frame % animation.framesPerLine;
 			var frameY = Math.floor(frame / animation.framesPerLine);
 
@@ -417,7 +413,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @param {Number} height height of 1 frame
 		 * @param {Number} framesPerLine Number of frames per line in the image
 		 */
-		addAnimation : function(name, speed, frames, sliceX, sliceY, width, height, framesPerLine) {
+		addAnimation : function (name, speed, frames, sliceX, sliceY, width, height, framesPerLine) {
 			var animation = {
 				name          : name,
 				speed         : speed,
@@ -448,7 +444,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @param {Number} loop number of animation loop. Can be null or negative to set infinite loop
 		 * @return {Boolean} true if the animation exists; false otherwise
 		 */
-		play : function(animationName, loop) {
+		play : function (animationName, loop) {
 			if (loop === undefined || loop === null) {
 				loop = -1;
 			}
@@ -475,7 +471,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @public
 		 * @method stop
 		 */
-		stop : function() {
+		stop : function () {
 			this._isPlaying = false;
 			if (this.onAnimationEnd !== null) {
 				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame});
@@ -487,7 +483,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @public
 		 * @method reset
 		 */
-		reset : function() {
+		reset : function () {
 			this._currentFrame = 0;
 			this._currentLoop = 1;
 		},
@@ -498,7 +494,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeSprite} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeSprite(this.position.x, this.position.y, this._urlImage, this._context);
 			//call the super method
 			node = this._super(node);

@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -31,23 +31,33 @@ TODO LIST:
 
 - Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
-- Evolution. Add notion of chains of animations.
-- Optimization. Add double buffering (render in a temporary context, and swap them)
-- Optimization. Automatic multiple canvas for multiple layers, sharing the same scene graph.
+ùp- Optimization. Automatic multiple canvas for multiple layers, sharing the same scene graph.
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
-- Optimization. Animated sprites : pre-rendered
 - Evolution. CGSGNodeLink
-- Evolution. New "magnet" example
-- Evolution. New "Undo" example
 - Evolution. Add a "cgsgRenderAlways" property and correctly manage the "invalidate()" method
 - Example. Map
+- Example. Pingoo
+- Example. FallDown
+- Evolution. Use of CSS to define the visual properties (sizes, colors, ...)
 
 
 =====================================================================
 HISTORY
 =====================================================================
 
+---------------------------------------------------------------------
+v1.2.1
+
+CHANGES:
+- Optimization. "use strict" mode
+- Correction. Better FPS computation
+- Evolution. FPS : new cgsgFramerateDelay property to update the FPS average
+- Evolution. Array : Add of Array.prototype.sum function
+- Evolution. Array : Add of Array.prototype.average function
+- Evolution. Array : Add of cgsgIsArray global method
+
+---------------------------------------------------------------------
 v1.2.0
 
 CHANGES:
