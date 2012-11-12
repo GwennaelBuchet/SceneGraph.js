@@ -169,7 +169,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -189,7 +189,7 @@
  *&#x2F;
 var CGSGTraverser = Object.extend(
 	{
-		initialize : function() {
+		initialize : function () {
 			&#x2F;**
 			 * Last results provided by the last check
 			 * @property lastResults
@@ -212,13 +212,13 @@ var CGSGTraverser = Object.extend(
 					return node.color == &quot;yellow&quot;;
 				};
 
-			 var traverser = new CGSGTraverser();
-			 var listSquares = traverser.traverse(this.rootNode, condition, null);
-			 for (var s = 0; s &lt; listSquares.length; s++) {
+		 var traverser = new CGSGTraverser();
+		 var listSquares = traverser.traverse(this.rootNode, condition, null);
+		 for (var s = 0; s &lt; listSquares.length; s++) {
 					...
 				}
 		 *&#x2F;
-		traverse : function(rootNode, condition, excludedNodes) {
+		traverse : function (rootNode, condition, excludedNodes) {
 			this.lastResults.clear();
 
 			if (cgsgExist(condition)) {
@@ -235,7 +235,7 @@ var CGSGTraverser = Object.extend(
 		 * @param {Function} condition
 		 * @param {Array} excludedNodes
 		 *&#x2F;
-		_check : function(rootNode, condition, excludedNodes) {
+		_check : function (rootNode, condition, excludedNodes) {
 			if (rootNode.isTraversable === true) {
 				var exclusionExist = cgsgExist(excludedNodes) &amp;&amp; excludedNodes.length &gt; 0;
 

@@ -5,23 +5,28 @@
  *
  * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
- * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory
+ * conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions
+ *   of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
  *
  *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
  */
+
+"use strict";
 
 /**
  * @module Animation
@@ -34,7 +39,7 @@
  */
 var CGSGParticle = Object.extend(
 	{
-		initialize : function(node) {
+		initialize : function (node) {
 			/**
 			 * @property node
 			 * @type {CGSGNode}
@@ -61,7 +66,7 @@ var CGSGParticle = Object.extend(
 		 * @public
 		 * @method init
 		 */
-		init : function() {
+		init : function () {
 			//this.direction = new CGSGVector2D(1, 0);
 			this.position = new CGSGPosition(0.0, 0.0);
 			this.mass = 1000;
@@ -70,8 +75,8 @@ var CGSGParticle = Object.extend(
 			this.isAlive = true;
 			this.age = 0;
 
-			this._gravity = new CGSGVector2D(0.0, 0.0);
-			this._forceTotal = new CGSGVector2D(0.0, 0.0);
+			//this._gravity = new CGSGVector2D(0.0, 0.0);
+			//this._forceTotal = new CGSGVector2D(0.0, 0.0);
 			this._acceleration = new CGSGVector2D(0.0, 0.0);
 
 			this.speedThreshold = 0.0;
@@ -83,7 +88,7 @@ var CGSGParticle = Object.extend(
 		 * @param {Number} x
 		 * @param {Number} y
 		 */
-		initPosition : function(x, y) {
+		initPosition : function (x, y) {
 			this.position.x = x;
 			this.position.y = y;
 			this.node.translateTo(x, y);
@@ -94,7 +99,7 @@ var CGSGParticle = Object.extend(
 		 * @method initVelocity
 		 * @param {CGSGVector2D} velocity
 		 */
-		initVelocity : function(velocity) {
+		initVelocity : function (velocity) {
 			this.velocity = velocity.copy();
 			this.velocity.normalize();
 		},
@@ -104,7 +109,7 @@ var CGSGParticle = Object.extend(
 		 * @method initSpeedThreshold
 		 * @param {Number} st
 		 */
-		initSpeedThreshold : function(st) {
+		initSpeedThreshold : function (st) {
 			this.speedThreshold = st;
 		},
 
@@ -117,7 +122,7 @@ var CGSGParticle = Object.extend(
 		 * @param {Number} acceleration
 		 * @return {*}
 		 */
-		updatePosition : function(deltaTime, acceleration) {
+		updatePosition : function (deltaTime, acceleration) {
 			if (isNaN(deltaTime)) {
 				deltaTime = 1.0;
 			}
@@ -169,9 +174,8 @@ var CGSGParticle = Object.extend(
  */
 var CGSGParticleEmitter = CGSGNode.extend(
 	{
-		initialize : function(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
+		initialize : function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
 			this._super(region.position.x, region.position.y, region.dimension.width, region.dimension.height);
-
 
 			/**
 			 * @property classType
@@ -281,7 +285,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @public
 		 * @method start
 		 */
-		start : function() {
+		start : function () {
 			this._isPlaying = true;
 		},
 
@@ -290,7 +294,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @public
 		 * @method stop
 		 */
-		stop : function() {
+		stop : function () {
 			this._isPlaying = false;
 		},
 
@@ -299,12 +303,13 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @public
 		 * @method reset
 		 */
-		reset : function() {
+		reset : function () {
+			var p;
 			this._currentFrame = 0;
 			//free the memory
-			for (var p = this._particles.length - 1; p >= 0; p--) {
+			for (p = this._particles.length - 1; p >= 0; p--) {
 				this.removeChild(this._particles[p].node);
-				delete(this._particles[p]);
+				delete (this._particles[p]);
 			}
 			this._particles.clear();
 
@@ -317,12 +322,13 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @method render
 		 * @param context
 		 */
-		render : function(context) {
+		render : function (context) {
+			var f, p;
 			this.beforeRender(context);
 
 			//update the acceleration of the particles, based on the current forces
 			this._acceleration.initialize(0.0, 0.0);
-			for (var f = this._forces.length - 1; f >= 0; f--) {
+			for (f = this._forces.length - 1; f >= 0; f--) {
 				this._acceleration.x += this._forces[f].vector.x;
 				this._acceleration.y += this._forces[f].vector.y;
 
@@ -335,7 +341,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 			}
 
 			//updates all particles
-			for (var p = 0; p < this._particles.length; p++) {
+			for (p = 0; p < this._particles.length; p++) {
 				if (this._isPlaying) {
 					if (!this.updateParticle(this._particles[p])) {
 						this.initParticle(this._particles[p], p);
@@ -365,7 +371,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @method _createParticle
 		 * @param {Number} index
 		 */
-		_createParticle : function(index) {
+		_createParticle : function (index) {
 			var particle = new CGSGParticle(this._node.copy());
 			this.initParticle(particle, index);
 			this.addChild(particle.node);
@@ -378,7 +384,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @param {CGSGParticle} particle
 		 * @return {Boolean}
 		 */
-		updateParticle : function(particle) {
+		updateParticle : function (particle) {
 			//first, update the position of the particle node
 			var isAlive = particle.updatePosition(this.speed, this._acceleration);
 
@@ -396,7 +402,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @param {CGSGParticle} particle
 		 * @param {Number} index
 		 */
-		initParticle : function(particle, index) {
+		initParticle : function (particle, index) {
 			particle.init();
 			//set a random position inside the region of this emitter
 			particle.initPosition(Math.random() * this.region.dimension.width,
@@ -423,7 +429,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @param {Number} ttl time to live of the force
 		 * @return {Object}
 		 */
-		addForce : function(vector, ttl) {
+		addForce : function (vector, ttl) {
 			var force = {vector : vector, ctl : ttl, age : 0};
 			this._forces.push(force);
 			return force;
@@ -435,7 +441,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		 * @method removeForce
 		 * @param {Object} force
 		 */
-		removeForce : function(force) {
+		removeForce : function (force) {
 			this._forces.without(force);
 		}/*,
 
@@ -458,7 +464,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
  */
 var CGSGParticleSystem = CGSGNode.extend(
 	{
-		initialize : function(x, y) {
+		initialize : function (x, y) {
 			this._super(x, y, 1, 1);
 
 			/**
@@ -502,7 +508,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @method addForce
 		 * @param {CGSGVector2D} vector
 		 */
-		addForce : function(vector) {
+		addForce : function (vector) {
 			for (var e = 0; e < this.emitters.length; e++) {
 				this.emitters[e].addForce(vector);
 			}
@@ -528,7 +534,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @param {Number} outflow
 		 * @return {CGSGParticleEmitter}
 		 */
-		addEmitter : function(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
+		addEmitter : function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
 			var emitter = new CGSGParticleEmitter(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold,
 			                                      outflow);
 			this.addChild(emitter);
@@ -542,7 +548,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @method removeEmitter
 		 * @param {CGSGParticleEmitter} emitter
 		 */
-		removeEmitter : function(emitter) {
+		removeEmitter : function (emitter) {
 			this.emitters.without(emitter);
 			this.removeChild(emitter);
 		},
@@ -555,7 +561,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @param {Number} distance
 		 * @return {Object}
 		 */
-		addAttractor : function(position, strength, distance) {
+		addAttractor : function (position, strength, distance) {
 			var attractor = {
 				position : position,
 				strength : strength,
@@ -570,7 +576,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @method removeAttractor
 		 * @param {Object} attractor
 		 */
-		removeAttractor : function(attractor) {
+		removeAttractor : function (attractor) {
 			this.attractors.without(attractor);
 		},
 
@@ -582,7 +588,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @param {Number} distance
 		 * @return {Object}
 		 */
-		addRepulsor : function(position, strength, distance) {
+		addRepulsor : function (position, strength, distance) {
 			var repulsor = {
 				position : position,
 				strength : strength,
@@ -597,7 +603,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @method removeRepulsor
 		 * @param {Object} repulsor
 		 */
-		removeRepulsor : function(repulsor) {
+		removeRepulsor : function (repulsor) {
 			this.repulsors.without(repulsor);
 		},
 
@@ -613,7 +619,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @param condition
 		 * @return {*}
 		 */
-		pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, condition) {
+		pickNode : function (mousePosition, absoluteScale, ghostContext, recursively, condition) {
 			return null;
 		},
 
@@ -623,8 +629,11 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 * @todo : TODO fill the method
 		 * @return {CGSGParticleSystem}
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGParticleSystem();
+			node = this._super(node);
+
+			return node;
 		}
 	}
 );

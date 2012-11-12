@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -36,7 +36,7 @@
  */
 var CGSGVector2D = Object.extend(
 	{
-		initialize : function(x, y) {
+		initialize : function (x, y) {
 			/**
 			 * @property x
 			 * @type {Number}
@@ -54,7 +54,7 @@ var CGSGVector2D = Object.extend(
 		 * @method copy
 		 * @return {CGSGVector2D} a new CGSGVector2D, clone of this one
 		 */
-		copy : function() {
+		copy : function () {
 			return new CGSGVector2D(this.x, this.y);
 		},
 
@@ -64,7 +64,7 @@ var CGSGVector2D = Object.extend(
 		 * @method add
 		 * @param {CGSGVector2D} vector
 		 */
-		add : function(vector) {
+		add : function (vector) {
 			this.x += vector.x;
 			this.y += vector.y;
 		},
@@ -75,7 +75,7 @@ var CGSGVector2D = Object.extend(
 		 * @method substract
 		 * @param {CGSGVector2D} vector
 		 */
-		substract : function(vector) {
+		substract : function (vector) {
 			this.x -= vector.x;
 			this.y -= vector.y;
 		},
@@ -86,7 +86,7 @@ var CGSGVector2D = Object.extend(
 		 * @method multiply
 		 * @param {CGSGVector2D} vector
 		 */
-		multiply : function(vector) {
+		multiply : function (vector) {
 			this.x *= vector.x;
 			this.y *= vector.y;
 		},
@@ -97,7 +97,7 @@ var CGSGVector2D = Object.extend(
 		 * @method divide
 		 * @param {CGSGVector2D} vector
 		 */
-		divide : function(vector) {
+		divide : function (vector) {
 			this.x /= vector.x;
 			this.y /= vector.y;
 		},
@@ -108,7 +108,7 @@ var CGSGVector2D = Object.extend(
 		 * @method multiplyByFloat
 		 * @param {Number} f
 		 */
-		multiplyByFloat : function(f) {
+		multiplyByFloat : function (f) {
 			this.x *= f;
 			this.y *= f;
 		},
@@ -119,7 +119,7 @@ var CGSGVector2D = Object.extend(
 		 * @method divideByFloat
 		 * @param {Number} f
 		 */
-		divideByFloat : function(f) {
+		divideByFloat : function (f) {
 			this.x /= f;
 			this.y /= f;
 		},
@@ -131,7 +131,7 @@ var CGSGVector2D = Object.extend(
 		 * @param {CGSGVector2D} vector
 		 * @return {Number}
 		 */
-		getDistance : function(vector) {
+		getDistance : function (vector) {
 			return Math.sqrt(
 				Math.pow(this.x - vector.x, 2) +
 				Math.pow(this.y - vector.y, 2)
@@ -144,7 +144,7 @@ var CGSGVector2D = Object.extend(
 		 * @method rotate
 		 * @param {Number} angle
 		 */
-		rotate : function(angle) {
+		rotate : function (angle) {
 			var ca = Math.cos(angle);
 			var sa = Math.sin(angle);
 			this.x = this.x * ca + this.y * sa;
@@ -156,7 +156,7 @@ var CGSGVector2D = Object.extend(
 		 * @method getLength
 		 * @return {Number}
 		 */
-		getLength : function() {
+		getLength : function () {
 			return Math.sqrt((this.x * this.x) + (this.y * this.y));
 		},
 
@@ -165,7 +165,7 @@ var CGSGVector2D = Object.extend(
 		 * @method getSquaredLength
 		 * @return {Number}
 		 */
-		getSquaredLength : function() {
+		getSquaredLength : function () {
 			return (this.x * this.x) + (this.y * this.y);
 		},
 
@@ -174,7 +174,7 @@ var CGSGVector2D = Object.extend(
 		 * @public
 		 * @method normalize
 		 */
-		normalize : function() {
+		normalize : function () {
 			var scalefactor;
 			var length = this.getLength();
 

@@ -21,16 +21,18 @@
  *
  * From documentation by John Resig (http://ejohn.org/)
  */
-(function() {
-	var initializing = false, fnTest = /xyz/.test(function() {
+"use strict";
+
+(function () {
+	var initializing = false, fnTest = /xyz/.test(function () {
 		xyz;
 	}) ? /\b_super\b/ : /.*/;
 	// The base Class implementation (does nothing)
-	this.Object = function() {
+	this.Object = function () {
 	};
 
 	// Create a new Class that inherits from this class
-	Object.extend = function(prop) {
+	Object.extend = function (prop) {
 		var _super = this.prototype;
 
 		// Instantiate a base class (but only create the instance,
@@ -42,10 +44,11 @@
 		// Copy the properties over onto the new prototype
 		for (var name in prop) {
 			// Check if we're overwriting an existing function
+			//noinspection JSUnfilteredForInLoop
 			prototype[name] = typeof prop[name] == "function" &&
 			                  typeof _super[name] == "function" && fnTest.test(prop[name]) ?
-			                  (function(name, fn) {
-				                  return function() {
+			                  (function (name, fn) {
+				                  return function () {
 					                  var tmp = this._super;
 
 					                  // Add a new ._super() method that is the same method
@@ -64,7 +67,7 @@
 		}
 
 		// The dummy class constructor
-		function Object() {
+		function Object () {
 			// All construction is actually done in the initialize method
 			if (!initializing && this.initialize) {
 				this.initialize.apply(this, arguments);

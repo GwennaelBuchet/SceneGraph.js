@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -41,7 +41,7 @@
  */
 var CGSGNodeEllipse = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize : function (x, y, width, height) {
 			this._super(x, y, width, height);
 
 			/**
@@ -84,7 +84,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render : function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -125,7 +125,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @method renderGhost
 		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
 		 */
-		renderGhost : function(ghostContext) {
+		renderGhost : function (ghostContext) {
 			//save current state
 			this.beforeRenderGhost(ghostContext);
 
@@ -166,7 +166,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeEllipse} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
 			                               this.dimension.height);
 			//call the super method

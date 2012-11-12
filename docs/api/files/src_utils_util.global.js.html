@@ -169,7 +169,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -193,14 +193,15 @@
  * @param object {Object}
  * @return {boolean} true if the parameter !== null &amp;&amp; !== undefined
  *&#x2F;
-function cgsgExist(object) {
+function cgsgExist (object) {
 	return (object !== null &amp;&amp; object !== undefined);
 }
 
 &#x2F;**
  * @method cgsgDetectCurrentExplorer
  *&#x2F;
-function cgsgDetectCurrentExplorer() {
+function cgsgDetectCurrentExplorer () {
+	&#x2F;&#x2F;noinspection JSUndeclaredVariable
 	cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 
 	var userAgent = navigator.userAgent;
@@ -209,6 +210,7 @@ function cgsgDetectCurrentExplorer() {
 	var nameOffset, versionOffset;
 
 	if ((versionOffset = userAgent.indexOf(&quot;Opera&quot;)) != -1) {
+		&#x2F;&#x2F;noinspection JSUndeclaredVariable
 		cgsgCurrentExplorer = cgsgExplorerParams.OPERA;
 		fullVersion = userAgent.substring(versionOffset + 6);
 		if ((versionOffset = userAgent.indexOf(&quot;Version&quot;)) != -1) {
@@ -217,17 +219,21 @@ function cgsgDetectCurrentExplorer() {
 	}
 	else if ((versionOffset = userAgent.indexOf(&quot;MSIE&quot;)) != -1) {
 		browserName = &quot;Microsoft Internet Explorer&quot;;
+		&#x2F;&#x2F;noinspection JSUndeclaredVariable
 		cgsgCurrentExplorer = cgsgExplorerParams.IE9;
 		fullVersion = userAgent.substring(versionOffset + 5);
 		if (parseInt(fullVersion) &gt;= 10) {
+			&#x2F;&#x2F;noinspection JSUndeclaredVariable
 			cgsgCurrentExplorer = cgsgExplorerParams.IE10;
 		}
 	}
 	else if ((versionOffset = userAgent.indexOf(&quot;Chrome&quot;)) != -1) {
+		&#x2F;&#x2F;noinspection JSUndeclaredVariable
 		cgsgCurrentExplorer = cgsgExplorerParams.CHROME;
 		fullVersion = userAgent.substring(versionOffset + 7);
 	}
 	else if ((versionOffset = userAgent.indexOf(&quot;Safari&quot;)) != -1) {
+		&#x2F;&#x2F;noinspection JSUndeclaredVariable
 		cgsgCurrentExplorer = cgsgExplorerParams.SAFARI;
 		fullVersion = userAgent.substring(versionOffset + 7);
 		if ((versionOffset = userAgent.indexOf(&quot;Version&quot;)) != -1) {
@@ -235,6 +241,7 @@ function cgsgDetectCurrentExplorer() {
 		}
 	}
 	else if ((versionOffset = userAgent.indexOf(&quot;Firefox&quot;)) != -1) {
+		&#x2F;&#x2F;noinspection JSUndeclaredVariable
 		cgsgCurrentExplorer = cgsgExplorerParams.FIREFOX;
 		fullVersion = userAgent.substring(versionOffset + 8);
 	}
@@ -247,16 +254,14 @@ function cgsgDetectCurrentExplorer() {
 		}
 	}
 
+	cgsgCurrentExplorer.fullVersion = fullVersion;
+	cgsgCurrentExplorer.browserName = browserName;
+
 	&#x2F;&#x2F;Now, check for support for webworker
-	if (typeof(Worker) !== &quot;undefined&quot;) {
-		cgsgCurrentExplorer.webworker = true;
-	}
-	else {
-		cgsgCurrentExplorer.webworker = false;
-	}
+	cgsgCurrentExplorer.webworker = typeof(Worker) !== &quot;undefined&quot;;
 }
 
-&#x2F;**
+&#x2F;*
  * Load asynchronously an external page and return the content (or null)
  *
  * @method cgsgLoadExternalDoc
@@ -265,33 +270,31 @@ function cgsgDetectCurrentExplorer() {
  * @param url {String} Page to load
  * @param successCallback {function} an function handler to call on success. The function must take the content ({String} as parameter)
  * @param errorCallback {function} an function handler to call on error
- * @return {String} representing the content of the page loaded. Can be null;
  *&#x2F;
-function cgsgLoadExternalDoc(url, successCallback, errorCallback) {
+&#x2F;*function cgsgLoadExternalDoc (url, successCallback, errorCallback) {
 	var xhr;
 	if (window.XMLHttpRequest) {&#x2F;&#x2F; code for IE7+, Firefox, Chrome, Opera, Safari
 		xhr = new XMLHttpRequest();
 	}
 	else {&#x2F;&#x2F; code for IE6, IE5
-
 		try {
-			var xhr = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+			xhr = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
 		}
 		catch (e) {
-			var xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+			xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
 		}
 	}
-	xhr.onreadystatechange = function() {
+	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
 			successCallback(xhr.responseText);
 		}
 		else {
 			errorCallback(xhr.responseText);
 		}
-	}
+	};
 	xhr.open(&quot;GET&quot;, url, true);
 	xhr.send();
-}
+}*&#x2F;
 
 cgsgStylePaddingLeft = 0;
 cgsgStylePaddingTop = 0;
@@ -302,7 +305,7 @@ cgsgStyleBorderTop = 0;
  * @method cgsgGetRealViewportDimension
  * @return {CGSGDimension} a CGSGDimension as the real viewport dimension
  *&#x2F;
-function cgsgGetRealViewportDimension() {
+function cgsgGetRealViewportDimension () {
 	var e = window, a = &#x27;inner&#x27;;
 	if (!( &#x27;innerWidth&#x27; in window )) {
 		a = &#x27;client&#x27;;
@@ -315,7 +318,7 @@ function cgsgGetRealViewportDimension() {
  * @method cgsgGetDisplayedViewportDimension
  * @return {CGSGDimension} a CGSGDimension as the viewport region
  *&#x2F;
-function cgsgGetDisplayedViewportDimension() {
+function cgsgGetDisplayedViewportDimension () {
 	var realDim = cgsgGetRealViewportDimension();
 	return new CGSGDimension(Math.round(realDim.width &#x2F; cgsgDisplayRatio.x),
 	                         Math.round(realDim.height &#x2F; cgsgDisplayRatio.y));
@@ -328,15 +331,11 @@ function cgsgGetDisplayedViewportDimension() {
  * @param targetRegion a CGSGRegion
  * @param threshold an integer
  *&#x2F;
-function cgsgPointIsInRegion(point, targetRegion, threshold) {
-	if (point.x &gt;= (targetRegion.position.x - threshold) &amp;&amp;
-	    point.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
-	    point.x &lt;= (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
-	    point.y &lt;= (targetRegion.position.y + targetRegion.dimension.height + threshold)) {
-		return true;
-	}
-
-	return false;
+function cgsgPointIsInRegion (point, targetRegion, threshold) {
+	return point.x &gt;= (targetRegion.position.x - threshold) &amp;&amp;
+	       point.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
+	       point.x &lt;= (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
+	       point.y &lt;= (targetRegion.position.y + targetRegion.dimension.height + threshold);
 }
 
 &#x2F;**
@@ -346,33 +345,29 @@ function cgsgPointIsInRegion(point, targetRegion, threshold) {
  * @param targetRegion a CGSGRegion
  * @param threshold an integer
  *&#x2F;
-function cgsgRegionIsInRegion(region, targetRegion, threshold) {
-	if (region.position.x &gt;= (targetRegion.position.x - threshold) &amp;&amp;
-	    region.position.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
-	    (region.position.x + region.dimension.width) &lt;=
-	    (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
-	    (region.position.y + region.dimension.height) &lt;=
-	    (targetRegion.position.y + targetRegion.dimension.height + threshold)) {
-		return true;
-	}
-
-	return false;
+function cgsgRegionIsInRegion (region, targetRegion, threshold) {
+	return region.position.x &gt;= (targetRegion.position.x - threshold) &amp;&amp;
+	       region.position.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
+	       (region.position.x + region.dimension.width) &lt;=
+	       (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
+	       (region.position.y + region.dimension.height) &lt;=
+	       (targetRegion.position.y + targetRegion.dimension.height + threshold);
 }
 
 &#x2F;**
  * Return the mouse or touch position relative to the canvas
  * @method cgsgGetCursorPosition
- * @param event a touch or mouse Event
- * @param canvas a handler to the Canvas element
+ * @param {Event} event a touch or mouse Event
+ * @param {HTMLElement} canvas a handler to the Canvas element
  * @return {CGSGPosition} A CGSGPosition object
  *&#x2F;
-function cgsgGetCursorPosition(event, canvas) {
-	var element = canvas, offsetX = 0, offsetY = 0, posX = 0, posY = 0;
+function cgsgGetCursorPosition (event, canvas) {
+	var element = canvas, offsetX = 0, offsetY = 0;
 
-	var touch;
+	&#x2F;*var touch;
 	if (event.targetTouches) {
 		touch = event.targetTouches[0];
-	}
+	}*&#x2F;
 
 	if (element.offsetParent) {
 		do {
@@ -397,7 +392,7 @@ function cgsgGetCursorPosition(event, canvas) {
  * @method cgsgClearContext
  * @param {CanvasRenderingContext2D} context context to render on
  * *&#x2F;
-function cgsgClearContext(context) {
+function cgsgClearContext (context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	&#x2F;&#x2F; Will always clear the right space
 	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);

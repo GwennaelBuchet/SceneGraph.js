@@ -169,7 +169,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -219,7 +219,7 @@ var CGSGButtonMode = {
  *&#x2F;
 var CGSGNodeButton = CGSGNode.extend(
 	{
-		initialize : function(x, y, text) {
+		initialize : function (x, y, text) {
 			this._super(x, y, 0, 0);
 
 			&#x2F;**
@@ -341,13 +341,13 @@ var CGSGNodeButton = CGSGNode.extend(
 			this.setMode(CGSGButtonMode.NORMAL);
 
 			var that = this;
-			this.onMouseOver = function(event) {
+			this.onMouseOver = function (event) {
 				if (that.getMode() == CGSGButtonMode.NORMAL) {
 					that.setMode(CGSGButtonMode.OVER);
 				}
 			};
 
-			this.onMouseOut = function(event) {
+			this.onMouseOut = function (event) {
 				if (that.getMode() == CGSGButtonMode.OVER) {
 					that.setMode(CGSGButtonMode.NORMAL);
 				}
@@ -359,7 +359,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getFirstColor
 		 * @return {Array}
 		 *&#x2F;
-		getFirstColor : function() {
+		getFirstColor : function () {
 			return this._firstColors;
 		},
 		&#x2F;**
@@ -367,7 +367,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setFirstColor
 		 * @param value {Array}
 		 *&#x2F;
-		setFirstColor : function(value) {
+		setFirstColor : function (value) {
 			this._firstColors = value;
 			this._initShapes();
 		},
@@ -377,7 +377,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getLastColor
 		 * @return {Array}
 		 *&#x2F;
-		getLastColor : function() {
+		getLastColor : function () {
 			return this._lastColors;
 		},
 		&#x2F;**
@@ -385,7 +385,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setLastColor
 		 * @param value {Array}
 		 *&#x2F;
-		setLastColor : function(value) {
+		setLastColor : function (value) {
 			this._lastColors = value;
 			this._initShapes();
 		},
@@ -395,7 +395,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getShadowColor
 		 * @return {Array}
 		 *&#x2F;
-		getShadowColor : function() {
+		getShadowColor : function () {
 			return this._shadowColors;
 		},
 		&#x2F;**
@@ -403,7 +403,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setShadowColor
 		 * @param value {Array}
 		 *&#x2F;
-		setShadowColor : function(value) {
+		setShadowColor : function (value) {
 			this._shadowColors = value;
 			this._initShapes();
 		},
@@ -413,7 +413,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getRadius
 		 * @return {Array}
 		 *&#x2F;
-		getRadius : function() {
+		getRadius : function () {
 			return this._radiuses;
 		},
 		&#x2F;**
@@ -421,7 +421,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setRadius
 		 * @param value {Array}
 		 *&#x2F;
-		setRadius : function(value) {
+		setRadius : function (value) {
 			this._radiuses = value;
 			this._initShapes();
 		},
@@ -431,18 +431,24 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getText
 		 * @return {Array}
 		 *&#x2F;
-		getText : function() {
+		getText : function () {
 			return this._texts;
 		},
 		&#x2F;**
 		 * Set the value for text of the button
 		 * @method setText
-		 * @param value {Array}
+		 * @param values {Array}
 		 * @example
 		 *  button.setText([&quot;normal&quot;, &quot;over&quot;, &quot;deactivated&quot;]);
 		 *&#x2F;
-		setText : function(value) {
-			this._texts = value;
+		setText : function (values) {
+			&#x2F;&#x2F;if values is not an array, create an array of 3 times this value
+			if (!cgsgIsArray(values)) {
+					var v = values.toString();
+					values = [v, v, v];
+			}
+
+			this._texts = values;
 			this._initShapes();
 		},
 
@@ -451,7 +457,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getTextSize
 		 * @return {Array}
 		 *&#x2F;
-		getTextSize : function() {
+		getTextSize : function () {
 			return this._textSizes;
 		},
 		&#x2F;**
@@ -459,7 +465,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setTextSize
 		 * @param value {Array}
 		 *&#x2F;
-		setTextSize : function(value) {
+		setTextSize : function (value) {
 			this._textSizes = value;
 			this._initShapes();
 		},
@@ -469,7 +475,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getTextColor
 		 * @return {Array}
 		 *&#x2F;
-		getTextColor : function() {
+		getTextColor : function () {
 			return this._textColors;
 		},
 		&#x2F;**
@@ -479,7 +485,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @example
 		 *  button.setTextColor([&quot;white&quot;, &quot;green&quot;, &quot;yellow&quot;]);
 		 *&#x2F;
-		setTextColor : function(value) {
+		setTextColor : function (value) {
 			this._textColors = value;
 			this._initShapes();
 		},
@@ -489,7 +495,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getHorizontalPadding
 		 * @return {Number}
 		 *&#x2F;
-		getHorizontalPadding : function() {
+		getHorizontalPadding : function () {
 			return this._horizontalPadding;
 		},
 		&#x2F;**
@@ -497,7 +503,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setHorizontalPadding
 		 * @param value {Number}
 		 *&#x2F;
-		setHorizontalPadding : function(value) {
+		setHorizontalPadding : function (value) {
 			this._horizontalPadding = value;
 			this._initShapes();
 		},
@@ -507,7 +513,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getVerticalPadding
 		 * @return {Number}
 		 *&#x2F;
-		getVerticalPadding : function() {
+		getVerticalPadding : function () {
 			return this._verticalPadding;
 		},
 		&#x2F;**
@@ -515,7 +521,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setHorizontalPadding
 		 * @param value {Number}
 		 *&#x2F;
-		setVerticalPadding : function(value) {
+		setVerticalPadding : function (value) {
 			this._verticalPadding = value;
 			this._initShapes();
 		},
@@ -525,7 +531,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method _initShape
 		 * @private
 		 *&#x2F;
-		_initShapes : function() {
+		_initShapes : function () {
 			this._initShape(0);
 			this._initShape(1);
 			this._initShape(2);
@@ -537,7 +543,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @param {Number} index
 		 * @private
 		 *&#x2F;
-		_initShape : function(index) {
+		_initShape : function (index) {
 			this.textNode.setSize(this._textSizes[index], false);
 			this.textNode.setText(this._texts[index], true);
 			this.resizeTo(this.textNode.getWidth() + 2 * this._horizontalPadding,
@@ -580,7 +586,6 @@ var CGSGNodeButton = CGSGNode.extend(
 				                            this._radiuses[index]);
 				tmpContext.closePath();
 
-
 				var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
 				gradient.addColorStop(0, this._firstColors[index]);
 				gradient.addColorStop(1, this._lastColors[index]);
@@ -611,7 +616,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setMode
 		 * @param {CGSGButtonMode} mode
 		 *&#x2F;
-		setMode : function(mode) {
+		setMode : function (mode) {
 			this._currentMode = mode;
 		},
 
@@ -619,7 +624,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getMode
 		 * @return {CGSGButtonMode}
 		 *&#x2F;
-		getMode : function() {
+		getMode : function () {
 			return this._currentMode;
 		},
 
@@ -630,7 +635,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * *&#x2F;
-		render : function(context) {
+		render : function (context) {
 			&#x2F;&#x2F;save current state
 			this.beforeRender(context);
 
@@ -646,7 +651,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeSquare} a copy of this node
 		 *&#x2F;
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
 			                              this.dimension.height);
 			&#x2F;&#x2F;call the super method

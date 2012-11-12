@@ -169,7 +169,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -194,7 +194,7 @@
  * @static
  * @type {String}
  *&#x2F;
-var cgsgVersion = &quot;1.2.0&quot;;
+var cgsgVersion = &quot;1.2.1&quot;;
 
 &#x2F;**
  * Current display ratio
@@ -218,14 +218,14 @@ var cgsgResizeHandleThreshold = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD;
  * @type {Object}
  *&#x2F;
 var cgsgExplorerParams = {
-	IE10      : {name : &quot;IE 10 or above&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-	IE9       : {name : &quot;IE 9&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-	SAFARI    : {name : &quot;Safari&quot;, textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	CHROME    : {name : &quot;Chrome&quot;, textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
-	OPERA     : {name : &quot;Opera&quot;, textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
-	FIREFOX   : {name : &quot;Firefox&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	KONQUEROR : {name : &quot;Konqueror&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	UNKNOWN   : {name : &quot;Unknown&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
+	IE10      : {name : &quot;IE 10 or above&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+	IE9       : {name : &quot;IE 9&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+	SAFARI    : {name : &quot;Safari&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	CHROME    : {name : &quot;Chrome&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
+	OPERA     : {name : &quot;Opera&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
+	FIREFOX   : {name : &quot;Firefox&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	KONQUEROR : {name : &quot;Konqueror&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	UNKNOWN   : {name : &quot;Unknown&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
 };
 
 &#x2F;**
@@ -268,6 +268,15 @@ var cgsgCanvas = null;
  * @public
  *&#x2F;
 var cgsgGhostColor = &quot;#FF0000&quot;;
+
+&#x2F;**
+ * Number of frames to average the FPS.
+ * Reduce this number to get more accurate FPS
+ * @property cgsgFramerateDelay
+ * @default CGSG_DEFAULT_FRAMERATE_DELAY
+ * @type {Number}
+ *&#x2F;
+var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
     </pre>
 </div>
 

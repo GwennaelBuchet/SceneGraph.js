@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -39,8 +39,8 @@
  */
 var CGSGNodeLogger = CGSGNode.extend(
 	{
-		initialize : function(x, y) {
-			this._super(x, y, width, height);
+		initialize : function (x, y) {
+			this._super(x, y, 100, 100);
 
 			///// @public //////
 			this.isTraversable = false;
@@ -120,7 +120,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method _createPanel
 		 * @private
 		 */
-		_createPanel : function() {
+		_createPanel : function () {
 
 		},
 
@@ -131,7 +131,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @param {String} name
 		 * @param {String} value
 		 */
-		set : function(name, value) {
+		set : function (name, value) {
 			//if the attribute already exists,just update the value
 			var attr = null;
 			for (var a = 0; a < this._attributes[a]; a++) {
@@ -164,7 +164,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render : function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -196,7 +196,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeLogger} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeLogger(this.position.x, this.position.y);
 			//call the super method
 			node = this._super(node);

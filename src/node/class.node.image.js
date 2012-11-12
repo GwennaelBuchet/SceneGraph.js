@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -45,7 +45,7 @@
  */
 var CGSGNodeImage = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
+		initialize : function (x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
 			this._super(x, y, width, height);
 
 			/**
@@ -89,7 +89,6 @@ var CGSGNodeImage = CGSGNode.extend(
 			 */
 			this.slice = new CGSGRegion(sliceX, sliceY, sliceWidth, sliceHeight);
 
-
 			/**
 			 * @property _isLoaded
 			 * @type {Boolean}
@@ -128,7 +127,6 @@ var CGSGNodeImage = CGSGNode.extend(
 			}
 		},
 
-
 		/**
 		 * used to call delegate method when the image is finally loaded
 		 * @private
@@ -138,8 +136,8 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @param renderContext
 		 * @return {Function}
 		 */
-		_createDelegate : function(objectContext, delegateMethod, renderContext) {
-			return function() {
+		_createDelegate : function (objectContext, delegateMethod, renderContext) {
+			return function () {
 				return delegateMethod.call(objectContext, renderContext);
 			}
 		},
@@ -150,7 +148,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @private
 		 * @method _onImageLoaded
 		 */
-		_onImageLoaded : function(context) {
+		_onImageLoaded : function (context) {
 			this._checkDimension();
 			this._isLoaded = true;
 
@@ -167,7 +165,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @protected
 		 * @param context
 		 */
-		_onImageError : function(context) {
+		_onImageError : function (context) {
 		},
 
 		/**
@@ -176,7 +174,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @private
 		 * @method _checkDimension
 		 */
-		_checkDimension : function() {
+		_checkDimension : function () {
 			//if no width or height are specified in the constructor
 			if (this.dimension.width <= 0 && this.dimension.height <= 0) {
 				this.dimension.width = this._img.width;
@@ -195,7 +193,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @method setImage
 		 * @param {Image} newImage new Image object. Must bea already loaded before
 		 */
-		setImage : function(newImage) {
+		setImage : function (newImage) {
 			this._img = newImage;
 			if (cgsgExist(this._img)) {
 				this._urlImage = this._img.src;
@@ -210,7 +208,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @private
 		 * @method _initShape
 		 */
-		_initShape : function() {
+		_initShape : function () {
 			this._tmpCanvas.width = this.dimension.width;
 			this._tmpCanvas.height = this.dimension.height;
 			var tmpContext = this._tmpCanvas.getContext('2d');
@@ -232,7 +230,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @method render
 		 * @param {CanvasRenderingContext2D} context the context to render on
 		 * */
-		render : function(context) {
+		render : function (context) {
 			if (this._isLoaded && this._img.src != "") {
 				//save current state
 				this.beforeRender(context);
@@ -260,7 +258,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @method setEffect
 		 * @param {CGSGEffect} effect
 		 */
-		setEffect : function(effect) {
+		setEffect : function (effect) {
 			this.effect = effect;
 		},
 
@@ -273,7 +271,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @method renderGhost
 		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
 		 */
-		renderGhost : function(ghostContext) {
+		renderGhost : function (ghostContext) {
 			if (this._isLoaded && this._img.src != "") {
 				//save current state
 				this.beforeRenderGhost(ghostContext);
@@ -301,11 +299,10 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @param {Number} width
 		 * @param {Number} height
 		 * */
-		resizeWith : function(width, height) {
+		resizeWith : function (width, height) {
 			this._super(width, height);
 			this._initShape();
 		},
-
 
 		/**
 		 * @override
@@ -313,7 +310,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeImage} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height,
 			                             this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
 			                             this.slice.dimension.height, /*this.urlImage*/null,

@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -63,7 +63,7 @@ var CGSGButtonMode = {
  */
 var CGSGNodeButton = CGSGNode.extend(
 	{
-		initialize : function(x, y, text) {
+		initialize : function (x, y, text) {
 			this._super(x, y, 0, 0);
 
 			/**
@@ -185,13 +185,13 @@ var CGSGNodeButton = CGSGNode.extend(
 			this.setMode(CGSGButtonMode.NORMAL);
 
 			var that = this;
-			this.onMouseOver = function(event) {
+			this.onMouseOver = function (event) {
 				if (that.getMode() == CGSGButtonMode.NORMAL) {
 					that.setMode(CGSGButtonMode.OVER);
 				}
 			};
 
-			this.onMouseOut = function(event) {
+			this.onMouseOut = function (event) {
 				if (that.getMode() == CGSGButtonMode.OVER) {
 					that.setMode(CGSGButtonMode.NORMAL);
 				}
@@ -203,7 +203,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getFirstColor
 		 * @return {Array}
 		 */
-		getFirstColor : function() {
+		getFirstColor : function () {
 			return this._firstColors;
 		},
 		/**
@@ -211,7 +211,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setFirstColor
 		 * @param value {Array}
 		 */
-		setFirstColor : function(value) {
+		setFirstColor : function (value) {
 			this._firstColors = value;
 			this._initShapes();
 		},
@@ -221,7 +221,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getLastColor
 		 * @return {Array}
 		 */
-		getLastColor : function() {
+		getLastColor : function () {
 			return this._lastColors;
 		},
 		/**
@@ -229,7 +229,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setLastColor
 		 * @param value {Array}
 		 */
-		setLastColor : function(value) {
+		setLastColor : function (value) {
 			this._lastColors = value;
 			this._initShapes();
 		},
@@ -239,7 +239,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getShadowColor
 		 * @return {Array}
 		 */
-		getShadowColor : function() {
+		getShadowColor : function () {
 			return this._shadowColors;
 		},
 		/**
@@ -247,7 +247,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setShadowColor
 		 * @param value {Array}
 		 */
-		setShadowColor : function(value) {
+		setShadowColor : function (value) {
 			this._shadowColors = value;
 			this._initShapes();
 		},
@@ -257,7 +257,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getRadius
 		 * @return {Array}
 		 */
-		getRadius : function() {
+		getRadius : function () {
 			return this._radiuses;
 		},
 		/**
@@ -265,7 +265,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setRadius
 		 * @param value {Array}
 		 */
-		setRadius : function(value) {
+		setRadius : function (value) {
 			this._radiuses = value;
 			this._initShapes();
 		},
@@ -275,18 +275,24 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getText
 		 * @return {Array}
 		 */
-		getText : function() {
+		getText : function () {
 			return this._texts;
 		},
 		/**
 		 * Set the value for text of the button
 		 * @method setText
-		 * @param value {Array}
+		 * @param values {Array}
 		 * @example
 		 *  button.setText(["normal", "over", "deactivated"]);
 		 */
-		setText : function(value) {
-			this._texts = value;
+		setText : function (values) {
+			//if values is not an array, create an array of 3 times this value
+			if (!cgsgIsArray(values)) {
+					var v = values.toString();
+					values = [v, v, v];
+			}
+
+			this._texts = values;
 			this._initShapes();
 		},
 
@@ -295,7 +301,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getTextSize
 		 * @return {Array}
 		 */
-		getTextSize : function() {
+		getTextSize : function () {
 			return this._textSizes;
 		},
 		/**
@@ -303,7 +309,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setTextSize
 		 * @param value {Array}
 		 */
-		setTextSize : function(value) {
+		setTextSize : function (value) {
 			this._textSizes = value;
 			this._initShapes();
 		},
@@ -313,7 +319,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getTextColor
 		 * @return {Array}
 		 */
-		getTextColor : function() {
+		getTextColor : function () {
 			return this._textColors;
 		},
 		/**
@@ -323,7 +329,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @example
 		 *  button.setTextColor(["white", "green", "yellow"]);
 		 */
-		setTextColor : function(value) {
+		setTextColor : function (value) {
 			this._textColors = value;
 			this._initShapes();
 		},
@@ -333,7 +339,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getHorizontalPadding
 		 * @return {Number}
 		 */
-		getHorizontalPadding : function() {
+		getHorizontalPadding : function () {
 			return this._horizontalPadding;
 		},
 		/**
@@ -341,7 +347,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setHorizontalPadding
 		 * @param value {Number}
 		 */
-		setHorizontalPadding : function(value) {
+		setHorizontalPadding : function (value) {
 			this._horizontalPadding = value;
 			this._initShapes();
 		},
@@ -351,7 +357,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getVerticalPadding
 		 * @return {Number}
 		 */
-		getVerticalPadding : function() {
+		getVerticalPadding : function () {
 			return this._verticalPadding;
 		},
 		/**
@@ -359,7 +365,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setHorizontalPadding
 		 * @param value {Number}
 		 */
-		setVerticalPadding : function(value) {
+		setVerticalPadding : function (value) {
 			this._verticalPadding = value;
 			this._initShapes();
 		},
@@ -369,7 +375,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method _initShape
 		 * @private
 		 */
-		_initShapes : function() {
+		_initShapes : function () {
 			this._initShape(0);
 			this._initShape(1);
 			this._initShape(2);
@@ -381,7 +387,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @param {Number} index
 		 * @private
 		 */
-		_initShape : function(index) {
+		_initShape : function (index) {
 			this.textNode.setSize(this._textSizes[index], false);
 			this.textNode.setText(this._texts[index], true);
 			this.resizeTo(this.textNode.getWidth() + 2 * this._horizontalPadding,
@@ -424,7 +430,6 @@ var CGSGNodeButton = CGSGNode.extend(
 				                            this._radiuses[index]);
 				tmpContext.closePath();
 
-
 				var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
 				gradient.addColorStop(0, this._firstColors[index]);
 				gradient.addColorStop(1, this._lastColors[index]);
@@ -455,7 +460,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method setMode
 		 * @param {CGSGButtonMode} mode
 		 */
-		setMode : function(mode) {
+		setMode : function (mode) {
 			this._currentMode = mode;
 		},
 
@@ -463,7 +468,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method getMode
 		 * @return {CGSGButtonMode}
 		 */
-		getMode : function() {
+		getMode : function () {
 			return this._currentMode;
 		},
 
@@ -474,7 +479,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render : function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -490,7 +495,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeSquare} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
 			                              this.dimension.height);
 			//call the super method

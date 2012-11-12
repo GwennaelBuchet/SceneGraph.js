@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -40,7 +40,7 @@
  */
 var CGSGNodeCircle = CGSGNode.extend(
 	{
-		initialize : function(centerX, centerY, radius) {
+		initialize : function (centerX, centerY, radius) {
 
 			/**
 			 * @property radius
@@ -97,9 +97,10 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @method setRadius
 		 * @param {Number} radius
 		 */
-		setRadius : function(radius) {
+		setRadius : function (radius) {
 			this._radius = radius;
 			this.dimension.width = this._radius * 2.0;
+			//noinspection JSSuspiciousNameCombination
 			this.dimension.height = this.dimension.width;
 		},
 
@@ -108,7 +109,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @method setCenter
 		 * @param {CGSGPosition} center
 		 */
-		setCenter : function(center) {
+		setCenter : function (center) {
 			this._center = center;
 			this.position.x = this._center.x - this._radius;
 			this.position.y = this._center.y - this._radius;
@@ -121,7 +122,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render : function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -148,7 +149,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @param {Number} newWidth
 		 * @param {Number} newHeight
 		 * */
-		resizeTo : function(newWidth, newHeight) {
+		resizeTo : function (newWidth, newHeight) {
 			this.dimension.resizeTo(newWidth, newHeight);
 
 			this._computeResizedRadius();
@@ -160,7 +161,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @param {Number} widthFactor
 		 * @param {Number} heightFactor
 		 * */
-		resizeBy : function(widthFactor, heightFactor) {
+		resizeBy : function (widthFactor, heightFactor) {
 			this.dimension.resizeBy(widthFactor, heightFactor);
 
 			this._computeResizedRadius();
@@ -172,7 +173,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @param {Number} width
 		 * @param {Number} height
 		 * */
-		resizeWith : function(width, height) {
+		resizeWith : function (width, height) {
 			this.dimension.resizeWith(width, height);
 
 			this._computeResizedRadius();
@@ -182,7 +183,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @method _computeResizedRadius
 		 * @private
 		 */
-		_computeResizedRadius : function() {
+		_computeResizedRadius : function () {
 			var r = this._radius;
 			this._radius = Math.min(this.dimension.width, this.dimension.height) / 2.0;
 			r = -2.0 * (r - this._radius);
@@ -194,7 +195,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @method renderGhost
 		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
 		 */
-		renderGhost : function(ghostContext) {
+		renderGhost : function (ghostContext) {
 			//save current state
 			this.beforeRenderGhost(ghostContext);
 
@@ -220,7 +221,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeCircle} a copy of this node
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeCircle(this.position.x, this.position.y, this.dimension.width,
 			                              this.dimension.height);
 			//call the super method

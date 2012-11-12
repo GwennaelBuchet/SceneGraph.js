@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -65,7 +65,7 @@ var CGMain = CGSGScene.extend(
              * @param image url
              * @param context
              */
-            this.pingoo = new CGSGNodeSprite(60, 60, "images/board.png", this.context);
+            this.pingoo = new CGSGNodeSprite(60, 80, "images/board.png", this.context);
             this.pingoo.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
@@ -78,16 +78,15 @@ var CGMain = CGSGScene.extend(
 
 			this.currentAnimation = 0;
 
-			//add a text "Switch Animation"
-			this.textSwitch = new CGSGNodeText(10, 20, "Switch Animation");
-			this.textSwitch.size = 20;
+
+			//add a text node ("click me") with a onClick event
+			this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
 			var bindSwitchAnimation = this.switchAnimation.bind(this);
-			//add the onClick event to the text
-			this.textSwitch.onClick = function (event) {
+			this.buttonNode.onClick = function (event) {
 				bindSwitchAnimation();
 			}
 			//add the textNode as child of the root
-			this.rootNode.addChild(this.textSwitch);
+			this.rootNode.addChild(this.buttonNode);
 
             this.changeTextAnimation();
 		},
@@ -103,7 +102,7 @@ var CGMain = CGSGScene.extend(
          * change the text of the button
          */
         changeTextAnimation : function() {
-            this.textSwitch.setText("Switch Animation. (current = " + this.listAnimations[this.currentAnimation] + ")");
+            this.buttonNode.setText("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
         }
 	}
 );

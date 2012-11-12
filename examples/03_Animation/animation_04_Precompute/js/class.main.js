@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -72,13 +72,13 @@ var CGMain = CGSGScene.extend(
             //add the textNode as child of the root
             this.rootNode.addChild(buttonNode);
 
-            this.squareNode1 = new CGSGNodeSquare(60, 60, 100, 100);
+            this.squareNode1 = new CGSGNodeSquare(30, 60, 100, 100);
             this.rootNode.addChild(this.squareNode1);
 
-            this.squareNode2 = new CGSGNodeSquare(60, 180, 100, 100);
+            this.squareNode2 = new CGSGNodeSquare(30, 180, 100, 100);
             this.rootNode.addChild(this.squareNode2);
 
-            this.squareNode3 = new CGSGNodeSquare(60, 300, 100, 100);
+            this.squareNode3 = new CGSGNodeSquare(30, 300, 100, 100);
             this.rootNode.addChild(this.squareNode3);
 
 
@@ -105,8 +105,8 @@ var CGMain = CGSGScene.extend(
          * @param precompute
          */
         addAnimation : function(node) {
-            this.sceneGraph.addAnimationKey(node, "position.x", 0, 100, "linear", false); //don't precompute
-            this.sceneGraph.addAnimationKey(node, "position.x", 30, 200, "linear", true); //precompute
+            this.sceneGraph.addAnimationKey(node, "position.x", 0, 30, "linear", false); //don't precompute
+            this.sceneGraph.addAnimationKey(node, "position.x", 30, 300, "linear", true); //precompute
 
             //we cal also use the helper method which add 2 animation keys ('from' and 'to'):
             //this.sceneGraph.animate(this.squareNode1, "position.x", 30, 100, 100, "linear", true);

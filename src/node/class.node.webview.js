@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -47,6 +47,8 @@ var CGSGWEBVIEWMODE = {
  * - load a page in AJAX and make an image from it to assign to the PREVIEW mode
  */
 
+"use strict";
+
 /**
  * @class CGSGNodeWebview
  * @module Node
@@ -62,7 +64,7 @@ var CGSGWEBVIEWMODE = {
  */
 var CGSGNodeWebview = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height, url, context) {
+		initialize : function (x, y, width, height, url, context) {
 			this._super(x, y, width, height);
 
 			/**
@@ -132,7 +134,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _initLiveContainer
 		 * @private
 		 */
-		_initLiveContainer : function() {
+		_initLiveContainer : function () {
 			if (!cgsgExist(this._liveContainer)) {
 				this._createLiveContainer();
 			}
@@ -145,7 +147,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _initPreviewContainer
 		 * @private
 		 */
-		_initPreviewContainer : function() {
+		_initPreviewContainer : function () {
 			if (!cgsgExist(this._previewContainer)) {
 				this._previewContainer =
 				new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height, 0, 0,
@@ -163,7 +165,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _createLiveContainer
 		 * @private
 		 */
-		_createLiveContainer : function() {
+		_createLiveContainer : function () {
 			var uri = "";
 			if (cgsgExist(this._url)) {
 				uri = this._url;
@@ -180,7 +182,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @private
 		 * @method _loadPageAsync
 		 */
-		_loadPageAsync : function() {
+		_loadPageAsync : function () {
 
 		},
 
@@ -188,7 +190,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method setURL
 		 * @param {String} url
 		 */
-		setURL : function(url) {
+		setURL : function (url) {
 			this._url = url;
 
 			if (cgsgExist(this._liveContainer)) {
@@ -201,18 +203,18 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method getURL
 		 * @return {string}
 		 */
-		getURL : function() {
+		getURL : function () {
 			return this._url;
 		},
 
 		/**
 		 * Switch between rendering mode
 		 * @method switchMode
-		 * @param {Object} mode a CGSGWEBVIEWMODE enum : LIVE or PREVIEW
+		 * @param {Number} mode a CGSGWEBVIEWMODE enum : LIVE or PREVIEW
 		 */
-		switchMode : function(mode) {
+		switchMode : function (mode) {
 			this.mode = mode;
-			if (mode == CGSGWEBVIEWMODE.LIVE) {
+			if (mode === CGSGWEBVIEWMODE.LIVE) {
 				this.detachChild(this._previewContainer);
 				this._initLiveContainer();
 			}
@@ -228,7 +230,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method render
 		 * Custom rendering
 		 * */
-		render : function(context) {
+		render : function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -263,7 +265,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @override
 		 * @method free
 		 */
-		free : function() {
+		free : function () {
 			this._super();
 
 			if (cgsgExist(this._liveContainer)) {
@@ -279,7 +281,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeWebview}
 		 */
-		copy : function() {
+		copy : function () {
 			var node = new CGSGNodeWebview(this.position.x, this.position.y, this.dimension.width,
 			                               this.dimension.height, this.url);
 			//call the super method

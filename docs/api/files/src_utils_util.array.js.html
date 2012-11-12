@@ -169,7 +169,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -179,8 +179,10 @@
  *  These Terms of Use are subject to French law.
  *&#x2F;
 
+&quot;use script&quot;;
+
 &#x2F;**
- * Some utils methods extending the Array prototype
+ * Utils methods extending the Array prototype
  *
  * @class __UTIL_ARRAY__
  * @module Util
@@ -189,11 +191,20 @@
  *&#x2F;
 
 &#x2F;**
+ * @method cgsgIsArray
+ * @param {Object} value
+ * @return {Boolean}
+ *&#x2F;
+function cgsgIsArray (value) {
+	return (Object.prototype.toString.call(value) === &#x27;[object Array]&#x27;);
+}
+
+&#x2F;**
  * Remove all the occurrences of the item from the array
  * @method Array.prototype.without
  * @param item
  *&#x2F;
-Array.prototype.without = function(item) {
+Array.prototype.without = function (item) {
 	for (var i = 0; i &lt; this.length; i++) {
 		if (this[i] == item) {
 			this.splice(i, 1);
@@ -206,7 +217,7 @@ Array.prototype.without = function(item) {
  * Empties the array
  * @method Array.prototype.clear
  *&#x2F;
-Array.prototype.clear = function() {
+Array.prototype.clear = function () {
 	this.length = 0;
 };
 
@@ -215,9 +226,9 @@ Array.prototype.clear = function() {
  * @method Array.prototype.clone
  * @return {Array}
  *&#x2F;
-Array.prototype.clone = function() {
+Array.prototype.clone = function () {
 	return this.slice(0);
-}
+};
 
 &#x2F;**
  * Checks whether the specified elements exists in the array or not
@@ -225,7 +236,7 @@ Array.prototype.clone = function() {
  * @param item
  * @return {Boolean}
  *&#x2F;
-Array.prototype.contains = function(item) {
+Array.prototype.contains = function (item) {
 	for (var i = 0; i &lt; this.length; i++) {
 		if (this[i] == item) {
 			return true;
@@ -239,7 +250,7 @@ Array.prototype.contains = function(item) {
  *  @method Array.prototype.unique
  *  @return {Array}
  *&#x2F;
-Array.prototype.unique = function() {
+Array.prototype.unique = function () {
 	var tmp = [], i;
 	this.sort();
 	for (i = 0; i &lt; this.length; i++) {
@@ -249,7 +260,30 @@ Array.prototype.unique = function() {
 	}
 
 	return tmp;
-}
+};
+
+&#x2F;**
+ * Compute and return the sum of all elements in this array
+ * @method Array.prototype.sum
+ * @return {Number}
+ *&#x2F;
+Array.prototype.sum = function () {
+	var sum = 0;
+	for (var i = 0; i &lt; this.length; i++) {
+		sum += parseInt(this[i]);
+	}
+
+	return sum;
+};
+
+&#x2F;**
+ * Compute and return the average of all the elements in this array
+ * @method Array.prototype.average
+ * @return {Number}
+ *&#x2F;
+Array.prototype.average = function () {
+	return this.sum() &#x2F; this.length;
+};
 
     </pre>
 </div>

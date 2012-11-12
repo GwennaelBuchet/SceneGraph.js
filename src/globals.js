@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -38,7 +38,7 @@
  * @static
  * @type {String}
  */
-var cgsgVersion = "1.2.0";
+var cgsgVersion = "1.2.1";
 
 /**
  * Current display ratio
@@ -62,14 +62,14 @@ var cgsgResizeHandleThreshold = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD;
  * @type {Object}
  */
 var cgsgExplorerParams = {
-	IE10      : {name : "IE 10 or above", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-	IE9       : {name : "IE 9", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-	SAFARI    : {name : "Safari", textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	CHROME    : {name : "Chrome", textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
-	OPERA     : {name : "Opera", textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
-	FIREFOX   : {name : "Firefox", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	KONQUEROR : {name : "Konqueror", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	UNKNOWN   : {name : "Unknown", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
+	IE10      : {name : "IE 10 or above", browserName : "", fullVersion : "", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+	IE9       : {name : "IE 9", browserName : "", fullVersion : "", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+	SAFARI    : {name : "Safari", browserName : "", fullVersion : "", textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	CHROME    : {name : "Chrome", browserName : "", fullVersion : "", textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
+	OPERA     : {name : "Opera", browserName : "", fullVersion : "", textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
+	FIREFOX   : {name : "Firefox", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	KONQUEROR : {name : "Konqueror", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+	UNKNOWN   : {name : "Unknown", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
 };
 
 /**
@@ -112,3 +112,12 @@ var cgsgCanvas = null;
  * @public
  */
 var cgsgGhostColor = "#FF0000";
+
+/**
+ * Number of frames to average the FPS.
+ * Reduce this number to get more accurate FPS
+ * @property cgsgFramerateDelay
+ * @default CGSG_DEFAULT_FRAMERATE_DELAY
+ * @type {Number}
+ */
+var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
