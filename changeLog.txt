@@ -31,7 +31,7 @@ TODO LIST:
 
 - Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
-ùp- Optimization. Automatic multiple canvas for multiple layers, sharing the same scene graph.
+- Optimization. Automatic multiple canvas for multiple layers, sharing the same scene graph.
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
 - Evolution. CGSGNodeLink
