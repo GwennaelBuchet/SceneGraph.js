@@ -64,6 +64,7 @@
                 <a href="index.html" shape="rect">HOME</a>
             </li>
             <li class="current" style="border:none"><a href="tutorials.html">TUTORIALS</a>
+
                 <div style="left:-112px;">
                     <ul>
                         <li class="oe_heading">Starter</li>
@@ -74,6 +75,7 @@
                         <li><a href="tutorials/custom_node.html">Custom your nodes</a></li>
                         <li><a href="tutorials/image_sharing.html">Image sharing</a></li>
                         <li><a href="tutorials/spritesheets.html">SpriteSheets</a></li>
+                        <li><a href="tutorials/traverser.html">Traverse the graph</a></li>
                     </ul>
                     <ul>
                         <li class="oe_heading">Events</li>
@@ -86,7 +88,7 @@
                         <li><a href="tutorials/particles.html">Particles</a></li>
                         <li><a href="tutorials/share_animation.html">Share animation values</a></li>
                         <li><a href="tutorials/advanced_animation.html">Advanced animation</a></li>
-                        <li><a href="tutorials/making_game.html">Making a game</a></li>
+                        <li><a href="tutorials/making_game.html">Develop a game</a></li>
                     </ul>
                     <ul>
                         <li class="oe_heading">Performance Tips</li>
@@ -122,10 +124,58 @@
             <div id="container">
                 <!--  content -->
                 <div id="content">
+                    <div id="center">
+                        <h1>General Concept of a Scene Graph</h1>
 
-                    <h1>General Concept of a Scene Graph</h1>
-                    <p>COMING SOON ...</p>
+<h2>What is a Scene Graph</h2>
+                        <p>cgSceneGraph is a scene graph developed in Javascript.<br/>
+                            Hence, like a tree, it maintains a hierarchy of "nodes".
+                            <br/><br/>
+                            In cgSceneGraph, a node is named "<em class="blueText">CGSGNode</em>" (the name of each
+                            class of the framework begins
+                            with "CGSG").<br/>
+                            A node is an item (visual or not) in the graph and encapsulates its own properties (SRT
+                            transformation, isDraggable, isResizable, isVisible, children, ...).<br/>
+                            The CGSGNode does not render anything (its "render" method is empty). To render something,
+                            you have to use a class that inherit from CGSGNode. <br/>
+                            It's very easy to create your own node by extending CGSGNode and the framework already
+                            provides some extensions:
+                        <ul>
+                            <li>Image (CGSGNodeImage)</li>
+                            <li>Animated Sprite (CGSGNodeSprite)</li>
+                            <li>Text (CGSGNodeText)</li>
+                            <li>WebView (CGSGNodeWebview)</li>
+                            <li>Square (CGSGNodeSquare)</li>
+                            <li>Circle (CGSGNodeCircle)</li>
+                            <li>Ellipse (CGSGNodeEllipse)</li>
+                            <li>Button (CGSGNodeButton)</li>
+                            <li>...</li>
+                        </ul>
+                        <br/>
+                        <img class="imgCenter" src="img/concepts_graph.png" width="500" height="371"
+                             alt="Concept of a graph"/>
+                        </p>
+                        <h2>Inheritance in a Scene Graph</h2>
+                        <p>So, each node encapsulates its own properties but some will inherit from its parent.
+                            <br/>
+                            Example with the scale attribute:<br/><img class="imgCenter"
+                                                                       src="img/concepts_inheritance.png" width="500"
+                                                                       height="371"
+                                                                       alt="concept : inheritance"/><br/><br/>
+                            Here is an example with 2 nodes : a cloud having a tree as child node.<br/>
 
+                        <img class="imgCenter"
+                                 src="img/concepts_tree_cloud.png" width="900"
+                                 height="500" alt="concept : inheritance"/></p>
+                        <p>In the same way, the scale, rotation, translation and &quot;isVisible&quot; attributes will be impacted by the ones of their hierarchy.<br />
+                          However, every other properties (globalAlpha, isDraggable, isResizable, ...) will override the ones defined in the parent hierarchy.
+                          <br/>
+                          
+                        </p>
+
+                        <p>&nbsp;</p>
+
+                    </div>
                     <div class="clear" style="height:4px"></div>
                 </div>
                 <!-- end content -->
@@ -166,7 +216,7 @@
 </div>
 
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
     $(function () {
         var $oe_menu = $('#oe_menu');

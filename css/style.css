@@ -177,8 +177,11 @@ body {
     margin: 0 auto;
     text-align: left;
     min-height: 100px;
-    padding-left: 10px;
-    padding-right: 10px;
+}
+
+#content p {
+    margin-top: 10px;
+    text-align: justify;
 }
 
 #pageFooter {
@@ -241,11 +244,6 @@ body {
     float: left;
 }
 
-#content p {
-    margin-top: 10px;
-    text-align: justify;
-}
-
 #sidebar {
     width: 200px;
     margin-right: 10px;
@@ -292,6 +290,12 @@ body {
     color: #a0cdf2;
     text-align: center;
     text-transform: uppercase;
+}
+
+.imgCenter {
+	display:block; 
+	margin:0 auto;
+}
 }
 
 hr {
@@ -356,10 +360,11 @@ a img {
 }
 
 .exampleBlock {
-    width: 220px;
-    padding-top: 1px;
-    margin-right: 20px;
-    float: left;
+	width: 220px;
+	padding-top: 1px;
+	margin-right: 8px;
+	float: left;
+	margin-left: 7px;
 }
 
 .exampleLink {
