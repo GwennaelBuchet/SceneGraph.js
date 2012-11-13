@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -63,10 +63,10 @@ var SkyNode = CGSGNode.extend(
 		render : function(context) {
 			this.firstColorCurrent =
 			CGSGColor.lerp(this.firstColors[currentColorIndex], this.firstColors[currentColorIndex + 1],
-			               currentColorLerp);
+			                currentColorLerp);
 			this.lastColorCurrent =
 			CGSGColor.lerp(this.lastColors[currentColorIndex], this.lastColors[currentColorIndex + 1],
-			               currentColorLerp);
+			                currentColorLerp);
 
 			this.sun.globalAlpha =
 			CGSGMath.lerp(this.alpha[currentColorIndex], this.alpha[currentColorIndex + 1], currentColorLerp);

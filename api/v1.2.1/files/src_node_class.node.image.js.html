@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\node\class.node.image.js - cgSceneGraph</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/__GLOBAL_CONSTANTS__.html">__GLOBAL_CONSTANTS__</a></li>
+            
+                <li><a href="..&#x2F;classes/__GLOBAL_METHODS__.html">__GLOBAL_METHODS__</a></li>
+            
+                <li><a href="..&#x2F;classes/__GLOBAL_PROPERTIES__.html">__GLOBAL_PROPERTIES__</a></li>
+            
+                <li><a href="..&#x2F;classes/__UTIL_ARRAY__.html">__UTIL_ARRAY__</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScene.html">CGSGScene</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Math.html">Math</a></li>
+            
+                <li><a href="..&#x2F;modules/Node.html">Node</a></li>
+            
+                <li><a href="..&#x2F;modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;modules/Scene.html">Scene</a></li>
+            
+                <li><a href="..&#x2F;modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\node\class.node.image.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License&#x2F;Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ *&#x2F;
+
+&#x2F;**
+ * A CGSGNodeImage represent an image node
+ *
+ * @class CGSGNodeImage
+ * @extends CGSGNode
+ * @module Node
+ * @constructor
+ * @param {Number} x Relative position on X
+ * @param {Number} y Relative position on X
+ * @param {Number} width Relative dimension
+ * @param {Number} height Relative Dimension
+ * @param {Number} sliceX Position of the content of this node on the src image
+ * @param {Number} sliceY Position of the content of this node on the src image
+ * @param {Number} sliceWidth Dimension of the content of this node on the src image
+ * @param {Number} sliceHeight Dimension of the content of this node on the src image
+ * @param {String} urlImage URL of the src image. Can be null tobe loaded later.
+ * @param {CanvasRenderingContext2D} context context to render on
+ * @type {CGSGNodeImage}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ *&#x2F;
+var CGSGNodeImage = CGSGNode.extend(
+	{
+		initialize : function (x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
+			this._super(x, y, width, height);
+
+			&#x2F;**
+			 * @property classType
+			 * @type {String}
+			 *&#x2F;
+			this.classType = &quot;CGSGNodeImage&quot;;
+
+			&#x2F;**
+			 * the selected effect to be applied
+			 * @property effect
+			 * @default null
+			 * @type {CGSGEffect}
+			 *&#x2F;
+			this.effect = null;
+			&#x2F;**
+			 * URL of the image
+			 * @property _urlImage
+			 * @type {String}
+			 * @private
+			 *&#x2F;
+			this._urlImage = urlImage;
+
+			&#x2F;**
+			 * @property isProportionalResize
+			 * @default true
+			 * @type {Boolean}
+			 *&#x2F;
+			this.isProportionalResize = true;
+			&#x2F;**
+			 * the image object itself
+			 * @property _img
+			 * @type {Image}
+			 * @private
+			 *&#x2F;
+			this._img = new Image();
+			&#x2F;**
+			 * the region on the image to render
+			 * @property slice
+			 * @type {CGSGRegion}
+			 *&#x2F;
+			this.slice = new CGSGRegion(sliceX, sliceY, sliceWidth, sliceHeight);
+
+			&#x2F;**
+			 * @property _isLoaded
+			 * @type {Boolean}
+			 * @private
+			 *&#x2F;
+			this._isLoaded = false;
+			&#x2F;**
+			 * @property _context
+			 * @type {CanvasRenderingContext2D}
+			 * @private
+			 *&#x2F;
+			this._context = context;
+
+			&#x2F;**
+			 * Event Fired when the image is finally loaded
+			 * @property onLoadEnd
+			 * @default null
+			 * @type {Function}
+			 *&#x2F;
+			this.onLoadEnd = null;
+
+			&#x2F;**
+			 * Fake canvas to pre-render the image
+			 * @property _tmpCanvas
+			 * @type {HTMLElement}
+			 * @private
+			 *&#x2F;
+			this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
+
+			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+			&#x2F;&#x2F;finally load the image
+			if (this._urlImage !== undefined &amp;&amp; this._urlImage !== null &amp;&amp; this._urlImage != &quot;&quot;) {
+				this._img.onload = this._createDelegate(this, this._onImageLoaded, context);
+				&#x2F;&#x2F;this.img.onload = this._onImageLoaded(context);
+				this._img.src = this._urlImage;
+			}
+		},
+
+		&#x2F;**
+		 * used to call delegate method when the image is finally loaded
+		 * @private
+		 * @method _createDelegate
+		 * @param objectContext
+		 * @param delegateMethod
+		 * @param renderContext
+		 * @return {Function}
+		 *&#x2F;
+		_createDelegate : function (objectContext, delegateMethod, renderContext) {
+			return function () {
+				return delegateMethod.call(objectContext, renderContext);
+			}
+		},
+
+		&#x2F;**
+		 * fired when the image is loaded.
+		 * Check the dimension of the image and fired the onLoadEnd event
+		 * @private
+		 * @method _onImageLoaded
+		 *&#x2F;
+		_onImageLoaded : function (context) {
+			this._checkDimension();
+			this._isLoaded = true;
+
+			if (this.onLoadEnd !== null) {
+				this.onLoadEnd();
+			}
+			this._initShape();
+			this.render(this._context);
+		},
+
+		&#x2F;**
+		 * To be overrided when the image failed to load
+		 * @method _onImageError
+		 * @protected
+		 * @param context
+		 *&#x2F;
+		_onImageError : function (context) {
+		},
+
+		&#x2F;**
+		 * Check the true dimension of the image and fill the this.dimension property with it,
+		 * only if dimension is not already defined in the constructor
+		 * @private
+		 * @method _checkDimension
+		 *&#x2F;
+		_checkDimension : function () {
+			&#x2F;&#x2F;if no width or height are specified in the constructor
+			if (this.dimension.width &lt;= 0 &amp;&amp; this.dimension.height &lt;= 0) {
+				this.dimension.width = this._img.width;
+				this.dimension.height = this._img.height;
+			}
+
+			&#x2F;&#x2F;if no slice was specified, adjust it with the full image
+			if (this.slice.dimension.width &lt;= 0 || this.slice.dimension.height &lt;= 0) {
+				this.slice.dimension.width = this.dimension.width;
+				this.slice.dimension.height = this.dimension.height;
+			}
+		},
+
+		&#x2F;**
+		 * @public
+		 * @method setImage
+		 * @param {Image} newImage new Image object. Must bea already loaded before
+		 *&#x2F;
+		setImage : function (newImage) {
+			this._img = newImage;
+			if (cgsgExist(this._img)) {
+				this._urlImage = this._img.src;
+				this._checkDimension();
+				this._isLoaded = true;
+				this._initShape();
+			}
+		},
+
+		&#x2F;**
+		 *  pre-render the image into _tmpCanvas to optimize the perfs
+		 * @private
+		 * @method _initShape
+		 *&#x2F;
+		_initShape : function () {
+			this._tmpCanvas.width = this.dimension.width;
+			this._tmpCanvas.height = this.dimension.height;
+			var tmpContext = this._tmpCanvas.getContext(&#x27;2d&#x27;);
+
+			tmpContext.drawImage(
+				this._img, &#x2F;&#x2F; image
+				this.slice.position.x, this.slice.position.y, &#x2F;&#x2F; start position on the image
+				this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
+				0, 0,
+				&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
+				this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
+			);
+		},
+
+		&#x2F;**
+		 * Must be defined to allow the scene graph to render the image nodes
+		 * @override
+		 * @protected
+		 * @method render
+		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * *&#x2F;
+		render : function (context) {
+			if (this._isLoaded &amp;&amp; this._img.src != &quot;&quot;) {
+				&#x2F;&#x2F;save current state
+				this.beforeRender(context);
+
+				context.globalAlpha = this.globalAlpha;
+
+				&#x2F;&#x2F;custom rendering
+				&#x2F;&#x2F;context.drawImage(this.tmpCanvas, 0, 0);
+
+				context.drawImage(
+					this._img, &#x2F;&#x2F; image
+					this.slice.position.x, this.slice.position.y, &#x2F;&#x2F; start position on the image
+					this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
+					0, 0,
+					&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
+					this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
+				);
+				&#x2F;&#x2F;restore state
+				this.afterRender(context);
+			}
+		},
+
+		&#x2F;**
+		 * @public
+		 * @method setEffect
+		 * @param {CGSGEffect} effect
+		 *&#x2F;
+		setEffect : function (effect) {
+			this.effect = effect;
+		},
+
+		&#x2F;**
+		 * Ghost rendering function.
+		 * Render here your custom nodes with a single color (cgsgGhostColor).
+		 * This will be used by the SceneGraph to know if the mouse cursor is over this nodes.
+		 * @override
+		 * @protected
+		 * @method renderGhost
+		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
+		 *&#x2F;
+		renderGhost : function (ghostContext) {
+			if (this._isLoaded &amp;&amp; this._img.src != &quot;&quot;) {
+				&#x2F;&#x2F;save current state
+				this.beforeRenderGhost(ghostContext);
+
+				ghostContext.drawImage(
+					this._img, &#x2F;&#x2F; image
+					this.slice.position.x, this.slice.position.y, &#x2F;&#x2F; start position on the image
+					this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
+					0, 0,
+					&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will tanslate the image
+					this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
+				);
+
+				&#x2F;&#x2F;restore state
+				this.afterRenderGhost(ghostContext);
+			}
+		},
+
+		&#x2F;**
+		 * Increase&#x2F;decrease current dimension with adding values. It is used when the user resize
+		 * the image with the handle boxes
+		 * @override
+		 * @public
+		 * @method resizeWith
+		 * @param {Number} width
+		 * @param {Number} height
+		 * *&#x2F;
+		resizeWith : function (width, height) {
+			this._super(width, height);
+			this._initShape();
+		},
+
+		&#x2F;**
+		 * @override
+		 * @public
+		 * @method copy
+		 * @return {CGSGNodeImage} a copy of this node
+		 *&#x2F;
+		copy : function () {
+			var node = new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height,
+			                             this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
+			                             this.slice.dimension.height, &#x2F;*this.urlImage*&#x2F;null,
+			                             this._context);
+			&#x2F;&#x2F;call the super method
+			node = this._super(node);
+
+			node._urlImage = this._urlImage;
+
+			node.effect = this.effect;
+			node.isProportionalResize = this.isProportionalResize;
+			node._isLoaded = this._isLoaded;
+
+			&#x2F;&#x2F;the image object itself
+			node.setImage(this._img);
+
+			node.onLoadEnd = this.onLoadEnd;
+			&#x2F;*if (this.urlImage !== undefined &amp;&amp; this.urlImage !== null &amp;&amp; this.urlImage != &quot;&quot;) {
+			 node.img.onload = node.createDelegate(node, node._onImageLoaded, node.context);
+			 &#x2F;&#x2F;this.img.onload = this._onImageLoaded(context);
+			 node.img.src = node.urlImage;
+			 }*&#x2F;
+
+			return node;
+		}
+	}
+);
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

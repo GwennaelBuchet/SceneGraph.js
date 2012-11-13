@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -26,7 +26,7 @@
  * @date 10/08/2012
  *
  * Purpose :
- * webview example
+ * text example
  * */
 var CGMain = CGSGScene.extend(
 	{
@@ -34,18 +34,17 @@ var CGMain = CGSGScene.extend(
 
 			this._super(canvas);
 
-			//initialize size of the viewport : not mandatory
+			////// INITIALIZATION /////////
+
 			this.initializeCanvas();
 
-			//create the scene by adding node to the graph
 			this.createScene();
 
-			//always call this to run the framework animation and interaction
 			this.startPlaying();
 		},
 
 		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -64,8 +63,6 @@ var CGMain = CGSGScene.extend(
 			                                       "http://gwennaelbuchet.github.com/cgSceneGraph/", this.context);
 			this.webviewNode.isResizable = true;
 			this.webviewNode.isDraggable = true;
-
-			//add the node as child of the root node
 			this.rootNode.addChild(this.webviewNode);
 		}
 	}

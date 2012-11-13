@@ -25,6 +25,13 @@
 
     <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
     <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
+
+    <script src="js/cufon-yui.js" type="text/javascript"></script>
+    <script src="js/Aller.font.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Cufon.replace('ul.oe_menu div a', {hover : true});
+        Cufon.replace('h1,h2,.oe_heading');
+    </script>
 </head>
 <body>
 <!-- top wrapper -->
@@ -50,26 +57,59 @@
 <!-- end top wrapper -->
 
 <div id="topnav">
-    <ul>
-        <li>
-            <a href="index.html" shape="rect">HOME</a>
-        </li>
-        <li>
-            <a href="tutorials.html" shape="rect">TUTORIALS</a>
-        </li>
-        <li>
-            <a href="examples.html" shape="rect">EXAMPLES</a>
-        </li>
-        <li>
-            <a href="api.html" shape="rect">API DOCS</a>
-        </li>
-        <li class="current" style="border:none">
-            <a href="changelog.html" shape="rect">CHANGE-LOG</a>
-        </li>
-        <li>
-            <a href="about.html" shape="rect">ABOUT</a>
-        </li>
-    </ul>
+    <div class="oe_wrapper">
+        <!--div id="oe_overlay" class="oe_overlay"></div-->
+        <ul id="oe_menu" class="oe_menu">
+            <li>
+                <a href="index.html" shape="rect">HOME</a>
+            </li>
+            <li><a href="tutorials.html">TUTORIALS</a>
+                <div style="left:-112px;">
+                    <ul>
+                        <li class="oe_heading">Starter</li>
+                        <li><a href="tutorials.html">Global concepts</a></li>
+                        <li><a href="tutorials/simple_project.html">Create a simple project</a></li>
+                        <li><a href="tutorials/node_attributes.html">Node attributes</a></li>
+                        <li><a href="tutorials/srt_animations.html">SRT Animations</a></li>
+                        <li><a href="tutorials/custom_node.html">Custom your nodes</a></li>
+                        <li><a href="tutorials/image_sharing.html">Image sharing</a></li>
+                        <li><a href="tutorials/spritesheets.html">SpriteSheets</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading">Events</li>
+                        <li><a href="tutorials/node_events.html">Node events</a></li>
+                        <li><a href="tutorials/scene_events.html">Scene events</a></li>
+                        <li><a href="tutorials/animation_events.html">Animation events</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading"><br/>Advanced</li>
+                        <li><a href="tutorials/particles.html">Particles</a></li>
+                        <li><a href="tutorials/share_animation.html">Share animation values</a></li>
+                        <li><a href="tutorials/advanced_animation.html">Advanced animation</a></li>
+                        <li><a href="tutorials/making_game.html">Making a game</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading">Performance Tips</li>
+                        <li><a href="tutorials/prerendering.html">Pre-rendering</a></li>
+                        <li><a href="#">...</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="examples.html" shape="rect">EXAMPLES</a>
+            </li>
+            <li>
+                <a href="api.html" shape="rect">API DOCS</a>
+            </li>
+            <li class="current" style="border:none">
+                <a href="changelog.html" shape="rect">CHANGE-LOG</a>
+            </li>
+            <li>
+                <a href="about.html" shape="rect">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+
 </div>
 <!-- end topnav -->
 
@@ -84,6 +124,20 @@
                 <div id="content">
                     <div id="center">
                         <h1>Change Log.</h1>
+
+                        <h2>v1.2.1</h2>
+
+                        <lu>
+                            <li><span class="whiteText">Optimization.</span> "use strict" mode.</li>
+                            <li><span class="alert">Correction.</span> Better FPS computation.</li>
+                            <li><span class="blueText">Evolution.</span> FPS : new cgsgFramerateDelay property to update the FPS average.</li>
+                            <li><span class="blueText">Evolution.</span> Array : Add of Array.prototype.sum function.</li>
+                            <li><span class="blueText">Evolution.</span> Array : Add of Array.prototype.average function.</li>
+                            <li><span class="blueText">Evolution.</span> Array : Add of cgsgIsArray global method.</li>
+                        </lu>
+
+                        <p></p>
+                        <hr/>
 
                         <h2>v1.2.0</h2>
 
@@ -250,8 +304,8 @@
         <div class="footerBlock alignleft">
             <h2>WHAT'S UP?</h2>
             <hr/>
-            <h4>cgSceneGraph v1.2.0</h4>
-            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.2.0</span> is released
+            <h4>cgSceneGraph v1.2.1</h4>
+            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.2.1</span> is released
             :)<br/>
             Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
                                                              target="_blank">GitHub</a>
@@ -269,5 +323,35 @@
         <div class="clear" style="height:4px"></div>
     </div>
 </div>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var $oe_menu = $('#oe_menu');
+        var $oe_menu_items = $oe_menu.children('li');
+
+        $oe_menu_items.bind('mouseenter',function () {
+            var $this = $(this);
+            $this.addClass('slided selected');
+            $this.children('div').css('z-index', '9999').stop(true, true).slideDown(200, function () {
+                $oe_menu_items.not('.slided').children('div').hide();
+                $this.removeClass('slided');
+            });
+        }).bind('mouseleave', function () {
+                    var $this = $(this);
+                    $this.removeClass('selected').children('div').css('z-index', '1');
+                    $oe_menu_items.children('div').hide();
+                });
+
+        $oe_menu.bind('mouseenter',function () {
+            var $this = $(this);
+        }).bind('mouseleave', function () {
+                    var $this = $(this);
+                    $this.removeClass('hovered');
+                    $oe_menu_items.children('div').hide();
+                })
+    });
+</script>
 </body>
 </html>

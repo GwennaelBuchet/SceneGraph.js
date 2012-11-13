@@ -7,13 +7,13 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -26,26 +26,25 @@
  * @date 10/08/2012
  *
  * Purpose :
- * Square example
+ * event example
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
-			//initialize size of the viewport : not mandatory
+			////// INITIALIZATION /////////
+
 			this.initializeCanvas();
 
-			//create the scene by adding node to the graph
 			this.createScene();
 
-			//always call this to run the framework animation and interaction
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+		initializeCanvas : function () {
+			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -54,7 +53,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 			//X, Y, WIDTH, HEIGHT
 			var square = new CGSGNodeSquare(20, 20, 150, 150);
 			square.isDraggable = true;
@@ -64,9 +63,6 @@ var CGMain = CGSGScene.extend(
 			square.lineWidth = 2;
 			square.lineColor = "gray";
 
-			//add the node to the graph
-			//The second parameter is the parent of the node. Here there is no parent,
-			// the node will be the root of the graph
 			this.sceneGraph.addNode(square, null);
 		}
 	}

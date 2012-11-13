@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -30,86 +30,86 @@
  * */
 
 var CGMain = CGSGScene.extend(
-	{
-		initialize : function(canvas) {
+    {
+        initialize:function (canvas) {
 
-			//call the contructor of the parent class (ie : CGSGScene)
-			this._super(canvas);
+            //call the contructor of the parent class (ie : CGSGScene)
+            this._super(canvas);
 
-			////// INITIALIZATION /////////
+            ////// INITIALIZATION /////////
 
-			this.initializeCanvas();
-			this.createScene();
+            this.initializeCanvas();
+            this.createScene();
 
-			this.startPlaying();
-		},
+            this.startPlaying();
+        },
 
-		initializeCanvas : function() {
-			//resize the dimension of the canvas to fulfill the viewport
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
-		},
+        initializeCanvas:function () {
+            //resize the dimension of the canvas to fulfill the viewport
+            this.viewDimension = cgsgGetRealViewportDimension();
+            this.setCanvasDimension(this.viewDimension);
+        },
 
-		/**
-		 * Just create a single node (an image node)
-		 */
-		createScene : function() {
+        /**
+         * Just create a single node (an image node)
+         */
+        createScene:function () {
 
-			//first, create a root node
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+            //first, create a root node
+            this.rootNode = new CGSGNode(0, 0, 1, 1);
+            this.sceneGraph.addNode(this.rootNode, null);
 
-			//second, create the 2 nodes, with no image URL, and add them to the root node
-			this.imgNode1 = new CGSGNodeImage(
-				40, //x
-				40, //y
-				34, //width (-1 = auto compute)
-				34, //height (-1 = auto compute)
-				476, //slice x (slice x = position in the source image)
-				0, //slice y
-				34, //slice width (used for tiles. Here we want to display all the image)
-				34, //slice height (used for tiles. Here we want to display all the image)
-				null, //URL. Warning : the web page mus be on a web server (apache, ...)
-				this.context);      //context of rendering
+            //second, create the 2 nodes, with no image URL, and add them to the root node
+            this.imgNode1 = new CGSGNodeImage(
+                40, //x
+                40, //y
+                34, //width (-1 = auto compute)
+                34, //height (-1 = auto compute)
+                476, //slice x (slice x = position in the source image)
+                0, //slice y
+                34, //slice width (used for tiles. Here we want to display all the image)
+                34, //slice height (used for tiles. Here we want to display all the image)
+                null, //URL. Warning : the web page mus be on a web server (apache, ...)
+                this.context);      //context of rendering
 
-			//add some attributes
-			this.imgNode1.isResizable = true;
-			this.imgNode1.isDraggable = true;
+            //add some attributes
+            this.imgNode1.isResizable = true;
+            this.imgNode1.isDraggable = true;
 
-			//add image node to the root of the scenegraph
-			this.rootNode.addChild(this.imgNode1);
+            //add image node to the root of the scenegraph
+            this.rootNode.addChild(this.imgNode1);
 
-			this.imgNode2 = new CGSGNodeImage(
-				90, //x
-				40, //y
-				34, //width (-1 = auto compute)
-				34, //height (-1 = auto compute)
-				612, //slice x (slice x = position in the source image)
-				34, //slice y
-				34, //slice width (used for tiles. Here we want to display all the image)
-				34, //slice height (used for tiles. Here we want to display all the image)
-				null, //URL. null because we want to share a single Image between several nodes
-				this.context);      //context of rendering
-			//add some attributes
-			this.imgNode2.isResizable = true;
-			this.imgNode2.isDraggable = true;
-			this.rootNode.addChild(this.imgNode2);
+            this.imgNode2 = new CGSGNodeImage(
+                90, //x
+                40, //y
+                34, //width (-1 = auto compute)
+                34, //height (-1 = auto compute)
+                612, //slice x (slice x = position in the source image)
+                34, //slice y
+                34, //slice width (used for tiles. Here we want to display all the image)
+                34, //slice height (used for tiles. Here we want to display all the image)
+                null, //URL. null because we want to share a single Image between several nodes
+                this.context);      //context of rendering
+            //add some attributes
+            this.imgNode2.isResizable = true;
+            this.imgNode2.isDraggable = true;
+            this.rootNode.addChild(this.imgNode2);
 
-			//then load the image normally, like in any JS context
-			// Warning : the web page must be on a web server (apache, ...)
-			this.img = new Image();
-			var bindOnImageLoaded = this.onImageLoaded.bind(this);
-			this.img.onload = bindOnImageLoaded;
-			this.img.src = "images/board.png";
-		},
+            //then load the image normally, like in any JS context
+            // Warning : the web page must be on a web server (apache, ...)
+            this.img = new Image();
+            var bindOnImageLoaded = this.onImageLoaded.bind(this);
+            this.img.onload = bindOnImageLoaded;
+            this.img.src = "images/board.png";
+        },
 
-		/**
-		 * Fired when the image loading is complete.
-		 * Set the image object (img) to our image nodes
-		 */
-		onImageLoaded : function() {
-			this.imgNode1.setImage(this.img);
-			this.imgNode2.setImage(this.img);
-		}
-	}
+        /**
+         * Fired when the image loading is complete.
+         * Set the image object (img) to our image nodes
+         */
+        onImageLoaded:function () {
+            this.imgNode1.setImage(this.img);
+            this.imgNode2.setImage(this.img);
+        }
+    }
 );

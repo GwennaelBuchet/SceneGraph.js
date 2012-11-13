@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -124,10 +124,10 @@ var CGMain = CGSGScene.extend(
 		},
 
 		checkCollision : function () {
-			//uncomment to chek the collision with all brothers (text node included)
+			//uncomment to check the collision with all brothers (text node included)
 			//var isColliding = this.redSquareNode.isCollidingABrother();
 
-			var isColliding = this.redSquareNode.isColliding(this.blueSquareNode);
+			var isColliding = this.redSquareNode.isColliding(this.blueSquareNode, 0);
 			this.logNode.setText("Collision : " + isColliding);
 		}
 

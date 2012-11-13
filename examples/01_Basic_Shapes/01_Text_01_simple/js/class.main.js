@@ -7,13 +7,13 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -30,22 +30,21 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
-			//initialize size of the viewport : not mandatory
+			////// INITIALIZATION /////////
+
 			this.initializeCanvas();
 
-			//create the scene by adding node to the graph
 			this.createScene();
 
-			//always call this to run the framework animation and interaction
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
-			//resize the canvas to fill the viewport
+		initializeCanvas : function () {
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -54,7 +53,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 500, 500);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -66,7 +65,7 @@ var CGMain = CGSGScene.extend(
 			this.createScaledText();
 		},
 
-		create1LineText : function() {
+		create1LineText : function () {
 			var textNode = new CGSGNodeText(10, 10, "Simple Text on 1 line");
 			textNode.setSize(26);
 			textNode.setTypo("Arial");
@@ -76,11 +75,11 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(textNode);
 		},
 
-		createMaxWidthText : function() {
+		createMaxWidthText : function () {
 			var maxWidth = 180;
 
 			var textNode = new CGSGNodeText(10, 100, "Simple centered and long text with a max of :" + maxWidth +
-			                                         " px to be on a multiline...");
+													 " px to be on a multiline...");
 			textNode.setSize(14);
 			textNode.setTypo("Arial");
 			textNode.isDraggable = true;
@@ -91,7 +90,7 @@ var CGMain = CGSGScene.extend(
 			textNode.setMaxWidth(maxWidth);
 			textNode.setLineHeight(18);
 
-			textNode.onResize = function(event) {
+			textNode.onResize = function (event) {
 				event.node.setMaxWidth(event.node.dimension.width);
 			}
 
@@ -99,7 +98,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(textNode);
 		},
 
-		createCarriageReturnText : function() {
+		createCarriageReturnText : function () {
 			var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return:\njust\there");
 			textNode.setSize(14);
 			textNode.setTypo("Times New Roman");
@@ -111,7 +110,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(textNode);
 		},
 
-		createScaledText : function() {
+		createScaledText : function () {
 			var parent = new CGSGNodeSquare(40, 300, 200, 90);
 			parent.isDraggable = true;
 

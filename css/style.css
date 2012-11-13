@@ -48,7 +48,7 @@ h1 {
     line-height: 1.2em;
     font-family: Signika, sans-serif;
     color: #00a9ff;
-    margin: 10px 0 0px 0;
+    margin: 10px 0 0 0;
     clear: both;
 }
 
@@ -60,7 +60,7 @@ h2 {
     line-height: 1.2em;
     font-family: Signika, sans-serif;
     color: #B6B6B6;
-    margin: 10px 0 0px 0;
+    margin: 10px 0 0 0;
     clear: both;
 }
 
@@ -110,7 +110,7 @@ a:hover {
 }
 
 #wrapper {
-    background: transparent url(../img/css/page-vbg.jpg) repeat-y scroll 50% 0px;
+    background: transparent url(../img/css/page-vbg.jpg) repeat-y scroll 50% 0;
     margin: 0 auto;
     width: 100%;
 }
@@ -126,69 +126,14 @@ body {
 #topWrapper {
     width: 100%;
     height: 120px;
-    background-color: #000;
-    background-image: url(../img/css/topWrapper-bg.jpg);
-    background-position: center top;
-    background-repeat: repeat-x;
+    background: #000 url(../img/css/topWrapper-bg.jpg) repeat-x center top;
 }
 
 #topBanner {
     width: 960px;
     margin: 0 auto;
     height: 120px;
-    background-color: #000;
-    background-image: url(../img/css/topBanner.png);
-    background-repeat: no-repeat;
-}
-
-#topnav {
-    background: transparent url('../img/css/hmenu.jpg') repeat-x top left;
-}
-
-#topnav {
-    height: 40px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-#topnav ul {
-    display: table;
-    margin: 0 auto;
-    padding: 0;
-    list-style-type: none;
-    position: relative;
-    height: 40px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-}
-
-#topnav ul li {
-    display: block;
-    float: left;
-    margin: 0;
-    padding: 0;
-    background: transparent url('../img/css/hmenu.jpg') repeat-x top left;
-
-}
-
-#topnav ul li a {
-    display: block;
-    float: left;
-    color: #efefef;
-    text-decoration: none;
-    padding: 0px 50px;
-    line-height: 40px;
-    font-weight: bold;
-}
-
-#topnav ul li a:hover, #topnav li.current a, li.current {
-    color: #00a9ff;
-    background: transparent url('../img/css/hmenu-sel.jpg') repeat-x top left;
-}
-
-#topnav ul {
-    width: 960px;
+    background: #000 url(../img/css/topBanner.png) no-repeat;
 }
 
 .downloadLink {
@@ -208,10 +153,7 @@ body {
 #bg {
     margin: 0 auto;
     padding: 0;
-    background: transparent;
-    background-image: url(../img/css/hat.jpg);
-    background-repeat: no-repeat;
-    background-position: center top;
+    background: transparent url(../img/css/hat.jpg) no-repeat center top;
 }
 
 #header {
@@ -317,14 +259,14 @@ body {
 #sidebar ul.vmenu {
     list-style: none;
     text-align: left;
-    margin: 7px 0px 8px 0px;
+    margin: 7px 0 8px 0;
     padding: 0;
     text-decoration: none;
     border-top: 1px solid #a0a0a0;
 }
 
 #sidebar ul.vmenu li {
-    padding: 4px 0 4px 0px;
+    padding: 4px 0 4px 0;
     margin: 0 2px;
 }
 
@@ -359,8 +301,8 @@ hr {
     border: 0;
     width: 100%;
     text-align: left; /*this will align it for IE*/
-    margin: 0 auto 0 0; /*this will align it left for Mozilla*/
-    margin-bottom: 10px;
+    /*this will align it left for Mozilla*/
+    margin: 0 auto 0 0;
 }
 
 a img {
@@ -436,14 +378,14 @@ a img {
     padding-top: 16px;
     float: right;
     background-color: #0D7AEA;
-    border: 0px;
+    border: 0;
     text-align: center;
-    margin: 0px 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 #apiframe {
     min-height: 700px;
-    border: 0px;
+    border: 0;
     margin-bottom: -10px;
     margin-left: -10px;
     margin-right: -50px;
@@ -459,7 +401,7 @@ a img {
     font-weight: normal;
     width: 90%;
     background-color: #464646;
-    border: 0px;
+    border: 0;
     margin: 10px;
     padding: 5px;
     font-family: Arial, sans-serif;
@@ -469,13 +411,13 @@ a img {
 
 .docBlock .title {
     font-size: 18px;
-    margin: 5px 0 0px 0;
+    margin: 5px 0 0 0;
     text-decoration: underline;
 }
 
 .docBlock .subtitle {
     font-size: 16px;
-    margin: 15px 0 0px 0;
+    margin: 15px 0 0 0;
     padding-top: 100px;
 }
 
@@ -503,7 +445,126 @@ a img {
 }
 
 .logoCap {
-    background-image:url("../img/cap_white.png");
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url("../img/cap_white.png") no-repeat center;
 }
+
+ul.oe_menu{
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    height: 40px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+ul.oe_menu > li{
+    width:112px;
+    height:40px;
+    padding-bottom:0;
+    float:left;
+    position:relative;
+}
+ul.oe_menu > li > a{
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:12px;
+    height:20px;
+    padding:10px;
+    opacity:0.8;
+}
+ul.oe_menu > li > a:hover,
+ul.oe_menu > li.current,
+ul.oe_menu > li.selected > a{
+    opacity:1.0;
+    color: #00a9ff;
+    background-color: #494949;
+}
+.oe_wrapper ul.hovered > li > a{
+    background:#00a9ff;
+}
+ul.oe_menu div{
+    position:absolute;
+    top:40px;
+    background:#222;
+    width:475px;
+    height:240px;
+    display:none;
+    padding-top: 20px;
+}
+ul.oe_menu div ul li a{
+    text-decoration:none;
+    color:#fff;
+    display:block;
+    font-size:12px;
+}
+ul.oe_menu div ul.oe_full{
+    width:100%;
+}
+ul.oe_menu div ul li a:hover{
+    background:#00a9ff;
+    color:#000;
+}
+ul.oe_menu li ul{
+    list-style:none;
+    float:left;
+    width: 170px;
+    margin-right:10px;
+}
+li.oe_heading{
+    color:#aaa;
+    font-size:16px;
+    margin-bottom:6px;
+    padding-bottom:6px;
+    border-bottom:1px solid #aaa;
+}
+
+#topnav {
+    background: url('../img/css/hmenu.jpg') repeat-x top left;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*#topnav ul {
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    height: 40px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+#topnav ul li {
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    background: transparent url('../img/css/hmenu.jpg') repeat-x top left;
+
+}
+
+#topnav ul li a {
+    display: block;
+    float: left;
+    color: #efefef;
+    text-decoration: none;
+    padding: 0 50px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+#topnav ul li a:hover, #topnav li.current a, li.current {
+    color: #00a9ff;
+    background: transparent url('../img/css/hmenu-sel.jpg') repeat-x top left;
+}
+
+#topnav ul {
+    width: 960px;
+}*/

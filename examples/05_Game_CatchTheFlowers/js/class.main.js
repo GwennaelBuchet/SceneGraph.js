@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -13,7 +13,7 @@
  *  Terms of Use causing significant harm to Capgemini.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
@@ -25,11 +25,12 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  * @date 10/08/2012
  *
- */
+ * Purpose :
+ * Template project
+ * */
 
 /**
- * The different states of the game.
- * A state is the equivalent of a page in the game : "home page", "game playing page", "score page", ...
+ * The different states of the games
  * @type {Object}
  */
 var GAME_STATE = {
@@ -47,8 +48,6 @@ var CGMain = CGSGScene.extend(
 
 			this.gameState = GAME_STATE.LOADING;
 
-
-			////// INITIALIZATION /////////
 			sceneGraph = this.sceneGraph;
 			this.createScene();
 
@@ -67,7 +66,7 @@ var CGMain = CGSGScene.extend(
 		},
 
 		/**
-		 * Initialize all the states of the game and start loading image
+		 * Just create a single node (a square node)
 		 *
 		 */
 		createScene : function() {
@@ -100,7 +99,7 @@ var CGMain = CGSGScene.extend(
 		},
 
 		/**
-		 * change the state of the game
+		 *
 		 * @param newState
 		 */
 		changeGameState : function(newState) {
