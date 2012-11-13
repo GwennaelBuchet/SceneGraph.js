@@ -127,7 +127,7 @@ var CGMain = CGSGScene.extend(
 			//uncomment to chek the collision with all brothers (text node included)
 			//var isColliding = this.redSquareNode.isCollidingABrother();
 
-			var isColliding = this.redSquareNode.isColliding(this.blueSquareNode);
+			var isColliding = this.redSquareNode.isColliding(this.blueSquareNode, 0);
 			this.logNode.setText("Collision : " + isColliding);
 		}
 
