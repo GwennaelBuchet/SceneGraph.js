@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -21,30 +21,44 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 10/08/2012
- *
- * Purpose :
- * Template project
- * */var CGMain = CGSGScene.extend(
-	{
-		initialize : function(canvas) {
+ */
 
+/*
+To create a new class that inherit from a class "Parent":
+var MyClass = Parent.extend(
+{
+	//constructor :
+	initialize : function() {
+		//each properties defined with "this." is global to the class
+		this.x = 2;
+	},
+
+	myMethod : function(x) {
+	}
+}
+);
+ */
+var CGMain = CGSGScene.extend(
+	{
+		// initialize is the constructor
+		initialize : function (canvas) {
+			//call constructor of the parent : CGSGScene
 			this._super(canvas);
 
-			////// INITIALIZATION /////////
-
+			//Optional : initialize the size of the canvas
 			this.initializeCanvas();
-
-			this.squareNode = null;
-
+			//Fill the graph with your nodes
 			this.createScene();
 
+			//start to play !
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
+		/**
+		 * Set/change the size of the canvas to the size of the viewport of the browser
+		 * @method initializeCanvas
+		 */
+		initializeCanvas : function () {
 			//resize the canvas to fill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -52,13 +66,16 @@
 
 		/**
 		 * Just create a single node (a square node)
-		 *
+		 * @method createScene
 		 */
-		createScene : function() {
+		createScene : function () {
+			//create a square node : x, y, width, height
 			this.squareNode = new CGSGNodeSquare(60, 20, 200, 200);
+			//add some nice properties
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;
 
+			//add the square node as the root of the graph
 			this.sceneGraph.addNode(this.squareNode, null);
 		}
 

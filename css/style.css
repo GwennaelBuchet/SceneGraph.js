@@ -296,7 +296,7 @@ body {
 	display:block; 
 	margin:0 auto;
 }
-}
+
 
 hr {
     color: #494949;
@@ -534,42 +534,8 @@ li.oe_heading{
     text-align: center;
 }
 
-/*#topnav ul {
-    display: table;
-    margin: 0 auto;
-    padding: 0;
-    list-style-type: none;
-    position: relative;
-    height: 40px;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
+.displayCode {
+	width:820px;
+	display:block; 
+	margin:0 auto;
 }
-
-#topnav ul li {
-    display: block;
-    float: left;
-    margin: 0;
-    padding: 0;
-    background: transparent url('../img/css/hmenu.jpg') repeat-x top left;
-
-}
-
-#topnav ul li a {
-    display: block;
-    float: left;
-    color: #efefef;
-    text-decoration: none;
-    padding: 0 50px;
-    line-height: 40px;
-    font-weight: bold;
-}
-
-#topnav ul li a:hover, #topnav li.current a, li.current {
-    color: #00a9ff;
-    background: transparent url('../img/css/hmenu-sel.jpg') repeat-x top left;
-}
-
-#topnav ul {
-    width: 960px;
-}*/
