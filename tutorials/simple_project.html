@@ -124,82 +124,151 @@
 
 
 <div id="wrapper">
-    <div id="bg">
-        <div id="header"></div>
-        <div id="page">
-            <!-- begin container -->
-            <div id="container">
-                <!--  content -->
-                <div id="content">
-                    <div id="center">
-                        <h1>Create a simple project</h1>
+<div id="bg">
+<div id="header"></div>
+<div id="page">
+<!-- begin container -->
+<div id="container">
+<!--  content -->
+<div id="content">
+<div id="center">
+    <h1>Create a simple project</h1>
 
-                        cgSceneGraph is an object oriented framework. <br/>
-                            Your project have to provide at leat 2 files:<br />
-                           <ol>
-                          <li>A HTML file to encapsulate the &lt;canvas&gt; tag <strong>:)</strong></li>
-                            <li> A main javascript class
-                            which inherit from CGSGScene, the main entry point of the framework</li>
-                        </ol>
+    <p>
+        cgSceneGraph is an object oriented framework and there are 2 (slightly identical) ways to develop an application
+        with the framework :
+    <ol>
+        <li>The basic one : instanciate the framework and play with the variable created</li>
+        <li>The object one : create a class that inherit from the framework, and develop your code inside</li>
+    </ol>
+    <br/>
+    I prefer the second one. It let you keep an oriented object code in all your project.
 
-                        <p>
-                            <img class="imgCenter" src="../img/simpleproject_diagram.png" width="157" height="450"
-                                 alt="inheritance"/>
-                        </p>
+    </p>
 
+    <hr/>
 
-                        <p>By inheriting from CGSGScene, your main class will encapsulate all properties and methods of
-                            the framework, letting your file as clean as possible.
+    <h2>The basic way</h2>
 
-                        <hr/>
-
-                        <h2>The HTML file</h2>
-
-
-                        <p>The HTML file has to encapsulate a
-                            &lt;canvas&gt; tag, with an id, and to instanciate the JavaScript Main class:
-                        </p>
-
-                        <p class="displayCode">
+    <p class="displayCode">
                     <pre class="brush: js; html-script: true">
                         &lt;html>
                         &lt;head>
                             &lt;meta charset="UTF-8"/>
                             &lt;meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-                            &lt;!-- avoid moving the view with finger on touch screens when -->
+                            &lt;!-- avoid moving the view with finger on touch screens -->
                             &lt;meta name="viewport"
                                   content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
 
                             &lt;!-- the framework -->
                             &lt;script type="text/javascript" src="js/cgscenegraph_1.2.1.min.js">&lt;/script>
                             &lt;!-- your main class -->
-                            &lt;script type="text/javascript" src="js/main.js">&lt;/script>
+                            &lt;script type="text/javascript" src="js/mainApp.js">&lt;/script>
 
                         &lt;/head>
 
                         &lt;body>
 
                         &lt;!-- Define the canvas -->
-                        &lt;canvas id="sceneCanvas" width="80" height="50">
+                        &lt;canvas id="sceneCanvas" width="400" height="400">
                             Your browser does not support the canvas element.
                         &lt;/canvas>
 
                         &lt;!-- Instanciate your main class, which inherit from CGSGScene -->
                         &lt;script type="text/javascript">
                             var canvasScene = document.getElementById("sceneCanvas");
-                            var game = new CGMain(canvasScene);
+                            var game = new App(canvasScene);
+
+                            createScene();
+
+                            //start to play !
+                            game.startPlaying();
+
+                            /**
+                             * Just create a single node (a square node)
+                             */
+                            function createScene () {
+                                //create a square node : x, y, width, height
+                                var squareNode = new CGSGNodeSquare(60, 20, 200, 200);
+                                //add some nice properties
+                                squareNode.isResizable = true;
+                                squareNode.isDraggable = true;
+
+                                //add the square node as the root of the graph
+                                game.sceneGraph.addNode(squareNode, null);
+                            }
                         &lt;/script>
                         &lt;/body>
                         &lt;/html>
                 	</pre>
-                        <br/>
-                        No more to do :)
-                        </p>
-                        <hr/>
-                        <p>
+    </p>
+    <br/>
+    <hr/>
+    <br/>
+    <h2>2nd way : create your main class</h2>
+    Your project have to provide at least 2 files:<br/>
+    <ol>
+        <li>A HTML file to encapsulate the &lt;canvas&gt; tag <strong>:)</strong></li>
+        <li> A main javascript class
+            which inherit from CGSGScene, the main entry point of the framework
+        </li>
+    </ol>
 
-                        <h2>The Main JavaScript class (main.js)</h2>
-                        <p class="displayCode">
+    <p>
+        <img class="imgCenter" src="../img/simpleproject_diagram.png" width="157" height="450"
+             alt="inheritance"/>
+    </p>
+
+    <p>
+        By inheriting from CGSGScene, your main class will encapsulate all properties and methods of
+        the framework, letting your file as clean as possible.
+    </p>
+
+    <h3>The HTML file</h3>
+
+
+    <p>The HTML file has to encapsulate a
+        &lt;canvas&gt; tag, with an id, and to instanciate the JavaScript Main class:
+    </p>
+
+    <p class="displayCode">
+                    <pre class="brush: js; html-script: true">
+                        &lt;html>
+                        &lt;head>
+                            &lt;meta charset="UTF-8"/>
+                            &lt;meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+                            &lt;!-- avoid moving the view with finger on touch screens -->
+                            &lt;meta name="viewport"
+                                  content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+                            &lt;!-- the framework -->
+                            &lt;script type="text/javascript" src="js/cgscenegraph_1.2.1.min.js">&lt;/script>
+                            &lt;!-- your main class -->
+                            &lt;script type="text/javascript" src="js/mainApp.js">&lt;/script>
+
+                        &lt;/head>
+
+                        &lt;body>
+
+                        &lt;!-- Define the canvas -->
+                        &lt;canvas id="sceneCanvas" width="400" height="400">
+                            Your browser does not support the canvas element.
+                        &lt;/canvas>
+
+                        &lt;!-- Instanciate your main class, which inherit from CGSGScene -->
+                        &lt;script type="text/javascript">
+                            var canvasScene = document.getElementById("sceneCanvas");
+                            var game = new App(canvasScene);
+                        &lt;/script>
+                        &lt;/body>
+                        &lt;/html>
+                	</pre>
+    <br/>
+    </p>
+
+    <h3>The Main JavaScript class (mainApp.js)</h3>
+
+    <p class="displayCode">
                     <pre class="brush: js">
 /*
 To create a new class that inherit from a class "Parent":
@@ -219,15 +288,13 @@ To create a new class that inherit from a class "Parent":
 Then, to instanciate it:
 	var instance = new MyClass(23, 54);
 */
-var CGMain = CGSGScene.extend(
+var App = CGSGScene.extend(
 	{
-		// 'initialize' is the constructor
+		// 'initialize' is the constructor. It takes here 1 parameter : a handler to the canvas HTMLElement
 		initialize : function (canvas) {
 			//call constructor of the parent : CGSGScene
 			this._super(canvas);
 
-			//Optional : initialize the size of the canvas
-			this.initializeCanvas();
 			//Fill the graph with your nodes
 			this.createScene();
 
@@ -237,57 +304,49 @@ var CGMain = CGSGScene.extend(
 		},
 
 		/**
-		 * Set/change the size of the canvas to the size of the viewport of the browser
-		 * @method initializeCanvas
-		 */
-		initializeCanvas : function () {
-			//resize the canvas to fill the viewport
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
-		},
-
-		/**
 		 * Just create a single node (a square node)
 		 * @method createScene
 		 */
 		createScene : function () {
 			//create a square node : x, y, width, height
-			this.squareNode = new CGSGNodeSquare(60, 20, 200, 200);
+			var squareNode = new CGSGNodeSquare(60, 20, 200, 200);
 			//add some nice properties
-			this.squareNode.isResizable = true;
-			this.squareNode.isDraggable = true;
+			squareNode.isResizable = true;
+			squareNode.isDraggable = true;
 
 			//add the square node as the root of the graph
-			this.sceneGraph.addNode(this.squareNode, null);
+			this.sceneGraph.addNode(squareNode, null);
 		}
 
 	}
 );
                 	</pre>
-                        </p>      
-                        
-                        <br />
-                        Easy, no ? :)<br />
-                                         
-                        </p>
-                        
-                        <hr />
-                        <p>
-                      <h2>Download</h2>
-                        <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tree/master/examples/TEMPLATE_PROJECT" target="new">Download the the source of this project on GitHub (https://github.com/GwennaelBuchet/cgSceneGraph/tree/master/examples/TEMPLATE_PROJECT)</a>
-</p>
+    </p>
 
-                    </div>
-                    <div class="clear" style="height:4px"></div>
-                </div>
-                <!-- end content -->
-            </div>
-            <!-- end container -->
-        </div>
+    <br/>
 
-        <div id="pageFooter">
-        </div>
-    </div>
+    No more to do. Easy, no ? :)<br/>
+
+    <hr/>
+    <p>
+
+    <h2>Download</h2>
+    <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tree/master/examples/TEMPLATE_PROJECT" target="new">Download
+        the the source of this project on GitHub
+        (https://github.com/GwennaelBuchet/cgSceneGraph/tree/master/examples/TEMPLATE_PROJECT)</a>
+    </p>
+
+</div>
+<div class="clear" style="height:4px"></div>
+</div>
+<!-- end content -->
+</div>
+<!-- end container -->
+</div>
+
+<div id="pageFooter">
+</div>
+</div>
 </div>
 <!-- end wrapper -->
 <div class="footerShadow"></div>
