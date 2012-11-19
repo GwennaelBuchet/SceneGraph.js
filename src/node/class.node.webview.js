@@ -43,7 +43,6 @@ var CGSGWEBVIEWMODE = {
 /*
  * TODO :
  * - When resize or drag : switch to PREVIEW mode to allow mouse over the webview
- * - Create a CGSGNodeImage to encapsulate the preview mode
  * - load a page in AJAX and make an image from it to assign to the PREVIEW mode
  */
 
@@ -65,7 +64,7 @@ var CGSGWEBVIEWMODE = {
 var CGSGNodeWebview = CGSGNode.extend(
 	{
 		initialize : function (x, y, width, height, url, context) {
-			this._super(x, y, width, height);
+			this._super(x, y, CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
 			/**
 			 * Size of the area around the webview in LIVE mode
@@ -120,11 +119,24 @@ var CGSGNodeWebview = CGSGNode.extend(
 			this._url = url;
 
 			/**
+			 * URL for the preview mode
+			 * @property _previewURL
+			 * @private
+			 * @type {String}
+			 */
+			this._previewURL = null;
+
+			/**
 			 * @property _context
 			 * @type {CanvasRenderingContext2D}
 			 * @private
 			 */
 			this._context = context;
+
+			//this.onDrag =
+
+			this._createLiveContainer();
+			this._createPreviewContainer();
 
 			this.switchMode(CGSGWEBVIEWMODE.LIVE);
 		},
@@ -149,15 +161,13 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 */
 		_initPreviewContainer : function () {
 			if (!cgsgExist(this._previewContainer)) {
-				this._previewContainer =
-				new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height, 0, 0,
-				                  this.dimension.width, this.dimension.height, null, this._context);
+				this._createPreviewContainer();
 			}
 
 			this.addChild(this._previewContainer);
 
 			//load the webcontent via Ajax
-			this._loadPageAsync();
+			//this._loadPageAsync();
 		},
 
 		/**
@@ -178,13 +188,26 @@ var CGSGNodeWebview = CGSGNode.extend(
 		},
 
 		/**
+		 * Create the CGSGNodeImage to contain the preview
+		 * @method _createPreviewContainer
+		 * @private
+		 */
+		_createPreviewContainer : function () {
+			this._previewContainer =
+			new CGSGNodeImage(0, 0, this.dimension.width, this.dimension.height, 0, 0,
+			                  this.dimension.width, this.dimension.height, this._previewURL, this._context);
+
+			this._previewContainer.isTraversable = false;
+		},
+
+		/*
 		 *
 		 * @private
 		 * @method _loadPageAsync
 		 */
-		_loadPageAsync : function () {
+		/*_loadPageAsync : function () {
 
-		},
+		 },*/
 
 		/**
 		 * @method setURL
@@ -208,20 +231,42 @@ var CGSGNodeWebview = CGSGNode.extend(
 		},
 
 		/**
+		 * Set the URL of the image for the preview mode (CGSGWEBVIEWMODE.PREVIEW)
+		 * @method setPreviewURL
+		 * @param {String} imageURL
+		 */
+		setPreviewURL : function (imageURL) {
+			this._previewURL = imageURL;
+			this._previewContainer.setURL(this._previewURL);
+		},
+
+		/**
 		 * Switch between rendering mode
 		 * @method switchMode
 		 * @param {Number} mode a CGSGWEBVIEWMODE enum : LIVE or PREVIEW
 		 */
 		switchMode : function (mode) {
-			this.mode = mode;
 			if (mode === CGSGWEBVIEWMODE.LIVE) {
 				this.detachChild(this._previewContainer);
 				this._initLiveContainer();
 			}
 			else {
-				cgsgCanvas.removeChild(this._liveContainer);
+				//Initially, there is no mode, so we cannot remove the child from the Body
+				if (this._mode === CGSGWEBVIEWMODE.LIVE) {
+					document.body.removeChild(this._liveContainer);
+				}
 				this._initPreviewContainer();
 			}
+
+			this._mode = mode;
+		},
+
+		/**
+		 * @method getCurrentMode
+		 * @return {CGSGWEBVIEWMODE} the current mode
+		 */
+		getCurrentMode : function () {
+			return this._mode;
 		},
 
 		/**
@@ -234,27 +279,38 @@ var CGSGNodeWebview = CGSGNode.extend(
 			//save current state
 			this.beforeRender(context);
 
-			//draw this zone
-			context.fillStyle = this.color;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
-
-			//we draw the rect at (0,0) because we have already translated the context to the correct position
-			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
-
-			context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
-
-			context.strokeRect(this.threshold - 2, this.threshold - 2, 8 + this.dimension.width - this.threshold * 2,
-			                   8 + this.dimension.height - this.threshold * 2);
-
-			if (cgsgExist(this._liveContainer)) {
-				this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + "px";
-				this._liveContainer.style.top = (this.getAbsoluteTop() + this.threshold) + "px";
-				this._liveContainer.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + "px";
-				this._liveContainer.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + "px";
-			}
-
 			context.globalAlpha = this.globalAlpha;
+
+			if (this._mode === CGSGWEBVIEWMODE.LIVE) {
+				context.fillStyle = this.color;
+				context.strokeStyle = this.lineColor;
+				context.lineWidth = this.lineWidth;
+
+				//we draw the rect at (0,0) because we have already translated the context to the correct position
+				context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+
+				context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+
+				context.strokeRect(this.threshold - 2, this.threshold - 2,
+				                   8 + this.dimension.width - this.threshold * 2,
+				                   8 + this.dimension.height - this.threshold * 2);
+
+				if (cgsgExist(this._liveContainer)) {
+					this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + "px";
+					this._liveContainer.style.top = (this.getAbsoluteTop() + this.threshold) + "px";
+					this._liveContainer.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + "px";
+					this._liveContainer.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + "px";
+				}
+			}
+			else {
+				this._previewContainer.resizeTo(this.getWidth(), this.getHeight());
+
+				//draw this zone
+				context.fillStyle = this.color;
+
+				//we draw the rect at (0,0) because we have already translated the context to the correct position
+				context.fillRect(0, 0, this.getWidth(), this.getHeight());
+			}
 
 			//restore state
 			this.afterRender(context);

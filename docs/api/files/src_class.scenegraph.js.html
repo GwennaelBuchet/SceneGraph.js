@@ -192,7 +192,7 @@
  * @type {CGSGSceneGraph}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
-var CGSGSceneGraph = Object.extend(
+var CGSGSceneGraph = CGSGObject.extend(
 	{
 		initialize : function (canvas, context) {
 
@@ -208,11 +208,6 @@ var CGSGSceneGraph = Object.extend(
 			 * @type {CanvasRenderingContext2D}
 			 *&#x2F;
 			this.context = context;
-			&#x2F;**
-			 * @property canvas
-			 * @type {HTMLElement}
-			 *&#x2F;
-			this.canvas = canvas;
 
 			&#x2F;&#x2F;initialize the current frame to 0
 			&#x2F;&#x2F;noinspection JSUndeclaredVariable
@@ -252,7 +247,7 @@ var CGSGSceneGraph = Object.extend(
 			this.initializeGhost(canvas.width, canvas.height);
 
 			&#x2F;&#x2F;fixes a problem where double clicking causes text to get selected on the canvas
-			this.canvas.onselectstart = function () {
+			cgsgCanvas.onselectstart = function () {
 				return false;
 			};
 		},
@@ -356,12 +351,10 @@ var CGSGSceneGraph = Object.extend(
 		 * Does not really change the dimension of the rendering canvas container,
 		 *  but is used for different computations
 		 * @method setCanvasDimension
-		 * @param {CGSGVector2D} newDimension a CGSGVector2D
+		 * @param {CGSGDimension} newDimension
 		 * *&#x2F;
 		setCanvasDimension : function (newDimension) {
-			this.canvas.width = newDimension.x;
-			this.canvas.height = newDimension.y;
-			this.initializeGhost(this.canvas.width, this.canvas.height);
+			this.initializeGhost(newDimension.width, newDimension.height);
 		},
 
 		&#x2F;**
@@ -431,7 +424,7 @@ var CGSGSceneGraph = Object.extend(
 					new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
 					cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
 					true, &#x2F;&#x2F;recursively ?
-					&#x2F;&#x2F;this.canvas.width &#x2F; cgsgDisplayRatio.x, this.canvas.height &#x2F; cgsgDisplayRatio.y,
+					&#x2F;&#x2F;cgsgCanvas.width &#x2F; cgsgDisplayRatio.x, cgsgCanvas.height &#x2F; cgsgDisplayRatio.y,
 					&#x2F;&#x2F;dimension of the canvas container
 					condition);  &#x2F;&#x2F; condition to the picknode be executed
 			}

@@ -55,6 +55,9 @@ var CGMain = CGSGScene.extend(
          */
         createScene : function () {
 
+	        var rootNode = new CGSGNode(0, 0, 0, 0);
+	        this.sceneGraph.addNode(rootNode, null);
+
             /*
              * @param x
              * @param y
@@ -67,9 +70,9 @@ var CGMain = CGSGScene.extend(
              * @param urlImage
              * @param context
              */
-            var imgNode = new CGSGNodeImage(
+            this.imgNode = new CGSGNodeImage(
                 60,     //x
-                20,     //y
+                40,     //y
                 -1,     //width (-1 = auto compute)
                 -1,     //height (-1 = auto compute)
                 0,      //slice x (used for tiles. Here we want to display all the image)
@@ -80,11 +83,30 @@ var CGMain = CGSGScene.extend(
                 this.context);      //context of rendering
 
             //add some attributes
-            imgNode.isResizable = true;
-            imgNode.isDraggable = true;
+            this.imgNode.isResizable = true;
+            this.imgNode.isDraggable = true;
 
             //add image node as root of the scenegraph (2ns parameter = null)
-            this.sceneGraph.addNode(imgNode, null);
-        }
+	        rootNode.addChild(this.imgNode);
+
+
+	        
+	        //add a button to switch src
+	        this.currentImg = 0;
+	        this.buttonNode = new CGSGNodeButton(10, 10, "Switch source");
+	        var bindSwitchSrc = this.switchSrc.bind(this);
+	        this.buttonNode.onClick = function (event) {
+		        bindSwitchSrc();
+	        };
+	        //add the textNode as child of the root
+	        rootNode.addChild(this.buttonNode);
+        },
+
+		switchSrc : function () {
+			this.currentImg = 1 - this.currentImg;
+
+			var src = ["images/hello.png", "images/board.png"];
+			this.imgNode.setURL(src[this.currentImg]);
+		}
 	}
 );

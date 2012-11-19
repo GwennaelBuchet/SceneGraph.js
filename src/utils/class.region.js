@@ -115,7 +115,7 @@ var CGSGScale = CGSGPosition.extend(
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  * @type {CGSGRotation}
  */
-var CGSGRotation = Object.extend(
+var CGSGRotation = CGSGObject.extend(
 	{
 		initialize : function (angle) {
 			this.angle = angle;
@@ -292,7 +292,7 @@ var CGSGDimension = CGSGVector2D.extend(
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  * @type {CGSGRegion}
  */
-var CGSGRegion = Object.extend(
+var CGSGRegion = CGSGObject.extend(
 	{
 		initialize : function (x, y, width, height) {
 			/**

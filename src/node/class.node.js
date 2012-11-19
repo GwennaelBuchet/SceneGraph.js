@@ -57,7 +57,7 @@ var CGSGPickNodeMethod = {
  * @type {CGSGNode}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGNode = Object.extend(
+var CGSGNode = CGSGObject.extend(
 	{
 		initialize : function (x, y, width, height) {
 
@@ -960,7 +960,7 @@ var CGSGNode = Object.extend(
 			if (index >= 0) {
 				/*this.children = */
 				this.children.without(node);
-				delete(node);
+				//delete(node);
 				return true;
 			}
 
@@ -984,7 +984,7 @@ var CGSGNode = Object.extend(
 			for (var i = 0, len = this.children.length; i < len; ++i) {
 				var childNode = this.children[i];
 				if (childNode.isALeaf()) {
-					delete (childNode);
+					//delete (childNode);
 				}
 				else {
 					childNode.removeAll();

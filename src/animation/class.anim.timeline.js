@@ -39,7 +39,7 @@
  * @type {CGSGTimeline}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGTimeline = Object.extend(
+var CGSGTimeline = CGSGObject.extend(
 	{
 		initialize : function (parentNode, attribute, method) {
 

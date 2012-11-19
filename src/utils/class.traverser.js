@@ -31,7 +31,7 @@
  * @type {CGSGTraverser}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGTraverser = Object.extend(
+var CGSGTraverser = CGSGObject.extend(
 	{
 		initialize : function () {
 			/**

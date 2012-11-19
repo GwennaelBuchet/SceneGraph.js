@@ -74,7 +74,7 @@ var cgsgGlobalRenderingTimer = null;
  * @type {CGSGScene}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGScene = Object.extend(
+var CGSGScene = CGSGObject.extend(
 	{
 		initialize : function (canvas) {
 
@@ -262,11 +262,11 @@ var CGSGScene = Object.extend(
 		 * Does not really change the dimension of the rendering canvas container,
 		 *  but is used by the different computations
 		 * @method setCanvasDimension
-		 * @param {CGSGVector2D} newDimension a CGSGVector2D
+		 * @param {CGSGDimension} newDimension
 		 * */
 		setCanvasDimension : function (newDimension) {
-			cgsgCanvas.width = newDimension.x;
-			cgsgCanvas.height = newDimension.y;
+			cgsgCanvas.width = newDimension.width;
+			cgsgCanvas.height = newDimension.height;
 			this.sceneGraph.setCanvasDimension(newDimension);
 
 			//Experimental

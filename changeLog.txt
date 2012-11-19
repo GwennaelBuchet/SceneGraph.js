@@ -46,6 +46,13 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.2.2
+
+CHANGES:
+- Evolution. Class creation : Use "CGSGObject.extend" instead of "Object.extend"
+- Evolution. CGSGNodeWebview : preview mode
+- Evolution. CGSGNodeImage : add "setURL" method
+
 ---------------------------------------------------------------------
 v1.2.1
 

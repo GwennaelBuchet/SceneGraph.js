@@ -37,7 +37,7 @@
  * @type {CGSGParticle}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGParticle = Object.extend(
+var CGSGParticle = CGSGObject.extend(
 	{
 		initialize : function (node) {
 			/**

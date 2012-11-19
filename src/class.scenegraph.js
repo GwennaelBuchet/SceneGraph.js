@@ -36,7 +36,7 @@
  * @type {CGSGSceneGraph}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGSceneGraph = Object.extend(
+var CGSGSceneGraph = CGSGObject.extend(
 	{
 		initialize : function (canvas, context) {
 
@@ -52,11 +52,6 @@ var CGSGSceneGraph = Object.extend(
 			 * @type {CanvasRenderingContext2D}
 			 */
 			this.context = context;
-			/**
-			 * @property canvas
-			 * @type {HTMLElement}
-			 */
-			this.canvas = canvas;
 
 			//initialize the current frame to 0
 			//noinspection JSUndeclaredVariable
@@ -96,7 +91,7 @@ var CGSGSceneGraph = Object.extend(
 			this.initializeGhost(canvas.width, canvas.height);
 
 			//fixes a problem where double clicking causes text to get selected on the canvas
-			this.canvas.onselectstart = function () {
+			cgsgCanvas.onselectstart = function () {
 				return false;
 			};
 		},
@@ -200,12 +195,10 @@ var CGSGSceneGraph = Object.extend(
 		 * Does not really change the dimension of the rendering canvas container,
 		 *  but is used for different computations
 		 * @method setCanvasDimension
-		 * @param {CGSGVector2D} newDimension a CGSGVector2D
+		 * @param {CGSGDimension} newDimension
 		 * */
 		setCanvasDimension : function (newDimension) {
-			this.canvas.width = newDimension.x;
-			this.canvas.height = newDimension.y;
-			this.initializeGhost(this.canvas.width, this.canvas.height);
+			this.initializeGhost(newDimension.width, newDimension.height);
 		},
 
 		/**
@@ -275,7 +268,7 @@ var CGSGSceneGraph = Object.extend(
 					new CGSGScale(1, 1), //absolute scale for the nodes
 					cgsgGhostContext, //context for the ghost rendering
 					true, //recursively ?
-					//this.canvas.width / cgsgDisplayRatio.x, this.canvas.height / cgsgDisplayRatio.y,
+					//cgsgCanvas.width / cgsgDisplayRatio.x, cgsgCanvas.height / cgsgDisplayRatio.y,
 					//dimension of the canvas container
 					condition);  // condition to the picknode be executed
 			}
