@@ -34,7 +34,7 @@
  * @type {CGSGVector2D}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGVector2D = Object.extend(
+var CGSGVector2D = CGSGObject.extend(
 	{
 		initialize : function (x, y) {
 			/**

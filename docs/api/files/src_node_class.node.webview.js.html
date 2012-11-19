@@ -199,7 +199,6 @@ var CGSGWEBVIEWMODE = {
 &#x2F;*
  * TODO :
  * - When resize or drag : switch to PREVIEW mode to allow mouse over the webview
- * - Create a CGSGNodeImage to encapsulate the preview mode
  * - load a page in AJAX and make an image from it to assign to the PREVIEW mode
  *&#x2F;
 
@@ -221,7 +220,7 @@ var CGSGWEBVIEWMODE = {
 var CGSGNodeWebview = CGSGNode.extend(
 	{
 		initialize : function (x, y, width, height, url, context) {
-			this._super(x, y, width, height);
+			this._super(x, y, CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
 			&#x2F;**
 			 * Size of the area around the webview in LIVE mode
@@ -276,11 +275,24 @@ var CGSGNodeWebview = CGSGNode.extend(
 			this._url = url;
 
 			&#x2F;**
+			 * URL for the preview mode
+			 * @property _previewURL
+			 * @private
+			 * @type {String}
+			 *&#x2F;
+			this._previewURL = null;
+
+			&#x2F;**
 			 * @property _context
 			 * @type {CanvasRenderingContext2D}
 			 * @private
 			 *&#x2F;
 			this._context = context;
+
+			&#x2F;&#x2F;this.onDrag =
+
+			this._createLiveContainer();
+			this._createPreviewContainer();
 
 			this.switchMode(CGSGWEBVIEWMODE.LIVE);
 		},
@@ -305,15 +317,13 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 *&#x2F;
 		_initPreviewContainer : function () {
 			if (!cgsgExist(this._previewContainer)) {
-				this._previewContainer =
-				new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height, 0, 0,
-				                  this.dimension.width, this.dimension.height, null, this._context);
+				this._createPreviewContainer();
 			}
 
 			this.addChild(this._previewContainer);
 
 			&#x2F;&#x2F;load the webcontent via Ajax
-			this._loadPageAsync();
+			&#x2F;&#x2F;this._loadPageAsync();
 		},
 
 		&#x2F;**
@@ -334,13 +344,26 @@ var CGSGNodeWebview = CGSGNode.extend(
 		},
 
 		&#x2F;**
+		 * Create the CGSGNodeImage to contain the preview
+		 * @method _createPreviewContainer
+		 * @private
+		 *&#x2F;
+		_createPreviewContainer : function () {
+			this._previewContainer =
+			new CGSGNodeImage(0, 0, this.dimension.width, this.dimension.height, 0, 0,
+			                  this.dimension.width, this.dimension.height, this._previewURL, this._context);
+
+			this._previewContainer.isTraversable = false;
+		},
+
+		&#x2F;*
 		 *
 		 * @private
 		 * @method _loadPageAsync
 		 *&#x2F;
-		_loadPageAsync : function () {
+		&#x2F;*_loadPageAsync : function () {
 
-		},
+		 },*&#x2F;
 
 		&#x2F;**
 		 * @method setURL
@@ -364,20 +387,42 @@ var CGSGNodeWebview = CGSGNode.extend(
 		},
 
 		&#x2F;**
+		 * Set the URL of the image for the preview mode (CGSGWEBVIEWMODE.PREVIEW)
+		 * @method setPreviewURL
+		 * @param {String} imageURL
+		 *&#x2F;
+		setPreviewURL : function (imageURL) {
+			this._previewURL = imageURL;
+			this._previewContainer.setURL(this._previewURL);
+		},
+
+		&#x2F;**
 		 * Switch between rendering mode
 		 * @method switchMode
 		 * @param {Number} mode a CGSGWEBVIEWMODE enum : LIVE or PREVIEW
 		 *&#x2F;
 		switchMode : function (mode) {
-			this.mode = mode;
 			if (mode === CGSGWEBVIEWMODE.LIVE) {
 				this.detachChild(this._previewContainer);
 				this._initLiveContainer();
 			}
 			else {
-				cgsgCanvas.removeChild(this._liveContainer);
+				&#x2F;&#x2F;Initially, there is no mode, so we cannot remove the child from the Body
+				if (this._mode === CGSGWEBVIEWMODE.LIVE) {
+					document.body.removeChild(this._liveContainer);
+				}
 				this._initPreviewContainer();
 			}
+
+			this._mode = mode;
+		},
+
+		&#x2F;**
+		 * @method getCurrentMode
+		 * @return {CGSGWEBVIEWMODE} the current mode
+		 *&#x2F;
+		getCurrentMode : function () {
+			return this._mode;
 		},
 
 		&#x2F;**
@@ -390,27 +435,38 @@ var CGSGNodeWebview = CGSGNode.extend(
 			&#x2F;&#x2F;save current state
 			this.beforeRender(context);
 
-			&#x2F;&#x2F;draw this zone
-			context.fillStyle = this.color;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
-
-			&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
-			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
-
-			context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
-
-			context.strokeRect(this.threshold - 2, this.threshold - 2, 8 + this.dimension.width - this.threshold * 2,
-			                   8 + this.dimension.height - this.threshold * 2);
-
-			if (cgsgExist(this._liveContainer)) {
-				this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + &quot;px&quot;;
-				this._liveContainer.style.top = (this.getAbsoluteTop() + this.threshold) + &quot;px&quot;;
-				this._liveContainer.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + &quot;px&quot;;
-				this._liveContainer.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + &quot;px&quot;;
-			}
-
 			context.globalAlpha = this.globalAlpha;
+
+			if (this._mode === CGSGWEBVIEWMODE.LIVE) {
+				context.fillStyle = this.color;
+				context.strokeStyle = this.lineColor;
+				context.lineWidth = this.lineWidth;
+
+				&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
+				context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+
+				context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+
+				context.strokeRect(this.threshold - 2, this.threshold - 2,
+				                   8 + this.dimension.width - this.threshold * 2,
+				                   8 + this.dimension.height - this.threshold * 2);
+
+				if (cgsgExist(this._liveContainer)) {
+					this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + &quot;px&quot;;
+					this._liveContainer.style.top = (this.getAbsoluteTop() + this.threshold) + &quot;px&quot;;
+					this._liveContainer.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + &quot;px&quot;;
+					this._liveContainer.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + &quot;px&quot;;
+				}
+			}
+			else {
+				this._previewContainer.resizeTo(this.getWidth(), this.getHeight());
+
+				&#x2F;&#x2F;draw this zone
+				context.fillStyle = this.color;
+
+				&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
+				context.fillRect(0, 0, this.getWidth(), this.getHeight());
+			}
 
 			&#x2F;&#x2F;restore state
 			this.afterRender(context);

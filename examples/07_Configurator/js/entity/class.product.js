@@ -22,39 +22,56 @@
  *
  *  These Terms of Use are subject to French law.
  */
-var CGMain = CGSGScene.extend(
+
+
+var PRODUCT_TYPE = {
+	UNKNOWN : {name : "Unknown"},
+	TABLE : {name : "Table"},
+	SHELF : {name : "Shelf"},
+	TV : {name : "TV"}
+};
+
+/**
+ * Represent a product
+ * @class Product
+ * @type {Product}
+ */
+var Product = Object.extend(
 	{
-		initialize : function (canvas) {
-			this._super(canvas);
+		initialize : function (name, price, type, urlImage) {
+			/**
+			 * @property name
+			 * @type {String}
+			 */
+			this.name = name;
 
-			this.initializeCanvas();
-			this.createScene();
+			/**
+			 * Type of the product : PRODUCT_TYPE.TABLE, PRODUCT_TYPE.SHELF, ...
+			 * @property type
+			 * @default PRODUCT_TYPE.UNKNOWN
+			 * @type {PRODUCT_TYPE}
+			 */
+			this.type = type;
 
-			this.startPlaying();
-		},
+			/**
+			 * price for this product
+			 * @property price
+			 * @type {Number}
+			 */
+			this.price = price;
 
-		initializeCanvas : function () {
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
+			/**
+			 * URL of the image representing the product
+			 * @property urlImage
+			 * @type {String}
+			 */
+			this.urlImage = urlImage;
 
-			FLOOR_POSITION = cgsgCanvas.height - (MENU_HEIGHT + FLOOR_POSITION_FROM_BOTTOM);
-			FLOOR_PERCENT = Math.max(0.0, FLOOR_POSITION / cgsgCanvas.height);
-		},
-
-		/**
-		 * Just create a single node (a square node)
-		 *
-		 */
-		createScene : function () {
-			this.rootNode = new CGSGNode(0, 0, 0, 0);
-			this.sceneGraph.addNode(this.rootNode, null);
-
-			this.backgroundNode = new BackgroundNode(0, 0, cgsgCanvas.width, cgsgCanvas.height);
-			this.rootNode.addChild(this.backgroundNode);
-
-			this.menuNode = new MenuNode(0, cgsgCanvas.width);
-			this.rootNode.addChild(this.menuNode);
+			/**
+			 * @property children
+			 * @type {Array}
+			 */
+			this.children = [];
 		}
-
 	}
 );

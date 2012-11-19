@@ -35,7 +35,7 @@
  * @type {CGSGAnimationKey}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGAnimationKey = Object.extend(
+var CGSGAnimationKey = CGSGObject.extend(
 	{
 		initialize : function (frame, value) {
 			/**

@@ -276,10 +276,8 @@ var CGSGNodeImage = CGSGNode.extend(
 
 			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 			&#x2F;&#x2F;finally load the image
-			if (this._urlImage !== undefined &amp;&amp; this._urlImage !== null &amp;&amp; this._urlImage != &quot;&quot;) {
-				this._img.onload = this._createDelegate(this, this._onImageLoaded, context);
-				&#x2F;&#x2F;this.img.onload = this._onImageLoaded(context);
-				this._img.src = this._urlImage;
+			if (cgsgExist(this._urlImage) &amp;&amp; this._urlImage != &quot;&quot;) {
+				this.setURL(urlImage);
 			}
 		},
 
@@ -292,9 +290,9 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @param renderContext
 		 * @return {Function}
 		 *&#x2F;
-		_createDelegate : function (objectContext, delegateMethod, renderContext) {
+		_createDelegate : function (objectContext, delegateMethod) {
 			return function () {
-				return delegateMethod.call(objectContext, renderContext);
+				return delegateMethod.call(objectContext);
 			}
 		},
 
@@ -304,7 +302,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @private
 		 * @method _onImageLoaded
 		 *&#x2F;
-		_onImageLoaded : function (context) {
+		_onImageLoaded : function () {
 			this._checkDimension();
 			this._isLoaded = true;
 
@@ -360,6 +358,22 @@ var CGSGNodeImage = CGSGNode.extend(
 		},
 
 		&#x2F;**
+		 * Set a new URL for the image of the node
+		 * @method setURL
+		 * @param {String} url
+		 *&#x2F;
+		setURL : function (url) {
+			this._urlImage = url;
+
+			delete(this._img);
+			this._isLoaded = false;
+			this._img = new Image();
+
+			this._img.onload = this._createDelegate(this, this._onImageLoaded);
+			this._img.src = this._urlImage;
+		},
+
+		&#x2F;**
 		 *  pre-render the image into _tmpCanvas to optimize the perfs
 		 * @private
 		 * @method _initShape
@@ -402,7 +416,7 @@ var CGSGNodeImage = CGSGNode.extend(
 					this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
 					0, 0,
 					&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
-					this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
+					this.getWidth(), this.getHeight()                &#x2F;&#x2F; dimension on the screen
 				);
 				&#x2F;&#x2F;restore state
 				this.afterRender(context);
@@ -438,7 +452,7 @@ var CGSGNodeImage = CGSGNode.extend(
 					this.slice.dimension.width, this.slice.dimension.height, &#x2F;&#x2F; dimension on the image
 					0, 0,
 					&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will tanslate the image
-					this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
+					this.getWidth(), this.getHeight()                &#x2F;&#x2F; dimension on the screen
 				);
 
 				&#x2F;&#x2F;restore state

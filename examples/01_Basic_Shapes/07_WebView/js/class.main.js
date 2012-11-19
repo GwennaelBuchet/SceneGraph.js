@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -21,16 +21,10 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 10/08/2012
- *
- * Purpose :
- * text example
- * */
+ */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
@@ -43,7 +37,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
+		initializeCanvas : function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -53,17 +47,36 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function() {
+		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 500, 500);
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//create a webview node
-			this.webviewNode = new CGSGNodeWebview(20, 20, this.viewDimension.width / 2, this.viewDimension.height / 2,
+			this.webviewNode = new CGSGNodeWebview(20, 40, this.viewDimension.width / 2, this.viewDimension.height / 2,
 			                                       "http://gwennaelbuchet.github.com/cgSceneGraph/", this.context);
+			this.webviewNode.setPreviewURL("images/hello.png");
 			this.webviewNode.isResizable = true;
 			this.webviewNode.isDraggable = true;
 			this.rootNode.addChild(this.webviewNode);
+
+			//add a button to switch mode
+			this.buttonNode = new CGSGNodeButton(10, 10, "Switch mode");
+			var bindSwitchMode = this.switchMode.bind(this);
+			this.buttonNode.onClick = function (event) {
+				bindSwitchMode();
+			};
+			//add the textNode as child of the root
+			this.rootNode.addChild(this.buttonNode);
+		},
+
+		switchMode : function () {
+			if (this.webviewNode.getCurrentMode() === CGSGWEBVIEWMODE.LIVE) {
+				this.webviewNode.switchMode(CGSGWEBVIEWMODE.PREVIEW);
+			}
+			else {
+				this.webviewNode.switchMode(CGSGWEBVIEWMODE.LIVE);
+			}
 		}
 	}
 );

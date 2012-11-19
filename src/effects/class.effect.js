@@ -32,7 +32,7 @@
  * @beta
  * @type {CGSGEffect}
  */
-var CGSGEffect = Object.extend(
+var CGSGEffect = CGSGObject.extend(
 	{
 		initialize : function () {
 		},

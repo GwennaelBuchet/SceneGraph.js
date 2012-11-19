@@ -1,8 +1,8 @@
 /*
  * Purpose :
- * A Class object with inheritance.
+ * A CGSGObject object with inheritance.
  * Usage:
- *  var Locomotion = Object.extend({
+ *  var Locomotion = CGSGObject.extend({
  *      initialize: function(name){
  *          this.name = name;
  *      },
@@ -21,18 +21,16 @@
  *
  * From documentation by John Resig (http://ejohn.org/)
  */
-"use strict";
-
 (function () {
 	var initializing = false, fnTest = /xyz/.test(function () {
 		xyz;
 	}) ? /\b_super\b/ : /.*/;
-	// The base Class implementation (does nothing)
-	this.Object = function () {
+	// The base CGSGObject implementation (does nothing)
+	this.CGSGObject = function () {
 	};
 
-	// Create a new Class that inherits from this class
-	Object.extend = function (prop) {
+	// Create a new CGSGObject that inherits from this class
+	CGSGObject.extend = function (prop) {
 		var _super = this.prototype;
 
 		// Instantiate a base class (but only create the instance,
@@ -67,7 +65,7 @@
 		}
 
 		// The dummy class constructor
-		function Object () {
+		function CGSGObject () {
 			// All construction is actually done in the initialize method
 			if (!initializing && this.initialize) {
 				this.initialize.apply(this, arguments);
@@ -75,14 +73,14 @@
 		}
 
 		// Populate our constructed prototype object
-		Object.prototype = prototype;
+		CGSGObject.prototype = prototype;
 
 		// Enforce the constructor to be what we expect
-		Object.prototype.constructor = Object;
+		CGSGObject.prototype.constructor = CGSGObject;
 
 		// And make this class extendable
-		Object.extend = arguments.callee;
+		CGSGObject.extend = arguments.callee;
 
-		return Object;
+		return CGSGObject;
 	};
 })();

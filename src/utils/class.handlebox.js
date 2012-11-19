@@ -36,7 +36,7 @@
  * @type {CGSGHandleBox}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGHandleBox = Object.extend(
+var CGSGHandleBox = CGSGObject.extend(
 	{
 		initialize : function (parentNode, size, color, x, y) {
 			/**
