@@ -61,24 +61,12 @@ var CGMain = CGSGScene.extend(
             /*
              * @param x
              * @param y
-             * @param width
-             * @param height
-             * @param sliceX
-             * @param sliceY
-             * @param sliceWidth
-             * @param sliceHeight
              * @param urlImage
              * @param context
              */
             this.imgNode = new CGSGNodeImage(
                 60,     //x
                 40,     //y
-                -1,     //width (-1 = auto compute)
-                -1,     //height (-1 = auto compute)
-                0,      //slice x (used for tiles. Here we want to display all the image)
-                0,      //slice y (used for tiles. Here we want to display all the image)
-                -1,     //slice width (used for tiles. Here we want to display all the image)
-                -1,     //slice height (used for tiles. Here we want to display all the image)
                 "images/hello.png",      //URL. Warning : the web page mus be on a web server (apache, ...)
                 this.context);      //context of rendering
 

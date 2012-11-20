@@ -201,8 +201,8 @@
  *&#x2F;
 var CGSGNodeImage = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
-			this._super(x, y, width, height);
+		initialize : function (x, y, urlImage, context) {
+			this._super(x, y, 0, 0);
 
 			&#x2F;**
 			 * @property classType
@@ -243,7 +243,7 @@ var CGSGNodeImage = CGSGNode.extend(
 			 * @property slice
 			 * @type {CGSGRegion}
 			 *&#x2F;
-			this.slice = new CGSGRegion(sliceX, sliceY, sliceWidth, sliceHeight);
+			this.slice = new CGSGRegion(0, 0, 0, 0);
 
 			&#x2F;**
 			 * @property _isLoaded
@@ -272,7 +272,7 @@ var CGSGNodeImage = CGSGNode.extend(
 			 * @type {HTMLElement}
 			 * @private
 			 *&#x2F;
-			this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
+			&#x2F;&#x2F;this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
 
 			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 			&#x2F;&#x2F;finally load the image
@@ -343,6 +343,21 @@ var CGSGNodeImage = CGSGNode.extend(
 		},
 
 		&#x2F;**
+		 * Set the slice into the image
+		 * @method setSlice
+		 * @param {Number} x
+		 * @param {Number}  y
+		 * @param {Number}  w
+		 * @param {Number}  h
+		 *&#x2F;
+		setSlice : function(x, y, w, h) {
+			this.slice.position.x = x;
+			this.slice.position.y = y;
+			this.slice.dimension.width = w;
+			this.slice.dimension.height = h;
+		},
+
+		&#x2F;**
 		 * @public
 		 * @method setImage
 		 * @param {Image} newImage new Image object. Must bea already loaded before
@@ -373,12 +388,12 @@ var CGSGNodeImage = CGSGNode.extend(
 			this._img.src = this._urlImage;
 		},
 
-		&#x2F;**
+		&#x2F;*
 		 *  pre-render the image into _tmpCanvas to optimize the perfs
 		 * @private
 		 * @method _initShape
 		 *&#x2F;
-		_initShape : function () {
+		&#x2F;*_initShape : function () {
 			this._tmpCanvas.width = this.dimension.width;
 			this._tmpCanvas.height = this.dimension.height;
 			var tmpContext = this._tmpCanvas.getContext(&#x27;2d&#x27;);
@@ -391,7 +406,7 @@ var CGSGNodeImage = CGSGNode.extend(
 				&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
 				this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
 			);
-		},
+		},*&#x2F;
 
 		&#x2F;**
 		 * Must be defined to allow the scene graph to render the image nodes

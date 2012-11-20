@@ -63,14 +63,11 @@ var CGMain = CGSGScene.extend(
             this.imgNode1 = new CGSGNodeImage(
                 40, //x
                 40, //y
-                34, //width (-1 = auto compute)
-                34, //height (-1 = auto compute)
-                476, //slice x (slice x = position in the source image)
-                0, //slice y
-                34, //slice width (used for tiles. Here we want to display all the image)
-                34, //slice height (used for tiles. Here we want to display all the image)
                 null, //URL. Warning : the web page mus be on a web server (apache, ...)
                 this.context);      //context of rendering
+
+	        //cut the slice from the source image
+	        this.imgNode1.setSlice(476, 0, 34, 34, true);
 
             //add some attributes
             this.imgNode1.isResizable = true;
@@ -82,24 +79,19 @@ var CGMain = CGSGScene.extend(
             this.imgNode2 = new CGSGNodeImage(
                 90, //x
                 40, //y
-                34, //width (-1 = auto compute)
-                34, //height (-1 = auto compute)
-                612, //slice x (slice x = position in the source image)
-                34, //slice y
-                34, //slice width (used for tiles. Here we want to display all the image)
-                34, //slice height (used for tiles. Here we want to display all the image)
                 null, //URL. null because we want to share a single Image between several nodes
                 this.context);      //context of rendering
             //add some attributes
             this.imgNode2.isResizable = true;
             this.imgNode2.isDraggable = true;
             this.rootNode.addChild(this.imgNode2);
+	        //cut the slice from the source image
+	        this.imgNode2.setSlice(612, 34, 34, 34, true);
 
             //then load the image normally, like in any JS context
             // Warning : the web page must be on a web server (apache, ...)
             this.img = new Image();
-            var bindOnImageLoaded = this.onImageLoaded.bind(this);
-            this.img.onload = bindOnImageLoaded;
+            this.img.onload = this.onImageLoaded.bind(this);
             this.img.src = "images/board.png";
         },
 

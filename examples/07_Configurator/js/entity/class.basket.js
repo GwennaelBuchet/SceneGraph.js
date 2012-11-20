@@ -23,62 +23,43 @@
  *  These Terms of Use are subject to French law.
  */
 
-
-var PRODUCT_TYPE = {
-	UNKNOWN : {name : "Unknown"},
-	TABLE : {name : "Table"},
-	SHELF : {name : "Shelf"},
-	TV : {name : "TV"}
-};
-
 /**
  * Represent a product
  * @class Product
  * @type {Product}
  */
-var Product = CGSGObject.extend(
+var Basket = CGSGObject.extend(
 	{
-		initialize : function (name, price, type, urlImage) {
+		initialize : function () {
 			/**
-			 * @property name
-			 * @type {String}
-			 */
-			this.name = name;
-
-			/**
-			 * Type of the product : PRODUCT_TYPE.TABLE, PRODUCT_TYPE.SHELF, ...
-			 * @property type
-			 * @default PRODUCT_TYPE.UNKNOWN
-			 * @type {PRODUCT_TYPE}
-			 */
-			this.type = type;
-
-			/**
-			 * price for this product
-			 * @property price
+			 * @property amount
 			 * @type {Number}
 			 */
-			this.price = price;
+			this.amount = 0;
 
 			/**
-			 * URL of the image representing the product
-			 * @property urlImage
-			 * @type {String}
-			 */
-			this.urlImage = urlImage;
-
-			/**
-			 * Height, in pixel, between the top of the image and the floor
-			 * @property heightToFloor
-			 * @type {Number}
-			 */
-			this.heightToFloor = 0;
-
-			/**
-			 * @property children
+			 * @property products
 			 * @type {Array}
 			 */
-			this.children = [];
+			this.products = [];
+		},
+
+		/**
+		 * @method addProduct
+		 * @param {Product} product
+		 */
+		addProduct : function(product) {
+			this.products.push(product);
+			this.amount += product.price;
+		},
+
+		/**
+		 * @method removeProduct
+		 * @param {Product} product
+		 */
+		removeProduct : function(product) {
+			this.products.without(product);
+			this.amount -= product.price;
 		}
 	}
 );

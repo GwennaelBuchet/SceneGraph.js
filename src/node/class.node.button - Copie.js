@@ -138,6 +138,20 @@ var CGSGNodeButton = CGSGNode.extend(
 			this.textNode.setTextBaseline("middle", false);
 
 			/**
+			 * @property _picto
+			 * @type {CGSGNodeImage}
+			 */
+			//this._picto = new CGSGNodeImage(0, 0, null, null);
+			//this.addChild(this._picto);
+
+			/**
+			 * @property _slices
+			 * @default null
+			 * @type {Array}
+			 */
+			//this._slices = null;
+
+			/**
 			 * Fake canvases to pre-render static display
 			 * @property _tmpCanvas
 			 * @type {Array}
@@ -199,6 +213,42 @@ var CGSGNodeButton = CGSGNode.extend(
 		},
 
 		/**
+		 * Set the image for the picto
+		 * @method setImage
+		 * @param {Image} img
+		 */
+		/*setImage : function (img) {
+			this._picto.setImage(img);
+		},*/
+
+		/**
+		 * Set the URL for the picto
+		 * @method setImageURL
+		 * @param url
+		 */
+		/*setImageURL : function (url) {
+			this._picto.setURL(url);
+		},*/
+
+		/**
+		 * Return the slices in the image for the 3 modes
+		 * @method getSlices
+		 * @return {Array}
+		 */
+		/*getSlices : function () {
+			return this._slices;
+		},*/
+		/**
+		 * Set the slices in the image for the 3 modes
+		 * @method setSlices
+		 * @param {Array} values
+		 */
+		/*setSlices : function (values) {
+			this._slices = values;
+			this._initShapes();
+		},*/
+
+		/**
 		 * Return the High color for the button
 		 * @method getFirstColors
 		 * @return {Array}
@@ -207,12 +257,12 @@ var CGSGNodeButton = CGSGNode.extend(
 			return this._firstColors;
 		},
 		/**
-		 * Set the value for the high color of the button
+		 * Set the values for the high color of the button
 		 * @method setFirstColors
-		 * @param value {Array}
+		 * @param values {Array}
 		 */
-		setFirstColors : function (value) {
-			this._firstColors = value;
+		setFirstColors : function (values) {
+			this._firstColors = values;
 			this._initShapes();
 		},
 
@@ -225,12 +275,12 @@ var CGSGNodeButton = CGSGNode.extend(
 			return this._lastColors;
 		},
 		/**
-		 * Set the value for the low color of the button
+		 * Set the values for the low color of the button
 		 * @method setLastColors
-		 * @param value {Array}
+		 * @param values {Array}
 		 */
-		setLastColors : function (value) {
-			this._lastColors = value;
+		setLastColors : function (values) {
+			this._lastColors = values;
 			this._initShapes();
 		},
 
@@ -243,12 +293,12 @@ var CGSGNodeButton = CGSGNode.extend(
 			return this._shadowColors;
 		},
 		/**
-		 * Set the value for the shadow color of the button
+		 * Set the values for the shadow color of the button
 		 * @method setShadowColors
-		 * @param value {Array}
+		 * @param values {Array}
 		 */
-		setShadowColors : function (value) {
-			this._shadowColors = value;
+		setShadowColors : function (values) {
+			this._shadowColors = values;
 			this._initShapes();
 		},
 
@@ -261,12 +311,12 @@ var CGSGNodeButton = CGSGNode.extend(
 			return this._radiuses;
 		},
 		/**
-		 * Set the value for the low color of the button
+		 * Set the values for the low color of the button
 		 * @method setRadiuses
-		 * @param value {Array}
+		 * @param values {Array}
 		 */
-		setRadiuses : function (value) {
-			this._radiuses = value;
+		setRadiuses : function (values) {
+			this._radiuses = values;
 			this._initShapes();
 		},
 
@@ -279,14 +329,14 @@ var CGSGNodeButton = CGSGNode.extend(
 			return this._texts;
 		},
 		/**
-		 * Set the value for text of the button
+		 * Set the values for text of the button
 		 * @method setTexts
 		 * @param values {Array}
 		 * @example
 		 *  button.setText(["normal", "over", "deactivated"]);
 		 */
 		setTexts : function (values) {
-			//if values is not an array, create an array of 3 times this value
+			//if values is not an array, create an array of 3 times this values
 			if (!cgsgIsArray(values)) {
 				var v = values.toString();
 				values = [v, v, v];
@@ -305,12 +355,12 @@ var CGSGNodeButton = CGSGNode.extend(
 			return this._textSizes;
 		},
 		/**
-		 * Set the value for text sizes of the button
+		 * Set the values for text sizes of the button
 		 * @method setTextSizes
-		 * @param value {Array}
+		 * @param values {Array}
 		 */
-		setTextSizes : function (value) {
-			this._textSizes = value;
+		setTextSizes : function (values) {
+			this._textSizes = values;
 			this._initShapes();
 		},
 
@@ -325,12 +375,12 @@ var CGSGNodeButton = CGSGNode.extend(
 		/**
 		 * Set the color for text of the button
 		 * @method setTextColors
-		 * @param value {Array}
+		 * @param values {Array}
 		 * @example
 		 *  button.setTextColor(["white", "green", "yellow"]);
 		 */
-		setTextColors : function (value) {
-			this._textColors = value;
+		setTextColors : function (values) {
+			this._textColors = values;
 			this._initShapes();
 		},
 
@@ -345,10 +395,10 @@ var CGSGNodeButton = CGSGNode.extend(
 		/**
 		 * Set the horizontal padding of the button
 		 * @method setHorizontalPadding
-		 * @param value {Number}
+		 * @param values {Number}
 		 */
-		setHorizontalPadding : function (value) {
-			this._horizontalPadding = value;
+		setHorizontalPadding : function (values) {
+			this._horizontalPadding = values;
 			this._initShapes();
 		},
 
@@ -363,16 +413,16 @@ var CGSGNodeButton = CGSGNode.extend(
 		/**
 		 * Set the vertical padding of the button
 		 * @method setHorizontalPadding
-		 * @param value {Number}
+		 * @param values {Number}
 		 */
-		setVerticalPadding : function (value) {
-			this._verticalPadding = value;
+		setVerticalPadding : function (values) {
+			this._verticalPadding = values;
 			this._initShapes();
 		},
 
 		/**
 		 * Pre-render the button into a temp canvas to optimize the perfs
-		 * @method _initShape
+		 * @method _initShapes
 		 * @private
 		 */
 		_initShapes : function () {
@@ -402,32 +452,32 @@ var CGSGNodeButton = CGSGNode.extend(
 			//render the panel
 			tmpContext.save();
 			{
-				tmpContext.translate(-this._radiuses[index], -this._radiuses[index]);
+				var r = this._radiuses[index];
+				tmpContext.translate(-r, -r);
 				tmpContext.beginPath();
 
-				tmpContext.moveTo(this._radiuses[index], this._radiuses[index]);
-				tmpContext.lineTo(this._radiuses[index] + this.dimension.width - this._radiuses[index],
-				                  this._radiuses[index]);
-				tmpContext.quadraticCurveTo(this._radiuses[index] + this.dimension.width,
-				                            this._radiuses[index],
-				                            this._radiuses[index] + this.dimension.width,
-				                            this._radiuses[index] + this._radiuses[index]);
-				tmpContext.lineTo(this._radiuses[index] + this.dimension.width,
-				                  this._radiuses[index] + this.dimension.height - this._radiuses[index]);
-				tmpContext.quadraticCurveTo(this._radiuses[index] + this.dimension.width,
-				                            this._radiuses[index] + this.dimension.height,
-				                            this._radiuses[index] + this.dimension.width - this._radiuses[index],
-				                            this._radiuses[index] + this.dimension.height);
-				tmpContext.lineTo(this._radiuses[index] + this._radiuses[index],
-				                  this._radiuses[index] + this.dimension.height);
-				tmpContext.quadraticCurveTo(this._radiuses[index],
-				                            this._radiuses[index] + this.dimension.height,
-				                            this._radiuses[index],
-				                            this._radiuses[index] + this.dimension.height - this._radiuses[index]);
-				tmpContext.lineTo(this._radiuses[index], this._radiuses[index] + this._radiuses[index]);
-				tmpContext.quadraticCurveTo(this._radiuses[index], this._radiuses[index],
-				                            this._radiuses[index] + this._radiuses[index],
-				                            this._radiuses[index]);
+				tmpContext.moveTo(r, r);
+				tmpContext.lineTo(r + this.dimension.width - r, r);
+				tmpContext.quadraticCurveTo(r + this.dimension.width,
+				                            r,
+				                            r + this.dimension.width,
+				                            r + r);
+				tmpContext.lineTo(r + this.dimension.width,
+				                  r + this.dimension.height - r);
+				tmpContext.quadraticCurveTo(r + this.dimension.width,
+				                            r + this.dimension.height,
+				                            r + this.dimension.width - r,
+				                            r + this.dimension.height);
+				tmpContext.lineTo(r + r,
+				                  r + this.dimension.height);
+				tmpContext.quadraticCurveTo(r,
+				                            r + this.dimension.height,
+				                            r,
+				                            r + this.dimension.height - r);
+				tmpContext.lineTo(r, r + r);
+				tmpContext.quadraticCurveTo(r, r,
+				                            r + r,
+				                            r);
 				tmpContext.closePath();
 
 				var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
@@ -446,6 +496,8 @@ var CGSGNodeButton = CGSGNode.extend(
 			}
 			tmpContext.restore();
 
+			this.resizeTo(2 * this._radiuses[index] + this.dimension.width,
+			              2 * this._radiuses[index] + this.dimension.height);
 			this.textNode.color = this._textColors[index];
 
 			var x = (this.getWidth() - this.textNode.getWidth()) / 2;
@@ -486,6 +538,15 @@ var CGSGNodeButton = CGSGNode.extend(
 			context.globalAlpha = this.globalAlpha;
 			//render the pre-rendered canvas
 			context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
+
+			/*var i = 0;
+			if (cgsgExist(this._slices)) {
+				if (this._slices.length > 0) {
+					i = this._currentMode.index;
+				}
+				var s = this._slices[i];
+				this._picto.setSlice(s.position.x, s.position.y, s.dimension.width, s.dimension.height, true);
+			}*/
 
 			//restore state
 			this.afterRender(context);

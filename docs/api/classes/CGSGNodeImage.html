@@ -507,13 +507,6 @@
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method__initShape">_initShape</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method protected">
                                 <a href="#method__onImageError">_onImageError</a>
 
@@ -866,6 +859,13 @@
                         
                             <li class="index-item method inherited">
                                 <a href="#method_setSelected">setSelected</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setSlice">setSlice</a>
 
                                 
                                 
@@ -1613,62 +1613,6 @@ only if dimension is not already defined in the constructor</p>
                 
             </div>
         </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__initShape" class="method item private">
-    <span class="attribute-name">_initShape</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l220"><code>src\node\class.node.image.js:220</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>pre-render the image into _tmpCanvas to optimize the perfs</p>
-    </div>
-
-    
-
     
 
     
@@ -2479,7 +2423,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l321"><code>src\node\class.node.image.js:321</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l336"><code>src\node\class.node.image.js:336</code></a>
         
         </p>
 
@@ -4631,7 +4575,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l240"><code>src\node\class.node.image.js:240</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l255"><code>src\node\class.node.image.js:255</code></a>
         
         </p>
 
@@ -4720,7 +4664,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l279"><code>src\node\class.node.image.js:279</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l294"><code>src\node\class.node.image.js:294</code></a>
         
         </p>
 
@@ -5113,7 +5057,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l307"><code>src\node\class.node.image.js:307</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l322"><code>src\node\class.node.image.js:322</code></a>
         
         </p>
 
@@ -5911,7 +5855,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l270"><code>src\node\class.node.image.js:270</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l285"><code>src\node\class.node.image.js:285</code></a>
         
         </p>
 
@@ -6000,7 +5944,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l189"><code>src\node\class.node.image.js:189</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l204"><code>src\node\class.node.image.js:204</code></a>
         
         </p>
 
@@ -6215,6 +6159,156 @@ the image with the handle boxes</p>
 </div>
 
                 
+                    <div id="method_setSlice" class="method item">
+    <span class="attribute-name">setSlice</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>x</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>y</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>w</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>h</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l189"><code>src\node\class.node.image.js:189</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the slice into the image</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">x</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">y</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">w</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">h</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_setURL" class="method item">
     <span class="attribute-name">setURL</span>
 
@@ -6257,7 +6351,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l204"><code>src\node\class.node.image.js:204</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l219"><code>src\node\class.node.image.js:219</code></a>
         
         </p>
 

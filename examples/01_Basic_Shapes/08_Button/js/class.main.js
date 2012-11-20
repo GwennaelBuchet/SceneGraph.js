@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -62,45 +62,59 @@ var CGMain = CGSGScene.extend(
 			//X, Y, WIDTH, HEIGHT
 			var buttonNormal = new CGSGNodeButton(10, 10, "Normal");
 			buttonNormal.name = "Normal Button";
-			buttonNormal.onClick = function(event) {
+			buttonNormal.onClick = function (event) {
 				alert(event.node.name);
-			}
+			};
 			rootNode.addChild(buttonNormal, null);
 
-			var buttonOver = new CGSGNodeButton(110, 10, "Big & initially Overed");
+			var buttonOver = new CGSGNodeButton(110, 40, "Big & initially Overed");
 			//3 text : normal, over, deactivated
-			buttonOver.setText(["Still Big but mouse out", "Big & initially Overed", "Big and deactivated"]);
+			buttonOver.setTexts(["Still Big but mouse out", "Big & initially Overed", "Big and deactivated"]);
 			buttonOver.setMode(CGSGButtonMode.OVER);
-			buttonOver.isDraggable = true;
 			buttonOver.setVerticalPadding(42);
 			rootNode.addChild(buttonOver, null);
 
 			var buttonDeactivated = new CGSGNodeButton(210, 10, "Deactivated");
 			buttonDeactivated.setMode(CGSGButtonMode.DEACTIVATED);
-			buttonDeactivated.isDraggable = true;
 			rootNode.addChild(buttonDeactivated, null);
 
-
 			var buttonLittle = new CGSGNodeButton(10, 50, "Little");
-			buttonLittle.onClick = function(event) {
-				alert("click on button : " + event.node.getText()[0]);
-			}
+			buttonLittle.onClick = function (event) {
+				alert("click on button : " + event.node.getTexts()[0]);
+			};
 			buttonLittle.setVerticalPadding(2);
 			buttonLittle.setHorizontalPadding(4);
 			//3 radius : normal, over, deactivated
-			buttonLittle.setRadius([5, 5, 5]);
+			buttonLittle.setRadiuses([5, 5, 5]);
 			//3 sizes : normal, over, deactivated
-			buttonLittle.setTextSize([8, 8, 8]);
+			buttonLittle.setTextSizes([8, 8, 8]);
 			rootNode.addChild(buttonLittle, null);
-
 
 			var buttonCustom = new CGSGNodeButton(10, 80, "Custom\nColors");
 			//3 colors : normal, over, deactivated
-			buttonCustom.setFirstColor(["#FFADAD", "#D89393", "#F9DBDB"]);
-			buttonCustom.setLastColor(["#FF8E8E", "#D37676", "#D8BEBE"]);
-			buttonCustom.setTextColor(["#FFFFFF", "#8EA7FF", "gray"]);
+			buttonCustom.setFirstColors(["#FFADAD", "#D89393", "#F9DBDB"]);
+			buttonCustom.setLastColors(["#FF8E8E", "#D37676", "#D8BEBE"]);
+			buttonCustom.setTextColors(["#FFFFFF", "#8EA7FF", "gray"]);
 			rootNode.addChild(buttonCustom, null);
 
+/*
+			//button with picto
+			var buttonPicto = new CGSGNodeButton(30, 150, "Picto");
+			buttonPicto.setImageURL("images/alert.png");
+			rootNode.addChild(buttonPicto, null);
+
+			//button with picto loaded from a spritesheet
+			//first, load the fiull image
+			this.img = new Image();
+			this.img.onload = this.onImageLoaded.bind(this);
+			this.img.src = "images/board.png";
+			this.buttonSpritesheet = new CGSGNodeButton(200, 150, "Picto in spritesheet");
+			this.buttonSpritesheet.setSlices([new CGSGRegion(0, 0, 32, 32), new CGSGRegion(32, 0, 32, 32)]);
+			rootNode.addChild(this.buttonSpritesheet, null);*/
+		},
+
+		onImageLoaded : function () {
+			this.buttonSpritesheet.setImage(this.img);
 		}
 	}
 );
