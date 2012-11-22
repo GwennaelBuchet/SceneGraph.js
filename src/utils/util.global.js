@@ -116,29 +116,29 @@ function cgsgDetectCurrentExplorer () {
  * @param errorCallback {function} an function handler to call on error
  */
 /*function cgsgLoadExternalDoc (url, successCallback, errorCallback) {
-	var xhr;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		xhr = new XMLHttpRequest();
-	}
-	else {// code for IE6, IE5
-		try {
-			xhr = new ActiveXObject("Msxml2.XMLHTTP");
-		}
-		catch (e) {
-			xhr = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-	}
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			successCallback(xhr.responseText);
-		}
-		else {
-			errorCallback(xhr.responseText);
-		}
-	};
-	xhr.open("GET", url, true);
-	xhr.send();
-}*/
+ var xhr;
+ if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+ xhr = new XMLHttpRequest();
+ }
+ else {// code for IE6, IE5
+ try {
+ xhr = new ActiveXObject("Msxml2.XMLHTTP");
+ }
+ catch (e) {
+ xhr = new ActiveXObject("Microsoft.XMLHTTP");
+ }
+ }
+ xhr.onreadystatechange = function () {
+ if (xhr.readyState == 4 && xhr.status == 200) {
+ successCallback(xhr.responseText);
+ }
+ else {
+ errorCallback(xhr.responseText);
+ }
+ };
+ xhr.open("GET", url, true);
+ xhr.send();
+ }*/
 
 cgsgStylePaddingLeft = 0;
 cgsgStylePaddingTop = 0;
@@ -199,19 +199,14 @@ function cgsgRegionIsInRegion (region, targetRegion, threshold) {
 }
 
 /**
- * Return the mouse or touch position relative to the canvas
- * @method cgsgGetCursorPosition
+ * Return the mouse or touch positions relative to the canvas
+ * @method cgsgGetCursorPositions
  * @param {Event} event a touch or mouse Event
  * @param {HTMLElement} canvas a handler to the Canvas element
- * @return {CGSGPosition} A CGSGPosition object
+ * @return {Array} Array of CGSGPosition object
  */
-function cgsgGetCursorPosition (event, canvas) {
-	var element = canvas, offsetX = 0, offsetY = 0;
-
-	/*var touch;
-	if (event.targetTouches) {
-		touch = event.targetTouches[0];
-	}*/
+function cgsgGetCursorPositions (event, canvas) {
+	var element = canvas, offsetX = 0, offsetY = 0, positions = [];
 
 	if (element.offsetParent) {
 		do {
@@ -227,7 +222,22 @@ function cgsgGetCursorPosition (event, canvas) {
 	offsetX += cgsgStyleBorderLeft;
 	offsetY += cgsgStyleBorderTop;
 
-	return new CGSGPosition((event.pageX - offsetX) / cgsgDisplayRatio.x, (event.pageY - offsetY) / cgsgDisplayRatio.y);
+	var touch = event;
+	//if multi-touch, get all the positions
+	if (event.targetTouches) {
+		for (var i = 0; i < event.targetTouches.length; i++) {
+			touch = event.targetTouches[i];
+
+			positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
+			                                (touch.pageY - offsetY) / cgsgDisplayRatio.y));
+		}
+	}
+	else {
+		positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
+		                                (touch.pageY - offsetY) / cgsgDisplayRatio.y));
+	}
+
+	return positions;
 }
 
 /**

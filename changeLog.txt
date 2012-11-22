@@ -29,9 +29,8 @@ cgSceneGraph Framework.
 TODO LIST:
 =====================================================================
 
-- Evolution. CGSGNodeText : Add In-live text edition
-- Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
-- Optimization. Automatic multiple canvas for multiple layers, sharing the same scene graph.
+- Evolution. Caching system
+- Evolution. Filter class
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
 - Evolution. CGSGNodeLink
@@ -39,6 +38,8 @@ TODO LIST:
 - Example. Map
 - Example. Pingoo
 - Example. FallDown
+- Evolution. CGSGNodeText : Add In-live text edition
+- Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
 - Evolution. Use of CSS to define the visual properties (sizes, colors, ...)
 
 
@@ -46,6 +47,17 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.2.3
+
+CHANGES:
+- Evolution. CGSGNodeImage : reduce parameters in the initializer
+- Evolution. CGSGNodeImage : add "setSlice" method
+- Optimization. Better touch events handler
+- Evolution. "cgsgGetCursorPosition" renamed to "cgsgGetCursorPositions" and now returns all touches
+- Evolution. CGSGScene : add of "multitouch" property (NOT EFFECTIVE YET)
+- Evolution. Array : add of Array.prototype.copy()
+
+---------------------------------------------------------------------
 v1.2.2
 
 CHANGES:

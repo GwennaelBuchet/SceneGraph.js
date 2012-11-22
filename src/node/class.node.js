@@ -356,6 +356,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onMouseOver
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onMouseOver = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onMouseOver = null;
 			/**
@@ -363,6 +370,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onMouseOut
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onMouseOut = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onMouseOut = null;
 			/**
@@ -370,6 +384,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onMouseUp
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onMouseUp = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onMouseUp = null;
 			/**
@@ -377,6 +398,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onClick
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onClick = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onClick = null;
 			/**
@@ -384,6 +412,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDblClick
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDblClick = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onDblClick = null
 			;
@@ -392,6 +427,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDrag
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDrag = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onDrag = null;
 			/**
@@ -399,6 +441,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDragEnd
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDragEnd = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onDragEnd = null;
 			/**
@@ -406,6 +455,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onResize
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onResize = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onResize = null;
 			/**
@@ -413,6 +469,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onResizeEnd
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onResizeEnd = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onResizeEnd = null;
 			/**
@@ -420,6 +483,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onSelect
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onSelect = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onSelect = null;
 			/**
@@ -427,6 +497,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDeselect
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDeselect = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
 			 */
 			this.onDeselect = null;
 

@@ -45,8 +45,8 @@
  */
 var CGSGNodeImage = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
-			this._super(x, y, width, height);
+		initialize : function (x, y, urlImage, context) {
+			this._super(x, y, 0, 0);
 
 			/**
 			 * @property classType
@@ -87,7 +87,7 @@ var CGSGNodeImage = CGSGNode.extend(
 			 * @property slice
 			 * @type {CGSGRegion}
 			 */
-			this.slice = new CGSGRegion(sliceX, sliceY, sliceWidth, sliceHeight);
+			this.slice = new CGSGRegion(0, 0, 0, 0);
 
 			/**
 			 * @property _isLoaded
@@ -116,7 +116,7 @@ var CGSGNodeImage = CGSGNode.extend(
 			 * @type {HTMLElement}
 			 * @private
 			 */
-			this._tmpCanvas = document.createElement('canvas');
+			//this._tmpCanvas = document.createElement('canvas');
 
 			///// INITIALIZATION //////
 			//finally load the image
@@ -153,7 +153,7 @@ var CGSGNodeImage = CGSGNode.extend(
 			if (this.onLoadEnd !== null) {
 				this.onLoadEnd();
 			}
-			this._initShape();
+			//this._initShape();
 			this.render(this._context);
 		},
 
@@ -187,6 +187,26 @@ var CGSGNodeImage = CGSGNode.extend(
 		},
 
 		/**
+		 * Set the slice into the image
+		 * @method setSlice
+		 * @param {Number} x
+		 * @param {Number}  y
+		 * @param {Number}  w
+		 * @param {Number}  h
+		 * @param {Boolean} updateDimension If true, the dimension will be set with the dimension of the slice
+		 */
+		setSlice : function (x, y, w, h, updateDimension) {
+			this.slice.position.x = x;
+			this.slice.position.y = y;
+			this.slice.dimension.width = w;
+			this.slice.dimension.height = h;
+
+			if (updateDimension) {
+				this.resizeTo(w, h);
+			}
+		},
+
+		/**
 		 * @public
 		 * @method setImage
 		 * @param {Image} newImage new Image object. Must bea already loaded before
@@ -197,7 +217,7 @@ var CGSGNodeImage = CGSGNode.extend(
 				this._urlImage = this._img.src;
 				this._checkDimension();
 				this._isLoaded = true;
-				this._initShape();
+				//this._initShape();
 			}
 		},
 
@@ -217,25 +237,25 @@ var CGSGNodeImage = CGSGNode.extend(
 			this._img.src = this._urlImage;
 		},
 
-		/**
+		/*
 		 *  pre-render the image into _tmpCanvas to optimize the perfs
 		 * @private
 		 * @method _initShape
 		 */
-		_initShape : function () {
-			this._tmpCanvas.width = this.dimension.width;
-			this._tmpCanvas.height = this.dimension.height;
-			var tmpContext = this._tmpCanvas.getContext('2d');
+		/*_initShape : function () {
+		 this._tmpCanvas.width = this.dimension.width;
+		 this._tmpCanvas.height = this.dimension.height;
+		 var tmpContext = this._tmpCanvas.getContext('2d');
 
-			tmpContext.drawImage(
-				this._img, // image
-				this.slice.position.x, this.slice.position.y, // start position on the image
-				this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
-				0, 0,
-				// position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
-				this.dimension.width, this.dimension.height                // dimension on the screen
-			);
-		},
+		 tmpContext.drawImage(
+		 this._img, // image
+		 this.slice.position.x, this.slice.position.y, // start position on the image
+		 this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
+		 0, 0,
+		 // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
+		 this.dimension.width, this.dimension.height                // dimension on the screen
+		 );
+		 },*/
 
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
@@ -315,7 +335,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * */
 		resizeWith : function (width, height) {
 			this._super(width, height);
-			this._initShape();
+			//this._initShape();
 		},
 
 		/**
@@ -325,10 +345,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @return {CGSGNodeImage} a copy of this node
 		 */
 		copy : function () {
-			var node = new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height,
-			                             this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
-			                             this.slice.dimension.height, /*this.urlImage*/null,
-			                             this._context);
+			var node = new CGSGNodeImage(this.position.x, this.position.y, null, this._context);
 			//call the super method
 			node = this._super(node);
 
@@ -340,6 +357,10 @@ var CGSGNodeImage = CGSGNode.extend(
 
 			//the image object itself
 			node.setImage(this._img);
+
+			node.setSlice(this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
+			              this.slice.dimension.height);
+			node.resizeTo(this.dimension.width, this.dimension.height);
 
 			node.onLoadEnd = this.onLoadEnd;
 			/*if (this.urlImage !== undefined && this.urlImage !== null && this.urlImage != "") {

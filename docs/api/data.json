@@ -3987,6 +3987,37 @@
         {
             "file": "src\\node\\class.node.image.js",
             "line": 189,
+            "description": "Set the slice into the image",
+            "itemtype": "method",
+            "name": "setSlice",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "w",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "h",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeImage",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.image.js",
+            "line": 204,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4003,7 +4034,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 204,
+            "line": 219,
             "description": "Set a new URL for the image of the node",
             "itemtype": "method",
             "name": "setURL",
@@ -4019,18 +4050,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 220,
-            "description": "pre-render the image into _tmpCanvas to optimize the perfs",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_initShape",
-            "class": "CGSGNodeImage",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.image.js",
-            "line": 240,
+            "line": 255,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
             "access": "protected",
@@ -4049,7 +4069,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 270,
+            "line": 285,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4066,7 +4086,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 279,
+            "line": 294,
             "description": "Ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "override": "",
             "access": "protected",
@@ -4085,7 +4105,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 307,
+            "line": 322,
             "description": "Increase/decrease current dimension with adding values. It is used when the user resize\nthe image with the handle boxes",
             "override": "",
             "access": "public",
@@ -4109,7 +4129,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 321,
+            "line": 336,
             "override": "",
             "access": "public",
             "tagname": "",
@@ -9174,19 +9194,19 @@
         },
         {
             "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:240"
+            "line": " src\\node\\class.node.image.js:255"
         },
         {
             "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:279"
+            "line": " src\\node\\class.node.image.js:294"
         },
         {
             "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:307"
+            "line": " src\\node\\class.node.image.js:322"
         },
         {
             "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:321"
+            "line": " src\\node\\class.node.image.js:336"
         },
         {
             "message": "unknown tag: override",
