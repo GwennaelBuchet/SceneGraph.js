@@ -54,7 +54,7 @@ var CGMain = CGSGScene.extend(
 
 			//create a webview node
 			this.webviewNode = new CGSGNodeWebview(20, 40, this.viewDimension.width / 2, this.viewDimension.height / 2,
-			                                       "http://gwennaelbuchet.github.com/cgSceneGraph/", this.context);
+			                                       "http://gwennaelbuchet.github.com/cgSceneGraph/");
 			this.webviewNode.setPreviewURL("images/hello.png");
 			this.webviewNode.isResizable = true;
 			this.webviewNode.isDraggable = true;

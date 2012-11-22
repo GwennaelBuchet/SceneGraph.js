@@ -102,7 +102,7 @@ var CGMain = CGSGScene.extend(
          * change the text of the button
          */
         changeTextAnimation : function() {
-            this.buttonNode.setText("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
+            this.buttonNode.setTexts("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
         }
 	}
 );
