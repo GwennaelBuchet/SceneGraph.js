@@ -62,23 +62,18 @@ var CGMain = CGSGScene.extend(
              * @param x
              * @param y
              * @param urlImage
-             * @param context
              */
             this.imgNode = new CGSGNodeImage(
                 60,     //x
-                40,     //y
+                60,     //y
                 "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
-
 
             //add some attributes
             this.imgNode.isResizable = true;
             this.imgNode.isDraggable = true;
 
-            //add image node as root of the scenegraph (2ns parameter = null)
 	        rootNode.addChild(this.imgNode);
 
-
-	        
 	        //add a button to switch src
 	        this.currentImg = 0;
 	        this.buttonNode = new CGSGNodeButton(10, 10, "Switch source");
