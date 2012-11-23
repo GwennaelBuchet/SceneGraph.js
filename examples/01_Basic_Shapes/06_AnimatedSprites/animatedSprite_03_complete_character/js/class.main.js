@@ -81,10 +81,7 @@ var CGMain = CGSGScene.extend(
 
 			//add a text node ("click me") with a onClick event
 			this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
-			var bindSwitchAnimation = this.switchAnimation.bind(this);
-			this.buttonNode.onClick = function (event) {
-				bindSwitchAnimation();
-			}
+			this.buttonNode.onClick = this.switchAnimation.bind(this);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.buttonNode);
 
@@ -102,7 +99,7 @@ var CGMain = CGSGScene.extend(
          * change the text of the button
          */
         changeTextAnimation : function() {
-            this.buttonNode.setText("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
+            this.buttonNode.setTexts("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
         }
 	}
 );

@@ -45,8 +45,8 @@
  */
 var CGSGNodeImage = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height, sliceX, sliceY, sliceWidth, sliceHeight, urlImage, context) {
-			this._super(x, y, width, height);
+		initialize : function (x, y, urlImage) {
+			this._super(x, y, 0, 0);
 
 			/**
 			 * @property classType
@@ -87,20 +87,14 @@ var CGSGNodeImage = CGSGNode.extend(
 			 * @property slice
 			 * @type {CGSGRegion}
 			 */
-			this.slice = new CGSGRegion(sliceX, sliceY, sliceWidth, sliceHeight);
+			this.slice = new CGSGRegion(0, 0, 0, 0);
 
 			/**
 			 * @property _isLoaded
 			 * @type {Boolean}
 			 * @private
 			 */
-			this._isLoaded = false;
-			/**
-			 * @property _context
-			 * @type {CanvasRenderingContext2D}
-			 * @private
-			 */
-			this._context = context;
+			this.isLoaded = false;
 
 			/**
 			 * Event Fired when the image is finally loaded
@@ -109,14 +103,20 @@ var CGSGNodeImage = CGSGNode.extend(
 			 * @type {Function}
 			 */
 			this.onLoadEnd = null;
-
-			/**
-			 * Fake canvas to pre-render the image
-			 * @property _tmpCanvas
-			 * @type {HTMLElement}
-			 * @private
-			 */
-			this._tmpCanvas = document.createElement('canvas');
+            /**
+             * Event Fired when the image failed to load
+             * @property onLoadError
+             * @default null
+             * @type {Function}
+             */
+            this.onLoadError = null;
+            /**
+             * Event Fired when the image loading is aborted
+             * @property onLoadAbort
+             * @default null
+             * @type {Function}
+             */
+            this.onLoadAbort = null;
 
 			///// INITIALIZATION //////
 			//finally load the image
@@ -131,7 +131,6 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @method _createDelegate
 		 * @param objectContext
 		 * @param delegateMethod
-		 * @param renderContext
 		 * @return {Function}
 		 */
 		_createDelegate : function (objectContext, delegateMethod) {
@@ -148,23 +147,33 @@ var CGSGNodeImage = CGSGNode.extend(
 		 */
 		_onImageLoaded : function () {
 			this._checkDimension();
-			this._isLoaded = true;
+			this.isLoaded = true;
 
 			if (this.onLoadEnd !== null) {
 				this.onLoadEnd();
 			}
-			this._initShape();
-			this.render(this._context);
 		},
 
 		/**
 		 * To be overrided when the image failed to load
 		 * @method _onImageError
 		 * @protected
-		 * @param context
 		 */
-		_onImageError : function (context) {
+		_onImageError : function () {
+            if (this.onLoadError !== null) {
+                this.onLoadError();
+            }
 		},
+        /**
+         * To be overrided when the image loading is aborted
+         * @method _onImageAbort
+         * @protected
+         */
+        _onImageAbort : function () {
+            if (this.onLoadAbort !== null) {
+                this.onLoadAbort();
+            }
+        },
 
 		/**
 		 * Check the true dimension of the image and fill the this.dimension property with it,
@@ -187,6 +196,26 @@ var CGSGNodeImage = CGSGNode.extend(
 		},
 
 		/**
+		 * Set the slice into the image
+		 * @method setSlice
+		 * @param {Number} x
+		 * @param {Number} y
+		 * @param {Number} w
+		 * @param {Number} h
+		 * @param {Boolean} updateDimension If true, the dimension will be set with the dimension of the slice
+		 */
+		setSlice : function (x, y, w, h, updateDimension) {
+			this.slice.position.x = x;
+			this.slice.position.y = y;
+			this.slice.dimension.width = w;
+			this.slice.dimension.height = h;
+
+			if (updateDimension) {
+				this.resizeTo(w, h);
+			}
+		},
+
+		/**
 		 * @public
 		 * @method setImage
 		 * @param {Image} newImage new Image object. Must bea already loaded before
@@ -196,8 +225,7 @@ var CGSGNodeImage = CGSGNode.extend(
 			if (cgsgExist(this._img)) {
 				this._urlImage = this._img.src;
 				this._checkDimension();
-				this._isLoaded = true;
-				this._initShape();
+				this.isLoaded = true;
 			}
 		},
 
@@ -210,31 +238,13 @@ var CGSGNodeImage = CGSGNode.extend(
 			this._urlImage = url;
 
 			delete(this._img);
-			this._isLoaded = false;
+			this.isLoaded = false;
 			this._img = new Image();
 
 			this._img.onload = this._createDelegate(this, this._onImageLoaded);
+            this._img.onerror = this._createDelegate(this, this._onImageError);
+            this._img.onabort = this._createDelegate(this, this._onImageAbort);
 			this._img.src = this._urlImage;
-		},
-
-		/**
-		 *  pre-render the image into _tmpCanvas to optimize the perfs
-		 * @private
-		 * @method _initShape
-		 */
-		_initShape : function () {
-			this._tmpCanvas.width = this.dimension.width;
-			this._tmpCanvas.height = this.dimension.height;
-			var tmpContext = this._tmpCanvas.getContext('2d');
-
-			tmpContext.drawImage(
-				this._img, // image
-				this.slice.position.x, this.slice.position.y, // start position on the image
-				this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
-				0, 0,
-				// position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
-				this.dimension.width, this.dimension.height                // dimension on the screen
-			);
 		},
 
 		/**
@@ -245,14 +255,11 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context to render on
 		 * */
 		render : function (context) {
-			if (this._isLoaded && this._img.src != "") {
+			if (this.isLoaded && this._img.src != "") {
 				//save current state
 				this.beforeRender(context);
 
 				context.globalAlpha = this.globalAlpha;
-
-				//custom rendering
-				//context.drawImage(this.tmpCanvas, 0, 0);
 
 				context.drawImage(
 					this._img, // image
@@ -286,7 +293,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
 		 */
 		renderGhost : function (ghostContext) {
-			if (this._isLoaded && this._img.src != "") {
+			if (this.isLoaded && this._img.src != "") {
 				//save current state
 				this.beforeRenderGhost(ghostContext);
 
@@ -315,7 +322,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * */
 		resizeWith : function (width, height) {
 			this._super(width, height);
-			this._initShape();
+			//this._initShape();
 		},
 
 		/**
@@ -325,10 +332,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * @return {CGSGNodeImage} a copy of this node
 		 */
 		copy : function () {
-			var node = new CGSGNodeImage(this.position.x, this.position.y, this.dimension.width, this.dimension.height,
-			                             this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
-			                             this.slice.dimension.height, /*this.urlImage*/null,
-			                             this._context);
+			var node = new CGSGNodeImage(this.position.x, this.position.y, null);
 			//call the super method
 			node = this._super(node);
 
@@ -336,10 +340,14 @@ var CGSGNodeImage = CGSGNode.extend(
 
 			node.effect = this.effect;
 			node.isProportionalResize = this.isProportionalResize;
-			node._isLoaded = this._isLoaded;
+			node._isLoaded = this.isLoaded;
 
 			//the image object itself
 			node.setImage(this._img);
+
+			node.setSlice(this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
+			              this.slice.dimension.height, true);
+			node.resizeTo(this.dimension.width, this.dimension.height);
 
 			node.onLoadEnd = this.onLoadEnd;
 			/*if (this.urlImage !== undefined && this.urlImage !== null && this.urlImage != "") {

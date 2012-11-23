@@ -79,16 +79,13 @@ var CGMain = CGSGScene.extend(
             var imgNode = new CGSGNodeImage(
                 attributes.x, //x
                 attributes.y, //y
-                34, //width (-1 = auto compute)
-                34, //height (-1 = auto compute)
-                476, //slice x (slice x = position in the source image)
-                0, //slice y
-                34, //slice width (used for tiles. Here we want to display all the image)
-                34, //slice height (used for tiles. Here we want to display all the image)
-                null, //URL. Warning : the web page mus be on a web server (apache, ...)
-                this.context);      //context of rendering
+                null); //URL. Warning : the web page mus be on a web server (apache, ...)
             imgNode.setImage(this.img);
             imgNode.globalAlpha = 0.5;
+
+	        //cut the slice from the source image
+	        imgNode.setSlice(476, 0, 34, 34, true);
+
             imgNode.name = attributes.name;
             //imgNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
             //imgNode.resizeTo(attributes.w, attributes.w);

@@ -63,7 +63,7 @@ var CGSGWEBVIEWMODE = {
  */
 var CGSGNodeWebview = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height, url, context) {
+		initialize : function (x, y, width, height, url) {
 			this._super(x, y, CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
 			/**
@@ -126,15 +126,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 			 */
 			this._previewURL = null;
 
-			/**
-			 * @property _context
-			 * @type {CanvasRenderingContext2D}
-			 * @private
-			 */
-			this._context = context;
-
-			//this.onDrag =
-
 			this._createLiveContainer();
 			this._createPreviewContainer();
 
@@ -194,8 +185,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 */
 		_createPreviewContainer : function () {
 			this._previewContainer =
-			new CGSGNodeImage(0, 0, this.dimension.width, this.dimension.height, 0, 0,
-			                  this.dimension.width, this.dimension.height, this._previewURL, this._context);
+			new CGSGNodeImage(0, 0, this._previewURL);
 
 			this._previewContainer.isTraversable = false;
 		},

@@ -36,7 +36,7 @@ var PRODUCT_TYPE = {
  * @class Product
  * @type {Product}
  */
-var Product = Object.extend(
+var Product = CGSGObject.extend(
 	{
 		initialize : function (name, price, type, urlImage) {
 			/**
@@ -66,6 +66,13 @@ var Product = Object.extend(
 			 * @type {String}
 			 */
 			this.urlImage = urlImage;
+
+			/**
+			 * Height, in pixel, between the top of the image and the floor
+			 * @property heightToFloor
+			 * @type {Number}
+			 */
+			this.heightToFloor = 0;
 
 			/**
 			 * @property children

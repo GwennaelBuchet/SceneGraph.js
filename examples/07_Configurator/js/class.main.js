@@ -27,6 +27,8 @@ var CGMain = CGSGScene.extend(
 		initialize : function (canvas) {
 			this._super(canvas);
 
+			this.basket = new Basket();
+
 			this.initializeCanvas();
 			this.createScene();
 
@@ -41,10 +43,6 @@ var CGMain = CGSGScene.extend(
 			FLOOR_PERCENT = Math.max(0.0, FLOOR_POSITION / cgsgCanvas.height);
 		},
 
-		/**
-		 * Just create a single node (a square node)
-		 *
-		 */
 		createScene : function () {
 			this.rootNode = new CGSGNode(0, 0, 0, 0);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -54,6 +52,18 @@ var CGMain = CGSGScene.extend(
 
 			this.menuNode = new MenuNode(0, cgsgCanvas.width);
 			this.rootNode.addChild(this.menuNode);
+
+			this.img = new Image();
+			this.img.onload = this.onImageLoaded.bind(this);
+			this.img.src = "images/board.png";
+		},
+
+		/**
+		 * Fired when the image loading is complete.
+		 * Set the image object (img) to our image nodes
+		 */
+		onImageLoaded:function () {
+			this.menuNode.setImage(this.img);
 		}
 
 	}

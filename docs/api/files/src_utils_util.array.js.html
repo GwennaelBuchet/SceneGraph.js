@@ -222,12 +222,33 @@ Array.prototype.clear = function () {
 };
 
 &#x2F;**
- * Return a clone of this array
+ * Return a clone of this array.
+ * All references will be passed as is. So a change on an object of the cloned array will also visible on this one.
  * @method Array.prototype.clone
  * @return {Array}
  *&#x2F;
 Array.prototype.clone = function () {
 	return this.slice(0);
+};
+
+&#x2F;**
+ * Return a copy of the array.
+ * If an item on this object encapsulates the &quot;copy&quot; method, this one will be called to avoid references issues
+ * @method Array.prototype.copy
+ * @return {Array}
+ *&#x2F;
+Array.prototype.copy = function () {
+	var a = [];
+	for (var i = 0; i &lt; this.length; i++) {
+		if (this[i].copy) {
+			a.push(this[i].copy());
+		}
+		else {
+			a.push(this[i]);
+		}
+	}
+
+	return a;
 };
 
 &#x2F;**
@@ -284,6 +305,7 @@ Array.prototype.sum = function () {
 Array.prototype.average = function () {
 	return this.sum() &#x2F; this.length;
 };
+
 
     </pre>
 </div>

@@ -61,43 +61,23 @@ var CGMain = CGSGScene.extend(
             /*
              * @param x
              * @param y
-             * @param width
-             * @param height
-             * @param sliceX
-             * @param sliceY
-             * @param sliceWidth
-             * @param sliceHeight
              * @param urlImage
-             * @param context
              */
             this.imgNode = new CGSGNodeImage(
                 60,     //x
-                40,     //y
-                -1,     //width (-1 = auto compute)
-                -1,     //height (-1 = auto compute)
-                0,      //slice x (used for tiles. Here we want to display all the image)
-                0,      //slice y (used for tiles. Here we want to display all the image)
-                -1,     //slice width (used for tiles. Here we want to display all the image)
-                -1,     //slice height (used for tiles. Here we want to display all the image)
-                "images/hello.png",      //URL. Warning : the web page mus be on a web server (apache, ...)
-                this.context);      //context of rendering
+                60,     //y
+                "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 
             //add some attributes
             this.imgNode.isResizable = true;
             this.imgNode.isDraggable = true;
 
-            //add image node as root of the scenegraph (2ns parameter = null)
 	        rootNode.addChild(this.imgNode);
 
-
-	        
 	        //add a button to switch src
 	        this.currentImg = 0;
 	        this.buttonNode = new CGSGNodeButton(10, 10, "Switch source");
-	        var bindSwitchSrc = this.switchSrc.bind(this);
-	        this.buttonNode.onClick = function (event) {
-		        bindSwitchSrc();
-	        };
+	        this.buttonNode.onClick = this.switchSrc.bind(this);
 	        //add the textNode as child of the root
 	        rootNode.addChild(this.buttonNode);
         },

@@ -9,7 +9,7 @@
  *
  */
 
-var StateGameRun = Object.extend(
+var StateGameRun = CGSGObject.extend(
 	{
 		initialize : function(context, parent) {
 			this.context = context;

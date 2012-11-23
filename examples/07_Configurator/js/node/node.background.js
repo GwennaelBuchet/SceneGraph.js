@@ -78,6 +78,20 @@ var BackgroundNode = CGSGNode.extend(
 			context.lineTo(this.dimension.width, FLOOR_POSITION);
 			context.stroke();
 
+			//white light on the wall
+			/*var centerX = cgsgCanvas.width / 2;
+			var centerY = FLOOR_POSITION / 2;
+			var radius = 30;
+
+			context.beginPath();
+			context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+			context.fillStyle = 'white';
+			context.shadowColor = 'white';
+			context.shadowBlur = 170;
+			context.shadowOffsetX = 0;
+			context.shadowOffsetY = 0;
+			context.fill();*/
+
 			//call this after your custom rendering
 			this.afterRender(context);
 		},

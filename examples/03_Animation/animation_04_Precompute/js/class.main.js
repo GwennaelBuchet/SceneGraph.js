@@ -72,13 +72,13 @@ var CGMain = CGSGScene.extend(
             //add the textNode as child of the root
             this.rootNode.addChild(buttonNode);
 
-            this.squareNode1 = new CGSGNodeSquare(30, 60, 100, 100);
+            this.squareNode1 = new CGSGNodeSquare(30, 80, 100, 100);
             this.rootNode.addChild(this.squareNode1);
 
-            this.squareNode2 = new CGSGNodeSquare(30, 180, 100, 100);
+            this.squareNode2 = new CGSGNodeSquare(30, 200, 100, 100);
             this.rootNode.addChild(this.squareNode2);
 
-            this.squareNode3 = new CGSGNodeSquare(30, 300, 100, 100);
+            this.squareNode3 = new CGSGNodeSquare(30, 320, 100, 100);
             this.rootNode.addChild(this.squareNode3);
 
 
@@ -102,7 +102,7 @@ var CGMain = CGSGScene.extend(
 
         /**
          *
-         * @param precompute
+         * @param node
          */
         addAnimation : function(node) {
             this.sceneGraph.addAnimationKey(node, "position.x", 0, 30, "linear", false); //don't precompute

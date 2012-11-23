@@ -8,7 +8,7 @@
  * @purpose
  *
  */
-var StateLoading = Object.extend(
+var StateLoading = CGSGObject.extend(
 	{
 		initialize : function(context) {
 
