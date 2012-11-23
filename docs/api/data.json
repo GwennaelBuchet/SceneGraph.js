@@ -627,7 +627,7 @@
             "module": "Node",
             "namespace": "",
             "file": "src\\node\\class.node.button.js",
-            "line": 49,
+            "line": 95,
             "description": "A CGSGNodeButton represent a basic square",
             "extends": "CGSGNode",
             "is_constructor": 1,
@@ -2986,7 +2986,39 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 69,
+            "line": 51,
+            "itemtype": "property",
+            "name": "TOP",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 62,
+            "itemtype": "property",
+            "name": "BOTTOM",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 72,
+            "itemtype": "property",
+            "name": "LEFT",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 82,
+            "itemtype": "property",
+            "name": "RIGHT",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 115,
             "description": "High colors for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_firstColors",
@@ -2999,7 +3031,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 77,
+            "line": 123,
             "description": "Low color for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_lastColors",
@@ -3012,7 +3044,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 86,
+            "line": 132,
             "description": "Shadow color for the button in 3 mode : normal, over, deactivated. Can be null.",
             "itemtype": "property",
             "name": "_shadowColors",
@@ -3025,7 +3057,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 95,
+            "line": 141,
             "description": "Radius for the round corner in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_radiuses",
@@ -3038,7 +3070,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 104,
+            "line": 150,
             "description": "Text for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_texts",
@@ -3051,7 +3083,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 113,
+            "line": 159,
             "description": "Text size for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_textSizes",
@@ -3064,7 +3096,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 122,
+            "line": 168,
             "description": "Color for the text in the 3 mode  : normal, over, deactivated",
             "itemtype": "property",
             "name": "_textColors",
@@ -3077,7 +3109,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 131,
+            "line": 177,
             "description": "Text Node encapsulating the text rendering",
             "itemtype": "property",
             "name": "_textsNode",
@@ -3087,7 +3119,50 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 140,
+            "line": 186,
+            "itemtype": "property",
+            "name": "_picto",
+            "type": "{CGSGNodeImage}",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 191,
+            "itemtype": "property",
+            "name": "_slices",
+            "type": "{Array}",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 197,
+            "itemtype": "property",
+            "name": "_pictoPosition",
+            "default": "CGSGPositionMode.LEFT",
+            "type": "{CGSGPositionMode}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 205,
+            "description": "Distance between the picto and the text",
+            "itemtype": "property",
+            "name": "_distancePictoText",
+            "default": "10",
+            "type": "{Number}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 214,
             "description": "Fake canvases to pre-render static display",
             "itemtype": "property",
             "name": "_tmpCanvas",
@@ -3099,7 +3174,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 149,
+            "line": 223,
             "description": "Padding applied to the left and right of the text",
             "itemtype": "property",
             "name": "_horizontalPadding",
@@ -3112,12 +3187,12 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 157,
+            "line": 231,
             "description": "Padding applied to the top and bottom of the text",
             "itemtype": "property",
             "name": "_verticalPadding",
             "type": "{Number}",
-            "default": "5",
+            "default": "10",
             "access": "private",
             "tagname": "",
             "class": "CGSGNodeButton",
@@ -3125,7 +3200,19 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 166,
+            "line": 240,
+            "description": "Computed dimensions of the button in the 3 modes.\nDo not edit manually!",
+            "itemtype": "property",
+            "name": "_dimensions",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 249,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -3136,7 +3223,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 176,
+            "line": 259,
             "description": "Current mode of the button",
             "itemtype": "property",
             "name": "_currentMode",
@@ -3149,7 +3236,83 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 201,
+            "line": 284,
+            "description": "Change the position of the picto : CGSGPositionMode.LEFT, CGSGPositionMode.TOP, CGSGPositionMode.RIGHT, CGSGPositionMode.BOTTOM",
+            "itemtype": "method",
+            "name": "setPictoPosition",
+            "params": [
+                {
+                    "name": "p",
+                    "description": "",
+                    "type": "CGSGPositionMode"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 294,
+            "description": "Set the image for the picto",
+            "itemtype": "method",
+            "name": "setImage",
+            "params": [
+                {
+                    "name": "img",
+                    "description": "",
+                    "type": "Image"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 304,
+            "description": "Set the URL for the picto",
+            "itemtype": "method",
+            "name": "setImageURL",
+            "params": [
+                {
+                    "name": "url",
+                    "description": ""
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 318,
+            "description": "Return the slices in the image for the 3 modes",
+            "itemtype": "method",
+            "name": "getSlices",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 326,
+            "description": "Set the slices in the image for the 3 modes",
+            "itemtype": "method",
+            "name": "setSlices",
+            "params": [
+                {
+                    "name": "values",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 336,
             "description": "Return the High color for the button",
             "itemtype": "method",
             "name": "getFirstColor",
@@ -3162,13 +3325,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 209,
-            "description": "Set the value for the high color of the button",
+            "line": 344,
+            "description": "Set the values for the high color of the button",
             "itemtype": "method",
             "name": "setFirstColor",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Array"
                 }
@@ -3178,7 +3341,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 219,
+            "line": 354,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getLastColor",
@@ -3191,13 +3354,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 227,
-            "description": "Set the value for the low color of the button",
+            "line": 362,
+            "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setLastColor",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Array"
                 }
@@ -3207,7 +3370,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 237,
+            "line": 372,
             "description": "Return the Shadow color for the button",
             "itemtype": "method",
             "name": "getShadowColor",
@@ -3220,13 +3383,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 245,
-            "description": "Set the value for the shadow color of the button",
+            "line": 380,
+            "description": "Set the values for the shadow color of the button",
             "itemtype": "method",
             "name": "setShadowColor",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Array"
                 }
@@ -3236,7 +3399,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 255,
+            "line": 390,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getRadius",
@@ -3249,13 +3412,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 263,
-            "description": "Set the value for the low color of the button",
+            "line": 398,
+            "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setRadius",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Array"
                 }
@@ -3265,7 +3428,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 273,
+            "line": 408,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getText",
@@ -3278,13 +3441,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 281,
-            "description": "Set the value for text of the button",
+            "line": 416,
+            "description": "Set the values for text of the button",
             "itemtype": "method",
             "name": "setText",
             "params": [
                 {
-                    "name": "values",
+                    "name": "valuess",
                     "description": "",
                     "type": "Array"
                 }
@@ -3297,7 +3460,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 299,
+            "line": 434,
             "description": "Return the text sizes of the button",
             "itemtype": "method",
             "name": "getTextSize",
@@ -3310,13 +3473,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 307,
-            "description": "Set the value for text sizes of the button",
+            "line": 442,
+            "description": "Set the values for text sizes of the button",
             "itemtype": "method",
             "name": "setTextSize",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Array"
                 }
@@ -3326,7 +3489,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 317,
+            "line": 452,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getTextColor",
@@ -3339,13 +3502,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 325,
+            "line": 460,
             "description": "Set the color for text of the button",
             "itemtype": "method",
             "name": "setTextColor",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Array"
                 }
@@ -3358,7 +3521,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 337,
+            "line": 472,
             "description": "Return the horizontal padding of the button",
             "itemtype": "method",
             "name": "getHorizontalPadding",
@@ -3371,13 +3534,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 345,
+            "line": 480,
             "description": "Set the horizontal padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Number"
                 }
@@ -3387,7 +3550,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 355,
+            "line": 490,
             "description": "Return the vertical padding of the button",
             "itemtype": "method",
             "name": "getVerticalPadding",
@@ -3400,13 +3563,13 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 363,
+            "line": 498,
             "description": "Set the vertical padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
             "params": [
                 {
-                    "name": "value",
+                    "name": "values",
                     "description": "",
                     "type": "Number"
                 }
@@ -3416,7 +3579,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 373,
+            "line": 508,
             "description": "Pre-render the button into a temp canvas to optimize the perfs",
             "itemtype": "method",
             "name": "_initShape",
@@ -3427,7 +3590,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 384,
+            "line": 519,
             "description": "Pre-render the shape for normal rendering",
             "itemtype": "method",
             "name": "_initShape",
@@ -3445,7 +3608,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 458,
+            "line": 635,
             "description": "Switch current mode",
             "itemtype": "method",
             "name": "setMode",
@@ -3461,7 +3624,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 467,
+            "line": 646,
             "itemtype": "method",
             "name": "getMode",
             "return": {
@@ -3473,7 +3636,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 475,
+            "line": 654,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -3492,7 +3655,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 494,
+            "line": 673,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -3884,18 +4047,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 98,
-            "itemtype": "property",
-            "name": "_context",
-            "type": "{CanvasRenderingContext2D}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGNodeImage",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.image.js",
-            "line": 105,
+            "line": 99,
             "description": "Event Fired when the image is finally loaded",
             "itemtype": "property",
             "name": "onLoadEnd",
@@ -3906,13 +4058,23 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 113,
-            "description": "Fake canvas to pre-render the image",
+            "line": 106,
+            "description": "Event Fired when the image failed to load",
             "itemtype": "property",
-            "name": "_tmpCanvas",
-            "type": "{HTMLElement}",
-            "access": "private",
-            "tagname": "",
+            "name": "onLoadError",
+            "default": "null",
+            "type": "{Function}",
+            "class": "CGSGNodeImage",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.image.js",
+            "line": 113,
+            "description": "Event Fired when the image loading is aborted",
+            "itemtype": "property",
+            "name": "onLoadAbort",
+            "default": "null",
+            "type": "{Function}",
             "class": "CGSGNodeImage",
             "module": "Node"
         },
@@ -3932,10 +4094,6 @@
                 {
                     "name": "delegateMethod",
                     "description": ""
-                },
-                {
-                    "name": "renderContext",
-                    "description": ""
                 }
             ],
             "return": {
@@ -3947,7 +4105,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 143,
+            "line": 142,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "private",
             "tagname": "",
@@ -3958,24 +4116,29 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 160,
+            "line": 157,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
             "name": "_onImageError",
             "access": "protected",
             "tagname": "",
-            "params": [
-                {
-                    "name": "context",
-                    "description": ""
-                }
-            ],
             "class": "CGSGNodeImage",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 169,
+            "line": 167,
+            "description": "To be overrided when the image loading is aborted",
+            "itemtype": "method",
+            "name": "_onImageAbort",
+            "access": "protected",
+            "tagname": "",
+            "class": "CGSGNodeImage",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.image.js",
+            "line": 178,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "access": "private",
             "tagname": "",
@@ -3986,7 +4149,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 189,
+            "line": 198,
             "description": "Set the slice into the image",
             "itemtype": "method",
             "name": "setSlice",
@@ -4010,6 +4173,11 @@
                     "name": "h",
                     "description": "",
                     "type": "Number"
+                },
+                {
+                    "name": "updateDimension",
+                    "description": "If true, the dimension will be set with the dimension of the slice",
+                    "type": "Boolean"
                 }
             ],
             "class": "CGSGNodeImage",
@@ -4017,7 +4185,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 204,
+            "line": 218,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4034,7 +4202,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 219,
+            "line": 232,
             "description": "Set a new URL for the image of the node",
             "itemtype": "method",
             "name": "setURL",
@@ -4050,7 +4218,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 255,
+            "line": 250,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
             "access": "protected",
@@ -4069,7 +4237,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 285,
+            "line": 277,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4086,7 +4254,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 294,
+            "line": 286,
             "description": "Ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "override": "",
             "access": "protected",
@@ -4105,7 +4273,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 322,
+            "line": 314,
             "description": "Increase/decrease current dimension with adding values. It is used when the user resize\nthe image with the handle boxes",
             "override": "",
             "access": "public",
@@ -4129,7 +4297,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 336,
+            "line": 328,
             "override": "",
             "access": "public",
             "tagname": "",
@@ -4540,122 +4708,155 @@
             "name": "onMouseOver",
             "default": "null",
             "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 361,
-            "description": "Callback on mouse out",
-            "itemtype": "property",
-            "name": "onMouseOut",
-            "default": "null",
-            "type": "{function}",
+            "example": [
+                "\n this.onMouseOver = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGNode",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.node.js",
             "line": 368,
-            "description": "Callback on mouse up",
+            "description": "Callback on mouse out",
             "itemtype": "property",
-            "name": "onMouseUp",
+            "name": "onMouseOut",
             "default": "null",
             "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 375,
-            "description": "Callback on mouse or touch click",
-            "itemtype": "property",
-            "name": "onClick",
-            "default": "null",
-            "type": "{function}",
+            "example": [
+                "\n this.onMouseOut = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGNode",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.node.js",
             "line": 382,
+            "description": "Callback on mouse up",
+            "itemtype": "property",
+            "name": "onMouseUp",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onMouseUp = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 396,
+            "description": "Callback on mouse or touch click",
+            "itemtype": "property",
+            "name": "onClick",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onClick = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 410,
             "description": "Callback on mouse or touch double click",
             "itemtype": "property",
             "name": "onDblClick",
             "default": "null",
             "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 390,
-            "description": "Callback on drag this node",
-            "itemtype": "property",
-            "name": "onDrag",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 397,
-            "description": "Callback on end of drag this node",
-            "itemtype": "property",
-            "name": "onDragEnd",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 404,
-            "description": "Callback on resize this node",
-            "itemtype": "property",
-            "name": "onResize",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 411,
-            "description": "Callback on end resize this node",
-            "itemtype": "property",
-            "name": "onResizeEnd",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGNode",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.js",
-            "line": 418,
-            "description": "Callback on select this node",
-            "itemtype": "property",
-            "name": "onSelect",
-            "default": "null",
-            "type": "{function}",
+            "example": [
+                "\n this.onDblClick = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGNode",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.node.js",
             "line": 425,
-            "description": "Callback on deselect this node",
+            "description": "Callback on drag this node",
             "itemtype": "property",
-            "name": "onDeselect",
+            "name": "onDrag",
             "default": "null",
             "type": "{function}",
+            "example": [
+                "\n this.onDrag = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGNode",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 436,
+            "line": 439,
+            "description": "Callback on end of drag this node",
+            "itemtype": "property",
+            "name": "onDragEnd",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onDragEnd = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 453,
+            "description": "Callback on resize this node",
+            "itemtype": "property",
+            "name": "onResize",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onResize = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 467,
+            "description": "Callback on end resize this node",
+            "itemtype": "property",
+            "name": "onResizeEnd",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onResizeEnd = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 481,
+            "description": "Callback on select this node",
+            "itemtype": "property",
+            "name": "onSelect",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onSelect = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 495,
+            "description": "Callback on deselect this node",
+            "itemtype": "property",
+            "name": "onDeselect",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onDeselect = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 513,
             "description": "return the relative region of this node",
             "access": "public",
             "tagname": "",
@@ -4670,7 +4871,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 446,
+            "line": 523,
             "description": "return the absolute region of this node",
             "access": "public",
             "tagname": "",
@@ -4685,7 +4886,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 459,
+            "line": 536,
             "description": "Wipes the canvas context",
             "itemtype": "method",
             "name": "_clearContext",
@@ -4710,7 +4911,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 471,
+            "line": 548,
             "description": "Empty rendering function. Must be overrided by the inherited classes",
             "itemtype": "method",
             "name": "render",
@@ -4726,7 +4927,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 484,
+            "line": 561,
             "description": "Empty ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "itemtype": "method",
             "name": "renderGhost",
@@ -4741,7 +4942,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 500,
+            "line": 577,
             "description": "Render the selection box and handle boxes around the bounding box of this node when selected",
             "access": "protected",
             "tagname": "",
@@ -4759,7 +4960,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 571,
+            "line": 648,
             "description": "Must be called before to start the rendering of the nodes",
             "access": "protected",
             "tagname": "",
@@ -4777,7 +4978,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 598,
+            "line": 675,
             "description": "Must be called after a render",
             "access": "protected",
             "tagname": "",
@@ -4795,7 +4996,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 620,
+            "line": 697,
             "description": "Must be called before begin to render the nodes in GHOST mode",
             "access": "protected",
             "tagname": "",
@@ -4813,7 +5014,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 635,
+            "line": 712,
             "description": "Must be called before begin to render",
             "access": "protected",
             "tagname": "",
@@ -4831,7 +5032,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 646,
+            "line": 723,
             "description": "Mark this nodes as selected",
             "itemtype": "method",
             "name": "setSelected",
@@ -4847,7 +5048,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 663,
+            "line": 740,
             "description": "return this if this nodes is under the mice cursor\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -4875,7 +5076,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 702,
+            "line": 779,
             "description": "Check if this nodes is under the cursor position.",
             "access": "public",
             "tagname": "",
@@ -4913,7 +5114,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 752,
+            "line": 829,
             "description": "Return true if this nodes has no child",
             "itemtype": "method",
             "name": "isALeaf",
@@ -4922,7 +5123,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 762,
+            "line": 839,
             "description": "Replace current relative position by this new one",
             "itemtype": "method",
             "name": "translateTo",
@@ -4948,7 +5149,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 776,
+            "line": 853,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateWith",
@@ -4974,7 +5175,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 790,
+            "line": 867,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateBy",
@@ -5000,7 +5201,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 804,
+            "line": 881,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -5021,7 +5222,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 814,
+            "line": 891,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTBy",
@@ -5042,7 +5243,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 824,
+            "line": 901,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -5063,7 +5264,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 834,
+            "line": 911,
             "description": "Replace current relative relativeScale by this new one",
             "itemtype": "method",
             "name": "scaleTo",
@@ -5089,7 +5290,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 849,
+            "line": 926,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "scaleBy",
@@ -5115,7 +5316,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 864,
+            "line": 941,
             "description": "Add to the current relative Scale",
             "itemtype": "method",
             "name": "scaleWith",
@@ -5141,7 +5342,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 879,
+            "line": 956,
             "description": "Replace current relative relativeRotation by this new oneScale",
             "itemtype": "method",
             "name": "rotateTo",
@@ -5162,7 +5363,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 893,
+            "line": 970,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "rotateBy",
@@ -5183,7 +5384,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 906,
+            "line": 983,
             "description": "Add this angle to the current relative relativeRotation",
             "itemtype": "method",
             "name": "rotateWith",
@@ -5204,7 +5405,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 921,
+            "line": 998,
             "description": "Add a new nodes into this one, at the end of the list",
             "itemtype": "method",
             "name": "addChild",
@@ -5220,7 +5421,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 931,
+            "line": 1008,
             "description": "Add a new nodes at a particular index in the list of children.\nIf the index is too large, the nodes will be inserted at the end of the list",
             "itemtype": "method",
             "name": "addChildAt",
@@ -5241,7 +5442,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 951,
+            "line": 1028,
             "description": "Remove the child passed in parameter and delete it",
             "itemtype": "method",
             "name": "removeChild",
@@ -5266,7 +5467,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 979,
+            "line": 1056,
             "description": "remove all children, delete them and reset the current parameters",
             "itemtype": "method",
             "name": "removeAll",
@@ -5275,7 +5476,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 999,
+            "line": 1076,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -5291,7 +5492,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1010,
+            "line": 1087,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -5307,7 +5508,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1023,
+            "line": 1100,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -5331,7 +5532,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1060,
+            "line": 1137,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -5349,7 +5550,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1070,
+            "line": 1147,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5363,7 +5564,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1090,
+            "line": 1167,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5377,7 +5578,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1105,
+            "line": 1182,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5391,7 +5592,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1120,
+            "line": 1197,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -5409,7 +5610,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1140,
+            "line": 1217,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -5421,7 +5622,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1147,
+            "line": 1224,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -5433,7 +5634,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1154,
+            "line": 1231,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -5445,7 +5646,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1161,
+            "line": 1238,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -5457,7 +5658,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1168,
+            "line": 1245,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -5469,7 +5670,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1175,
+            "line": 1252,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -5481,7 +5682,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1182,
+            "line": 1259,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -5493,7 +5694,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1189,
+            "line": 1266,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -5505,7 +5706,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1197,
+            "line": 1274,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5531,7 +5732,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1225,
+            "line": 1302,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5552,7 +5753,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1244,
+            "line": 1321,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5573,7 +5774,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1294,
+            "line": 1371,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -5593,7 +5794,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1362,
+            "line": 1439,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -6588,18 +6789,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 129,
-            "itemtype": "property",
-            "name": "_context",
-            "type": "{CanvasRenderingContext2D}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGNodeWebview",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.webview.js",
-            "line": 144,
+            "line": 135,
             "description": "Initialize and add the live container to the HTML body",
             "itemtype": "method",
             "name": "_initLiveContainer",
@@ -6610,7 +6800,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 157,
+            "line": 148,
             "description": "Initialize and add the CGSGNodeImage",
             "itemtype": "method",
             "name": "_initPreviewContainer",
@@ -6621,7 +6811,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 173,
+            "line": 164,
             "description": "Create an IFRAME tag in the _liveContainer property",
             "itemtype": "method",
             "name": "_createLiveContainer",
@@ -6632,7 +6822,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 190,
+            "line": 181,
             "description": "Create the CGSGNodeImage to contain the preview",
             "itemtype": "method",
             "name": "_createPreviewContainer",
@@ -6643,7 +6833,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 212,
+            "line": 202,
             "itemtype": "method",
             "name": "setURL",
             "params": [
@@ -6658,7 +6848,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 224,
+            "line": 214,
             "description": "Get a String representing the URL",
             "itemtype": "method",
             "name": "getURL",
@@ -6671,7 +6861,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 233,
+            "line": 223,
             "description": "Set the URL of the image for the preview mode (CGSGWEBVIEWMODE.PREVIEW)",
             "itemtype": "method",
             "name": "setPreviewURL",
@@ -6687,7 +6877,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 243,
+            "line": 233,
             "description": "Switch between rendering mode",
             "itemtype": "method",
             "name": "switchMode",
@@ -6703,7 +6893,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 264,
+            "line": 254,
             "itemtype": "method",
             "name": "getCurrentMode",
             "return": {
@@ -6715,7 +6905,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 272,
+            "line": 262,
             "override": "",
             "access": "protected",
             "tagname": "",
@@ -6726,7 +6916,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 319,
+            "line": 309,
             "description": "Free the memory taken by this node",
             "override": "",
             "itemtype": "method",
@@ -6736,7 +6926,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 334,
+            "line": 324,
             "description": "Return the copy of this node",
             "override": "",
             "itemtype": "method",
@@ -7650,7 +7840,7 @@
         {
             "file": "src\\utils\\util.array.js",
             "line": 68,
-            "description": "Return a clone of this array",
+            "description": "Return a clone of this array.\nAll references will be passed as is. So a change on an object of the cloned array will also visible on this one.",
             "itemtype": "method",
             "name": "Array.prototype.clone",
             "return": {
@@ -7662,7 +7852,20 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 77,
+            "line": 78,
+            "description": "Return a copy of the array.\nIf an item on this object encapsulates the \"copy\" method, this one will be called to avoid references issues",
+            "itemtype": "method",
+            "name": "Array.prototype.copy",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "__UTIL_ARRAY__",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.array.js",
+            "line": 98,
             "description": "Checks whether the specified elements exists in the array or not",
             "itemtype": "method",
             "name": "Array.prototype.contains",
@@ -7681,7 +7884,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 92,
+            "line": 113,
             "description": "Removes doubles elements from the array",
             "itemtype": "method",
             "name": "Array.prototype.unique",
@@ -7694,7 +7897,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 109,
+            "line": 130,
             "description": "Compute and return the sum of all elements in this array",
             "itemtype": "method",
             "name": "Array.prototype.sum",
@@ -7707,7 +7910,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 123,
+            "line": 144,
             "description": "Compute and return the average of all the elements in this array",
             "itemtype": "method",
             "name": "Array.prototype.average",
@@ -7928,9 +8131,9 @@
         {
             "file": "src\\utils\\util.global.js",
             "line": 201,
-            "description": "Return the mouse or touch position relative to the canvas",
+            "description": "Return the mouse or touch positions relative to the canvas",
             "itemtype": "method",
-            "name": "cgsgGetCursorPosition",
+            "name": "cgsgGetCursorPositions",
             "params": [
                 {
                     "name": "event",
@@ -7944,15 +8147,15 @@
                 }
             ],
             "return": {
-                "description": "A CGSGPosition object",
-                "type": "CGSGPosition"
+                "description": "Array of CGSGPosition object",
+                "type": "Array"
             },
             "class": "__GLOBAL_METHODS__",
             "module": "Util"
         },
         {
             "file": "src\\utils\\util.global.js",
-            "line": 233,
+            "line": 243,
             "description": "Wipes the canvas context",
             "access": "private",
             "tagname": "",
@@ -8032,7 +8235,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 122,
+            "line": 130,
             "itemtype": "property",
             "name": "_isRunning",
             "type": "{Boolean}",
@@ -8043,7 +8246,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 133,
+            "line": 141,
             "itemtype": "property",
             "name": "_frameContainer Handler to the HTML Element displaying the FPS",
             "type": "{HTMLElement}",
@@ -8054,7 +8257,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 140,
+            "line": 148,
             "description": "True if the [CTRL} key is being pressed",
             "itemtype": "property",
             "name": "_keyDownedCtrl",
@@ -8066,11 +8269,11 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 148,
-            "description": "Current position of the mouse",
+            "line": 156,
+            "description": "Current positions of the mouse or touch (Array of CGSGPosition)",
             "itemtype": "property",
             "name": "_mousePosition",
-            "type": "{CGSGPosition}",
+            "type": "{Array}",
             "access": "private",
             "tagname": "",
             "class": "CGSGScene",
@@ -8078,7 +8281,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 159,
+            "line": 167,
             "itemtype": "property",
             "name": "_listCursors List of the names for the cursor when overring a handlebox",
             "type": "{Array}",
@@ -8089,7 +8292,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 169,
+            "line": 177,
             "itemtype": "property",
             "name": "_selectedNode The current last selected node",
             "type": "{null}",
@@ -8100,73 +8303,91 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 216,
-            "description": "Callback on click down on scene event",
+            "line": 224,
+            "description": "Callback on click down on scene event.",
             "itemtype": "property",
             "name": "onSceneClickStart",
             "default": "null",
             "type": "{Function}",
+            "example": [
+                "\n this.onSceneClickStart = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGScene",
             "module": "Scene"
         },
         {
             "file": "src\\class.scene.js",
-            "line": 223,
+            "line": 236,
             "description": "Callback on click up on scene event",
             "itemtype": "property",
             "name": "onSceneClickEnd",
             "default": "null",
             "type": "{Function}",
+            "example": [
+                "\n this.onSceneClickEnd = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGScene",
             "module": "Scene"
         },
         {
             "file": "src\\class.scene.js",
-            "line": 230,
+            "line": 248,
             "description": "Callback on double click start on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickStart",
             "default": "null",
             "type": "{Function}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 237,
-            "description": "Callback on double click up on scene event",
-            "itemtype": "property",
-            "name": "onSceneDblClickEnd",
-            "default": "null",
-            "type": "{Function}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 244,
-            "description": "Callback on start rendering event",
-            "itemtype": "property",
-            "name": "onRenderStart",
-            "default": "null",
-            "type": "{Function}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 251,
-            "description": "Callback on end rendering event",
-            "itemtype": "property",
-            "name": "onRenderEnd",
-            "default": "null",
-            "type": "{Function}",
+            "example": [
+                "\n this.onSceneDblClickStart = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
             "class": "CGSGScene",
             "module": "Scene"
         },
         {
             "file": "src\\class.scene.js",
             "line": 260,
+            "description": "Callback on double click up on scene event",
+            "itemtype": "property",
+            "name": "onSceneDblClickEnd",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneDblClickEnd = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGScene",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.scene.js",
+            "line": 272,
+            "description": "Callback on start rendering event",
+            "itemtype": "property",
+            "name": "onRenderStart",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneClickStart = function () {\n     //...\n }"
+            ],
+            "class": "CGSGScene",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.scene.js",
+            "line": 283,
+            "description": "Callback on end rendering event",
+            "itemtype": "property",
+            "name": "onRenderEnd",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onRenderEnd = function () {\n     //...\n }"
+            ],
+            "class": "CGSGScene",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.scene.js",
+            "line": 296,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -8182,7 +8403,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 278,
+            "line": 314,
             "description": "Remove the nodes selected in the scene graph",
             "itemtype": "method",
             "name": "deleteSelected",
@@ -8191,7 +8412,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 291,
+            "line": 327,
             "description": "Deselect all nodes",
             "access": "public",
             "tagname": "",
@@ -8209,7 +8430,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 307,
+            "line": 343,
             "description": "the main rendering loop",
             "access": "protected",
             "tagname": "",
@@ -8220,7 +8441,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 332,
+            "line": 368,
             "description": "Call this to start the update of the scene",
             "access": "public",
             "tagname": "",
@@ -8231,7 +8452,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 347,
+            "line": 383,
             "description": "Call this to stop the rendering (and so animation) update",
             "access": "public",
             "tagname": "",
@@ -8242,7 +8463,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 357,
+            "line": 393,
             "description": "Inform the SceneGraph that a new render is needed",
             "access": "public",
             "tagname": "",
@@ -8253,7 +8474,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 366,
+            "line": 402,
             "description": "Update the current framerate",
             "itemtype": "method",
             "name": "_updateFramerate",
@@ -8264,7 +8485,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 389,
+            "line": 425,
             "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
             "itemtype": "method",
             "name": "_updateFramerateContainer",
@@ -8275,7 +8496,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 400,
+            "line": 436,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -8292,7 +8513,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 409,
+            "line": 445,
             "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
             "access": "public",
             "tagname": "",
@@ -8310,7 +8531,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 425,
+            "line": 461,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -8324,7 +8545,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 434,
+            "line": 470,
             "description": "click mouse Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8342,7 +8563,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 444,
+            "line": 480,
             "description": "touch down Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8360,7 +8581,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 454,
+            "line": 490,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -8377,7 +8598,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 533,
+            "line": 569,
             "description": "mouse move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8395,7 +8616,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 543,
+            "line": 579,
             "description": "touch move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8413,7 +8634,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 555,
+            "line": 591,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -8430,7 +8651,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 772,
+            "line": 808,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -8474,7 +8695,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 801,
+            "line": 837,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8492,7 +8713,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 811,
+            "line": 847,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8510,7 +8731,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 821,
+            "line": 857,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -8527,7 +8748,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 870,
+            "line": 906,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8545,7 +8766,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 880,
+            "line": 916,
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -8566,7 +8787,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 903,
+            "line": 939,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -8587,7 +8808,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 921,
+            "line": 957,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",
@@ -9161,92 +9382,6 @@
             "type": "{Number}",
             "class": "__GLOBAL_PROPERTIES__",
             "module": "Util"
-        }
-    ],
-    "warnings": [
-        {
-            "message": "unknown tag: override",
-            "line": " src\\animation\\class.particles.js:319"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\animation\\class.particles.js:610"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.animatedSprite.js:343"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.animatedSprite.js:491"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.button.js:475"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.circle.js:118"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.ellipse.js:80"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:255"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:294"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:322"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.image.js:336"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.logger.js:160"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.square.js:76"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.text.js:337"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.text.js:456"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.text.js:473"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.text.js:626"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.webview.js:272"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.webview.js:319"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\node\\class.node.webview.js:334"
-        },
-        {
-            "message": "unknown tag: override",
-            "line": " src\\utils\\class.region.js:226"
         }
     ]
 }

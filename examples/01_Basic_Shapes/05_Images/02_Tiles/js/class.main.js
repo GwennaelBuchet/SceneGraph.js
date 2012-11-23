@@ -63,8 +63,7 @@ var CGMain = CGSGScene.extend(
 			this.imgNode1 = new CGSGNodeImage(
 				40, //x
 				40, //y
-				null, //URL. Warning : the web page mus be on a web server (apache, ...)
-				this.context);      //context of rendering
+				null); //URL. Warning : the web page mus be on a web server (apache, ...)
 
 			//cut the slice from the source image
 			this.imgNode1.setSlice(476, 0, 34, 34, true);
@@ -79,8 +78,7 @@ var CGMain = CGSGScene.extend(
 			this.imgNode2 = new CGSGNodeImage(
 				90, //x
 				40, //y
-				null, //URL. null because we want to share a single Image between several nodes
-				this.context);      //context of rendering
+				null); //URL. null because we want to share a single Image between several nodes
 			//add some attributes
 			this.imgNode2.isResizable = true;
 			this.imgNode2.isDraggable = true;

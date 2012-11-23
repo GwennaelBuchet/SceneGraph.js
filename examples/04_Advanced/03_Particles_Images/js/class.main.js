@@ -80,7 +80,7 @@ var CGMain = CGSGScene.extend(
 		},
 
 		createFountainEmitter : function() {
-			var imgNode = new CGSGNodeImage(0, 0, null, this.context);
+			var imgNode = new CGSGNodeImage(0, 0, null);
 			imgNode.setImage(this.img);
 
 			//create the new emitter

@@ -512,6 +512,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onMouseOver
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onMouseOver = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onMouseOver = null;
 			&#x2F;**
@@ -519,6 +526,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onMouseOut
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onMouseOut = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onMouseOut = null;
 			&#x2F;**
@@ -526,6 +540,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onMouseUp
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onMouseUp = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onMouseUp = null;
 			&#x2F;**
@@ -533,6 +554,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onClick
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onClick = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onClick = null;
 			&#x2F;**
@@ -540,6 +568,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDblClick
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDblClick = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onDblClick = null
 			;
@@ -548,6 +583,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDrag
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDrag = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onDrag = null;
 			&#x2F;**
@@ -555,6 +597,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDragEnd
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDragEnd = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onDragEnd = null;
 			&#x2F;**
@@ -562,6 +611,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onResize
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onResize = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onResize = null;
 			&#x2F;**
@@ -569,6 +625,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onResizeEnd
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onResizeEnd = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onResizeEnd = null;
 			&#x2F;**
@@ -576,6 +639,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onSelect
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onSelect = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onSelect = null;
 			&#x2F;**
@@ -583,6 +653,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @property onDeselect
 			 * @default null
 			 * @type {function}
+			 *
+			 * @example
+			 *  this.onDeselect = function (event) {
+			 *      event.node; &#x2F;&#x2F;CGSGNode
+			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
+			 *      event.event; &#x2F;&#x2F;Event
+			 *  }
 			 *&#x2F;
 			this.onDeselect = null;
 

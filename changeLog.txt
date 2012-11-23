@@ -52,6 +52,7 @@ v1.2.3
 CHANGES:
 - Evolution. CGSGNodeImage : reduce parameters in the initializer
 - Evolution. CGSGNodeImage : add "setSlice" method
+- Evolution. CGSGNodeButton : add picto
 - Optimization. Better touch events handler
 - Evolution. "cgsgGetCursorPosition" renamed to "cgsgGetCursorPositions" and now returns all touches
 - Evolution. CGSGScene : add of "multitouch" property (NOT EFFECTIVE YET)

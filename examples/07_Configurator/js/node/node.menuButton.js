@@ -58,7 +58,7 @@ var MenuButtonNode = CGSGNode.extend(
 			this.textNode.translateWith((this.getWidth() - this.textNode.getWidth()) / 3,
 			                            -this.textNode.getHeight() / 3);
 
-			this.picto = new CGSGNodeImage(0, 10, null, context);
+			this.picto = new CGSGNodeImage(0, 10, null);
 			this.addChild(this.picto);
 			this.slices = [];
 
