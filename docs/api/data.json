@@ -3580,6 +3580,21 @@
         {
             "file": "src\\node\\class.node.button.js",
             "line": 508,
+            "itemtype": "method",
+            "name": "setFixedSize",
+            "params": [
+                {
+                    "name": "dim",
+                    "description": "Can be null to remove fixed size",
+                    "type": "CGSGDimension"
+                }
+            ],
+            "class": "CGSGNodeButton",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 520,
             "description": "Pre-render the button into a temp canvas to optimize the perfs",
             "itemtype": "method",
             "name": "_initShape",
@@ -3590,7 +3605,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 519,
+            "line": 532,
             "description": "Pre-render the shape for normal rendering",
             "itemtype": "method",
             "name": "_initShape",
@@ -3608,7 +3623,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 635,
+            "line": 655,
             "description": "Switch current mode",
             "itemtype": "method",
             "name": "setMode",
@@ -3624,7 +3639,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 646,
+            "line": 666,
             "itemtype": "method",
             "name": "getMode",
             "return": {
@@ -3636,7 +3651,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 654,
+            "line": 674,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -3655,7 +3670,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 673,
+            "line": 697,
             "itemtype": "method",
             "name": "copy",
             "return": {
