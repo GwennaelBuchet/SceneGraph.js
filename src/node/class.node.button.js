@@ -183,6 +183,9 @@ var CGSGNodeButton = CGSGNode.extend(
             this.textNode.setTextAlign("center", false);
             this.textNode.setTextBaseline("middle", false);
 
+            this._strokeColor = null;
+            this._lineWidth = 2;
+
             /**
              * @property _picto
              * @type {CGSGNodeImage}
@@ -288,7 +291,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setPictoPosition:function (p) {
             this._pictoPosition = p;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -298,7 +301,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setImage:function (img) {
             this._picto.setImage(img);
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -312,7 +315,7 @@ var CGSGNodeButton = CGSGNode.extend(
         },
 
         _onLoadImageEnd:function () {
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -330,7 +333,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setSlices:function (values) {
             this._slices = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -348,7 +351,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setFirstColors:function (values) {
             this._firstColors = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -366,7 +369,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setLastColors:function (values) {
             this._lastColors = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -384,7 +387,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setShadowColors:function (values) {
             this._shadowColors = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -402,7 +405,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setRadiuses:function (values) {
             this._radiuses = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -428,7 +431,7 @@ var CGSGNodeButton = CGSGNode.extend(
             }
 
             this._texts = valuess;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -446,7 +449,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setTextSizes:function (values) {
             this._textSizes = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -466,7 +469,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setTextColors:function (values) {
             this._textColors = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -484,7 +487,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setHorizontalPadding:function (values) {
             this._horizontalPadding = values;
-            this._initShapes();
+            this._needRedraw = true;
         },
 
         /**
@@ -502,7 +505,19 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         setVerticalPadding:function (values) {
             this._verticalPadding = values;
-            this._initShapes();
+            this._needRedraw = true;
+        },
+
+        /**
+         * @method setFixedSize
+         * @param {CGSGDimension} dim Can be null to remove fixed size
+         */
+        setFixedSize:function (dim) {
+            this._dimensions[0] = dim;
+            this._dimensions[1] = dim;
+            this._dimensions[2] = dim;
+            this._fixedSize = cgsgExist(dim);
+            this._needRedraw = true;
         },
 
         /**
@@ -514,6 +529,7 @@ var CGSGNodeButton = CGSGNode.extend(
             this._initShape(0);
             this._initShape(1);
             this._initShape(2);
+            this._needRedraw = false;
         },
 
         /**
@@ -525,6 +541,11 @@ var CGSGNodeButton = CGSGNode.extend(
         _initShape:function (index) {
             this.textNode.setSize(this._textSizes[index], false);
             this.textNode.setText(this._texts[index], true);
+
+            var dPT = this._distancePictoText;
+            if (this._texts[index] === ""){
+                dPT = 0;
+            }
 
             var decalPictoX = 0, decalPictoY = 0;
             var wImg = 0;
@@ -538,17 +559,24 @@ var CGSGNodeButton = CGSGNode.extend(
                 wImg = this._picto.slice.dimension.width;
                 hImg = this._picto.slice.dimension.height;
 
-                decalPictoX = (wImg + this._distancePictoText) * Math.abs(this._pictoPosition.decalX);
-                decalPictoY = (hImg + this._distancePictoText) * Math.abs(this._pictoPosition.decalY);
+                decalPictoX = (wImg + dPT) * Math.abs(this._pictoPosition.decalX);
+                decalPictoY = (hImg + dPT) * Math.abs(this._pictoPosition.decalY);
             }
 
-            this.resizeTo(
-                (2 * this._horizontalPadding) + decalPictoX + this.textNode.getWidth() * Math.abs(this._pictoPosition.decalX) +
-                    this._pictoPosition.computeWidth(this.textNode.getWidth(), wImg),
-                (2 * this._verticalPadding) + decalPictoY + this.textNode.getHeight() * Math.abs(this._pictoPosition.decalY) +
-                    this._pictoPosition.computeHeight(this.textNode.getHeight(), hImg));
+            if (this._fixedSize) {
+                this.resizeTo(this._dimensions[index].width, this._dimensions[index].height);
+            }
+            else {
+                this.resizeTo(
+                    (2 * this._horizontalPadding) + decalPictoX + this.textNode.getWidth() * Math.abs(this._pictoPosition.decalX) +
+                        this._pictoPosition.computeWidth(this.textNode.getWidth(), wImg),
+                    (2 * this._verticalPadding) + decalPictoY + this.textNode.getHeight() * Math.abs(this._pictoPosition.decalY) +
+                        this._pictoPosition.computeHeight(this.textNode.getHeight(), hImg));
 
-            this._dimensions[index] = this.dimension.copy();
+                this._dimensions[index] = this.dimension.copy();
+            }
+
+
 
             this._tmpCanvas[index].width = this.dimension.width + 2 * this._radiuses[index];
             this._tmpCanvas[index].height = this.dimension.height + 2 * this._radiuses[index];
@@ -600,6 +628,12 @@ var CGSGNodeButton = CGSGNode.extend(
                 }
 
                 tmpContext.fill();
+
+                if (cgsgExist(this._strokeColor)) {
+                    tmpContext.strokeStyle = this._strokeColor;
+                    tmpContext.lineWidth = this._lineWidth;
+                    tmpContext.stroke();
+                }
             }
             tmpContext.restore();
 
@@ -617,12 +651,12 @@ var CGSGNodeButton = CGSGNode.extend(
                 var ctY = h / 2;
 
                 this._picto.translateTo(
-                    textX + ctX + this._pictoPosition.decalX * (ctX + this._distancePictoText + (1 - this._pictoPosition.dt) * wImg) - this._pictoPosition.dy * wImg / 2,
+                    textX + ctX + this._pictoPosition.decalX * (ctX + dPT + (1 - this._pictoPosition.dt) * wImg) - this._pictoPosition.dy * wImg / 2,
                     //textY + (h - hImg) / 2
                     (1 - this._pictoPosition.dy) * (textY + (h - hImg) / 2)
                         + this._pictoPosition.dy * (textY - this.textNode._size / 2
-                         - this._pictoPosition.dt * (this._distancePictoText+hImg) + (1-this._pictoPosition.dt) * (this.textNode.getHeight() +this._distancePictoText))
-                       //+ this._pictoPosition.dy * (textY - this.textNode._size / 2 - ( this._pictoPosition.dt) * this.textNode.getHeight())
+                        - this._pictoPosition.dt * (dPT + hImg) + (1 - this._pictoPosition.dt) * (this.textNode.getHeight() + dPT))
+                    //+ this._pictoPosition.dy * (textY - this.textNode._size / 2 - ( this._pictoPosition.dt) * this.textNode.getHeight())
                 );
 
                 this._picto.render(tmpContext);
@@ -663,6 +697,10 @@ var CGSGNodeButton = CGSGNode.extend(
             this.beforeRender(context);
 
             context.globalAlpha = this.globalAlpha;
+
+            if (this._needRedraw) {
+                this._initShapes();
+            }
             //render the pre-rendered canvas
             context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
 

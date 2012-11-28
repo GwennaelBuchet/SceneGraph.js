@@ -8,7 +8,7 @@
  * @purpose
  *
  */
-var StateHome = Object.extend(
+var StateHome = CGSGObject.extend(
 	{
 		initialize : function(context, parent) {
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
