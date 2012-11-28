@@ -58,7 +58,6 @@ var CGSGWEBVIEWMODE = {
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
  * @param {String} url URL of the webpage
- * @param {CanvasRenderingContext2D} context the context into render the node
  * @type {CGSGNodeWebview}
  */
 var CGSGNodeWebview = CGSGNode.extend(
