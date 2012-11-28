@@ -18,7 +18,7 @@ var BOARD_ITEM = {
 	FLAG    : 5
 };
 
-var StateGameRun = Object.extend(
+var StateGameRun = CGSGObject.extend(
 	{
 		initialize : function(context) {
 			this.context = context;
@@ -32,8 +32,9 @@ var StateGameRun = Object.extend(
 			this.items = [];
 
 			this.pingoo = new Pingoo(204, 34, context);
-			this.board = new CGSGNodeImage(0, 0, 476, 630, 0, 0, 476, 630, null, context);
-			this.igloo = new CGSGNodeImage(341, 545, 100, 68, 510, 578, 100, 68, null, context);
+			this.board = new CGSGNodeImage(0, 0, null);
+            this.board.setSlice(0, 0, 476, 635);
+			this.igloo = new CGSGNodeImage(341, 545, null);
 
 			this.pingoo.play("front", -1);
 			this.pingoo.stop();
@@ -99,30 +100,14 @@ var StateGameRun = Object.extend(
 					}
 					else if (this.matrixBoard[x][y] == BOARD_ITEM.SNOWMAN) {
 						var snowman = new CGSGNodeImage(this.boardPosition.x + cellWidth * x,
-						                                this.boardPosition.y + cellWidth * y,
-						                                cellWidth,
-						                                cellWidth,
-						                                612,
-						                                34,
-						                                cellWidth,
-						                                cellWidth,
-						                                null,
-						                                this.context);
+						                                this.boardPosition.y + cellWidth * y, null);
 						snowman.setImage(this.image);
 						this.board.addChildAt(snowman, this.board.children.length - 2);
 						this.items[this.items.length] = snowman;
 					}
 					else if (this.matrixBoard[x][y] == BOARD_ITEM.FISH) {
 						var fish = new CGSGNodeImage(this.boardPosition.x + cellWidth * x,
-						                             this.boardPosition.y + cellWidth * y,
-						                             cellWidth,
-						                             cellWidth,
-						                             646,
-						                             0,
-						                             cellWidth,
-						                             cellWidth,
-						                             null,
-						                             this.context);
+						                             this.boardPosition.y + cellWidth * y, null);
 						fish.setImage(this.image);
 						this.board.addChildAt(fish, this.board.children.length - 2);
 						this.items[this.items.length] = fish;
@@ -242,9 +227,7 @@ var StateGameRun = Object.extend(
 				}
 				else {
 					var pos = this.getPositionOfCell(coord.x, coord.y);
-					var flag = new CGSGNodeImage(pos.x, pos.y, cellWidth, cellWidth, 646, 34, cellWidth, cellWidth,
-					                             null,
-					                             this.context);
+					var flag = new CGSGNodeImage(pos.x, pos.y, null);
 					flag.setImage(this.image);
 					this.board.addChildAt(flag, this.board.children.length - 2);
 					this.matrixFlags[coord.x][coord.y] = {item : BOARD_ITEM.FLAG, node : flag};
@@ -302,8 +285,7 @@ var StateGameRun = Object.extend(
 		displayNbHolesAround : function(x, y) {
 			var nbHoles = this.checkNbHoles(x, y);
 			if (nbHoles > 0) {
-				var number = new CGSGNodeImage(0, 0, cellWidth, cellWidth, 476 + ((nbHoles - 1) * cellWidth), 136,
-				                               cellWidth, cellWidth, null, this.context);
+				var number = new CGSGNodeImage(0, 0, null);
 				number.setImage(this.image);
 				var p = this.getPositionOfCell(x, y);
 				number.translateTo(p.x, p.y);

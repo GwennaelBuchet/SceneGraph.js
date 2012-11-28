@@ -183,6 +183,9 @@ var CGSGNodeButton = CGSGNode.extend(
             this.textNode.setTextAlign("center", false);
             this.textNode.setTextBaseline("middle", false);
 
+            this._strokeColor = null;
+            this._lineWidth = 2;
+
             /**
              * @property _picto
              * @type {CGSGNodeImage}
@@ -539,6 +542,11 @@ var CGSGNodeButton = CGSGNode.extend(
             this.textNode.setSize(this._textSizes[index], false);
             this.textNode.setText(this._texts[index], true);
 
+            var dPT = this._distancePictoText;
+            if (this._texts[index] === ""){
+                dPT = 0;
+            }
+
             var decalPictoX = 0, decalPictoY = 0;
             var wImg = 0;
             var hImg = 0;
@@ -551,8 +559,8 @@ var CGSGNodeButton = CGSGNode.extend(
                 wImg = this._picto.slice.dimension.width;
                 hImg = this._picto.slice.dimension.height;
 
-                decalPictoX = (wImg + this._distancePictoText) * Math.abs(this._pictoPosition.decalX);
-                decalPictoY = (hImg + this._distancePictoText) * Math.abs(this._pictoPosition.decalY);
+                decalPictoX = (wImg + dPT) * Math.abs(this._pictoPosition.decalX);
+                decalPictoY = (hImg + dPT) * Math.abs(this._pictoPosition.decalY);
             }
 
             if (this._fixedSize) {
@@ -620,6 +628,12 @@ var CGSGNodeButton = CGSGNode.extend(
                 }
 
                 tmpContext.fill();
+
+                if (cgsgExist(this._strokeColor)) {
+                    tmpContext.strokeStyle = this._strokeColor;
+                    tmpContext.lineWidth = this._lineWidth;
+                    tmpContext.stroke();
+                }
             }
             tmpContext.restore();
 
@@ -637,11 +651,11 @@ var CGSGNodeButton = CGSGNode.extend(
                 var ctY = h / 2;
 
                 this._picto.translateTo(
-                    textX + ctX + this._pictoPosition.decalX * (ctX + this._distancePictoText + (1 - this._pictoPosition.dt) * wImg) - this._pictoPosition.dy * wImg / 2,
+                    textX + ctX + this._pictoPosition.decalX * (ctX + dPT + (1 - this._pictoPosition.dt) * wImg) - this._pictoPosition.dy * wImg / 2,
                     //textY + (h - hImg) / 2
                     (1 - this._pictoPosition.dy) * (textY + (h - hImg) / 2)
                         + this._pictoPosition.dy * (textY - this.textNode._size / 2
-                        - this._pictoPosition.dt * (this._distancePictoText + hImg) + (1 - this._pictoPosition.dt) * (this.textNode.getHeight() + this._distancePictoText))
+                        - this._pictoPosition.dt * (dPT + hImg) + (1 - this._pictoPosition.dt) * (this.textNode.getHeight() + dPT))
                     //+ this._pictoPosition.dy * (textY - this.textNode._size / 2 - ( this._pictoPosition.dt) * this.textNode.getHeight())
                 );
 

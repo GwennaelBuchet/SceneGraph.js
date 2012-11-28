@@ -3119,7 +3119,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 186,
+            "line": 189,
             "itemtype": "property",
             "name": "_picto",
             "type": "{CGSGNodeImage}",
@@ -3128,7 +3128,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 191,
+            "line": 194,
             "itemtype": "property",
             "name": "_slices",
             "type": "{Array}",
@@ -3137,7 +3137,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 197,
+            "line": 200,
             "itemtype": "property",
             "name": "_pictoPosition",
             "default": "CGSGPositionMode.LEFT",
@@ -3149,7 +3149,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 205,
+            "line": 208,
             "description": "Distance between the picto and the text",
             "itemtype": "property",
             "name": "_distancePictoText",
@@ -3162,7 +3162,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 214,
+            "line": 217,
             "description": "Fake canvases to pre-render static display",
             "itemtype": "property",
             "name": "_tmpCanvas",
@@ -3174,7 +3174,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 223,
+            "line": 226,
             "description": "Padding applied to the left and right of the text",
             "itemtype": "property",
             "name": "_horizontalPadding",
@@ -3187,7 +3187,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 231,
+            "line": 234,
             "description": "Padding applied to the top and bottom of the text",
             "itemtype": "property",
             "name": "_verticalPadding",
@@ -3200,7 +3200,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 240,
+            "line": 243,
             "description": "Computed dimensions of the button in the 3 modes.\nDo not edit manually!",
             "itemtype": "property",
             "name": "_dimensions",
@@ -3212,7 +3212,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 249,
+            "line": 252,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -3223,7 +3223,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 259,
+            "line": 262,
             "description": "Current mode of the button",
             "itemtype": "property",
             "name": "_currentMode",
@@ -3236,7 +3236,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 284,
+            "line": 287,
             "description": "Change the position of the picto : CGSGPositionMode.LEFT, CGSGPositionMode.TOP, CGSGPositionMode.RIGHT, CGSGPositionMode.BOTTOM",
             "itemtype": "method",
             "name": "setPictoPosition",
@@ -3252,7 +3252,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 294,
+            "line": 297,
             "description": "Set the image for the picto",
             "itemtype": "method",
             "name": "setImage",
@@ -3268,7 +3268,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 304,
+            "line": 307,
             "description": "Set the URL for the picto",
             "itemtype": "method",
             "name": "setImageURL",
@@ -3283,7 +3283,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 318,
+            "line": 321,
             "description": "Return the slices in the image for the 3 modes",
             "itemtype": "method",
             "name": "getSlices",
@@ -3296,7 +3296,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 326,
+            "line": 329,
             "description": "Set the slices in the image for the 3 modes",
             "itemtype": "method",
             "name": "setSlices",
@@ -3312,7 +3312,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 336,
+            "line": 339,
             "description": "Return the High color for the button",
             "itemtype": "method",
             "name": "getFirstColor",
@@ -3325,7 +3325,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 344,
+            "line": 347,
             "description": "Set the values for the high color of the button",
             "itemtype": "method",
             "name": "setFirstColor",
@@ -3341,7 +3341,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 354,
+            "line": 357,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getLastColor",
@@ -3354,7 +3354,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 362,
+            "line": 365,
             "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setLastColor",
@@ -3370,7 +3370,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 372,
+            "line": 375,
             "description": "Return the Shadow color for the button",
             "itemtype": "method",
             "name": "getShadowColor",
@@ -3383,7 +3383,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 380,
+            "line": 383,
             "description": "Set the values for the shadow color of the button",
             "itemtype": "method",
             "name": "setShadowColor",
@@ -3399,7 +3399,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 390,
+            "line": 393,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getRadius",
@@ -3412,7 +3412,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 398,
+            "line": 401,
             "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setRadius",
@@ -3428,7 +3428,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 408,
+            "line": 411,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getText",
@@ -3441,7 +3441,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 416,
+            "line": 419,
             "description": "Set the values for text of the button",
             "itemtype": "method",
             "name": "setText",
@@ -3460,7 +3460,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 434,
+            "line": 437,
             "description": "Return the text sizes of the button",
             "itemtype": "method",
             "name": "getTextSize",
@@ -3473,7 +3473,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 442,
+            "line": 445,
             "description": "Set the values for text sizes of the button",
             "itemtype": "method",
             "name": "setTextSize",
@@ -3489,7 +3489,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 452,
+            "line": 455,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getTextColor",
@@ -3502,7 +3502,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 460,
+            "line": 463,
             "description": "Set the color for text of the button",
             "itemtype": "method",
             "name": "setTextColor",
@@ -3521,7 +3521,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 472,
+            "line": 475,
             "description": "Return the horizontal padding of the button",
             "itemtype": "method",
             "name": "getHorizontalPadding",
@@ -3534,7 +3534,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 480,
+            "line": 483,
             "description": "Set the horizontal padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
@@ -3550,7 +3550,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 490,
+            "line": 493,
             "description": "Return the vertical padding of the button",
             "itemtype": "method",
             "name": "getVerticalPadding",
@@ -3563,7 +3563,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 498,
+            "line": 501,
             "description": "Set the vertical padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
@@ -3579,7 +3579,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 508,
+            "line": 511,
             "itemtype": "method",
             "name": "setFixedSize",
             "params": [
@@ -3594,7 +3594,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 520,
+            "line": 523,
             "description": "Pre-render the button into a temp canvas to optimize the perfs",
             "itemtype": "method",
             "name": "_initShape",
@@ -3605,7 +3605,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 532,
+            "line": 535,
             "description": "Pre-render the shape for normal rendering",
             "itemtype": "method",
             "name": "_initShape",
@@ -3623,7 +3623,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 655,
+            "line": 669,
             "description": "Switch current mode",
             "itemtype": "method",
             "name": "setMode",
@@ -3639,7 +3639,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 666,
+            "line": 680,
             "itemtype": "method",
             "name": "getMode",
             "return": {
@@ -3651,7 +3651,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 674,
+            "line": 688,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -3670,7 +3670,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 697,
+            "line": 711,
             "itemtype": "method",
             "name": "copy",
             "return": {
