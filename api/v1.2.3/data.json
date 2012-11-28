@@ -763,44 +763,9 @@
                     "type": "Number"
                 },
                 {
-                    "name": "width",
-                    "description": "Relative dimension",
-                    "type": "Number"
-                },
-                {
-                    "name": "height",
-                    "description": "Relative Dimension",
-                    "type": "Number"
-                },
-                {
-                    "name": "sliceX",
-                    "description": "Position of the content of this node on the src image",
-                    "type": "Number"
-                },
-                {
-                    "name": "sliceY",
-                    "description": "Position of the content of this node on the src image",
-                    "type": "Number"
-                },
-                {
-                    "name": "sliceWidth",
-                    "description": "Dimension of the content of this node on the src image",
-                    "type": "Number"
-                },
-                {
-                    "name": "sliceHeight",
-                    "description": "Dimension of the content of this node on the src image",
-                    "type": "Number"
-                },
-                {
                     "name": "urlImage",
                     "description": "URL of the src image. Can be null tobe loaded later.",
                     "type": "String"
-                },
-                {
-                    "name": "context",
-                    "description": "context to render on",
-                    "type": "CanvasRenderingContext2D"
                 }
             ],
             "type": "{CGSGNodeImage}",
@@ -1015,11 +980,6 @@
                     "name": "url",
                     "description": "URL of the webpage",
                     "type": "String"
-                },
-                {
-                    "name": "context",
-                    "description": "the context into render the node",
-                    "type": "CanvasRenderingContext2D"
                 }
             ],
             "type": "{CGSGNodeWebview}"
@@ -3987,7 +3947,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 51,
+            "line": 44,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -3996,7 +3956,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 57,
+            "line": 50,
             "description": "the selected effect to be applied",
             "itemtype": "property",
             "name": "effect",
@@ -4007,7 +3967,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 64,
+            "line": 57,
             "description": "URL of the image",
             "itemtype": "property",
             "name": "_urlImage",
@@ -4019,7 +3979,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 72,
+            "line": 65,
             "itemtype": "property",
             "name": "isProportionalResize",
             "default": "true",
@@ -4029,7 +3989,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 78,
+            "line": 71,
             "description": "the image object itself",
             "itemtype": "property",
             "name": "_img",
@@ -4041,7 +4001,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 85,
+            "line": 78,
             "description": "the region on the image to render",
             "itemtype": "property",
             "name": "slice",
@@ -4051,7 +4011,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 92,
+            "line": 85,
             "itemtype": "property",
             "name": "_isLoaded",
             "type": "{Boolean}",
@@ -4062,7 +4022,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 99,
+            "line": 92,
             "description": "Event Fired when the image is finally loaded",
             "itemtype": "property",
             "name": "onLoadEnd",
@@ -4073,7 +4033,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 106,
+            "line": 99,
             "description": "Event Fired when the image failed to load",
             "itemtype": "property",
             "name": "onLoadError",
@@ -4084,7 +4044,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 113,
+            "line": 106,
             "description": "Event Fired when the image loading is aborted",
             "itemtype": "property",
             "name": "onLoadAbort",
@@ -4095,7 +4055,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 128,
+            "line": 121,
             "description": "used to call delegate method when the image is finally loaded",
             "access": "private",
             "tagname": "",
@@ -4120,7 +4080,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 142,
+            "line": 135,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "private",
             "tagname": "",
@@ -4131,7 +4091,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 157,
+            "line": 150,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
             "name": "_onImageError",
@@ -4142,7 +4102,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 167,
+            "line": 160,
             "description": "To be overrided when the image loading is aborted",
             "itemtype": "method",
             "name": "_onImageAbort",
@@ -4153,7 +4113,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 178,
+            "line": 171,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "access": "private",
             "tagname": "",
@@ -4164,7 +4124,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 198,
+            "line": 191,
             "description": "Set the slice into the image",
             "itemtype": "method",
             "name": "setSlice",
@@ -4200,7 +4160,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 218,
+            "line": 211,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4217,7 +4177,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 232,
+            "line": 225,
             "description": "Set a new URL for the image of the node",
             "itemtype": "method",
             "name": "setURL",
@@ -4233,7 +4193,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 250,
+            "line": 243,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "override": "",
             "access": "protected",
@@ -4252,7 +4212,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 277,
+            "line": 270,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4269,7 +4229,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 286,
+            "line": 279,
             "description": "Ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "override": "",
             "access": "protected",
@@ -4288,7 +4248,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 314,
+            "line": 307,
             "description": "Increase/decrease current dimension with adding values. It is used when the user resize\nthe image with the handle boxes",
             "override": "",
             "access": "public",
@@ -4312,7 +4272,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 328,
+            "line": 321,
             "override": "",
             "access": "public",
             "tagname": "",
@@ -6714,7 +6674,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 69,
+            "line": 68,
             "description": "Size of the area around the webview in LIVE mode",
             "itemtype": "property",
             "name": "threshold",
@@ -6725,7 +6685,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 76,
+            "line": 75,
             "description": "Color of the area around the webview in LIVE mode",
             "itemtype": "property",
             "name": "color",
@@ -6736,7 +6696,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 83,
+            "line": 82,
             "description": "Color of line around the webview in LIVE mode",
             "itemtype": "property",
             "name": "color",
@@ -6747,7 +6707,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 91,
+            "line": 90,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -6756,7 +6716,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 97,
+            "line": 96,
             "description": "A HTML tag that contains the web view : an iframe",
             "itemtype": "property",
             "name": "_liveContainer",
@@ -6768,7 +6728,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 105,
+            "line": 104,
             "description": "A CGSGNodeImage rendering the preview of the webpage",
             "itemtype": "property",
             "name": "_previewContainer",
@@ -6780,7 +6740,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 113,
+            "line": 112,
             "description": "URL of the web page",
             "itemtype": "property",
             "name": "_url",
@@ -6792,7 +6752,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 121,
+            "line": 120,
             "description": "URL for the preview mode",
             "itemtype": "property",
             "name": "_previewURL",
@@ -6804,7 +6764,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 135,
+            "line": 134,
             "description": "Initialize and add the live container to the HTML body",
             "itemtype": "method",
             "name": "_initLiveContainer",
@@ -6815,7 +6775,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 148,
+            "line": 147,
             "description": "Initialize and add the CGSGNodeImage",
             "itemtype": "method",
             "name": "_initPreviewContainer",
@@ -6826,7 +6786,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 164,
+            "line": 163,
             "description": "Create an IFRAME tag in the _liveContainer property",
             "itemtype": "method",
             "name": "_createLiveContainer",
@@ -6837,7 +6797,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 181,
+            "line": 180,
             "description": "Create the CGSGNodeImage to contain the preview",
             "itemtype": "method",
             "name": "_createPreviewContainer",
@@ -6848,7 +6808,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 202,
+            "line": 201,
             "itemtype": "method",
             "name": "setURL",
             "params": [
@@ -6863,7 +6823,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 214,
+            "line": 213,
             "description": "Get a String representing the URL",
             "itemtype": "method",
             "name": "getURL",
@@ -6876,7 +6836,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 223,
+            "line": 222,
             "description": "Set the URL of the image for the preview mode (CGSGWEBVIEWMODE.PREVIEW)",
             "itemtype": "method",
             "name": "setPreviewURL",
@@ -6892,7 +6852,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 233,
+            "line": 232,
             "description": "Switch between rendering mode",
             "itemtype": "method",
             "name": "switchMode",
@@ -6908,7 +6868,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 254,
+            "line": 253,
             "itemtype": "method",
             "name": "getCurrentMode",
             "return": {
@@ -6920,7 +6880,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 262,
+            "line": 261,
             "override": "",
             "access": "protected",
             "tagname": "",
@@ -6931,7 +6891,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 309,
+            "line": 308,
             "description": "Free the memory taken by this node",
             "override": "",
             "itemtype": "method",
@@ -6941,7 +6901,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 324,
+            "line": 323,
             "description": "Return the copy of this node",
             "override": "",
             "itemtype": "method",
