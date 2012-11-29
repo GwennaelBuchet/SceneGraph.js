@@ -23,50 +23,44 @@
 
     <link rel="icon" type="image/png" href="favicon.png"/>
 
-    <meta name="viewport"
-          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
-
     <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
     <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
 
     <script src="js/cufon-yui.js" type="text/javascript"></script>
     <script src="js/Aller.font.js" type="text/javascript"></script>
     <script type="text/javascript">
-        Cufon.replace('ul.oe_menu div a', {hover:true});
+        Cufon.replace('ul.oe_menu div a', {hover : true});
         Cufon.replace('h1,h2,.oe_heading');
     </script>
 
-
 </head>
 <body>
-
 <!-- top wrapper -->
 <div id="topWrapper">
     <div id="topBanner">
       <span class="downloadLink">
             <a href="https://github.com/GwennaelBuchet/cgSceneGraph/zipball/master"
                title="Download latest version as a Zip file">
-                <img alt="Download latest version as a Zip file" src="img/dlzip.png" width="60"/>
+                <img src="img/dlzip.png" width="60"/>
             </a>
             <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tarball/master"
                title="Download latest version as a tar.gz file">
-                <img alt="Download latest version as a tar.gz file" src="img/dltar.png" width="60"/>
+                <img src="img/dltar.png" width="60"/>
             </a>
-            <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
-               title="Fork me on GitHub"
-               target="_blank"><img alt="Fork me on GitHub" src="img/blacktocat.png" width="50"/></a>
+             <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                title="Fork me on GitHub"
+                target="_blank"><img src="img/blacktocat.png" width="50"/></a>
         </span>
     </div>
     <!-- end topBanner -->
 </div>
 <!-- end top wrapper -->
 
-
 <div id="topnav">
     <div class="oe_wrapper">
         <!--div id="oe_overlay" class="oe_overlay"></div-->
         <ul id="oe_menu" class="oe_menu">
-            <li class="current" style="border:none">
+            <li>
                 <a href="index.html" shape="rect">HOME</a>
             </li>
             <li><a href="tutorials.html">TUTORIALS</a>
@@ -112,12 +106,14 @@
             <li>
                 <a href="changelog.html" shape="rect">CHANGE-LOG</a>
             </li>
-            <li>
+            <li class="current" style="border:none">
                 <a href="comments.html" shape="rect">DISCUSSION</a>
             </li>
             <li>
                 <a href="about.html" shape="rect">ABOUT</a>
             </li>
+
+
         </ul>
     </div>
 
@@ -134,55 +130,26 @@
                 <!--  content -->
                 <div id="content">
                     <div id="center">
-                        <div class="welcomeText alignleft">
-                            <h2 class="whiteText">HTML5 SCENEGRAPH <br/>FRAMEWORK</h2>
+                        <h1>Discussions and Feedback</h1>
 
-                            <p>The cgSceneGraph is a powerful, <span class="blueText">cross-platform</span> and very
-                                easy-to-use Scene Graph framework written in
-                                <span class="blueText">JavaScript</span> for the <em>&lt;canvas&gt;</em> tag
-                                in <span
-                                        class="blueText">HTML5</span>.<br/> It's full object oriented
-                                to ease the development of your applications and games.</p>
+                        <div id="disqus_thread"></div>
+                        <script type="text/javascript">
+                            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                            var disqus_shortname = 'cgscenegraph'; // required: replace example with your forum shortname
 
-                            <p>
-                                Since the start of the project, it has been designed to be used
-                                on <span class="blueText">professional
-                                application</span> as well as for <span class="blueText">game development</span>.</p>
+                            /* * * DON'T EDIT BELOW THIS LINE * * */
+                            (function() {
+                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                            })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-                            <p>
-                                <h2>Want to share your extensions or demos ?</h2>
-                                We are looking for what you can do with cgSceneGraph. <a href="mailto:gwennael.buchet@gmail.com">Send
-                                us an email</a> and we'll be happy to publish them here :)</p>
+                        <p>&nbsp;</p>
 
-                            <p>
-                            <div class="alignright">
-                                <!-- AddThis Button BEGIN -->
-                                <div class="addthis_toolbox addthis_default_style ">
-                                    <a class="addthis_button_google_plusone" g:plusone:size="small"
-                                       g:plusone:count="false"></a>
-                                    <a class="addthis_button_preferred_1"></a>
-                                    <a class="addthis_button_preferred_2"></a>
-                                    <a class="addthis_button_preferred_3"></a>
-                                    <a class="addthis_button_preferred_4"></a>
-                                    <a class="addthis_button_compact"></a>
-                                    <a class="addthis_counter addthis_bubble_style"></a>
-                                </div>
-                                <script type="text/javascript"
-                                        src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50b32ee9076e5f0b"></script>
-                                <!-- AddThis Button END -->
-                            </div>
-                            </p>
-                            <p style="clear:both"></p>
-                        </div>
-
-                        <div class="welcomeCanvas alignright">
-                            <canvas id="scene" width="480" height="320"> Oups... Your browser does not support HTML5
-                                canvas tag ... :( <br/>Please, try again with a correct browser (Chrome, Firefox,
-                                IE9/IE10, Opera, ...)
-                            </canvas>
-                        </div>
                     </div>
-
                     <div class="clear" style="height:4px"></div>
                 </div>
                 <!-- end content -->
@@ -197,71 +164,17 @@
 <!-- end wrapper -->
 <div class="footerShadow"></div>
 
-<div id="homepub">
-    <div id="homepubBanner">
-        <p>&nbsp;</p>
-        <a href="https://github.com/GwennaelBuchet/cgSceneGraph" title="Fork me on GitHub" target="_blank"
-           id="forkme_banner">
-            <div id="tryIt">
-                <div class="bigTitle">TRY IT NOW</div>
-            </div>
-        </a>
-
-        <span class="bigTitle">DESIGNED FOR<br/>
-        <span class="blueText">GAMES</span> AND <span class="blueText">PROFESSIONAL APPS</span></span>
-
-        <div class="clear"></div>
-        <div>&nbsp;</div>
-        <div class="separator">&nbsp;</div>
-
-        <div>&nbsp;</div>
-        <div class="homepubBlock">
-            <h2>INTERACTIVE</h2>
-            <img alt="Interactive" src="img/interactive.png"/>
-
-            <div>
-                Drag or resize a node in 1 line.<br/>
-                Add a lot of events on node, scene or animation<br/>
-                Keep trace of absolute transformation
-            </div>
-        </div>
-
-        <div class="homepubBlock">
-            <h2>ANIMATED</h2>
-            <img alt="Animated" src="img/animated.png"/>
-
-            <div>
-                SRT Animation (Scale, Rotation, Translation)<br/>
-                Animated Sprites<br/>
-                Particles system<br/>...
-            </div>
-        </div>
-
-        <div class="homepubBlock">
-            <h2>EXTENSIBLE</h2>
-            <img alt="Extensible" src="img/extensible.png"/>
-
-            <div>
-                Extend the framework by creating your own nodes.<br/>
-                Very easy to extend.
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="footerWrapper">
     <div id="footerBanner">
         <div class="footerBlock alignleft">
             <h2>WHAT'S UP?</h2>
             <hr/>
             <h4>cgSceneGraph v1.2.3</h4>
-            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.2.3</span> is
-            released
+            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.2.3</span> is released
             :)<br/>
             Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
                                                              target="_blank">GitHub</a>
         </div>
-
 
         <div class="footerBlock alignright logoCap">
             <h2>CONTACT</h2>
@@ -276,30 +189,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/cgscenegraph_1.2.3.min.js"></script>
-
-<script type="text/javascript" src="js/homeDemo/globals.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.live.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.sun.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.stars.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.sky.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.floor.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.Button.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.flower.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.cloud.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.bee.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.livePanel.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.scorePanel.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.about.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.home.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.loading.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.game.run.js"></script>
-<script type="text/javascript" src="js/homeDemo/class.main.js"></script>
-
-<script type="text/javascript">
-    var canvasScene = document.getElementById("scene");
-    var game = new CGMain(canvasScene);
-</script>
 
 <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
@@ -329,7 +218,6 @@
                 })
     });
 </script>
-
 <script type="text/javascript" src="js/googleAnalytics.js"></script>
 </body>
 </html>
