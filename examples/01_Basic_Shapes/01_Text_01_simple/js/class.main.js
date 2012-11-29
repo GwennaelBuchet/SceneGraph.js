@@ -67,6 +67,7 @@ var CGMain = CGSGScene.extend(
 
 		create1LineText : function () {
 			var textNode = new CGSGNodeText(10, 10, "Simple Text on 1 line");
+            textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
 			textNode.setSize(26);
 			textNode.setTypo("Arial");
 			textNode.isDraggable = true;

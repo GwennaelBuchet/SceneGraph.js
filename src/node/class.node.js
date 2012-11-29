@@ -751,9 +751,9 @@ var CGSGNode = CGSGObject.extend(
 
 			if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 				if (mousePosition.x >= this._absolutePosition.x
-					    && mousePosition.x <= this._absolutePosition.x + this.dimension.width * absoluteScale.x
+					    && mousePosition.x <= this._absolutePosition.x + this.getWidth() * absoluteScale.x
 					    && mousePosition.y >= this._absolutePosition.y
-					&& mousePosition.y <= this._absolutePosition.y + this.dimension.height * absoluteScale.y
+					&& mousePosition.y <= this._absolutePosition.y + this.getHeight() * absoluteScale.y
 					) {
 					return this;
 				}
