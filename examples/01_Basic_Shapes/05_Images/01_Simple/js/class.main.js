@@ -38,7 +38,7 @@ var CGMain = CGSGScene.extend(
 
 			////// INITIALIZATION /////////
 
-			this.initializeCanvas();
+			//this.initializeCanvas();
 			this.createScene();
 
 			this.startPlaying();
@@ -54,7 +54,6 @@ var CGMain = CGSGScene.extend(
          * Just create a single node (an image node)
          */
         createScene : function () {
-
 	        var rootNode = new CGSGNode(0, 0, 0, 0);
 	        this.sceneGraph.addNode(rootNode, null);
 
@@ -73,6 +72,7 @@ var CGMain = CGSGScene.extend(
             this.imgNode.isDraggable = true;
 
 	        rootNode.addChild(this.imgNode);
+            this.imgNode.resizeTo(500, 500);
 
 	        //add a button to switch src
 	        this.currentImg = 0;

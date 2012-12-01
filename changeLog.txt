@@ -47,6 +47,14 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.3.0
+
+CHANGES:
+- Correction. CGSGNodeText : it didn't render text if only one letter
+- Correction. CGSGNodeText : allow picknode with REGION mode
+- Evolution. New CGSGHashmap class
+- Evolution. New CGSGNodeTabMenu node
+
 v1.2.3
 
 CHANGES:

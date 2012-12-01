@@ -24,7 +24,7 @@
  */
 
 /**
- * List the modes for a button : NORMAL, OVER, DEACTIVATED.
+ * List the modes for a button : NORMAL, OVER, DEACTIVATED, SELECTED.
  * @class CGSGButtonMode
  * @type {Object}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
@@ -43,7 +43,12 @@ var CGSGButtonMode = {
     /**
      * @property DEACTIVATED
      */
-    DEACTIVATED:{index:2, isClickable:false}
+    DEACTIVATED:{index:2, isClickable:false},
+
+    /**
+     * @property SELECTED
+     */
+    SELECTED:{index:1, isClickable:true}
 };
 
 
