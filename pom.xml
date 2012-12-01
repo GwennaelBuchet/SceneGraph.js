@@ -72,6 +72,7 @@ Any failure to comply with the above shall automatically terminate the license a
                             <includes>
                                 <include>utils/util.array.js</include>
                                 <include>utils/class.class.js</include>
+                                <include>utils/class.hashmap.js</include>
                                 <include>utils/util.color.js</include>
                                 <include>utils/math/class.vector2D.js</include>
                                 <include>utils/class.region.js</include>
