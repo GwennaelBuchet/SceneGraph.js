@@ -1456,7 +1456,7 @@
             "description": "Callback on animation start event",
             "itemtype": "property",
             "name": "onAnimationStart",
-            "type": "{function}",
+            "type": "{Function}",
             "class": "CGSGTimeline",
             "module": "Animation"
         },
@@ -1466,13 +1466,23 @@
             "description": "Callback on animation end event",
             "itemtype": "property",
             "name": "onAnimationEnd",
-            "type": "{function}",
+            "type": "{Function}",
             "class": "CGSGTimeline",
             "module": "Animation"
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 94,
+            "line": 92,
+            "description": "Callback on animation event",
+            "itemtype": "property",
+            "name": "onAnimate",
+            "type": "{Function}",
+            "class": "CGSGTimeline",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.anim.timeline.js",
+            "line": 100,
             "description": "Add a new animation key frame to the timeline and sort the timeline by frame number",
             "access": "public",
             "tagname": "",
@@ -1495,7 +1505,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 112,
+            "line": 118,
             "description": "Remove the key at the specified frame",
             "itemtype": "method",
             "name": "removeKey",
@@ -1511,7 +1521,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 134,
+            "line": 140,
             "description": "Remove all keys and values",
             "access": "public",
             "tagname": "",
@@ -1522,7 +1532,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 145,
+            "line": 151,
             "description": "Compute the number of steps between all keys, 2 by 2",
             "access": "private",
             "tagname": "",
@@ -1533,7 +1543,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 160,
+            "line": 166,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -1547,7 +1557,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 169,
+            "line": 175,
             "description": "Sort the list of keys by frame number",
             "access": "public",
             "tagname": "",
@@ -1558,7 +1568,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 180,
+            "line": 186,
             "description": "Compute all the values (steps) for the animation of this timeline",
             "access": "public",
             "tagname": "",
@@ -1581,7 +1591,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 211,
+            "line": 217,
             "description": "Compute animated value for one frame between key ay index keyIndex and keyIndex+1",
             "access": "private",
             "tagname": "",
@@ -1613,7 +1623,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 242,
+            "line": 248,
             "itemtype": "method",
             "name": "getFirstKey",
             "return": {
@@ -1625,7 +1635,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 254,
+            "line": 260,
             "itemtype": "method",
             "name": "getLastKey",
             "return": {
@@ -1637,7 +1647,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 266,
+            "line": 272,
             "description": "Get the value for the frame number passed in parameter",
             "access": "public",
             "tagname": "",
@@ -1659,7 +1669,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 327,
+            "line": 333,
             "description": "Return the precomputed array of values for this timeline",
             "itemtype": "method",
             "name": "exportValues",
@@ -1672,7 +1682,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 344,
+            "line": 350,
             "description": "Import new precomputed values for this timeline.\nThe number of values must match the number of frame defined by the keys of this timeline",
             "itemtype": "method",
             "name": "importValues",
@@ -9058,7 +9068,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 193,
+            "line": 200,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used for different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -9074,7 +9084,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 204,
+            "line": 211,
             "description": "Mark the nodes as selected so the select marker (also called selectedHandlers)\n will be shown and the SceneGraph will manage the moving and resizing of the selected objects.",
             "itemtype": "method",
             "name": "selectNode",
@@ -9089,7 +9099,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 218,
+            "line": 225,
             "description": "Mark the nodes as not selected",
             "itemtype": "method",
             "name": "deselectNode",
@@ -9105,7 +9115,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 229,
+            "line": 236,
             "description": "Mark all nodes as not selected",
             "itemtype": "method",
             "name": "deselectAll",
@@ -9121,7 +9131,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 247,
+            "line": 254,
             "description": "Recursively traverse the nodes and return the one who is under the mouse coordinates",
             "itemtype": "method",
             "name": "pickNode",
@@ -9149,7 +9159,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 277,
+            "line": 284,
             "description": "Remove the child nodes passed in parameter, from the root nodes",
             "itemtype": "method",
             "name": "removeNode",
@@ -9174,7 +9184,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 294,
+            "line": 301,
             "description": "Add a nodes on the scene.\nIf the root does not already exist, this nodes will be used as root",
             "itemtype": "method",
             "name": "addNode",
@@ -9195,7 +9205,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 314,
+            "line": 321,
             "description": "Add a key",
             "itemtype": "method",
             "name": "addAnimationKey",
@@ -9239,7 +9249,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 340,
+            "line": 347,
             "description": "Animate an attribute of a nodes",
             "itemtype": "method",
             "name": "animate",
@@ -9293,7 +9303,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 360,
+            "line": 367,
             "itemtype": "method",
             "name": "stillHaveAnimation",
             "return": {
@@ -9305,7 +9315,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 380,
+            "line": 387,
             "description": "Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet",
             "itemtype": "method",
             "name": "getTimeline",

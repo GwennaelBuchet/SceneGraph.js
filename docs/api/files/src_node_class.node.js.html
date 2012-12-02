@@ -1581,7 +1581,7 @@ var CGSGNode = CGSGObject.extend(
 		 *&#x2F;
 		free : function () {
 			for (var c = this.children.length - 1; c &gt;= 0; c--) {
-				c.free();
+                this.children[c].free();
 			}
 
             this.children.clear();

@@ -1423,7 +1423,7 @@ var CGSGNode = CGSGObject.extend(
 		 */
 		free : function () {
 			for (var c = this.children.length - 1; c >= 0; c--) {
-				c.free();
+                this.children[c].free();
 			}
 
             this.children.clear();

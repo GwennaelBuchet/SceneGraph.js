@@ -397,10 +397,10 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} newHeight
 		 * *&#x2F;
 		resizeTo : function (newWidth, newHeight) {
-			if (newWidth &gt; 0) {
+			if (newWidth &gt;= 0) {
 				this.width = newWidth;
 			}
-			if (newHeight &gt; 0) {
+			if (newHeight &gt;= 0) {
 				this.height = newHeight;
 			}
 		},
@@ -412,10 +412,10 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} heightFactor
 		 * *&#x2F;
 		resizeBy : function (widthFactor, heightFactor) {
-			if (widthFactor &gt; 0) {
+			if (widthFactor &gt;= 0) {
 				this.width *= widthFactor;
 			}
-			if (heightFactor &gt; 0) {
+			if (heightFactor &gt;= 0) {
 				this.height *= heightFactor;
 			}
 		},
@@ -427,10 +427,10 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} height
 		 * *&#x2F;
 		resizeWith : function (width, height) {
-			if (this.width + width &gt; 0) {
+			if (this.width + width &gt;= 0) {
 				this.width += width;
 			}
-			if (this.height + height &gt; 0) {
+			if (this.height + height &gt;= 0) {
 				this.height += height;
 			}
 		}

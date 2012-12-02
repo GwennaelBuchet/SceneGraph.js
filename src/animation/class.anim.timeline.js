@@ -80,15 +80,21 @@ var CGSGTimeline = CGSGObject.extend(
 			/**
 			 * Callback on animation start event
 			 * @property onAnimationStart
-			 * @type {function}
+			 * @type {Function}
 			 */
 			this.onAnimationStart = null;
 			/**
 			 * Callback on animation end event
 			 * @property onAnimationEnd
-			 * @type {function}
+			 * @type {Function}
 			 */
 			this.onAnimationEnd = null;
+            /**
+             * Callback on animation event
+             * @property onAnimate
+             * @type {Function}
+             */
+            this.onAnimate = null;
 		},
 
 		/**

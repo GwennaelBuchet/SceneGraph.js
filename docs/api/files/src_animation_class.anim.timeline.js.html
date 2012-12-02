@@ -238,15 +238,21 @@ var CGSGTimeline = CGSGObject.extend(
 			&#x2F;**
 			 * Callback on animation start event
 			 * @property onAnimationStart
-			 * @type {function}
+			 * @type {Function}
 			 *&#x2F;
 			this.onAnimationStart = null;
 			&#x2F;**
 			 * Callback on animation end event
 			 * @property onAnimationEnd
-			 * @type {function}
+			 * @type {Function}
 			 *&#x2F;
 			this.onAnimationEnd = null;
+            &#x2F;**
+             * Callback on animation event
+             * @property onAnimate
+             * @type {Function}
+             *&#x2F;
+            this.onAnimate = null;
 		},
 
 		&#x2F;**

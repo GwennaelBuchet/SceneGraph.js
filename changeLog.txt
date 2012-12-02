@@ -56,7 +56,10 @@ CHANGES:
 - Evolution. New CGSGNodeTabMenu node
 - Evolution. New cgsgFree method
 - Evolution. CGSGNode.removeChild and CGSGNode.removeAll now free the node(s)
+- Evolution. Allow dimensions to be equal 0
+- Evolution. Add onAnimate event on timelines
 
+---------------------------------------------------------------------
 v1.2.3
 
 CHANGES:
