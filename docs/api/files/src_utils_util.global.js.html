@@ -49,6 +49,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
@@ -406,6 +408,14 @@ function cgsgClearContext (context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	&#x2F;&#x2F; Will always clear the right space
 	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
+}
+
+&#x2F;**
+ * @method cgsgFree
+ * @param {*} object
+ *&#x2F;
+function cgsgFree(object) {
+    object = null;
 }
     </pre>
 </div>

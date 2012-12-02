@@ -184,6 +184,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\utils\\class.hashmap.js": {
+            "name": "src\\utils\\class.hashmap.js",
+            "modules": {},
+            "classes": {
+                "CGSGHashmap": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\utils\\class.region.js": {
             "name": "src\\utils\\class.region.js",
             "modules": {},
@@ -291,7 +300,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "src\\animation\\class.particles.js",
-            "line": 456,
+            "line": 455,
             "extends": "{Object}",
             "is_constructor": 1,
             "params": [
@@ -323,7 +332,7 @@
             "module": "Animation",
             "namespace": "",
             "file": "src\\animation\\class.particles.js",
-            "line": 456,
+            "line": 455,
             "is_constructor": 1,
             "params": [
                 {
@@ -369,18 +378,12 @@
             "classes": {
                 "CGSGVector2D": 1,
                 "CGSGMath": 1,
-                "CGSGHandleBox": 1,
-                "CGSGPosition": 1,
-                "CGSGScale": 1,
-                "CGSGRotation": 1,
-                "CGSGDimension": 1,
-                "CGSGRegion": 1,
-                "CGSGTraverser": 1
+                "CGSGHandleBox": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "src\\utils\\class.traverser.js",
+            "file": "src\\utils\\class.handlebox.js",
             "line": 26,
             "description": "Static class that encapsulates some useful methods.",
             "extends": "{Object}",
@@ -408,6 +411,13 @@
             },
             "classes": {
                 "__GLOBAL_CONSTANTS__": 1,
+                "CGSGHashmap": 1,
+                "CGSGPosition": 1,
+                "CGSGScale": 1,
+                "CGSGRotation": 1,
+                "CGSGDimension": 1,
+                "CGSGRegion": 1,
+                "CGSGTraverser": 1,
                 "__UTIL_ARRAY__": 1,
                 "CGSGColor": 1,
                 "__GLOBAL_METHODS__": 1,
@@ -551,7 +561,7 @@
             "submodule": "ParticleSystem",
             "namespace": "",
             "file": "src\\animation\\class.particles.js",
-            "line": 456,
+            "line": 455,
             "description": "A particle System object.",
             "extends": "{CGSGNode}",
             "type": "{CGSGParticleSystem}",
@@ -609,7 +619,7 @@
             "namespace": "",
             "file": "src\\node\\class.node.button.js",
             "line": 26,
-            "description": "List the modes for a button : NORMAL, OVER, DEACTIVATED.",
+            "description": "List the modes for a button : NORMAL, OVER, DEACTIVATED, SELECTED.",
             "type": "{Object}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
             "example": [
@@ -627,7 +637,7 @@
             "module": "Node",
             "namespace": "",
             "file": "src\\node\\class.node.button.js",
-            "line": 95,
+            "line": 100,
             "description": "A CGSGNodeButton represent a basic square",
             "extends": "CGSGNode",
             "is_constructor": 1,
@@ -1062,6 +1072,22 @@
             "type": "{CGSGHandleBox}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
+        "CGSGHashmap": {
+            "name": "CGSGHashmap",
+            "shortname": "CGSGHashmap",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Util",
+            "namespace": "",
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 26,
+            "description": "A Hashmap class.",
+            "is_constructor": 1,
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
         "CGSGPosition": {
             "name": "CGSGPosition",
             "shortname": "CGSGPosition",
@@ -1070,7 +1096,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Math",
+            "module": "Util",
             "namespace": "",
             "file": "src\\utils\\class.region.js",
             "line": 28,
@@ -1100,7 +1126,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Math",
+            "module": "Util",
             "namespace": "",
             "file": "src\\utils\\class.region.js",
             "line": 91,
@@ -1130,7 +1156,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Math",
+            "module": "Util",
             "namespace": "",
             "file": "src\\utils\\class.region.js",
             "line": 109,
@@ -1155,7 +1181,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Math",
+            "module": "Util",
             "namespace": "",
             "file": "src\\utils\\class.region.js",
             "line": 196,
@@ -1185,10 +1211,10 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Math",
+            "module": "Util",
             "namespace": "",
             "file": "src\\utils\\class.region.js",
-            "line": 283,
+            "line": 282,
             "description": "A Region object encapsulates a CGSGPosition and a CGSGDimension",
             "extends": "Object",
             "is_constructor": 1,
@@ -1225,7 +1251,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Math",
+            "module": "Util",
             "namespace": "",
             "file": "src\\utils\\class.traverser.js",
             "line": 26,
@@ -1957,7 +1983,6 @@
         {
             "file": "src\\animation\\class.particles.js",
             "line": 319,
-            "override": "",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -1974,7 +1999,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 368,
+            "line": 367,
             "description": "create a new particle, and add it to the emitter",
             "access": "private",
             "tagname": "",
@@ -1993,7 +2018,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 381,
+            "line": 380,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2015,7 +2040,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 399,
+            "line": 398,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2038,7 +2063,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 424,
+            "line": 423,
             "description": "Add a force to the emitter",
             "access": "public",
             "tagname": "",
@@ -2066,7 +2091,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 438,
+            "line": 437,
             "description": "Remove a previously added force",
             "access": "public",
             "tagname": "",
@@ -2085,7 +2110,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 470,
+            "line": 469,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -2095,7 +2120,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 476,
+            "line": 475,
             "description": "list of emitters",
             "itemtype": "property",
             "name": "emitters",
@@ -2106,7 +2131,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 482,
+            "line": 481,
             "description": "list of attractors",
             "itemtype": "property",
             "name": "attractors",
@@ -2117,7 +2142,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 488,
+            "line": 487,
             "description": "list of repulsors",
             "itemtype": "property",
             "name": "repulsors",
@@ -2128,7 +2153,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 505,
+            "line": 504,
             "description": "Add a force to all emitters",
             "access": "public",
             "tagname": "",
@@ -2147,7 +2172,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 523,
+            "line": 522,
             "description": "Create a new emitter and return it",
             "access": "public",
             "tagname": "",
@@ -2205,7 +2230,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 545,
+            "line": 544,
             "description": "Remove the emitter passed in parameter",
             "access": "public",
             "tagname": "",
@@ -2224,7 +2249,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 556,
+            "line": 555,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2256,7 +2281,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 574,
+            "line": 573,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2274,7 +2299,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 583,
+            "line": 582,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2306,7 +2331,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 601,
+            "line": 600,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2324,9 +2349,8 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 610,
+            "line": 609,
             "description": "override the CGSGNode 'pickNode' method to return null due to performance",
-            "override": "",
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -2363,7 +2387,7 @@
         },
         {
             "file": "src\\animation\\class.particles.js",
-            "line": 626,
+            "line": 624,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2761,7 +2785,6 @@
             "file": "src\\node\\class.node.animatedSprite.js",
             "line": 343,
             "description": "Must be defined to allow the scene graph to render the image nodes",
-            "override": "",
             "access": "protected",
             "tagname": "",
             "params": [
@@ -2778,7 +2801,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 385,
+            "line": 384,
             "description": "Return position x and y in the image for the slice of the animation and frame passed in parameter.",
             "access": "private",
             "tagname": "",
@@ -2805,7 +2828,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 403,
+            "line": 402,
             "description": "Add an animation for this sprite",
             "access": "public",
             "tagname": "",
@@ -2858,7 +2881,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 439,
+            "line": 438,
             "description": "Start an animation",
             "access": "public",
             "tagname": "",
@@ -2885,7 +2908,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 469,
+            "line": 468,
             "description": "Stop the current animation and stay on the current frame",
             "access": "public",
             "tagname": "",
@@ -2896,7 +2919,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 481,
+            "line": 480,
             "description": "return to the first frame of the first loop of the current animation",
             "access": "public",
             "tagname": "",
@@ -2907,8 +2930,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 491,
-            "override": "",
+            "line": 490,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2946,7 +2968,15 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 51,
+            "line": 48,
+            "itemtype": "property",
+            "name": "SELECTED",
+            "class": "CGSGButtonMode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.button.js",
+            "line": 56,
             "itemtype": "property",
             "name": "TOP",
             "class": "CGSGButtonMode",
@@ -2954,7 +2984,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 62,
+            "line": 67,
             "itemtype": "property",
             "name": "BOTTOM",
             "class": "CGSGButtonMode",
@@ -2962,7 +2992,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 72,
+            "line": 77,
             "itemtype": "property",
             "name": "LEFT",
             "class": "CGSGButtonMode",
@@ -2970,7 +3000,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 82,
+            "line": 87,
             "itemtype": "property",
             "name": "RIGHT",
             "class": "CGSGButtonMode",
@@ -2978,7 +3008,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 115,
+            "line": 120,
             "description": "High colors for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_firstColors",
@@ -2991,7 +3021,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 123,
+            "line": 128,
             "description": "Low color for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_lastColors",
@@ -3004,7 +3034,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 132,
+            "line": 137,
             "description": "Shadow color for the button in 3 mode : normal, over, deactivated. Can be null.",
             "itemtype": "property",
             "name": "_shadowColors",
@@ -3017,7 +3047,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 141,
+            "line": 146,
             "description": "Radius for the round corner in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_radiuses",
@@ -3030,7 +3060,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 150,
+            "line": 155,
             "description": "Text for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_texts",
@@ -3043,7 +3073,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 159,
+            "line": 164,
             "description": "Text size for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_textSizes",
@@ -3056,7 +3086,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 168,
+            "line": 173,
             "description": "Color for the text in the 3 mode  : normal, over, deactivated",
             "itemtype": "property",
             "name": "_textColors",
@@ -3069,7 +3099,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 177,
+            "line": 182,
             "description": "Text Node encapsulating the text rendering",
             "itemtype": "property",
             "name": "_textsNode",
@@ -3079,7 +3109,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 189,
+            "line": 194,
             "itemtype": "property",
             "name": "_picto",
             "type": "{CGSGNodeImage}",
@@ -3088,7 +3118,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 194,
+            "line": 199,
             "itemtype": "property",
             "name": "_slices",
             "type": "{Array}",
@@ -3097,7 +3127,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 200,
+            "line": 205,
             "itemtype": "property",
             "name": "_pictoPosition",
             "default": "CGSGPositionMode.LEFT",
@@ -3109,7 +3139,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 208,
+            "line": 213,
             "description": "Distance between the picto and the text",
             "itemtype": "property",
             "name": "_distancePictoText",
@@ -3122,7 +3152,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 217,
+            "line": 222,
             "description": "Fake canvases to pre-render static display",
             "itemtype": "property",
             "name": "_tmpCanvas",
@@ -3134,7 +3164,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 226,
+            "line": 231,
             "description": "Padding applied to the left and right of the text",
             "itemtype": "property",
             "name": "_horizontalPadding",
@@ -3147,7 +3177,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 234,
+            "line": 239,
             "description": "Padding applied to the top and bottom of the text",
             "itemtype": "property",
             "name": "_verticalPadding",
@@ -3160,7 +3190,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 243,
+            "line": 248,
             "description": "Computed dimensions of the button in the 3 modes.\nDo not edit manually!",
             "itemtype": "property",
             "name": "_dimensions",
@@ -3172,7 +3202,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 252,
+            "line": 257,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -3183,7 +3213,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 262,
+            "line": 267,
             "description": "Current mode of the button",
             "itemtype": "property",
             "name": "_currentMode",
@@ -3196,7 +3226,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 287,
+            "line": 292,
             "description": "Change the position of the picto : CGSGPositionMode.LEFT, CGSGPositionMode.TOP, CGSGPositionMode.RIGHT, CGSGPositionMode.BOTTOM",
             "itemtype": "method",
             "name": "setPictoPosition",
@@ -3212,7 +3242,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 297,
+            "line": 302,
             "description": "Set the image for the picto",
             "itemtype": "method",
             "name": "setImage",
@@ -3228,7 +3258,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 307,
+            "line": 312,
             "description": "Set the URL for the picto",
             "itemtype": "method",
             "name": "setImageURL",
@@ -3243,7 +3273,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 321,
+            "line": 326,
             "description": "Return the slices in the image for the 3 modes",
             "itemtype": "method",
             "name": "getSlices",
@@ -3256,7 +3286,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 329,
+            "line": 334,
             "description": "Set the slices in the image for the 3 modes",
             "itemtype": "method",
             "name": "setSlices",
@@ -3272,7 +3302,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 339,
+            "line": 344,
             "description": "Return the High color for the button",
             "itemtype": "method",
             "name": "getFirstColor",
@@ -3285,7 +3315,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 347,
+            "line": 352,
             "description": "Set the values for the high color of the button",
             "itemtype": "method",
             "name": "setFirstColor",
@@ -3301,7 +3331,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 357,
+            "line": 362,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getLastColor",
@@ -3314,7 +3344,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 365,
+            "line": 370,
             "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setLastColor",
@@ -3330,7 +3360,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 375,
+            "line": 380,
             "description": "Return the Shadow color for the button",
             "itemtype": "method",
             "name": "getShadowColor",
@@ -3343,7 +3373,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 383,
+            "line": 388,
             "description": "Set the values for the shadow color of the button",
             "itemtype": "method",
             "name": "setShadowColor",
@@ -3359,7 +3389,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 393,
+            "line": 398,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getRadius",
@@ -3372,7 +3402,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 401,
+            "line": 406,
             "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setRadius",
@@ -3388,7 +3418,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 411,
+            "line": 416,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getText",
@@ -3401,7 +3431,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 419,
+            "line": 424,
             "description": "Set the values for text of the button",
             "itemtype": "method",
             "name": "setText",
@@ -3420,7 +3450,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 437,
+            "line": 442,
             "description": "Return the text sizes of the button",
             "itemtype": "method",
             "name": "getTextSize",
@@ -3433,7 +3463,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 445,
+            "line": 450,
             "description": "Set the values for text sizes of the button",
             "itemtype": "method",
             "name": "setTextSize",
@@ -3449,7 +3479,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 455,
+            "line": 460,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getTextColor",
@@ -3462,7 +3492,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 463,
+            "line": 468,
             "description": "Set the color for text of the button",
             "itemtype": "method",
             "name": "setTextColor",
@@ -3481,7 +3511,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 475,
+            "line": 480,
             "description": "Return the horizontal padding of the button",
             "itemtype": "method",
             "name": "getHorizontalPadding",
@@ -3494,7 +3524,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 483,
+            "line": 488,
             "description": "Set the horizontal padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
@@ -3510,7 +3540,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 493,
+            "line": 498,
             "description": "Return the vertical padding of the button",
             "itemtype": "method",
             "name": "getVerticalPadding",
@@ -3523,7 +3553,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 501,
+            "line": 506,
             "description": "Set the vertical padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
@@ -3539,7 +3569,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 511,
+            "line": 516,
             "itemtype": "method",
             "name": "setFixedSize",
             "params": [
@@ -3554,7 +3584,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 523,
+            "line": 528,
             "description": "Pre-render the button into a temp canvas to optimize the perfs",
             "itemtype": "method",
             "name": "_initShape",
@@ -3565,7 +3595,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 535,
+            "line": 540,
             "description": "Pre-render the shape for normal rendering",
             "itemtype": "method",
             "name": "_initShape",
@@ -3583,7 +3613,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 669,
+            "line": 674,
             "description": "Switch current mode",
             "itemtype": "method",
             "name": "setMode",
@@ -3599,7 +3629,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 680,
+            "line": 685,
             "itemtype": "method",
             "name": "getMode",
             "return": {
@@ -3611,13 +3641,12 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 688,
+            "line": 693,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
             "access": "protected",
             "tagname": "",
-            "override": "",
             "params": [
                 {
                     "name": "context",
@@ -3630,7 +3659,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 711,
+            "line": 715,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -3745,7 +3774,6 @@
             "name": "render",
             "access": "protected",
             "tagname": "",
-            "override": "",
             "params": [
                 {
                     "name": "context",
@@ -3758,7 +3786,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 146,
+            "line": 145,
             "description": "Replace current dimension by these new ones and compute new radius",
             "itemtype": "method",
             "name": "resizeTo",
@@ -3779,7 +3807,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 158,
+            "line": 157,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTBy",
@@ -3800,7 +3828,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 170,
+            "line": 169,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -3821,7 +3849,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 182,
+            "line": 181,
             "itemtype": "method",
             "name": "_computeResizedRadius",
             "access": "private",
@@ -3831,7 +3859,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 194,
+            "line": 193,
             "itemtype": "method",
             "name": "renderGhost",
             "params": [
@@ -3846,7 +3874,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 220,
+            "line": 219,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -3907,7 +3935,6 @@
             "name": "render",
             "access": "protected",
             "tagname": "",
-            "override": "",
             "params": [
                 {
                     "name": "context",
@@ -3920,7 +3947,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 124,
+            "line": 123,
             "itemtype": "method",
             "name": "renderGhost",
             "params": [
@@ -3935,7 +3962,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 165,
+            "line": 164,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -4195,7 +4222,6 @@
             "file": "src\\node\\class.node.image.js",
             "line": 243,
             "description": "Must be defined to allow the scene graph to render the image nodes",
-            "override": "",
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -4212,7 +4238,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 270,
+            "line": 269,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4229,9 +4255,8 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 279,
+            "line": 278,
             "description": "Ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
-            "override": "",
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -4248,9 +4273,8 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 307,
+            "line": 305,
             "description": "Increase/decrease current dimension with adding values. It is used when the user resize\nthe image with the handle boxes",
-            "override": "",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4272,8 +4296,7 @@
         },
         {
             "file": "src\\node\\class.node.image.js",
-            "line": 321,
-            "override": "",
+            "line": 318,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5428,7 +5451,7 @@
                     "type": "CGSGNode"
                 },
                 {
-                    "name": "recursively",
+                    "name": "searchRecursively",
                     "description": "if true, search the nodes on all the tree from this nodes",
                     "type": "Boolean"
                 }
@@ -5451,7 +5474,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1076,
+            "line": 1070,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -5467,7 +5490,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1087,
+            "line": 1081,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -5483,7 +5506,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1100,
+            "line": 1094,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -5507,7 +5530,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1137,
+            "line": 1117,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -5525,7 +5548,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1147,
+            "line": 1127,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5539,7 +5562,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1167,
+            "line": 1147,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5553,7 +5576,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1182,
+            "line": 1162,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5567,7 +5590,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1197,
+            "line": 1177,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -5585,7 +5608,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1217,
+            "line": 1197,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -5597,7 +5620,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1224,
+            "line": 1204,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -5609,7 +5632,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1231,
+            "line": 1211,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -5621,7 +5644,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1238,
+            "line": 1218,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -5633,7 +5656,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1245,
+            "line": 1225,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -5645,7 +5668,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1252,
+            "line": 1232,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -5657,7 +5680,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1259,
+            "line": 1239,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -5669,7 +5692,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1266,
+            "line": 1246,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -5681,7 +5704,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1274,
+            "line": 1254,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5707,7 +5730,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1302,
+            "line": 1282,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5728,7 +5751,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1321,
+            "line": 1301,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5749,7 +5772,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1371,
+            "line": 1351,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -5769,7 +5792,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1439,
+            "line": 1419,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -5914,7 +5937,6 @@
             "name": "render",
             "access": "protected",
             "tagname": "",
-            "override": "",
             "params": [
                 {
                     "name": "context",
@@ -5927,7 +5949,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 195,
+            "line": 194,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -5988,7 +6010,6 @@
             "name": "render",
             "access": "protected",
             "tagname": "",
-            "override": "",
             "params": [
                 {
                     "name": "context",
@@ -6001,7 +6022,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 102,
+            "line": 103,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -6440,7 +6461,6 @@
             "name": "render",
             "access": "protected",
             "tagname": "",
-            "override": "",
             "params": [
                 {
                     "name": "context",
@@ -6453,7 +6473,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 356,
+            "line": 355,
             "description": "Do the effective render",
             "itemtype": "method",
             "name": "_doRender",
@@ -6476,7 +6496,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 411,
+            "line": 419,
             "itemtype": "method",
             "name": "_drawText",
             "params": [
@@ -6522,7 +6542,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 444,
+            "line": 452,
             "itemtype": "method",
             "name": "_drawSquare",
             "params": [
@@ -6554,10 +6574,9 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 456,
+            "line": 464,
             "itemtype": "method",
             "name": "getHeight",
-            "override": "",
             "return": {
                 "description": "",
                 "type": "Number"
@@ -6567,10 +6586,9 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 473,
+            "line": 480,
             "itemtype": "method",
             "name": "getWidth",
-            "override": "",
             "return": {
                 "description": "",
                 "type": "Number"
@@ -6580,7 +6598,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 482,
+            "line": 488,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -6594,7 +6612,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 502,
+            "line": 508,
             "description": "Browsers don't render the text in the exact same way.\nIt can be few pixels of difference in Y position",
             "access": "private",
             "tagname": "",
@@ -6609,7 +6627,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 527,
+            "line": 533,
             "description": "Empty ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "itemtype": "method",
             "name": "renderGhost",
@@ -6627,7 +6645,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 549,
+            "line": 555,
             "description": "Render the resize handler",
             "access": "protected",
             "tagname": "",
@@ -6645,8 +6663,7 @@
         },
         {
             "file": "src\\node\\class.node.text.js",
-            "line": 626,
-            "override": "",
+            "line": 632,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -6881,7 +6898,6 @@
         {
             "file": "src\\node\\class.node.webview.js",
             "line": 261,
-            "override": "",
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -6891,9 +6907,8 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 308,
+            "line": 307,
             "description": "Free the memory taken by this node",
-            "override": "",
             "itemtype": "method",
             "name": "free",
             "class": "CGSGNodeWebview",
@@ -6901,9 +6916,8 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 323,
+            "line": 320,
             "description": "Return the copy of this node",
-            "override": "",
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -7337,6 +7351,136 @@
             "module": "Math"
         },
         {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 43,
+            "itemtype": "method",
+            "name": "getValue",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "the corresponding value or null if the key does not exist",
+                "type": "Object"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 57,
+            "description": "Add or replace the key in the map with the value.",
+            "itemtype": "method",
+            "name": "addOrReplace",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "the index of the key in the map"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 79,
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 91,
+            "description": "Remove all keys in the map",
+            "itemtype": "method",
+            "name": "removeAll",
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 100,
+            "itemtype": "method",
+            "name": "clone",
+            "return": {
+                "description": "",
+                "type": "CGSGHashmap"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 112,
+            "description": "Return true if the key already exists in the map",
+            "itemtype": "method",
+            "name": "containsKey",
+            "params": [
+                {
+                    "name": "key",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 122,
+            "description": "Return the number of keys in the map",
+            "itemtype": "method",
+            "name": "getLength",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 131,
+            "itemtype": "method",
+            "name": "getKeyIndex",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "The key index or -1 if not exists",
+                "type": "Number"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
             "file": "src\\utils\\class.region.js",
             "line": 44,
             "description": "return a new object with these attributes",
@@ -7349,7 +7493,7 @@
                 "type": "CGSGPosition"
             },
             "class": "CGSGPosition",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7370,7 +7514,7 @@
                 }
             ],
             "class": "CGSGPosition",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7393,7 +7537,7 @@
                 }
             ],
             "class": "CGSGPosition",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7416,7 +7560,7 @@
                 }
             ],
             "class": "CGSGPosition",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7431,7 +7575,7 @@
                 "type": "CGSGRotation"
             },
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7449,7 +7593,7 @@
                 }
             ],
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7467,7 +7611,7 @@
                 }
             ],
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7485,7 +7629,7 @@
                 }
             ],
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7503,7 +7647,7 @@
                 }
             ],
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7521,7 +7665,7 @@
                 }
             ],
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7539,7 +7683,7 @@
                 }
             ],
             "class": "CGSGRotation",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7549,7 +7693,7 @@
             "name": "width",
             "type": "{Number}",
             "class": "CGSGDimension",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7559,7 +7703,7 @@
             "name": "height",
             "type": "{Number}",
             "class": "CGSGDimension",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
@@ -7567,17 +7711,16 @@
             "description": "Return a new object with these attributes",
             "itemtype": "method",
             "name": "copy",
-            "override": "",
             "return": {
                 "description": "",
                 "type": "CGSGDimension"
             },
             "class": "CGSGDimension",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 236,
+            "line": 235,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -7594,11 +7737,11 @@
                 }
             ],
             "class": "CGSGDimension",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 251,
+            "line": 250,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeBy",
@@ -7615,11 +7758,11 @@
                 }
             ],
             "class": "CGSGDimension",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 266,
+            "line": 265,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -7636,29 +7779,29 @@
                 }
             ],
             "class": "CGSGDimension",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 298,
+            "line": 297,
             "itemtype": "property",
             "name": "position",
             "type": "{CGSGPosition}",
             "class": "CGSGRegion",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 303,
+            "line": 302,
             "itemtype": "property",
             "name": "dimension",
             "type": "{CGSGDimension}",
             "class": "CGSGRegion",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 310,
+            "line": 309,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -7666,11 +7809,11 @@
                 "type": "CGSGRegion"
             },
             "class": "CGSGRegion",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 318,
+            "line": 317,
             "itemtype": "method",
             "name": "add",
             "params": [
@@ -7681,11 +7824,11 @@
                 }
             ],
             "class": "CGSGRegion",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.region.js",
-            "line": 327,
+            "line": 326,
             "itemtype": "method",
             "name": "substract",
             "params": [
@@ -7696,7 +7839,7 @@
                 }
             ],
             "class": "CGSGRegion",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.traverser.js",
@@ -7706,7 +7849,7 @@
             "name": "lastResults",
             "type": "{Array}",
             "class": "CGSGTraverser",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.traverser.js",
@@ -7740,7 +7883,7 @@
                 "\n var condition = function(node) {\n\t\t\t\t\treturn node.color == \"yellow\";\n\t\t\t\t};\n\n\t\t var traverser = new CGSGTraverser();\n\t\t var listSquares = traverser.traverse(this.rootNode, condition, null);\n\t\t for (var s = 0; s < listSquares.length; s++) {\n\t\t\t\t\t...\n\t\t\t\t}"
             ],
             "class": "CGSGTraverser",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\class.traverser.js",
@@ -7767,7 +7910,7 @@
                 }
             ],
             "class": "CGSGTraverser",
-            "module": "Math"
+            "module": "Util"
         },
         {
             "file": "src\\utils\\util.array.js",
@@ -8141,6 +8284,21 @@
                     "name": "context",
                     "description": "context to render on",
                     "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "__GLOBAL_METHODS__",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.global.js",
+            "line": 255,
+            "itemtype": "method",
+            "name": "cgsgFree",
+            "params": [
+                {
+                    "name": "object",
+                    "description": "",
+                    "type": "*"
                 }
             ],
             "class": "__GLOBAL_METHODS__",

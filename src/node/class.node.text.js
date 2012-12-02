@@ -338,7 +338,6 @@ var CGSGNodeText = CGSGNode.extend(
          * Custom rendering
          * @method render
          * @protected
-         * @override
          * @param {CanvasRenderingContext2D} context the context into render the node
          * */
         render:function (context) {
@@ -464,7 +463,6 @@ var CGSGNodeText = CGSGNode.extend(
 
         /**
          * @method getHeight
-         * @override
          * @return {Number}
          */
         getHeight:function () {
@@ -481,7 +479,6 @@ var CGSGNodeText = CGSGNode.extend(
 
         /**
          * @method getWidth
-         * @override
          * @return {Number}
          */
         getWidth:function () {
@@ -633,7 +630,6 @@ var CGSGNodeText = CGSGNode.extend(
         },
 
         /**
-         * @override
          * @method copy
          * @return {CGSGNodeText} a copy of this node
          */

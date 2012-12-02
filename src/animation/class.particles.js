@@ -308,7 +308,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 			this._currentFrame = 0;
 			//free the memory
 			for (p = this._particles.length - 1; p >= 0; p--) {
-				this.removeChild(this._particles[p].node);
+				this.removeChild(this._particles[p].node, true);
 				delete (this._particles[p]);
 			}
 			this._particles.clear();
@@ -317,7 +317,6 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		},
 
 		/**
-		 * @override
 		 * @public
 		 * @method render
 		 * @param context
@@ -550,7 +549,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 */
 		removeEmitter : function (emitter) {
 			this.emitters.without(emitter);
-			this.removeChild(emitter);
+			this.removeChild(emitter, true);
 		},
 
 		/**
@@ -609,7 +608,6 @@ var CGSGParticleSystem = CGSGNode.extend(
 
 		/**
 		 * override the CGSGNode 'pickNode' method to return null due to performance
-		 * @override
 		 * @protected
 		 * @method pickNode
 		 * @param mousePosition

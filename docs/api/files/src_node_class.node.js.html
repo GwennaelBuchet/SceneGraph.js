@@ -49,6 +49,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
@@ -907,9 +909,9 @@ var CGSGNode = CGSGObject.extend(
 
 			if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 				if (mousePosition.x &gt;= this._absolutePosition.x
-					    &amp;&amp; mousePosition.x &lt;= this._absolutePosition.x + this.dimension.width * absoluteScale.x
+					    &amp;&amp; mousePosition.x &lt;= this._absolutePosition.x + this.getWidth() * absoluteScale.x
 					    &amp;&amp; mousePosition.y &gt;= this._absolutePosition.y
-					&amp;&amp; mousePosition.y &lt;= this._absolutePosition.y + this.dimension.height * absoluteScale.y
+					&amp;&amp; mousePosition.y &lt;= this._absolutePosition.y + this.getHeight() * absoluteScale.y
 					) {
 					return this;
 				}
@@ -1185,19 +1187,19 @@ var CGSGNode = CGSGObject.extend(
 		 * Remove the child passed in parameter and delete it
 		 * @method removeChild
 		 * @param {CGSGNode} node the nodes to remove
-		 * @param {Boolean} recursively if true, search the nodes on all the tree from this nodes
+		 * @param {Boolean} searchRecursively if true, search the nodes on all the tree from this nodes
 		 * @return {Boolean} true if the child was correctly removed or false if the nodes was not found.
 		 * *&#x2F;
-		removeChild : function (node, recursively) {
+		removeChild : function (node, searchRecursively) {
 			var index = this.children.indexOf(node);
-			if (index &gt;= 0) {
-				&#x2F;*this.children = *&#x2F;
-				this.children.without(node);
-				&#x2F;&#x2F;delete(node);
-				return true;
-			}
 
-			if (recursively) {
+            if (index &gt;= 0) {
+                this.children.without(node);
+                node.free();
+                return true;
+            }
+
+			if (searchRecursively) {
 				for (var i = 0, len = this.children.length; i &lt; len; ++i) {
 					var childNode = this.children[i];
 					if (childNode.removeChild(node, true)) {
@@ -1214,19 +1216,13 @@ var CGSGNode = CGSGObject.extend(
 		 * @method removeAll
 		 * *&#x2F;
 		removeAll : function () {
-			for (var i = 0, len = this.children.length; i &lt; len; ++i) {
+			&#x2F;*for (var i = this.children.length; i &gt;=0; --i) {
 				var childNode = this.children[i];
-				if (childNode.isALeaf()) {
-					&#x2F;&#x2F;delete (childNode);
-				}
-				else {
-					childNode.removeAll();
-				}
-			}
+                childNode.removeAll();
+                this.removeChild(childNode, true);
+			}*&#x2F;
 
-			this.children.clear();
-
-			this.initialize(0, 0, 10, 10);
+            this.free();
 		},
 
 		&#x2F;**
@@ -1275,20 +1271,6 @@ var CGSGNode = CGSGObject.extend(
 				this._absoluteScale = this.getAbsoluteScale();
 			}
 		},
-
-		&#x2F;*
-		 * Execute&#x2F;Eval an operation on the node.
-		 * @method eval
-		 * @param {String} operation
-		 * @return {*}
-		 * @example node.eval(&quot;position.y  = 12&quot;);
-		 *&#x2F;
-		&#x2F;*eval : function(operation) {
-		 if (operation === undefined || operation === null) {
-		 return true;
-		 }
-		 return eval(&quot;this.&quot; + operation);
-		 },*&#x2F;
 
 		&#x2F;**
 		 * Set the region inside which one this node ca be placed an can move
@@ -1602,7 +1584,9 @@ var CGSGNode = CGSGObject.extend(
 				c.free();
 			}
 
-			delete(this);
+            this.children.clear();
+
+            cgsgFree(this);
 		}
 	}
 );

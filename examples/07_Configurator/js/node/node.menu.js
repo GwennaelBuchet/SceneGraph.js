@@ -117,7 +117,6 @@ var MenuNode = CGSGNode.extend(
 		 * Custom rendering. Must be defined to allow the traverser to render this node
 		 * @method render
 		 * @protected
-		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function (context) {

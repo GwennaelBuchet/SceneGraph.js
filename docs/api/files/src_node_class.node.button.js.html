@@ -49,6 +49,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
@@ -180,7 +182,7 @@
  *&#x2F;
 
 &#x2F;**
- * List the modes for a button : NORMAL, OVER, DEACTIVATED.
+ * List the modes for a button : NORMAL, OVER, DEACTIVATED, SELECTED.
  * @class CGSGButtonMode
  * @type {Object}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
@@ -199,7 +201,12 @@ var CGSGButtonMode = {
     &#x2F;**
      * @property DEACTIVATED
      *&#x2F;
-    DEACTIVATED:{index:2, isClickable:false}
+    DEACTIVATED:{index:2, isClickable:false},
+
+    &#x2F;**
+     * @property SELECTED
+     *&#x2F;
+    SELECTED:{index:1, isClickable:true}
 };
 
 
@@ -845,7 +852,6 @@ var CGSGNodeButton = CGSGNode.extend(
          * Custom rendering
          * @method render
          * @protected
-         * @override
          * @param {CanvasRenderingContext2D} context the context into render the node
          * *&#x2F;
         render:function (context) {

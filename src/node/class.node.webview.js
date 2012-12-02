@@ -259,7 +259,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 		},
 
 		/**
-		 * @override
 		 * @protected
 		 * @method render
 		 * Custom rendering
@@ -307,22 +306,19 @@ var CGSGNodeWebview = CGSGNode.extend(
 
 		/**
 		 * Free the memory taken by this node
-		 * @override
 		 * @method free
 		 */
 		free : function () {
-			this._super();
-
 			if (cgsgExist(this._liveContainer)) {
 				cgsgCanvas.removeChild(this._liveContainer);
 				delete (this._liveContainer);
 			}
-			//delete this;
+
+            this._super();
 		},
 
 		/**
 		 * Return the copy of this node
-		 * @override
 		 * @method copy
 		 * @return {CGSGNodeWebview}
 		 */

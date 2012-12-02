@@ -54,6 +54,8 @@ CHANGES:
 - Correction. CGSGNodeText : allow picknode with REGION mode
 - Evolution. New CGSGHashmap class
 - Evolution. New CGSGNodeTabMenu node
+- Evolution. New cgsgFree method
+- Evolution. CGSGNode.removeChild and CGSGNode.removeAll now free the node(s)
 
 v1.2.3
 

@@ -49,6 +49,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
@@ -464,7 +466,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 			this._currentFrame = 0;
 			&#x2F;&#x2F;free the memory
 			for (p = this._particles.length - 1; p &gt;= 0; p--) {
-				this.removeChild(this._particles[p].node);
+				this.removeChild(this._particles[p].node, true);
 				delete (this._particles[p]);
 			}
 			this._particles.clear();
@@ -473,7 +475,6 @@ var CGSGParticleEmitter = CGSGNode.extend(
 		},
 
 		&#x2F;**
-		 * @override
 		 * @public
 		 * @method render
 		 * @param context
@@ -706,7 +707,7 @@ var CGSGParticleSystem = CGSGNode.extend(
 		 *&#x2F;
 		removeEmitter : function (emitter) {
 			this.emitters.without(emitter);
-			this.removeChild(emitter);
+			this.removeChild(emitter, true);
 		},
 
 		&#x2F;**
@@ -765,7 +766,6 @@ var CGSGParticleSystem = CGSGNode.extend(
 
 		&#x2F;**
 		 * override the CGSGNode &#x27;pickNode&#x27; method to return null due to performance
-		 * @override
 		 * @protected
 		 * @method pickNode
 		 * @param mousePosition

@@ -49,6 +49,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
@@ -415,7 +417,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 		},
 
 		&#x2F;**
-		 * @override
 		 * @protected
 		 * @method render
 		 * Custom rendering
@@ -463,22 +464,19 @@ var CGSGNodeWebview = CGSGNode.extend(
 
 		&#x2F;**
 		 * Free the memory taken by this node
-		 * @override
 		 * @method free
 		 *&#x2F;
 		free : function () {
-			this._super();
-
 			if (cgsgExist(this._liveContainer)) {
 				cgsgCanvas.removeChild(this._liveContainer);
 				delete (this._liveContainer);
 			}
-			&#x2F;&#x2F;delete this;
+
+            this._super();
 		},
 
 		&#x2F;**
 		 * Return the copy of this node
-		 * @override
 		 * @method copy
 		 * @return {CGSGNodeWebview}
 		 *&#x2F;

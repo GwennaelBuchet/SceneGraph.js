@@ -242,7 +242,6 @@ var CGSGNodeImage = CGSGNode.extend(
 
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
-		 * @override
 		 * @protected
 		 * @method render
 		 * @param {CanvasRenderingContext2D} context the context to render on
@@ -280,7 +279,6 @@ var CGSGNodeImage = CGSGNode.extend(
 		 * Ghost rendering function.
 		 * Render here your custom nodes with a single color (cgsgGhostColor).
 		 * This will be used by the SceneGraph to know if the mouse cursor is over this nodes.
-		 * @override
 		 * @protected
 		 * @method renderGhost
 		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
@@ -307,7 +305,6 @@ var CGSGNodeImage = CGSGNode.extend(
 		/**
 		 * Increase/decrease current dimension with adding values. It is used when the user resize
 		 * the image with the handle boxes
-		 * @override
 		 * @public
 		 * @method resizeWith
 		 * @param {Number} width
@@ -319,7 +316,6 @@ var CGSGNodeImage = CGSGNode.extend(
 		},
 
 		/**
-		 * @override
 		 * @public
 		 * @method copy
 		 * @return {CGSGNodeImage} a copy of this node

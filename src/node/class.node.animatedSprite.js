@@ -342,7 +342,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
-		 * @override
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context to render on
 		 * @method render
@@ -489,7 +488,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 		},
 
 		/**
-		 * @override
 		 * @public
 		 * @method copy
 		 * @return {CGSGNodeSprite} a copy of this node

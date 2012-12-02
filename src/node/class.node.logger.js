@@ -161,7 +161,6 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * Custom rendering
 		 * @method render
 		 * @protected
-		 * @override
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function (context) {

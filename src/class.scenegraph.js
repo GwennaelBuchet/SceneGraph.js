@@ -281,11 +281,11 @@ var CGSGSceneGraph = CGSGObject.extend(
 		 * @param {Boolean} recursively if true, try to remove the nodes inside the entire tree
 		 * @return {Boolean} true if the nodes was found and removed
 		 * */
-		removeNode : function (node, recursively) {
+		removeNode : function (node) {
 			if (cgsgExist(node)) {
 				this.deselectNode(node);
 				if (this.root !== null) {
-					return this.root.removeChild(node, recursively);
+					return this.root.removeChild(node, true);
 				}
 			}
 			return false;

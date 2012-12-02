@@ -6,6 +6,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGColor",
         "CGSGDimension",
         "CGSGHandleBox",
+        "CGSGHashmap",
         "CGSGMath",
         "CGSGNode",
         "CGSGNodeButton",

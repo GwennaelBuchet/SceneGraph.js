@@ -226,7 +226,6 @@ var CGSGDimension = CGSGVector2D.extend(
 		/**
 		 * Return a new object with these attributes
 		 * @method copy
-		 * @override
 		 * @return {CGSGDimension}
 		 */
 		copy : function () {

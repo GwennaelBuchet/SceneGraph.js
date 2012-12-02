@@ -1029,19 +1029,19 @@ var CGSGNode = CGSGObject.extend(
 		 * Remove the child passed in parameter and delete it
 		 * @method removeChild
 		 * @param {CGSGNode} node the nodes to remove
-		 * @param {Boolean} recursively if true, search the nodes on all the tree from this nodes
+		 * @param {Boolean} searchRecursively if true, search the nodes on all the tree from this nodes
 		 * @return {Boolean} true if the child was correctly removed or false if the nodes was not found.
 		 * */
-		removeChild : function (node, recursively) {
+		removeChild : function (node, searchRecursively) {
 			var index = this.children.indexOf(node);
-			if (index >= 0) {
-				/*this.children = */
-				this.children.without(node);
-				//delete(node);
-				return true;
-			}
 
-			if (recursively) {
+            if (index >= 0) {
+                this.children.without(node);
+                node.free();
+                return true;
+            }
+
+			if (searchRecursively) {
 				for (var i = 0, len = this.children.length; i < len; ++i) {
 					var childNode = this.children[i];
 					if (childNode.removeChild(node, true)) {
@@ -1058,19 +1058,13 @@ var CGSGNode = CGSGObject.extend(
 		 * @method removeAll
 		 * */
 		removeAll : function () {
-			for (var i = 0, len = this.children.length; i < len; ++i) {
+			/*for (var i = this.children.length; i >=0; --i) {
 				var childNode = this.children[i];
-				if (childNode.isALeaf()) {
-					//delete (childNode);
-				}
-				else {
-					childNode.removeAll();
-				}
-			}
+                childNode.removeAll();
+                this.removeChild(childNode, true);
+			}*/
 
-			this.children.clear();
-
-			this.initialize(0, 0, 10, 10);
+            this.free();
 		},
 
 		/**
@@ -1119,20 +1113,6 @@ var CGSGNode = CGSGObject.extend(
 				this._absoluteScale = this.getAbsoluteScale();
 			}
 		},
-
-		/*
-		 * Execute/Eval an operation on the node.
-		 * @method eval
-		 * @param {String} operation
-		 * @return {*}
-		 * @example node.eval("position.y  = 12");
-		 */
-		/*eval : function(operation) {
-		 if (operation === undefined || operation === null) {
-		 return true;
-		 }
-		 return eval("this." + operation);
-		 },*/
 
 		/**
 		 * Set the region inside which one this node ca be placed an can move
@@ -1446,7 +1426,9 @@ var CGSGNode = CGSGObject.extend(
 				c.free();
 			}
 
-			delete(this);
+            this.children.clear();
+
+            cgsgFree(this);
 		}
 	}
 );

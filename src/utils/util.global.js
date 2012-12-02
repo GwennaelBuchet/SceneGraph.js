@@ -251,3 +251,11 @@ function cgsgClearContext (context) {
 	// Will always clear the right space
 	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
 }
+
+/**
+ * @method cgsgFree
+ * @param {*} object
+ */
+function cgsgFree(object) {
+    object = null;
+}

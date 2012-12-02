@@ -49,6 +49,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
@@ -437,11 +439,11 @@ var CGSGSceneGraph = CGSGObject.extend(
 		 * @param {Boolean} recursively if true, try to remove the nodes inside the entire tree
 		 * @return {Boolean} true if the nodes was found and removed
 		 * *&#x2F;
-		removeNode : function (node, recursively) {
+		removeNode : function (node) {
 			if (cgsgExist(node)) {
 				this.deselectNode(node);
 				if (this.root !== null) {
-					return this.root.removeChild(node, recursively);
+					return this.root.removeChild(node, true);
 				}
 			}
 			return false;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\class.handlebox.js - cgSceneGraph</title>
+    <title>src\utils\class.hashmap.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -152,7 +152,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\class.handlebox.js</h1>
+                        <h1 class="file-heading">File: src\utils\class.hashmap.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -179,95 +179,133 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *&#x2F;
+ * *&#x2F;
 
 &#x2F;**
- * A Tiny box on selected square borders
- * @class CGSGHandleBox
- * @extends {Object}
+ * A Hashmap class.
+ *
+ * @class CGSGHashmap
+ * @module Util
  * @constructor
- * @param {CGSGNode} parentNode
- * @param {Number} size
- * @param {String} color
- * @param {Number} x
- * @param {Number} y
- * @type {CGSGHandleBox}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
-var CGSGHandleBox = CGSGObject.extend(
-	{
-		initialize : function (parentNode, size, color, x, y) {
-			&#x2F;**
-			 * @property color
-			 * @type {String}
-			 *&#x2F;
-			this.color = color;
-			&#x2F;**
-			 * @property size
-			 * @type {Number}
-			 *&#x2F;
-			this.size = size;
+var CGSGHashmap = CGSGObject.extend(
+    {
+        initialize:function () {
+            this._map = {};
 
-			&#x2F;**
-			 * @property _parentNode
-			 * @type {CGSGNode}
-			 * @private
-			 *&#x2F;
-			this._parentNode = parentNode;
-			&#x2F;**
-			 * @property _position
-			 * @type {CGSGPosition}
-			 * @private
-			 *&#x2F;
-			this._position = new CGSGPosition(x, y);
-		},
+            this._map.keys = [];
+            this._map.values = [];
+        },
 
-		&#x2F;**
-		 * @method render
-		 * @param {CanvasRenderingContext2D} context the context into render the handle box
-		 *&#x2F;
-		render : function (context) {
-			context.fillStyle = this.color;
-			context.fillRect(this._position.x,
-			                 this._position.y,
-			                 this.size &#x2F; this._parentNode._absoluteScale.x,
-			                 this.size &#x2F; this._parentNode._absoluteScale.y);
-		},
+        &#x2F;**
+         * @method getValue
+         * @param {Object} key
+         * @return {Object} the corresponding value or null if the key does not exist
+         *&#x2F;
+        getValue:function (key) {
+            var i = this.getKeyIndex(key);
+            if (i &lt; 0) {
+                return null;
+            }
 
-		&#x2F;**
-		 * Return true if this handleBox is under the coordinate of the mouse.
-		 * @method checkIfSelected
-		 * @param {CGSGPosition} mousePosition
-		 * @param {Number} threshold Threshold of detection around the box
-		 * @return {Boolean}
-		 *&#x2F;
-		checkIfSelected : function (mousePosition, threshold) {
-			return (mousePosition.x &gt;=
-			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
-			        threshold &amp;&amp;
-			        mousePosition.x &lt;=
-			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
-			        this.size + threshold &amp;&amp;
-			        mousePosition.y &gt;=
-			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
-			        threshold &amp;&amp;
-			        mousePosition.y &lt;=
-			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
-			        this.size + threshold);
-		},
+            return this._map.values[i];
+        },
 
-		&#x2F;**
-		 * @method translateTo
-		 * @param {Number} newRelativeX
-		 * @param {Number} newRelativeY
-		 *&#x2F;
-		translateTo : function (newRelativeX, newRelativeY) {
-			this._position.x = newRelativeX;
-			this._position.y = newRelativeY;
-		}
-	}
+        &#x2F;**
+         * Add or replace the key in the map with the value.
+         * @method addOrReplace
+         * @param {Object} key
+         * @param {Object} value
+         * @return the index of the key in the map
+         *&#x2F;
+        addOrReplace:function (key, value) {
+            var i = this.getKeyIndex(key);
+
+            if (i &gt;= 0) {
+                this._map.values[i] = value;
+            }
+            else {
+                this._map.keys.push(key);
+                this._map.values.push(value);
+                i = this.getLength();
+            }
+
+            return i;
+        },
+
+        &#x2F;**
+         * @method remove
+         * @param {Object} key
+         *&#x2F;
+        remove:function (key) {
+            if (this.containsKey(key)) {
+                var value = this.getValue(key);
+                this._map.keys.without(key);
+                this._map.values.without(value);
+            }
+        },
+
+        &#x2F;**
+         * Remove all keys in the map
+         * @method removeAll
+         *&#x2F;
+        removeAll:function () {
+            this._map.keys.clear();
+            this._map.values.clear();
+        },
+
+        &#x2F;**
+         * @method clone
+         * @return {CGSGHashmap}
+         *&#x2F;
+        clone:function () {
+            var newMap = new CGSGHashmap();
+            newMap._map.keys = this._map.keys.clone();
+            newMap._map.values = this._map.value.clone();
+
+            return newMap;
+        },
+
+        &#x2F;**
+         * Return true if the key already exists in the map
+         * @method containsKey
+         * @param key
+         * @return {Boolean}
+         *&#x2F;
+        containsKey:function (key) {
+            return this._map.keys.contains(key);
+        },
+
+        &#x2F;**
+         * Return the number of keys in the map
+         * @method getLength
+         * @return {Number}
+         *&#x2F;
+        getLength:function () {
+            return this._map.keys.length;
+        },
+
+        &#x2F;**
+         * @method getKeyIndex
+         * @param {Object} key
+         * @return {Number} The key index or -1 if not exists
+         *&#x2F;
+        getKeyIndex:function (key) {
+            var index;
+
+            for (index = 0; index &lt; this.getLength(); index++) {
+                if (this._map.keys[index] === key) {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
+
+    }
 );
-	
+
     </pre>
 </div>
 
