@@ -41,6 +41,15 @@ var CGSGHashmap = CGSGObject.extend(
         },
 
         /**
+         * @method getAt
+         * @param {Number} index
+         * @return {Object} {key, value}
+         */
+        getAt:function(index) {
+            return {key:this._map.keys[index], value:this._map.values[index]};
+        },
+
+        /**
          * @method getValue
          * @param {Object} key
          * @return {Object} the corresponding value or null if the key does not exist
