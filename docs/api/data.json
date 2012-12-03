@@ -7364,6 +7364,25 @@
             "file": "src\\utils\\class.hashmap.js",
             "line": 43,
             "itemtype": "method",
+            "name": "getAt",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "{key, value}",
+                "type": "Object"
+            },
+            "class": "CGSGHashmap",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\class.hashmap.js",
+            "line": 52,
+            "itemtype": "method",
             "name": "getValue",
             "params": [
                 {
@@ -7381,7 +7400,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 57,
+            "line": 66,
             "description": "Add or replace the key in the map with the value.",
             "itemtype": "method",
             "name": "addOrReplace",
@@ -7405,7 +7424,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 79,
+            "line": 88,
             "itemtype": "method",
             "name": "remove",
             "params": [
@@ -7420,7 +7439,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 91,
+            "line": 100,
             "description": "Remove all keys in the map",
             "itemtype": "method",
             "name": "removeAll",
@@ -7429,7 +7448,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 100,
+            "line": 109,
             "itemtype": "method",
             "name": "clone",
             "return": {
@@ -7441,7 +7460,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 112,
+            "line": 121,
             "description": "Return true if the key already exists in the map",
             "itemtype": "method",
             "name": "containsKey",
@@ -7460,7 +7479,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 122,
+            "line": 131,
             "description": "Return the number of keys in the map",
             "itemtype": "method",
             "name": "getLength",
@@ -7473,7 +7492,7 @@
         },
         {
             "file": "src\\utils\\class.hashmap.js",
-            "line": 131,
+            "line": 140,
             "itemtype": "method",
             "name": "getKeyIndex",
             "params": [
