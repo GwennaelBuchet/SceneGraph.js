@@ -32,72 +32,89 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGColor = {
-	/**
-	 * Convert R, G and B value to an hexadecimal code
-	 * @method rgb2hex
-	 * @static
-	 * @param {String} r red value. from 0 to 255.
-	 * @param {String} g green value. from 0 to 255.
-	 * @param {String} b blue value. from 0 to 255.
-	 * @return {String} an hexadecimal value for the color, starting with a sharp (#)
-	 */
-	rgb2hex : function (r, g, b) {
-		return "#" + this._toHex(r) + this._toHex(g) + this._toHex(b);
-	},
+    /**
+     * Convert R, G and B value to an hexadecimal code
+     * @method rgb2hex
+     * @static
+     * @param {String} r red value. from 0 to 255.
+     * @param {String} g green value. from 0 to 255.
+     * @param {String} b blue value. from 0 to 255.
+     * @return {String} an hexadecimal value for the color, starting with a sharp (#)
+     */
+    rgb2hex:function (r, g, b) {
+        return "#" + this._toHex(r) + this._toHex(g) + this._toHex(b);
+    },
 
-	/**
-	 * Convert an hexadecimal code for color to R, G and B
-	 * @method hex2rgb
-	 * @static
-	 * @param {String} hex an hexadecimal code, with or without the starting sharp (#)
-	 * @return {Object} an object encapsulating r, g and b values (from 0 to 255)
-	 */
-	hex2rgb : function (hex) {
-		hex = this._withoutSharp(hex);
-		return {
-			r : parseInt(hex.substring(0, 2), 16),
-			g : parseInt(hex.substring(2, 4), 16),
-			b : parseInt(hex.substring(4, 6), 16)};
-	},
+    /**
+     * Convert an hexadecimal code for color to R, G and B
+     * @method hex2rgb
+     * @static
+     * @param {String} hex an hexadecimal code, with or without the starting sharp (#)
+     * @return {Object} an object encapsulating r, g and b values (from 0 to 255)
+     */
+    hex2rgb:function (hex) {
+        hex = this._withoutSharp(hex);
+        return {
+            r:parseInt(hex.substring(0, 2), 16),
+            g:parseInt(hex.substring(2, 4), 16),
+            b:parseInt(hex.substring(4, 6), 16)};
+    },
 
-	_withoutSharp : function (hex) {
-		return (hex.charAt(0) == "#") ? hex.substring(1, hex.length) : hex;
-	},
+    _withoutSharp:function (hex) {
+        return (hex.charAt(0) == "#") ? hex.substring(1, hex.length) : hex;
+    },
 
-	/**
-	 * @method _toHex
-	 * @param {String} n String or Number representation of a number between 0 and 255
-	 * @return {String} Example "A6"
-	 * @private
-	 */
-	_toHex : function (n) {
-		var m = parseInt(n, 10);
-		if (isNaN(m)) {
-			return "00";
-		}
-		m = Math.max(0, Math.min(m, 255));
-		return "0123456789ABCDEF".charAt((m - m % 16) / 16)
-			+ "0123456789ABCDEF".charAt(m % 16);
-	},
+    /**
+     * @method _toHex
+     * @param {String} n String or Number representation of a number between 0 and 255
+     * @return {String} Example "A6"
+     * @private
+     */
+    _toHex:function (n) {
+        var m = parseInt(n, 10);
+        if (isNaN(m)) {
+            return "00";
+        }
+        m = Math.max(0, Math.min(m, 255));
+        return "0123456789ABCDEF".charAt((m - m % 16) / 16)
+            + "0123456789ABCDEF".charAt(m % 16);
+    },
 
-	/**
-	 * Linear interpolation between 2 colors
-	 * @method lerp
-	 * @static
-	 * @param {String} colorFrom a hex color
-	 * @param {String} colorTo a hex color
-	 * @param {Number} weight
-	 * @return {String} a heh value for the interpolated color
-	 */
-	lerp : function (colorFrom, colorTo, weight) {
-		var rgbColorFrom = this.hex2rgb(colorFrom);
-		var rgbColorTo = this.hex2rgb(colorTo);
+    /**
+     * Linear interpolation between 2 colors
+     * @method lerp
+     * @static
+     * @param {String} colorFrom a hex color
+     * @param {String} colorTo a hex color
+     * @param {Number} weight
+     * @return {String} a heh value for the interpolated color
+     */
+    lerp:function (colorFrom, colorTo, weight) {
+        var rgbColorFrom = this.hex2rgb(colorFrom);
+        var rgbColorTo = this.hex2rgb(colorTo);
 
-		var rgb = [];
-		rgb[0] = rgbColorFrom.r + (rgbColorTo.r - rgbColorFrom.r) * weight;
-		rgb[1] = rgbColorFrom.g + (rgbColorTo.g - rgbColorFrom.g) * weight;
-		rgb[2] = rgbColorFrom.b + (rgbColorTo.b - rgbColorFrom.b) * weight;
+        var rgb = [];
+        rgb[0] = rgbColorFrom.r + (rgbColorTo.r - rgbColorFrom.r) * weight;
+        rgb[1] = rgbColorFrom.g + (rgbColorTo.g - rgbColorFrom.g) * weight;
+        rgb[2] = rgbColorFrom.b + (rgbColorTo.b - rgbColorFrom.b) * weight;
 
-		return this.rgb2hex(rgb[0], rgb[1], rgb[2]);
-	}
+        return this.rgb2hex(rgb[0], rgb[1], rgb[2]);
+    },
+
+    /**
+     *
+     * @method lit
+     * @param {String} hex Hexadecimal value of a color (with or without the started '#'
+     * @param {Number} ratio If >0 : lighten. If <0 : darken
+     * @return {String}
+     */
+    lit:function (hex, ratio) {
+        var rgb = this.hex2rgb(hex);
+
+        rgb.r = Math/max(255, rgb.r * ratio);
+        rgb.g = Math/max(255, rgb.g * ratio);
+        rgb.b = Math/max(255, rgb.b * ratio);
+
+        return this.rgb2hex(rgb);
+    }
 };

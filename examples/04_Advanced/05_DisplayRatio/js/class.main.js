@@ -67,6 +67,14 @@ var CGMain = CGSGScene.extend(
 			 Just specify the displayratio and all the nodes will be rendered at the correct size :
 			 their position, dimension, scale and rotation are the same, but at the rendering time, they appear at the scaled size and position.
 			 */
+
+            var sw = this.viewDimension.width / 1600;
+            var sh = this.viewDimension.height / 1200;
+
+            var actualRatio = this.viewDimension.width / this.viewDimension.height;
+            var targetRatio = 1600 / 1200;
+
+
 			var displayRatio = new CGSGScale(cgsgCanvas.width / 1600, cgsgCanvas.height / 1200);
 			this.setDisplayRatio(displayRatio);
 		},
@@ -77,10 +85,14 @@ var CGMain = CGSGScene.extend(
 		 */
 		createScene : function () {
 
+            var background = new CGSGNodeSquare(0, 0, cgsgCanvas.width/2, cgsgCanvas.height/2);
+            background.color = "lightgray";
+            this.sceneGraph.addNode(background, null);
+
             var text = new CGSGNodeText(10, 10, "The square and text will be full sized at 1600x1200.\n" +
                 "In other size, the scene will be automatically resized to allow all rezolutions to see the entiere scene.\n\n" +
                 "Resize your screen to see the changes.");
-            this.sceneGraph.addNode(text, null);
+            background.addChild(text);
             text.setLineHeight(25);
 
 
@@ -88,7 +100,7 @@ var CGMain = CGSGScene.extend(
 			squareNode.isResizable = true;
 			squareNode.isDraggable = true;
 
-			this.sceneGraph.addNode(squareNode, null);
+            background.addChild(squareNode);
 		}
 
 	}

@@ -8173,6 +8173,30 @@
             "module": "Util"
         },
         {
+            "file": "src\\utils\\util.color.js",
+            "line": 104,
+            "itemtype": "method",
+            "name": "lit",
+            "params": [
+                {
+                    "name": "hex",
+                    "description": "Hexadecimal value of a color (with or without the started '#'",
+                    "type": "String"
+                },
+                {
+                    "name": "ratio",
+                    "description": "If >0 : lighten. If <0 : darken",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
             "file": "src\\utils\\util.global.js",
             "line": 35,
             "itemtype": "method",
