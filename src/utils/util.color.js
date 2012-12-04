@@ -111,9 +111,9 @@ var CGSGColor = {
     lit:function (hex, ratio) {
         var rgb = this.hex2rgb(hex);
 
-        rgb.r = Math/max(255, rgb.r * ratio);
-        rgb.g = Math/max(255, rgb.g * ratio);
-        rgb.b = Math/max(255, rgb.b * ratio);
+        rgb.r = Math.max(255, rgb.r * ratio);
+        rgb.g = Math.max(255, rgb.g * ratio);
+        rgb.b = Math.max(255, rgb.b * ratio);
 
         return this.rgb2hex(rgb);
     }
