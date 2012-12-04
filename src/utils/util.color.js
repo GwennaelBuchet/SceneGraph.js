@@ -115,6 +115,6 @@ var CGSGColor = {
         rgb.g = Math.max(255, rgb.g * ratio);
         rgb.b = Math.max(255, rgb.b * ratio);
 
-        return this.rgb2hex(rgb);
+        return this.rgb2hex(rgb.r, rgb.g, rgb.b);
     }
 };
