@@ -4711,7 +4711,7 @@
         {
             "file": "src\\node\\class.node.js",
             "line": 354,
-            "description": "Callback on mouse over",
+            "description": "Callback on mouse over the node",
             "itemtype": "property",
             "name": "onMouseOver",
             "default": "null",
@@ -4725,6 +4725,20 @@
         {
             "file": "src\\node\\class.node.js",
             "line": 368,
+            "description": "Callback on mouse enter on the node",
+            "itemtype": "property",
+            "name": "onMouseEnter",
+            "default": "null",
+            "type": "{function}",
+            "example": [
+                "\n this.onMouseEnter = function (event) {\n     event.node; //CGSGNode\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 382,
             "description": "Callback on mouse out",
             "itemtype": "property",
             "name": "onMouseOut",
@@ -4738,7 +4752,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 382,
+            "line": 396,
             "description": "Callback on mouse up",
             "itemtype": "property",
             "name": "onMouseUp",
@@ -4752,7 +4766,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 396,
+            "line": 410,
             "description": "Callback on mouse or touch click",
             "itemtype": "property",
             "name": "onClick",
@@ -4766,7 +4780,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 410,
+            "line": 424,
             "description": "Callback on mouse or touch double click",
             "itemtype": "property",
             "name": "onDblClick",
@@ -4780,7 +4794,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 425,
+            "line": 438,
             "description": "Callback on drag this node",
             "itemtype": "property",
             "name": "onDrag",
@@ -4794,7 +4808,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 439,
+            "line": 452,
             "description": "Callback on end of drag this node",
             "itemtype": "property",
             "name": "onDragEnd",
@@ -4808,7 +4822,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 453,
+            "line": 466,
             "description": "Callback on resize this node",
             "itemtype": "property",
             "name": "onResize",
@@ -4822,7 +4836,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 467,
+            "line": 480,
             "description": "Callback on end resize this node",
             "itemtype": "property",
             "name": "onResizeEnd",
@@ -4836,7 +4850,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 481,
+            "line": 494,
             "description": "Callback on select this node",
             "itemtype": "property",
             "name": "onSelect",
@@ -4850,7 +4864,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 495,
+            "line": 508,
             "description": "Callback on deselect this node",
             "itemtype": "property",
             "name": "onDeselect",
@@ -4864,7 +4878,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 513,
+            "line": 526,
             "description": "return the relative region of this node",
             "access": "public",
             "tagname": "",
@@ -4879,7 +4893,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 523,
+            "line": 536,
             "description": "return the absolute region of this node",
             "access": "public",
             "tagname": "",
@@ -4894,7 +4908,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 536,
+            "line": 549,
             "description": "Wipes the canvas context",
             "itemtype": "method",
             "name": "_clearContext",
@@ -4919,7 +4933,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 548,
+            "line": 561,
             "description": "Empty rendering function. Must be overrided by the inherited classes",
             "itemtype": "method",
             "name": "render",
@@ -4935,7 +4949,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 561,
+            "line": 574,
             "description": "Empty ghost rendering function.\nRender here your custom nodes with a single color (cgsgGhostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "itemtype": "method",
             "name": "renderGhost",
@@ -4950,7 +4964,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 577,
+            "line": 590,
             "description": "Render the selection box and handle boxes around the bounding box of this node when selected",
             "access": "protected",
             "tagname": "",
@@ -4968,7 +4982,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 648,
+            "line": 661,
             "description": "Must be called before to start the rendering of the nodes",
             "access": "protected",
             "tagname": "",
@@ -4986,7 +5000,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 675,
+            "line": 688,
             "description": "Must be called after a render",
             "access": "protected",
             "tagname": "",
@@ -5004,7 +5018,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 697,
+            "line": 710,
             "description": "Must be called before begin to render the nodes in GHOST mode",
             "access": "protected",
             "tagname": "",
@@ -5022,7 +5036,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 712,
+            "line": 725,
             "description": "Must be called before begin to render",
             "access": "protected",
             "tagname": "",
@@ -5040,7 +5054,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 723,
+            "line": 736,
             "description": "Mark this nodes as selected",
             "itemtype": "method",
             "name": "setSelected",
@@ -5056,7 +5070,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 740,
+            "line": 753,
             "description": "return this if this nodes is under the mice cursor\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -5084,7 +5098,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 779,
+            "line": 792,
             "description": "Check if this nodes is under the cursor position.",
             "access": "public",
             "tagname": "",
@@ -5122,7 +5136,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 829,
+            "line": 842,
             "description": "Return true if this nodes has no child",
             "itemtype": "method",
             "name": "isALeaf",
@@ -5131,7 +5145,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 839,
+            "line": 852,
             "description": "Replace current relative position by this new one",
             "itemtype": "method",
             "name": "translateTo",
@@ -5157,7 +5171,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 853,
+            "line": 866,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateWith",
@@ -5183,7 +5197,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 867,
+            "line": 880,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateBy",
@@ -5209,7 +5223,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 881,
+            "line": 894,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -5230,7 +5244,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 891,
+            "line": 904,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTBy",
@@ -5251,7 +5265,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 901,
+            "line": 914,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -5272,7 +5286,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 911,
+            "line": 924,
             "description": "Replace current relative relativeScale by this new one",
             "itemtype": "method",
             "name": "scaleTo",
@@ -5298,7 +5312,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 926,
+            "line": 939,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "scaleBy",
@@ -5324,7 +5338,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 941,
+            "line": 954,
             "description": "Add to the current relative Scale",
             "itemtype": "method",
             "name": "scaleWith",
@@ -5350,7 +5364,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 956,
+            "line": 969,
             "description": "Replace current relative relativeRotation by this new oneScale",
             "itemtype": "method",
             "name": "rotateTo",
@@ -5371,7 +5385,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 970,
+            "line": 983,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "rotateBy",
@@ -5392,7 +5406,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 983,
+            "line": 996,
             "description": "Add this angle to the current relative relativeRotation",
             "itemtype": "method",
             "name": "rotateWith",
@@ -5413,7 +5427,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 998,
+            "line": 1011,
             "description": "Add a new nodes into this one, at the end of the list",
             "itemtype": "method",
             "name": "addChild",
@@ -5429,7 +5443,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1008,
+            "line": 1021,
             "description": "Add a new nodes at a particular index in the list of children.\nIf the index is too large, the nodes will be inserted at the end of the list",
             "itemtype": "method",
             "name": "addChildAt",
@@ -5450,7 +5464,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1028,
+            "line": 1041,
             "description": "Remove the child passed in parameter and delete it",
             "itemtype": "method",
             "name": "removeChild",
@@ -5475,7 +5489,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1056,
+            "line": 1069,
             "description": "remove all children, delete them and reset the current parameters",
             "itemtype": "method",
             "name": "removeAll",
@@ -5484,7 +5498,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1070,
+            "line": 1083,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -5500,7 +5514,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1081,
+            "line": 1094,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -5516,7 +5530,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1094,
+            "line": 1107,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -5540,7 +5554,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1117,
+            "line": 1130,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -5558,7 +5572,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1127,
+            "line": 1140,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5572,7 +5586,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1147,
+            "line": 1160,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5586,7 +5600,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1162,
+            "line": 1175,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5600,7 +5614,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1177,
+            "line": 1190,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -5618,7 +5632,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1197,
+            "line": 1210,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -5630,7 +5644,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1204,
+            "line": 1217,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -5642,7 +5656,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1211,
+            "line": 1224,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -5654,7 +5668,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1218,
+            "line": 1231,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -5666,7 +5680,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1225,
+            "line": 1238,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -5678,7 +5692,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1232,
+            "line": 1245,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -5690,7 +5704,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1239,
+            "line": 1252,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -5702,7 +5716,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1246,
+            "line": 1259,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -5714,7 +5728,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1254,
+            "line": 1267,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5740,7 +5754,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1282,
+            "line": 1295,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5761,7 +5775,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1301,
+            "line": 1314,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5782,7 +5796,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1351,
+            "line": 1364,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -5802,7 +5816,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1419,
+            "line": 1432,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -8837,7 +8851,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 808,
+            "line": 813,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -8881,7 +8895,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 837,
+            "line": 842,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8899,7 +8913,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 847,
+            "line": 852,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8917,7 +8931,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 857,
+            "line": 862,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -8934,7 +8948,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 906,
+            "line": 911,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8952,7 +8966,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 916,
+            "line": 921,
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -8973,7 +8987,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 939,
+            "line": 944,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -8994,7 +9008,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 957,
+            "line": 962,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",

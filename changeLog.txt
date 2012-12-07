@@ -59,6 +59,7 @@ CHANGES:
 - Evolution. Allow dimensions to be equal 0
 - Evolution. Add "onAnimate" event on timelines
 - Evolution. Add CGSGColor "lit" method
+- Evolution. Add CGSGNode "onMouseEnter" event
 
 ---------------------------------------------------------------------
 v1.2.3

@@ -67,12 +67,13 @@ var CGMain = CGSGScene.extend(
                 60,     //y
                 "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 
+            this.imgNode.resizeTo(500, 500);
+            this.imgNode.setSlice(0, 0, 0, 0, true);
             //add some attributes
             this.imgNode.isResizable = true;
             this.imgNode.isDraggable = true;
 
 	        rootNode.addChild(this.imgNode);
-            this.imgNode.resizeTo(500, 500);
 
 	        //add a button to switch src
 	        this.currentImg = 0;

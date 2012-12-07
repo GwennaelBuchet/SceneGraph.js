@@ -352,7 +352,7 @@ var CGSGNode = CGSGObject.extend(
 			}
 
 			/**
-			 * Callback on mouse over
+			 * Callback on mouse over the node
 			 * @property onMouseOver
 			 * @default null
 			 * @type {function}
@@ -365,6 +365,20 @@ var CGSGNode = CGSGObject.extend(
 			 *  }
 			 */
 			this.onMouseOver = null;
+            /**
+             * Callback on mouse enter on the node
+             * @property onMouseEnter
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onMouseEnter = function (event) {
+			 *      event.node; //CGSGNode
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
+			 *  }
+             */
+            this.onMouseEnter = null;
 			/**
 			 * Callback on mouse out
 			 * @property onMouseOut
@@ -420,8 +434,7 @@ var CGSGNode = CGSGObject.extend(
 			 *      event.event; //Event
 			 *  }
 			 */
-			this.onDblClick = null
-			;
+			this.onDblClick = null;
 			/**
 			 * Callback on drag this node
 			 * @property onDrag
