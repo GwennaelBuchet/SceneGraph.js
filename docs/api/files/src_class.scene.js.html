@@ -59,6 +59,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
@@ -66,6 +68,8 @@
                 <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
             
@@ -947,7 +951,7 @@ var CGSGScene = CGSGObject.extend(
                         }
                         this._nodeMouseOver = null;
                     }
-                    else {
+                    else if (n === this._nodeMouseOver) {
                         if (cgsgExist(this._nodeMouseOver.onMouseOver)) {
                             this._nodeMouseOver.onMouseOver({node:this._nodeMouseOver, position:this._mousePosition.copy(), event:event});
                         }
@@ -957,11 +961,13 @@ var CGSGScene = CGSGObject.extend(
                 &#x2F;&#x2F;if the previous node under the mouse is no more under the mouse, test the other nodes
                 if (n === null) {
                     if ((n = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
-                        return node.onMouseEnter !== null
+                        return (node.onMouseEnter !== null || node.onMouseOver !== null)
                     })) !== null) {
                         n.isMouseOver = true;
                         this._nodeMouseOver = n;
-                        this._nodeMouseOver.onMouseEnter({node:this._nodeMouseOver, position:this._mousePosition.copy(), event:event})
+                        this._nodeMouseOver.isMouseOver = true;
+                        if (cgsgExist(this._nodeMouseOver.onMouseEnter))
+                            this._nodeMouseOver.onMouseEnter({node:this._nodeMouseOver, position:this._mousePosition.copy(), event:event})
                     }
                 }
 

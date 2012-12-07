@@ -89,6 +89,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\node\\class.node.colorPicker.js": {
+            "name": "src\\node\\class.node.colorPicker.js",
+            "modules": {},
+            "classes": {
+                "CGSGNodeColorPicker": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\node\\class.node.ellipse.js": {
             "name": "src\\node\\class.node.ellipse.js",
             "modules": {},
@@ -131,6 +140,15 @@
             "modules": {},
             "classes": {
                 "CGSGNodeSquare": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\node\\class.node.tabMenu.js": {
+            "name": "src\\node\\class.node.tabMenu.js",
+            "modules": {},
+            "classes": {
+                "CGSGNodeTabMenu": 1
             },
             "fors": {},
             "namespaces": {}
@@ -353,11 +371,13 @@
                 "CGSGButtonMode": 1,
                 "CGSGNodeButton": 1,
                 "CGSGNodeCircle": 1,
+                "CGSGNodeColorPicker": 1,
                 "CGSGNodeEllipse": 1,
                 "CGSGNodeImage": 1,
                 "CGSGPickNodeMethod": 1,
                 "CGSGNode": 1,
                 "CGSGNodeSquare": 1,
+                "CGSGNodeTabMenu": 1,
                 "CGSGWrapMode": 1,
                 "CGSGNodeText": 1,
                 "CGSGWEBVIEWMODE": 1,
@@ -706,6 +726,34 @@
             "type": "{CGSGNodeCircle}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
+        "CGSGNodeColorPicker": {
+            "name": "CGSGNodeColorPicker",
+            "shortname": "CGSGNodeColorPicker",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 29,
+            "description": "A color Picker",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "X Position",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Y Position",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeColorPicker}"
+        },
         "CGSGNodeEllipse": {
             "name": "CGSGNodeEllipse",
             "shortname": "CGSGNodeEllipse",
@@ -880,6 +928,40 @@
             ],
             "type": "{CGSGNodeSquare}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
+        "CGSGNodeTabMenu": {
+            "name": "CGSGNodeTabMenu",
+            "shortname": "CGSGNodeTabMenu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 28,
+            "description": "A tab menu",
+            "extends": "CGSGNode",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "X position",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Y position",
+                    "type": "Number"
+                },
+                {
+                    "name": "w",
+                    "description": "Width of the tab menu",
+                    "type": "Number"
+                }
+            ],
+            "is_constructor": 1,
+            "type": "{CGSGNodeTabMenu}"
         },
         "CGSGWrapMode": {
             "name": "CGSGWrapMode",
@@ -3895,6 +3977,184 @@
             "module": "Node"
         },
         {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 42,
+            "itemtype": "property",
+            "name": "_imgData",
+            "type": "{ImageData}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 61,
+            "description": "Event fired when the mice cursor move over the color picker. Return a {r, g, b} Object.",
+            "itemtype": "property",
+            "name": "onOverColor",
+            "default": "null",
+            "type": "{Function}",
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 68,
+            "description": "Event fired when the user click on the color picker. Return a {r, g, b} Object.",
+            "itemtype": "property",
+            "name": "onClickColor",
+            "default": "null",
+            "type": "{Function}",
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 77,
+            "description": "Pre-render the node into a temp canvas to optimize the perfs",
+            "itemtype": "method",
+            "name": "_initShape",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 160,
+            "description": "Override the parent method.",
+            "itemtype": "method",
+            "name": "resizeTo",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 171,
+            "description": "Override the parent method.",
+            "itemtype": "method",
+            "name": "resizeWith",
+            "params": [
+                {
+                    "name": "w",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "h",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 182,
+            "description": "Override the parent method.",
+            "itemtype": "method",
+            "name": "resizeBy",
+            "params": [
+                {
+                    "name": "w",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "h",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 193,
+            "itemtype": "method",
+            "name": "_onMouseOverHandler",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 206,
+            "itemtype": "method",
+            "name": "_onClickHandler",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 219,
+            "itemtype": "method",
+            "name": "getColorAt",
+            "params": [
+                {
+                    "name": "relativePosition",
+                    "description": "position of the cursor inside the colorPicker",
+                    "type": "CGSGPosition"
+                }
+            ],
+            "return": {
+                "description": "Object with {r:x, g:x, b:x} value",
+                "type": "Object"
+            },
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.colorPicker.js",
+            "line": 238,
+            "description": "Custom rendering. Must be defined to allow the traverser to render this node",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeColorPicker",
+            "module": "Node"
+        },
+        {
             "file": "src\\node\\class.node.ellipse.js",
             "line": 47,
             "description": "Color  to fill the ellipse",
@@ -6057,6 +6317,111 @@
             "module": "Node"
         },
         {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 44,
+            "description": "Define the class type.\nNot mandatory but very useful, as Javascript does not have a mechanism to manage the type of class",
+            "itemtype": "property",
+            "name": "classType",
+            "type": "{String}",
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 76,
+            "description": "Array of the buttons in the menu",
+            "itemtype": "property",
+            "name": "buttons",
+            "type": "{Array} array of CGSGNodeButtons",
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 83,
+            "description": "Event",
+            "itemtype": "property",
+            "name": "onTabChanged",
+            "default": "null",
+            "type": "{Function}",
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 94,
+            "itemtype": "method",
+            "name": "addButton",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "the text on the tab",
+                    "type": "String"
+                },
+                {
+                    "name": "view",
+                    "description": "the root node for the view to show when is that is activated",
+                    "type": "CGSGNode"
+                }
+            ],
+            "return": {
+                "description": "The new created tab",
+                "type": "Object"
+            },
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 133,
+            "description": "Select the tab passed in parameter",
+            "itemtype": "method",
+            "name": "selectTab",
+            "params": [
+                {
+                    "name": "tab",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "the selected tab",
+                "type": "Object"
+            },
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 171,
+            "itemtype": "method",
+            "name": "selectTabByIndex",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "the selected tab",
+                "type": "Object"
+            },
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.tabMenu.js",
+            "line": 180,
+            "description": "Recompute width for all buttons",
+            "itemtype": "method",
+            "name": "_recomputeButtonsWidth",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNodeTabMenu",
+            "module": "Node"
+        },
+        {
             "file": "src\\node\\class.node.text.js",
             "line": 35,
             "itemtype": "property",
@@ -8190,7 +8555,7 @@
             "file": "src\\utils\\util.color.js",
             "line": 104,
             "itemtype": "method",
-            "name": "lit",
+            "name": "darkenHex",
             "params": [
                 {
                     "name": "hex",
@@ -8198,7 +8563,7 @@
                     "type": "String"
                 },
                 {
-                    "name": "ratio",
+                    "name": "factor",
                     "description": "If >0 : lighten. If <0 : darken",
                     "type": "Number"
                 }
@@ -8206,6 +8571,184 @@
             "return": {
                 "description": "",
                 "type": "String"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.color.js",
+            "line": 121,
+            "itemtype": "method",
+            "name": "darkenRGB",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "Red value between 0 and 255",
+                    "type": "Number"
+                },
+                {
+                    "name": "g",
+                    "description": "Green value between 0 and 255",
+                    "type": "Number"
+                },
+                {
+                    "name": "b",
+                    "description": "Blue value between 0 and 255",
+                    "type": "Number"
+                },
+                {
+                    "name": "factor",
+                    "description": "If >0 : lighten. If <0 : darken",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An {r, g, b} object",
+                "type": "Object"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.color.js",
+            "line": 146,
+            "itemtype": "method",
+            "name": "multiplyComponent",
+            "params": [
+                {
+                    "name": "c",
+                    "description": "color component between 0 and 25(",
+                    "type": "Number"
+                },
+                {
+                    "name": "factor",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The multiplied value, between 0 and 255",
+                "type": "Number"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.color.js",
+            "line": 156,
+            "description": "RGB to HSV converter.\nAdapted from http://en.wikipedia.org/wiki/HSV_color_space",
+            "itemtype": "method",
+            "name": "rgb2hsv",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "g",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An {h, s, v} object",
+                "type": "Object"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.color.js",
+            "line": 192,
+            "description": "RGB to HSL converter.\nAdapted from http://en.wikipedia.org/wiki/HSL_color_space",
+            "itemtype": "method",
+            "name": "rgb2hsl",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "g",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.color.js",
+            "line": 228,
+            "description": "HSL to RGB converter.\nAdapted from http://en.wikipedia.org/wiki/HSL_color_space",
+            "itemtype": "method",
+            "name": "hsl2rgb",
+            "params": [
+                {
+                    "name": "h",
+                    "description": "The hue",
+                    "type": "Number"
+                },
+                {
+                    "name": "s",
+                    "description": "The saturation",
+                    "type": "Number"
+                },
+                {
+                    "name": "l",
+                    "description": "the lightness",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "A {r, g, b} object",
+                "type": "Object"
+            },
+            "class": "CGSGColor",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.color.js",
+            "line": 263,
+            "description": "HSV to RGB converter.\nAdapted from http://en.wikipedia.org/wiki/HSV_color_space",
+            "itemtype": "method",
+            "name": "hsv2rgb",
+            "params": [
+                {
+                    "name": "h",
+                    "description": "The hue",
+                    "type": "Number"
+                },
+                {
+                    "name": "s",
+                    "description": "The saturation",
+                    "type": "Number"
+                },
+                {
+                    "name": "v",
+                    "description": "the value",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "A {r, g, b} object",
+                "type": "Object"
             },
             "class": "CGSGColor",
             "module": "Util"
@@ -8851,7 +9394,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 813,
+            "line": 815,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -8895,7 +9438,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 842,
+            "line": 844,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8913,7 +9456,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 852,
+            "line": 854,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8931,7 +9474,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 862,
+            "line": 864,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -8948,7 +9491,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 911,
+            "line": 913,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -8966,7 +9509,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 921,
+            "line": 923,
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -8987,7 +9530,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 944,
+            "line": 946,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -9008,7 +9551,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 962,
+            "line": 964,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",

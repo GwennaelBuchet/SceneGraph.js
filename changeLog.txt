@@ -56,10 +56,12 @@ CHANGES:
 - Evolution. New CGSGNodeTabMenu node
 - Evolution. New cgsgFree method
 - Evolution. CGSGNode.removeChild and CGSGNode.removeAll now free the node(s)
-- Evolution. Allow dimensions to be equal 0
+- Evolution. Allow dimension to be equal 0
 - Evolution. Add "onAnimate" event on timelines
-- Evolution. Add CGSGColor "lit" method
+- Evolution. Add CGSGColor "rgb2hsl", "hsl2rgb", "multiplyComponent", "darkenHex" and "darkenRGB" method
 - Evolution. Add CGSGNode "onMouseEnter" event
+- Evolution. Add of CGSGNodeColorPicker
+- Evolution. Add of CGSGNodeTabMenu
 
 ---------------------------------------------------------------------
 v1.2.3
