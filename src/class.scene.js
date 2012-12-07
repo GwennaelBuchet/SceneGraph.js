@@ -789,7 +789,7 @@ var CGSGScene = CGSGObject.extend(
                         }
                         this._nodeMouseOver = null;
                     }
-                    else {
+                    else if (n === this._nodeMouseOver) {
                         if (cgsgExist(this._nodeMouseOver.onMouseOver)) {
                             this._nodeMouseOver.onMouseOver({node:this._nodeMouseOver, position:this._mousePosition.copy(), event:event});
                         }
@@ -799,11 +799,13 @@ var CGSGScene = CGSGObject.extend(
                 //if the previous node under the mouse is no more under the mouse, test the other nodes
                 if (n === null) {
                     if ((n = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
-                        return node.onMouseEnter !== null
+                        return (node.onMouseEnter !== null || node.onMouseOver !== null)
                     })) !== null) {
                         n.isMouseOver = true;
                         this._nodeMouseOver = n;
-                        this._nodeMouseOver.onMouseEnter({node:this._nodeMouseOver, position:this._mousePosition.copy(), event:event})
+                        this._nodeMouseOver.isMouseOver = true;
+                        if (cgsgExist(this._nodeMouseOver.onMouseEnter))
+                            this._nodeMouseOver.onMouseEnter({node:this._nodeMouseOver, position:this._mousePosition.copy(), event:event})
                     }
                 }
 
