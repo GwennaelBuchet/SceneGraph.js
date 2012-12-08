@@ -6,8 +6,8 @@ It's full oriented object to ease the development of your applications and games
 
 Since the start of the project, it has been designed to be used on professional application as well as for game development.
 
-The power of the framework is inside its concept : the framework itself does not render anything, but provides a lot of cool and useful features.
-However, it was made to be extended : you can use or create an infinite number of extensions of the node class (CGSGNode) to be rendered.
+The power of the framework is inside its concept : the framework itself does not render anything, and provides a lot of cool and useful features.
+It was designed to be extended : you can use or create an infinite number of extensions of the node class (CGSGNode) to be rendered.
 You are not, and won't never be, limited to what the framework provides by itself because it is designed to be extended !
 
 Of course, a lot of powerful extensions are already provided with the framework:
@@ -22,7 +22,7 @@ Of course, a lot of powerful extensions are already provided with the framework:
 - square, circle, ellipse, nodes
 - ...
 
-Feel free to share your extensions or to publish a link to your projects using the cgSceneGraph :)
+Please, feel free to share your own extensions or to publish a link to your projects using the cgSceneGraph :)
 
 Features
 ========
