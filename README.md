@@ -6,6 +6,22 @@ It's full oriented object to ease the development of your applications and games
 
 Since the start of the project, it has been designed to be used on professional application as well as for game development.
 
+The power of the framework is inside its concept : the framework itself does not render anything, but provides a lot of cool and useful features.
+However, it was made to be extended : you can use or create an infinite number of extensions of the node class (CGSGNode) to be rendered.
+You are not, and won't never be, limited to what the framework provides by itself because it is designed to be extended !
+
+Of course, a lot of powerful extensions are already provided with the framework:
+- image node
+- animated sprite node
+- text node
+- button node
+- webview node
+- colorpicker node
+- tab menu node
+- particle system node
+- square, circle, ellipse, nodes
+- ...
+
 Feel free to share your extensions or to publish a link to your projects using the cgSceneGraph :)
 
 Features
@@ -14,7 +30,7 @@ Features
 * Easy managing of complex scenes
 * Hierarchy of nodes, keeping a trace of their absolute transformation matrix
 * Mouse and touch events, seamlessly for the developer (just define a onClick event on a node or the scene, the framework take care of the rest)
-* Mouse over/out/click/dblclick events on nodes
+* Mouse enter/over/out/click/dblclick events on nodes
 * Multi-selection
 * Draggable attribute
 * Resizable attribute
@@ -38,9 +54,6 @@ How to use examples ?
 =====================
 Each project includes a link to the framework in the 'min' folder, in its index.html file.
 So be sure to also download it, or to change the link url.
-
-As images loading is asynchronous, you need to test your projects on a HTTP server. Use which you like (Jetty, Apache, EasyPHP, ...)
-Be sure that the 'min' folder is also in the alias of your work folder in your HTTP server.
 
 
 Why to offer the cgSceneGraph as an open source project ?
