@@ -148,10 +148,28 @@ var CGSGScene = CGSGObject.extend(
             /**
              * True if the [CTRL} key is being pressed
              * @property _keyDownedCtrl
+             * @default false
              * @type {Boolean}
              * @private
              */
             this._keyDownedCtrl = false;
+
+            /**
+             * @property _timerDblTouch
+             * @default null
+             * @type {Number}
+             * @private
+             */
+            this._timerDblTouch = null;
+
+            /**
+             * The delay between 2 touches to be considered as a dbl touch event.
+             * To remove the double touch, just set it to 0
+             * @property dblTouchDelay
+             * @default CGSG_DEFAULT_DBLTOUCH_DELAY
+             * @type {Number}
+             */
+            this.dblTouchDelay = CGSG_DEFAULT_DBLTOUCH_DELAY;
 
             /**
              * Current positions of the mouse or touch (Array of CGSGPosition)
@@ -291,6 +309,8 @@ var CGSGScene = CGSGObject.extend(
 			 *  }
              */
             this.onRenderEnd = null;
+
+
         },
 
         /**
@@ -474,7 +494,8 @@ var CGSGScene = CGSGObject.extend(
          * @param {MouseEvent} event
          */
         onMouseDown:function (event) {
-            this._clickOnScene(event);
+            //this._clickOnScene(event, true);
+            this.onTouchStart(event);
         },
 
         /**
@@ -484,15 +505,52 @@ var CGSGScene = CGSGObject.extend(
          * @param {Event} event
          */
         onTouchStart:function (event) {
-            this._clickOnScene(event);
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!cgsgExist(this._timerDblTouch)) {
+                this._mousePosition = cgsgGetCursorPositions(event, cgsgCanvas);
+                this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
+                    return cgsgExist(node.onDblClick);
+                });
+                this._tmpSelectedNode = this._selectedNode;
+            }
+            else {
+                this._selectedNode = this._tmpSelectedNode;
+            }
+
+            //if the touch was over a node with the onDblClick method defined, check whether it's a dbl touch or not
+            if (cgsgExist(this._selectedNode)) {
+                //if the timer exists, then it's a dbl touch
+                if (cgsgExist(this._timerDblTouch)) {
+                    clearTimeout(this._timerDblTouch);
+                    this._timerDblTouch = null;
+                    this._dblClickOnScene(event);
+                }
+                else {
+                    var that = this;
+                    var evt = event;
+                    this._timerDblTouch = setTimeout(function () {
+                        clearTimeout(that._timerDblTouch);
+                        that._timerDblTouch = null;
+                        that._clickOnScene(evt, true);
+                    }, this.dblTouchDelay);
+                }
+            }
+            else {
+                //not a touch on a node with the onDblClick event defined,
+                // so it's a single touch, just call the _clickOnScene method usually
+                this._clickOnScene(event, true);
+            }
         },
 
         /**
          * @private
          * @method _clickOnScene
          * @param {Event} event MouseEvent or TouchEvent
+         * @param {Boolean} mustPickNode
          */
-        _clickOnScene:function (event) {
+        _clickOnScene:function (event, mustPickNode) {
             this._mousePosition = cgsgGetCursorPositions(event, cgsgCanvas);
 
             if (this.onSceneClickStart !== null) {
@@ -510,9 +568,11 @@ var CGSGScene = CGSGObject.extend(
             }
 
             //try to pick up the nodes under the cursor
-            this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
-                return (node.isClickable === true || node.isDraggable === true || node.isResizable === true)
-            });
+            if (mustPickNode) {
+                this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
+                    return (node.isClickable === true || node.isDraggable === true || node.isResizable === true)
+                });
+            }
             //if a nodes is under the cursor, select it
             if (this._selectedNode !== null && this._selectedNode !== undefined) {
                 if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
@@ -917,16 +977,19 @@ var CGSGScene = CGSGObject.extend(
          * @param {MouseEvent} event
          */
         onMouseDblClick:function (event) {
-            this.dblClickOnScene(event);
+            //this._dblClickOnScene(event);
+            event.preventDefault();
+            event.stopPropagation();
         },
 
         /**
          * @protected
-         * @method dblClickOnScene
+         * @method _dblClickOnScene
          * @param {Event} event
          * @return {CGSGNode} the node that was double-clicked
+         * @private
          */
-        dblClickOnScene:function (event) {
+        _dblClickOnScene:function (event) {
             if (this.onSceneDblClickStart !== null) {
                 this.onSceneDblClickStart(event);
             }

@@ -9004,6 +9004,7 @@
             "description": "True if the [CTRL} key is being pressed",
             "itemtype": "property",
             "name": "_keyDownedCtrl",
+            "default": "false",
             "type": "{Boolean}",
             "access": "private",
             "tagname": "",
@@ -9012,7 +9013,30 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 156,
+            "line": 157,
+            "itemtype": "property",
+            "name": "_timerDblTouch",
+            "default": "null",
+            "type": "{Number}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGScene",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.scene.js",
+            "line": 165,
+            "description": "The delay between 2 touches to be considered as a dbl touch event.\nTo remove the double touch, just set it to 0",
+            "itemtype": "property",
+            "name": "dblTouchDelay",
+            "default": "CGSG_DEFAULT_DBLTOUCH_DELAY",
+            "type": "{Number}",
+            "class": "CGSGScene",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.scene.js",
+            "line": 174,
             "description": "Current positions of the mouse or touch (Array of CGSGPosition)",
             "itemtype": "property",
             "name": "_mousePosition",
@@ -9024,7 +9048,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 167,
+            "line": 185,
             "itemtype": "property",
             "name": "_listCursors List of the names for the cursor when overring a handlebox",
             "type": "{Array}",
@@ -9035,7 +9059,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 177,
+            "line": 195,
             "itemtype": "property",
             "name": "_selectedNode The current last selected node",
             "type": "{null}",
@@ -9046,7 +9070,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 224,
+            "line": 242,
             "description": "Callback on click down on scene event.",
             "itemtype": "property",
             "name": "onSceneClickStart",
@@ -9060,7 +9084,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 236,
+            "line": 254,
             "description": "Callback on click up on scene event",
             "itemtype": "property",
             "name": "onSceneClickEnd",
@@ -9074,7 +9098,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 248,
+            "line": 266,
             "description": "Callback on double click start on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickStart",
@@ -9088,7 +9112,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 260,
+            "line": 278,
             "description": "Callback on double click up on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickEnd",
@@ -9102,7 +9126,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 272,
+            "line": 290,
             "description": "Callback on start rendering event",
             "itemtype": "property",
             "name": "onRenderStart",
@@ -9116,7 +9140,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 283,
+            "line": 301,
             "description": "Callback on end rendering event",
             "itemtype": "property",
             "name": "onRenderEnd",
@@ -9130,7 +9154,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 296,
+            "line": 316,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -9146,7 +9170,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 314,
+            "line": 334,
             "description": "Remove the nodes selected in the scene graph",
             "itemtype": "method",
             "name": "deleteSelected",
@@ -9155,7 +9179,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 327,
+            "line": 347,
             "description": "Deselect all nodes",
             "access": "public",
             "tagname": "",
@@ -9173,7 +9197,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 343,
+            "line": 363,
             "description": "the main rendering loop",
             "access": "protected",
             "tagname": "",
@@ -9184,7 +9208,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 368,
+            "line": 388,
             "description": "Call this to start the update of the scene",
             "access": "public",
             "tagname": "",
@@ -9195,7 +9219,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 383,
+            "line": 403,
             "description": "Call this to stop the rendering (and so animation) update",
             "access": "public",
             "tagname": "",
@@ -9206,7 +9230,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 393,
+            "line": 413,
             "description": "Inform the SceneGraph that a new render is needed",
             "access": "public",
             "tagname": "",
@@ -9217,7 +9241,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 402,
+            "line": 422,
             "description": "Update the current framerate",
             "itemtype": "method",
             "name": "_updateFramerate",
@@ -9228,7 +9252,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 425,
+            "line": 445,
             "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
             "itemtype": "method",
             "name": "_updateFramerateContainer",
@@ -9239,7 +9263,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 436,
+            "line": 456,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -9256,7 +9280,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 445,
+            "line": 465,
             "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
             "access": "public",
             "tagname": "",
@@ -9274,7 +9298,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 461,
+            "line": 481,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -9288,7 +9312,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 470,
+            "line": 490,
             "description": "click mouse Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9306,7 +9330,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 480,
+            "line": 500,
             "description": "touch down Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9324,7 +9348,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 490,
+            "line": 546,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9334,6 +9358,11 @@
                     "name": "event",
                     "description": "MouseEvent or TouchEvent",
                     "type": "Event"
+                },
+                {
+                    "name": "mustPickNode",
+                    "description": "",
+                    "type": "Boolean"
                 }
             ],
             "class": "CGSGScene",
@@ -9341,7 +9370,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 569,
+            "line": 628,
             "description": "mouse move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9359,7 +9388,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 579,
+            "line": 638,
             "description": "touch move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9377,7 +9406,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 591,
+            "line": 650,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9394,7 +9423,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 815,
+            "line": 874,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -9438,7 +9467,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 844,
+            "line": 903,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9456,7 +9485,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 854,
+            "line": 913,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9474,7 +9503,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 864,
+            "line": 923,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -9491,7 +9520,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 913,
+            "line": 972,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9509,11 +9538,11 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 923,
-            "access": "protected",
+            "line": 982,
+            "access": "private",
             "tagname": "",
             "itemtype": "method",
-            "name": "dblClickOnScene",
+            "name": "_dblClickOnScene",
             "params": [
                 {
                     "name": "event",
@@ -9530,7 +9559,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 946,
+            "line": 1006,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -9551,7 +9580,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 964,
+            "line": 1024,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",
@@ -10011,6 +10040,17 @@
             "itemtype": "property",
             "name": "CGSG_DEFAULT_FRAMERATE_DELAY",
             "default": "30 (ie: each 30 frames)",
+            "type": "{Number}",
+            "class": "__GLOBAL_CONSTANTS__",
+            "module": "Util"
+        },
+        {
+            "file": "src\\constants.js",
+            "line": 96,
+            "description": "Default value for the double touch detection.\nThis property is the delay between 2 touches to be considered as a dbl touch event.",
+            "itemtype": "property",
+            "name": "CGSG_DEFAULT_DBLTOUCH_DELAY",
+            "default": "250",
             "type": "{Number}",
             "class": "__GLOBAL_CONSTANTS__",
             "module": "Util"

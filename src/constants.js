@@ -92,3 +92,12 @@ var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD = 3;
  * @type {Number}
  */
 var CGSG_DEFAULT_FRAMERATE_DELAY = 30;
+
+/**
+ * Default value for the double touch detection.
+ * This property is the delay between 2 touches to be considered as a dbl touch event.
+ * @property CGSG_DEFAULT_DBLTOUCH_DELAY
+ * @default 250
+ * @type {Number}
+ */
+var CGSG_DEFAULT_DBLTOUCH_DELAY = 250;

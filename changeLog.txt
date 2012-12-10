@@ -60,8 +60,11 @@ CHANGES:
 - Evolution. Add "onAnimate" event on timelines
 - Evolution. Add CGSGColor "rgb2hsl", "hsl2rgb", "multiplyComponent", "darkenHex" and "darkenRGB" method
 - Evolution. Add CGSGNode "onMouseEnter" event
-- Evolution. Add of CGSGNodeColorPicker
-- Evolution. Add of CGSGNodeTabMenu
+- Evolution. Add of CGSGNodeColorPicker and associated example
+- Evolution. Add of CGSGNodeTabMenu and associated example
+- Correction. Touch event triggered sometimes 2 touch events.
+- Evolution. "onDbClick" method also manage double touch :)
+- Evolution. The onDblClick method doesn't generate 2 clicks anymore
 
 ---------------------------------------------------------------------
 v1.2.3
