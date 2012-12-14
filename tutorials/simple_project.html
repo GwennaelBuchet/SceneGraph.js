@@ -28,11 +28,10 @@
 
     <link href="../css/shCore.css" rel="stylesheet" type="text/css"/>
     <link href="../css/shThemeDefault.css" rel="stylesheet" type="text/css"/>
-
-
     <script src="../js/shCore.js" type="text/javascript"></script>
     <script src="../js/shBrushXml.js" type="text/javascript"></script>
     <script src="../js/shBrushJScript.js" type="text/javascript"></script>
+
     <script src="../js/cufon-yui.js" type="text/javascript"></script>
     <script src="../js/Aller.font.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -77,12 +76,11 @@
                         <li class="oe_heading">Starter</li>
                         <li><a href="../tutorials.html">Global concepts</a></li>
                         <li><a href="simple_project.html">Create a simple project</a></li>
-                        <li><a href="node_attributes.html">Node attributes</a></li>
+                        <li><a href="custom_node.html">Create your nodes</a></li>
                         <li><a href="srt_animations.html">SRT Animations</a></li>
-                        <li><a href="custom_node.html">Custom your nodes</a></li>
                         <li><a href="image_sharing.html">Image sharing</a></li>
                         <li><a href="spritesheets.html">SpriteSheets</a></li>
-                        <li><a href="tutorials/traverser.html">Traverse the graph</a></li>
+                        <li><a href="traverser.html">Traverse the graph</a></li>
                     </ul>
                     <ul>
                         <li class="oe_heading">Events</li>
@@ -98,9 +96,9 @@
                         <li><a href="making_game.html">Develop a game</a></li>
                     </ul>
                     <ul>
-                        <li class="oe_heading">Performance Tips</li>
+                        <li class="oe_heading">Tips & Tricks</li>
                         <li><a href="prerendering.html">Pre-rendering</a></li>
-                        <li><a href="#">...</a></li>
+                        <li><a href="fullscreen.html">How-To: Fullscreen size</a></li>
                     </ul>
                 </div>
             </li>
@@ -151,7 +149,7 @@
 
     <hr/>
 
-    <h2>The basic way</h2>
+    <h2>The basic way (I don't like it)</h2>
 
     <p class="displayCode">
                     <pre class="brush: js; html-script: true">
@@ -205,7 +203,7 @@
     <br/>
     <hr/>
     <br/>
-    <h2>2nd way : create your main class</h2>
+    <h2>2nd way : create your main class (the good one !)</h2>
     Your project has to provide at least 2 files:<br/>
     <ol>
         <li>A HTML file to encapsulate the &lt;canvas&gt; tag <strong>:)</strong></li>
@@ -313,6 +311,12 @@ var App = CGSGScene.extend(
 			//add some nice properties
 			squareNode.isResizable = true;
 			squareNode.isDraggable = true;
+
+        // !!! never use squareNode.position.x = n;
+        // use squareNode.translateTo(n, m) method instead (or .translateWith(x, y) or .translateBy(x, y)
+        //
+        // In the same way, do not use node.rotation.angle = x, node.scale.x = x neither node.dimension?width=w
+        // always use the rotateBy, rotateWith, rotateTo, scaleBy, scaleWith, scaleTo, resizeWith, resizeBy, resizeTo methods.
 
 			//add the square node as the root of the graph
 			this.sceneGraph.addNode(squareNode, null);

@@ -330,6 +330,10 @@ a img {
     float: right;
 }
 
+.aligncenter {
+    text-align: center;
+}
+
 .welcomeText {
     width: 420px;
 }
