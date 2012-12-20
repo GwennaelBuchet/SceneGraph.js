@@ -38,7 +38,7 @@
  * @static
  * @type {String}
  */
-var cgsgVersion = "1.3.0";
+var cgsgVersion = "1.3.1";
 
 /**
  * Current display ratio
