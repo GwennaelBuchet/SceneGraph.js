@@ -1673,7 +1673,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 217,
+            "line": 216,
             "description": "Compute animated value for one frame between key ay index keyIndex and keyIndex+1",
             "access": "private",
             "tagname": "",
@@ -1705,7 +1705,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 248,
+            "line": 247,
             "itemtype": "method",
             "name": "getFirstKey",
             "return": {
@@ -1717,7 +1717,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 260,
+            "line": 259,
             "itemtype": "method",
             "name": "getLastKey",
             "return": {
@@ -1729,7 +1729,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 272,
+            "line": 271,
             "description": "Get the value for the frame number passed in parameter",
             "access": "public",
             "tagname": "",
@@ -1751,7 +1751,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 333,
+            "line": 332,
             "description": "Return the precomputed array of values for this timeline",
             "itemtype": "method",
             "name": "exportValues",
@@ -1764,7 +1764,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 350,
+            "line": 349,
             "description": "Import new precomputed values for this timeline.\nThe number of values must match the number of frame defined by the keys of this timeline",
             "itemtype": "method",
             "name": "importValues",
@@ -5825,7 +5825,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1141,
+            "line": 1192,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -5843,7 +5843,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1151,
+            "line": 1202,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5857,7 +5857,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1171,
+            "line": 1222,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5871,7 +5871,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1186,
+            "line": 1237,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -5885,7 +5885,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1201,
+            "line": 1252,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -5903,7 +5903,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1221,
+            "line": 1272,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -5915,7 +5915,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1228,
+            "line": 1279,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -5927,7 +5927,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1235,
+            "line": 1286,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -5939,7 +5939,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1242,
+            "line": 1293,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -5951,7 +5951,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1249,
+            "line": 1300,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -5963,7 +5963,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1256,
+            "line": 1307,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -5975,7 +5975,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1263,
+            "line": 1314,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -5987,7 +5987,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1270,
+            "line": 1321,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -5999,7 +5999,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1278,
+            "line": 1329,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6025,7 +6025,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1306,
+            "line": 1357,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6046,7 +6046,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1325,
+            "line": 1376,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6067,7 +6067,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1375,
+            "line": 1426,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -6087,7 +6087,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1444,
+            "line": 1495,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",

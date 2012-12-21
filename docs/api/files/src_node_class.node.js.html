@@ -1285,9 +1285,60 @@ var CGSGNode = CGSGObject.extend(
          * @example node.evalSet(&quot;position.y&quot;, 12);
          *&#x2F;
         evalSet:function (attribute, value) {
-            eval(&quot;this.&quot; + attribute + &quot;=&quot; + value);
+            &#x2F;&#x2F;check for common properties to optimize performances
+            if (attribute == &quot;position.x&quot;) {
+                this.translateTo(value, this.position.y, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;position.y&quot;) {
+                this.translateTo(this.position.x, value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;dimension.width&quot;) {
+                this.resizeTo(value, this.dimension.height, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;dimension.height&quot;) {
+                this.resizeTo(this.dimension.width, value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;scale.x&quot;) {
+                this.scaleTo(value, this.scale.y, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;scale.y&quot;) {
+                this.scaleTo(this.scale.x, value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;rotation&quot; || attribute == &quot;rotation.angle&quot;) {
+                this.rotateTo(value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;globalAlpha&quot;) {
+                this.globalAlpha = value;
+            }
+            else if (attribute == &quot;isVisible&quot;) {
+                this.isVisible = value;
+            }
+            else if (attribute == &quot;rotationCenter.x&quot;) {
+                this.rotationCenter.x = value;
+            }
+            else if (attribute == &quot;rotationCenter.y&quot;) {
+                this.rotationCenter.y = value;
+            }
+            else if (attribute == &quot;color.r&quot;) {
+                var rgb = CGSGColor.hex2rgb(this.color);
+                this.color = CGSGColor.rgb2hex(value, rgb.g, rgb.b);
+            }
+            else if (attribute == &quot;color.g&quot;) {
+                var rgb = CGSGColor.hex2rgb(this.color);
+                this.color = CGSGColor.rgb2hex(rgb.r, value, rgb.b);
+            }
+            else if (attribute == &quot;color.b&quot;) {
+                var rgb = CGSGColor.hex2rgb(this.color);
+                this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, value);
+            }
 
-            if (this.needToKeepAbsoluteMatrix) {
+            &#x2F;&#x2F;generic property
+            else  {
+                eval(&quot;this.&quot; + attribute + &quot;=&quot; + value);
+            }
+
+
+            &#x2F;*if (this.needToKeepAbsoluteMatrix) {
                 if (attribute.indexOf(&quot;position&quot;) == 0) {
                     this._absolutePosition = this.getAbsolutePosition();
                 }
@@ -1297,7 +1348,7 @@ var CGSGNode = CGSGObject.extend(
                 else if (attribute.indexOf(&quot;scale&quot;) == 0) {
                     this._absoluteScale = this.getAbsoluteScale();
                 }
-            }
+            }*&#x2F;
         },
 
         &#x2F;**
