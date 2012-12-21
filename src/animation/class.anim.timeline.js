@@ -204,12 +204,11 @@ var CGSGTimeline = CGSGObject.extend(
 				return;
 			}
 
-			var value = 0, duration = 0, f = 0, v = 0, k = 0;
+			var duration = 0, f = 0, v = 0, k = 0;
 			for (k; k < nbKeys - 1; ++k) {
 				duration = this._listKeys[k + 1].frame - this._listKeys[k].frame;
 				for (f = 0; f <= duration; ++f) {
-					value = this.computeValue(k, this._listKeys[k].frame + f, method);
-					this.listValues[v++] = value;
+					this.listValues[v++] = this.computeValue(k, this._listKeys[k].frame + f, method);
 				}
 			}
 		},

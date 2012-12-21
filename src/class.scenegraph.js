@@ -124,7 +124,7 @@ var CGSGSceneGraph = CGSGObject.extend(
                 var i = 0;
                 var len = 0;
                 var key = null;
-                //set the new values for the animated nodes
+                //set the new values for all the animated nodes
                 if (this._listTimelines.length > 0) {
                     node = null;
                     var value, timeline;

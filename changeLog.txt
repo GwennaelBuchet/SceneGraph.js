@@ -47,6 +47,13 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.3.1
+
+CHANGES:
+- Optimization. CGSGNode: Add of "needToKeepAbsoluteMatrix" property.
+- Optimization. CGSGNode: not eval common properties on evalset.
+
+---------------------------------------------------------------------
 v1.3.0
 
 CHANGES:

@@ -656,7 +656,8 @@ var CGSGScene = CGSGObject.extend(
          * @param {MouseEvent} event
          *&#x2F;
         onMouseDown:function (event) {
-            this._clickOnScene(event, true);
+            &#x2F;&#x2F;this._clickOnScene(event, true);
+            this.onTouchStart(event);
         },
 
         &#x2F;**
@@ -1138,7 +1139,9 @@ var CGSGScene = CGSGObject.extend(
          * @param {MouseEvent} event
          *&#x2F;
         onMouseDblClick:function (event) {
-            this._dblClickOnScene(event);
+            &#x2F;&#x2F;this._dblClickOnScene(event);
+            event.preventDefault();
+            event.stopPropagation();
         },
 
         &#x2F;**
