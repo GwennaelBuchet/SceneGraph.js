@@ -26,7 +26,7 @@
 /**
  * Global properties of the framework
  *
- * @class __GLOBAL_PROPERTIES__
+ * @class _GLOBAL_PROPERTIES
  * @module Util
  * @static
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)

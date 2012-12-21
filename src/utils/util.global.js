@@ -26,7 +26,7 @@
 /**
  * Global methods
  *
- * @class __GLOBAL_METHODS__
+ * @class _GLOBAL_METHODS
  * @module Util
  * @static
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)

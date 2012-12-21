@@ -34,10 +34,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGVector2D",
         "CGSGWEBVIEWMODE",
         "CGSGWrapMode",
-        "__GLOBAL_CONSTANTS__",
-        "__GLOBAL_METHODS__",
-        "__GLOBAL_PROPERTIES__",
-        "__UTIL_ARRAY__"
+        "_GLOBAL_CONSTANTS",
+        "_GLOBAL_METHODS",
+        "_GLOBAL_PROPERTIES",
+        "_UTIL_ARRAY"
     ],
     "modules": [
         "Animation",

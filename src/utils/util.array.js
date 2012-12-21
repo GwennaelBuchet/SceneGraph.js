@@ -28,7 +28,7 @@
 /**
  * Utils methods extending the Array prototype
  *
- * @class __UTIL_ARRAY__
+ * @class _UTIL_ARRAY
  * @module Util
  * @static
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
