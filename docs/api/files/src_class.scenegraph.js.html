@@ -31,13 +31,13 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/__GLOBAL_CONSTANTS__.html">__GLOBAL_CONSTANTS__</a></li>
+                <li><a href="..&#x2F;classes/_GLOBAL_CONSTANTS.html">_GLOBAL_CONSTANTS</a></li>
             
-                <li><a href="..&#x2F;classes/__GLOBAL_METHODS__.html">__GLOBAL_METHODS__</a></li>
+                <li><a href="..&#x2F;classes/_GLOBAL_METHODS.html">_GLOBAL_METHODS</a></li>
             
-                <li><a href="..&#x2F;classes/__GLOBAL_PROPERTIES__.html">__GLOBAL_PROPERTIES__</a></li>
+                <li><a href="..&#x2F;classes/_GLOBAL_PROPERTIES.html">_GLOBAL_PROPERTIES</a></li>
             
-                <li><a href="..&#x2F;classes/__UTIL_ARRAY__.html">__UTIL_ARRAY__</a></li>
+                <li><a href="..&#x2F;classes/_UTIL_ARRAY.html">_UTIL_ARRAY</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
@@ -314,10 +314,10 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getLastKey();
                             if (key !== null &amp;&amp; key.frame == cgsgCurrentFrame) {
                                 timeline.removeAll();
+                                this._listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
                                     timeline.onAnimationEnd({node:node});
                                 }
-                                this._listTimelines.without(timeline);
 
                                 cgsgFree(timeline);
                             }
@@ -447,7 +447,6 @@ var CGSGSceneGraph = CGSGObject.extend(
          * Remove the child nodes passed in parameter, from the root nodes
          * @method removeNode
          * @param {CGSGNode} node the nodes to remove
-         * @param {Boolean} recursively if true, try to remove the nodes inside the entire tree
          * @return {Boolean} true if the nodes was found and removed
          * *&#x2F;
         removeNode:function (node) {
