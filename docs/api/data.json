@@ -237,7 +237,7 @@
             "name": "src\\utils\\util.array.js",
             "modules": {},
             "classes": {
-                "_UTIL_ARRAY": 1
+                "UTIL_ARRAY": 1
             },
             "fors": {},
             "namespaces": {}
@@ -255,7 +255,7 @@
             "name": "src\\utils\\util.global.js",
             "modules": {},
             "classes": {
-                "_GLOBAL_METHODS": 1
+                "GLOBAL_METHODS": 1
             },
             "fors": {},
             "namespaces": {}
@@ -286,7 +286,7 @@
                 "Util": 1
             },
             "classes": {
-                "_GLOBAL_CONSTANTS": 1
+                "GLOBAL_CONSTANTS": 1
             },
             "fors": {},
             "namespaces": {}
@@ -295,7 +295,7 @@
             "name": "src\\globals.js",
             "modules": {},
             "classes": {
-                "_GLOBAL_PROPERTIES": 1
+                "GLOBAL_PROPERTIES": 1
             },
             "fors": {},
             "namespaces": {}
@@ -430,7 +430,7 @@
                 "undefined": 1
             },
             "classes": {
-                "_GLOBAL_CONSTANTS": 1,
+                "GLOBAL_CONSTANTS": 1,
                 "CGSGHashmap": 1,
                 "CGSGPosition": 1,
                 "CGSGScale": 1,
@@ -438,10 +438,10 @@
                 "CGSGDimension": 1,
                 "CGSGRegion": 1,
                 "CGSGTraverser": 1,
-                "_UTIL_ARRAY": 1,
+                "UTIL_ARRAY": 1,
                 "CGSGColor": 1,
-                "_GLOBAL_METHODS": 1,
-                "_GLOBAL_PROPERTIES": 1
+                "GLOBAL_METHODS": 1,
+                "GLOBAL_PROPERTIES": 1
             },
             "fors": {},
             "namespaces": {},
@@ -1343,9 +1343,9 @@
             "type": "{CGSGTraverser}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "_UTIL_ARRAY": {
-            "name": "_UTIL_ARRAY",
-            "shortname": "_UTIL_ARRAY",
+        "UTIL_ARRAY": {
+            "name": "UTIL_ARRAY",
+            "shortname": "UTIL_ARRAY",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1375,9 +1375,9 @@
             "static": 1,
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "_GLOBAL_METHODS": {
-            "name": "_GLOBAL_METHODS",
-            "shortname": "_GLOBAL_METHODS",
+        "GLOBAL_METHODS": {
+            "name": "GLOBAL_METHODS",
+            "shortname": "GLOBAL_METHODS",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1450,9 +1450,9 @@
             "type": "{CGSGSceneGraph}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "_GLOBAL_CONSTANTS": {
-            "name": "_GLOBAL_CONSTANTS",
-            "shortname": "_GLOBAL_CONSTANTS",
+        "GLOBAL_CONSTANTS": {
+            "name": "GLOBAL_CONSTANTS",
+            "shortname": "GLOBAL_CONSTANTS",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -1466,9 +1466,9 @@
             "static": 1,
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "_GLOBAL_PROPERTIES": {
-            "name": "_GLOBAL_PROPERTIES",
-            "shortname": "_GLOBAL_PROPERTIES",
+        "GLOBAL_PROPERTIES": {
+            "name": "GLOBAL_PROPERTIES",
+            "shortname": "GLOBAL_PROPERTIES",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -8347,7 +8347,7 @@
                 "description": "",
                 "type": "Boolean"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8362,7 +8362,7 @@
                     "description": ""
                 }
             ],
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8371,7 +8371,7 @@
             "description": "Empties the array",
             "itemtype": "method",
             "name": "Array.prototype.clear",
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8384,7 +8384,7 @@
                 "description": "",
                 "type": "Array"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8397,7 +8397,7 @@
                 "description": "",
                 "type": "Array"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8416,7 +8416,7 @@
                 "description": "",
                 "type": "Boolean"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8429,7 +8429,7 @@
                 "description": "",
                 "type": "Array"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8442,7 +8442,7 @@
                 "description": "",
                 "type": "Number"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8455,7 +8455,7 @@
                 "description": "",
                 "type": "Number"
             },
-            "class": "_UTIL_ARRAY",
+            "class": "UTIL_ARRAY",
             "module": "Util"
         },
         {
@@ -8780,7 +8780,7 @@
                 "description": "true if the parameter !== null && !== undefined",
                 "type": "Boolean"
             },
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8788,7 +8788,7 @@
             "line": 44,
             "itemtype": "method",
             "name": "cgsgDetectCurrentExplorer",
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8800,7 +8800,7 @@
                 "description": "a CGSGDimension as the real viewport dimension",
                 "type": "CGSGDimension"
             },
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8812,7 +8812,7 @@
                 "description": "a CGSGDimension as the viewport region",
                 "type": "CGSGDimension"
             },
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8838,7 +8838,7 @@
                     "description": "an integer"
                 }
             ],
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8864,7 +8864,7 @@
                     "description": "an integer"
                 }
             ],
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8889,7 +8889,7 @@
                 "description": "Array of CGSGPosition object",
                 "type": "Array"
             },
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8907,7 +8907,7 @@
                     "type": "CanvasRenderingContext2D"
                 }
             ],
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -8922,7 +8922,7 @@
                     "type": "*"
                 }
             ],
-            "class": "_GLOBAL_METHODS",
+            "class": "GLOBAL_METHODS",
             "module": "Util"
         },
         {
@@ -9981,7 +9981,7 @@
             "name": "CGSG_DEFAULT_DISPLAYRATIO",
             "default": "CGSGScale(1.0, 1.0)",
             "type": "{CGSGScale}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -9992,7 +9992,7 @@
             "name": "CGSG_DEFAULT_SELECTED_STROKE_COLOR",
             "default": "\"#FF6890\"",
             "type": "{String}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10003,7 +10003,7 @@
             "name": "CGSG_DEFAULT_SELECTED_STROKE_SIZE",
             "default": "2",
             "type": "{Number}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10014,7 +10014,7 @@
             "name": "CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE",
             "default": "6",
             "type": "{Number}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10025,7 +10025,7 @@
             "name": "CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR",
             "default": "\"#9068FF\"",
             "type": "{String}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10036,7 +10036,7 @@
             "name": "CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD",
             "default": "3",
             "type": "{Number}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10047,7 +10047,7 @@
             "name": "CGSG_DEFAULT_FRAMERATE_DELAY",
             "default": "30 (ie: each 30 frames)",
             "type": "{Number}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10058,7 +10058,7 @@
             "name": "CGSG_DEFAULT_DBLTOUCH_DELAY",
             "default": "250",
             "type": "{Number}",
-            "class": "_GLOBAL_CONSTANTS",
+            "class": "GLOBAL_CONSTANTS",
             "module": "Util"
         },
         {
@@ -10069,7 +10069,7 @@
             "name": "cgsgVersion",
             "static": 1,
             "type": "{String}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10080,7 +10080,7 @@
             "name": "cgsgDisplayRatio",
             "static": 1,
             "type": "{CGSGScale}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10091,7 +10091,7 @@
             "name": "cgsgResizeHandleThreshold",
             "static": 1,
             "type": "{Number}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10101,7 +10101,7 @@
             "itemtype": "property",
             "name": "cgsgExplorerParams",
             "type": "{Object}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10113,7 +10113,7 @@
             "readonly": "",
             "default": "cgsgExplorerParams.UNKNOWN",
             "type": "{Object}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10124,7 +10124,7 @@
             "name": "cgsgGhostContext",
             "readonly": "",
             "type": "{CanvasRenderingContext2D}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10135,7 +10135,7 @@
             "name": "cgsgCurrentFrame",
             "readonly": "",
             "type": "{Number}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10146,7 +10146,7 @@
             "name": "cgsgCanvas",
             "readonly": "",
             "type": "{HTMLElement}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10158,7 +10158,7 @@
             "type": "{String}",
             "access": "public",
             "tagname": "",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         },
         {
@@ -10169,7 +10169,7 @@
             "name": "cgsgFramerateDelay",
             "default": "CGSG_DEFAULT_FRAMERATE_DELAY",
             "type": "{Number}",
-            "class": "_GLOBAL_PROPERTIES",
+            "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         }
     ]
