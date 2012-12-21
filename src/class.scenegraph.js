@@ -152,10 +152,10 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getLastKey();
                             if (key !== null && key.frame == cgsgCurrentFrame) {
                                 timeline.removeAll();
+                                this._listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
                                     timeline.onAnimationEnd({node:node});
                                 }
-                                this._listTimelines.without(timeline);
 
                                 cgsgFree(timeline);
                             }
@@ -285,7 +285,6 @@ var CGSGSceneGraph = CGSGObject.extend(
          * Remove the child nodes passed in parameter, from the root nodes
          * @method removeNode
          * @param {CGSGNode} node the nodes to remove
-         * @param {Boolean} recursively if true, try to remove the nodes inside the entire tree
          * @return {Boolean} true if the nodes was found and removed
          * */
         removeNode:function (node) {

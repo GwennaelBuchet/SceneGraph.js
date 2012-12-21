@@ -9808,11 +9808,6 @@
                     "name": "node",
                     "description": "the nodes to remove",
                     "type": "CGSGNode"
-                },
-                {
-                    "name": "recursively",
-                    "description": "if true, try to remove the nodes inside the entire tree",
-                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -9824,7 +9819,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 301,
+            "line": 300,
             "description": "Add a nodes on the scene.\nIf the root does not already exist, this nodes will be used as root",
             "itemtype": "method",
             "name": "addNode",
@@ -9845,7 +9840,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 321,
+            "line": 320,
             "description": "Add a key",
             "itemtype": "method",
             "name": "addAnimationKey",
@@ -9889,7 +9884,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 347,
+            "line": 346,
             "description": "Animate an attribute of a nodes",
             "itemtype": "method",
             "name": "animate",
@@ -9943,7 +9938,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 367,
+            "line": 366,
             "itemtype": "method",
             "name": "stillHaveAnimation",
             "return": {
@@ -9955,7 +9950,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 387,
+            "line": 386,
             "description": "Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet",
             "itemtype": "method",
             "name": "getTimeline",
