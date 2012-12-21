@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>_GLOBAL_PROPERTIES - cgSceneGraph</title>
+    <title>GLOBAL_CONSTANTS - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -30,14 +30,6 @@
 
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
-            
-                <li><a href="..&#x2F;classes/_GLOBAL_CONSTANTS.html">_GLOBAL_CONSTANTS</a></li>
-            
-                <li><a href="..&#x2F;classes/_GLOBAL_METHODS.html">_GLOBAL_METHODS</a></li>
-            
-                <li><a href="..&#x2F;classes/_GLOBAL_PROPERTIES.html">_GLOBAL_PROPERTIES</a></li>
-            
-                <li><a href="..&#x2F;classes/_UTIL_ARRAY.html">_UTIL_ARRAY</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
@@ -105,6 +97,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
             
+                <li><a href="..&#x2F;classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
+            
+                <li><a href="..&#x2F;classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
+            
             </ul>
 
             <ul id="api-modules" class="apis modules">
@@ -156,7 +156,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>_GLOBAL_PROPERTIES Class</h1>
+                        <h1>GLOBAL_CONSTANTS Class</h1>
 <div class="box meta">
     
 
@@ -164,7 +164,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_globals.js.html#l26"><code>src\globals.js:26</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_constants.js.html#l26"><code>src\constants.js:26</code></a>
         </div>
     
 
@@ -180,7 +180,7 @@
 
 
 <div class="box intro">
-    <p>Global properties of the framework</p>
+    <p>Global constants used by the framework</p>
 </div>
 
 
@@ -209,78 +209,58 @@
 
                     <ul class="index-list properties">
                         
-                            <li class="index-item property public">
-                                <a href="#property__ghostColor">_ghostColor</a>
+                            <li class="index-item property">
+                                <a href="#property_CGSG_DEFAULT_DBLTOUCH_DELAY">CGSG_DEFAULT_DBLTOUCH_DELAY</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgCanvas">cgsgCanvas</a>
+                                <a href="#property_CGSG_DEFAULT_DISPLAYRATIO">CGSG_DEFAULT_DISPLAYRATIO</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgCurrentExplorer">cgsgCurrentExplorer</a>
+                                <a href="#property_CGSG_DEFAULT_FRAMERATE_DELAY">CGSG_DEFAULT_FRAMERATE_DELAY</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgCurrentFrame">cgsgCurrentFrame</a>
+                                <a href="#property_CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR">CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgDisplayRatio">cgsgDisplayRatio</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_cgsgExplorerParams">cgsgExplorerParams</a>
+                                <a href="#property_CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE">CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgFramerateDelay">cgsgFramerateDelay</a>
+                                <a href="#property_CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD">CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgGhostContext">cgsgGhostContext</a>
+                                <a href="#property_CGSG_DEFAULT_SELECTED_STROKE_COLOR">CGSG_DEFAULT_SELECTED_STROKE_COLOR</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_cgsgResizeHandleThreshold">cgsgResizeHandleThreshold</a>
+                                <a href="#property_CGSG_DEFAULT_SELECTED_STROKE_SIZE">CGSG_DEFAULT_SELECTED_STROKE_SIZE</a>
 
-                                
-                                    <span class="flag static">static</span>
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_cgsgVersion">cgsgVersion</a>
-
-                                
-                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -301,144 +281,8 @@
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property__ghostColor" class="property item public">
-    <span class="attribute-name">_ghostColor</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l108"><code>src\globals.js:108</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>the color used for the ghost mode rendering</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_cgsgCanvas" class="property item">
-    <span class="attribute-name">cgsgCanvas</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/Document_Object_Model_(DOM)/HTMLElement" class="crosslink external" target="_blank">HTMLElement</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l100"><code>src\globals.js:100</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The canvas container for this scene graph</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_cgsgCurrentExplorer" class="property item">
-    <span class="attribute-name">cgsgCurrentExplorer</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l75"><code>src\globals.js:75</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Current version of the browser. The framework check the browser at the start and fill this property.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> cgsgExplorerParams.UNKNOWN</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_cgsgCurrentFrame" class="property item">
-    <span class="attribute-name">cgsgCurrentFrame</span>
+                    <div id="property_CGSG_DEFAULT_DBLTOUCH_DELAY" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_DBLTOUCH_DELAY</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
@@ -460,7 +304,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l92"><code>src\globals.js:92</code></a>
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l96"><code>src\constants.js:96</code></a>
         
         </p>
 
@@ -470,9 +314,12 @@
     </div>
 
     <div class="description">
-        <p>The current frame in hte global timeline</p>
+        <p>Default value for the double touch detection.
+This property is the delay between 2 touches to be considered as a dbl touch event.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> 250</p>
     
 
     
@@ -481,8 +328,8 @@
 </div>
 
                 
-                    <div id="property_cgsgDisplayRatio" class="property item">
-    <span class="attribute-name">cgsgDisplayRatio</span>
+                    <div id="property_CGSG_DEFAULT_DISPLAYRATIO" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_DISPLAYRATIO</span>
     <span class="type"><a href="..\classes\CGSGScale.html" class="crosslink">CGSGScale</a></span>
 
     
@@ -492,8 +339,6 @@
     
 
     
-        <span class="flag static">static</span>
-    
 
     <div class="meta">
         
@@ -506,7 +351,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l43"><code>src\globals.js:43</code></a>
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l43"><code>src\constants.js:43</code></a>
         
         </p>
 
@@ -516,9 +361,11 @@
     </div>
 
     <div class="description">
-        <p>Current display ratio</p>
+        <p>Default ratio value for the display</p>
     </div>
 
+    
+        <p><strong>Default:</strong> CGSGScale(1.0, 1.0)</p>
     
 
     
@@ -527,52 +374,8 @@
 </div>
 
                 
-                    <div id="property_cgsgExplorerParams" class="property item">
-    <span class="attribute-name">cgsgExplorerParams</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l59"><code>src\globals.js:59</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>List of the parameters of different browsers</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_cgsgFramerateDelay" class="property item">
-    <span class="attribute-name">cgsgFramerateDelay</span>
+                    <div id="property_CGSG_DEFAULT_FRAMERATE_DELAY" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_FRAMERATE_DELAY</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
@@ -594,7 +397,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l116"><code>src\globals.js:116</code></a>
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l88"><code>src\constants.js:88</code></a>
         
         </p>
 
@@ -604,12 +407,11 @@
     </div>
 
     <div class="description">
-        <p>Number of frames to average the FPS.
-Reduce this number to get more accurate FPS</p>
+        <p>Default number of frames to average the FPS</p>
     </div>
 
     
-        <p><strong>Default:</strong> CGSG_DEFAULT_FRAMERATE_DELAY</p>
+        <p><strong>Default:</strong> 30 (ie: each 30 frames)</p>
     
 
     
@@ -618,9 +420,9 @@ Reduce this number to get more accurate FPS</p>
 </div>
 
                 
-                    <div id="property_cgsgGhostContext" class="property item">
-    <span class="attribute-name">cgsgGhostContext</span>
-    <span class="type">CanvasRenderingContext2D</span>
+                    <div id="property_CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
     
 
@@ -641,7 +443,7 @@ Reduce this number to get more accurate FPS</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l84"><code>src\globals.js:84</code></a>
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l72"><code>src\constants.js:72</code></a>
         
         </p>
 
@@ -651,9 +453,11 @@ Reduce this number to get more accurate FPS</p>
     </div>
 
     <div class="description">
-        <p>The global ghost context for fake rendering</p>
+        <p>Default size for the resize handles at the corners of a selected node</p>
     </div>
 
+    
+        <p><strong>Default:</strong> &quot;#9068FF&quot;</p>
     
 
     
@@ -662,8 +466,8 @@ Reduce this number to get more accurate FPS</p>
 </div>
 
                 
-                    <div id="property_cgsgResizeHandleThreshold" class="property item">
-    <span class="attribute-name">cgsgResizeHandleThreshold</span>
+                    <div id="property_CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
     
@@ -673,7 +477,51 @@ Reduce this number to get more accurate FPS</p>
     
 
     
-        <span class="flag static">static</span>
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l65"><code>src\constants.js:65</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default size for the resize handles at the corners of a selected node</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 6</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
     
 
     <div class="meta">
@@ -687,7 +535,7 @@ Reduce this number to get more accurate FPS</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l51"><code>src\globals.js:51</code></a>
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l80"><code>src\constants.js:80</code></a>
         
         </p>
 
@@ -701,6 +549,8 @@ Reduce this number to get more accurate FPS</p>
     </div>
 
     
+        <p><strong>Default:</strong> 3</p>
+    
 
     
 
@@ -708,8 +558,8 @@ Reduce this number to get more accurate FPS</p>
 </div>
 
                 
-                    <div id="property_cgsgVersion" class="property item">
-    <span class="attribute-name">cgsgVersion</span>
+                    <div id="property_CGSG_DEFAULT_SELECTED_STROKE_COLOR" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_SELECTED_STROKE_COLOR</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
     
@@ -718,8 +568,6 @@ Reduce this number to get more accurate FPS</p>
 
     
 
-    
-        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -733,7 +581,7 @@ Reduce this number to get more accurate FPS</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l35"><code>src\globals.js:35</code></a>
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l51"><code>src\constants.js:51</code></a>
         
         </p>
 
@@ -743,9 +591,57 @@ Reduce this number to get more accurate FPS</p>
     </div>
 
     <div class="description">
-        <p>Current version of the framework</p>
+        <p>Default color for the selection stroke</p>
     </div>
 
+    
+        <p><strong>Default:</strong> &quot;#FF6890&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_CGSG_DEFAULT_SELECTED_STROKE_SIZE" class="property item">
+    <span class="attribute-name">CGSG_DEFAULT_SELECTED_STROKE_SIZE</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_constants.js.html#l58"><code>src\constants.js:58</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Default size for the selection stroke</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 2</p>
     
 
     

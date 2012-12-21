@@ -26,7 +26,7 @@
 /**
  * Global constants used by the framework
  *
- * @class _GLOBAL_CONSTANTS
+ * @class GLOBAL_CONSTANTS
  * @module Util
  * @static
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
