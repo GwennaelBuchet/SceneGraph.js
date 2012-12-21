@@ -152,12 +152,12 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getLastKey();
                             if (key !== null && key.frame == cgsgCurrentFrame) {
                                 timeline.removeAll();
-                                this._listTimelines.without(timeline);
+                                //this._listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
                                     timeline.onAnimationEnd({node:node});
                                 }
 
-                                cgsgFree(timeline);
+                                //cgsgFree(timeline);
                             }
                         }
                     }
