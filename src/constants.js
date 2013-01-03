@@ -49,6 +49,30 @@
 var CGSG_DEFAULT_DISPLAYRATIO = new CGSGScale(1.0, 1.0);
 
 /**
+ * Default fill color for the drag selection selection rectangle
+ * @property CGSG_DEFAULT_SELECTED_STROKE_COLOR
+ * @default "#C0C0C0"
+ * @type {String}
+ */
+var CGSG_DEFAULT_DRAG_SELECT_FILL_COLOR = "#C0C0C0";
+
+/**
+ * Default stroke color for the drag selection rectangle
+ * @property CGSG_DEFAULT_DRAG_SELECT_STROKE_COLOR
+ * @default "#808080"
+ * @type {String}
+ */
+var CGSG_DEFAULT_DRAG_SELECT_STROKE_COLOR = "#808080";
+
+/**
+ * Default alpha value for the drag selection rectangle
+ * @property CGSG_DEFAULT_DRAG_SELECT_ALPHA
+ * @default 0.6
+ * @type {Number}
+ */
+var CGSG_DEFAULT_DRAG_SELECT_ALPHA = 0.6;
+
+/**
  * Default color for the selection stroke
  * @property CGSG_DEFAULT_SELECTED_STROKE_COLOR
  * @default "#FF6890"

@@ -98,6 +98,38 @@ var CGSGScene = CGSGObject.extend(
             this.allowMultiSelect = true;
 
             /**
+             * Drag selection boolean.
+             * @property isDragSelectEnabled
+             * @default true
+             * @type {Boolean}
+             */
+            this.isDragSelectEnabled = false;
+
+            /**
+             * Fill color for the drag selection selection rectangle
+             * @property dragSelectFillColor
+             * @default "#C0C0C0"
+             * @type {String}
+             */
+            this.dragSelectFillColor = CGSG_DEFAULT_DRAG_SELECT_FILL_COLOR;
+
+            /**
+             * Stroke color for the drag selection selection rectangle
+             * @property dragSelectStrokeColor
+             * @default "#808080"
+             * @type {String}
+             */
+            this.dragSelectStrokeColor = CGSG_DEFAULT_DRAG_SELECT_STROKE_COLOR;
+
+            /**
+             * Alpha value for the drag selection rectangle
+             * @property dragSelectAlpha
+             * @default 0.6
+             * @type {Number}
+             */
+            this.dragSelectAlpha = CGSG_DEFAULT_DRAG_SELECT_ALPHA;
+
+            /**
              * The scene graph itself
              * @property sceneGraph
              * @type {CGSGSceneGraph}
@@ -179,8 +211,11 @@ var CGSGScene = CGSGObject.extend(
              */
             this._mousePosition = [];
             this._mouseOldPosition = [];
+            this._dragSelectStartMousePosition = [];
+            this._dragSelectEndMousePosition = []; 
             this._isDrag = false;
             this._isResizeDrag = false;
+            this._isDragSelect = false;
             this._resizingDirection = -1;
             /**
              * @property _listCursors List of the names for the cursor when overring a handlebox
@@ -370,7 +405,28 @@ var CGSGScene = CGSGObject.extend(
                 if (this.onRenderStart !== null) {
                     this.onRenderStart();
                 }
+
                 this.sceneGraph.render();
+
+                //render the drag selection box directly onto the scene graph ontop of everything else
+                if(this._dragSelectStartMousePosition.length > 0 && this._dragSelectEndMousePosition.length > 0) {
+                    
+                    var p1 = this._dragSelectStartMousePosition[0];
+                    var p2 = this._dragSelectEndMousePosition[0];
+
+                    var dx = p2.x - p1.x, dy = p2.y - p1.y;
+
+                    this.sceneGraph.context.save();
+
+                    this.sceneGraph.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
+                    this.sceneGraph.context.strokeStyle = this.dragSelectStrokeColor;
+                    this.sceneGraph.context.fillStyle = this.dragSelectFillColor;
+                    this.sceneGraph.context.globalAlpha = this.dragSelectAlpha;
+                    this.sceneGraph.context.fillRect(p1.x,p1.y,dx,dy);
+                    this.sceneGraph.context.strokeRect(p1.x,p1.y,dx,dy);
+
+                    this.sceneGraph.context.restore();
+                }
 
                 if (this.onRenderEnd !== null) {
                     this.onRenderEnd();
@@ -573,8 +629,9 @@ var CGSGScene = CGSGObject.extend(
                     return (node.isClickable === true || node.isDraggable === true || node.isResizable === true)
                 });
             }
-            //if a nodes is under the cursor, select it
-            if (this._selectedNode !== null && this._selectedNode !== undefined) {
+            //if a node is under the cursor, select it if it is (clickable || reiszable || draggable)
+            if (this._selectedNode !== null && this._selectedNode !== undefined && 
+                (this._selectedNode.isClickable || this._selectedNode.isDraggable || this._selectedNode.isResizable)) {
                 if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
 
                     //if multiselection is activated
@@ -613,6 +670,14 @@ var CGSGScene = CGSGObject.extend(
                     }
                 }
 
+            }
+            //if no nodes were hit (that were clickable,reizeable or draggable) lets start a drag selection if we are allowed
+            else if(this.isDragSelectEnabled) {
+
+                this._isDragSelect = true;
+                this._dragSelectStartMousePosition = cgsgGetCursorPositions(event, cgsgCanvas);
+                this._dragSelectEndMousePosition = cgsgGetCursorPositions(event, cgsgCanvas);
+                this.deselectAll(null);
             }
             //else if no nodes was clicked
             else {
@@ -834,6 +899,13 @@ var CGSGScene = CGSGObject.extend(
                 //ask for redraw
                 this.invalidate();
             }
+            //if we are drag selecting 
+            else if(this._isDragSelect) {
+                this._dragSelectEndMousePosition = this._mousePosition.copy();
+
+                //ask to redraw for the selection box
+                this.invalidate();
+            }
 
             //mouse over a node ?
             if (!this._isDrag && !this._isResizeDrag) {
@@ -958,6 +1030,16 @@ var CGSGScene = CGSGObject.extend(
                 }
                 this._isResizeDrag = false;
             }
+            //else if this is a drag select
+            else if (this._isDragSelect) {
+                this._isDragSelect = false;
+                this._doDragSelect();
+                this._dragSelectEndMousePosition = [];
+                this._dragSelectEndMousePosition = [];
+
+                //request a re-render for the drag select rect to be killed with
+                this.invalidate();
+            }
 
             //else if jst up the mice of nodes
             else {
@@ -970,6 +1052,37 @@ var CGSGScene = CGSGObject.extend(
             this._resizingDirection = -1;
         },
 
+        /**
+         * Select the nodes under the drag select rectangle
+         * @protected
+         * @method _doDragSelect
+         */
+         _doDragSelect:function() {
+            
+            var p1 = this._dragSelectStartMousePosition[0];
+            var p2 = this._dragSelectEndMousePosition[0];
+
+            var dx = p2.x - p1.x, dy = p2.y - p1.y;
+
+            if(dx < 0) {
+                dx = Math.abs(dx);
+                p1.x -= dx;
+            }
+
+            if(dy < 0) {
+                dy = Math.abs(dy);
+                p1.y -= dy;
+            }
+
+            var region = new CGSGRegion(p1.x, p1.y, dx, dy);
+            var newSelections = this.sceneGraph.pickNodes(region,function (node) {
+                return (node.isClickable === true || node.isDraggable === true || node.isResizable === true)
+            });
+
+            for(var i=0, len = newSelections.length; i < len; ++i) {
+                this.sceneGraph.selectNode(newSelections[i]);
+            }
+         },
         /**
          * mouse double click Event handler function
          * @protected
