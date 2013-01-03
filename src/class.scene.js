@@ -1034,7 +1034,7 @@ var CGSGScene = CGSGObject.extend(
             else if (this._isDragSelect) {
                 this._isDragSelect = false;
                 this._doDragSelect();
-                this._dragSelectEndMousePosition = [];
+                this._dragSelectStartMousePosition = [];
                 this._dragSelectEndMousePosition = [];
 
                 //request a re-render for the drag select rect to be killed with
