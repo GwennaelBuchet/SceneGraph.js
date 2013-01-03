@@ -30,7 +30,9 @@
  * @constructor
  * @param {CGSGNode} parentNode
  * @param {Number} size
- * @param {String} color
+ * @param {String} fillColor
+ * @param {String} strokeColor
+ * @param {Number} lineWidth
  * @param {Number} x
  * @param {Number} y
  * @type {CGSGHandleBox}
@@ -38,12 +40,25 @@
  */
 var CGSGHandleBox = CGSGObject.extend(
 	{
-		initialize : function (parentNode, size, color, x, y) {
+		initialize : function (parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
 			/**
-			 * @property color
+			 * @property fillColor
 			 * @type {String}
 			 */
-			this.color = color;
+			this.fillColor = fillColor;
+
+			/**
+			 * @property strokeColor
+			 * @type {String}
+			 */
+			this.strokeColor = strokeColor;
+
+			/**
+			 * @property lineWidth
+			 * @type {Number}
+			 */
+			this.lineWidth = lineWidth;
+
 			/**
 			 * @property size
 			 * @type {Number}
@@ -69,7 +84,13 @@ var CGSGHandleBox = CGSGObject.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the handle box
 		 */
 		render : function (context) {
-			context.fillStyle = this.color;
+			context.lineWidth = this.lineWidth;
+			context.strokeStyle = this.strokeColor;
+			context.fillStyle = this.fillColor;
+			context.strokeRect(this._position.x,
+			                 this._position.y,
+			                 this.size / this._parentNode._absoluteScale.x,
+			                 this.size / this._parentNode._absoluteScale.y);
 			context.fillRect(this._position.x,
 			                 this._position.y,
 			                 this.size / this._parentNode._absoluteScale.x,

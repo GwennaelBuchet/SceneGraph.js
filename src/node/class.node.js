@@ -356,7 +356,7 @@ var CGSGNode = CGSGObject.extend(
 
             // initialize the selection handleBoxes
             for (var i = 0; i < 8; i++) {
-                var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor, 0, 0);
+                var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor, this.selectionLineColor, this.selectionLineWidth, 0, 0);
                 this.resizeHandles.push(handleBox);
             }
 
@@ -661,7 +661,9 @@ var CGSGNode = CGSGObject.extend(
 
                 for (var i = 0; i < 8; i++) {
                     this.resizeHandles[i].size = this.selectionHandleSize;
-                    this.resizeHandles[i].color = this.selectionHandleColor;
+                    this.resizeHandles[i].fillColor = this.selectionHandleColor;
+                    this.resizeHandles[i].strokeColor = this.selectionLineColor;
+                    this.resizeHandles[i].lineWidth = this.selectionLineWidth;
                     this.resizeHandles[i].render(context);
                 }
             }
