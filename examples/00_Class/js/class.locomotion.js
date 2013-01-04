@@ -28,7 +28,7 @@
  * Purpose :
  * class creation example
  * */
-var Locomotion = Object.extend(
+var Locomotion = CGSGObject.extend(
 	{
 		initialize : function (name) {
 			this.name = name;
