@@ -282,6 +282,36 @@ var CGSGSceneGraph = CGSGObject.extend(
         },
 
         /**
+         * Recursively traverse the nodes and return the ones who are under the mouse coordinates
+         * @method pickNodes
+         * @param {CGSGRegion} region
+         * @param {String} condition
+         * @return {Array}
+         * @example
+         *  this.scenegraph.picknodes(region, 'position.x > 100'); <br/>
+         *  this.scenegraph.picknodes(region, 'position.x > 100 && this.position.y > 100');
+         */
+        pickNodes:function (region, condition) {
+            //empty the current selection first
+            //this.selectedNodes = new Array();
+            cgsgClearContext(cgsgGhostContext);
+            //recursively traverse the nodes to get the selected nodes
+            if (!cgsgExist(this.root)) {
+                return null;
+            }
+            else {
+                return this.root.pickNodes(
+                    region.copy(), //position of the cursor on the viewport
+                    new CGSGScale(1, 1), //absolute scale for the nodes
+                    cgsgGhostContext, //context for the ghost rendering
+                    true, //recursively ?
+                    //cgsgCanvas.width / cgsgDisplayRatio.x, cgsgCanvas.height / cgsgDisplayRatio.y,
+                    //dimension of the canvas container
+                    condition);  // condition to the picknode be executed
+            }
+        },
+
+        /**
          * Remove the child nodes passed in parameter, from the root nodes
          * @method removeNode
          * @param {CGSGNode} node the nodes to remove

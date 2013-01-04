@@ -356,7 +356,7 @@ var CGSGNode = CGSGObject.extend(
 
             // initialize the selection handleBoxes
             for (var i = 0; i < 8; i++) {
-                var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor, 0, 0);
+                var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor, this.selectionLineColor, this.selectionLineWidth, 0, 0);
                 this.resizeHandles.push(handleBox);
             }
 
@@ -661,7 +661,9 @@ var CGSGNode = CGSGObject.extend(
 
                 for (var i = 0; i < 8; i++) {
                     this.resizeHandles[i].size = this.selectionHandleSize;
-                    this.resizeHandles[i].color = this.selectionHandleColor;
+                    this.resizeHandles[i].fillColor = this.selectionHandleColor;
+                    this.resizeHandles[i].strokeColor = this.selectionLineColor;
+                    this.resizeHandles[i].lineWidth = this.selectionLineWidth;
                     this.resizeHandles[i].render(context);
                 }
             }
@@ -799,6 +801,50 @@ var CGSGNode = CGSGObject.extend(
         },
 
         /**
+         * return this if this nodes is under the mice cursor
+         * Can be overrided by inherited klass to optimize this perform.
+         * This default function used the ghost rendering method
+         * @protected
+         * @method detectSelectionInRegion
+         * @param {CGSGRegion} region The region to check
+         * @param {CanvasRenderingContext2D} ghostContext
+         * @param {CGSGScale} absoluteScale
+         */
+        detectSelectionInRegion:function (region, ghostContext, absoluteScale) {
+
+            if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
+                  
+               var us = this.getAbsoluteRegion();
+            
+               var cond1 = region.position.x + region.dimension.width < us.position.x;
+               var cond2 = region.position.x > us.position.x + us.dimension.width;
+               var cond3 = region.position.y + region.dimension.height < us.position.y;
+               var cond4 = region.position.y > us.position.y + us.dimension.height;
+
+               if(!(cond1 || cond2 || cond3 || cond4))
+                  return this;
+            }
+            else /*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*/ {
+                // draw shape onto ghost context
+                this.renderGhost(ghostContext);
+
+                // get image data at the mouse x,y pixel
+                var imageData = ghostContext.getImageData(region.position.x, region.position.y, region.dimension.width, region.dimension.height);
+
+                cgsgClearContext(ghostContext);
+
+                // if the a pixel exists in the region then, select this node
+                for(var i=0, len = imageData.length; i < len; ++i) {
+                    if (imageData.data[i] != 0) {
+                        return this;
+                    }
+                }
+            }
+
+            return null;
+        },
+
+        /**
          * Check if this nodes is under the cursor position.
          * @public
          * @method pickNode
@@ -808,7 +854,7 @@ var CGSGNode = CGSGObject.extend(
          * @param {Boolean} recursively if false, don't traverse the children of this nodes
          * @param {Function} condition Condition to be picked
          * ie: "color=='yellow'" or "classType=='CGSGNodeImage' && this.globalAlpha>0.5"
-         * */
+         */
         pickNode:function (mousePosition, absoluteScale, ghostContext, recursively, condition) {
             var selectedNode = null;
 
@@ -846,6 +892,57 @@ var CGSGNode = CGSGObject.extend(
             }
 
             return selectedNode;
+        },
+
+        /**
+         * Return all nodes (Array) in the given region
+         * @public
+         * @method pickNodes
+         * @param {CGSGRegion} Region of the canvas to check
+         * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
+         * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
+         * @param {Boolean} recursively if false, don't traverse the children of this nodes
+         * @param {Function} condition Condition to be picked
+         * ie: "color=='yellow'" or "classType=='CGSGNodeImage' && this.globalAlpha>0.5"
+         */
+        pickNodes:function (region, absoluteScale, ghostContext, recursively, condition) {
+            var selectedNodes = [];
+
+            var childAbsoluteScale = null;
+            if (cgsgExist(absoluteScale)) {
+                childAbsoluteScale = absoluteScale.copy();
+                childAbsoluteScale.multiply(this.scale);
+            }
+            else {
+                childAbsoluteScale = this.getAbsoluteScale();
+            }
+
+            if (this.isTraversable && (this.isClickable || this.isResizable || this.isDraggable)) {
+                if (!cgsgExist(condition) || condition(this) === true) {
+                    this.computeAbsoluteMatrix(false);
+                    var selected = this.detectSelectionInRegion(region, ghostContext, childAbsoluteScale);
+                    if(cgsgExist(selected)) {
+                        selectedNodes.push(selected);
+                    }
+                }
+            }
+
+            //traverse the children if asked
+            if (this.isTraversable && recursively && !this.isALeaf()) {
+                for (var i = this.children.length - 1; i >= 0; --i) {
+                    var childNode = this.children[i];
+                    var selectedChildren = childNode.pickNodes(region,
+                        childAbsoluteScale, ghostContext,
+                        recursively, condition);
+                    if (selectedChildren !== null && selectedChildren !== undefined) {
+                        selectedNodes = selectedNodes.concat(selectedChildren);
+                    }
+                }
+
+                childAbsoluteScale = null;
+            }
+
+            return selectedNodes;
         },
 
         /**
@@ -1334,25 +1431,40 @@ var CGSGNode = CGSGObject.extend(
          * @param {Number} threshold space between the 2 nodes before considering they are colliding
          */
         isColliding:function (node, threshold) {
+           return this.isCollidingRegion(node.getAbsoluteRegion());
+        },
+
+        /**
+         * @public
+         * @method isCollidingRegion
+         * @return {Boolean} true if the region overlaps with the node. They are colliding if the distance between them is minus than the threshold parameter
+         * @param {CGSGRegion} region
+         * @param {Number} threshold space between the 2 nodes before considering they are overlapping
+         */
+         isCollidingRegion:function(region, threshold) {
             if (threshold === null) {
                 threshold = 0;
             }
-            var nodeRight = node.getAbsoluteRight();
-            var nodeBottom = node.getAbsoluteBottom();
+
+            var nodeRight = region.position.x;
+            var nodeBottom = region.position.y + region.dimension.height;
+            var nodeLeft = region.position.x + region.dimension.width;
+            var nodeTop = region.position.y;
 
             if ((this.getAbsoluteLeft() <= nodeRight + threshold &&
-                this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold) ||
-                (this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold &&
+                this.getAbsoluteRight() >= nodeLeft - threshold) ||
+                (this.getAbsoluteRight() >= nodeLeft - threshold &&
                     this.getAbsoluteLeft() <= nodeRight + threshold)) {
 
                 if (this.getAbsoluteTop() <= nodeBottom + threshold &&
-                    this.getAbsoluteBottom() >= node.getAbsoluteTop() - threshold) {
+                    this.getAbsoluteBottom() >= nodeTop - threshold) {
                     return true;
                 }
             }
 
             return false;
-        },
+         },
+
 
         /**
          * @public
