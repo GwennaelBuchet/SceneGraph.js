@@ -775,9 +775,9 @@ var CGSGNode = CGSGObject.extend(
 
             if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
                 if (mousePosition.x >= this._absolutePosition.x
-                    && mousePosition.x <= this._absolutePosition.x + this.getWidth() * absoluteScale.x
+                    && mousePosition.x < this._absolutePosition.x + this.getWidth() * absoluteScale.x
                     && mousePosition.y >= this._absolutePosition.y
-                    && mousePosition.y <= this._absolutePosition.y + this.getHeight() * absoluteScale.y
+                    && mousePosition.y < this._absolutePosition.y + this.getHeight() * absoluteScale.y
                     ) {
                     return this;
                 }
@@ -857,7 +857,6 @@ var CGSGNode = CGSGObject.extend(
          */
         pickNode:function (mousePosition, absoluteScale, ghostContext, recursively, condition) {
             var selectedNode = null;
-
             var childAbsoluteScale = null;
             if (cgsgExist(absoluteScale)) {
                 childAbsoluteScale = absoluteScale.copy();
