@@ -1430,7 +1430,70 @@ var CGSGNode = CGSGObject.extend(
          * @param {Number} threshold space between the 2 nodes before considering they are colliding
          */
         isColliding:function (node, threshold) {
-           return this.isCollidingRegion(node.getAbsoluteRegion());
+            return this.isCollidingGhost(node);
+           //return this.isCollidingRegion(node.getAbsoluteRegion());
+        },
+
+        /**
+         * @public
+         * @method isCollidingGhost
+         * @param {CGSGNode} node a CGSGNode
+         * @return {Boolean} true if the 2 nodes are colliding
+         */
+        isCollidingGhost: function (node) {
+            // get deltas to run through minimum pixels (only union of both nodes)
+            var deltaX = node.getAbsolutePosition().x - this.getAbsolutePosition().x;
+            var deltaY = node.getAbsolutePosition().y - this.getAbsolutePosition().y;
+
+            // with delta, calculate the start and end (length) of x and y
+            var lengthX = (deltaX >= 0) ?
+                Math.min(this.getAbsoluteWidth() - deltaX, node.getAbsoluteWidth()) :
+                Math.min(node.getAbsoluteWidth() + deltaX, this.getAbsoluteWidth());
+
+            var lengthY = (deltaY >= 0) ?
+                Math.min(this.getAbsoluteHeight() - deltaY, node.getAbsoluteHeight()) :
+                Math.min(node.getAbsoluteHeight() + deltaY, this.getAbsoluteHeight());
+
+            if ((lengthX <= 0) || (lengthY <= 0)) {
+                return false;
+            }
+
+            var startX = (deltaX >= 0) ? deltaX : 0;
+            var startY = (deltaY >= 0) ? deltaY : 0;
+
+            // draw both nodes with an union-mask
+            var tmpCanvas = document.createElement('canvas');
+            tmpCanvas.width = this.getWidth();
+            tmpCanvas.height = this.getHeight();
+            var ctx = tmpCanvas.getContext("2d");
+
+            // draw this at 0x0; (backup position, render, restore position)
+            var backupPosition = this.position;
+            this.position = new CGSGPosition(0, 0);
+            this.render(ctx);
+            this.position = backupPosition;
+
+            // mask
+            ctx.globalCompositeOperation = "destination-in";
+
+            // draw node at deltas (backup position, render, restore position)
+            backupPosition = node.position;
+            node.position = new CGSGPosition(deltaX, deltaY);
+            node.render(ctx);
+            node.position = backupPosition;
+
+            //run through data canvas, in the common zone
+            var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);
+            for (var x = 0; x < canvasData.width; x++) {
+                for (var y = 0; y < canvasData.height; y++) {
+                    var idx = ((x) + (y) * canvasData.width) * 4;
+                    // check alpha
+                    if (canvasData.data[idx + 3] > 0) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         },
 
         /**
