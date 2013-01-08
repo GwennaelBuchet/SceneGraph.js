@@ -1430,8 +1430,24 @@ var CGSGNode = CGSGObject.extend(
          * @param {Number} threshold space between the 2 nodes before considering they are colliding
          */
         isColliding:function (node, threshold) {
-            return this.isCollidingGhost(node);
-           //return this.isCollidingRegion(node.getAbsoluteRegion());
+            if (threshold === null) {
+                threshold = 0;
+            }
+            var nodeRight = node.getAbsoluteRight();
+            var nodeBottom = node.getAbsoluteBottom();
+
+            if ((this.getAbsoluteLeft() <= nodeRight + threshold &&
+                this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold) ||
+                (this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold &&
+                    this.getAbsoluteLeft() <= nodeRight + threshold)) {
+
+                if (this.getAbsoluteTop() <= nodeBottom + threshold &&
+                    this.getAbsoluteBottom() >= node.getAbsoluteTop() - threshold) {
+                    return true;
+                }
+            }
+
+            return false;
         },
 
         /**
