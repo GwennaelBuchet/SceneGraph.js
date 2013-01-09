@@ -1430,24 +1430,8 @@ var CGSGNode = CGSGObject.extend(
          * @param {Number} threshold space between the 2 nodes before considering they are colliding
          */
         isColliding:function (node, threshold) {
-            if (threshold === null) {
-                threshold = 0;
-            }
-            var nodeRight = node.getAbsoluteRight();
-            var nodeBottom = node.getAbsoluteBottom();
-
-            if ((this.getAbsoluteLeft() <= nodeRight + threshold &&
-                this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold) ||
-                (this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold &&
-                    this.getAbsoluteLeft() <= nodeRight + threshold)) {
-
-                if (this.getAbsoluteTop() <= nodeBottom + threshold &&
-                    this.getAbsoluteBottom() >= node.getAbsoluteTop() - threshold) {
-                    return true;
-                }
-            }
-
-            return false;
+            return this.isCollidingGhost(node);
+            //return this.isCollidingRegion(node,threshold);
         },
 
         /**
@@ -1498,8 +1482,9 @@ var CGSGNode = CGSGObject.extend(
             node.render(ctx);
             node.position = backupPosition;
 
-            //run through data canvas, in the common zone
+            // WARN : security exception with chrome when calling .html directly (no apache server)
             var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);
+            //run through data canvas, in the common zone
             for (var x = 0; x < canvasData.width; x++) {
                 for (var y = 0; y < canvasData.height; y++) {
                     var idx = ((x) + (y) * canvasData.width) * 4;
@@ -1515,27 +1500,24 @@ var CGSGNode = CGSGObject.extend(
         /**
          * @public
          * @method isCollidingRegion
-         * @return {Boolean} true if the region overlaps with the node. They are colliding if the distance between them is minus than the threshold parameter
-         * @param {CGSGRegion} region
+         * @return {Boolean} true if the node overlaps with this node. They are colliding if the distance between them is minus than the threshold parameter
+         * @param {CGSGNode} node
          * @param {Number} threshold space between the 2 nodes before considering they are overlapping
          */
-         isCollidingRegion:function(region, threshold) {
+         isCollidingRegion:function(node, threshold) {
             if (threshold === null) {
                 threshold = 0;
             }
-
-            var nodeRight = region.position.x;
-            var nodeBottom = region.position.y + region.dimension.height;
-            var nodeLeft = region.position.x + region.dimension.width;
-            var nodeTop = region.position.y;
+            var nodeRight = node.getAbsoluteRight();
+            var nodeBottom = node.getAbsoluteBottom();
 
             if ((this.getAbsoluteLeft() <= nodeRight + threshold &&
-                this.getAbsoluteRight() >= nodeLeft - threshold) ||
-                (this.getAbsoluteRight() >= nodeLeft - threshold &&
+                this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold) ||
+                (this.getAbsoluteRight() >= node.getAbsoluteLeft() - threshold &&
                     this.getAbsoluteLeft() <= nodeRight + threshold)) {
 
                 if (this.getAbsoluteTop() <= nodeBottom + threshold &&
-                    this.getAbsoluteBottom() >= nodeTop - threshold) {
+                    this.getAbsoluteBottom() >= node.getAbsoluteTop() - threshold) {
                     return true;
                 }
             }
