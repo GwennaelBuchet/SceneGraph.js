@@ -37,7 +37,7 @@
  */
 var CGSGNodeTemplate = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height /*, other parameters here */) {
+		initialize: function (x, y, width, height /*, other parameters here */) {
 			//call the constructor of CGSGNode
 			this._super(x, y, width, height);
 
@@ -56,7 +56,7 @@ var CGSGNodeTemplate = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//call this before your custom rendering
 			this.beforeRender(context);
 
@@ -71,9 +71,9 @@ var CGSGNodeTemplate = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeTemplate} a copy of this node
 		 */
-		copy : function() {
+		copy: function () {
 			var node = new CGSGNodeTemplate(this.position.x, this.position.y, this.dimension.width,
-			                                this.dimension.height);
+											this.dimension.height);
 			//call the super method
 			node = this._super(node);
 

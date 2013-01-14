@@ -41,7 +41,7 @@
  */
 var CGSGNodeEllipse = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height) {
+		initialize: function (x, y, width, height) {
 			this._super(x, y, width, height);
 
 			/**
@@ -83,7 +83,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function (context) {
+		render: function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -124,7 +124,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @method renderGhost
 		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
 		 */
-		renderGhost : function (ghostContext) {
+		renderGhost: function (ghostContext) {
 			//save current state
 			this.beforeRenderGhost(ghostContext);
 
@@ -165,9 +165,9 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeEllipse} a copy of this node
 		 */
-		copy : function () {
+		copy: function () {
 			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
-			                               this.dimension.height);
+										   this.dimension.height);
 			//call the super method
 			node = this._super(node);
 

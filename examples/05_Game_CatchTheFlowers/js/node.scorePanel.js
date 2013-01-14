@@ -8,7 +8,7 @@
  */
 var ScorePanelNode = CGSGNodeSquare.extend(
 	{
-		initialize : function(x, y, w, h) {
+		initialize: function (x, y, w, h) {
 			this._super(x, y, w, h);
 
 			this.color = "#cfffec";
@@ -22,7 +22,7 @@ var ScorePanelNode = CGSGNodeSquare.extend(
 			this.textNode.setTextBaseline("alphabetic");
 		},
 
-		setScore : function(score) {
+		setScore: function (score) {
 			this.textNode.setText("score: " + score, true);
 		}
 

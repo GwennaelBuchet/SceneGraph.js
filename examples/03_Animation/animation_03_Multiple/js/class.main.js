@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -30,7 +30,7 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -46,7 +46,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -56,7 +56,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function () {
+		createScene: function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -81,11 +81,11 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * The method called to move the square
 		 */
-		moveSquare : function () {
+		moveSquare: function () {
 
-            //re-init position and scale
-            this.squareNode.translateTo(0, 60);
-            this.squareNode.scaleTo(1.0, 1.0);
+			//re-init position and scale
+			this.squareNode.translateTo(0, 60);
+			this.squareNode.scaleTo(1.0, 1.0);
 
 			/*
 			 * Animate an attribute of a nodes
@@ -101,19 +101,18 @@ var CGMain = CGSGScene.extend(
 			 * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
 			 */
 
-		    this.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, false);
-            this.sceneGraph.animate(this.squareNode, "position.y", 30, 60, 130, "linear", 30, false);
-            this.sceneGraph.animate(this.squareNode, "scale.x", 30, 1, 2, "linear", 60, false);
-            this.sceneGraph.animate(this.squareNode, "scale.y", 30, 1, 2, "linear", 60, false);
-            this.sceneGraph.animate(this.squareNode, "scale.x", 30, 2, 1, "linear", 90, false);
-            this.sceneGraph.animate(this.squareNode, "scale.y", 30, 2, 1, "linear", 90, false);
+			this.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, false);
+			this.sceneGraph.animate(this.squareNode, "position.y", 30, 60, 130, "linear", 30, false);
+			this.sceneGraph.animate(this.squareNode, "scale.x", 30, 1, 2, "linear", 60, false);
+			this.sceneGraph.animate(this.squareNode, "scale.y", 30, 1, 2, "linear", 60, false);
+			this.sceneGraph.animate(this.squareNode, "scale.x", 30, 2, 1, "linear", 90, false);
+			this.sceneGraph.animate(this.squareNode, "scale.y", 30, 2, 1, "linear", 90, false);
 
-            //you can also add animation keys inside a timeline:
-            //this.sceneGraph.addAnimationKey(this.squareNode, "position.x", 90, 90, "linear", true);
-            //this.sceneGraph.addAnimationKey(this.squareNode, "position.x", 45, 90, "linear", true);
+			//you can also add animation keys inside a timeline:
+			//this.sceneGraph.addAnimationKey(this.squareNode, "position.x", 90, 90, "linear", true);
+			//this.sceneGraph.addAnimationKey(this.squareNode, "position.x", 45, 90, "linear", true);
 
-
-            //add events to the start and end of animation to log them
+			//add events to the start and end of animation to log them
 			this.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationStart = function (event) {
 				console.log("animation started");
 			};

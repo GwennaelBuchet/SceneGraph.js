@@ -24,8 +24,8 @@
  */
 
 var CGButtonState = {
-	NORMAL   : {id : 0, textColor : "#666666", color : "#f2f2f2"},
-	SELECTED : {id : 1, textColor : "white", color : "#999999"}
+	NORMAL  : {id: 0, textColor: "#666666", color: "#f2f2f2"},
+	SELECTED: {id: 1, textColor: "white", color: "#999999"}
 };
 
 /**
@@ -39,7 +39,7 @@ var CGButtonState = {
  */
 var MenuButtonNode = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height, text, context) {
+		initialize: function (x, y, width, height, text, context) {
 			//call the constructor of CGSGNode
 			this._super(x, y, width, height);
 
@@ -56,7 +56,7 @@ var MenuButtonNode = CGSGNode.extend(
 			this.textNode.setTextAlign("center");
 			this.addChild(this.textNode);
 			this.textNode.translateWith((this.getWidth() - this.textNode.getWidth()) / 3,
-			                            -this.textNode.getHeight() / 3);
+										-this.textNode.getHeight() / 3);
 
 			this.picto = new CGSGNodeImage(0, 10, null);
 			this.addChild(this.picto);
@@ -73,14 +73,14 @@ var MenuButtonNode = CGSGNode.extend(
 			//this.resizeWith(this.radius * 2, this.radius * 2);
 		},
 
-		setImage : function (img) {
+		setImage: function (img) {
 			this.picto.setImage(img);
 		},
 
 		/**
 		 * Pre-render the cloud into a temp canvas to optimize the perfs
 		 */
-		initShape : function () {
+		initShape: function () {
 			for (var i = 0; i < 2; i++) {
 				this._tmpCanvas[i] = document.createElement('canvas');
 				this._tmpCanvas[i].width = this.dimension.width + 2 * this.radius;
@@ -89,7 +89,7 @@ var MenuButtonNode = CGSGNode.extend(
 			}
 		},
 
-		_drawButton : function (index) {
+		_drawButton: function (index) {
 			var tmpContext = this._tmpCanvas[index].getContext('2d');
 
 			var s = (index === 0) ? CGButtonState.NORMAL : CGButtonState.SELECTED;
@@ -112,7 +112,7 @@ var MenuButtonNode = CGSGNode.extend(
 			tmpContext.fill();
 		},
 
-		setState : function (state) {
+		setState: function (state) {
 			this.state = state;
 
 			this.textNode.color = this.state.textColor;
@@ -126,7 +126,7 @@ var MenuButtonNode = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function (context) {
+		render: function (context) {
 			//call this before your custom rendering
 			this.beforeRender(context);
 
@@ -147,9 +147,9 @@ var MenuButtonNode = CGSGNode.extend(
 		 * @method copy
 		 * @return {MenuButtonNode} a copy of this node
 		 */
-		copy : function () {
+		copy: function () {
 			var node = new MenuButtonNode(this.position.x, this.position.y, this.dimension.width,
-			                              this.dimension.height);
+										  this.dimension.height);
 			//call the super method
 			node = this._super(node);
 

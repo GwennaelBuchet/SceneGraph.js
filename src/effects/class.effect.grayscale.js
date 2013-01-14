@@ -34,7 +34,7 @@
  */
 var CGSGEffectGrayScale = CGSGEffect.extend(
 	{
-		initialize : function () {
+		initialize: function () {
 			this._super();
 		},
 
@@ -45,7 +45,7 @@ var CGSGEffectGrayScale = CGSGEffect.extend(
 		 *  @param {Number} width width for the image to be modified
 		 *  @param {Number} height height for the image to be modified
 		 */
-		render : function (context, width, height) {
+		render: function (context, width, height) {
 			try {
 				var imageData = context.getImageData(0, 0, width, height);
 				var data = imageData.data;

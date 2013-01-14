@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -30,7 +30,7 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -43,7 +43,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -53,7 +53,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function () {
+		createScene: function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 500, 500);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -64,9 +64,9 @@ var CGMain = CGSGScene.extend(
 			this.createScaledText();
 		},
 
-		create1LineText : function () {
+		create1LineText: function () {
 			var textNode = new CGSGNodeText(10, 10, "Simple line");
-            textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
+			textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
 			textNode.setSize(26);
 			textNode.setTypo("Arial");
 			textNode.isDraggable = true;
@@ -75,7 +75,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(textNode);
 		},
 
-		createMaxWidthText : function () {
+		createMaxWidthText: function () {
 			var maxWidth = 180;
 
 			var textNode = new CGSGNodeText(10, 100, "Simple centered and long text with a max of :" + maxWidth +
@@ -98,7 +98,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(textNode);
 		},
 
-		createCarriageReturnText : function () {
+		createCarriageReturnText: function () {
 			var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return:\njust\there");
 			textNode.setSize(14);
 			textNode.setTypo("Times New Roman");
@@ -110,7 +110,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(textNode);
 		},
 
-		createScaledText : function () {
+		createScaledText: function () {
 			var parent = new CGSGNodeSquare(40, 300, 200, 90);
 			parent.isDraggable = true;
 

@@ -8,7 +8,7 @@
  */
 var LivePanelNode = CGSGNodeSquare.extend(
 	{
-		initialize : function(x, y, w, h) {
+		initialize: function (x, y, w, h) {
 			this._super(x, y, w, h);
 
 			this.color = "#dfcfff";
@@ -31,7 +31,7 @@ var LivePanelNode = CGSGNodeSquare.extend(
 		/**
 		 * Pre-render the flower into a temp canvas to optimize the perfs
 		 */
-		initShape : function() {
+		initShape: function () {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = 400;
 			this._tmpCanvas.height = 300;
@@ -68,7 +68,7 @@ var LivePanelNode = CGSGNodeSquare.extend(
 			tmpContext.restore();
 		},
 
-		createLive : function() {
+		createLive: function () {
 			for (var l = 0; l < maxLive; l++) {
 				var live = new LiveNode(this.getWidth() - (maxLive - l) * 16, 2);
 				live._tmpCanvas = this._tmpCanvas;
@@ -78,7 +78,7 @@ var LivePanelNode = CGSGNodeSquare.extend(
 			}
 		},
 
-		reinit : function() {
+		reinit: function () {
 			for (var l = 0; l < maxLive; l++) {
 				var live = this.live[l];
 				sceneGraph.getTimeline(live, "globalAlpha").removeAll();
@@ -87,23 +87,23 @@ var LivePanelNode = CGSGNodeSquare.extend(
 			this.nbLive = maxLive;
 		},
 
-		addLive : function() {
+		addLive: function () {
 			if (this.nbLive < maxLive) {
 				var live = this.live[this.nbLive];
 				sceneGraph.getTimeline(live, "globalAlpha").removeAll();
 				sceneGraph.animate(live, "globalAlpha", 30, live.globalAlpha,
-				                   1.0, "linear", 0, true);
+								   1.0, "linear", 0, true);
 
 				this.nbLive++;
 			}
 		},
 
-		removeLive : function() {
+		removeLive: function () {
 			if (this.nbLive > 0) {
 				var live = this.live[this.nbLive - 1];
 				sceneGraph.getTimeline(live, "globalAlpha").removeAll();
 				sceneGraph.animate(live, "globalAlpha", 30, live.globalAlpha,
-				                   0.0, "linear", 0, true);
+								   0.0, "linear", 0, true);
 
 				this.nbLive--;
 			}

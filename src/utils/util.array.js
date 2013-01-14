@@ -39,7 +39,7 @@
  * @param {Object} value
  * @return {Boolean}
  */
-function cgsgIsArray (value) {
+function cgsgIsArray(value) {
 	return (Object.prototype.toString.call(value) === '[object Array]');
 }
 

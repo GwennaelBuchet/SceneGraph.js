@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,9 +31,9 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
-            //call the contructor of the parent class (ie : CGSGScene)
+			//call the contructor of the parent class (ie : CGSGScene)
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
@@ -44,52 +44,52 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			//resize the dimension of the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
 
-        /**
-         * Just create a single node (an image node)
-         */
-        createScene : function () {
-	        var rootNode = new CGSGNode(0, 0, 0, 0);
-	        this.sceneGraph.addNode(rootNode, null);
+		/**
+		 * Just create a single node (an image node)
+		 */
+		createScene: function () {
+			var rootNode = new CGSGNode(0, 0, 0, 0);
+			this.sceneGraph.addNode(rootNode, null);
 
-            /*
-             * @param x
-             * @param y
-             * @param urlImage
-             */
-            this.imgNode = new CGSGNodeImage(
-                60,     //x
-                60,     //y
-                "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
+			/*
+			 * @param x
+			 * @param y
+			 * @param urlImage
+			 */
+			this.imgNode = new CGSGNodeImage(
+				60,     //x
+				60,     //y
+				"images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 
-            this.imgNode.resizeTo(500, 500);
-            this.imgNode.setSlice(0, 0, 0, 0, true);
-            //add some attributes
-            this.imgNode.isResizable = true;
-            this.imgNode.isDraggable = true;
+			this.imgNode.resizeTo(500, 500);
+			this.imgNode.setSlice(0, 0, 0, 0, true);
+			//add some attributes
+			this.imgNode.isResizable = true;
+			this.imgNode.isDraggable = true;
 
-	        rootNode.addChild(this.imgNode);
+			rootNode.addChild(this.imgNode);
 
-	        //add a button to switch src
-	        this.currentImg = 0;
-	        this.buttonNode = new CGSGNodeButton(10, 10, "Switch source");
-	        this.buttonNode.onClick = this.switchSrc.bind(this);
-	        //add the textNode as child of the root
-	        rootNode.addChild(this.buttonNode);
-        },
+			//add a button to switch src
+			this.currentImg = 0;
+			this.buttonNode = new CGSGNodeButton(10, 10, "Switch source");
+			this.buttonNode.onClick = this.switchSrc.bind(this);
+			//add the textNode as child of the root
+			rootNode.addChild(this.buttonNode);
+		},
 
-		switchSrc : function () {
+		switchSrc: function () {
 			this.currentImg = 1 - this.currentImg;
 			var src = ["images/hello.png", "images/board.png"];
 
-            //first reset slice of the image, so the dimension will be recomputed after the url is loaded
-            this.imgNode.setSlice(0, 0, 0, 0, true);
-            //set the new URL
+			//first reset slice of the image, so the dimension will be recomputed after the url is loaded
+			this.imgNode.setSlice(0, 0, 0, 0, true);
+			//set the new URL
 			this.imgNode.setURL(src[this.currentImg]);
 		}
 	}

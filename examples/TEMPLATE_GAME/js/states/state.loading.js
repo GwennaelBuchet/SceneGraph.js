@@ -10,12 +10,12 @@
  */
 var StateLoading = Object.extend(
 	{
-		initialize : function(context) {
+		initialize: function (context) {
 
 			this._createEnvironment();
 		},
 
-		_createEnvironment : function() {
+		_createEnvironment: function () {
 			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
 
 			var floor = new FloorNode(0, 0, 1, 1);
@@ -28,25 +28,25 @@ var StateLoading = Object.extend(
 		/**
 		 * called each time this state is activated
 		 */
-		run : function() {
+		run: function () {
 
 		},
 
 		/**
 		 * called each frame
 		 */
-		onRenderStartHandler : function() {
+		onRenderStartHandler: function () {
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 		}
 	}
 );

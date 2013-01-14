@@ -31,7 +31,7 @@
  */
 var SunNode = CGSGNode.extend(
 	{
-		initialize : function(x, y) {
+		initialize: function (x, y) {
 			//call the initialize of the parent
 			this._super(x, y, cgsgCanvas.width, cgsgCanvas.height);
 
@@ -49,18 +49,16 @@ var SunNode = CGSGNode.extend(
 		/**
 		 * Pre-render the cloud into a temp canvas to optimize the perfs
 		 */
-		initShape : function() {
+		initShape: function () {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = cgsgCanvas.width;
 			this._tmpCanvas.height = cgsgCanvas.height;
 			var tmpContext = this._tmpCanvas.getContext('2d');
 
-
-
 			tmpContext.strokeStyle = "#fdf9d0";
 
-			var center = {x : CGSGMath.fixedPoint(cgsgCanvas.width / 2.0),
-				y           : CGSGMath.fixedPoint(cgsgCanvas.height * 0.66667)};
+			var center = {x: CGSGMath.fixedPoint(cgsgCanvas.width / 2.0),
+				y          : CGSGMath.fixedPoint(cgsgCanvas.height * 0.66667)};
 
 			tmpContext.shadowColor = "#fffce0";
 			tmpContext.shadowBlur = 40;
@@ -93,7 +91,7 @@ var SunNode = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//save current state
 			//always call it
 			this.beforeRender(context);

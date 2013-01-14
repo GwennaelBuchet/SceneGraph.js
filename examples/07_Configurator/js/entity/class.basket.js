@@ -30,7 +30,7 @@
  */
 var Basket = CGSGObject.extend(
 	{
-		initialize : function () {
+		initialize: function () {
 			/**
 			 * @property amount
 			 * @type {Number}
@@ -48,7 +48,7 @@ var Basket = CGSGObject.extend(
 		 * @method addProduct
 		 * @param {Product} product
 		 */
-		addProduct : function(product) {
+		addProduct: function (product) {
 			this.products.push(product);
 			this.amount += product.price;
 		},
@@ -57,7 +57,7 @@ var Basket = CGSGObject.extend(
 		 * @method removeProduct
 		 * @param {Product} product
 		 */
-		removeProduct : function(product) {
+		removeProduct: function (product) {
 			this.products.without(product);
 			this.amount -= product.price;
 		}

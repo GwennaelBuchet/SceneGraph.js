@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -43,7 +43,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
+		initializeCanvas: function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -53,7 +53,7 @@ var CGMain = CGSGScene.extend(
 		 * create a random scene with some nodes
 		 *
 		 */
-		createScene : function() {
+		createScene: function () {
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -78,7 +78,7 @@ var CGMain = CGSGScene.extend(
 
 		},
 
-		createRandomSquare : function() {
+		createRandomSquare: function () {
 			var w = CGSGMath.fixedPoint(cgsgCanvas.width / 6);
 			var h = CGSGMath.fixedPoint(cgsgCanvas.height / 6);
 
@@ -101,16 +101,16 @@ var CGMain = CGSGScene.extend(
 			return squareNode;
 		},
 
-		testCollide : function(event) {
+		testCollide: function (event) {
 			var listColliders = event.node.getListOfCollidingBrothers(this.threshold);
 
 			var collider = null;
 			for (var i = 0; i < listColliders.length; i++) {
 				collider = listColliders[i];
 
-				if (collider.getAbsoluteLeft() < collider)
-
-				event.node.translateTo(collider.getAbsoluteLeft(), collider.getAbsoluteTop());
+				if (collider.getAbsoluteLeft() < collider) {
+					event.node.translateTo(collider.getAbsoluteLeft(), collider.getAbsoluteTop());
+				}
 			}
 		}
 

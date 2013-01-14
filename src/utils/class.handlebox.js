@@ -40,7 +40,7 @@
  */
 var CGSGHandleBox = CGSGObject.extend(
 	{
-		initialize : function (parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
+		initialize: function (parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
 			/**
 			 * @property fillColor
 			 * @type {String}
@@ -83,18 +83,18 @@ var CGSGHandleBox = CGSGObject.extend(
 		 * @method render
 		 * @param {CanvasRenderingContext2D} context the context into render the handle box
 		 */
-		render : function (context) {
+		render: function (context) {
 			context.lineWidth = this.lineWidth;
 			context.strokeStyle = this.strokeColor;
 			context.fillStyle = this.fillColor;
 			context.strokeRect(this._position.x,
-			                 this._position.y,
-			                 this.size / this._parentNode._absoluteScale.x,
-			                 this.size / this._parentNode._absoluteScale.y);
+							   this._position.y,
+							   this.size / this._parentNode._absoluteScale.x,
+							   this.size / this._parentNode._absoluteScale.y);
 			context.fillRect(this._position.x,
-			                 this._position.y,
-			                 this.size / this._parentNode._absoluteScale.x,
-			                 this.size / this._parentNode._absoluteScale.y);
+							 this._position.y,
+							 this.size / this._parentNode._absoluteScale.x,
+							 this.size / this._parentNode._absoluteScale.y);
 		},
 
 		/**
@@ -104,19 +104,19 @@ var CGSGHandleBox = CGSGObject.extend(
 		 * @param {Number} threshold Threshold of detection around the box
 		 * @return {Boolean}
 		 */
-		checkIfSelected : function (mousePosition, threshold) {
+		checkIfSelected: function (mousePosition, threshold) {
 			return (mousePosition.x >=
-			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
-			        threshold &&
-			        mousePosition.x <=
-			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
-			        this.size + threshold &&
-			        mousePosition.y >=
-			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
-			        threshold &&
-			        mousePosition.y <=
-			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
-			        this.size + threshold);
+					this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
+					threshold &&
+					mousePosition.x <=
+					this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
+					this.size + threshold &&
+					mousePosition.y >=
+					this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
+					threshold &&
+					mousePosition.y <=
+					this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
+					this.size + threshold);
 		},
 
 		/**
@@ -124,7 +124,7 @@ var CGSGHandleBox = CGSGObject.extend(
 		 * @param {Number} newRelativeX
 		 * @param {Number} newRelativeY
 		 */
-		translateTo : function (newRelativeX, newRelativeY) {
+		translateTo: function (newRelativeX, newRelativeY) {
 			this._position.x = newRelativeX;
 			this._position.y = newRelativeY;
 		}

@@ -11,7 +11,7 @@
 
 var StateAbout = CGSGObject.extend(
 	{
-		initialize : function(context, parent) {
+		initialize: function (context, parent) {
 			this.context = context;
 			this.image = null;
 
@@ -23,18 +23,18 @@ var StateAbout = CGSGObject.extend(
 		/**
 		 * called each time this state is activated
 		 */
-		run : function() {
+		run: function () {
 		},
 
-		onRenderStartHandler : function() {
+		onRenderStartHandler: function () {
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 			this.image = image;
 			this.bee.setImage(image);
 		},
 
-		_createEnvironment : function() {
+		_createEnvironment: function () {
 			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 			this.rootNode.isClickable = false;
 
@@ -61,8 +61,8 @@ var StateAbout = CGSGObject.extend(
 					t = "ves";
 				}
 				var textFlower = new CGSGNodeText(70, 70 + f * 26,
-				                                  ": " + FLOWER_TYPE[f].live + " li" + t + " + " + FLOWER_TYPE[f].points
-					                                  + " Points");
+												  ": " + FLOWER_TYPE[f].live + " li" + t + " + " + FLOWER_TYPE[f].points
+													  + " Points");
 				textFlower.setSize(12);
 				textFlower.color = "#28323c";
 				bck.addChild(textFlower);
@@ -96,7 +96,7 @@ var StateAbout = CGSGObject.extend(
 			var hButton = 40;
 			this.buttonGoBack =
 			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
-			               cgsgCanvas.height - 65, wButton, hButton, 10);
+						   cgsgCanvas.height - 65, wButton, hButton, 10);
 			this.rootNode.addChild(this.buttonGoBack);
 
 			var textGoBack = new CGSGNodeText(30, 18, "Go Back");
@@ -107,11 +107,11 @@ var StateAbout = CGSGObject.extend(
 			this.buttonGoBack.onClick = bindOnButtonGoBackClick;
 		},
 
-		onButtonGoBackClick : function() {
+		onButtonGoBackClick: function () {
 			this.game.changeGameState(GAME_STATE.HOME);
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			switch (keynum) {
@@ -130,7 +130,7 @@ var StateAbout = CGSGObject.extend(
 			return keynum;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			return keynum;

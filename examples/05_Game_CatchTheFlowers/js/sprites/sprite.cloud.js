@@ -31,7 +31,7 @@
  */
 var CloudNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize: function (x, y, width, height) {
 			//call the initialize of the parent
 			this._super(x, y, width, height);
 
@@ -56,7 +56,7 @@ var CloudNode = CGSGNode.extend(
 		/**
 		 * Pre-render the cloud into a temp canvas to optimize the perfs
 		 */
-		initShape : function() {
+		initShape: function () {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = cgsgCanvas.width;
 			this._tmpCanvas.height = cgsgCanvas.height;
@@ -72,15 +72,15 @@ var CloudNode = CGSGNode.extend(
 			tmpContext.beginPath();
 			tmpContext.moveTo(startX, startY);
 			tmpContext.bezierCurveTo(startX - 60 + Math.random() * 60, startY + 20, startX - 40, startY + 70,
-			                         startX + 60, startY + 70);
+									 startX + 60, startY + 70);
 			tmpContext.bezierCurveTo(startX + 60 + Math.random() * 100, startY + 60 + Math.random() * 80, startX + 250,
-			                         startY + 40, startX + 220, startY + 20);
+									 startY + 40, startX + 220, startY + 20);
 			tmpContext.bezierCurveTo(startX + 230 + Math.random() * 60, startY - 40, startX + 200, startY - 50,
-			                         startX + 170, startY - 30);
+									 startX + 170, startY - 30);
 			tmpContext.bezierCurveTo(startX + 120 + Math.random() * 60, startY - 75, startX + 80 + Math.random() * 60,
-			                         startY - 60, startX + 80, startY - 30); //middle_top
+									 startY - 60, startX + 80, startY - 30); //middle_top
 			tmpContext.bezierCurveTo(startX + 30 + Math.random() * 40, startY - 75 + Math.random() * 40,
-			                         startX - 20 + Math.random() * 40, startY - 60, startX, startY); //left-top
+									 startX - 20 + Math.random() * 40, startY - 60, startX, startY); //left-top
 			tmpContext.closePath();
 
 			var gradient = tmpContext.createLinearGradient(startX, startY, startX, 70 + startY);
@@ -98,7 +98,7 @@ var CloudNode = CGSGNode.extend(
 			tmpContext.restore();
 		},
 
-		start : function() {
+		start: function () {
 			this.initPosAndSpeed(true);
 			this.startAnim();
 
@@ -106,7 +106,7 @@ var CloudNode = CGSGNode.extend(
 			sceneGraph.getTimeline(this, "position.x").onAnimationEnd = bindReStartAnim;
 		},
 
-		initPosAndSpeed : function(isFirst) {
+		initPosAndSpeed: function (isFirst) {
 			this.globalAlpha = 0.7 + Math.random() * 0.295;
 			var x = CGSGMath.fixedPoint(-150 + Math.random() * 20);
 			if (isFirst) {
@@ -118,12 +118,12 @@ var CloudNode = CGSGNode.extend(
 
 		},
 
-		startAnim : function() {
+		startAnim: function () {
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-			                   CGSGMath.fixedPoint(cgsgCanvas.width + Math.random() * 50), "linear", 0, true);
+							   CGSGMath.fixedPoint(cgsgCanvas.width + Math.random() * 50), "linear", 0, true);
 		},
 
-		reStartAnim : function() {
+		reStartAnim: function () {
 			this.initPosAndSpeed(false);
 			this.startAnim();
 		},
@@ -131,7 +131,7 @@ var CloudNode = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//save current state
 			//always call it
 			this.beforeRender(context);

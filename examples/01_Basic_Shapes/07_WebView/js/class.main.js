@@ -24,7 +24,7 @@
  */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -37,7 +37,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -47,14 +47,14 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene : function () {
+		createScene: function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 500, 500);
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//create a webview node
 			this.webviewNode = new CGSGNodeWebview(20, 60, this.viewDimension.width / 2, this.viewDimension.height / 2,
-			                                       "http://gwennaelbuchet.github.com/cgSceneGraph/");
+												   "http://gwennaelbuchet.github.com/cgSceneGraph/");
 			this.webviewNode.setPreviewURL("images/hello.png");
 			this.webviewNode.isResizable = true;
 			this.webviewNode.isDraggable = true;
@@ -70,7 +70,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(this.buttonNode);
 		},
 
-		switchMode : function () {
+		switchMode: function () {
 			if (this.webviewNode.getCurrentMode() === CGSGWEBVIEWMODE.LIVE) {
 				this.webviewNode.switchMode(CGSGWEBVIEWMODE.PREVIEW);
 			}

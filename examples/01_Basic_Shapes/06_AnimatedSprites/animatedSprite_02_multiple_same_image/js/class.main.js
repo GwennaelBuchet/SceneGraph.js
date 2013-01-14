@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -30,7 +30,7 @@
  * */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -42,7 +42,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -51,7 +51,7 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * Create 3 times the same animated sprites, sharing the same image in memory
 		 */
-		createScene : function () {
+		createScene: function () {
 			this.isDragSelectEnabled = true;
 
 			//create a first root node.
@@ -63,33 +63,32 @@ var CGMain = CGSGScene.extend(
 			//in a second time we will actually load the image and set it to the animated sprites
 			// so the image is created just once in memory
 
-            /*
-             * @param x
-             * @param y
-             * @param image url
-             * @param context
-             */
-            this.pingoo = new CGSGNodeSprite(60, 60, null, this.context);
-            this.pingoo.isDraggable = true;
-            //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-            this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
-            this.pingoo.play("front", null);
-            this.rootNode.addChild(this.pingoo);
+			/*
+			 * @param x
+			 * @param y
+			 * @param image url
+			 * @param context
+			 */
+			this.pingoo = new CGSGNodeSprite(60, 60, null, this.context);
+			this.pingoo.isDraggable = true;
+			//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+			this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
+			this.pingoo.play("front", null);
+			this.rootNode.addChild(this.pingoo);
 
-            this.numbers = new CGSGNodeSprite(60, 120, null, this.context);
-            this.numbers.isDraggable = true;
-            //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-            this.numbers.addAnimation("count", 20, 8, 476, 136, 34, 34, 4);
-            this.numbers.play("count", null);
-            this.rootNode.addChild(this.numbers);
+			this.numbers = new CGSGNodeSprite(60, 120, null, this.context);
+			this.numbers.isDraggable = true;
+			//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+			this.numbers.addAnimation("count", 20, 8, 476, 136, 34, 34, 4);
+			this.numbers.play("count", null);
+			this.rootNode.addChild(this.numbers);
 
-            this.water = new CGSGNodeSprite(60, 180, null, this.context);
-            this.water.isDraggable = true;
-            //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-            this.water.addAnimation("wave", 2, 32, 476, 204, 34, 34, 4);
-            this.water.play("wave", null);
-            this.rootNode.addChild(this.water);
-
+			this.water = new CGSGNodeSprite(60, 180, null, this.context);
+			this.water.isDraggable = true;
+			//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+			this.water.addAnimation("wave", 2, 32, 476, 204, 34, 34, 4);
+			this.water.play("wave", null);
+			this.rootNode.addChild(this.water);
 
 			//now, load the image containing the sprite sheet.
 			//The affectation to the sprite will be done in the loaded handler function
@@ -101,10 +100,10 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * once the image is loaded, set it to the sprites
 		 */
-		onImageLoaded : function () {
+		onImageLoaded: function () {
 			this.pingoo.setImage(this.spriteSheet);
 			this.numbers.setImage(this.spriteSheet);
-            this.water.setImage(this.spriteSheet);
+			this.water.setImage(this.spriteSheet);
 		}
 	}
 );

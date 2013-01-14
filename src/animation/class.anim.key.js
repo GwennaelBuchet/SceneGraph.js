@@ -37,7 +37,7 @@
  */
 var CGSGAnimationKey = CGSGObject.extend(
 	{
-		initialize : function (frame, value) {
+		initialize: function (frame, value) {
 			/**
 			 * @property frame
 			 * @type {Number}

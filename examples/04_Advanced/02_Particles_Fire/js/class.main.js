@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -43,8 +43,8 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
-            var dim = new CGSGDimension(600, 480);
+		initializeCanvas: function () {
+			var dim = new CGSGDimension(600, 480);
 			this.setCanvasDimension(dim);
 		},
 
@@ -52,7 +52,7 @@ var CGMain = CGSGScene.extend(
 		 * create a random scene with some nodes
 		 *
 		 */
-		createScene : function () {
+		createScene: function () {
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -70,17 +70,17 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * create an emitter simulating fire (well, not really a simulation, just a simple example)
 		 */
-		createFireEmitter : function() {
+		createFireEmitter: function () {
 			//first create and add an emitter to the particle system
 			var emitter = this.particlesSystem.addEmitter(
-                new CGSGNodeSquare(0, 0, 3, 3)
+				new CGSGNodeSquare(0, 0, 3, 3)
 				, new CGSGRegion(100, 200, 25, 8) 	//emission area
 				, 200                               //nbParticlesMax
 				, new CGSGVector2D(0.0, 1.0)        //initial velocity of a particle
 				, Math.PI / 8.0                     //angle area to rotate the direction vector
 				, 2.5  								//speed of animation (1.0 = normal and slow speed)
 				, 1.0   							//random range to apply to the speed of each particle
-                , 0                               //outflow
+				, 0                               //outflow
 			);
 
 			//tell the emitter how to init a particle.
@@ -91,14 +91,14 @@ var CGMain = CGSGScene.extend(
 				event.particle.node.globalAlpha = 1.0;
 				event.particle.node.color = colors[Math.floor(Math.random() * colors.length)];
 				event.particle.node.lineColor = event.particle.node.color;
-				event.particle.userdata = {ttl : 50 + Math.random() * 40};
-				event.particle.checkCTL = function(particle) {
+				event.particle.userdata = {ttl: 50 + Math.random() * 40};
+				event.particle.checkCTL = function (particle) {
 					return particle.age <= particle.userdata.ttl;
 				};
 
 				//event.particle.node.scaleTo(1.0, 1.0);
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
-                event.particle.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
+				event.particle.node.resizeTo(3 + Math.random() * 3, 3 + Math.random() * 3);
 
 				var rgb = CGSGColor.hex2rgb(event.particle.node.color);
 				event.particle.initColor = rgb;
@@ -109,7 +109,7 @@ var CGMain = CGSGScene.extend(
 			emitter.removeForce(emitter.gravity);
 
 			//add an update handler, fired each time a particle position was updated by the emitter
-            emitter.onUpdateParticleEnd = function (particle) {
+			emitter.onUpdateParticleEnd = function (particle) {
 				var a = 1.0 - (particle.age / particle.userdata.ttl);
 				particle.node.globalAlpha = Math.max(a, 0);
 				var rgb = CGSGColor.hex2rgb(particle.node.color);

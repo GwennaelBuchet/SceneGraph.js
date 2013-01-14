@@ -29,117 +29,116 @@
  * event example
  * */
 var CGMain = CGSGScene.extend(
-    {
-        initialize:function (canvas) {
+	{
+		initialize: function (canvas) {
 
-            this._super(canvas);
+			this._super(canvas);
 
-            ////// INITIALIZATION /////////
-            this.createScene();
+			////// INITIALIZATION /////////
+			this.createScene();
 
-            this.startPlaying();
-        },
+			this.startPlaying();
+		},
 
-        /**
-         *
-         *
-         */
-        createScene:function () {
-            //first create a root node with an arbitrary size and position
-            this.rootNode = new CGSGNode(0, 0, 500, 500);
-            this.sceneGraph.addNode(this.rootNode, null);
+		/**
+		 *
+		 *
+		 */
+		createScene: function () {
+			//first create a root node with an arbitrary size and position
+			this.rootNode = new CGSGNode(0, 0, 500, 500);
+			this.sceneGraph.addNode(this.rootNode, null);
 
-            this.textNode = new CGSGNodeText(40, 10, "Over on : (nothing)");
-            this.textNode.setSize(18);
-            //add the textNode as child of the root
-            this.rootNode.addChild(this.textNode);
+			this.textNode = new CGSGNodeText(40, 10, "Over on : (nothing)");
+			this.textNode.setSize(18);
+			//add the textNode as child of the root
+			this.rootNode.addChild(this.textNode);
 
-            this.img = new Image();
-            var bindOnImageLoaded = this.onImageLoaded.bind(this);
-            this.img.onload = bindOnImageLoaded;
-            this.img.src = "images/board.png";
-        },
+			this.img = new Image();
+			var bindOnImageLoaded = this.onImageLoaded.bind(this);
+			this.img.onload = bindOnImageLoaded;
+			this.img.src = "images/board.png";
+		},
 
-        onImageLoaded:function () {
-            for (var s = 0; s < 400; s++) {
-                var s1 = this.addSquare({
-                    hasEvent:true, name:"Pingoo " + s,
-                    x:Math.random() * cgsgCanvas.width / 1.5,
-                    y:40 + Math.random() * cgsgCanvas.height / 1.5,
-                    w:30 + Math.random() * 50});
-                //add squares to the scene
-                this.rootNode.addChild(s1);
-            }
+		onImageLoaded: function () {
+			for (var s = 0; s < 400; s++) {
+				var s1 = this.addSquare({
+											hasEvent: true, name: "Pingoo " + s,
+											x       : Math.random() * cgsgCanvas.width / 1.5,
+											y       : 40 + Math.random() * cgsgCanvas.height / 1.5,
+											w       : 30 + Math.random() * 50});
+				//add squares to the scene
+				this.rootNode.addChild(s1);
+			}
 
-        },
+		},
 
-        addSquare:function (attributes) {
+		addSquare: function (attributes) {
 
-            //second, create the 2 nodes, with no image URL, and add them to the root node
-            var imgNode = new CGSGNodeImage(
-                attributes.x, //x
-                attributes.y, //y
-                null); //URL. Warning : the web page mus be on a web server (apache, ...)
-            imgNode.setImage(this.img);
-            imgNode.globalAlpha = 0.5;
+			//second, create the 2 nodes, with no image URL, and add them to the root node
+			var imgNode = new CGSGNodeImage(
+				attributes.x, //x
+				attributes.y, //y
+				null); //URL. Warning : the web page mus be on a web server (apache, ...)
+			imgNode.setImage(this.img);
+			imgNode.globalAlpha = 0.5;
 
-	        //cut the slice from the source image
-	        imgNode.setSlice(476, 0, 34, 34, true);
+			//cut the slice from the source image
+			imgNode.setSlice(476, 0, 34, 34, true);
 
-            imgNode.name = attributes.name;
-            //imgNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
-            //imgNode.resizeTo(attributes.w, attributes.w);
-            //imgNode._initShape();
+			imgNode.name = attributes.name;
+			//imgNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
+			//imgNode.resizeTo(attributes.w, attributes.w);
+			//imgNode._initShape();
 
+			if (attributes.hasEvent === false) {
+				//create the text inside
+				var textNode = new CGSGNodeText(0, 4, "No over event");
+				textNode.setSize(14);
+				imgNode.addChild(textNode);
+			}
+			else {
+				//add mouse over and out events
+				var that = this;
+				//animate a scale + with shadow
+				imgNode.onMouseOver = function (event) {
+					that.textNode.setText("Over on : " + event.node.name);
 
-            if (attributes.hasEvent === false) {
-                //create the text inside
-                var textNode = new CGSGNodeText(0, 4, "No over event");
-                textNode.setSize(14);
-                imgNode.addChild(textNode);
-            }
-            else {
-                //add mouse over and out events
-                var that = this;
-                //animate a scale + with shadow
-                imgNode.onMouseOver = function (event) {
-                    that.textNode.setText("Over on : " + event.node.name);
+					event.node.globalAlpha = 1.0;
+					event.node.scaleTo(1.1, 1.1, false);
+					//some cool animation effect
+					//that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
+					//that.sceneGraph.animate(event.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
+					//that.sceneGraph.animate(event.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
+				};
+				//initial scale + without shadow
+				imgNode.onMouseOut = function (event) {
+					that.textNode.setText("Over on : (nothing)");
 
-	                event.node.globalAlpha = 1.0;
-	                event.node.scaleTo(1.1, 1.1, false);
-                    //some cool animation effect
-                    //that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
-                };
-                //initial scale + without shadow
-                imgNode.onMouseOut = function (event) {
-                    that.textNode.setText("Over on : (nothing)");
+					event.node.globalAlpha = 0.5;
+					event.node.scaleTo(1.0, 1.0, false);
+					//some cool animation effect
+					//that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
+					//that.sceneGraph.animate(event.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
+					//that.sceneGraph.animate(event.node, "scale.y", 10, 1.1, 1.0, "linear", 0, true);
+				};
+			}
 
-	                event.node.globalAlpha = 0.5;
-	                event.node.scaleTo(1.0, 1.0, false);
-                    //some cool animation effect
-                    //that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.y", 10, 1.1, 1.0, "linear", 0, true);
-                };
-            }
+			return imgNode;
 
-            return imgNode;
-
-            //create the square
-            /*var square = new CGSGNodeSquare(attributes.x, attributes.y, attributes.w, attributes.w);
-            square.isDraggable = true;
-            square.isResizable = true;
-            square.globalAlpha = 0.5;
-            square.color = attributes.color;
-            square.lineWidth = 2;
-            square.name = attributes.name;
-
+			//create the square
+			/*var square = new CGSGNodeSquare(attributes.x, attributes.y, attributes.w, attributes.w);
+			 square.isDraggable = true;
+			 square.isResizable = true;
+			 square.globalAlpha = 0.5;
+			 square.color = attributes.color;
+			 square.lineWidth = 2;
+			 square.name = attributes.name;
 
 
-            return square;*/
-        }
 
-    }
+			 return square;*/
+		}
+
+	}
 );

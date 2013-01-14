@@ -30,7 +30,7 @@
  * */
 var Car = Locomotion.extend(
 	{
-		initialize : function (name) {
+		initialize: function (name) {
 			this._super(name);
 
 			this.power = 100;

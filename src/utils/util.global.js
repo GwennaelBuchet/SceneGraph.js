@@ -37,14 +37,14 @@
  * @param object {Object}
  * @return {boolean} true if the parameter !== null && !== undefined
  */
-function cgsgExist (object) {
+function cgsgExist(object) {
 	return (object !== null && object !== undefined);
 }
 
 /**
  * @method cgsgDetectCurrentExplorer
  */
-function cgsgDetectCurrentExplorer () {
+function cgsgDetectCurrentExplorer() {
 	//noinspection JSUndeclaredVariable
 	cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 
@@ -90,7 +90,7 @@ function cgsgDetectCurrentExplorer () {
 		fullVersion = userAgent.substring(versionOffset + 8);
 	}
 	else if ((nameOffset = userAgent.lastIndexOf(' ') + 1) <
-	         (versionOffset = userAgent.lastIndexOf('/'))) {
+			 (versionOffset = userAgent.lastIndexOf('/'))) {
 		browserName = userAgent.substring(nameOffset, versionOffset);
 		fullVersion = userAgent.substring(versionOffset + 1);
 		if (browserName.toLowerCase() == browserName.toUpperCase()) {
@@ -149,7 +149,7 @@ cgsgStyleBorderTop = 0;
  * @method cgsgGetRealViewportDimension
  * @return {CGSGDimension} a CGSGDimension as the real viewport dimension
  */
-function cgsgGetRealViewportDimension () {
+function cgsgGetRealViewportDimension() {
 	var e = window, a = 'inner';
 	if (!( 'innerWidth' in window )) {
 		a = 'client';
@@ -162,10 +162,10 @@ function cgsgGetRealViewportDimension () {
  * @method cgsgGetDisplayedViewportDimension
  * @return {CGSGDimension} a CGSGDimension as the viewport region
  */
-function cgsgGetDisplayedViewportDimension () {
+function cgsgGetDisplayedViewportDimension() {
 	var realDim = cgsgGetRealViewportDimension();
 	return new CGSGDimension(Math.round(realDim.width / cgsgDisplayRatio.x),
-	                         Math.round(realDim.height / cgsgDisplayRatio.y));
+							 Math.round(realDim.height / cgsgDisplayRatio.y));
 }
 
 /**
@@ -175,11 +175,11 @@ function cgsgGetDisplayedViewportDimension () {
  * @param targetRegion a CGSGRegion
  * @param threshold an integer
  */
-function cgsgPointIsInRegion (point, targetRegion, threshold) {
+function cgsgPointIsInRegion(point, targetRegion, threshold) {
 	return point.x >= (targetRegion.position.x - threshold) &&
-	       point.y >= (targetRegion.position.y - threshold) &&
-	       point.x <= (targetRegion.position.x + targetRegion.dimension.width + threshold) &&
-	       point.y <= (targetRegion.position.y + targetRegion.dimension.height + threshold);
+		   point.y >= (targetRegion.position.y - threshold) &&
+		   point.x <= (targetRegion.position.x + targetRegion.dimension.width + threshold) &&
+		   point.y <= (targetRegion.position.y + targetRegion.dimension.height + threshold);
 }
 
 /**
@@ -189,13 +189,13 @@ function cgsgPointIsInRegion (point, targetRegion, threshold) {
  * @param targetRegion a CGSGRegion
  * @param threshold an integer
  */
-function cgsgRegionIsInRegion (region, targetRegion, threshold) {
+function cgsgRegionIsInRegion(region, targetRegion, threshold) {
 	return region.position.x >= (targetRegion.position.x - threshold) &&
-	       region.position.y >= (targetRegion.position.y - threshold) &&
-	       (region.position.x + region.dimension.width) <=
-	       (targetRegion.position.x + targetRegion.dimension.width + threshold) &&
-	       (region.position.y + region.dimension.height) <=
-	       (targetRegion.position.y + targetRegion.dimension.height + threshold);
+		   region.position.y >= (targetRegion.position.y - threshold) &&
+		   (region.position.x + region.dimension.width) <=
+		   (targetRegion.position.x + targetRegion.dimension.width + threshold) &&
+		   (region.position.y + region.dimension.height) <=
+		   (targetRegion.position.y + targetRegion.dimension.height + threshold);
 }
 
 /**
@@ -205,7 +205,7 @@ function cgsgRegionIsInRegion (region, targetRegion, threshold) {
  * @param {HTMLElement} canvas a handler to the Canvas element
  * @return {Array} Array of CGSGPosition object
  */
-function cgsgGetCursorPositions (event, canvas) {
+function cgsgGetCursorPositions(event, canvas) {
 	var element = canvas, offsetX = 0, offsetY = 0, positions = [];
 
 	if (element.offsetParent) {
@@ -229,12 +229,12 @@ function cgsgGetCursorPositions (event, canvas) {
 			touch = event.targetTouches[i];
 
 			positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
-			                                (touch.pageY - offsetY) / cgsgDisplayRatio.y));
+											(touch.pageY - offsetY) / cgsgDisplayRatio.y));
 		}
 	}
 	else {
 		positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
-		                                (touch.pageY - offsetY) / cgsgDisplayRatio.y));
+										(touch.pageY - offsetY) / cgsgDisplayRatio.y));
 	}
 
 	return positions;
@@ -246,7 +246,7 @@ function cgsgGetCursorPositions (event, canvas) {
  * @method cgsgClearContext
  * @param {CanvasRenderingContext2D} context context to render on
  * */
-function cgsgClearContext (context) {
+function cgsgClearContext(context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	// Will always clear the right space
 	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
@@ -257,5 +257,5 @@ function cgsgClearContext (context) {
  * @param {*} object
  */
 function cgsgFree(object) {
-    object = null;
+	object = null;
 }

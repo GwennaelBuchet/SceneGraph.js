@@ -35,132 +35,132 @@ var SQ_HEIGHT = NaN; //if NaN, value will be computed to keep the ratio of the o
 //position of the wall of squares
 var startX = 70, startY = 60;
 
-
 var CGMain = CGSGScene.extend(
-    {
-        initialize:function (canvas) {
-            this._super(canvas);
+	{
+		initialize: function (canvas) {
+			this._super(canvas);
 
-            this.initializeCanvas();
-            this.createScene();
+			this.initializeCanvas();
+			this.createScene();
 
-            this.startPlaying();
-        },
+			this.startPlaying();
+		},
 
-        initializeCanvas:function () {
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
-        },
+		initializeCanvas: function () {
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
+		},
 
-        createScene:function () {
-            this.rootNode = new CGSGNode(0, 0, 0, 0);
-            this.sceneGraph.addNode(this.rootNode, null);
+		createScene: function () {
+			this.rootNode = new CGSGNode(0, 0, 0, 0);
+			this.sceneGraph.addNode(this.rootNode, null);
 
-            this.listSquares = [];
+			this.listSquares = [];
 
-            this.buttonRelease = new CGSGNodeButton(10, 10, "Release them !");
-            this.rootNode.addChild(this.buttonRelease);
-            this.buttonRelease.setMode(CGSGButtonMode.DEACTIVATED);
-            this.buttonRelease.onClick = this.explode.bind(this);
+			this.buttonRelease = new CGSGNodeButton(10, 10, "Release them !");
+			this.rootNode.addChild(this.buttonRelease);
+			this.buttonRelease.setMode(CGSGButtonMode.DEACTIVATED);
+			this.buttonRelease.onClick = this.explode.bind(this);
 
-            this.buttonReload = new CGSGNodeButton(170, 10, "Reload");
-            this.rootNode.addChild(this.buttonReload);
-            this.buttonReload.onClick = function (event) {
-                document.location.reload(true);
-            };
+			this.buttonReload = new CGSGNodeButton(170, 10, "Reload");
+			this.rootNode.addChild(this.buttonReload);
+			this.buttonReload.onClick = function (event) {
+				document.location.reload(true);
+			};
 
+			//load the image to
+			this.img = new Image();
+			this.img.onload = this.onImageLoaded.bind(this);
+			this.img.src = "images/bear.png";
+		},
 
-            //load the image to
-            this.img = new Image();
-            this.img.onload = this.onImageLoaded.bind(this);
-            this.img.src = "images/bear.png";
-        },
+		explode: function () {
+			this.buttonRelease.setMode(CGSGButtonMode.DEACTIVATED);
+			var i, len, sq, r, w2 = NB_VERTICAL_SLIDE / 2, delay;
+			var floor = startY + SQ_WIDTH * NB_VERTICAL_SLIDE * 1.5;
+			for (i = 0, len = this.listSquares.length; i < len; i++) {
+				sq = this.listSquares[i];
 
-        explode:function () {
-            this.buttonRelease.setMode(CGSGButtonMode.DEACTIVATED);
-            var i, len, sq, r, w2 = NB_VERTICAL_SLIDE / 2, delay;
-            var floor = startY + SQ_WIDTH * NB_VERTICAL_SLIDE * 1.5;
-            for (i = 0, len = this.listSquares.length; i < len; i++) {
-                sq = this.listSquares[i];
+				//pseudo-random distance between the horizontal center of the image and the current square
+				r = 1 - (Math.abs((1 - Math.random() * 0.2) * sq.x - w2) / w2);
 
-                //pseudo-random distance between the horizontal center of the image and the current square
-                r = 1 - (Math.abs((1 - Math.random() * 0.2) * sq.x - w2) / w2);
+				//random delay before launching animation, from bottom of the image to top
+				delay = (NB_VERTICAL_SLIDE - sq.y) * (1 + Math.random() * 2);
 
-                //random delay before launching animation, from bottom of the image to top
-                delay = (NB_VERTICAL_SLIDE - sq.y) * (1 + Math.random()*2);
+				//add an animation on y position
+				this.sceneGraph.animate(sq.sq, "position.y", 5 + Math.random() * 5,
+										sq.sq.position.y,
+										floor - Math.random() * r * 20,
+										"linear",
+										delay,
+										true);
 
-                //add an animation on y position
-                this.sceneGraph.animate(sq.sq, "position.y", 5 + Math.random() * 5,
-                    sq.sq.position.y,
-                    floor - Math.random() * r * 20,
-                    "linear",
-                    delay,
-                    true);
+				//add an animation on rotation angle
+				this.sceneGraph.animate(sq.sq, "rotation.angle", 5 + Math.random() * 5,
+										0,
+										200 + Math.random() * 360,
+										"linear",
+										delay,
+										true);
+			}
+		},
 
-                //add an animation on rotation angle
-                this.sceneGraph.animate(sq.sq, "rotation.angle", 5 + Math.random() * 5,
-                    0,
-                    200 + Math.random() * 360,
-                    "linear",
-                    delay,
-                    true);
-            }
-        },
+		/**
+		 * Fired when the image loading is complete.
+		 */
+		onImageLoaded: function () {
+			var x, y, sq, imageData, currentPixel;
+			var timeline;
 
-        /**
-         * Fired when the image loading is complete.
-         */
-        onImageLoaded:function () {
-            var x, y, sq, imageData, currentPixel;
-            var timeline;
+			var w = this.img.width / NB_HORIZONTAL_SLIDE;
+			var h = this.img.height / NB_VERTICAL_SLIDE;
+			if (isNaN(SQ_HEIGHT)) {
+				SQ_HEIGHT = CGSGMath.fixedPoint((h / w) * SQ_WIDTH);
+			}
 
-            var w = this.img.width / NB_HORIZONTAL_SLIDE;
-            var h = this.img.height / NB_VERTICAL_SLIDE;
-            if (isNaN(SQ_HEIGHT))
-                SQ_HEIGHT = CGSGMath.fixedPoint((h / w) * SQ_WIDTH);
+			//create reduced image in a temporary context
+			this._scaledCanvas = document.createElement('canvas');
+			this._scaledCanvas.width = NB_HORIZONTAL_SLIDE;
+			this._scaledCanvas.height = NB_VERTICAL_SLIDE;
+			var scaledContext = this._scaledCanvas.getContext('2d');
+			scaledContext.drawImage(this.img, 0, 0, this.img.width, this.img.height, 0, 0, NB_HORIZONTAL_SLIDE,
+									NB_VERTICAL_SLIDE);
 
-            //create reduced image in a temporary context
-            this._scaledCanvas = document.createElement('canvas');
-            this._scaledCanvas.width = NB_HORIZONTAL_SLIDE;
-            this._scaledCanvas.height = NB_VERTICAL_SLIDE;
-            var scaledContext = this._scaledCanvas.getContext('2d');
-            scaledContext.drawImage(this.img, 0, 0, this.img.width, this.img.height, 0, 0, NB_HORIZONTAL_SLIDE, NB_VERTICAL_SLIDE);
+			//get reduced image data
+			imageData = scaledContext.getImageData(0, 0, NB_HORIZONTAL_SLIDE, NB_VERTICAL_SLIDE);
 
-            //get reduced image data
-            imageData = scaledContext.getImageData(0, 0, NB_HORIZONTAL_SLIDE, NB_VERTICAL_SLIDE);
+			//loop over reduced image date and create squares
+			for (x = 0; x < NB_HORIZONTAL_SLIDE; x++) {
+				for (y = 0; y < NB_VERTICAL_SLIDE; y++) {
+					//current pixel  in the image (ie : current texel)
+					currentPixel = (y * NB_HORIZONTAL_SLIDE + x) * 4; // 4 because 4 values per pixel : RGBA
 
-            //loop over reduced image date and create squares
-            for (x = 0; x < NB_HORIZONTAL_SLIDE; x++) {
-                for (y = 0; y < NB_VERTICAL_SLIDE; y++) {
-                    //current pixel  in the image (ie : current texel)
-                    currentPixel = (y * NB_HORIZONTAL_SLIDE + x) * 4; // 4 because 4 values per pixel : RGBA
+					//create a square per pixel, only if it's visible (alpha > 0)
+					if (imageData.data[currentPixel + 3] > 0) {
+						//create square
+						sq = new CGSGNodeSquare(startX + x * SQ_WIDTH, startY + y * SQ_HEIGHT, SQ_WIDTH, SQ_HEIGHT);
+						//get color in hex format
+						sq.color = CGSGColor.rgb2hex(
+							imageData.data[currentPixel + 0],
+							imageData.data[currentPixel + 1],
+							imageData.data[currentPixel + 2]
+						);
+						sq.globalAlpha = imageData.data[currentPixel + 3] / 255;
+						//optimize performance
+						sq.needToKeepAbsoluteMatrix = false;
+						sq.isTraversable = false;
+						sq.isClickable = false;
 
-                    //create a square per pixel, only if it's visible (alpha > 0)
-                    if (imageData.data[currentPixel + 3] > 0) {
-                        //create square
-                        sq = new CGSGNodeSquare(startX + x * SQ_WIDTH, startY + y * SQ_HEIGHT, SQ_WIDTH, SQ_HEIGHT);
-                        //get color in hex format
-                        sq.color = CGSGColor.rgb2hex(
-                            imageData.data[currentPixel + 0],
-                            imageData.data[currentPixel + 1],
-                            imageData.data[currentPixel + 2]
-                        );
-                        sq.globalAlpha = imageData.data[currentPixel + 3] / 255;
-                        //optimize performance
-                        sq.needToKeepAbsoluteMatrix = false;
-                        sq.isTraversable = false;
-                        sq.isClickable = false;
+						this.listSquares.push({sq: sq, x: x, y: y});
 
-                        this.listSquares.push({sq:sq, x:x, y:y});
+						//add square to root node
+						this.rootNode.addChild(sq);
+					}
+				}
+			}
 
-                        //add square to root node
-                        this.rootNode.addChild(sq);
-                    }
-                }
-            }
+			this.buttonRelease.setMode(CGSGButtonMode.NORMAL);
+		}
 
-            this.buttonRelease.setMode(CGSGButtonMode.NORMAL);
-        }
-
-    }
+	}
 );

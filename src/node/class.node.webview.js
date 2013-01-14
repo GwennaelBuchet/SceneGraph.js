@@ -33,11 +33,11 @@ var CGSGWEBVIEWMODE = {
 	/**
 	 * @property LIVE
 	 */
-	LIVE    : 0,
+	LIVE   : 0,
 	/**
 	 * @property PREVIEW
 	 */
-	PREVIEW : 1
+	PREVIEW: 1
 };
 
 /*
@@ -62,7 +62,7 @@ var CGSGWEBVIEWMODE = {
  */
 var CGSGNodeWebview = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height, url) {
+		initialize: function (x, y, width, height, url) {
 			this._super(x, y, CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
 			/**
@@ -136,7 +136,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _initLiveContainer
 		 * @private
 		 */
-		_initLiveContainer : function () {
+		_initLiveContainer: function () {
 			if (!cgsgExist(this._liveContainer)) {
 				this._createLiveContainer();
 			}
@@ -149,7 +149,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _initPreviewContainer
 		 * @private
 		 */
-		_initPreviewContainer : function () {
+		_initPreviewContainer: function () {
 			if (!cgsgExist(this._previewContainer)) {
 				this._createPreviewContainer();
 			}
@@ -165,7 +165,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _createLiveContainer
 		 * @private
 		 */
-		_createLiveContainer : function () {
+		_createLiveContainer: function () {
 			var uri = "";
 			if (cgsgExist(this._url)) {
 				uri = this._url;
@@ -182,7 +182,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method _createPreviewContainer
 		 * @private
 		 */
-		_createPreviewContainer : function () {
+		_createPreviewContainer: function () {
 			this._previewContainer =
 			new CGSGNodeImage(0, 0, this._previewURL);
 
@@ -202,7 +202,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method setURL
 		 * @param {String} url
 		 */
-		setURL : function (url) {
+		setURL: function (url) {
 			this._url = url;
 
 			if (cgsgExist(this._liveContainer)) {
@@ -215,7 +215,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method getURL
 		 * @return {string}
 		 */
-		getURL : function () {
+		getURL: function () {
 			return this._url;
 		},
 
@@ -224,7 +224,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method setPreviewURL
 		 * @param {String} imageURL
 		 */
-		setPreviewURL : function (imageURL) {
+		setPreviewURL: function (imageURL) {
 			this._previewURL = imageURL;
 			this._previewContainer.setURL(this._previewURL);
 		},
@@ -234,7 +234,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method switchMode
 		 * @param {Number} mode a CGSGWEBVIEWMODE enum : LIVE or PREVIEW
 		 */
-		switchMode : function (mode) {
+		switchMode: function (mode) {
 			if (mode === CGSGWEBVIEWMODE.LIVE) {
 				this.detachChild(this._previewContainer);
 				this._initLiveContainer();
@@ -254,7 +254,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method getCurrentMode
 		 * @return {CGSGWEBVIEWMODE} the current mode
 		 */
-		getCurrentMode : function () {
+		getCurrentMode: function () {
 			return this._mode;
 		},
 
@@ -263,7 +263,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method render
 		 * Custom rendering
 		 * */
-		render : function (context) {
+		render: function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -280,8 +280,8 @@ var CGSGNodeWebview = CGSGNode.extend(
 				context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
 
 				context.strokeRect(this.threshold - 2, this.threshold - 2,
-				                   8 + this.dimension.width - this.threshold * 2,
-				                   8 + this.dimension.height - this.threshold * 2);
+								   8 + this.dimension.width - this.threshold * 2,
+								   8 + this.dimension.height - this.threshold * 2);
 
 				if (cgsgExist(this._liveContainer)) {
 					this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + "px";
@@ -308,13 +308,13 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * Free the memory taken by this node
 		 * @method free
 		 */
-		free : function () {
+		free: function () {
 			if (cgsgExist(this._liveContainer)) {
 				cgsgCanvas.removeChild(this._liveContainer);
 				delete (this._liveContainer);
 			}
 
-            this._super();
+			this._super();
 		},
 
 		/**
@@ -322,9 +322,9 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeWebview}
 		 */
-		copy : function () {
+		copy: function () {
 			var node = new CGSGNodeWebview(this.position.x, this.position.y, this.dimension.width,
-			                               this.dimension.height, this.url);
+										   this.dimension.height, this.url);
 			//call the super method
 			node = this._super(node);
 

@@ -31,7 +31,7 @@
  */
 var ButtonNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height, radius) {
+		initialize: function (x, y, width, height, radius) {
 			//call the initialize of the parent
 			this._super(x, y, width, height);
 
@@ -54,7 +54,7 @@ var ButtonNode = CGSGNode.extend(
 		/**
 		 * Pre-render the cloud into a temp canvas to optimize the perfs
 		 */
-		initShape : function() {
+		initShape: function () {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = this.dimension.width + 2 * this.radius;
 			this._tmpCanvas.height = this.dimension.height + 2 * this.radius;
@@ -63,26 +63,26 @@ var ButtonNode = CGSGNode.extend(
 			tmpContext.beginPath();
 			tmpContext.moveTo(/*this.position.x*/ this.radius + this.radius, /*this.position.y*/ this.radius);
 			tmpContext.lineTo(/*this.position.x*/ this.radius + this.dimension.width - this.radius, /*this.position.y*/
-			                                      this.radius);
+												  this.radius);
 			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius + this.dimension.width, /*this.position.y*/
-			                                                this.radius,
+															this.radius,
 				/*this.position.x*/ this.radius + this.dimension.width, /*this.position.y*/ this.radius + this.radius);
 			tmpContext.lineTo(/*this.position.x*/ this.radius + this.dimension.width,
 				/*this.position.y*/ this.radius + this.dimension.height - this.radius);
 			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius + this.dimension.width, /*this.position.y*/
-			                                                this.radius + this.dimension.height,
+															this.radius + this.dimension.height,
 				/*this.position.x*/ this.radius + this.dimension.width - this.radius,
 				/*this.position.y*/ this.radius + this.dimension.height);
 			tmpContext.lineTo(/*this.position.x*/ this.radius + this.radius, /*this.position.y*/
-			                                      this.radius + this.dimension.height);
+												  this.radius + this.dimension.height);
 			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius, /*this.position.y*/
-			                                                this.radius + this.dimension.height,
+															this.radius + this.dimension.height,
 				/*this.position.x*/ this.radius,
 				/*this.position.y*/ this.radius + this.dimension.height - this.radius);
 			tmpContext.lineTo(/*this.position.x*/ this.radius, /*this.position.y*/ this.radius + this.radius);
 			tmpContext.quadraticCurveTo(/*this.position.x*/ this.radius, /*this.position.y*/ this.radius,
 				/*this.position.x*/
-				                                            this.radius + this.radius,
+															this.radius + this.radius,
 				/*this.position.y*/ this.radius);
 			tmpContext.closePath();
 			tmpContext.fill();
@@ -103,7 +103,7 @@ var ButtonNode = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//save current state
 			//always call it
 			this.beforeRender(context);

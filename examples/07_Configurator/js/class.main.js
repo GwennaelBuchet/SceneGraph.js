@@ -24,7 +24,7 @@
  */
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 			this._super(canvas);
 
 			this.basket = new Basket();
@@ -35,7 +35,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 
@@ -43,7 +43,7 @@ var CGMain = CGSGScene.extend(
 			FLOOR_PERCENT = Math.max(0.0, FLOOR_POSITION / cgsgCanvas.height);
 		},
 
-		createScene : function () {
+		createScene: function () {
 			this.rootNode = new CGSGNode(0, 0, 0, 0);
 			this.sceneGraph.addNode(this.rootNode, null);
 
@@ -62,7 +62,7 @@ var CGMain = CGSGScene.extend(
 		 * Fired when the image loading is complete.
 		 * Set the image object (img) to our image nodes
 		 */
-		onImageLoaded:function () {
+		onImageLoaded: function () {
 			this.menuNode.setImage(this.img);
 		}
 

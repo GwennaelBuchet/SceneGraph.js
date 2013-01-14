@@ -29,33 +29,31 @@
  * animated sprite example
  * */
 var CGMain = CGSGScene.extend(
-    {
-        initialize:function (canvas) {
-            this._super(canvas);
+	{
+		initialize: function (canvas) {
+			this._super(canvas);
 
-            ////// INITIALIZATION /////////
+			////// INITIALIZATION /////////
 
-            this.initializeCanvas();
-            this.createScene();
+			this.initializeCanvas();
+			this.createScene();
 
-            this.startPlaying();
-        },
+			this.startPlaying();
+		},
 
-        initializeCanvas:function () {
-            //redimensionnement du canvas pour être full viewport en largeur
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
-        },
+		initializeCanvas: function () {
+			//redimensionnement du canvas pour être full viewport en largeur
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
+		},
 
-        /**
-         * Create a complete character with several animations in the same sprite sheet (ie the same image)
-         */
-        createScene:function () {
+		/**
+		 * Create a complete character with several animations in the same sprite sheet (ie the same image)
+		 */
+		createScene: function () {
 
 			var rootNode = new CGSGNode(0, 0, 0, 0);
 			this.sceneGraph.addNode(rootNode, null);
-
-
 
 			var before = new Date();
 			//cgsgClearContext(this.context);
@@ -69,28 +67,27 @@ var CGMain = CGSGScene.extend(
 
 			//var imageDataUrl = cgsgCanvas.toDataURL("image/png");
 
-
-			var drawn   = null;
-			var d       = this.context.getImageData(0, 0, cgsgCanvas.width, cgsgCanvas.height); //image data
-			var len     = d.data.length;
-			for(var i =0; i< len; i++) {
-				if(!d.data[i]) {
+			var drawn = null;
+			var d = this.context.getImageData(0, 0, cgsgCanvas.width, cgsgCanvas.height); //image data
+			var len = d.data.length;
+			for (var i = 0; i < len; i++) {
+				if (!d.data[i]) {
 					drawn = false;
-				}else if(d.data[i]) {
+				}
+				else if (d.data[i]) {
 					drawn = true;
 					console.log('Canvas not empty');
 					break;
 				}
 			}
-			if(!drawn) {
+			if (!drawn) {
 				console.log('Canvas empty');
 			}
 
 			var after = new Date();
 			console.log("durée = " + (after.getTime() - before.getTime()) / 1000);
 
-
 			//console.log(imageDataUrl);
 		}
-    }
+	}
 );

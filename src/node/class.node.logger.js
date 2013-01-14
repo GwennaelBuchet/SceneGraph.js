@@ -39,7 +39,7 @@
  */
 var CGSGNodeLogger = CGSGNode.extend(
 	{
-		initialize : function (x, y) {
+		initialize: function (x, y) {
 			this._super(x, y, 100, 100);
 
 			///// @public //////
@@ -120,7 +120,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method _createPanel
 		 * @private
 		 */
-		_createPanel : function () {
+		_createPanel: function () {
 
 		},
 
@@ -131,7 +131,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @param {String} name
 		 * @param {String} value
 		 */
-		set : function (name, value) {
+		set: function (name, value) {
 			//if the attribute already exists,just update the value
 			var attr = null;
 			for (var a = 0; a < this._attributes[a]; a++) {
@@ -151,7 +151,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 				tnn.color = this.textColor;
 				tnv.setSize(this.textSize);
 				tnv.color = this.textColor;
-				attr = {name : name, value : value, nodeName : tnn, nodeValue : tnv};
+				attr = {name: name, value: value, nodeName: tnn, nodeValue: tnv};
 				this._attributes.push(attr);
 			}
 
@@ -163,7 +163,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function (context) {
+		render: function (context) {
 			//save current state
 			this.beforeRender(context);
 
@@ -195,7 +195,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeLogger} a copy of this node
 		 */
-		copy : function () {
+		copy: function () {
 			var node = new CGSGNodeLogger(this.position.x, this.position.y);
 			//call the super method
 			node = this._super(node);

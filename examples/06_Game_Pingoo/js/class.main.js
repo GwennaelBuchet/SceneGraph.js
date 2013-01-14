@@ -4,14 +4,14 @@
  * @type {Object}
  */
 var GAME_STATE = {
-	LOADING    : { instance : null },
-	HOME       : { instance : null },
-	PLAY       : { instance : null }
+	LOADING: { instance: null },
+	HOME   : { instance: null },
+	PLAY   : { instance: null }
 };
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -24,10 +24,10 @@ var CGMain = CGSGScene.extend(
 
 			//keyboard events handler
 			var scope = this;
-			document.onkeydown = function(event) {
+			document.onkeydown = function (event) {
 				scope.onKeyDown(event);
 			};
-			document.onkeyup = function(event) {
+			document.onkeyup = function (event) {
 				scope.onKeyUp(event);
 			};
 
@@ -40,7 +40,7 @@ var CGMain = CGSGScene.extend(
 		 * create the background, the character and the items (holes, numbers and fish)
 		 * @method createScene
 		 */
-		createScene : function() {
+		createScene: function () {
 			//create a root node to the graph, with an arbitrary position and size
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode);
@@ -65,7 +65,7 @@ var CGMain = CGSGScene.extend(
 		 * Once the image is loaded, set it to the sprites
 		 * @method onItemsImageLoaded
 		 */
-		onItemsImageLoaded : function() {
+		onItemsImageLoaded: function () {
 			//set the image to all states that need it.
 			GAME_STATE.PLAY.instance.setImage(this.spriteSheet);
 
@@ -78,7 +78,7 @@ var CGMain = CGSGScene.extend(
 		 * @method changeGameState
 		 * @param newState
 		 */
-		changeGameState : function(newState) {
+		changeGameState: function (newState) {
 			//stop and detach the current state from the graph
 			this.gameState.instance.stop();
 			this.rootNode.detachChild(this.gameState.instance.rootNode);
@@ -95,7 +95,7 @@ var CGMain = CGSGScene.extend(
 		 * @param event
 		 * @return {*}
 		 */
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			this.gameState.instance.onKeyDown(event);
 			//call the parent handler
 			return this.onKeyDownHandler(event);
@@ -106,7 +106,7 @@ var CGMain = CGSGScene.extend(
 		 * @param event
 		 * @return {*}
 		 */
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 			this.gameState.instance.onKeyUp(event);
 			//call the parent handler
 			return this.onKeyUpHandler(event);

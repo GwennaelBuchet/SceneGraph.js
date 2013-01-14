@@ -31,15 +31,14 @@
  */
 
 var FLOWER_TYPE = [
-	{ live : 0, points : 100, petalColor : "white", centerColor : "#f2e2a0"},
-	{ live : 1, points : 500, petalColor : "#ed87ad", centerColor : "#f2e2a0"},
-	{ live : 2, points : 3000, petalColor : "#87b9ed", centerColor : "#dd87ed"}
+	{ live: 0, points: 100, petalColor: "white", centerColor: "#f2e2a0"},
+	{ live: 1, points: 500, petalColor: "#ed87ad", centerColor: "#f2e2a0"},
+	{ live: 2, points: 3000, petalColor: "#87b9ed", centerColor: "#dd87ed"}
 ];
-
 
 var FlowerNode = CGSGNode.extend(
 	{
-		initialize : function(parent, typeIndex, isAnimated) {
+		initialize: function (parent, typeIndex, isAnimated) {
 			//call the initialize of the parent
 			this._super(0, 0, 20, 20);
 
@@ -86,7 +85,7 @@ var FlowerNode = CGSGNode.extend(
 		/**
 		 * Pre-render the cloud into a temp canvas to optimize the perfs
 		 */
-		initShape : function(isAnimated) {
+		initShape: function (isAnimated) {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = 400;
 			this._tmpCanvas.height = 300;
@@ -127,14 +126,14 @@ var FlowerNode = CGSGNode.extend(
 			this.resizeTo(175 * scale, 175 * scale);
 		},
 
-		start : function() {
+		start: function () {
 			this.reStartAnim(1);
 
 			var bindExplode = this.onExplode.bind(this);
 			sceneGraph.getTimeline(this, "position.y").onAnimationEnd = bindExplode;
 		},
 
-		initPosAndSpeed : function(speed) {
+		initPosAndSpeed: function (speed) {
 			this.globalAlpha = 1.0;
 			this.scaleTo(1, 1);
 			var x = CGSGMath.fixedPoint(40 + (Math.random() * (cgsgCanvas.width - 90)));
@@ -144,12 +143,12 @@ var FlowerNode = CGSGNode.extend(
 			this.speed *= speed;
 		},
 
-		startAnim : function() {
+		startAnim: function () {
 			sceneGraph.animate(this, "position.y", this.speed, this.position.y,
-			                   CGSGMath.fixedPoint(cgsgCanvas.height - 15), "linear", 0, true);
+							   CGSGMath.fixedPoint(cgsgCanvas.height - 15), "linear", 0, true);
 		},
 
-		reStartAnim : function(speed) {
+		reStartAnim: function (speed) {
 			//remove first the actual animation
 			sceneGraph.getTimeline(this, "globalAlpha").removeAll();
 			sceneGraph.getTimeline(this, "scale.x").removeAll();
@@ -160,14 +159,14 @@ var FlowerNode = CGSGNode.extend(
 			this.startAnim();
 		},
 
-		onExplode : function() {
+		onExplode: function () {
 			this.game.killFlower();
 			sceneGraph.getTimeline(this, "position.y").removeAll();
 			sceneGraph.animate(this, "position.x", 15, this.position.x, this.position.x - 16, "linear", 0, true);
 			sceneGraph.animate(this, "scale.x", 15, 1, 3, "linear", 0, true);
 			sceneGraph.animate(this, "scale.y", 15, 1, 3, "linear", 0, true);
 			sceneGraph.animate(this, "globalAlpha", 15, 1, 0, "linear", 0, true);
-			sceneGraph.getTimeline(this, "globalAlpha").onAnimationEnd = function(event) {
+			sceneGraph.getTimeline(this, "globalAlpha").onAnimationEnd = function (event) {
 				event.node.reStartAnim(1);
 			}
 		},
@@ -175,7 +174,7 @@ var FlowerNode = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//save current state
 			//always call it
 			this.beforeRender(context);
