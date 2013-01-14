@@ -38,11 +38,6 @@ var CGMain = CGSGScene.extend(
             this.initializeCanvas();
             this.createScene();
 
-            //keyboard events handler
-            var scope = this;
-            document.onkeydown = this.onKeyDown.bind(this);
-            document.onkeyup = this.onKeyUp.bind(this);
-
             this.startPlaying();
         },
 
@@ -57,109 +52,45 @@ var CGMain = CGSGScene.extend(
          */
         createScene:function () {
 
-            //create a first root node.
-            //that's not mandatory, we could use the first sphere as the root node
-            this.rootNode = new CGSGNode(0, 0, 1, 1);
-            this.sceneGraph.addNode(this.rootNode, null);
+			var rootNode = new CGSGNode(0, 0, 0, 0);
+			this.sceneGraph.addNode(rootNode, null);
 
 
-            this.listAnimations = ["front", "left", "back", "right"];
 
-            /*
-             * @param x
-             * @param y
-             * @param image url
-             * @param context
-             */
-            this.pingoo = new CGSGNodeSprite(68, 68, "images/board.png", this.context);
-            this.pingoo.isDraggable = true;
-            //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-            this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
-            this.pingoo.addAnimation("back", 6, 4, 476, 35, 34, 34, 4);
-            this.pingoo.addAnimation("left", 6, 4, 476, 69, 34, 34, 4);
-            this.pingoo.addAnimation("right", 6, 4, 476, 102, 34, 34, 4);
-            this.pingoo.play("front", null);
+			var before = new Date();
+			//cgsgClearContext(this.context);
+			this.context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
 
-            this.rootNode.addChild(this.pingoo);
+			var s1 = new CGSGNodeSquare(10, 10, 100, 100);
+			rootNode.addChild(s1);
 
-            this.currentAnimation = 0;
+			//this.context.scale(0.001, 0.001);
+			//this.context.getImageData(0, this.context.wi)
 
-            //add a text node ("click me") with a onClick event
-            this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
-            this.buttonNode.onClick = this.switchAnimation.bind(this);
-            //add the textNode as child of the root
-            this.rootNode.addChild(this.buttonNode);
+			//var imageDataUrl = cgsgCanvas.toDataURL("image/png");
 
-            //add a text node ("click me") with a onClick event
-            this.button2Node = new CGSGNodeButton(200, 20, "DblClick Me");
-            this.button2Node.onDblClick = function (event) {
-                //alert("dblClick");
-                console.log("dbl click");
-            };
-            this.button2Node.onClick = function (event) {
-                console.log("click");
-            };
-            //add the textNode as child of the root
-            this.rootNode.addChild(this.button2Node);
 
-            this.changeTextAnimation();
-        },
+			var drawn   = null;
+			var d       = this.context.getImageData(0, 0, cgsgCanvas.width, cgsgCanvas.height); //image data
+			var len     = d.data.length;
+			for(var i =0; i< len; i++) {
+				if(!d.data[i]) {
+					drawn = false;
+				}else if(d.data[i]) {
+					drawn = true;
+					console.log('Canvas not empty');
+					break;
+				}
+			}
+			if(!drawn) {
+				console.log('Canvas empty');
+			}
 
-        switchAnimation:function () {
-            this.currentAnimation = (this.currentAnimation + 1) % this.listAnimations.length;
-            this.pingoo.play(this.listAnimations[this.currentAnimation], null);
+			var after = new Date();
+			console.log("durée = " + (after.getTime() - before.getTime()) / 1000);
 
-            this.changeTextAnimation();
-        },
 
-        /**
-         * change the text of the button
-         */
-        changeTextAnimation:function () {
-            this.buttonNode.setTexts("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
-        },
-
-        /**
-         * @method onKeyDown
-         * @param event
-         * @return {*}
-         */
-        onKeyDown:function (event) {
-            var y = 0;
-            var x = 0;
-
-            var keynum = (window.event) ? event.keyCode : event.which;
-
-            switch (keynum) {
-                case 37: //left
-                    x = -34;
-                    this.pingoo.play("left", null);
-                    break;
-                case 38: //up
-                    this.pingoo.play("back", null);
-                    y = -34;
-                    break;
-                case 39: //right
-                    this.pingoo.play("right", null);
-                    x = 34;
-                    break;
-                case 40: //down
-                    this.pingoo.play("front", null);
-                    y = 34;
-                    break;
-            }
-
-            this.sceneGraph.animate(this.pingoo, "position.y", 24, this.pingoo.position.y, this.pingoo.position.y + y, "linear", 0, true);
-            this.sceneGraph.animate(this.pingoo, "position.x", 24, this.pingoo.position.x, this.pingoo.position.x + x, "linear", 0, true);
-        },
-
-        /**
-         * @method onKeyUp
-         * @param event
-         * @return {*}
-         */
-        onKeyUp:function (event) {
-            //this.sceneGraph.animate(this.pingoo, "position.y", 16, this.pingoo.position.y, this.pingoo.position.y - 34, "linear", 0, true);
-        }
+			//console.log(imageDataUrl);
+		}
     }
 );

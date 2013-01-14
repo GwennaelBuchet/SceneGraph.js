@@ -382,6 +382,13 @@ It encapsulates the root node and list of timelines for animations</p>
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_pickNodes">pickNodes</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_removeNode">removeNode</a>
 
                                 
@@ -554,7 +561,7 @@ It encapsulates the root node and list of timelines for animations</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l320"><code>src\class.scenegraph.js:320</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l350"><code>src\class.scenegraph.js:350</code></a>
         
         </p>
 
@@ -730,7 +737,7 @@ It encapsulates the root node and list of timelines for animations</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l300"><code>src\class.scenegraph.js:300</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l330"><code>src\class.scenegraph.js:330</code></a>
         
         </p>
 
@@ -875,7 +882,7 @@ If the root does not already exist, this nodes will be used as root</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l346"><code>src\class.scenegraph.js:346</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l376"><code>src\class.scenegraph.js:376</code></a>
         
         </p>
 
@@ -1259,7 +1266,7 @@ If the root does not already exist, this nodes will be used as root</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l386"><code>src\class.scenegraph.js:386</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l416"><code>src\class.scenegraph.js:416</code></a>
         
         </p>
 
@@ -1574,6 +1581,139 @@ If the root does not already exist, this nodes will be used as root</p>
 </div>
 
                 
+                    <div id="method_pickNodes" class="method item">
+    <span class="attribute-name">pickNodes</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>region</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>condition</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l284"><code>src\class.scenegraph.js:284</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Recursively traverse the nodes and return the ones who are under the mouse coordinates</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">region</code>
+                        <span class="type"><a href="..\classes\CGSGRegion.html" class="crosslink">CGSGRegion</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">condition</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>this.scenegraph.picknodes(region, 'position.x > 100'); <br/>
+ this.scenegraph.picknodes(region, 'position.x > 100 &amp;&amp; this.position.y > 100');</p>
+            </div>
+        </div>
+    
+</div>
+
+                
                     <div id="method_removeNode" class="method item">
     <span class="attribute-name">removeNode</span>
 
@@ -1620,7 +1760,7 @@ If the root does not already exist, this nodes will be used as root</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l284"><code>src\class.scenegraph.js:284</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l314"><code>src\class.scenegraph.js:314</code></a>
         
         </p>
 
@@ -1947,7 +2087,7 @@ Does not really change the dimension of the rendering canvas container,
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l366"><code>src\class.scenegraph.js:366</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.scenegraph.js.html#l396"><code>src\class.scenegraph.js:396</code></a>
         
         </p>
 

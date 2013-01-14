@@ -186,6 +186,23 @@
  *&#x2F;
 
 &#x2F;**
+ * List the methods to check the pick on a node
+ * @class CGSGPickNodeMethod
+ * @type {Object}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ *&#x2F;
+var CGSGPickNodeMethod = {
+	&#x2F;**
+	 * @property GHOST
+	 *&#x2F;
+	GHOST : &quot;ghost&quot;,
+	&#x2F;**
+	 * @property REGION
+	 *&#x2F;
+	REGION: &quot;region&quot;
+};
+
+&#x2F;**
  * Global properties of the framework
  *
  * @class GLOBAL_PROPERTIES
@@ -200,7 +217,7 @@
  * @static
  * @type {String}
  *&#x2F;
-var cgsgVersion = &quot;1.3.1&quot;;
+var cgsgVersion = &quot;1.4.0&quot;;
 
 &#x2F;**
  * Current display ratio
@@ -283,6 +300,25 @@ var cgsgGhostColor = &quot;#FF0000&quot;;
  * @type {Number}
  *&#x2F;
 var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
+
+&#x2F;**
+ * Object that defines the performance keys.
+ * Change values to adapt your project.
+ *
+ * cgsgPerformanceKeys.collisionMethod =
+ * 	   		Method to compute collision detection on the Scene
+ * 	   		Default : CGSGPickNodeMethod.REGION
+ *
+ * cgsgPerformanceKeys.collisionMethod =
+ * 	   		Method to compute collision detection on the Scene
+ * 	   		Default : CGSGPickNodeMethod.REGION
+ *
+ * @property cgsgPerformanceKeys
+ * @type {Object}
+ *&#x2F;
+var cgsgPerformanceKeys = {
+	collisionMethod : CGSGPickNodeMethod.REGION
+};
     </pre>
 </div>
 

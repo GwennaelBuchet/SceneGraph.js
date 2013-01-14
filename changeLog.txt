@@ -47,6 +47,22 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.4.0
+
+CHANGES:
+- Evolution. Added the ability to do drag multi-selection.
+- Correction. CGSGHashmap : correction on "remove" that removed all values that are indentical (not only bound to the key).
+- Correction. Fixed bug on collision ghost (node with children).
+- Optimization. cleaned node.isColliding.
+- Correction. Fixed isColliding bug.
+- Evolution. Added collision detection in Ghost mode (custom shape, images..).
+- Correction. node selection in region mod (1px excess).
+- Optimization. Give option to prevent text measuring on construct *optimization*
+- Evolution. Changed resize handles to include stroke + fill
+- Correction. Correct a bug in animationEnd.
+- Evolution. Add of cgsgPerformanceKeys object to fine tune the performances
+
+---------------------------------------------------------------------
 v1.3.1
 
 CHANGES:

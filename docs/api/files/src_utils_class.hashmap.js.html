@@ -253,9 +253,9 @@ var CGSGHashmap = CGSGObject.extend(
          *&#x2F;
         remove:function (key) {
             if (this.containsKey(key)) {
-                var value = this.getValue(key);
-                this._map.keys.without(key);
-                this._map.values.without(value);
+                var index = this.getKeyIndex(key);
+                this._map.keys.splice(index,1);
+                this._map.values.splice(index,1);
             }
         },
 

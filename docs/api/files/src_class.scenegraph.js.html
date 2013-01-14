@@ -314,12 +314,12 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getLastKey();
                             if (key !== null &amp;&amp; key.frame == cgsgCurrentFrame) {
                                 timeline.removeAll();
-                                this._listTimelines.without(timeline);
+                                &#x2F;&#x2F;this._listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
                                     timeline.onAnimationEnd({node:node});
                                 }
 
-                                cgsgFree(timeline);
+                                &#x2F;&#x2F;cgsgFree(timeline);
                             }
                         }
                     }
@@ -434,6 +434,36 @@ var CGSGSceneGraph = CGSGObject.extend(
             else {
                 return this.root.pickNode(
                     mousePosition.copy(), &#x2F;&#x2F;position of the cursor on the viewport
+                    new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
+                    cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
+                    true, &#x2F;&#x2F;recursively ?
+                    &#x2F;&#x2F;cgsgCanvas.width &#x2F; cgsgDisplayRatio.x, cgsgCanvas.height &#x2F; cgsgDisplayRatio.y,
+                    &#x2F;&#x2F;dimension of the canvas container
+                    condition);  &#x2F;&#x2F; condition to the picknode be executed
+            }
+        },
+
+        &#x2F;**
+         * Recursively traverse the nodes and return the ones who are under the mouse coordinates
+         * @method pickNodes
+         * @param {CGSGRegion} region
+         * @param {String} condition
+         * @return {Array}
+         * @example
+         *  this.scenegraph.picknodes(region, &#x27;position.x &gt; 100&#x27;); &lt;br&#x2F;&gt;
+         *  this.scenegraph.picknodes(region, &#x27;position.x &gt; 100 &amp;&amp; this.position.y &gt; 100&#x27;);
+         *&#x2F;
+        pickNodes:function (region, condition) {
+            &#x2F;&#x2F;empty the current selection first
+            &#x2F;&#x2F;this.selectedNodes = new Array();
+            cgsgClearContext(cgsgGhostContext);
+            &#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
+            if (!cgsgExist(this.root)) {
+                return null;
+            }
+            else {
+                return this.root.pickNodes(
+                    region.copy(), &#x2F;&#x2F;position of the cursor on the viewport
                     new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
                     cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
                     true, &#x2F;&#x2F;recursively ?

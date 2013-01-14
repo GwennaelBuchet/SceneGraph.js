@@ -223,7 +223,7 @@ var CGSGWrapMode = {
  *&#x2F;
 var CGSGNodeText = CGSGNode.extend(
     {
-        initialize:function (x, y, text) {
+        initialize:function (x, y, text,mustRecomputeDimension) {
             this._super(x, y, -1, -1);
 
             &#x2F;**
@@ -346,7 +346,7 @@ var CGSGNodeText = CGSGNode.extend(
              *&#x2F;
             this.classType = &quot;CGSGNodeText&quot;;
 
-            this.setText(text, true);
+            this.setText(text, mustRecomputeDimension!==false);
             this.resizeTo(this.getWidth(), this.getHeight());
         },
 

@@ -56,6 +56,7 @@ var CGMain = CGSGScene.extend(
          * Create a complete character with several animations in the same sprite sheet (ie the same image)
          */
         createScene:function () {
+			this.isDragSelectEnabled = true;
 
             //create a first root node.
             //that's not mandatory, we could use the first sphere as the root node
@@ -67,13 +68,7 @@ var CGMain = CGSGScene.extend(
                 0, //x
                 0, //y
                 "images/board.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
-
-            //add some attributes
-            this.imgNode.isResizable = true;
-            this.imgNode.isDraggable = true;
-
             this.rootNode.addChild(this.imgNode);
-
             this.imgNode.setSlice(0, 0, 476, 635, true);
 
             this.listAnimations = ["front", "left", "back", "right"];
@@ -101,7 +96,7 @@ var CGMain = CGSGScene.extend(
             this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
             this.buttonNode.onClick = this.switchAnimation.bind(this);
             //add the textNode as child of the root
-            //this.rootNode.addChild(this.buttonNode);
+            this.rootNode.addChild(this.buttonNode);
 
             this.changeTextAnimation();
         },

@@ -54,6 +54,8 @@ var CGMain = CGSGScene.extend(
 		 *
 		 */
 		createScene : function() {
+			this.isDragSelectEnabled = true;
+
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -83,7 +85,7 @@ var CGMain = CGSGScene.extend(
 
 			this.textNode = new CGSGNodeText(20, 10,
 			                                 "Number of nodes found by the Traverser with the condition \"color == 'yellow'\" = "
-				                                 + listSquares.length);
+				                                 + listSquares.length + " / 500");
 			this.textNode.setSize(14);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.textNode);
