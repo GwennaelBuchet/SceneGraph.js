@@ -1461,7 +1461,7 @@ var CGSGNode = CGSGObject.extend(
             var startX = (deltaX >= 0) ? deltaX : 0;
             var startY = (deltaY >= 0) ? deltaY : 0;
 
-            // draw both nodes with an union-mask
+            // draw 1st
             var tmpCanvas = document.createElement('canvas');
             tmpCanvas.width = this.getWidth();
             tmpCanvas.height = this.getHeight();
@@ -1473,14 +1473,21 @@ var CGSGNode = CGSGObject.extend(
             this.render(ctx);
             this.position = backupPosition;
 
-            // mask
-            ctx.globalCompositeOperation = "destination-in";
+            // draw node
+            var tmpCanvas2 = document.createElement('canvas');
+            tmpCanvas2.width = this.getWidth();
+            tmpCanvas2.height = this.getHeight();
+            var ctx2 = tmpCanvas2.getContext("2d");
 
             // draw node at deltas (backup position, render, restore position)
             backupPosition = node.position;
             node.position = new CGSGPosition(deltaX, deltaY);
-            node.render(ctx);
+            node.render(ctx2);
             node.position = backupPosition;
+
+            // draw both with mask
+            ctx.globalCompositeOperation = "destination-in";
+            ctx.drawImage(tmpCanvas2,0,0);
 
             // WARN : security exception with chrome when calling .html directly (no apache server)
             var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);
