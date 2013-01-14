@@ -70,7 +70,7 @@ var CGMain = CGSGScene.extend(
             };
 
 
-            //load the image
+            //load the image to
             this.img = new Image();
             this.img.onload = this.onImageLoaded.bind(this);
             this.img.src = "images/bear.png";

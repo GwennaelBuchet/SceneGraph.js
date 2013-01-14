@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CGSGParticleEmitter - cgSceneGraph</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScene.html">CGSGScene</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
+            
+                <li><a href="..&#x2F;classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Math.html">Math</a></li>
+            
+                <li><a href="..&#x2F;modules/Node.html">Node</a></li>
+            
+                <li><a href="..&#x2F;modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;modules/Scene.html">Scene</a></li>
+            
+                <li><a href="..&#x2F;modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>CGSGParticleEmitter Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends <a href="..\classes\CGSGNode.html" class="crosslink">CGSGNode</a>
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l157"><code>src\animation\class.particles.js:157</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/ParticleSystem.html">ParticleSystem</a><br>
+            Parent Module: <a href="../modules/Animation.html">Animation</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>A particle emitter for the cgSceneGraph Particle System</p>
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_CGSGParticleEmitter" class="method item">
+    <span class="attribute-name">CGSGParticleEmitter</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>node</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>region</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>nbParticlesMax</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>velocity</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>angle</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>speed</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>speedThreshold</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>outflow</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l157"><code>src\animation\class.particles.js:157</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">node</code>
+                        <span class="type"><a href="..\classes\CGSGNode.html" class="crosslink">CGSGNode</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">region</code>
+                        <span class="type"><a href="..\classes\CGSGRegion.html" class="crosslink">CGSGRegion</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">nbParticlesMax</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">velocity</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">angle</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">speed</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">speedThreshold</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">outflow</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method private">
+                                <a href="#method__createParticle">_createParticle</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_addForce">addForce</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_initParticle">initParticle</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_removeForce">removeForce</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_reset">reset</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_start">start</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_stop">stop</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_updateParticle">updateParticle</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property">
+                                <a href="#property_angle">angle</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_classType">classType</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_gravity">gravity</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_nbParticlesMax">nbParticlesMax</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onInitParticle">onInitParticle</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onInitParticlesEnd">onInitParticlesEnd</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_onUpdateParticleEnd">onUpdateParticleEnd</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_outflow">outflow</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_region">region</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_speed">speed</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_speedThreshold">speedThreshold</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_velocity">velocity</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method__createParticle" class="method item private">
+    <span class="attribute-name">_createParticle</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>index</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l367"><code>src\animation\class.particles.js:367</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>create a new particle, and add it to the emitter</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">index</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addForce" class="method item public">
+    <span class="attribute-name">addForce</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>vector</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>ttl</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l423"><code>src\animation\class.particles.js:423</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add a force to the emitter</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">vector</code>
+                        <span class="type"><a href="..\classes\CGSGVector2D.html" class="crosslink">CGSGVector2D</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">ttl</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>time to live of the force</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_initParticle" class="method item public">
+    <span class="attribute-name">initParticle</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>particle</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>index</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l398"><code>src\animation\class.particles.js:398</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">particle</code>
+                        <span class="type"><a href="..\classes\CGSGParticle.html" class="crosslink">CGSGParticle</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">index</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_removeForce" class="method item public">
+    <span class="attribute-name">removeForce</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>force</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l437"><code>src\animation\class.particles.js:437</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Remove a previously added force</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">force</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item public">
+    <span class="attribute-name">render</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>context</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l319"><code>src\animation\class.particles.js:319</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_reset" class="method item public">
+    <span class="attribute-name">reset</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l301"><code>src\animation\class.particles.js:301</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>reset the animation</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_start" class="method item public">
+    <span class="attribute-name">start</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l283"><code>src\animation\class.particles.js:283</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>start the animation</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_stop" class="method item public">
+    <span class="attribute-name">stop</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l292"><code>src\animation\class.particles.js:292</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>stop the animation</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_updateParticle" class="method item public">
+    <span class="attribute-name">updateParticle</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>particle</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l380"><code>src\animation\class.particles.js:380</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">particle</code>
+                        <span class="type"><a href="..\classes\CGSGParticle.html" class="crosslink">CGSGParticle</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_angle" class="property item">
+    <span class="attribute-name">angle</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l207"><code>src\animation\class.particles.js:207</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>angle range of emission. a particle is emitted in the this.direction vector + or - this.angle/2 angle.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_classType" class="property item">
+    <span class="attribute-name">classType</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l180"><code>src\animation\class.particles.js:180</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_gravity" class="property item">
+    <span class="attribute-name">gravity</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l253"><code>src\animation\class.particles.js:253</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Gravity Force added by default with the addForce method</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_nbParticlesMax" class="property item">
+    <span class="attribute-name">nbParticlesMax</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l193"><code>src\animation\class.particles.js:193</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>number max of particles out of the emitter on 1 frame</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onInitParticle" class="property item">
+    <span class="attribute-name">onInitParticle</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l267"><code>src\animation\class.particles.js:267</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Callback when reinit for 1 particle</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onInitParticlesEnd" class="property item">
+    <span class="attribute-name">onInitParticlesEnd</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l274"><code>src\animation\class.particles.js:274</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Callback when reinit all particles is done</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_onUpdateParticleEnd" class="property item">
+    <span class="attribute-name">onUpdateParticleEnd</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l260"><code>src\animation\class.particles.js:260</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Callback on end of update for 1 particle</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_outflow" class="property item">
+    <span class="attribute-name">outflow</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l236"><code>src\animation\class.particles.js:236</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_region" class="property item">
+    <span class="attribute-name">region</span>
+    <span class="type"><a href="..\classes\CGSGRegion.html" class="crosslink">CGSGRegion</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l187"><code>src\animation\class.particles.js:187</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>the region from where the particles are emitted</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_speed" class="property item">
+    <span class="attribute-name">speed</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l217"><code>src\animation\class.particles.js:217</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>speed of a particle</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_speedThreshold" class="property item">
+    <span class="attribute-name">speedThreshold</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l226"><code>src\animation\class.particles.js:226</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>threshold to randomize and add to the speed of a particle</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_velocity" class="property item">
+    <span class="attribute-name">velocity</span>
+    <span class="type"><a href="..\classes\CGSGVector2D.html" class="crosslink">CGSGVector2D</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.particles.js.html#l199"><code>src\animation\class.particles.js:199</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

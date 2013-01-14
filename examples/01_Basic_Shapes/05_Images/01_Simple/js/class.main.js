@@ -38,7 +38,7 @@ var CGMain = CGSGScene.extend(
 
 			////// INITIALIZATION /////////
 
-			this.initializeCanvas();
+			//this.initializeCanvas();
 			this.createScene();
 
 			this.startPlaying();
@@ -54,7 +54,6 @@ var CGMain = CGSGScene.extend(
          * Just create a single node (an image node)
          */
         createScene : function () {
-
 	        var rootNode = new CGSGNode(0, 0, 0, 0);
 	        this.sceneGraph.addNode(rootNode, null);
 
@@ -68,6 +67,8 @@ var CGMain = CGSGScene.extend(
                 60,     //y
                 "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 
+            this.imgNode.resizeTo(500, 500);
+            this.imgNode.setSlice(0, 0, 0, 0, true);
             //add some attributes
             this.imgNode.isResizable = true;
             this.imgNode.isDraggable = true;
@@ -84,8 +85,11 @@ var CGMain = CGSGScene.extend(
 
 		switchSrc : function () {
 			this.currentImg = 1 - this.currentImg;
-
 			var src = ["images/hello.png", "images/board.png"];
+
+            //first reset slice of the image, so the dimension will be recomputed after the url is loaded
+            this.imgNode.setSlice(0, 0, 0, 0, true);
+            //set the new URL
 			this.imgNode.setURL(src[this.currentImg]);
 		}
 	}

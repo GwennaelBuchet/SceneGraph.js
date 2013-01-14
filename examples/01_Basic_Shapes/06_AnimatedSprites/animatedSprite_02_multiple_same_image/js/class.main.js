@@ -52,6 +52,7 @@ var CGMain = CGSGScene.extend(
 		 * Create 3 times the same animated sprites, sharing the same image in memory
 		 */
 		createScene : function () {
+			this.isDragSelectEnabled = true;
 
 			//create a first root node.
 			//that's not mandatory, we could use the first sphere as the root node

@@ -55,6 +55,8 @@ var CGMain = CGSGScene.extend(
 		 */
 		createScene : function () {
 
+			this.isDragSelectEnabled = true;
+
 			//first, create a root node
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -62,7 +64,7 @@ var CGMain = CGSGScene.extend(
 			//second, create the 2 nodes, with no image URL, and add them to the root node
 			this.imgNode1 = new CGSGNodeImage(
 				40, //x
-				40); //
+				40, null); //
 
 			//cut the slice from the source image
 			this.imgNode1.setSlice(476, 0, 34, 34, true);
@@ -76,7 +78,7 @@ var CGMain = CGSGScene.extend(
 
 			this.imgNode2 = new CGSGNodeImage(
 				90, //x
-				40); //y
+				40, null); //y
 
 			//add some attributes
 			this.imgNode2.isResizable = true;

@@ -61,12 +61,12 @@ var CGMain = CGSGScene.extend(
 			this.create1LineText();
 			this.createMaxWidthText();
 			this.createCarriageReturnText();
-
 			this.createScaledText();
 		},
 
 		create1LineText : function () {
-			var textNode = new CGSGNodeText(10, 10, "Simple Text on 1 line");
+			var textNode = new CGSGNodeText(10, 10, "Simple line");
+            textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
 			textNode.setSize(26);
 			textNode.setTypo("Arial");
 			textNode.isDraggable = true;

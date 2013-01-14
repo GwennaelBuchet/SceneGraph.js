@@ -101,7 +101,6 @@ var ButtonNode = CGSGNode.extend(
 		},
 
 		/**
-		 * @override
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
 		render : function(context) {

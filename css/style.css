@@ -543,3 +543,11 @@ li.oe_heading{
 	display:block; 
 	margin:0 auto;
 }
+
+.communityText {
+    margin-left: 20px;
+}
+
+.communityImg {
+    margin: 0 10px 10px 10px;
+}

@@ -79,8 +79,7 @@ var CGMain = CGSGScene.extend(
             var imgNode = new CGSGNodeImage(
                 attributes.x, //x
                 attributes.y, //y
-                null, //URL. Warning : the web page mus be on a web server (apache, ...)
-                this.context);      //context of rendering
+                null); //URL. Warning : the web page mus be on a web server (apache, ...)
             imgNode.setImage(this.img);
             imgNode.globalAlpha = 0.5;
 

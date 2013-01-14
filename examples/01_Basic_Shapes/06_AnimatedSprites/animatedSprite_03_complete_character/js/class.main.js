@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -29,33 +29,47 @@
  * animated sprite example
  * */
 var CGMain = CGSGScene.extend(
-	{
-		initialize : function (canvas) {
-			this._super(canvas);
+    {
+        initialize:function (canvas) {
+            this._super(canvas);
 
-			////// INITIALIZATION /////////
+            ////// INITIALIZATION /////////
 
-			this.initializeCanvas();
-			this.createScene();
+            this.initializeCanvas();
+            this.createScene();
 
-			this.startPlaying();
-		},
+            //keyboard events handler
+            var scope = this;
+            document.onkeydown = this.onKeyDown.bind(this);
+            document.onkeyup = this.onKeyUp.bind(this);
 
-		initializeCanvas : function () {
-			//redimensionnement du canvas pour être full viewport en largeur
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
-		},
+            this.startPlaying();
+        },
 
-		/**
-		 * Create a complete character with several animations in the same sprite sheet (ie the same image)
-		 */
-		createScene : function () {
+        initializeCanvas:function () {
+            //redimensionnement du canvas pour être full viewport en largeur
+            this.viewDimension = cgsgGetRealViewportDimension();
+            this.setCanvasDimension(this.viewDimension);
+        },
 
-			//create a first root node.
-			//that's not mandatory, we could use the first sphere as the root node
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+        /**
+         * Create a complete character with several animations in the same sprite sheet (ie the same image)
+         */
+        createScene:function () {
+			this.isDragSelectEnabled = true;
+
+            //create a first root node.
+            //that's not mandatory, we could use the first sphere as the root node
+            this.rootNode = new CGSGNode(0, 0, 1, 1);
+            this.sceneGraph.addNode(this.rootNode, null);
+
+
+            this.imgNode = new CGSGNodeImage(
+                0, //x
+                0, //y
+                "images/board.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
+            this.rootNode.addChild(this.imgNode);
+            this.imgNode.setSlice(0, 0, 476, 635, true);
 
             this.listAnimations = ["front", "left", "back", "right"];
 
@@ -65,7 +79,7 @@ var CGMain = CGSGScene.extend(
              * @param image url
              * @param context
              */
-            this.pingoo = new CGSGNodeSprite(60, 80, "images/board.png", this.context);
+            this.pingoo = new CGSGNodeSprite(68, 68, "images/board.png", this.context);
             this.pingoo.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
@@ -76,24 +90,20 @@ var CGMain = CGSGScene.extend(
 
             this.rootNode.addChild(this.pingoo);
 
-			this.currentAnimation = 0;
+            this.currentAnimation = 0;
 
-
-			//add a text node ("click me") with a onClick event
-			this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
-			var bindSwitchAnimation = this.switchAnimation.bind(this);
-			this.buttonNode.onClick = function (event) {
-				bindSwitchAnimation();
-			}
-			//add the textNode as child of the root
-			this.rootNode.addChild(this.buttonNode);
+            //add a text node ("click me") with a onClick event
+            this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
+            this.buttonNode.onClick = this.switchAnimation.bind(this);
+            //add the textNode as child of the root
+            this.rootNode.addChild(this.buttonNode);
 
             this.changeTextAnimation();
-		},
+        },
 
-		switchAnimation : function () {
-			this.currentAnimation = (this.currentAnimation+1) % this.listAnimations.length;
-			this.pingoo.play(this.listAnimations[this.currentAnimation], null);
+        switchAnimation:function () {
+            this.currentAnimation = (this.currentAnimation + 1) % this.listAnimations.length;
+            this.pingoo.play(this.listAnimations[this.currentAnimation], null);
 
             this.changeTextAnimation();
         },
@@ -101,8 +111,51 @@ var CGMain = CGSGScene.extend(
         /**
          * change the text of the button
          */
-        changeTextAnimation : function() {
+        changeTextAnimation:function () {
             this.buttonNode.setTexts("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation] + ")");
+        },
+
+        /**
+         * @method onKeyDown
+         * @param event
+         * @return {*}
+         */
+        onKeyDown:function (event) {
+            var y = 0;
+            var x = 0;
+
+            var keynum = (window.event) ? event.keyCode : event.which;
+
+            switch (keynum) {
+                case 37: //left
+                    x = -34;
+                    this.pingoo.play("left", null);
+                    break;
+                case 38: //up
+                    this.pingoo.play("back", null);
+                    y = -34;
+                    break;
+                case 39: //right
+                    this.pingoo.play("right", null);
+                    x = 34;
+                    break;
+                case 40: //down
+                    this.pingoo.play("front", null);
+                    y = 34;
+                    break;
+            }
+
+            this.sceneGraph.animate(this.pingoo, "position.y", 24, this.pingoo.position.y, this.pingoo.position.y + y, "linear", 0, true);
+            this.sceneGraph.animate(this.pingoo, "position.x", 24, this.pingoo.position.x, this.pingoo.position.x + x, "linear", 0, true);
+        },
+
+        /**
+         * @method onKeyUp
+         * @param event
+         * @return {*}
+         */
+        onKeyUp:function (event) {
+            //this.sceneGraph.animate(this.pingoo, "position.y", 16, this.pingoo.position.y, this.pingoo.position.y - 34, "linear", 0, true);
         }
-	}
+    }
 );

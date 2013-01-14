@@ -95,6 +95,8 @@ var CGMain = CGSGScene.extend(
             squareGreenYellow.onDblClick = function (event) {
                 that.textNode.setText("Event : dblclick on square GreenYellow");
             };
+			squareGreenYellow.isDraggable = false;
+			squareGreenYellow.isResizable = false;
 
             squareDeepSkyBlue.onDrag = function (event) {
                 that.textNode.setText("Event : drag square DeepSkyBlue");

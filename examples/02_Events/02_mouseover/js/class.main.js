@@ -58,7 +58,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
 
-			this.textNode = new CGSGNodeText(40, 10, "Over on : (nothing)");
+			this.textNode = new CGSGNodeText(40, 10, "Event on : (nothing)");
 			this.textNode.setSize(18);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.textNode);
@@ -87,7 +87,7 @@ var CGMain = CGSGScene.extend(
 
 			if (attributes.hasEvent === false) {
 				//create the text inside
-				var textNode = new CGSGNodeText(0, 4, "No over event");
+				var textNode = new CGSGNodeText(0, 4, "No event\n handler");
 				textNode.setSize(14);
 				square.addChild(textNode);
 			}
@@ -95,8 +95,8 @@ var CGMain = CGSGScene.extend(
 				//add mouse over and out events
 				var that = this;
 				//animate a scale + with shadow
-				square.onMouseOver = function (event) {
-					that.textNode.setText("Over on : " + event.node.name);
+				square.onMouseEnter = function (event) {
+					that.textNode.setText("Enter on : " + event.node.name);
 					//some cool animation effect
 					that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
 					that.sceneGraph.animate(event.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
@@ -104,7 +104,7 @@ var CGMain = CGSGScene.extend(
 				};
 				//initial scale + without shadow
 				square.onMouseOut = function (event) {
-					that.textNode.setText("Over on : (nothing)");
+					that.textNode.setText("Out of : " + event.node.name);
 					//some cool animation effect
 					that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
 					that.sceneGraph.animate(event.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);

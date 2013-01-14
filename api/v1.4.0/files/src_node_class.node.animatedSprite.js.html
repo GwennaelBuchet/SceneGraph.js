@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\node\class.node.animatedSprite.js - cgSceneGraph</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScene.html">CGSGScene</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
+            
+                <li><a href="..&#x2F;classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Math.html">Math</a></li>
+            
+                <li><a href="..&#x2F;modules/Node.html">Node</a></li>
+            
+                <li><a href="..&#x2F;modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;modules/Scene.html">Scene</a></li>
+            
+                <li><a href="..&#x2F;modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\node\class.node.animatedSprite.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License&#x2F;Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ *&#x2F;
+
+&#x2F;**
+ * A CGSGNodeSprite represent an animated sprite, with all animations in the image
+ *
+ * @class CGSGNodeSprite
+ * @extends CGSGNode
+ * @module Node
+ * @constructor
+ * @param {Number} x Relative position on X
+ * @param {Number} y Relative position on Y
+ * @param {String} urlImage URL of the image. Can be null to be set later
+ * @param {CanvasRenderingContext2D} context context to render on
+ * @type {CGSGNodeSprite}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ *&#x2F;
+var CGSGNodeSprite = CGSGNode.extend(
+	{
+		initialize : function (x, y, urlImage, context) {
+			this._super(x, y, 1, 1);
+
+			&#x2F;**
+			 * @property classType
+			 * @type {String}
+			 *&#x2F;
+			this.classType = &quot;CGSGNodeSprite&quot;;
+
+			&#x2F;**
+			 * array of animations
+			 * @property listAnimations
+			 * @type {Array}
+			 *&#x2F;
+			this.listAnimations = [];
+			&#x2F;**
+			 * @property currentAnimation
+			 * @default null
+			 * @type {Object}
+			 *&#x2F;
+			this.currentAnimation = null;
+			&#x2F;**
+			 * @property isProportionalResize
+			 * @default true
+			 * @type {Boolean}
+			 *&#x2F;
+			this.isProportionalResize = true;
+
+			&#x2F;**
+			 * Current animated frame
+			 * @property _currentFrame
+			 * @private
+			 * @type {Number}
+			 *&#x2F;
+			this._currentFrame = 0;
+			&#x2F;**
+			 * Whether the sprite is being animated or not
+			 * @property _isPlaying
+			 * @private
+			 * @readonly
+			 * @type {Boolean}
+			 *&#x2F;
+			this._isPlaying = false;
+
+			&#x2F;**
+			 * Number of loops for the current animation. if -1 then it&#x27;s an infinite loop.
+			 * @property _numberOfLoops
+			 * @private
+			 * @type {Number}
+			 *&#x2F;
+			this._numberOfLoops = 1;
+			&#x2F;**
+			 * Current loop number
+			 * @property _currentLoop
+			 * @private
+			 * @type {Number}
+			 *&#x2F;
+			this._currentLoop = 0;
+
+			&#x2F;**
+			 * URL of the image
+			 * @property _urlImage
+			 * @type {String}
+			 * @private
+			 *&#x2F;
+			this._urlImage = urlImage;
+			&#x2F;**
+			 * The image object itself
+			 * @property _img
+			 * @type {Image}
+			 * @private
+			 *&#x2F;
+			this._img = new Image();
+
+			&#x2F;**
+			 * @property _isLoaded
+			 * @type {Boolean}
+			 * @private
+			 *&#x2F;
+			this._isLoaded = false;
+			&#x2F;**
+			 * @property _context
+			 * @type {CanvasRenderingContext2D}
+			 * @private
+			 *&#x2F;
+			this._context = context;
+
+			&#x2F;**
+			 * Handler function fired when the image is loaded
+			 * @property onLoadEnd
+			 * @default null
+			 * @type {Function}
+			 *&#x2F;
+			this.onLoadEnd = null;
+			&#x2F;**
+			 * Handler function fired after an animation loop is ended
+			 * @property onAnimationEnd
+			 * @default null
+			 * @type {Function}
+			 *&#x2F;
+			this.onAnimationEnd = null;
+			&#x2F;**
+			 * Handler function fired before an animation loop start
+			 * @property onAnimationStart
+			 * @default null
+			 * @type {Function}
+			 *&#x2F;
+			this.onAnimationStart = null;
+
+			&#x2F;**
+			 * Fake canvas to pre-render the animated sprite (not used yet)
+			 * Still beta
+			 * @property _tmpCanvas
+			 * @type {HTMLElement}
+			 * @private
+			 *&#x2F;
+			this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
+
+			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+			&#x2F;&#x2F;finally load the image
+			if (this._urlImage !== null &amp;&amp; this._urlImage != &quot;&quot;) {
+				this._img.onload = this._createDelegate(this, this._onImageLoaded);
+				this._img.src = this._urlImage;
+			}
+		},
+
+		&#x2F;**
+		 * Used to call delegate method when the image is finally loaded
+		 * @private
+		 * @method _createDelegate
+		 * @param objectContext
+		 * @param delegateMethod
+		 * @return {Function}
+		 *&#x2F;
+		_createDelegate : function (objectContext, delegateMethod) {
+			return function () {
+				return delegateMethod.call(objectContext);
+			}
+		},
+
+		&#x2F;**
+		 * fired when the image is loaded.
+		 * Check the dimension of the image and fired the onLoadEnd event
+		 * @protected
+		 * @method _onImageLoaded
+		 *&#x2F;
+		_onImageLoaded : function () {
+			this._checkDimension();
+			this._isLoaded = true;
+			&#x2F;&#x2F;this._initShape();
+			if (this.onLoadEnd !== null) {
+				this.onLoadEnd();
+			}
+			this.render(this._context);
+		},
+
+		&#x2F;**
+		 * To be overrided when the image failed to load
+		 * @method _onImageError
+		 * @protected
+		 *&#x2F;
+		_onImageError : function () {
+			console.log(&quot;Error while loading image : &quot; + this._urlImage);
+		},
+
+		&#x2F;*
+		 * pre-render the image to optimize the perfs
+		 *&#x2F;
+		&#x2F;*_initShape:function () {
+		 this.tmpCanvas.width = this.dimension.width;
+		 this.tmpCanvas.height = this.dimension.height;
+		 var tmpContext = this.tmpCanvas.getContext(&#x27;2d&#x27;);
+
+		 tmpContext.drawImage(
+		 this.img, &#x2F;&#x2F; image
+		 0, 0, &#x2F;&#x2F; start position on the image
+		 this.dimension.width, this.dimension.height, &#x2F;&#x2F; dimension on the image
+		 0, 0,
+		 &#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
+		 this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
+		 );
+		 },*&#x2F;
+
+		&#x2F;**
+		 * Check the true dimension of the image and fill the this.dimension property with it,
+		 * only if dimension is not already defined in the constructor
+		 * @private
+		 * @method _checkDimension
+		 *&#x2F;
+		_checkDimension : function () {
+			&#x2F;&#x2F;if no width or height are specified in the constructor
+			if (this.dimension.width &lt;= 0 &amp;&amp; this.dimension.height &lt;= 0) {
+				this.dimension.width = this._img.width;
+				this.dimension.height = this._img.height;
+			}
+		},
+
+		&#x2F;**
+		 * Set the image for this animated sprite.
+		 * @example
+		 *
+		 * this.pingoo = new CGSGNodeSprite(60, 60, null, this.context);
+		 * this.pingoo.isDraggable = true;
+		 * &#x2F;&#x2F;name, speed, frames, sliceX, sliceY, width, height, framesPerLine
+		 * this.pingoo.addAnimation(&quot;front&quot;, 6, 4, 476, 0, 34, 34, 4);
+		 * this.pingoo.play(&quot;front&quot;, null);
+		 *
+		 * &#x2F;&#x2F;now, load the image containing the sprite sheet.
+		 * &#x2F;&#x2F;The affectation to the sprite will be done in the loaded handler function
+		 * this.spriteSheet = new Image();
+		 * this.spriteSheet.onload = this.onImageLoaded();
+		 * this.spriteSheet.src = &quot;images&#x2F;board.png&quot;;
+		 *
+		 * onImageLoaded : function () {
+		 *	 this.pingoo.setImage(this.spriteSheet);
+		 *	 this.numbers.setImage(this.spriteSheet);
+         *   this.water.setImage(this.spriteSheet);
+		 * }
+		 *
+		 * @method setImage
+		 * @param {Image} newImage new Image object. Must be an already loaded one
+		 *&#x2F;
+		setImage : function (newImage) {
+			this._img = newImage;
+			if (cgsgExist(this._img)) {
+				this._urlImage = this._img.src;
+				this._isLoaded = true;
+				&#x2F;&#x2F;this._initShape();
+			}
+		},
+
+		&#x2F;**
+		 * Go to the next frame of the current animation
+		 * @public
+		 * @method goToNextFrame
+		 *&#x2F;
+		goToNextFrame : function () {
+			this._currentFrame += 1.0 &#x2F; this.currentAnimation.speed;
+			var isEndOfLoop = false;
+			if (this._currentFrame &gt;= this.currentAnimation.frames) {
+				isEndOfLoop = true;
+			}
+
+			&#x2F;&#x2F;end of animation if the previous modulo returns to frame 0
+			if (isEndOfLoop) {
+				&#x2F;&#x2F;if this is the end (&quot;... my only friend.. la la...&quot;) of the loop, stop it
+				if (this._numberOfLoops &lt; 0 || this._currentLoop &lt; this._numberOfLoops) {
+					this._currentLoop++;
+					this.goToFirstFrame();
+				}
+				else {
+					this.goToLastFrame();
+					this.stop();
+				}
+			}
+		},
+
+		&#x2F;**
+		 * Go to the previous frame of the current animation
+		 * @public
+		 * @method goToPreviousFrame
+		 *&#x2F;
+		goToPreviousFrame : function () {
+			this._currentFrame -= this.currentAnimation.speed;
+			var isStartOfLoop = false;
+			if (this._currentFrame &lt; 0) {
+				isStartOfLoop = true;
+			}
+
+			&#x2F;&#x2F;end of animation if the previous modulo returns to frame 0
+			if (isStartOfLoop) {
+				&#x2F;&#x2F;if this is the end (&quot;... my only friend.. la la...&quot;) of the loop, stop it
+				if (this._numberOfLoops &lt;= 0 || this._currentLoop &gt;= 0) {
+					this._currentLoop--;
+					this.goToLastFrame();
+				}
+				else {
+					this.goToFirstFrame();
+					this.stop();
+				}
+			}
+		},
+
+		&#x2F;**
+		 * Go to the first frame of the current loop
+		 * @public
+		 * @method goToFirstFrame
+		 *&#x2F;
+		goToFirstFrame : function () {
+			this._currentFrame = 0;
+		},
+
+		&#x2F;**
+		 * Go to the last frame of the current loop
+		 * @public
+		 * @method goToLastFrame
+		 *&#x2F;
+		goToLastFrame : function () {
+			this._currentFrame = this.currentAnimation.frames - 1;
+		},
+
+		&#x2F;**
+		 * Must be defined to allow the scene graph to render the image nodes
+		 * @protected
+		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * @method render
+		 * *&#x2F;
+		render : function (context) {
+			if (this._isLoaded &amp;&amp; this._img.src != &quot;&quot;) {
+				&#x2F;&#x2F;save current state
+				this.beforeRender(context);
+
+				&#x2F;&#x2F;compute the current slice of the current sprite
+				if (cgsgExist(this.currentAnimation)) {
+					context.globalAlpha = this.globalAlpha;
+
+					var slice = this.currentAnimation.slices[Math.floor(this._currentFrame)];
+
+					context.drawImage(
+						this._img, &#x2F;&#x2F; image
+						slice.x,
+						slice.y, &#x2F;&#x2F; start position on the image
+						this.currentAnimation.width,
+						this.currentAnimation.height, &#x2F;&#x2F; dimension of the sprite
+						0,
+						0,
+						&#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
+						this.dimension.width,
+						this.dimension.height
+					);
+
+					&#x2F;&#x2F;go to next frame
+					if (this._isPlaying) {
+						this.goToNextFrame();
+					}
+				}
+
+				&#x2F;&#x2F;restore state
+				this.afterRender(context);
+			}
+		},
+
+		&#x2F;**
+		 * Return position x and y in the image for the slice of the animation and frame passed in parameter.
+		 * @private
+		 * @method _getSlice
+		 * @param {Number} frame
+		 * @param {Object} animation
+		 * @return {Object}
+		 *&#x2F;
+		_getSlice : function (frame, animation) {
+			var frameX = frame % animation.framesPerLine;
+			var frameY = Math.floor(frame &#x2F; animation.framesPerLine);
+
+			var x = animation.sliceX + frameX * animation.width;
+			var y = animation.sliceY + frameY * animation.height;
+
+			return {x : x, y : y};
+		},
+
+		&#x2F;**
+		 * Add an animation for this sprite
+		 * @public
+		 * @method addAnimation
+		 * @param {String} name Name for this animation
+		 * @param {Number} speed Number of frames between 2 steps
+		 * @param {Number} frames Number of frame for this animation
+		 * @param {Number} sliceX slice position inside the image for this animation
+		 * @param {Number} sliceY slice position inside the image for this animation
+		 * @param {Number} width width of 1 frame
+		 * @param {Number} height height of 1 frame
+		 * @param {Number} framesPerLine Number of frames per line in the image
+		 *&#x2F;
+		addAnimation : function (name, speed, frames, sliceX, sliceY, width, height, framesPerLine) {
+			var animation = {
+				name          : name,
+				speed         : speed,
+				frames        : frames,
+				sliceX        : sliceX,
+				sliceY        : sliceY,
+				width         : width,
+				height        : height,
+				framesPerLine : framesPerLine,
+				slices        : []
+			};
+
+			for (var f = 0; f &lt; frames; f++) {
+				animation.slices.push(this._getSlice(f, animation));
+			}
+
+			this.listAnimations.push(animation);
+			if (this.listAnimations.length == 1) {
+				this.currentAnimation = animation;
+			}
+		},
+
+		&#x2F;**
+		 * Start an animation
+		 * @public
+		 * @method play
+		 * @param {String} animationName Name of the animation to start
+		 * @param {Number} loop number of animation loop. Can be null or negative to set infinite loop
+		 * @return {Boolean} true if the animation exists; false otherwise
+		 *&#x2F;
+		play : function (animationName, loop) {
+			if (loop === undefined || loop === null) {
+				loop = -1;
+			}
+
+			this.currentAnimation = null;
+			for (var i = 0; i &lt; this.listAnimations.length; i++) {
+				if (this.listAnimations[i].name === animationName) {
+					this.currentAnimation = this.listAnimations[i];
+					this.reset();
+					this._numberOfLoops = loop;
+					this._isPlaying = true;
+					this.resizeTo(this.currentAnimation.width, this.currentAnimation.height);
+					if (this.onAnimationStart !== null) {
+						this.onAnimationStart({animationName : animationName, loop : loop});
+					}
+					return true;
+				}
+			}
+			return false;
+		},
+
+		&#x2F;**
+		 * Stop the current animation and stay on the current frame
+		 * @public
+		 * @method stop
+		 *&#x2F;
+		stop : function () {
+			this._isPlaying = false;
+			if (this.onAnimationEnd !== null) {
+				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame});
+			}
+		},
+
+		&#x2F;**
+		 * return to the first frame of the first loop of the current animation
+		 * @public
+		 * @method reset
+		 *&#x2F;
+		reset : function () {
+			this._currentFrame = 0;
+			this._currentLoop = 1;
+		},
+
+		&#x2F;**
+		 * @public
+		 * @method copy
+		 * @return {CGSGNodeSprite} a copy of this node
+		 *&#x2F;
+		copy : function () {
+			var node = new CGSGNodeSprite(this.position.x, this.position.y, this._urlImage, this._context);
+			&#x2F;&#x2F;call the super method
+			node = this._super(node);
+
+			node.listAnimations = [];
+			for (var a = 0; a &lt; this.listAnimations.length; a++) {
+				node.addAnimation(this.listAnimations[a].name, this.listAnimations[a].speed,
+				                  this.listAnimations[a].frames, this.listAnimations[a].sliceX,
+				                  this.listAnimations[a].sliceY, this.listAnimations[a].width,
+				                  this.listAnimations[a].height, this.listAnimations[a].framesPerLine);
+			}
+
+			node.currentAnimation = this.currentAnimation;
+			node.isProportionalResize = this.isProportionalResize;
+
+			node._currentFrame = this._currentFrame;
+			node._isPlaying = this._isPlaying;
+			node._numberOfLoops = this._numberOfLoops;
+			node._currentLoop = this._currentLoop;
+			node._img = this._img;
+			node._isLoaded = this._isLoaded;
+
+			node.onLoadEnd = this.onLoadEnd;
+			node.onAnimationEnd = this.onAnimationEnd;
+			node.onAnimationStart = this.onAnimationStart;
+
+			if (this._urlImage !== null &amp;&amp; this._urlImage != &quot;&quot;) {
+				node._img.onload = node._createDelegate(node, node._onImageLoaded, node.context);
+				node._img.src = node._urlImage;
+			}
+
+			return node;
+		}
+	}
+);
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>
