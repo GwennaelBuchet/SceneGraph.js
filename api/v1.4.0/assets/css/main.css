@@ -20,7 +20,7 @@ Here's a quick lookup table:
 
 html {
     /*background: #fff;*/
-	background: #494949;
+    background: #494949;
     color: #B6B6B6;
     overflow-y: scroll;
 }
@@ -42,7 +42,9 @@ a {
     display: none;
 }
 
-a:hover { text-decoration: underline; }
+a:hover {
+    text-decoration: underline;
+}
 
 /* "Jump to Table of Contents" link is shown to assistive tools, but hidden from
    sight until it's focused. */
@@ -53,13 +55,23 @@ a:hover { text-decoration: underline; }
     top: 0;
 }
 
-.jump:focus { left: 40%; }
+.jump:focus {
+    left: 40%;
+}
 
 /* -- Paragraphs ------------------------------------------------------------ */
-p { margin: 1.3em 0;
-    color: #494949;}
-dd p, td p { margin-bottom: 0; }
-dd p:first-child, td p:first-child { margin-top: 0; }
+p {
+    margin: 1.3em 0;
+    color: #494949;
+}
+
+dd p, td p {
+    margin-bottom: 0;
+}
+
+dd p:first-child, td p:first-child {
+    margin-top: 0;
+}
 
 /* -- Headings -------------------------------------------------------------- */
 /*h1, h2, h3, h4, h5, h6 {
@@ -116,6 +128,7 @@ h4 {
     color: #00a9ff;
     clear: both;
 }
+
 /*
 h1 {
     font-size: 184.6%;
@@ -138,7 +151,9 @@ h4 {
     padding-bottom: 2px;
 }*/
 
-h5, h6 { font-size: 107.692%; }
+h5, h6 {
+    font-size: 107.692%;
+}
 
 /* -- Code and examples ----------------------------------------------------- */
 code, kbd, pre, samp {
@@ -151,7 +166,7 @@ p code, p kbd, p samp {
     background: #FCFBFA;
     border: 1px solid #EFEEED;
     padding: 0 3px;
-    color:#494949;
+    color: #494949;
 }
 
 a code, a kbd, a samp,
@@ -186,7 +201,9 @@ pre.terminal, pre.cmd {
 
 /* Don't reduce the font size of <code>/<kbd>/<samp> elements inside <pre>
    blocks. */
-pre code, pre kbd, pre samp { font-size: 100%; }
+pre code, pre kbd, pre samp {
+    font-size: 100%;
+}
 
 /* Used to denote text that shouldn't be selectable, such as line numbers or
    shell prompts. Guess which browser this doesn't work in. */
@@ -199,12 +216,22 @@ pre code, pre kbd, pre samp { font-size: 100%; }
 }
 
 /* -- Lists ----------------------------------------------------------------- */
-dd { margin: 0.2em 0 0.7em 1em; }
-dl { margin: 1em 0; }
-dt { font-weight: bold; }
+dd {
+    margin: 0.2em 0 0.7em 1em;
+}
+
+dl {
+    margin: 1em 0;
+}
+
+dt {
+    font-weight: bold;
+}
 
 /* -- Tables ---------------------------------------------------------------- */
-caption, th { text-align: left; }
+caption, th {
+    text-align: left;
+}
 
 table {
     border-collapse: collapse;
@@ -217,22 +244,32 @@ td, th {
     vertical-align: top;
 }
 
-td { background: #E6E9F5; }
-td dl { margin: 0; }
-td dl dl { margin: 1em 0; }
-td pre:first-child { margin-top: 0; }
+td {
+    background: #E6E9F5;
+}
+
+td dl {
+    margin: 0;
+}
+
+td dl dl {
+    margin: 1em 0;
+}
+
+td pre:first-child {
+    margin-top: 0;
+}
 
 th {
-    background: #D2D7E6;/*#97A0BF*/
+    background: #D2D7E6; /*#97A0BF*/
     border-bottom: none;
     border-top: none;
-    color: #000;/*#FFF1D5*/
+    color: #000; /*#FFF1D5*/
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     line-height: 1.3;
     white-space: nowrap;
 }
-
 
 /* -- Layout and Content ---------------------------------------------------- */
 #doc {
@@ -240,11 +277,14 @@ th {
     min-width: 940px;
 }
 
-.content { padding: 0 20px 0 25px; }
+.content {
+    padding: 0 20px 0 25px;
+}
 
 .sidebar {
     padding: 0 15px 0 10px;
 }
+
 #bd {
     padding: 7px 0 130px;
     position: relative;
@@ -256,9 +296,17 @@ th {
 /* The #toc id refers to the single global table of contents, while the .toc
    class refers to generic TOC lists that could be used throughout the page. */
 
-.toc code, .toc kbd, .toc samp { font-size: 100%; }
-.toc li { font-weight: bold; }
-.toc li li { font-weight: normal; }
+.toc code, .toc kbd, .toc samp {
+    font-size: 100%;
+}
+
+.toc li {
+    font-weight: bold;
+}
+
+.toc li li {
+    font-weight: normal;
+}
 
 /* -- Intro and Example Boxes ----------------------------------------------- */
 /*
@@ -300,8 +348,8 @@ th {
 
     background: #EFEFEF; /* old browsers */
     background: -moz-linear-gradient(top, #f5f5f5 0%, #efefef 50%, #e5e5e5 51%, #dfdfdf 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(50%,#efefef), color-stop(51%,#e5e5e5), color-stop(100%,#dfdfdf)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dfdfdf',GradientType=0 ); /* ie */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(50%, #efefef), color-stop(51%, #e5e5e5), color-stop(100%, #dfdfdf)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#dfdfdf', GradientType = 0); /* ie */
 }
 
 .button:hover {
@@ -314,17 +362,18 @@ th {
 
     background: #6396D8; /* old browsers */
     background: -moz-linear-gradient(top, #6396D8 0%, #5A83BC 50%, #547AB7 51%, #466899 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6396D8), color-stop(50%,#5A83BC), color-stop(51%,#547AB7), color-stop(100%,#466899)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6396D8', endColorstr='#466899',GradientType=0 ); /* ie */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6396D8), color-stop(50%, #5A83BC), color-stop(51%, #547AB7), color-stop(100%, #466899)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#6396D8', endColorstr = '#466899', GradientType = 0); /* ie */
 }
 
-.newwindow { text-align: center; }
+.newwindow {
+    text-align: center;
+}
 
 .header .version em {
     display: block;
     text-align: right;
 }
-
 
 #classdocs .item {
     border-bottom: 1px solid #466899;
@@ -333,7 +382,7 @@ th {
 }
 
 #classdocs .item .params p,
-    #classdocs .item .returns p,{
+#classdocs .item .returns p, {
     display: inline;
 }
 
@@ -363,20 +412,20 @@ abbr {
     cursor: help;
 }
 
-.prettyprint li.L0, 
-.prettyprint li.L1, 
-.prettyprint li.L2, 
-.prettyprint li.L3, 
-.prettyprint li.L5, 
-.prettyprint li.L6, 
-.prettyprint li.L7, 
+.prettyprint li.L0,
+.prettyprint li.L1,
+.prettyprint li.L2,
+.prettyprint li.L3,
+.prettyprint li.L5,
+.prettyprint li.L6,
+.prettyprint li.L7,
 .prettyprint li.L8 {
     list-style: decimal;
 }
 
 ul li p {
     margin-top: 0;
-    color:#6D98E4;
+    color: #6D98E4;
 }
 
 .method .name {
@@ -398,14 +447,14 @@ ul li p {
 }
 
 .methods {
-    color:#494949;
+    color: #494949;
 }
 
 #hd {
     background: whiteSmoke;
-    background: -moz-linear-gradient(top,#DCDBD9 0,#F6F5F3 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#DCDBD9),color-stop(100%,#F6F5F3));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dcdbd9',endColorstr='#F6F5F3',GradientType=0);
+    background: -moz-linear-gradient(top, #DCDBD9 0, #F6F5F3 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCDBD9), color-stop(100%, #F6F5F3));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#dcdbd9', endColorstr = '#F6F5F3', GradientType = 0);
     border-bottom: 1px solid #DFDFDF;
     padding: 0 15px 1px 20px;
     margin-bottom: 15px;
@@ -415,7 +464,6 @@ ul li p {
     margin-right: 10px;
     vertical-align: middle;
 }
-
 
 /* -- API Docs CSS ---------------------------------------------------------- */
 
@@ -438,8 +486,13 @@ specific tabview, see the other sections below.
     _visibility: visible;
 }
 
-.apidocs .tabview.yui3-tabview-content { visibility: visible; }
-.apidocs .tabview .yui3-tabview-panel { background: #fff; }
+.apidocs .tabview.yui3-tabview-content {
+    visibility: visible;
+}
+
+.apidocs .tabview .yui3-tabview-panel {
+    background: #fff;
+}
 
 /* -- Generic Content Styles ------------------------------------------------ */
 
@@ -458,7 +511,9 @@ specific tabview, see the other sections below.
     padding: 6px 30px 5px;
 }
 
-.apidocs { zoom: 1; }
+.apidocs {
+    zoom: 1;
+}
 
 /* Generic box styles. */
 .apidocs .box {
@@ -490,7 +545,9 @@ specific tabview, see the other sections below.
     padding: 3px 6px;
 }
 
-.apidocs .meta p { margin: 0; }
+.apidocs .meta p {
+    margin: 0;
+}
 
 /* Deprecation warning. */
 .apidocs .box.deprecated,
@@ -499,8 +556,13 @@ specific tabview, see the other sections below.
     border: 1px solid #fd7775;
 }
 
-.apidocs .box.deprecated p { margin: 0.5em 0; }
-.apidocs .flag.deprecated { color: #333; }
+.apidocs .box.deprecated p {
+    margin: 0.5em 0;
+}
+
+.apidocs .flag.deprecated {
+    color: #333;
+}
 
 /* Module/Class intro description. */
 .apidocs .intro {
@@ -520,7 +582,9 @@ specific tabview, see the other sections below.
     display: none;
 }
 
-.apidocs .no-visible-items { color: #666; }
+.apidocs .no-visible-items {
+    color: #666;
+}
 
 /* Generic inline list. */
 .apidocs ul.inline {
@@ -530,14 +594,23 @@ specific tabview, see the other sections below.
     padding: 0;
 }
 
-.apidocs ul.inline li { display: inline; }
+.apidocs ul.inline li {
+    display: inline;
+}
 
 /* Comma-separated list. */
-.apidocs ul.commas li:after { content: ','; }
-.apidocs ul.commas li:last-child:after { content: ''; }
+.apidocs ul.commas li:after {
+    content: ',';
+}
+
+.apidocs ul.commas li:last-child:after {
+    content: '';
+}
 
 /* Keyboard shortcuts. */
-kbd .cmd { font-family: Monaco, Helvetica; }
+kbd .cmd {
+    font-family: Monaco, Helvetica;
+}
 
 /* -- Generic Access Level styles ------------------------------------------- */
 .apidocs .item.protected,
@@ -563,7 +636,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 /* -- Generic Item Index styles --------------------------------------------- */
-.apidocs .index { margin: 1.5em 0 3em; }
+.apidocs .index {
+    margin: 1.5em 0 3em;
+}
 
 .apidocs .index h3 {
     border-bottom: 1px solid #efefef;
@@ -573,7 +648,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     padding-bottom: 2px;
 }
 
-.apidocs .index .no-visible-items { margin-top: 2em; }
+.apidocs .index .no-visible-items {
+    margin-top: 2em;
+}
 
 .apidocs .index-list {
     border-color: #efefef;
@@ -606,7 +683,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     column-count: 1;
 }
 
-.apidocs .index-item { white-space: nowrap; }
+.apidocs .index-item {
+    white-space: nowrap;
+}
 
 .apidocs .index-item .flag {
     background: none;
@@ -623,11 +702,25 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     margin: 0 0.5em;
 }
 
-.apidocs .flag.chainable { background: #46ca3b; }
-.apidocs .flag.protected { background: #9b86fc; }
-.apidocs .flag.private { background: #fd6b1b; }
-.apidocs .flag.async { background: #356de4; }
-.apidocs .flag.required { background: #e60923; }
+.apidocs .flag.chainable {
+    background: #46ca3b;
+}
+
+.apidocs .flag.protected {
+    background: #9b86fc;
+}
+
+.apidocs .flag.private {
+    background: #fd6b1b;
+}
+
+.apidocs .flag.async {
+    background: #356de4;
+}
+
+.apidocs .flag.required {
+    background: #e60923;
+}
 
 .apidocs .item {
     border-bottom: 1px solid #efefef;
@@ -672,8 +765,13 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     margin: 0 0 0 0;
 }
 
-.apidocs .item .type a { border-bottom: 1px dotted #afafaf; }
-.apidocs .item .type a:hover { border: none; }
+.apidocs .item .type a {
+    border-bottom: 1px dotted #afafaf;
+}
+
+.apidocs .item .type a:hover {
+    border: none;
+}
 
 /* -- Item Parameter List --------------------------------------------------- */
 .apidocs .params-list {
@@ -682,7 +780,9 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     padding: 0;
 }
 
-.apidocs .param { margin-bottom: 1em; }
+.apidocs .param {
+    margin-bottom: 1em;
+}
 
 .apidocs .param .type,
 .apidocs .param .type a {
@@ -694,7 +794,10 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     *margin-left: 0.5em;
 }
 
-.apidocs .param-name { font-weight: bold; color:#0089FF; }
+.apidocs .param-name {
+    font-weight: bold;
+    color: #0089FF;
+}
 
 /* -- Item "Emits" block ---------------------------------------------------- */
 .apidocs .item .emits {
@@ -716,7 +819,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 .constructor p, .constructor h4 {
-    color:#ffffff;
+    color: #ffffff;
 }
 
 .param_global {
@@ -724,7 +827,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     font-size: 1.2em;
     line-height: 1.1em;
     clear: both;
-    color:#0089FF;
+    color: #0089FF;
     margin: 15px;
 }
 
@@ -757,10 +860,14 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     background-color: #2B2B2B;
 }
 
-.apidocs .module-submodule-description p:first-child { margin-top: 0; }
+.apidocs .module-submodule-description p:first-child {
+    margin-top: 0;
+}
 
 /* -- Sidebar TabView ------------------------------------------------------- */
-#api-tabview { margin-top: 0.6em; }
+#api-tabview {
+    margin-top: 0.6em;
+}
 
 #api-tabview-filter,
 #api-tabview-panel {
@@ -773,11 +880,18 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     padding: 0.6em 10px 0 10px;
 }
 
-#api-tabview-panel { border-top: none; }
-#api-filter { width: 97%; }
+#api-tabview-panel {
+    border-top: none;
+}
+
+#api-filter {
+    width: 97%;
+}
 
 /* -- Content TabView ------------------------------------------------------- */
-#classdocs .yui3-tabview-panel { border: none; }
+#classdocs .yui3-tabview-panel {
+    border: none;
+}
 
 /* -- Source File Contents -------------------------------------------------- */
 .prettyprint li.L0,
@@ -833,7 +947,7 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apis a:focus {
     background: #E8EDFC;
     background: -moz-linear-gradient(top, #e8edfc 0%, #becef7 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E8EDFC), color-stop(100%,#BECEF7));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E8EDFC), color-stop(100%, #BECEF7));
     border-color: #AAC0FA;
     border-radius: 3px;
     color: #333;
@@ -846,8 +960,13 @@ kbd .cmd { font-family: Monaco, Helvetica; }
     text-shadow: 1px 1px 1px #fff;
 }
 
-.apis .message { color: #888; }
-.apis .result a { padding: 3px 5px 2px; }
+.apis .message {
+    color: #888;
+}
+
+.apis .result a {
+    padding: 3px 5px 2px;
+}
 
 .apis .result .type {
     right: 4px;

@@ -194,129 +194,129 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGHashmap = CGSGObject.extend(
-    {
-        initialize:function () {
-            this._map = {};
+	{
+		initialize: function () {
+			this._map = {};
 
-            this._map.keys = [];
-            this._map.values = [];
-        },
+			this._map.keys = [];
+			this._map.values = [];
+		},
 
-        &#x2F;**
-         * @method getAt
-         * @param {Number} index
-         * @return {Object} {key, value}
-         *&#x2F;
-        getAt:function(index) {
-            return {key:this._map.keys[index], value:this._map.values[index]};
-        },
+		&#x2F;**
+		 * @method getAt
+		 * @param {Number} index
+		 * @return {Object} {key, value}
+		 *&#x2F;
+		getAt: function (index) {
+			return {key: this._map.keys[index], value: this._map.values[index]};
+		},
 
-        &#x2F;**
-         * @method getValue
-         * @param {Object} key
-         * @return {Object} the corresponding value or null if the key does not exist
-         *&#x2F;
-        getValue:function (key) {
-            var i = this.getKeyIndex(key);
-            if (i &lt; 0) {
-                return null;
-            }
+		&#x2F;**
+		 * @method getValue
+		 * @param {Object} key
+		 * @return {Object} the corresponding value or null if the key does not exist
+		 *&#x2F;
+		getValue: function (key) {
+			var i = this.getKeyIndex(key);
+			if (i &lt; 0) {
+				return null;
+			}
 
-            return this._map.values[i];
-        },
+			return this._map.values[i];
+		},
 
-        &#x2F;**
-         * Add or replace the key in the map with the value.
-         * @method addOrReplace
-         * @param {Object} key
-         * @param {Object} value
-         * @return the index of the key in the map
-         *&#x2F;
-        addOrReplace:function (key, value) {
-            var i = this.getKeyIndex(key);
+		&#x2F;**
+		 * Add or replace the key in the map with the value.
+		 * @method addOrReplace
+		 * @param {Object} key
+		 * @param {Object} value
+		 * @return the index of the key in the map
+		 *&#x2F;
+		addOrReplace: function (key, value) {
+			var i = this.getKeyIndex(key);
 
-            if (i &gt;= 0) {
-                this._map.values[i] = value;
-            }
-            else {
-                this._map.keys.push(key);
-                this._map.values.push(value);
-                i = this.getLength();
-            }
+			if (i &gt;= 0) {
+				this._map.values[i] = value;
+			}
+			else {
+				this._map.keys.push(key);
+				this._map.values.push(value);
+				i = this.getLength();
+			}
 
-            return i;
-        },
+			return i;
+		},
 
-        &#x2F;**
-         * @method remove
-         * @param {Object} key
-         *&#x2F;
-        remove:function (key) {
-            if (this.containsKey(key)) {
-                var index = this.getKeyIndex(key);
-                this._map.keys.splice(index,1);
-                this._map.values.splice(index,1);
-            }
-        },
+		&#x2F;**
+		 * @method remove
+		 * @param {Object} key
+		 *&#x2F;
+		remove: function (key) {
+			if (this.containsKey(key)) {
+				var index = this.getKeyIndex(key);
+				this._map.keys.splice(index, 1);
+				this._map.values.splice(index, 1);
+			}
+		},
 
-        &#x2F;**
-         * Remove all keys in the map
-         * @method removeAll
-         *&#x2F;
-        removeAll:function () {
-            this._map.keys.clear();
-            this._map.values.clear();
-        },
+		&#x2F;**
+		 * Remove all keys in the map
+		 * @method removeAll
+		 *&#x2F;
+		removeAll: function () {
+			this._map.keys.clear();
+			this._map.values.clear();
+		},
 
-        &#x2F;**
-         * @method clone
-         * @return {CGSGHashmap}
-         *&#x2F;
-        clone:function () {
-            var newMap = new CGSGHashmap();
-            newMap._map.keys = this._map.keys.clone();
-            newMap._map.values = this._map.value.clone();
+		&#x2F;**
+		 * @method clone
+		 * @return {CGSGHashmap}
+		 *&#x2F;
+		clone: function () {
+			var newMap = new CGSGHashmap();
+			newMap._map.keys = this._map.keys.clone();
+			newMap._map.values = this._map.value.clone();
 
-            return newMap;
-        },
+			return newMap;
+		},
 
-        &#x2F;**
-         * Return true if the key already exists in the map
-         * @method containsKey
-         * @param key
-         * @return {Boolean}
-         *&#x2F;
-        containsKey:function (key) {
-            return this._map.keys.contains(key);
-        },
+		&#x2F;**
+		 * Return true if the key already exists in the map
+		 * @method containsKey
+		 * @param key
+		 * @return {Boolean}
+		 *&#x2F;
+		containsKey: function (key) {
+			return this._map.keys.contains(key);
+		},
 
-        &#x2F;**
-         * Return the number of keys in the map
-         * @method getLength
-         * @return {Number}
-         *&#x2F;
-        getLength:function () {
-            return this._map.keys.length;
-        },
+		&#x2F;**
+		 * Return the number of keys in the map
+		 * @method getLength
+		 * @return {Number}
+		 *&#x2F;
+		getLength: function () {
+			return this._map.keys.length;
+		},
 
-        &#x2F;**
-         * @method getKeyIndex
-         * @param {Object} key
-         * @return {Number} The key index or -1 if not exists
-         *&#x2F;
-        getKeyIndex:function (key) {
-            var index;
+		&#x2F;**
+		 * @method getKeyIndex
+		 * @param {Object} key
+		 * @return {Number} The key index or -1 if not exists
+		 *&#x2F;
+		getKeyIndex: function (key) {
+			var index;
 
-            for (index = 0; index &lt; this.getLength(); index++) {
-                if (this._map.keys[index] === key) {
-                    return index;
-                }
-            }
+			for (index = 0; index &lt; this.getLength(); index++) {
+				if (this._map.keys[index] === key) {
+					return index;
+				}
+			}
 
-            return -1;
-        }
+			return -1;
+		}
 
-    }
+	}
 );
 
     </pre>

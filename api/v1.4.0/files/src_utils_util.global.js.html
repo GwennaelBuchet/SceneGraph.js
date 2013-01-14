@@ -199,14 +199,14 @@
  * @param object {Object}
  * @return {boolean} true if the parameter !== null &amp;&amp; !== undefined
  *&#x2F;
-function cgsgExist (object) {
+function cgsgExist(object) {
 	return (object !== null &amp;&amp; object !== undefined);
 }
 
 &#x2F;**
  * @method cgsgDetectCurrentExplorer
  *&#x2F;
-function cgsgDetectCurrentExplorer () {
+function cgsgDetectCurrentExplorer() {
 	&#x2F;&#x2F;noinspection JSUndeclaredVariable
 	cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 
@@ -252,7 +252,7 @@ function cgsgDetectCurrentExplorer () {
 		fullVersion = userAgent.substring(versionOffset + 8);
 	}
 	else if ((nameOffset = userAgent.lastIndexOf(&#x27; &#x27;) + 1) &lt;
-	         (versionOffset = userAgent.lastIndexOf(&#x27;&#x2F;&#x27;))) {
+			 (versionOffset = userAgent.lastIndexOf(&#x27;&#x2F;&#x27;))) {
 		browserName = userAgent.substring(nameOffset, versionOffset);
 		fullVersion = userAgent.substring(versionOffset + 1);
 		if (browserName.toLowerCase() == browserName.toUpperCase()) {
@@ -311,7 +311,7 @@ cgsgStyleBorderTop = 0;
  * @method cgsgGetRealViewportDimension
  * @return {CGSGDimension} a CGSGDimension as the real viewport dimension
  *&#x2F;
-function cgsgGetRealViewportDimension () {
+function cgsgGetRealViewportDimension() {
 	var e = window, a = &#x27;inner&#x27;;
 	if (!( &#x27;innerWidth&#x27; in window )) {
 		a = &#x27;client&#x27;;
@@ -324,10 +324,10 @@ function cgsgGetRealViewportDimension () {
  * @method cgsgGetDisplayedViewportDimension
  * @return {CGSGDimension} a CGSGDimension as the viewport region
  *&#x2F;
-function cgsgGetDisplayedViewportDimension () {
+function cgsgGetDisplayedViewportDimension() {
 	var realDim = cgsgGetRealViewportDimension();
 	return new CGSGDimension(Math.round(realDim.width &#x2F; cgsgDisplayRatio.x),
-	                         Math.round(realDim.height &#x2F; cgsgDisplayRatio.y));
+							 Math.round(realDim.height &#x2F; cgsgDisplayRatio.y));
 }
 
 &#x2F;**
@@ -337,11 +337,11 @@ function cgsgGetDisplayedViewportDimension () {
  * @param targetRegion a CGSGRegion
  * @param threshold an integer
  *&#x2F;
-function cgsgPointIsInRegion (point, targetRegion, threshold) {
+function cgsgPointIsInRegion(point, targetRegion, threshold) {
 	return point.x &gt;= (targetRegion.position.x - threshold) &amp;&amp;
-	       point.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
-	       point.x &lt;= (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
-	       point.y &lt;= (targetRegion.position.y + targetRegion.dimension.height + threshold);
+		   point.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
+		   point.x &lt;= (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
+		   point.y &lt;= (targetRegion.position.y + targetRegion.dimension.height + threshold);
 }
 
 &#x2F;**
@@ -351,13 +351,13 @@ function cgsgPointIsInRegion (point, targetRegion, threshold) {
  * @param targetRegion a CGSGRegion
  * @param threshold an integer
  *&#x2F;
-function cgsgRegionIsInRegion (region, targetRegion, threshold) {
+function cgsgRegionIsInRegion(region, targetRegion, threshold) {
 	return region.position.x &gt;= (targetRegion.position.x - threshold) &amp;&amp;
-	       region.position.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
-	       (region.position.x + region.dimension.width) &lt;=
-	       (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
-	       (region.position.y + region.dimension.height) &lt;=
-	       (targetRegion.position.y + targetRegion.dimension.height + threshold);
+		   region.position.y &gt;= (targetRegion.position.y - threshold) &amp;&amp;
+		   (region.position.x + region.dimension.width) &lt;=
+		   (targetRegion.position.x + targetRegion.dimension.width + threshold) &amp;&amp;
+		   (region.position.y + region.dimension.height) &lt;=
+		   (targetRegion.position.y + targetRegion.dimension.height + threshold);
 }
 
 &#x2F;**
@@ -367,7 +367,7 @@ function cgsgRegionIsInRegion (region, targetRegion, threshold) {
  * @param {HTMLElement} canvas a handler to the Canvas element
  * @return {Array} Array of CGSGPosition object
  *&#x2F;
-function cgsgGetCursorPositions (event, canvas) {
+function cgsgGetCursorPositions(event, canvas) {
 	var element = canvas, offsetX = 0, offsetY = 0, positions = [];
 
 	if (element.offsetParent) {
@@ -391,12 +391,12 @@ function cgsgGetCursorPositions (event, canvas) {
 			touch = event.targetTouches[i];
 
 			positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; cgsgDisplayRatio.x,
-			                                (touch.pageY - offsetY) &#x2F; cgsgDisplayRatio.y));
+											(touch.pageY - offsetY) &#x2F; cgsgDisplayRatio.y));
 		}
 	}
 	else {
 		positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; cgsgDisplayRatio.x,
-		                                (touch.pageY - offsetY) &#x2F; cgsgDisplayRatio.y));
+										(touch.pageY - offsetY) &#x2F; cgsgDisplayRatio.y));
 	}
 
 	return positions;
@@ -408,7 +408,7 @@ function cgsgGetCursorPositions (event, canvas) {
  * @method cgsgClearContext
  * @param {CanvasRenderingContext2D} context context to render on
  * *&#x2F;
-function cgsgClearContext (context) {
+function cgsgClearContext(context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	&#x2F;&#x2F; Will always clear the right space
 	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
@@ -419,7 +419,7 @@ function cgsgClearContext (context) {
  * @param {*} object
  *&#x2F;
 function cgsgFree(object) {
-    object = null;
+	object = null;
 }
     </pre>
 </div>

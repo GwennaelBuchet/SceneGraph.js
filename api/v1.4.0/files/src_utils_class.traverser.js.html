@@ -195,7 +195,7 @@
  *&#x2F;
 var CGSGTraverser = CGSGObject.extend(
 	{
-		initialize : function () {
+		initialize: function () {
 			&#x2F;**
 			 * Last results provided by the last check
 			 * @property lastResults
@@ -224,7 +224,7 @@ var CGSGTraverser = CGSGObject.extend(
 					...
 				}
 		 *&#x2F;
-		traverse : function (rootNode, condition, excludedNodes) {
+		traverse: function (rootNode, condition, excludedNodes) {
 			this.lastResults.clear();
 
 			if (cgsgExist(condition)) {
@@ -241,7 +241,7 @@ var CGSGTraverser = CGSGObject.extend(
 		 * @param {Function} condition
 		 * @param {Array} excludedNodes
 		 *&#x2F;
-		_check : function (rootNode, condition, excludedNodes) {
+		_check: function (rootNode, condition, excludedNodes) {
 			if (rootNode.isTraversable === true) {
 				var exclusionExist = cgsgExist(excludedNodes) &amp;&amp; excludedNodes.length &gt; 0;
 
