@@ -1437,8 +1437,8 @@ var CGSGNode = CGSGObject.extend(
 		 */
 		isCollidingGhost: function (node) {
 			// get deltas to run through minimum pixels (only union of both nodes)
-			var deltaX = node.getAbsolutePosition().x - this.getAbsolutePosition().x;
-			var deltaY = node.getAbsolutePosition().y - this.getAbsolutePosition().y;
+			var deltaX = node.getAbsoluteLeft() - this.getAbsoluteLeft();
+			var deltaY = node.getAbsoluteTop() - this.getAbsoluteTop();
 
 			// with delta, calculate the start and end (length) of x and y
 			var lengthX = (deltaX >= 0) ?
@@ -1458,9 +1458,10 @@ var CGSGNode = CGSGObject.extend(
 
 			// draw 1st
 			var tmpCanvas = document.createElement('canvas');
-			tmpCanvas.width = this.getWidth();
-			tmpCanvas.height = this.getHeight();
+			tmpCanvas.width = this.getAbsoluteWidth();
+			tmpCanvas.height = this.getAbsoluteHeight();
 			var ctx = tmpCanvas.getContext("2d");
+            ctx.scale(this.getAbsoluteScale().x, this.getAbsoluteScale().y);
 
 			// draw this at 0x0; (backup position, render, restore position)
 			var backupPosition = this.position;
@@ -1468,21 +1469,21 @@ var CGSGNode = CGSGObject.extend(
 			this.render(ctx);
 			this.position = backupPosition;
 
-			// draw node
+			// draw node : canvas
 			var tmpCanvas2 = document.createElement('canvas');
-			tmpCanvas2.width = this.getWidth();
-			tmpCanvas2.height = this.getHeight();
+			tmpCanvas2.width = node.getAbsoluteWidth();
+			tmpCanvas2.height = node.getAbsoluteHeight();
 			var ctx2 = tmpCanvas2.getContext("2d");
 
-			// draw node at deltas (backup position, render, restore position)
+			// draw node  (backup position, render, restore position)
 			backupPosition = node.position;
-			node.position = new CGSGPosition(deltaX, deltaY);
+			node.position = new CGSGPosition(0,0);
 			node.render(ctx2);
 			node.position = backupPosition;
 
-			// draw both with mask
+			// compute both with mask at deltas
 			ctx.globalCompositeOperation = "destination-in";
-			ctx.drawImage(tmpCanvas2, 0, 0);
+			ctx.drawImage(tmpCanvas2, deltaX / this.getAbsoluteScale().x, deltaY / this.getAbsoluteScale().y);
 
 			// WARN : security exception with chrome when calling .html directly (no apache server)
 			var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);
