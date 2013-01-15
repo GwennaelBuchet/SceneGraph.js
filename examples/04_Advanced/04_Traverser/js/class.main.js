@@ -54,7 +54,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 */
 		createScene : function() {
-			this.isDragSelectEnabled = true;
+			this.allowMultiSelect = true;
 
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
