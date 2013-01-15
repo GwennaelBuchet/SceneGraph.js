@@ -47,6 +47,14 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.4.1
+
+CHANGES:
+- Optimization. CGSGScene: remove "isDragSelectEnabled" property to use only "allowMultiSelect".
+
+
+---------------------------------------------------------------------
+
 v1.4.0
 
 CHANGES:

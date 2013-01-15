@@ -9085,17 +9085,6 @@
         {
             "file": "src\\class.scene.js",
             "line": 100,
-            "description": "Drag selection boolean.",
-            "itemtype": "property",
-            "name": "isDragSelectEnabled",
-            "default": "true",
-            "type": "{Boolean}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 108,
             "description": "Fill color for the drag selection selection rectangle",
             "itemtype": "property",
             "name": "dragSelectFillColor",
@@ -9106,7 +9095,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 116,
+            "line": 108,
             "description": "Stroke color for the drag selection selection rectangle",
             "itemtype": "property",
             "name": "dragSelectStrokeColor",
@@ -9117,7 +9106,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 124,
+            "line": 116,
             "description": "Alpha value for the drag selection rectangle",
             "itemtype": "property",
             "name": "dragSelectAlpha",
@@ -9128,7 +9117,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 132,
+            "line": 124,
             "description": "The scene graph itself",
             "itemtype": "property",
             "name": "sceneGraph",
@@ -9138,7 +9127,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 139,
+            "line": 131,
             "description": "List of the current selected nodes in the scenegraph.",
             "itemtype": "property",
             "name": "selectedNodes",
@@ -9148,7 +9137,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 146,
+            "line": 138,
             "description": "Current framerate of the application",
             "itemtype": "property",
             "name": "fps",
@@ -9158,7 +9147,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 162,
+            "line": 154,
             "itemtype": "property",
             "name": "_isRunning",
             "type": "{Boolean}",
@@ -9169,7 +9158,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 173,
+            "line": 165,
             "itemtype": "property",
             "name": "_frameContainer Handler to the HTML Element displaying the FPS",
             "type": "{HTMLElement}",
@@ -9180,7 +9169,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 180,
+            "line": 172,
             "description": "True if the [CTRL} key is being pressed",
             "itemtype": "property",
             "name": "_keyDownedCtrl",
@@ -9193,7 +9182,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 189,
+            "line": 181,
             "itemtype": "property",
             "name": "_timerDblTouch",
             "default": "null",
@@ -9205,7 +9194,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 197,
+            "line": 189,
             "description": "The delay between 2 touches to be considered as a dbl touch event.\nTo remove the double touch, just set it to 0",
             "itemtype": "property",
             "name": "dblTouchDelay",
@@ -9216,7 +9205,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 206,
+            "line": 198,
             "description": "Current positions of the mouse or touch (Array of CGSGPosition)",
             "itemtype": "property",
             "name": "_mousePosition",
@@ -9228,7 +9217,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 220,
+            "line": 212,
             "itemtype": "property",
             "name": "_listCursors List of the names for the cursor when overring a handlebox",
             "type": "{Array}",
@@ -9239,7 +9228,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 230,
+            "line": 222,
             "itemtype": "property",
             "name": "_selectedNode The current last selected node",
             "type": "{null}",
@@ -9250,7 +9239,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 277,
+            "line": 269,
             "description": "Callback on click down on scene event.",
             "itemtype": "property",
             "name": "onSceneClickStart",
@@ -9264,7 +9253,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 289,
+            "line": 281,
             "description": "Callback on click up on scene event",
             "itemtype": "property",
             "name": "onSceneClickEnd",
@@ -9278,7 +9267,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 301,
+            "line": 293,
             "description": "Callback on double click start on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickStart",
@@ -9292,7 +9281,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 313,
+            "line": 305,
             "description": "Callback on double click up on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickEnd",
@@ -9306,7 +9295,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 325,
+            "line": 317,
             "description": "Callback on start rendering event",
             "itemtype": "property",
             "name": "onRenderStart",
@@ -9320,7 +9309,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 336,
+            "line": 328,
             "description": "Callback on end rendering event",
             "itemtype": "property",
             "name": "onRenderEnd",
@@ -9334,7 +9323,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 350,
+            "line": 342,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -9350,7 +9339,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 368,
+            "line": 360,
             "description": "Remove the nodes selected in the scene graph",
             "itemtype": "method",
             "name": "deleteSelected",
@@ -9359,7 +9348,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 381,
+            "line": 373,
             "description": "Deselect all nodes",
             "access": "public",
             "tagname": "",
@@ -9377,7 +9366,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 397,
+            "line": 389,
             "description": "the main rendering loop",
             "access": "protected",
             "tagname": "",
@@ -9388,7 +9377,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 444,
+            "line": 436,
             "description": "Call this to start the update of the scene",
             "access": "public",
             "tagname": "",
@@ -9399,7 +9388,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 459,
+            "line": 451,
             "description": "Call this to stop the rendering (and so animation) update",
             "access": "public",
             "tagname": "",
@@ -9410,7 +9399,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 469,
+            "line": 461,
             "description": "Inform the SceneGraph that a new render is needed",
             "access": "public",
             "tagname": "",
@@ -9421,7 +9410,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 478,
+            "line": 470,
             "description": "Update the current framerate",
             "itemtype": "method",
             "name": "_updateFramerate",
@@ -9432,7 +9421,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 501,
+            "line": 493,
             "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
             "itemtype": "method",
             "name": "_updateFramerateContainer",
@@ -9443,7 +9432,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 512,
+            "line": 504,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -9460,7 +9449,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 521,
+            "line": 513,
             "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
             "access": "public",
             "tagname": "",
@@ -9478,7 +9467,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 537,
+            "line": 529,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -9492,7 +9481,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 546,
+            "line": 538,
             "description": "click mouse Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9510,7 +9499,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 557,
+            "line": 549,
             "description": "touch down Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9528,7 +9517,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 603,
+            "line": 595,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9550,7 +9539,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 695,
+            "line": 687,
             "description": "mouse move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9568,7 +9557,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 705,
+            "line": 697,
             "description": "touch move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9586,7 +9575,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 717,
+            "line": 709,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9603,7 +9592,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 949,
+            "line": 941,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -9647,7 +9636,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 978,
+            "line": 970,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9665,7 +9654,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 988,
+            "line": 980,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9683,7 +9672,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 998,
+            "line": 990,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -9700,7 +9689,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1057,
+            "line": 1049,
             "description": "Select the nodes under the drag select rectangle",
             "access": "protected",
             "tagname": "",
@@ -9711,7 +9700,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1089,
+            "line": 1081,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9729,7 +9718,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1101,
+            "line": 1093,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9750,7 +9739,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1125,
+            "line": 1117,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -9771,7 +9760,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1143,
+            "line": 1135,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",

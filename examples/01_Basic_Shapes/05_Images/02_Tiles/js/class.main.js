@@ -54,9 +54,6 @@ var CGMain = CGSGScene.extend(
 		 * Just create a single node (an image node)
 		 */
 		createScene : function () {
-
-			this.isDragSelectEnabled = true;
-
 			//first, create a root node
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);

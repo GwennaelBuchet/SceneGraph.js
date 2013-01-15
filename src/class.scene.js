@@ -98,14 +98,6 @@ var CGSGScene = CGSGObject.extend(
 			this.allowMultiSelect = true;
 
 			/**
-			 * Drag selection boolean.
-			 * @property isDragSelectEnabled
-			 * @default true
-			 * @type {Boolean}
-			 */
-			this.isDragSelectEnabled = false;
-
-			/**
 			 * Fill color for the drag selection selection rectangle
 			 * @property dragSelectFillColor
 			 * @default "#C0C0C0"
@@ -673,7 +665,7 @@ var CGSGScene = CGSGObject.extend(
 
 			}
 			//if no nodes were hit (that were clickable,reizeable or draggable) lets start a drag selection if we are allowed
-			else if (this.isDragSelectEnabled) {
+			else if (this.allowMultiSelect) {
 
 				this._isDragSelect = true;
 				this._dragSelectStartMousePosition = cgsgGetCursorPositions(event, cgsgCanvas);

@@ -56,8 +56,6 @@ var CGMain = CGSGScene.extend(
          * Create a complete character with several animations in the same sprite sheet (ie the same image)
          */
         createScene:function () {
-			this.isDragSelectEnabled = true;
-
             //create a first root node.
             //that's not mandatory, we could use the first sphere as the root node
             this.rootNode = new CGSGNode(0, 0, 1, 1);
