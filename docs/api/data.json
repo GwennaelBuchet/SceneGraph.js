@@ -2,7 +2,7 @@
     "project": {
         "name": "cgSceneGraph",
         "description": "HTML5 Scene Graph Framework",
-        "version": "1.2.0",
+        "version": "1.4.1",
         "url": "http://gwennaelbuchet.github.com/cgSceneGraph/",
         "themedir": "D:/PROJETS/Cellule_Innovation/R_D/cgSceneGraph/medias/theme_yuidoc/cgsg/theme.json"
     },
@@ -6106,7 +6106,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1502,
+            "line": 1503,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6132,7 +6132,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1530,
+            "line": 1531,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6153,7 +6153,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1549,
+            "line": 1550,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6174,7 +6174,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1599,
+            "line": 1600,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -6194,7 +6194,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1668,
+            "line": 1669,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
