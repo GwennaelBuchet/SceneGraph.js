@@ -78,6 +78,13 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>utils/class.region.js</include>
                                 <include>constants.js</include>
                                 <include>utils/class.traverser.js</include>
+
+                                <include>node/collision/enum.collision.method.js</include>
+                                <include>node/collision/class.collision.tester.region.js</include>
+                                <include>node/collision/class.collision.tester.ghost.ondemand.js</include>
+                                <include>node/collision/class.collision.tester.ghost.precompute.js</include>
+                                <include>/node/collision/class.collision.tester.factory.js</include>
+
                                 <include>globals.js</include>
                                 <include>utils/util.global.js</include>
                                 <include>utils/util.color.js</include>
