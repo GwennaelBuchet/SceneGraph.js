@@ -40,6 +40,7 @@ var CGSGPickNodeMethod = {
 	REGION: "region"
 };
 
+
 /**
  * Global properties of the framework
  *
@@ -139,21 +140,36 @@ var cgsgGhostColor = "#FF0000";
  */
 var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
 
+
 /**
  * Object that defines the performance keys.
  * Change values to adapt your project.
  *
  * cgsgPerformanceKeys.collisionMethod =
- * 	   		Method to compute collision detection on the Scene
+ * 	   		Key to specify collision detection mod
  * 	   		Default : CGSGPickNodeMethod.REGION
  *
- * cgsgPerformanceKeys.collisionMethod =
- * 	   		Method to compute collision detection on the Scene
- * 	   		Default : CGSGPickNodeMethod.REGION
+ * cgsgPerformanceKeys.computeImageData =
+ * 	   		Method to pre-compute or not image data from a node
  *
  * @property cgsgPerformanceKeys
  * @type {Object}
  */
 var cgsgPerformanceKeys = {
-	collisionMethod : CGSGPickNodeMethod.REGION
+	collisionMethod : CGSGPickNodeMethod.REGION,
+
+
+    /**
+     * Method to pre-compute or not image data from a node
+     * @param node
+     */
+    computeImageData : function(node){
+        if (this._collisionMethod == CGSGCollisionMethod.GHOSTPRECOMPUTE){
+            // do compute
+            node.doComputeImageData();
+        }else{
+            node.fullImageData = null;
+        }
+    }
 };
+

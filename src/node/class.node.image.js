@@ -145,6 +145,7 @@ var CGSGNodeImage = CGSGNode.extend(
             if (this.onLoadEnd !== null) {
                 this.onLoadEnd();
             }
+            this.computeImageData();
         },
 
         /**
@@ -219,6 +220,7 @@ var CGSGNodeImage = CGSGNode.extend(
                 this._urlImage = this._img.src;
                 this._checkDimension();
                 this.isLoaded = true;
+                this.computeImageData();
             }
         },
 

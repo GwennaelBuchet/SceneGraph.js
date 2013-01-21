@@ -333,6 +333,13 @@ var CGSGNode = CGSGObject.extend(
 			 */
 			this.isTraversable = true;
 
+            /**
+             * Image data of the node (via render method)
+             * @property fullImageData
+             * @type {ImageData}
+             */
+            this.fullImageData = null;
+
 			//initialize the position and dimension
 			this.translateTo(x, y, true);
 			this.resizeTo(width, height);
@@ -728,6 +735,42 @@ var CGSGNode = CGSGObject.extend(
 			context.restore();
 		},
 
+        /**
+         * Calculate image data depending render method if collision is in ghost mod
+         * @private
+         * @method  computeImageData
+         */
+        computeImageData : function(){
+            cgsgPerformanceKeys.computeImageData(this);
+        },
+
+        /**
+         * Calculate image data depending render method
+         * @private
+         * @method  computeImageData
+         */
+        doComputeImageData : function(){
+            if (isNaN(this.getAbsoluteWidth()) || this.getAbsoluteWidth() == 0
+                || isNaN(this.getAbsoluteHeight()) || this.getAbsoluteHeight() == 0){
+                return null;
+            }
+
+            var tmpCanvas = document.createElement('canvas');
+            tmpCanvas.width = this.getAbsoluteWidth();
+            tmpCanvas.height = this.getAbsoluteHeight();
+            var ctx = tmpCanvas.getContext("2d");
+            ctx.scale(this.getAbsoluteScale().x, this.getAbsoluteScale().y);
+
+            // draw this at 0x0; (backup position, render, restore position)
+            var backupPosition = this.position;
+            this.position = new CGSGPosition(0, 0);
+            this.render(ctx);
+            this.position = backupPosition;
+
+            //get image data
+            this.fullImageData = ctx.getImageData(0,0,this.getAbsoluteWidth(),this.getAbsoluteHeight());
+        },
+
 		/**
 		 * Mark this nodes as selected
 		 * @method setSelected
@@ -996,6 +1039,7 @@ var CGSGNode = CGSGObject.extend(
 		 * */
 		resizeTo: function (newWidth, newHeight) {
 			this.dimension.resizeTo(newWidth, newHeight);
+            this.computeImageData();
 		},
 
 		/**
@@ -1006,6 +1050,7 @@ var CGSGNode = CGSGObject.extend(
 		 * */
 		resizeBy: function (widthFactor, heightFactor) {
 			this.dimension.resizeBy(widthFactor, heightFactor);
+            this.computeImageData();
 		},
 
 		/**
@@ -1016,6 +1061,7 @@ var CGSGNode = CGSGObject.extend(
 		 * */
 		resizeWith: function (width, height) {
 			this.dimension.resizeWith(width, height);
+            this.computeImageData();
 		},
 
 		/**
@@ -1031,6 +1077,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
+            this.computeImageData();
 		},
 
 		/**
@@ -1046,6 +1093,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
+            this.computeImageData();
 		},
 
 		/**
@@ -1061,6 +1109,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
+            this.computeImageData();
 		},
 
 		/**
@@ -1075,6 +1124,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
+            this.computeImageData();
 		},
 
 		/**
@@ -1088,6 +1138,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
+            this.computeImageData();
 		},
 
 		/**
@@ -1101,6 +1152,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
+            this.computeImageData();
 		},
 
 		//// CHILDREN MANIPULATION //////
@@ -1133,6 +1185,7 @@ var CGSGNode = CGSGObject.extend(
 
 			newNode._parentNode = this;
 			this.children[index] = newNode;
+            this.computeImageData();
 		},
 
 		/**
@@ -1159,6 +1212,7 @@ var CGSGNode = CGSGObject.extend(
 					}
 				}
 			}
+            this.computeImageData();
 
 			return false;
 		},
@@ -1198,6 +1252,7 @@ var CGSGNode = CGSGObject.extend(
 				childNode._parentNode = null;
 				/*this.children = */
 				this.children.without(childNode);
+                this.computeImageData();
 			}
 		},
 
