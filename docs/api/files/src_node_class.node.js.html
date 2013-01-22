@@ -35,6 +35,16 @@
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -110,6 +120,8 @@
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
             
                 <li><a href="..&#x2F;modules/Math.html">Math</a></li>
             
@@ -494,6 +506,13 @@ var CGSGNode = CGSGObject.extend(
 			 * @type {Boolean}
 			 *&#x2F;
 			this.isTraversable = true;
+
+            &#x2F;**
+             * Image data of the node (via render method)
+             * @property fullImageData
+             * @type {ImageData}
+             *&#x2F;
+            this.fullImageData = null;
 
 			&#x2F;&#x2F;initialize the position and dimension
 			this.translateTo(x, y, true);
@@ -890,6 +909,42 @@ var CGSGNode = CGSGObject.extend(
 			context.restore();
 		},
 
+        &#x2F;**
+         * Calculate image data depending render method if collision is in ghost mod
+         * @private
+         * @method  computeImageData
+         *&#x2F;
+        computeImageData : function(){
+            cgsgPerformanceKeys.computeImageData(this);
+        },
+
+        &#x2F;**
+         * Calculate image data depending render method
+         * @private
+         * @method  computeImageData
+         *&#x2F;
+        doComputeImageData : function(){
+            if (isNaN(this.getAbsoluteWidth()) || this.getAbsoluteWidth() == 0
+                || isNaN(this.getAbsoluteHeight()) || this.getAbsoluteHeight() == 0){
+                return null;
+            }
+
+            var tmpCanvas = document.createElement(&#x27;canvas&#x27;);
+            tmpCanvas.width = this.getAbsoluteWidth();
+            tmpCanvas.height = this.getAbsoluteHeight();
+            var ctx = tmpCanvas.getContext(&quot;2d&quot;);
+            ctx.scale(this.getAbsoluteScale().x, this.getAbsoluteScale().y);
+
+            &#x2F;&#x2F; draw this at 0x0; (backup position, render, restore position)
+            var backupPosition = this.position;
+            this.position = new CGSGPosition(0, 0);
+            this.render(ctx);
+            this.position = backupPosition;
+
+            &#x2F;&#x2F;get image data
+            this.fullImageData = ctx.getImageData(0,0,this.getAbsoluteWidth(),this.getAbsoluteHeight());
+        },
+
 		&#x2F;**
 		 * Mark this nodes as selected
 		 * @method setSelected
@@ -1158,6 +1213,7 @@ var CGSGNode = CGSGObject.extend(
 		 * *&#x2F;
 		resizeTo: function (newWidth, newHeight) {
 			this.dimension.resizeTo(newWidth, newHeight);
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1168,6 +1224,7 @@ var CGSGNode = CGSGObject.extend(
 		 * *&#x2F;
 		resizeBy: function (widthFactor, heightFactor) {
 			this.dimension.resizeBy(widthFactor, heightFactor);
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1178,6 +1235,7 @@ var CGSGNode = CGSGObject.extend(
 		 * *&#x2F;
 		resizeWith: function (width, height) {
 			this.dimension.resizeWith(width, height);
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1193,6 +1251,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1208,6 +1267,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1223,6 +1283,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1237,6 +1298,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1250,6 +1312,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1263,6 +1326,7 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
+            this.computeImageData();
 		},
 
 		&#x2F;&#x2F;&#x2F;&#x2F; CHILDREN MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
@@ -1295,6 +1359,7 @@ var CGSGNode = CGSGObject.extend(
 
 			newNode._parentNode = this;
 			this.children[index] = newNode;
+            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1321,6 +1386,7 @@ var CGSGNode = CGSGObject.extend(
 					}
 				}
 			}
+            this.computeImageData();
 
 			return false;
 		},
@@ -1360,6 +1426,7 @@ var CGSGNode = CGSGObject.extend(
 				childNode._parentNode = null;
 				&#x2F;*this.children = *&#x2F;
 				this.children.without(childNode);
+                this.computeImageData();
 			}
 		},
 
@@ -1583,111 +1650,7 @@ var CGSGNode = CGSGObject.extend(
 		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
 		 *&#x2F;
 		isColliding: function (node, threshold) {
-			if (cgsgPerformanceKeys.collisionMethod == CGSGPickNodeMethod.REGION) {
-				return this.isCollidingRegion(node, threshold);
-			}
-			else {
-				return this.isCollidingGhost(node);
-			}
-		},
-
-		&#x2F;**
-		 * @public
-		 * @method isCollidingGhost
-		 * @param {CGSGNode} node a CGSGNode
-		 * @return {Boolean} true if the 2 nodes are colliding
-		 *&#x2F;
-		isCollidingGhost: function (node) {
-			&#x2F;&#x2F; get deltas to run through minimum pixels (only union of both nodes)
-			var deltaX = node.getAbsoluteLeft() - this.getAbsoluteLeft();
-			var deltaY = node.getAbsoluteTop() - this.getAbsoluteTop();
-
-			&#x2F;&#x2F; with delta, calculate the start and end (length) of x and y
-			var lengthX = (deltaX &gt;= 0) ?
-						  Math.min(this.getAbsoluteWidth() - deltaX, node.getAbsoluteWidth()) :
-						  Math.min(node.getAbsoluteWidth() + deltaX, this.getAbsoluteWidth());
-
-			var lengthY = (deltaY &gt;= 0) ?
-						  Math.min(this.getAbsoluteHeight() - deltaY, node.getAbsoluteHeight()) :
-						  Math.min(node.getAbsoluteHeight() + deltaY, this.getAbsoluteHeight());
-
-			if ((lengthX &lt;= 0) || (lengthY &lt;= 0)) {
-				return false;
-			}
-
-			var startX = (deltaX &gt;= 0) ? deltaX : 0;
-			var startY = (deltaY &gt;= 0) ? deltaY : 0;
-
-			&#x2F;&#x2F; draw 1st
-			var tmpCanvas = document.createElement(&#x27;canvas&#x27;);
-			tmpCanvas.width = this.getAbsoluteWidth();
-			tmpCanvas.height = this.getAbsoluteHeight();
-			var ctx = tmpCanvas.getContext(&quot;2d&quot;);
-            ctx.scale(this.getAbsoluteScale().x, this.getAbsoluteScale().y);
-
-			&#x2F;&#x2F; draw this at 0x0; (backup position, render, restore position)
-			var backupPosition = this.position;
-			this.position = new CGSGPosition(0, 0);
-			this.render(ctx);
-			this.position = backupPosition;
-
-			&#x2F;&#x2F; draw node : canvas
-			var tmpCanvas2 = document.createElement(&#x27;canvas&#x27;);
-			tmpCanvas2.width = node.getAbsoluteWidth();
-			tmpCanvas2.height = node.getAbsoluteHeight();
-			var ctx2 = tmpCanvas2.getContext(&quot;2d&quot;);
-
-			&#x2F;&#x2F; draw node  (backup position, render, restore position)
-			backupPosition = node.position;
-			node.position = new CGSGPosition(0,0);
-			node.render(ctx2);
-			node.position = backupPosition;
-
-			&#x2F;&#x2F; compute both with mask at deltas
-			ctx.globalCompositeOperation = &quot;destination-in&quot;;
-			ctx.drawImage(tmpCanvas2, deltaX &#x2F; this.getAbsoluteScale().x, deltaY &#x2F; this.getAbsoluteScale().y);
-
-			&#x2F;&#x2F; WARN : security exception with chrome when calling .html directly (no apache server)
-			var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);
-			&#x2F;&#x2F;run through data canvas, in the common zone
-			for (var x = 0; x &lt; canvasData.width; x++) {
-				for (var y = 0; y &lt; canvasData.height; y++) {
-					var idx = ((x) + (y) * canvasData.width) * 4;
-					&#x2F;&#x2F; check alpha
-					if (canvasData.data[idx + 3] &gt; 0) {
-						return true;
-					}
-				}
-			}
-			return false;
-		},
-
-		&#x2F;**
-		 * @public
-		 * @method isCollidingRegion
-		 * @return {Boolean} true if the node overlaps with this node. They are colliding if the distance between them is minus than the threshold parameter
-		 * @param {CGSGNode} node
-		 * @param {Number} threshold space between the 2 nodes before considering they are overlapping
-		 *&#x2F;
-		isCollidingRegion: function (node, threshold) {
-			if (threshold === null) {
-				threshold = 0;
-			}
-			var nodeRight = node.getAbsoluteRight();
-			var nodeBottom = node.getAbsoluteBottom();
-
-			if ((this.getAbsoluteLeft() &lt;= nodeRight + threshold &amp;&amp;
-				 this.getAbsoluteRight() &gt;= node.getAbsoluteLeft() - threshold) ||
-				(this.getAbsoluteRight() &gt;= node.getAbsoluteLeft() - threshold &amp;&amp;
-				 this.getAbsoluteLeft() &lt;= nodeRight + threshold)) {
-
-				if (this.getAbsoluteTop() &lt;= nodeBottom + threshold &amp;&amp;
-					this.getAbsoluteBottom() &gt;= node.getAbsoluteTop() - threshold) {
-					return true;
-				}
-			}
-
-			return false;
+            return cgsgPerformanceKeys.collisionTester.isColliding(this, node, threshold);
 		},
 
 		&#x2F;**

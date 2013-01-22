@@ -56,11 +56,16 @@ var CGMain = CGSGScene.extend(
             var rootNode = new CGSGNode(0, 0, 0, 0);
             this.sceneGraph.addNode(rootNode, null);
 
+			rootNode.translateTo(230, 50);
+
             var that = this;
 
+			var parent = new CGSGNode(10, 10, 1, 1);
+			rootNode.addChild(parent);
+			parent.scaleTo(1.5, 1.5);
             //the color picker itself, in the default size
             var colorPicker = new CGSGNodeColorPicker(20, 20);
-            rootNode.addChild(colorPicker);
+            parent.addChild(colorPicker);
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
             colorPicker.onOverColor = function (event) {
                 that.selectColor(event);
@@ -68,6 +73,8 @@ var CGMain = CGSGScene.extend(
             colorPicker.onClickColor = function (event) {
                 that.selectColor(event);
             };
+			colorPicker.translateWith(0, 10);
+			colorPicker.resizeTo(100, 100);
 
 
             //A second color picker with a custom size

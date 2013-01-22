@@ -35,6 +35,16 @@
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -111,6 +121,8 @@
             
                 <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
             
+                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
+            
                 <li><a href="..&#x2F;modules/Math.html">Math</a></li>
             
                 <li><a href="..&#x2F;modules/Node.html">Node</a></li>
@@ -164,7 +176,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_globals.js.html#l43"><code>src\globals.js:43</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_globals.js.html#l44"><code>src\globals.js:44</code></a>
         </div>
     
 
@@ -190,6 +202,8 @@
         <li class="api-class-tab index"><a href="#index">Index</a></li>
 
         
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
         
             <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
         
@@ -201,6 +215,28 @@
         <div id="index" class="api-class-tabpanel index">
             <h2 class="off-left">Item Index</h2>
 
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_computeImageData">computeImageData</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setCollisionMethod">setCollisionMethod</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
 
             
@@ -218,6 +254,13 @@
                         
                             <li class="index-item property">
                                 <a href="#property_cgsgCanvas">cgsgCanvas</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_cgsgCollisionTestFactory">cgsgCollisionTestFactory</a>
 
                                 
                                 
@@ -302,6 +345,186 @@
         </div>
 
         
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_computeImageData" class="method item">
+    <span class="attribute-name">computeImageData</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>node</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l184"><code>src\globals.js:184</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Method to pre-compute or not image data from a node</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">node</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setCollisionMethod" class="method item">
+    <span class="attribute-name">setCollisionMethod</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>method</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l174"><code>src\globals.js:174</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Redefines the collision method</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">method</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
 
         
             <div id="properties" class="api-class-tabpanel">
@@ -333,7 +556,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l125"><code>src\globals.js:125</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l126"><code>src\globals.js:126</code></a>
         
         </p>
 
@@ -377,7 +600,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l117"><code>src\globals.js:117</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l118"><code>src\globals.js:118</code></a>
         
         </p>
 
@@ -388,6 +611,50 @@
 
     <div class="description">
         <p>The canvas container for this scene graph</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_cgsgCollisionTestFactory" class="property item">
+    <span class="attribute-name">cgsgCollisionTestFactory</span>
+    <span class="type"><a href="..\classes\CGSGCollisionTesterFactory.html" class="crosslink">CGSGCollisionTesterFactory</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l143"><code>src\globals.js:143</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Instance of CollisionTesterFactory</p>
     </div>
 
     
@@ -421,7 +688,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l92"><code>src\globals.js:92</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l93"><code>src\globals.js:93</code></a>
         
         </p>
 
@@ -467,7 +734,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l109"><code>src\globals.js:109</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l110"><code>src\globals.js:110</code></a>
         
         </p>
 
@@ -513,7 +780,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l60"><code>src\globals.js:60</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l61"><code>src\globals.js:61</code></a>
         
         </p>
 
@@ -557,7 +824,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l76"><code>src\globals.js:76</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l77"><code>src\globals.js:77</code></a>
         
         </p>
 
@@ -601,7 +868,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l133"><code>src\globals.js:133</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l134"><code>src\globals.js:134</code></a>
         
         </p>
 
@@ -648,7 +915,7 @@ Reduce this number to get more accurate FPS</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l101"><code>src\globals.js:101</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l102"><code>src\globals.js:102</code></a>
         
         </p>
 
@@ -692,7 +959,7 @@ Reduce this number to get more accurate FPS</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l142"><code>src\globals.js:142</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l150"><code>src\globals.js:150</code></a>
         
         </p>
 
@@ -705,13 +972,17 @@ Reduce this number to get more accurate FPS</p>
         <p>Object that defines the performance keys.
 Change values to adapt your project.</p>
 
-<p>cgsgPerformanceKeys.collisionMethod =
-            Method to compute collision detection on the Scene
-            Default : CGSGPickNodeMethod.REGION</p>
+<p>cgsgPerformanceKeys._collisionMethod =
+            Key to specify collision detection mod
+            Use setCollisionMethod to modify value;
+            Default : CGSGCollisionMethod.REGION</p>
 
-<p>cgsgPerformanceKeys.collisionMethod =
-            Method to compute collision detection on the Scene
-            Default : CGSGPickNodeMethod.REGION</p>
+<p>cgsgPerformanceKeys.collisionTester =
+            Collision tester depending on _collisionMethod;
+            Default : CGSGCollisionRegionTester</p>
+
+<p>cgsgPerformanceKeys.computeImageData =
+            Method to pre-compute or not image data from a node</p>
     </div>
 
     
@@ -747,7 +1018,7 @@ Change values to adapt your project.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l68"><code>src\globals.js:68</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l69"><code>src\globals.js:69</code></a>
         
         </p>
 
@@ -793,7 +1064,7 @@ Change values to adapt your project.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_globals.js.html#l52"><code>src\globals.js:52</code></a>
+        <a href="..&#x2F;files&#x2F;src_globals.js.html#l53"><code>src\globals.js:53</code></a>
         
         </p>
 

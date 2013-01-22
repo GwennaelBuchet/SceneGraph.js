@@ -35,6 +35,16 @@
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -110,6 +120,8 @@
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
             
                 <li><a href="..&#x2F;modules/Math.html">Math</a></li>
             
@@ -192,15 +204,16 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGPickNodeMethod = {
-	&#x2F;**
-	 * @property GHOST
-	 *&#x2F;
-	GHOST : &quot;ghost&quot;,
-	&#x2F;**
-	 * @property REGION
-	 *&#x2F;
-	REGION: &quot;region&quot;
+    &#x2F;**
+     * @property GHOST
+     *&#x2F;
+    GHOST : &quot;ghost&quot;,
+    &#x2F;**
+     * @property REGION
+     *&#x2F;
+    REGION: &quot;region&quot;
 };
+
 
 &#x2F;**
  * Global properties of the framework
@@ -241,14 +254,14 @@ var cgsgResizeHandleThreshold = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD;
  * @type {Object}
  *&#x2F;
 var cgsgExplorerParams = {
-	IE10      : {name : &quot;IE 10 or above&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-	IE9       : {name : &quot;IE 9&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-	SAFARI    : {name : &quot;Safari&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	CHROME    : {name : &quot;Chrome&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
-	OPERA     : {name : &quot;Opera&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
-	FIREFOX   : {name : &quot;Firefox&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	KONQUEROR : {name : &quot;Konqueror&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-	UNKNOWN   : {name : &quot;Unknown&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
+    IE10      : {name : &quot;IE 10 or above&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+    IE9       : {name : &quot;IE 9&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+    SAFARI    : {name : &quot;Safari&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+    CHROME    : {name : &quot;Chrome&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
+    OPERA     : {name : &quot;Opera&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
+    FIREFOX   : {name : &quot;Firefox&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+    KONQUEROR : {name : &quot;Konqueror&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+    UNKNOWN   : {name : &quot;Unknown&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
 };
 
 &#x2F;**
@@ -302,23 +315,62 @@ var cgsgGhostColor = &quot;#FF0000&quot;;
 var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
 
 &#x2F;**
+ * Instance of CollisionTesterFactory
+ * @property cgsgCollisionTestFactory
+ * @type {CGSGCollisionTesterFactory}
+ *&#x2F;
+var cgsgCollisionTesterFactory = new CGSGCollisionTesterFactory();
+
+&#x2F;**
  * Object that defines the performance keys.
  * Change values to adapt your project.
  *
- * cgsgPerformanceKeys.collisionMethod =
- * 	   		Method to compute collision detection on the Scene
- * 	   		Default : CGSGPickNodeMethod.REGION
+ * cgsgPerformanceKeys._collisionMethod =
+ * 	   		Key to specify collision detection mod
+ * 	   	    Use setCollisionMethod to modify value;
+ * 	   		Default : CGSGCollisionMethod.REGION
  *
- * cgsgPerformanceKeys.collisionMethod =
- * 	   		Method to compute collision detection on the Scene
- * 	   		Default : CGSGPickNodeMethod.REGION
+ * cgsgPerformanceKeys.collisionTester =
+ * 	   		Collision tester depending on _collisionMethod;
+ * 	   		Default : CGSGCollisionRegionTester
+ *
+ * cgsgPerformanceKeys.computeImageData =
+ * 	   		Method to pre-compute or not image data from a node
  *
  * @property cgsgPerformanceKeys
  * @type {Object}
  *&#x2F;
 var cgsgPerformanceKeys = {
-	collisionMethod : CGSGPickNodeMethod.REGION
+    _collisionMethod : CGSGCollisionMethod.REGION,
+
+    collisionTester : new CGSGCollisionRegionTester(),
+
+    &#x2F;**
+     * Redefines the collision method
+	 * @method setCollisionMethod
+     * @param method
+     *&#x2F;
+    setCollisionMethod : function(method){
+        this._collisionMethod = method;
+        this.collisionTester =  cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+    },
+
+    &#x2F;**
+     * Method to pre-compute or not image data from a node
+	 * @method computeImageData
+     * @param node
+     *&#x2F;
+    computeImageData : function(node){
+        if (this._collisionMethod == CGSGCollisionMethod.GHOSTPRECOMPUTE){
+            &#x2F;&#x2F; do compute
+            node.doComputeImageData();
+        }else{
+            node.fullImageData = null;
+        }
+    }
 };
+
+
     </pre>
 </div>
 

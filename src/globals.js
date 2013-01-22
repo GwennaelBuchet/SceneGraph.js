@@ -173,6 +173,7 @@ var cgsgPerformanceKeys = {
 
     /**
      * Redefines the collision method
+	 * @method setCollisionMethod
      * @param method
      */
     setCollisionMethod : function(method){
@@ -182,6 +183,7 @@ var cgsgPerformanceKeys = {
 
     /**
      * Method to pre-compute or not image data from a node
+	 * @method computeImageData
      * @param node
      */
     computeImageData : function(node){

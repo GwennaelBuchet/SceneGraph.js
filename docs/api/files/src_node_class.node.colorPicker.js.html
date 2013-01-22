@@ -35,6 +35,16 @@
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -110,6 +120,8 @@
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
             
                 <li><a href="..&#x2F;modules/Math.html">Math</a></li>
             
@@ -317,6 +329,14 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             }
 
             tmpContext.putImageData(this._imgData, 0, 0);
+            this.computeImageData();
+        },
+        &#x2F;**
+         * Override the parent method
+		 * @method doComputeImageData
+         *&#x2F;
+        doComputeImageData : function(){
+             this.fullImageData = this._imgData;
         },
 
         &#x2F;**
@@ -383,14 +403,15 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          * @param {CGSGPosition} relativePosition position of the cursor inside the colorPicker
          * @return {Object} Object with {r:x, g:x, b:x} value
          *&#x2F;
-        getColorAt:function (relativePosition) {
+        getColorAt:function (absolutePosition) {
             var ap = this.getAbsolutePosition();
             var aw = this.getAbsoluteWidth();
             &#x2F;&#x2F;get the color under the mice
             var data = this._imgData.data;
             &#x2F;&#x2F;get cursor position under the colorPicker
-            var x = relativePosition.x - ap.x;
-            var y = relativePosition.y - ap.y;
+			&#x2F;&#x2F;todo : still need to fix the scale (will be done in v2.0 with the matrix class)
+            var x =  CGSGMath.fixedPoint((absolutePosition.x - ap.x) &#x2F;*&#x2F; this.getAbsoluteScale().x*&#x2F;);
+            var y =  CGSGMath.fixedPoint((absolutePosition.y - ap.y) &#x2F;*&#x2F; this.getAbsoluteScale().y*&#x2F;);
 
             return {r:data[((aw * y) + x) * 4],
                 g:data[((aw * y) + x) * 4 + 1],

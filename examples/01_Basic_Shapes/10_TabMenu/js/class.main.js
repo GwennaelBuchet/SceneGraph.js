@@ -94,18 +94,39 @@ var CGMain = CGSGScene.extend(
 
             var root = new CGSGNode(0, 0, 0, 0);
 
-            var sq = new CGSGNodeButton(50, 20, "Hello !")
-            root.addChild(sq);
+			this.cpWitness = new CGSGNodeSquare(320, 291, 40, 40);
+			this.cpWitness.lineColor = "gray";
+			this.cpWitness.lineWidth = 2;
+			root.addChild(this.cpWitness);
 
-            var txt = new CGSGNodeText(10, 70, "tab2");
-            root.addChild(txt);
+			//A second color picker with a custom size
+			var colorPicker2 = new CGSGNodeColorPicker(30, 20);
+			colorPicker2.resizeTo(160, 260);
+			root.addChild(colorPicker2);
+
+			var that = this;
+			colorPicker2.onOverColor = function (event) {
+				that.selectColor(event);
+			};
+			colorPicker2.onClickColor = function (event) {
+				that.selectColor(event);
+			};
 
 
             //create the tab with "root" as view.
             var tab = this.tabMenu.addTab("tab 2",root);
 
             //"tab" now contains tab.text and tab.view
-        }
+        },
+
+		/**
+		 * The "onOverColor" and "onClickColor" methods of the CGSGNodeColorPicker return a {r, g, b} object
+		 * @method selectColor
+		 * @param {Object} event
+		 */
+		selectColor:function (event) {
+			this.cpWitness.color = CGSGColor.rgb2hex(event.r, event.g, event.b);
+		}
 
     }
 );

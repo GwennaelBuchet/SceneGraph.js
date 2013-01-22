@@ -35,6 +35,16 @@
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
@@ -110,6 +120,8 @@
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
             
                 <li><a href="..&#x2F;modules/Math.html">Math</a></li>
             
@@ -697,6 +709,7 @@ var CGSGNodeButton = CGSGNode.extend(
             this._initShape(1);
             this._initShape(2);
             this._needRedraw = false;
+            this.computeImageData();
         },
 
         &#x2F;**
@@ -867,8 +880,10 @@ var CGSGNodeButton = CGSGNode.extend(
             if (this._needRedraw) {
                 this._initShapes();
             }
-            &#x2F;&#x2F;render the pre-rendered canvas
-            context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
+            if (cgsgExist(this._currentMode)){
+                &#x2F;&#x2F;render the pre-rendered canvas
+                context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
+            }
 
             &#x2F;&#x2F;restore state
             this.afterRender(context);

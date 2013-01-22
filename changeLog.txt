@@ -50,7 +50,8 @@ HISTORY
 v1.4.1
 
 CHANGES:
-- Optimization. CGSGScene: remove "isDragSelectEnabled" property to use only "allowMultiSelect".
+- Optimization. CGSGScene : remove "isDragSelectEnabled" property to use only "allowMultiSelect".
+- Correction. CGSGNodeColorPicker : fix when floating point
 
 
 ---------------------------------------------------------------------
