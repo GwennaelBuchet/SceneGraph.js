@@ -132,6 +132,14 @@ var CGMain = CGSGScene.extend(
             this.rootNode.addChild(squareHotPink);
             this.rootNode.addChild(squareOrange);
             this.rootNode.addChild(this.squareBisque);
+
+            cgsgCollisionManager.manageNode(squareMediumPurple);
+            cgsgCollisionManager.manageNode(squareSlateGray);
+            cgsgCollisionManager.manageNode(squareGreenYellow);
+            cgsgCollisionManager.manageNode(squareDeepSkyBlue);
+            cgsgCollisionManager.manageNode(squareHotPink);
+            cgsgCollisionManager.manageNode(squareOrange);
+            cgsgCollisionManager.manageNode(this.squareBisque);
 		},
 
         testCollide : function() {

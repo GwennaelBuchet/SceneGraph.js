@@ -42,9 +42,14 @@ var CGSGCollisionTesterFactory = CGSGObject.extend(
             // initialize collision testers
             this.collisionTesters.addOrReplace(CGSGCollisionMethod.REGION,new CGSGCollisionRegionTester());
             this.collisionTesters.addOrReplace(CGSGCollisionMethod.GHOSTONDEMAND,new CGSGCollisionGhostOnDemandTester());
-            this.collisionTesters.addOrReplace(CGSGCollisionMethod.GHOSTPRECOMPUTE,new CGSGCollisionGhostPrecomputeTester());
 		},
 
+        /**
+         * Return a collision tester depending on the collision method
+         *
+         * @param collisionMethod
+         * @return {Object}
+         */
         getCollisionTester : function(collisionMethod){
             return this.collisionTesters.getValue(collisionMethod);
         }

@@ -155,14 +155,6 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             }
 
             tmpContext.putImageData(this._imgData, 0, 0);
-            this.computeImageData();
-        },
-        /**
-         * Override the parent method
-		 * @method doComputeImageData
-         */
-        doComputeImageData : function(){
-             this.fullImageData = this._imgData;
         },
 
         /**

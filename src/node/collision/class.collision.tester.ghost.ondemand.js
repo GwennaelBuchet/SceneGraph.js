@@ -39,6 +39,14 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
             this.classType="CGSGCollisionGhostOnDemandTester";
         },
 
+        /**
+         * Indicate if two nodes are colliding
+         *
+         * @param currentNode
+         * @param testedNode
+         * @param threshold
+         * @return {boolean} true if nodes are colliding
+         */
         isColliding : function(currentNode, testedNode,threshold){
             // get deltas to run through minimum pixels (only union of both nodes)
             var deltaX = testedNode.getAbsoluteLeft() - currentNode.getAbsoluteLeft();

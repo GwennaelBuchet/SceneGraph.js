@@ -145,7 +145,7 @@ var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
  * @property cgsgCollisionTestFactory
  * @type {CGSGCollisionTesterFactory}
  */
-var cgsgCollisionTesterFactory = new CGSGCollisionTesterFactory();
+var cgsgCollisionManager = new CGSGCollisionManager();
 
 /**
  * Object that defines the performance keys.
@@ -160,14 +160,13 @@ var cgsgCollisionTesterFactory = new CGSGCollisionTesterFactory();
  * 	   		Collision tester depending on _collisionMethod;
  * 	   		Default : CGSGCollisionRegionTester
  *
- * cgsgPerformanceKeys.computeImageData =
- * 	   		Method to pre-compute or not image data from a node
- *
  * @property cgsgPerformanceKeys
  * @type {Object}
  */
 var cgsgPerformanceKeys = {
     _collisionMethod : CGSGCollisionMethod.REGION,
+
+    _cgsgCollisionTesterFactory : new CGSGCollisionTesterFactory(),
 
     collisionTester : new CGSGCollisionRegionTester(),
 
@@ -178,21 +177,7 @@ var cgsgPerformanceKeys = {
      */
     setCollisionMethod : function(method){
         this._collisionMethod = method;
-        this.collisionTester =  cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
-    },
-
-    /**
-     * Method to pre-compute or not image data from a node
-	 * @method computeImageData
-     * @param node
-     */
-    computeImageData : function(node){
-        if (this._collisionMethod == CGSGCollisionMethod.GHOSTPRECOMPUTE){
-            // do compute
-            node.doComputeImageData();
-        }else{
-            node.fullImageData = null;
-        }
+        this.collisionTester =  this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
     }
 };
 

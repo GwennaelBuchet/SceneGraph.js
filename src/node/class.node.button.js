@@ -535,7 +535,6 @@ var CGSGNodeButton = CGSGNode.extend(
             this._initShape(1);
             this._initShape(2);
             this._needRedraw = false;
-            this.computeImageData();
         },
 
         /**
@@ -706,10 +705,9 @@ var CGSGNodeButton = CGSGNode.extend(
             if (this._needRedraw) {
                 this._initShapes();
             }
-            if (cgsgExist(this._currentMode)){
-                //render the pre-rendered canvas
-                context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
-            }
+
+            //render the pre-rendered canvas
+            context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
 
             //restore state
             this.afterRender(context);

@@ -62,24 +62,6 @@ var CGSGWrapMode = {
 var CGSGNodeText = CGSGNode.extend(
     {
         initialize:function (x, y, text,mustRecomputeDimension) {
-            /**
-             * Metrics of the text.
-             * Computed each frame it is rendered. Contains only width.
-             * Use getWidth() and getHeight() methods to get correct values
-             * @readonly
-             * @property metrics
-             * @type {Object}
-             */
-            this.metrics = {width:1};
-            /**
-             * List of sections in the text. a section is delimited by a Carriage Return
-             * @property _sections
-             * @type {Array}
-             * @private
-             */
-            this._sections = [];
-
-            // super calls getWidth so need to be called after init metrics
             this._super(x, y, -1, -1);
 
             /**
@@ -157,6 +139,14 @@ var CGSGNodeText = CGSGNode.extend(
             this._wrapMode = CGSGWrapMode.LETTER;
 
             /**
+             * List of sections in the text. a section is delimited by a Carriage Return
+             * @property _sections
+             * @type {Array}
+             * @private
+             */
+            this._sections = [];
+
+            /**
              * The string to replace the tabulation characters
              * @property _tabulation
              * @type {String}
@@ -171,6 +161,15 @@ var CGSGNodeText = CGSGNode.extend(
              */
             this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
 
+            /**
+             * Metrics of the text.
+             * Computed each frame it is rendered. Contains only width.
+             * Use getWidth() and getHeight() methods to get correct values
+             * @readonly
+             * @property metrics
+             * @type {Object}
+             */
+            this.metrics = {width:1};
 
             /**
              * number of lines in the text

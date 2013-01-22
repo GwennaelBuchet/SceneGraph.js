@@ -26,23 +26,52 @@
 "use strict";
 
 /**
- * List the methods to check the collision on two nodes
  * @module Collision
- * @class CGSGCollisionMethod
+ * @class CGSGCollisionManager
  * @extends {Object}
  * @constructor
- * @type {Object}
+ * @type {CGSGCollisionManager}
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  */
-var CGSGCollisionMethod = {
-    /**
-     * @property GHOSTONDEMAND
-     */
-    GHOSTONDEMAND : "ghostOnDemand",
+var CGSGCollisionManager = CGSGObject.extend(
+	{
+		initialize : function () {
+		},
 
-    /**
-     * @property REGION
-     */
-    REGION: "region"
-};
+        /**
+         * Indicate if two nodes are colliding
+         *
+         * @param currentNode
+         * @param testedNode
+         * @param threshold
+         * @return {boolean} true if nodes are colliding
+         */
+        isColliding : function(currentNode, testedNode, threshold){
+            if (currentNode.isCollisionManaged && testedNode.isCollisionManaged){
+                if (cgsgExist(cgsgPerformanceKeys)){
+                    return cgsgPerformanceKeys.collisionTester.isColliding(currentNode,testedNode,threshold);
+                }
+            }
+            return false;
+        },
+
+        /**
+         * Defines a node as managed by the collision manager
+         *
+         * @param node
+         */
+        manageNode : function(node){
+            node.isCollisionManaged = true;
+        },
+
+        /**
+         * Defines a node as not managed by the collision manager
+         *
+         * @param node
+         */
+        unManageNode : function(node){
+            node.isCollisionManaged = false;
+        }
+	}
+);
 

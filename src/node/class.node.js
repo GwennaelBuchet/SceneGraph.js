@@ -334,11 +334,11 @@ var CGSGNode = CGSGObject.extend(
 			this.isTraversable = true;
 
             /**
-             * Image data of the node (via render method)
-             * @property fullImageData
-             * @type {ImageData}
+             * Indicate if this node is managed by the collision manager
+             * @property isCollisionManaged
+             * @type {Boolean}
              */
-            this.fullImageData = null;
+            this.isCollisionManaged = false;
 
 			//initialize the position and dimension
 			this.translateTo(x, y, true);
@@ -735,42 +735,6 @@ var CGSGNode = CGSGObject.extend(
 			context.restore();
 		},
 
-        /**
-         * Calculate image data depending render method if collision is in ghost mod
-         * @private
-         * @method  computeImageData
-         */
-        computeImageData : function(){
-            cgsgPerformanceKeys.computeImageData(this);
-        },
-
-        /**
-         * Calculate image data depending render method
-         * @private
-         * @method  computeImageData
-         */
-        doComputeImageData : function(){
-            if (isNaN(this.getAbsoluteWidth()) || this.getAbsoluteWidth() == 0
-                || isNaN(this.getAbsoluteHeight()) || this.getAbsoluteHeight() == 0){
-                return null;
-            }
-
-            var tmpCanvas = document.createElement('canvas');
-            tmpCanvas.width = this.getAbsoluteWidth();
-            tmpCanvas.height = this.getAbsoluteHeight();
-            var ctx = tmpCanvas.getContext("2d");
-            ctx.scale(this.getAbsoluteScale().x, this.getAbsoluteScale().y);
-
-            // draw this at 0x0; (backup position, render, restore position)
-            var backupPosition = this.position;
-            this.position = new CGSGPosition(0, 0);
-            this.render(ctx);
-            this.position = backupPosition;
-
-            //get image data
-            this.fullImageData = ctx.getImageData(0,0,this.getAbsoluteWidth(),this.getAbsoluteHeight());
-        },
-
 		/**
 		 * Mark this nodes as selected
 		 * @method setSelected
@@ -1039,7 +1003,6 @@ var CGSGNode = CGSGObject.extend(
 		 * */
 		resizeTo: function (newWidth, newHeight) {
 			this.dimension.resizeTo(newWidth, newHeight);
-            this.computeImageData();
 		},
 
 		/**
@@ -1050,7 +1013,6 @@ var CGSGNode = CGSGObject.extend(
 		 * */
 		resizeBy: function (widthFactor, heightFactor) {
 			this.dimension.resizeBy(widthFactor, heightFactor);
-            this.computeImageData();
 		},
 
 		/**
@@ -1061,7 +1023,6 @@ var CGSGNode = CGSGObject.extend(
 		 * */
 		resizeWith: function (width, height) {
 			this.dimension.resizeWith(width, height);
-            this.computeImageData();
 		},
 
 		/**
@@ -1077,7 +1038,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
-            this.computeImageData();
 		},
 
 		/**
@@ -1093,7 +1053,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
-            this.computeImageData();
 		},
 
 		/**
@@ -1109,7 +1068,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
-            this.computeImageData();
 		},
 
 		/**
@@ -1124,7 +1082,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
-            this.computeImageData();
 		},
 
 		/**
@@ -1138,7 +1095,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
-            this.computeImageData();
 		},
 
 		/**
@@ -1152,7 +1108,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
-            this.computeImageData();
 		},
 
 		//// CHILDREN MANIPULATION //////
@@ -1185,7 +1140,6 @@ var CGSGNode = CGSGObject.extend(
 
 			newNode._parentNode = this;
 			this.children[index] = newNode;
-            this.computeImageData();
 		},
 
 		/**
@@ -1212,7 +1166,6 @@ var CGSGNode = CGSGObject.extend(
 					}
 				}
 			}
-            this.computeImageData();
 
 			return false;
 		},
@@ -1252,7 +1205,6 @@ var CGSGNode = CGSGObject.extend(
 				childNode._parentNode = null;
 				/*this.children = */
 				this.children.without(childNode);
-                this.computeImageData();
 			}
 		},
 
@@ -1469,14 +1421,16 @@ var CGSGNode = CGSGObject.extend(
 		},
 
 		/**
+         * Test if this node is colliding the node in parameter. Don't forget to add nodes to CGSGCollisionManager.
+         *
 		 * @public
 		 * @method isColliding
 		 * @return {Boolean} true if the 2 nodes are colliding. They are colliding if the distance between them is minus than the threshold parameter
 		 * @param {CGSGNode} node a CGSGNode
-		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
+		 * @param {Number} threshold space between the 2 nodes before considering they are colliding (in mode region)
 		 */
 		isColliding: function (node, threshold) {
-            return cgsgPerformanceKeys.collisionTester.isColliding(this, node, threshold);
+            return cgsgCollisionManager.isColliding(this, node, threshold);
 		},
 
 		/**

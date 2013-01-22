@@ -52,6 +52,7 @@ v1.4.1
 CHANGES:
 - Optimization. CGSGScene : remove "isDragSelectEnabled" property to use only "allowMultiSelect".
 - Correction. CGSGNodeColorPicker : fix when floating point
+- Optimization. Added a Collision Manager to evaluate collision between nodes
 
 
 ---------------------------------------------------------------------
