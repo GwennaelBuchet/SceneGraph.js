@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -329,14 +329,6 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             }
 
             tmpContext.putImageData(this._imgData, 0, 0);
-            this.computeImageData();
-        },
-        &#x2F;**
-         * Override the parent method
-		 * @method doComputeImageData
-         *&#x2F;
-        doComputeImageData : function(){
-             this.fullImageData = this._imgData;
         },
 
         &#x2F;**

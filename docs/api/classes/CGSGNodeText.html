@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -443,13 +443,6 @@
                         
                             <li class="index-item method public inherited">
                                 <a href="#method_computeAbsoluteMatrix">computeAbsoluteMatrix</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private inherited inherited">
-                                <a href="#method_computeImageData">computeImageData</a>
 
                                 
                                 
@@ -1012,13 +1005,6 @@
                             </li>
                         
                             <li class="index-item property inherited">
-                                <a href="#property_fullImageData">fullImageData</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property inherited">
                                 <a href="#property_globalAlpha">globalAlpha</a>
 
                                 
@@ -1027,6 +1013,13 @@
                         
                             <li class="index-item property inherited">
                                 <a href="#property_isClickable">isClickable</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property inherited">
+                                <a href="#property_isCollisionManaged">isCollisionManaged</a>
 
                                 
                                 
@@ -1464,7 +1457,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l490"><code>src\node\class.node.text.js:490</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l489"><code>src\node\class.node.text.js:489</code></a>
         
         </p>
 
@@ -1536,7 +1529,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l510"><code>src\node\class.node.text.js:510</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l509"><code>src\node\class.node.text.js:509</code></a>
         
         </p>
 
@@ -1621,7 +1614,7 @@ It can be few pixels of difference in Y position</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l357"><code>src\node\class.node.text.js:357</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l356"><code>src\node\class.node.text.js:356</code></a>
         
         </p>
 
@@ -1743,7 +1736,7 @@ It can be few pixels of difference in Y position</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l454"><code>src\node\class.node.text.js:454</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l453"><code>src\node\class.node.text.js:453</code></a>
         
         </p>
 
@@ -1911,7 +1904,7 @@ It can be few pixels of difference in Y position</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l421"><code>src\node\class.node.text.js:421</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l420"><code>src\node\class.node.text.js:420</code></a>
         
         </p>
 
@@ -2082,7 +2075,7 @@ It can be few pixels of difference in Y position</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1160"><code>src\node\class.node.js:1160</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1115"><code>src\node\class.node.js:1115</code></a>
         
         </p>
 
@@ -2172,7 +2165,7 @@ It can be few pixels of difference in Y position</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1170"><code>src\node\class.node.js:1170</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1125"><code>src\node\class.node.js:1125</code></a>
         
         </p>
 
@@ -2618,7 +2611,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1394"><code>src\node\class.node.js:1394</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1346"><code>src\node\class.node.js:1346</code></a>
         
         </p>
 
@@ -2663,62 +2656,6 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
 </div>
 
                 
-                    <div id="method_computeImageData" class="method item private inherited">
-    <span class="attribute-name">computeImageData</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            <p>Inherited from
-            <a href="..\classes\CGSGNode.html#method_computeImageData">
-                CGSGNode
-            </a>
-            
-            but overwritten in
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l738"><code>src\node\class.node.js:738</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Calculate image data depending render method if collision is in ghost mod</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_computeRealDimension" class="method item">
     <span class="attribute-name">computeRealDimension</span>
 
@@ -2751,7 +2688,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l320"><code>src\node\class.node.text.js:320</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l319"><code>src\node\class.node.text.js:319</code></a>
         
         </p>
 
@@ -2809,7 +2746,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l634"><code>src\node\class.node.text.js:634</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l633"><code>src\node\class.node.text.js:633</code></a>
         
         </p>
 
@@ -2883,7 +2820,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1245"><code>src\node\class.node.js:1245</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1198"><code>src\node\class.node.js:1198</code></a>
         
         </p>
 
@@ -2967,7 +2904,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1234"><code>src\node\class.node.js:1234</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1187"><code>src\node\class.node.js:1187</code></a>
         
         </p>
 
@@ -3065,7 +3002,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l791"><code>src\node\class.node.js:791</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l755"><code>src\node\class.node.js:755</code></a>
         
         </p>
 
@@ -3195,7 +3132,7 @@ This default function used the ghost rendering method</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l830"><code>src\node\class.node.js:830</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l794"><code>src\node\class.node.js:794</code></a>
         
         </p>
 
@@ -3317,7 +3254,7 @@ This default function used the ghost rendering method</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1259"><code>src\node\class.node.js:1259</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1211"><code>src\node\class.node.js:1211</code></a>
         
         </p>
 
@@ -3415,7 +3352,7 @@ Used to set new value to an attribute of a node</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1620"><code>src\node\class.node.js:1620</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1574"><code>src\node\class.node.js:1574</code></a>
         
         </p>
 
@@ -3471,7 +3408,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1435"><code>src\node\class.node.js:1435</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1387"><code>src\node\class.node.js:1387</code></a>
         
         </p>
 
@@ -3538,7 +3475,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1449"><code>src\node\class.node.js:1449</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1401"><code>src\node\class.node.js:1401</code></a>
         
         </p>
 
@@ -3605,7 +3542,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1414"><code>src\node\class.node.js:1414</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1366"><code>src\node\class.node.js:1366</code></a>
         
         </p>
 
@@ -3674,7 +3611,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1344"><code>src\node\class.node.js:1344</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1296"><code>src\node\class.node.js:1296</code></a>
         
         </p>
 
@@ -3811,7 +3748,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1421"><code>src\node\class.node.js:1421</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1373"><code>src\node\class.node.js:1373</code></a>
         
         </p>
 
@@ -3880,7 +3817,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1379"><code>src\node\class.node.js:1379</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1331"><code>src\node\class.node.js:1331</code></a>
         
         </p>
 
@@ -3950,7 +3887,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1364"><code>src\node\class.node.js:1364</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1316"><code>src\node\class.node.js:1316</code></a>
         
         </p>
 
@@ -4018,7 +3955,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1428"><code>src\node\class.node.js:1428</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1380"><code>src\node\class.node.js:1380</code></a>
         
         </p>
 
@@ -4085,7 +4022,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1442"><code>src\node\class.node.js:1442</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1394"><code>src\node\class.node.js:1394</code></a>
         
         </p>
 
@@ -4155,7 +4092,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l466"><code>src\node\class.node.text.js:466</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l465"><code>src\node\class.node.text.js:465</code></a>
         
         </p>
 
@@ -4234,7 +4171,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1482"><code>src\node\class.node.js:1482</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1436"><code>src\node\class.node.js:1436</code></a>
         
         </p>
 
@@ -4397,7 +4334,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l482"><code>src\node\class.node.text.js:482</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l481"><code>src\node\class.node.text.js:481</code></a>
         
         </p>
 
@@ -4460,7 +4397,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l982"><code>src\node\class.node.js:982</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l946"><code>src\node\class.node.js:946</code></a>
         
         </p>
 
@@ -4533,7 +4470,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1471"><code>src\node\class.node.js:1471</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1423"><code>src\node\class.node.js:1423</code></a>
         
         </p>
 
@@ -4544,7 +4481,7 @@ The 'userData' property won't be freed</p>
     </div>
 
     <div class="description">
-        
+        <p>Test if this node is colliding the node in parameter. Don't forget to add nodes to CGSGCollisionManager.</p>
     </div>
 
     
@@ -4577,7 +4514,7 @@ The 'userData' property won't be freed</p>
                     
 
                     <div class="param-description">
-                        <p>space between the 2 nodes before considering they are colliding</p>
+                        <p>space between the 2 nodes before considering they are colliding (in mode region)</p>
                     </div>
 
                     
@@ -4651,7 +4588,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1501"><code>src\node\class.node.js:1501</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1455"><code>src\node\class.node.js:1455</code></a>
         
         </p>
 
@@ -4774,7 +4711,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l882"><code>src\node\class.node.js:882</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l846"><code>src\node\class.node.js:846</code></a>
         
         </p>
 
@@ -4945,7 +4882,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l931"><code>src\node\class.node.js:931</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l895"><code>src\node\class.node.js:895</code></a>
         
         </p>
 
@@ -5080,7 +5017,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1220"><code>src\node\class.node.js:1220</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1173"><code>src\node\class.node.js:1173</code></a>
         
         </p>
 
@@ -5151,7 +5088,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1191"><code>src\node\class.node.js:1191</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1145"><code>src\node\class.node.js:1145</code></a>
         
         </p>
 
@@ -5268,7 +5205,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l339"><code>src\node\class.node.text.js:339</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l338"><code>src\node\class.node.text.js:338</code></a>
         
         </p>
 
@@ -5357,7 +5294,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l535"><code>src\node\class.node.text.js:535</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l534"><code>src\node\class.node.text.js:534</code></a>
         
         </p>
 
@@ -5448,7 +5385,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l557"><code>src\node\class.node.text.js:557</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l556"><code>src\node\class.node.text.js:556</code></a>
         
         </p>
 
@@ -5538,7 +5475,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1045"><code>src\node\class.node.js:1045</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1008"><code>src\node\class.node.js:1008</code></a>
         
         </p>
 
@@ -5643,7 +5580,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1034"><code>src\node\class.node.js:1034</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l998"><code>src\node\class.node.js:998</code></a>
         
         </p>
 
@@ -5748,7 +5685,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1056"><code>src\node\class.node.js:1056</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1018"><code>src\node\class.node.js:1018</code></a>
         
         </p>
 
@@ -5853,7 +5790,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1130"><code>src\node\class.node.js:1130</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1087"><code>src\node\class.node.js:1087</code></a>
         
         </p>
 
@@ -5958,7 +5895,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1115"><code>src\node\class.node.js:1115</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1073"><code>src\node\class.node.js:1073</code></a>
         
         </p>
 
@@ -6063,7 +6000,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1144"><code>src\node\class.node.js:1144</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1100"><code>src\node\class.node.js:1100</code></a>
         
         </p>
 
@@ -6174,7 +6111,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1083"><code>src\node\class.node.js:1083</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1043"><code>src\node\class.node.js:1043</code></a>
         
         </p>
 
@@ -6300,7 +6237,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1067"><code>src\node\class.node.js:1067</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1028"><code>src\node\class.node.js:1028</code></a>
         
         </p>
 
@@ -6426,7 +6363,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1099"><code>src\node\class.node.js:1099</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1058"><code>src\node\class.node.js:1058</code></a>
         
         </p>
 
@@ -6549,7 +6486,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l306"><code>src\node\class.node.text.js:306</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l305"><code>src\node\class.node.text.js:305</code></a>
         
         </p>
 
@@ -6658,7 +6595,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l293"><code>src\node\class.node.text.js:293</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l292"><code>src\node\class.node.text.js:292</code></a>
         
         </p>
 
@@ -6759,7 +6696,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1334"><code>src\node\class.node.js:1334</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1286"><code>src\node\class.node.js:1286</code></a>
         
         </p>
 
@@ -6843,7 +6780,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l774"><code>src\node\class.node.js:774</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l738"><code>src\node\class.node.js:738</code></a>
         
         </p>
 
@@ -6936,7 +6873,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l249"><code>src\node\class.node.text.js:249</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l248"><code>src\node\class.node.text.js:248</code></a>
         
         </p>
 
@@ -7044,7 +6981,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l222"><code>src\node\class.node.text.js:222</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l221"><code>src\node\class.node.text.js:221</code></a>
         
         </p>
 
@@ -7152,7 +7089,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l208"><code>src\node\class.node.text.js:208</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l207"><code>src\node\class.node.text.js:207</code></a>
         
         </p>
 
@@ -7260,7 +7197,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l234"><code>src\node\class.node.text.js:234</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l233"><code>src\node\class.node.text.js:233</code></a>
         
         </p>
 
@@ -7362,7 +7299,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l261"><code>src\node\class.node.text.js:261</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l260"><code>src\node\class.node.text.js:260</code></a>
         
         </p>
 
@@ -7455,7 +7392,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l269"><code>src\node\class.node.text.js:269</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l268"><code>src\node\class.node.text.js:268</code></a>
         
         </p>
 
@@ -7563,7 +7500,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l281"><code>src\node\class.node.text.js:281</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l280"><code>src\node\class.node.text.js:280</code></a>
         
         </p>
 
@@ -7671,7 +7608,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l193"><code>src\node\class.node.text.js:193</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l192"><code>src\node\class.node.text.js:192</code></a>
         
         </p>
 
@@ -7791,7 +7728,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1020"><code>src\node\class.node.js:1020</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l984"><code>src\node\class.node.js:984</code></a>
         
         </p>
 
@@ -7917,7 +7854,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l992"><code>src\node\class.node.js:992</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l956"><code>src\node\class.node.js:956</code></a>
         
         </p>
 
@@ -8043,7 +7980,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1006"><code>src\node\class.node.js:1006</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l970"><code>src\node\class.node.js:970</code></a>
         
         </p>
 
@@ -8369,7 +8306,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l142"><code>src\node\class.node.text.js:142</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l124"><code>src\node\class.node.text.js:124</code></a>
         
         </p>
 
@@ -8418,7 +8355,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l135"><code>src\node\class.node.text.js:135</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l117"><code>src\node\class.node.text.js:117</code></a>
         
         </p>
 
@@ -8464,7 +8401,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l175"><code>src\node\class.node.text.js:175</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l174"><code>src\node\class.node.text.js:174</code></a>
         
         </p>
 
@@ -8553,7 +8490,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l74"><code>src\node\class.node.text.js:74</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l141"><code>src\node\class.node.text.js:141</code></a>
         
         </p>
 
@@ -8599,7 +8536,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l97"><code>src\node\class.node.text.js:97</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l79"><code>src\node\class.node.text.js:79</code></a>
         
         </p>
 
@@ -8647,7 +8584,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l121"><code>src\node\class.node.text.js:121</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l103"><code>src\node\class.node.text.js:103</code></a>
         
         </p>
 
@@ -8695,7 +8632,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l159"><code>src\node\class.node.text.js:159</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l149"><code>src\node\class.node.text.js:149</code></a>
         
         </p>
 
@@ -8741,7 +8678,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l85"><code>src\node\class.node.text.js:85</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l67"><code>src\node\class.node.text.js:67</code></a>
         
         </p>
 
@@ -8787,7 +8724,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l105"><code>src\node\class.node.text.js:105</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l87"><code>src\node\class.node.text.js:87</code></a>
         
         </p>
 
@@ -8835,7 +8772,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l113"><code>src\node\class.node.text.js:113</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l95"><code>src\node\class.node.text.js:95</code></a>
         
         </p>
 
@@ -8883,7 +8820,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l128"><code>src\node\class.node.text.js:128</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l110"><code>src\node\class.node.text.js:110</code></a>
         
         </p>
 
@@ -8931,7 +8868,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l151"><code>src\node\class.node.text.js:151</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l133"><code>src\node\class.node.text.js:133</code></a>
         
         </p>
 
@@ -9018,7 +8955,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l183"><code>src\node\class.node.text.js:183</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l182"><code>src\node\class.node.text.js:182</code></a>
         
         </p>
 
@@ -9062,7 +8999,7 @@ A line height is the size between 2 tops of line</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l91"><code>src\node\class.node.text.js:91</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l73"><code>src\node\class.node.text.js:73</code></a>
         
         </p>
 
@@ -9119,47 +9056,6 @@ Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead</p>
 
     
         <p><strong>Default:</strong> CGSGDimension(0, 0)</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_fullImageData" class="property item inherited">
-    <span class="attribute-name">fullImageData</span>
-    <span class="type">ImageData</span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="..\classes\CGSGNode.html#property_fullImageData">CGSGNode</a>:
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l336"><code>src\node\class.node.js:336</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Image data of the node (via render method)</p>
-    </div>
-
     
 
     
@@ -9247,6 +9143,47 @@ If true, this node is clickable and so will be checked by the pickNode function<
 
     
         <p><strong>Default:</strong> true</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_isCollisionManaged" class="property item inherited">
+    <span class="attribute-name">isCollisionManaged</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#property_isCollisionManaged">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l336"><code>src\node\class.node.js:336</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Indicate if this node is managed by the collision manager</p>
+    </div>
+
     
 
     
@@ -9659,7 +9596,7 @@ Use CGSGScene::scenegraph.selectNode(nodeToSelect) to select a node</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l65"><code>src\node\class.node.text.js:65</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l164"><code>src\node\class.node.text.js:164</code></a>
         
         </p>
 
@@ -10452,7 +10389,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l167"><code>src\node\class.node.text.js:167</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.text.js.html#l157"><code>src\node\class.node.text.js:157</code></a>
         
         </p>
 

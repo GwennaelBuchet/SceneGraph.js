@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CGSGRotation - cgSceneGraph</title>
+    <title>CGSGCollisionManager - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -168,25 +168,21 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>CGSGRotation Class</h1>
+                        <h1>CGSGCollisionManager Class</h1>
 <div class="box meta">
     
 
     
-        <div class="extends">
-            Extends <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a>
-        </div>
-    
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l109"><code>src\utils\class.region.js:109</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_node_collision_class.collision.manager.js.html#l28"><code>src\node\collision\class.collision.manager.js:28</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/Util.html">Util</a>
+            Module: <a href="../modules/Collision.html">Collision</a>
         
     
 
@@ -196,99 +192,9 @@
 
 
 <div class="box intro">
-    <p>A Rotation object</p>
-</div>
-
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-        <div id="method_CGSGRotation" class="method item">
-    <span class="attribute-name">CGSGRotation</span>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>angle</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l109"><code>src\utils\class.region.js:109</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">angle</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Angle value</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
     
 </div>
 
-    </div>
 
 
 <div id="classdocs" class="tabview">
@@ -311,52 +217,24 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods extends">
+                    <ul class="index-list methods">
                         
-                            <li class="index-item method public">
-                                <a href="#method_add">add</a>
+                            <li class="index-item method">
+                                <a href="#method_render">render</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method public">
-                                <a href="#method_copy">copy</a>
+                            <li class="index-item method">
+                                <a href="#method_render">render</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method public">
-                                <a href="#method_multiply">multiply</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method public">
-                                <a href="#method_rotateBy">rotateBy</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method public">
-                                <a href="#method_rotateTo">rotateTo</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method public">
-                                <a href="#method_rotateWith">rotateWith</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method public">
-                                <a href="#method_substract">substract</a>
+                            <li class="index-item method">
+                                <a href="#method_render">render</a>
 
                                 
                                 
@@ -378,8 +256,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_add" class="method item public">
-    <span class="attribute-name">add</span>
+                    <div id="method_render" class="method item">
+    <span class="attribute-name">render</span>
 
     
         <div class="args">
@@ -387,7 +265,19 @@
             
                 <li class="arg">
                     
-                        <code>angle</code>
+                        <code>context</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
                     
                 </li>
             
@@ -399,8 +289,6 @@
 
     
 
-    
-        <span class="flag public">public</span>
     
 
     
@@ -415,6 +303,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/Animation.html">Animation</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -422,7 +312,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l164"><code>src\utils\class.region.js:164</code></a>
+        <a href="..&#x2F;files&#x2F;src_effects_class.effect.grayscale.js.html#l41"><code>src\effects\class.effect.grayscale.js:41</code></a>
         
         </p>
 
@@ -433,7 +323,7 @@
     </div>
 
     <div class="description">
-        <p>Add this angle to the current one</p>
+        <p>This function must be filled by the inherited classes.</p>
     </div>
 
     
@@ -444,14 +334,44 @@
             
                 <li class="param">
                     
-                        <code class="param-name">angle</code>
+                        <code class="param-name">context</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>context containing the image</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>width for the image to be modified</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>height for the image to be modified</p>
                     </div>
 
                     
@@ -467,80 +387,8 @@
 </div>
 
                 
-                    <div id="method_copy" class="method item public">
-    <span class="attribute-name">copy</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="..\classes\CGSGRotation.html" class="crosslink">CGSGRotation</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l124"><code>src\utils\class.region.js:124</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>return a new object with these attributes</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <div class="method-item">Returns:</div>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="..\classes\CGSGRotation.html" class="crosslink">CGSGRotation</a></span>:
-                    
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_multiply" class="method item public">
-    <span class="attribute-name">multiply</span>
+                    <div id="method_render" class="method item">
+    <span class="attribute-name">render</span>
 
     
         <div class="args">
@@ -548,7 +396,19 @@
             
                 <li class="arg">
                     
-                        <code>angle</code>
+                        <code>context</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
                     
                 </li>
             
@@ -561,8 +421,6 @@
     
 
     
-        <span class="flag public">public</span>
-    
 
     
 
@@ -576,6 +434,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/Animation.html">Animation</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -583,7 +443,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l184"><code>src\utils\class.region.js:184</code></a>
+        <a href="..&#x2F;files&#x2F;src_effects_class.effect.invertcolors.js.html#l41"><code>src\effects\class.effect.invertcolors.js:41</code></a>
         
         </p>
 
@@ -594,7 +454,7 @@
     </div>
 
     <div class="description">
-        <p>Multiply this angle to the current one</p>
+        <p>This function must be filled by the inherited classes.</p>
     </div>
 
     
@@ -605,14 +465,44 @@
             
                 <li class="param">
                     
-                        <code class="param-name">angle</code>
+                        <code class="param-name">context</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>context containing the image</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">width</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>width for the image to be modified</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">height</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>height for the image to be modified</p>
                     </div>
 
                     
@@ -628,8 +518,8 @@
 </div>
 
                 
-                    <div id="method_rotateBy" class="method item public">
-    <span class="attribute-name">rotateBy</span>
+                    <div id="method_render" class="method item">
+    <span class="attribute-name">render</span>
 
     
         <div class="args">
@@ -637,7 +527,19 @@
             
                 <li class="arg">
                     
-                        <code>rotateFactor</code>
+                        <code>context</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>width</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>height</code>
                     
                 </li>
             
@@ -649,8 +551,6 @@
 
     
 
-    
-        <span class="flag public">public</span>
     
 
     
@@ -665,6 +565,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/Animation.html">Animation</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -672,7 +574,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l144"><code>src\utils\class.region.js:144</code></a>
+        <a href="..&#x2F;files&#x2F;src_effects_class.effect.js.html#l40"><code>src\effects\class.effect.js:40</code></a>
         
         </p>
 
@@ -683,7 +585,7 @@
     </div>
 
     <div class="description">
-        <p>Multiply this angle by this factor</p>
+        <p>This function must be filled by the inherited classes.</p>
     </div>
 
     
@@ -694,281 +596,44 @@
             
                 <li class="param">
                     
-                        <code class="param-name">rotateFactor</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">context</code>
+                        <span class="type">CanvasRenderingContext2D</span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>context containing the image</p>
                     </div>
 
                     
                 </li>
             
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_rotateTo" class="method item public">
-    <span class="attribute-name">rotateTo</span>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>newAngle</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l134"><code>src\utils\class.region.js:134</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace current angle by this new one</p>
-    </div>
-
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
                 <li class="param">
                     
-                        <code class="param-name">newAngle</code>
+                        <code class="param-name">width</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                         
+                        <p>width for the image to be modified</p>
                     </div>
 
                     
                 </li>
             
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_rotateWith" class="method item public">
-    <span class="attribute-name">rotateWith</span>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>angle</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l154"><code>src\utils\class.region.js:154</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Add this angle to the current one</p>
-    </div>
-
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
                 <li class="param">
                     
-                        <code class="param-name">angle</code>
+                        <code class="param-name">height</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_substract" class="method item public">
-    <span class="attribute-name">substract</span>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>angle</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_utils_class.region.js.html#l174"><code>src\utils\class.region.js:174</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Substract this angle to the current one</p>
-    </div>
-
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">angle</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
+                        <p>height for the image to be modified</p>
                     </div>
 
                     

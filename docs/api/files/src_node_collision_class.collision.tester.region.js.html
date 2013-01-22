@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -213,6 +213,14 @@ var CGSGCollisionRegionTester = CGSGObject.extend(
             this.classType=&quot;CGSGCollisionRegionTester&quot;;
         },
 
+        &#x2F;**
+         * Indicate if two nodes are colliding
+         *
+         * @param currentNode
+         * @param testedNode
+         * @param threshold
+         * @return {boolean} true if nodes are colliding
+         *&#x2F;
         isColliding : function(currentNode, testedNode,threshold){
             if (threshold === null) {
                 threshold = 0;

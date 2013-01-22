@@ -4,7 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGAnimationKey",
         "CGSGButtonMode",
         "CGSGCollisionGhostOnDemandTester",
-        "CGSGCollisionGhostPrecomputeTester",
+        "CGSGCollisionManager",
         "CGSGCollisionMethod",
         "CGSGCollisionRegionTester",
         "CGSGCollisionTesterFactory",

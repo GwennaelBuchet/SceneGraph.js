@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -508,11 +508,11 @@ var CGSGNode = CGSGObject.extend(
 			this.isTraversable = true;
 
             &#x2F;**
-             * Image data of the node (via render method)
-             * @property fullImageData
-             * @type {ImageData}
+             * Indicate if this node is managed by the collision manager
+             * @property isCollisionManaged
+             * @type {Boolean}
              *&#x2F;
-            this.fullImageData = null;
+            this.isCollisionManaged = false;
 
 			&#x2F;&#x2F;initialize the position and dimension
 			this.translateTo(x, y, true);
@@ -909,42 +909,6 @@ var CGSGNode = CGSGObject.extend(
 			context.restore();
 		},
 
-        &#x2F;**
-         * Calculate image data depending render method if collision is in ghost mod
-         * @private
-         * @method  computeImageData
-         *&#x2F;
-        computeImageData : function(){
-            cgsgPerformanceKeys.computeImageData(this);
-        },
-
-        &#x2F;**
-         * Calculate image data depending render method
-         * @private
-         * @method  computeImageData
-         *&#x2F;
-        doComputeImageData : function(){
-            if (isNaN(this.getAbsoluteWidth()) || this.getAbsoluteWidth() == 0
-                || isNaN(this.getAbsoluteHeight()) || this.getAbsoluteHeight() == 0){
-                return null;
-            }
-
-            var tmpCanvas = document.createElement(&#x27;canvas&#x27;);
-            tmpCanvas.width = this.getAbsoluteWidth();
-            tmpCanvas.height = this.getAbsoluteHeight();
-            var ctx = tmpCanvas.getContext(&quot;2d&quot;);
-            ctx.scale(this.getAbsoluteScale().x, this.getAbsoluteScale().y);
-
-            &#x2F;&#x2F; draw this at 0x0; (backup position, render, restore position)
-            var backupPosition = this.position;
-            this.position = new CGSGPosition(0, 0);
-            this.render(ctx);
-            this.position = backupPosition;
-
-            &#x2F;&#x2F;get image data
-            this.fullImageData = ctx.getImageData(0,0,this.getAbsoluteWidth(),this.getAbsoluteHeight());
-        },
-
 		&#x2F;**
 		 * Mark this nodes as selected
 		 * @method setSelected
@@ -1213,7 +1177,6 @@ var CGSGNode = CGSGObject.extend(
 		 * *&#x2F;
 		resizeTo: function (newWidth, newHeight) {
 			this.dimension.resizeTo(newWidth, newHeight);
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1224,7 +1187,6 @@ var CGSGNode = CGSGObject.extend(
 		 * *&#x2F;
 		resizeBy: function (widthFactor, heightFactor) {
 			this.dimension.resizeBy(widthFactor, heightFactor);
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1235,7 +1197,6 @@ var CGSGNode = CGSGObject.extend(
 		 * *&#x2F;
 		resizeWith: function (width, height) {
 			this.dimension.resizeWith(width, height);
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1251,7 +1212,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1267,7 +1227,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1283,7 +1242,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteScale = this.getAbsoluteScale();
 			}
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1298,7 +1256,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1312,7 +1269,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1326,7 +1282,6 @@ var CGSGNode = CGSGObject.extend(
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
 				this._absoluteRotation = this.getAbsoluteRotation();
 			}
-            this.computeImageData();
 		},
 
 		&#x2F;&#x2F;&#x2F;&#x2F; CHILDREN MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
@@ -1359,7 +1314,6 @@ var CGSGNode = CGSGObject.extend(
 
 			newNode._parentNode = this;
 			this.children[index] = newNode;
-            this.computeImageData();
 		},
 
 		&#x2F;**
@@ -1386,7 +1340,6 @@ var CGSGNode = CGSGObject.extend(
 					}
 				}
 			}
-            this.computeImageData();
 
 			return false;
 		},
@@ -1426,7 +1379,6 @@ var CGSGNode = CGSGObject.extend(
 				childNode._parentNode = null;
 				&#x2F;*this.children = *&#x2F;
 				this.children.without(childNode);
-                this.computeImageData();
 			}
 		},
 
@@ -1643,14 +1595,16 @@ var CGSGNode = CGSGObject.extend(
 		},
 
 		&#x2F;**
+         * Test if this node is colliding the node in parameter. Don&#x27;t forget to add nodes to CGSGCollisionManager.
+         *
 		 * @public
 		 * @method isColliding
 		 * @return {Boolean} true if the 2 nodes are colliding. They are colliding if the distance between them is minus than the threshold parameter
 		 * @param {CGSGNode} node a CGSGNode
-		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
+		 * @param {Number} threshold space between the 2 nodes before considering they are colliding (in mode region)
 		 *&#x2F;
 		isColliding: function (node, threshold) {
-            return cgsgPerformanceKeys.collisionTester.isColliding(this, node, threshold);
+            return cgsgCollisionManager.isColliding(this, node, threshold);
 		},
 
 		&#x2F;**

@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -398,9 +398,10 @@ function cgsgGetCursorPositions (event, canvas) {
 
 	var touch = event;
 	&#x2F;&#x2F;if multi-touch, get all the positions
-	if (event.targetTouches) {
-		for (var i = 0; i &lt; event.targetTouches.length; i++) {
-			touch = event.targetTouches[i];
+	if (event.targetTouches) { &#x2F;&#x2F; or changedTouches
+		var touchPoints = (typeof eventObject.targetTouches != &#x27;undefined&#x27;) ? eventObject.targetTouches : [event];
+		for (var i = 0; i &lt; touchPoints.length; i++) {
+			touch = touchPoints[i];
 
 			positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; cgsgDisplayRatio.x,
 			                                (touch.pageY - offsetY) &#x2F; cgsgDisplayRatio.y));

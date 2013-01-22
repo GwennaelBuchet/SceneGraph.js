@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -319,7 +319,6 @@ var CGSGNodeImage = CGSGNode.extend(
             if (this.onLoadEnd !== null) {
                 this.onLoadEnd();
             }
-            this.computeImageData();
         },
 
         &#x2F;**
@@ -394,7 +393,6 @@ var CGSGNodeImage = CGSGNode.extend(
                 this._urlImage = this._img.src;
                 this._checkDimension();
                 this.isLoaded = true;
-                this.computeImageData();
             }
         },
 

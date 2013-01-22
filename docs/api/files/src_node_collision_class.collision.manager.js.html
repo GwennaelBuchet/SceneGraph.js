@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CGSGCollisionGhostPrecomputeTester - cgSceneGraph</title>
+    <title>src\node\collision\class.collision.manager.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -37,7 +37,7 @@
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostPrecomputeTester.html">CGSGCollisionGhostPrecomputeTester</a></li>
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
             
@@ -168,66 +168,89 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>CGSGCollisionGhostPrecomputeTester Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: src\node\collision\class.collision.manager.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License&#x2F;Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ *&#x2F;
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_node_collision_class.collision.tester.ghost.precompute.js.html#l28"><code>src\node\collision\class.collision.tester.ghost.precompute.js:28</code></a>
-        </div>
-    
+&quot;use strict&quot;;
 
-    
-        
-            Module: <a href="../modules/Collision.html">Collision</a>
-        
-    
+&#x2F;**
+ * @module Collision
+ * @class CGSGCollisionManager
+ * @extends {Object}
+ * @constructor
+ * @type {CGSGCollisionManager}
+ * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
+ *&#x2F;
+var CGSGCollisionManager = CGSGObject.extend(
+	{
+		initialize : function () {
+		},
 
-    
-</div>
+        &#x2F;**
+         * Indicate if two nodes are colliding
+         *
+         * @param currentNode
+         * @param testedNode
+         * @param threshold
+         * @return {boolean} true if nodes are colliding
+         *&#x2F;
+        isColliding : function(currentNode, testedNode, threshold){
+            if (currentNode.isCollisionManaged &amp;&amp; testedNode.isCollisionManaged){
+                if (cgsgExist(cgsgPerformanceKeys)){
+                    return cgsgPerformanceKeys.collisionTester.isColliding(currentNode,testedNode,threshold);
+                }
+            }
+            return false;
+        },
+
+        &#x2F;**
+         * Defines a node as managed by the collision manager
+         *
+         * @param node
+         *&#x2F;
+        manageNode : function(node){
+            node.isCollisionManaged = true;
+        },
+
+        &#x2F;**
+         * Defines a node as not managed by the collision manager
+         *
+         * @param node
+         *&#x2F;
+        unManageNode : function(node){
+            node.isCollisionManaged = false;
+        }
+	}
+);
 
 
-
-<div class="box intro">
-    
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-
-        
-
-        
-
-        
-    </div>
+    </pre>
 </div>
 
                     </div>
