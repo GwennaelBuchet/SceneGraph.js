@@ -225,7 +225,7 @@ function cgsgGetCursorPositions (event, canvas) {
 	var touch = event;
 	//if multi-touch, get all the positions
 	if (event.targetTouches) { // or changedTouches
-		var touchPoints = (typeof eventObject.targetTouches !== 'undefined') ? eventObject.targetTouches : [event];
+		var touchPoints = (typeof event.targetTouches !== 'undefined') ? event.targetTouches : [event];
 		for (var i = 0; i < touchPoints.length; i++) {
 			touch = touchPoints[i];
 
