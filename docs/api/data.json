@@ -5855,7 +5855,7 @@
             "line": 1008,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
-            "name": "resizeTBy",
+            "name": "resizeBy",
             "params": [
                 {
                     "name": "widthFactor",
