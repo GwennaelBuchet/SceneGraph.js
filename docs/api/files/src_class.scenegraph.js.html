@@ -211,402 +211,402 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGSceneGraph = CGSGObject.extend(
-    {
-        initialize:function (canvas, context) {
+	{
+		initialize: function (canvas, context) {
 
-            &#x2F;**
-             * Root node of the graph
-             * @property root
-             * @type {CGSGNode}
-             *&#x2F;
-            this.root = null;
+			&#x2F;**
+			 * Root node of the graph
+			 * @property root
+			 * @type {CGSGNode}
+			 *&#x2F;
+			this.root = null;
 
-            &#x2F;**
-             * @property context
-             * @type {CanvasRenderingContext2D}
-             *&#x2F;
-            this.context = context;
+			&#x2F;**
+			 * @property context
+			 * @type {CanvasRenderingContext2D}
+			 *&#x2F;
+			this.context = context;
 
-            &#x2F;&#x2F;initialize the current frame to 0
-            &#x2F;&#x2F;noinspection JSUndeclaredVariable
-            cgsgCurrentFrame = 0;
+			&#x2F;&#x2F;initialize the current frame to 0
+			&#x2F;&#x2F;noinspection JSUndeclaredVariable
+			cgsgCurrentFrame = 0;
 
-            &#x2F;**
-             * The nodes currently selected by the user
-             * @property selectedNodes
-             * @type {Array}
-             *&#x2F;
-            this.selectedNodes = [];
-            &#x2F;**
-             *
-             * @property _nextNodeID
-             * @type {Number}
-             * @private
-             *&#x2F;
-            this._nextNodeID = 1;
+			&#x2F;**
+			 * The nodes currently selected by the user
+			 * @property selectedNodes
+			 * @type {Array}
+			 *&#x2F;
+			this.selectedNodes = [];
+			&#x2F;**
+			 *
+			 * @property _nextNodeID
+			 * @type {Number}
+			 * @private
+			 *&#x2F;
+			this._nextNodeID = 1;
 
-            &#x2F;**
-             * List of the timelines for the animations.
-             * A timeline consists of a list of animation keys for 1 attribute of the nodes
-             * @property _listTimelines
-             * @type {Array}
-             * @private
-             *&#x2F;
-            this._listTimelines = [];
+			&#x2F;**
+			 * List of the timelines for the animations.
+			 * A timeline consists of a list of animation keys for 1 attribute of the nodes
+			 * @property _listTimelines
+			 * @type {Array}
+			 * @private
+			 *&#x2F;
+			this._listTimelines = [];
 
-            &#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 
-            &#x2F;**
-             * Initialize a ghost canvas used to determine which nodes are selected by the user
-             * @property ghostCanvas
-             * @type {HTMLElement}
-             *&#x2F;
-            this.ghostCanvas = document.createElement(&#x27;canvas&#x27;);
-            this.initializeGhost(canvas.width, canvas.height);
+			&#x2F;**
+			 * Initialize a ghost canvas used to determine which nodes are selected by the user
+			 * @property ghostCanvas
+			 * @type {HTMLElement}
+			 *&#x2F;
+			this.ghostCanvas = document.createElement(&#x27;canvas&#x27;);
+			this.initializeGhost(canvas.width, canvas.height);
 
-            &#x2F;&#x2F;fixes a problem where double clicking causes text to get selected on the canvas
-            cgsgCanvas.onselectstart = function () {
-                return false;
-            };
-        },
+			&#x2F;&#x2F;fixes a problem where double clicking causes text to get selected on the canvas
+			cgsgCanvas.onselectstart = function () {
+				return false;
+			};
+		},
 
-        &#x2F;**
-         * Initialize the ghost rendering, used by the PickNode function
-         * @private
-         * @method initializeGhost
-         * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
-         * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
-         * *&#x2F;
-        initializeGhost:function (width, height) {
-            this.ghostCanvas.height = height;
-            this.ghostCanvas.width = width;
-            &#x2F;&#x2F;noinspection JSUndeclaredVariable
-            cgsgGhostContext = this.ghostCanvas.getContext(&#x27;2d&#x27;);
-        },
+		&#x2F;**
+		 * Initialize the ghost rendering, used by the PickNode function
+		 * @private
+		 * @method initializeGhost
+		 * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
+		 * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
+		 * *&#x2F;
+		initializeGhost: function (width, height) {
+			this.ghostCanvas.height = height;
+			this.ghostCanvas.width = width;
+			&#x2F;&#x2F;noinspection JSUndeclaredVariable
+			cgsgGhostContext = this.ghostCanvas.getContext(&#x27;2d&#x27;);
+		},
 
-        &#x2F;**
-         * Render the SceneGraph
-         * @public
-         * @method render
-         * *&#x2F;
-        render:function () {
-            &#x2F;&#x2F;erase previous rendering
-            cgsgClearContext(this.context);
+		&#x2F;**
+		 * Render the SceneGraph
+		 * @public
+		 * @method render
+		 * *&#x2F;
+		render: function () {
+			&#x2F;&#x2F;erase previous rendering
+			cgsgClearContext(this.context);
 
-            if (this.root !== null &amp;&amp; this.root !== undefined) {
-                var node = null;
-                var i = 0;
-                var len = 0;
-                var key = null;
-                &#x2F;&#x2F;set the new values for all the animated nodes
-                if (this._listTimelines.length &gt; 0) {
-                    node = null;
-                    var value, timeline;
-                    for (i = this._listTimelines.length - 1; i &gt;= 0; --i) {
-                        timeline = this._listTimelines[i];
-                        node = timeline.parentNode;
+			if (this.root !== null &amp;&amp; this.root !== undefined) {
+				var node = null;
+				var i = 0;
+				var len = 0;
+				var key = null;
+				&#x2F;&#x2F;set the new values for all the animated nodes
+				if (this._listTimelines.length &gt; 0) {
+					node = null;
+					var value, timeline;
+					for (i = this._listTimelines.length - 1; i &gt;= 0; --i) {
+						timeline = this._listTimelines[i];
+						node = timeline.parentNode;
 
-                        if (node.isVisible) {
-                            value = timeline.getValue(cgsgCurrentFrame);
-                            if (value !== undefined) {
-                                node.evalSet(timeline.attribute, value.value);
-                                if (timeline.onAnimate !== null) {
-                                    timeline.onAnimate({node : node});
-                                }
-                            }
+						if (node.isVisible) {
+							value = timeline.getValue(cgsgCurrentFrame);
+							if (value !== undefined) {
+								node.evalSet(timeline.attribute, value.value);
+								if (timeline.onAnimate !== null) {
+									timeline.onAnimate({node: node});
+								}
+							}
 
-                            &#x2F;&#x2F;fire event if this is the first animation key for this timeline
-                            key = timeline.getFirstKey();
-                            if (key !== null &amp;&amp; key.frame == cgsgCurrentFrame &amp;&amp;
-                                timeline.onAnimationStart !== null) {
-                                timeline.onAnimationStart({node:node});
-                            }
+							&#x2F;&#x2F;fire event if this is the first animation key for this timeline
+							key = timeline.getFirstKey();
+							if (key !== null &amp;&amp; key.frame == cgsgCurrentFrame &amp;&amp;
+								timeline.onAnimationStart !== null) {
+								timeline.onAnimationStart({node: node});
+							}
 
-                            &#x2F;&#x2F;fire event if this is the last animation key for this timeline
-                            key = timeline.getLastKey();
-                            if (key !== null &amp;&amp; key.frame == cgsgCurrentFrame) {
-                                timeline.removeAll();
-                                &#x2F;&#x2F;this._listTimelines.without(timeline);
-                                if (timeline.onAnimationEnd !== null) {
-                                    timeline.onAnimationEnd({node:node});
-                                }
+							&#x2F;&#x2F;fire event if this is the last animation key for this timeline
+							key = timeline.getLastKey();
+							if (key !== null &amp;&amp; key.frame == cgsgCurrentFrame) {
+								timeline.removeAll();
+								&#x2F;&#x2F;this._listTimelines.without(timeline);
+								if (timeline.onAnimationEnd !== null) {
+									timeline.onAnimationEnd({node: node});
+								}
 
-                                &#x2F;&#x2F;cgsgFree(timeline);
-                            }
-                        }
-                    }
-                }
+								&#x2F;&#x2F;cgsgFree(timeline);
+							}
+						}
+					}
+				}
 
-                &#x2F;&#x2F;run the rendering traverser
-                this.context.save();
-                this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
-                if (this.root.isVisible) {
-                    this.root.render(this.context, cgsgCurrentFrame);
-                }
-                this.context.restore();
-            }
+				&#x2F;&#x2F;run the rendering traverser
+				this.context.save();
+				this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
+				if (this.root.isVisible) {
+					this.root.render(this.context, cgsgCurrentFrame);
+				}
+				this.context.restore();
+			}
 
-            &#x2F;&#x2F;draw the selection markers around the selected nodes
-            if (this.selectedNodes.length &gt; 0) {
-                for (i = this.selectedNodes.length - 1; i &gt;= 0; i--) {
-                    node = this.selectedNodes[i];
-                    if (node.isVisible) {
-                        &#x2F;&#x2F;node.computeAbsoluteMatrix();
-                        this.context.save();
-                        this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
+			&#x2F;&#x2F;draw the selection markers around the selected nodes
+			if (this.selectedNodes.length &gt; 0) {
+				for (i = this.selectedNodes.length - 1; i &gt;= 0; i--) {
+					node = this.selectedNodes[i];
+					if (node.isVisible) {
+						&#x2F;&#x2F;node.computeAbsoluteMatrix();
+						this.context.save();
+						this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
 
-                        var n = node;
-                        var t = n.getAbsolutePosition();
+						var n = node;
+						var t = n.getAbsolutePosition();
 
-                        this.context.translate(t.x, t.y);
-                        this.context.rotate(node._absoluteRotation);
-                        this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
+						this.context.translate(t.x, t.y);
+						this.context.rotate(node._absoluteRotation);
+						this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
 
-                        node.renderSelected(this.context);
-                        this.context.restore();
-                    }
-                }
-            }
+						node.renderSelected(this.context);
+						this.context.restore();
+					}
+				}
+			}
 
-            cgsgCurrentFrame++;
-        },
+			cgsgCurrentFrame++;
+		},
 
-        &#x2F;**
-         * Change the dimension of the canvas.
-         * Does not really change the dimension of the rendering canvas container,
-         *  but is used for different computations
-         * @method setCanvasDimension
-         * @param {CGSGDimension} newDimension
-         * *&#x2F;
-        setCanvasDimension:function (newDimension) {
-            this.initializeGhost(newDimension.width, newDimension.height);
-        },
+		&#x2F;**
+		 * Change the dimension of the canvas.
+		 * Does not really change the dimension of the rendering canvas container,
+		 *  but is used for different computations
+		 * @method setCanvasDimension
+		 * @param {CGSGDimension} newDimension
+		 * *&#x2F;
+		setCanvasDimension: function (newDimension) {
+			this.initializeGhost(newDimension.width, newDimension.height);
+		},
 
-        &#x2F;**
-         * Mark the nodes as selected so the select marker (also called selectedHandlers)
-         *  will be shown and the SceneGraph will manage the moving and resizing of the selected objects.
-         * @method selectNode
-         * @param nodeToSelect The CGSGNode to be selected
-         * *&#x2F;
-        selectNode:function (nodeToSelect) {
-            if (!nodeToSelect.isSelected) {
-                nodeToSelect.setSelected(true);
-                nodeToSelect.computeAbsoluteMatrix();
-                this.selectedNodes[this.selectedNodes.length] = nodeToSelect;
-            }
-        },
+		&#x2F;**
+		 * Mark the nodes as selected so the select marker (also called selectedHandlers)
+		 *  will be shown and the SceneGraph will manage the moving and resizing of the selected objects.
+		 * @method selectNode
+		 * @param nodeToSelect The CGSGNode to be selected
+		 * *&#x2F;
+		selectNode: function (nodeToSelect) {
+			if (!nodeToSelect.isSelected) {
+				nodeToSelect.setSelected(true);
+				nodeToSelect.computeAbsoluteMatrix();
+				this.selectedNodes[this.selectedNodes.length] = nodeToSelect;
+			}
+		},
 
-        &#x2F;**
-         * Mark the nodes as not selected
-         * @method deselectNode
-         * @param {CGSGNode} nodeToDeselect
-         * *&#x2F;
-        deselectNode:function (nodeToDeselect) {
-            nodeToDeselect.setSelected(false);
-            &#x2F;*this.selectedNodes = *&#x2F;
-            this.selectedNodes.without(nodeToDeselect);
-        },
+		&#x2F;**
+		 * Mark the nodes as not selected
+		 * @method deselectNode
+		 * @param {CGSGNode} nodeToDeselect
+		 * *&#x2F;
+		deselectNode: function (nodeToDeselect) {
+			nodeToDeselect.setSelected(false);
+			&#x2F;*this.selectedNodes = *&#x2F;
+			this.selectedNodes.without(nodeToDeselect);
+		},
 
-        &#x2F;**
-         * Mark all nodes as not selected
-         * @method deselectAll
-         * @param {Array} excludedArray CGSGNodes to not deselect
-         * *&#x2F;
-        deselectAll:function (excludedArray) {
-            var node = null;
-            for (var i = this.selectedNodes.length - 1; i &gt;= 0; i--) {
-                node = this.selectedNodes[i];
-                if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
-                    this.deselectNode(node);
-                }
-            }
+		&#x2F;**
+		 * Mark all nodes as not selected
+		 * @method deselectAll
+		 * @param {Array} excludedArray CGSGNodes to not deselect
+		 * *&#x2F;
+		deselectAll: function (excludedArray) {
+			var node = null;
+			for (var i = this.selectedNodes.length - 1; i &gt;= 0; i--) {
+				node = this.selectedNodes[i];
+				if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
+					this.deselectNode(node);
+				}
+			}
 
-            &#x2F;&#x2F;just to be sure
-            this.selectedNodes.clear();
-        },
+			&#x2F;&#x2F;just to be sure
+			this.selectedNodes.clear();
+		},
 
-        &#x2F;**
-         * Recursively traverse the nodes and return the one who is under the mouse coordinates
-         * @method pickNode
-         * @param {CGSGPosition} mousePosition
-         * @param {String} condition
-         * @return {CGSGNode}
-         * @example
-         *  this.scenegraph.picknode(mousePosition, &#x27;position.x &gt; 100&#x27;); &lt;br&#x2F;&gt;
-         *  this.scenegraph.picknode(mousePosition, &#x27;position.x &gt; 100 &amp;&amp; this.position.y &gt; 100&#x27;);
-         *&#x2F;
-        pickNode:function (mousePosition, condition) {
-            &#x2F;&#x2F;empty the current selection first
-            &#x2F;&#x2F;this.selectedNodes = new Array();
-            cgsgClearContext(cgsgGhostContext);
-            &#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
-            if (!cgsgExist(this.root)) {
-                return null;
-            }
-            else {
-                return this.root.pickNode(
-                    mousePosition.copy(), &#x2F;&#x2F;position of the cursor on the viewport
-                    new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
-                    cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
-                    true, &#x2F;&#x2F;recursively ?
-                    &#x2F;&#x2F;cgsgCanvas.width &#x2F; cgsgDisplayRatio.x, cgsgCanvas.height &#x2F; cgsgDisplayRatio.y,
-                    &#x2F;&#x2F;dimension of the canvas container
-                    condition);  &#x2F;&#x2F; condition to the picknode be executed
-            }
-        },
+		&#x2F;**
+		 * Recursively traverse the nodes and return the one who is under the mouse coordinates
+		 * @method pickNode
+		 * @param {CGSGPosition} mousePosition
+		 * @param {String} condition
+		 * @return {CGSGNode}
+		 * @example
+		 *  this.scenegraph.picknode(mousePosition, &#x27;position.x &gt; 100&#x27;); &lt;br&#x2F;&gt;
+		 *  this.scenegraph.picknode(mousePosition, &#x27;position.x &gt; 100 &amp;&amp; this.position.y &gt; 100&#x27;);
+		 *&#x2F;
+		pickNode: function (mousePosition, condition) {
+			&#x2F;&#x2F;empty the current selection first
+			&#x2F;&#x2F;this.selectedNodes = new Array();
+			cgsgClearContext(cgsgGhostContext);
+			&#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
+			if (!cgsgExist(this.root)) {
+				return null;
+			}
+			else {
+				return this.root.pickNode(
+					mousePosition.copy(), &#x2F;&#x2F;position of the cursor on the viewport
+					new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
+					cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
+					true, &#x2F;&#x2F;recursively ?
+					&#x2F;&#x2F;cgsgCanvas.width &#x2F; cgsgDisplayRatio.x, cgsgCanvas.height &#x2F; cgsgDisplayRatio.y,
+					&#x2F;&#x2F;dimension of the canvas container
+					condition);  &#x2F;&#x2F; condition to the picknode be executed
+			}
+		},
 
-        &#x2F;**
-         * Recursively traverse the nodes and return the ones who are under the mouse coordinates
-         * @method pickNodes
-         * @param {CGSGRegion} region
-         * @param {String} condition
-         * @return {Array}
-         * @example
-         *  this.scenegraph.picknodes(region, &#x27;position.x &gt; 100&#x27;); &lt;br&#x2F;&gt;
-         *  this.scenegraph.picknodes(region, &#x27;position.x &gt; 100 &amp;&amp; this.position.y &gt; 100&#x27;);
-         *&#x2F;
-        pickNodes:function (region, condition) {
-            &#x2F;&#x2F;empty the current selection first
-            &#x2F;&#x2F;this.selectedNodes = new Array();
-            cgsgClearContext(cgsgGhostContext);
-            &#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
-            if (!cgsgExist(this.root)) {
-                return null;
-            }
-            else {
-                return this.root.pickNodes(
-                    region.copy(), &#x2F;&#x2F;position of the cursor on the viewport
-                    new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
-                    cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
-                    true, &#x2F;&#x2F;recursively ?
-                    &#x2F;&#x2F;cgsgCanvas.width &#x2F; cgsgDisplayRatio.x, cgsgCanvas.height &#x2F; cgsgDisplayRatio.y,
-                    &#x2F;&#x2F;dimension of the canvas container
-                    condition);  &#x2F;&#x2F; condition to the picknode be executed
-            }
-        },
+		&#x2F;**
+		 * Recursively traverse the nodes and return the ones who are under the mouse coordinates
+		 * @method pickNodes
+		 * @param {CGSGRegion} region
+		 * @param {String} condition
+		 * @return {Array}
+		 * @example
+		 *  this.scenegraph.picknodes(region, &#x27;position.x &gt; 100&#x27;); &lt;br&#x2F;&gt;
+		 *  this.scenegraph.picknodes(region, &#x27;position.x &gt; 100 &amp;&amp; this.position.y &gt; 100&#x27;);
+		 *&#x2F;
+		pickNodes: function (region, condition) {
+			&#x2F;&#x2F;empty the current selection first
+			&#x2F;&#x2F;this.selectedNodes = new Array();
+			cgsgClearContext(cgsgGhostContext);
+			&#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
+			if (!cgsgExist(this.root)) {
+				return null;
+			}
+			else {
+				return this.root.pickNodes(
+					region.copy(), &#x2F;&#x2F;position of the cursor on the viewport
+					new CGSGScale(1, 1), &#x2F;&#x2F;absolute scale for the nodes
+					cgsgGhostContext, &#x2F;&#x2F;context for the ghost rendering
+					true, &#x2F;&#x2F;recursively ?
+					&#x2F;&#x2F;cgsgCanvas.width &#x2F; cgsgDisplayRatio.x, cgsgCanvas.height &#x2F; cgsgDisplayRatio.y,
+					&#x2F;&#x2F;dimension of the canvas container
+					condition);  &#x2F;&#x2F; condition to the picknode be executed
+			}
+		},
 
-        &#x2F;**
-         * Remove the child nodes passed in parameter, from the root nodes
-         * @method removeNode
-         * @param {CGSGNode} node the nodes to remove
-         * @return {Boolean} true if the nodes was found and removed
-         * *&#x2F;
-        removeNode:function (node) {
-            if (cgsgExist(node)) {
-                this.deselectNode(node);
-                if (this.root !== null) {
-                    return this.root.removeChild(node, true);
-                }
-            }
-            return false;
-        },
+		&#x2F;**
+		 * Remove the child nodes passed in parameter, from the root nodes
+		 * @method removeNode
+		 * @param {CGSGNode} node the nodes to remove
+		 * @return {Boolean} true if the nodes was found and removed
+		 * *&#x2F;
+		removeNode: function (node) {
+			if (cgsgExist(node)) {
+				this.deselectNode(node);
+				if (this.root !== null) {
+					return this.root.removeChild(node, true);
+				}
+			}
+			return false;
+		},
 
-        &#x2F;**
-         * Add a nodes on the scene.
-         * If the root does not already exist, this nodes will be used as root
-         * @method addNode
-         * @param {CGSGNode} node the nodes to add
-         * @param {CGSGNode} parent the parent nodes of the new one. If it&#x27;s null, the root will be used as nodes.
-         * *&#x2F;
-        addNode:function (node, parent) {
-            node._id = this._nextNodeID++;
-            if (this.root === null) {
-                this.root = node;
-            }
-            else {
-                if (parent === null) {
-                    parent = this.root;
-                }
-                parent.addChild(node);
-            }
-        },
+		&#x2F;**
+		 * Add a nodes on the scene.
+		 * If the root does not already exist, this nodes will be used as root
+		 * @method addNode
+		 * @param {CGSGNode} node the nodes to add
+		 * @param {CGSGNode} parent the parent nodes of the new one. If it&#x27;s null, the root will be used as nodes.
+		 * *&#x2F;
+		addNode: function (node, parent) {
+			node._id = this._nextNodeID++;
+			if (this.root === null) {
+				this.root = node;
+			}
+			else {
+				if (parent === null) {
+					parent = this.root;
+				}
+				parent.addChild(node);
+			}
+		},
 
-        &#x2F;**
-         * Add a key
-         * @method addAnimationKey
-         * @param {CGSGNode} node handler to the nodes to animate
-         * @param {String} attribute String representing the attribute to animate (&quot;position.y&quot;, &quot;rotation.angle&quot;, &quot;fill&quot;, ...)
-         * @param {Number} frame the date for the key
-         * @param {Number} value value for the attribute at the frame
-         * @param {String} method animation method. Must be &#x27;linear&#x27; for now
-         * @param {Boolean} precompute  Set to true if you want to precompute the animations steps
-         *
-         * @example this.sceneGraph.addAnimation(imgNode, &quot;position.x&quot;, 2000, 200, &quot;linear&quot;, true);
-         *&#x2F;
-        addAnimationKey:function (node, attribute, frame, value, method, precompute) {
-            &#x2F;&#x2F;if a timeline already exist fot this nodes and attribute use it, else create a new one
-            var timeline = this.getTimeline(node, attribute);
-            timeline.method = method;
+		&#x2F;**
+		 * Add a key
+		 * @method addAnimationKey
+		 * @param {CGSGNode} node handler to the nodes to animate
+		 * @param {String} attribute String representing the attribute to animate (&quot;position.y&quot;, &quot;rotation.angle&quot;, &quot;fill&quot;, ...)
+		 * @param {Number} frame the date for the key
+		 * @param {Number} value value for the attribute at the frame
+		 * @param {String} method animation method. Must be &#x27;linear&#x27; for now
+		 * @param {Boolean} precompute  Set to true if you want to precompute the animations steps
+		 *
+		 * @example this.sceneGraph.addAnimation(imgNode, &quot;position.x&quot;, 2000, 200, &quot;linear&quot;, true);
+		 *&#x2F;
+		addAnimationKey: function (node, attribute, frame, value, method, precompute) {
+			&#x2F;&#x2F;if a timeline already exist fot this nodes and attribute use it, else create a new one
+			var timeline = this.getTimeline(node, attribute);
+			timeline.method = method;
 
-            &#x2F;&#x2F;add the new key to the timeline
-            timeline.addKey(CGSGMath.fixedPoint(frame), value);
+			&#x2F;&#x2F;add the new key to the timeline
+			timeline.addKey(CGSGMath.fixedPoint(frame), value);
 
-            &#x2F;&#x2F;if the user want to precompute the animation, do it now
-            if (precompute) {
-                timeline.computeValues(cgsgCurrentFrame, method);
-            }
-        },
+			&#x2F;&#x2F;if the user want to precompute the animation, do it now
+			if (precompute) {
+				timeline.computeValues(cgsgCurrentFrame, method);
+			}
+		},
 
-        &#x2F;**
-         * Animate an attribute of a nodes
-         * @method animate
-         * @param {CGSGNode} node Handler to the nodes to animate
-         * @param {String} attribute String representing the attribute to animate (&quot;position.y&quot;, &quot;rotation.angle&quot;, &quot;fill&quot;, ...)
-         * @param {Number} duration Duration of the animation, in frame
-         * @param {Number} from Start value
-         * @param {Number} to End value
-         * @param {String} method Animation method. Must be &#x27;linear&#x27; for now
-         * @param {Number} delay Delay before start the animation, in frames
-         * @param {Boolean} precompute Set to true if you want to precompute the animations steps
-         * @example this.sceneGraph.animate(imgNode, &quot;position.x&quot;, 700, 0, 200, &quot;linear&quot;, 0, true);
-         *&#x2F;
-        animate:function (node, attribute, duration, from, to, method, delay, precompute) {
-            this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay), from,
-                method, false);
-            this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay + duration),
-                to, method, precompute);
-        },
+		&#x2F;**
+		 * Animate an attribute of a nodes
+		 * @method animate
+		 * @param {CGSGNode} node Handler to the nodes to animate
+		 * @param {String} attribute String representing the attribute to animate (&quot;position.y&quot;, &quot;rotation.angle&quot;, &quot;fill&quot;, ...)
+		 * @param {Number} duration Duration of the animation, in frame
+		 * @param {Number} from Start value
+		 * @param {Number} to End value
+		 * @param {String} method Animation method. Must be &#x27;linear&#x27; for now
+		 * @param {Number} delay Delay before start the animation, in frames
+		 * @param {Boolean} precompute Set to true if you want to precompute the animations steps
+		 * @example this.sceneGraph.animate(imgNode, &quot;position.x&quot;, 700, 0, 200, &quot;linear&quot;, 0, true);
+		 *&#x2F;
+		animate: function (node, attribute, duration, from, to, method, delay, precompute) {
+			this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay), from,
+								 method, false);
+			this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay + duration),
+								 to, method, precompute);
+		},
 
-        &#x2F;**
-         * @method stillHaveAnimation
-         * @return {Boolean} true if there are still animation key after the current frame
-         *&#x2F;
-        stillHaveAnimation:function () {
-            if (this._listTimelines.length == 0) {
-                return false;
-            }
-            else {
-                for (var i = 0, len = this._listTimelines.length; i &lt; len; ++i) {
-                    if (this._listTimelines[i].getLastKey() !== null &amp;&amp;
-                        this._listTimelines[i].getLastKey().frame &lt;= cgsgCurrentFrame) {
-                        return true;
-                    }
-                }
-            }
+		&#x2F;**
+		 * @method stillHaveAnimation
+		 * @return {Boolean} true if there are still animation key after the current frame
+		 *&#x2F;
+		stillHaveAnimation: function () {
+			if (this._listTimelines.length == 0) {
+				return false;
+			}
+			else {
+				for (var i = 0, len = this._listTimelines.length; i &lt; len; ++i) {
+					if (this._listTimelines[i].getLastKey() !== null &amp;&amp;
+						this._listTimelines[i].getLastKey().frame &lt;= cgsgCurrentFrame) {
+						return true;
+					}
+				}
+			}
 
-            return false;
-        },
+			return false;
+		},
 
-        &#x2F;**
-         * Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet
-         * @method getTimeline
-         * @param {CGSGNode} node Handle to the nodes
-         * @param {String} attribute String. the attribute name
-         * @return {CGSGTimeline}
-         *&#x2F;
-        getTimeline:function (node, attribute) {
-            for (var i = 0, len = this._listTimelines.length; i &lt; len; ++i) {
-                if (this._listTimelines[i].parentNode === node &amp;&amp; this._listTimelines[i].attribute == attribute) {
-                    return this._listTimelines[i];
-                }
-            }
+		&#x2F;**
+		 * Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet
+		 * @method getTimeline
+		 * @param {CGSGNode} node Handle to the nodes
+		 * @param {String} attribute String. the attribute name
+		 * @return {CGSGTimeline}
+		 *&#x2F;
+		getTimeline: function (node, attribute) {
+			for (var i = 0, len = this._listTimelines.length; i &lt; len; ++i) {
+				if (this._listTimelines[i].parentNode === node &amp;&amp; this._listTimelines[i].attribute == attribute) {
+					return this._listTimelines[i];
+				}
+			}
 
-            &#x2F;&#x2F;no timeline yet, create a new one
-            var timeline = new CGSGTimeline(node, attribute, &quot;linear&quot;);
-            this._listTimelines.push(timeline);
-            return timeline;
-        }
-    }
+			&#x2F;&#x2F;no timeline yet, create a new one
+			var timeline = new CGSGTimeline(node, attribute, &quot;linear&quot;);
+			this._listTimelines.push(timeline);
+			return timeline;
+		}
+	}
 );
 
     </pre>

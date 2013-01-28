@@ -212,84 +212,84 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGNodeSquare = CGSGNode.extend(
-    {
-        initialize:function (x, y, width, height) {
-            this._super(x, y, width, height);
+	{
+		initialize: function (x, y, width, height) {
+			this._super(x, y, width, height);
 
-            &#x2F;**
-             * Color  to fill the square
-             * @property color
-             * @default &quot;#444444&quot;
-             * @type {String}
-             *&#x2F;
-            this.color = &quot;#444444&quot;;
-            &#x2F;**
-             * Color to stroke the square
-             * @property lineColor
-             * @default &quot;#222222&quot;
-             * @type {String}
-             *&#x2F;
-            this.lineColor = &quot;#222222&quot;;
-            &#x2F;**
-             * Width of the line that stroke the square.
-             * Let 0 if you don&#x27;t want to stroke the square.
-             * @property lineWidth
-             * @default 0
-             * @type {Number}
-             *&#x2F;
-            this.lineWidth = 0;
+			&#x2F;**
+			 * Color  to fill the square
+			 * @property color
+			 * @default &quot;#444444&quot;
+			 * @type {String}
+			 *&#x2F;
+			this.color = &quot;#444444&quot;;
+			&#x2F;**
+			 * Color to stroke the square
+			 * @property lineColor
+			 * @default &quot;#222222&quot;
+			 * @type {String}
+			 *&#x2F;
+			this.lineColor = &quot;#222222&quot;;
+			&#x2F;**
+			 * Width of the line that stroke the square.
+			 * Let 0 if you don&#x27;t want to stroke the square.
+			 * @property lineWidth
+			 * @default 0
+			 * @type {Number}
+			 *&#x2F;
+			this.lineWidth = 0;
 
-            &#x2F;**
-             * @property classType
-             * @readonly
-             * @type {String}
-             *&#x2F;
-            this.classType = &quot;CGSGNodeSquare&quot;;
-        },
+			&#x2F;**
+			 * @property classType
+			 * @readonly
+			 * @type {String}
+			 *&#x2F;
+			this.classType = &quot;CGSGNodeSquare&quot;;
+		},
 
-        &#x2F;**
-         * Custom rendering
-         * @method render
-         * @protected
-         * @param {CanvasRenderingContext2D} context the context into render the node
-         * *&#x2F;
-        render:function (context) {
-            &#x2F;&#x2F;save current state
-            this.beforeRender(context);
+		&#x2F;**
+		 * Custom rendering
+		 * @method render
+		 * @protected
+		 * @param {CanvasRenderingContext2D} context the context into render the node
+		 * *&#x2F;
+		render: function (context) {
+			&#x2F;&#x2F;save current state
+			this.beforeRender(context);
 
-            context.globalAlpha = this.globalAlpha;
-            &#x2F;&#x2F;draw this zone
-            context.fillStyle = this.color;
+			context.globalAlpha = this.globalAlpha;
+			&#x2F;&#x2F;draw this zone
+			context.fillStyle = this.color;
 
-            &#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
-            context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+			&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
+			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
 
-            if (this.lineWidth &gt; 0) {
-                context.strokeStyle = this.lineColor;
-                context.lineWidth = this.lineWidth;
-                context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
-            }
+			if (this.lineWidth &gt; 0) {
+				context.strokeStyle = this.lineColor;
+				context.lineWidth = this.lineWidth;
+				context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+			}
 
-            &#x2F;&#x2F;restore state
-            this.afterRender(context);
-        },
+			&#x2F;&#x2F;restore state
+			this.afterRender(context);
+		},
 
-        &#x2F;**
-         * @method copy
-         * @return {CGSGNodeSquare} a copy of this node
-         *&#x2F;
-        copy:function () {
-            var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
-                this.dimension.height);
-            &#x2F;&#x2F;call the super method
-            node = this._super(node);
+		&#x2F;**
+		 * @method copy
+		 * @return {CGSGNodeSquare} a copy of this node
+		 *&#x2F;
+		copy: function () {
+			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
+										  this.dimension.height);
+			&#x2F;&#x2F;call the super method
+			node = this._super(node);
 
-            node.color = this.color;
-            node.lineColor = this.lineColor;
-            node.lineWidth = this.lineWidth;
-            return node;
-        }
-    }
+			node.color = this.color;
+			node.lineColor = this.lineColor;
+			node.lineWidth = this.lineWidth;
+			return node;
+		}
+	}
 );
 
     </pre>

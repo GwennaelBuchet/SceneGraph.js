@@ -54,6 +54,7 @@ CHANGES:
 - Correction. CGSGNodeColorPicker : fix when floating point.
 - Optimization. Added a Collision Manager to evaluate collision between nodes.
 - Evolution. Take care of the MSPointer events on IE10.
+- New example. 2D planner.
 
 ---------------------------------------------------------------------
 
@@ -61,7 +62,7 @@ v1.4.0
 
 CHANGES:
 - Evolution. Added the ability to do drag multi-selection.
-- Correction. CGSGHashmap : correction on "remove" that removed all values that are indentical (not only bound to the key).
+- Correction. CGSGHashmap : correction on "remove" that removed all values that are identical (not only bound to the key).
 - Correction. Fixed bug on collision ghost (node with children).
 - Optimization. cleaned node.isColliding.
 - Correction. Fixed isColliding bug.

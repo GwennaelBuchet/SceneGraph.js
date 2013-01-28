@@ -213,7 +213,7 @@
  *&#x2F;
 var CGSGNodeLogger = CGSGNode.extend(
 	{
-		initialize : function (x, y) {
+		initialize: function (x, y) {
 			this._super(x, y, 100, 100);
 
 			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; @public &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
@@ -294,7 +294,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method _createPanel
 		 * @private
 		 *&#x2F;
-		_createPanel : function () {
+		_createPanel: function () {
 
 		},
 
@@ -305,7 +305,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @param {String} name
 		 * @param {String} value
 		 *&#x2F;
-		set : function (name, value) {
+		set: function (name, value) {
 			&#x2F;&#x2F;if the attribute already exists,just update the value
 			var attr = null;
 			for (var a = 0; a &lt; this._attributes[a]; a++) {
@@ -325,7 +325,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 				tnn.color = this.textColor;
 				tnv.setSize(this.textSize);
 				tnv.color = this.textColor;
-				attr = {name : name, value : value, nodeName : tnn, nodeValue : tnv};
+				attr = {name: name, value: value, nodeName: tnn, nodeValue: tnv};
 				this._attributes.push(attr);
 			}
 
@@ -337,7 +337,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * *&#x2F;
-		render : function (context) {
+		render: function (context) {
 			&#x2F;&#x2F;save current state
 			this.beforeRender(context);
 
@@ -369,7 +369,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeLogger} a copy of this node
 		 *&#x2F;
-		copy : function () {
+		copy: function () {
 			var node = new CGSGNodeLogger(this.position.x, this.position.y);
 			&#x2F;&#x2F;call the super method
 			node = this._super(node);

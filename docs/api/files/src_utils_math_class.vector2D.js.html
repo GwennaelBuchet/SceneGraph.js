@@ -210,7 +210,7 @@
  *&#x2F;
 var CGSGVector2D = CGSGObject.extend(
 	{
-		initialize : function (x, y) {
+		initialize: function (x, y) {
 			&#x2F;**
 			 * @property x
 			 * @type {Number}
@@ -228,7 +228,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method copy
 		 * @return {CGSGVector2D} a new CGSGVector2D, clone of this one
 		 *&#x2F;
-		copy : function () {
+		copy: function () {
 			return new CGSGVector2D(this.x, this.y);
 		},
 
@@ -238,7 +238,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method add
 		 * @param {CGSGVector2D} vector
 		 *&#x2F;
-		add : function (vector) {
+		add: function (vector) {
 			this.x += vector.x;
 			this.y += vector.y;
 		},
@@ -249,7 +249,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method substract
 		 * @param {CGSGVector2D} vector
 		 *&#x2F;
-		substract : function (vector) {
+		substract: function (vector) {
 			this.x -= vector.x;
 			this.y -= vector.y;
 		},
@@ -260,7 +260,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method multiply
 		 * @param {CGSGVector2D} vector
 		 *&#x2F;
-		multiply : function (vector) {
+		multiply: function (vector) {
 			this.x *= vector.x;
 			this.y *= vector.y;
 		},
@@ -271,7 +271,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method divide
 		 * @param {CGSGVector2D} vector
 		 *&#x2F;
-		divide : function (vector) {
+		divide: function (vector) {
 			this.x &#x2F;= vector.x;
 			this.y &#x2F;= vector.y;
 		},
@@ -282,7 +282,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method multiplyByFloat
 		 * @param {Number} f
 		 *&#x2F;
-		multiplyByFloat : function (f) {
+		multiplyByFloat: function (f) {
 			this.x *= f;
 			this.y *= f;
 		},
@@ -293,7 +293,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method divideByFloat
 		 * @param {Number} f
 		 *&#x2F;
-		divideByFloat : function (f) {
+		divideByFloat: function (f) {
 			this.x &#x2F;= f;
 			this.y &#x2F;= f;
 		},
@@ -305,7 +305,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @param {CGSGVector2D} vector
 		 * @return {Number}
 		 *&#x2F;
-		getDistance : function (vector) {
+		getDistance: function (vector) {
 			return Math.sqrt(
 				Math.pow(this.x - vector.x, 2) +
 				Math.pow(this.y - vector.y, 2)
@@ -318,7 +318,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method rotate
 		 * @param {Number} angle
 		 *&#x2F;
-		rotate : function (angle) {
+		rotate: function (angle) {
 			var ca = Math.cos(angle);
 			var sa = Math.sin(angle);
 			this.x = this.x * ca + this.y * sa;
@@ -330,7 +330,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method getLength
 		 * @return {Number}
 		 *&#x2F;
-		getLength : function () {
+		getLength: function () {
 			return Math.sqrt((this.x * this.x) + (this.y * this.y));
 		},
 
@@ -339,7 +339,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @method getSquaredLength
 		 * @return {Number}
 		 *&#x2F;
-		getSquaredLength : function () {
+		getSquaredLength: function () {
 			return (this.x * this.x) + (this.y * this.y);
 		},
 
@@ -348,7 +348,7 @@ var CGSGVector2D = CGSGObject.extend(
 		 * @public
 		 * @method normalize
 		 *&#x2F;
-		normalize : function () {
+		normalize: function () {
 			var scalefactor;
 			var length = this.getLength();
 

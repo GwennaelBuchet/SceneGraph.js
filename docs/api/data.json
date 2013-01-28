@@ -1667,7 +1667,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 65,
+            "line": 66,
             "description": "list of the [frame, value] pairs for the animation\nthe index of the list begins at 0, not at the first key frame",
             "itemtype": "property",
             "name": "listValues",
@@ -1677,7 +1677,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 80,
+            "line": 81,
             "description": "Callback on animation start event",
             "itemtype": "property",
             "name": "onAnimationStart",
@@ -1687,7 +1687,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 86,
+            "line": 87,
             "description": "Callback on animation end event",
             "itemtype": "property",
             "name": "onAnimationEnd",
@@ -1697,7 +1697,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 92,
+            "line": 93,
             "description": "Callback on animation event",
             "itemtype": "property",
             "name": "onAnimate",
@@ -1707,7 +1707,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 100,
+            "line": 101,
             "description": "Add a new animation key frame to the timeline and sort the timeline by frame number",
             "access": "public",
             "tagname": "",
@@ -1730,7 +1730,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 118,
+            "line": 119,
             "description": "Remove the key at the specified frame",
             "itemtype": "method",
             "name": "removeKey",
@@ -1746,7 +1746,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 140,
+            "line": 141,
             "description": "Remove all keys and values",
             "access": "public",
             "tagname": "",
@@ -1757,7 +1757,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 151,
+            "line": 152,
             "description": "Compute the number of steps between all keys, 2 by 2",
             "access": "private",
             "tagname": "",
@@ -1768,7 +1768,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 166,
+            "line": 167,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -1782,7 +1782,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 175,
+            "line": 176,
             "description": "Sort the list of keys by frame number",
             "access": "public",
             "tagname": "",
@@ -1793,7 +1793,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 186,
+            "line": 187,
             "description": "Compute all the values (steps) for the animation of this timeline",
             "access": "public",
             "tagname": "",
@@ -1816,7 +1816,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 216,
+            "line": 217,
             "description": "Compute animated value for one frame between key ay index keyIndex and keyIndex+1",
             "access": "private",
             "tagname": "",
@@ -1848,7 +1848,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 247,
+            "line": 248,
             "itemtype": "method",
             "name": "getFirstKey",
             "return": {
@@ -1860,7 +1860,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 259,
+            "line": 260,
             "itemtype": "method",
             "name": "getLastKey",
             "return": {
@@ -1872,7 +1872,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 271,
+            "line": 272,
             "description": "Get the value for the frame number passed in parameter",
             "access": "public",
             "tagname": "",
@@ -1894,7 +1894,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 332,
+            "line": 333,
             "description": "Return the precomputed array of values for this timeline",
             "itemtype": "method",
             "name": "exportValues",
@@ -1907,7 +1907,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 349,
+            "line": 350,
             "description": "Import new precomputed values for this timeline.\nThe number of values must match the number of frame defined by the keys of this timeline",
             "itemtype": "method",
             "name": "importValues",
@@ -6722,7 +6722,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 133,
+            "line": 134,
             "description": "Select the tab passed in parameter",
             "itemtype": "method",
             "name": "selectTab",
@@ -6742,7 +6742,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 171,
+            "line": 172,
             "itemtype": "method",
             "name": "selectTabByIndex",
             "params": [
@@ -6761,7 +6761,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 180,
+            "line": 181,
             "description": "Recompute width for all buttons",
             "itemtype": "method",
             "name": "_recomputeButtonsWidth",
@@ -9062,7 +9062,7 @@
         },
         {
             "file": "src\\utils\\util.color.js",
-            "line": 228,
+            "line": 229,
             "description": "HSL to RGB converter.\nAdapted from http://en.wikipedia.org/wiki/HSL_color_space",
             "itemtype": "method",
             "name": "hsl2rgb",
@@ -9092,7 +9092,7 @@
         },
         {
             "file": "src\\utils\\util.color.js",
-            "line": 263,
+            "line": 274,
             "description": "HSV to RGB converter.\nAdapted from http://en.wikipedia.org/wiki/HSV_color_space",
             "itemtype": "method",
             "name": "hsv2rgb",
