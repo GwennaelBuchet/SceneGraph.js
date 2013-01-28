@@ -1007,7 +1007,7 @@ var CGSGNode = CGSGObject.extend(
 
 		/**
 		 * Multiply current dimension by these new ones
-		 * @method resizeTBy
+		 * @method resizeBy
 		 * @param {Number} widthFactor
 		 * @param {Number} heightFactor
 		 * */
