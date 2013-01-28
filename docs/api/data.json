@@ -4266,7 +4266,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 61,
+            "line": 64,
             "description": "Event fired when the mice cursor move over the color picker. Return a {r, g, b} Object.",
             "itemtype": "property",
             "name": "onOverColor",
@@ -4277,7 +4277,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 68,
+            "line": 71,
             "description": "Event fired when the user click on the color picker. Return a {r, g, b} Object.",
             "itemtype": "property",
             "name": "onClickColor",
@@ -4288,7 +4288,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 77,
+            "line": 80,
             "description": "Pre-render the node into a temp canvas to optimize the perfs",
             "itemtype": "method",
             "name": "_initShape",
@@ -4299,7 +4299,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 160,
+            "line": 163,
             "description": "Override the parent method.",
             "itemtype": "method",
             "name": "resizeTo",
@@ -4320,7 +4320,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 171,
+            "line": 174,
             "description": "Override the parent method.",
             "itemtype": "method",
             "name": "resizeWith",
@@ -4341,7 +4341,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 182,
+            "line": 185,
             "description": "Override the parent method.",
             "itemtype": "method",
             "name": "resizeBy",
@@ -4362,7 +4362,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 193,
+            "line": 196,
             "itemtype": "method",
             "name": "_onMouseOverHandler",
             "params": [
@@ -4379,7 +4379,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 206,
+            "line": 209,
             "itemtype": "method",
             "name": "_onClickHandler",
             "params": [
@@ -4396,7 +4396,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 219,
+            "line": 222,
             "itemtype": "method",
             "name": "getColorAt",
             "params": [
@@ -4415,7 +4415,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 239,
+            "line": 242,
             "description": "Custom rendering. Must be defined to allow the traverser to render this node",
             "itemtype": "method",
             "name": "render",

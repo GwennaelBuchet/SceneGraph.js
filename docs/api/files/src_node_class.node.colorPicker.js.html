@@ -228,6 +228,9 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             this.onMouseOver = function (event) {
                 that._onMouseOverHandler(event);
             };
+			this.onMouseUp = function (event) {
+				that._onClickHandler(event);
+			};
             this.onClick = function (event) {
                 that._onClickHandler(event);
             };

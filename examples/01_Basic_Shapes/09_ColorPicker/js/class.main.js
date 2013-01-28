@@ -62,7 +62,6 @@ var CGMain = CGSGScene.extend(
 
 			var parent = new CGSGNode(10, 10, 1, 1);
 			rootNode.addChild(parent);
-			parent.scaleTo(1.5, 1.5);
             //the color picker itself, in the default size
             var colorPicker = new CGSGNodeColorPicker(20, 20);
             parent.addChild(colorPicker);
@@ -74,7 +73,7 @@ var CGMain = CGSGScene.extend(
                 that.selectColor(event);
             };
 			colorPicker.translateWith(0, 10);
-			colorPicker.resizeTo(100, 100);
+			colorPicker.resizeTo(200, 200);
 
 
             //A second color picker with a custom size
