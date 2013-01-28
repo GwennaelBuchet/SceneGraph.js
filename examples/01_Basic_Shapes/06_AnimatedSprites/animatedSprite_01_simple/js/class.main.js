@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize: function (canvas) {
+		initialize : function (canvas) {
 
 			this._super(canvas);
 
@@ -43,7 +43,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas: function () {
+		initializeCanvas : function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -53,8 +53,7 @@ var CGMain = CGSGScene.extend(
 		 * Just create a 1 animated sprite
 		 *
 		 */
-		createScene: function () {
-			this.isDragSelectEnabled = true;
+		createScene : function () {
 
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -66,17 +65,18 @@ var CGMain = CGSGScene.extend(
 			 * @param context
 			 */
 			var pingoo = new CGSGNodeSprite(60, 60, "images/board.png", this.context);
-			//add the sprite to the scene
-			pingoo.isResizable = true;
-			this.sceneGraph.addNode(pingoo, this.rootNode);
+            //add the sprite to the scene
+            pingoo.isResizable = true;
+            this.sceneGraph.addNode(pingoo, this.rootNode);
 
-			//add an animation
+
+            //add an animation
 			//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
-			var speed = 4;
-			pingoo.addAnimation("front", speed, 4, 476, 0, 34, 34, 4);
+            var speed = 4;
+            pingoo.addAnimation("front", speed, 4, 476, 0, 34, 34, 4);
 
 			//run in an infinite loop
-			pingoo.play("front", null); //null or -1 = infinite loop. 1, 2, 3, ... = 1, 2, 3 loops
+            pingoo.play("front", null); //null or -1 = infinite loop. 1, 2, 3, ... = 1, 2, 3 loops
 		}
 	}
 );

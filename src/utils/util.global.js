@@ -224,9 +224,10 @@ function cgsgGetCursorPositions(event, canvas) {
 
 	var touch = event;
 	//if multi-touch, get all the positions
-	if (event.targetTouches) {
-		for (var i = 0; i < event.targetTouches.length; i++) {
-			touch = event.targetTouches[i];
+	if (event.targetTouches) { // or changedTouches
+		var touchPoints = (typeof event.targetTouches !== 'undefined') ? event.targetTouches : [event];
+		for (var i = 0; i < touchPoints.length; i++) {
+			touch = touchPoints[i];
 
 			positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
 											(touch.pageY - offsetY) / cgsgDisplayRatio.y));

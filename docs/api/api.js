@@ -3,6 +3,11 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "CGSGAnimationKey",
         "CGSGButtonMode",
+        "CGSGCollisionGhostOnDemandTester",
+        "CGSGCollisionManager",
+        "CGSGCollisionMethod",
+        "CGSGCollisionRegionTester",
+        "CGSGCollisionTesterFactory",
         "CGSGColor",
         "CGSGDimension",
         "CGSGHandleBox",
@@ -41,6 +46,7 @@ YUI.add("yuidoc-meta", function(Y) {
     ],
     "modules": [
         "Animation",
+        "Collision",
         "Math",
         "Node",
         "ParticleSystem",
@@ -51,6 +57,10 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Animation",
             "name": "Animation"
+        },
+        {
+            "displayName": "Collision",
+            "name": "Collision"
         },
         {
             "displayName": "Math",

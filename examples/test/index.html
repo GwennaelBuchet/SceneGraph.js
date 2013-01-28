@@ -10,11 +10,17 @@
 
     <script type="text/javascript" src="../../src/utils/util.array.js"></script>
     <script type="text/javascript" src="../../src/utils/class.class.js"></script>
+    <script type="text/javascript" src="../../src/utils/class.hashmap.js"></script>
     <script type="text/javascript" src="../../src/utils/util.color.js"></script>
     <script type="text/javascript" src="../../src/utils/math/class.vector2D.js"></script>
     <script type="text/javascript" src="../../src/utils/class.region.js"></script>
     <script type="text/javascript" src="../../src/constants.js"></script>
     <script type="text/javascript" src="../../src/utils/class.traverser.js"></script>
+    <script type="text/javascript" src="../../src/node/collision/enum.collision.method.js"></script>
+    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.region.js"></script>
+    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.ghost.ondemand.js"></script>
+    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.ghost.precompute.js"></script>
+    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.factory.js"></script>
     <script type="text/javascript" src="../../src/globals.js"></script>
     <script type="text/javascript" src="../../src/utils/util.global.js"></script>
     <script type="text/javascript" src="../../src/utils/util.color.js"></script>
@@ -37,7 +43,7 @@
     <script type="text/javascript" src="../../src/class.scenegraph.js"></script>
     <script type="text/javascript" src="../../src/class.scene.js"></script>
 
-    <script type="text/javascript" src="js/class.main.js"></script>
+    <!--<script type="text/javascript" src="js/class.main.js"></script>-->
 
 </head>
 
@@ -45,13 +51,18 @@
     padding: 0;
     overflow: hidden;">
 
-<canvas id="scene" width="80" height="50">
+<canvas id="scene" width="1400" height="900">
     Your browser does not support the canvas element.
 </canvas>
 
 <script type="text/javascript">
-    var canvasScene = document.getElementById("scene");
-    var game = new CGMain(canvasScene);
+    //var canvasScene = document.getElementById("scene");
+    //var game = new CGMain(canvasScene);
+
+    cgsgPerformanceKeys.collisionMethod =  CGSGCollisionMethod.REGION;
+    //cgsgPerformanceKeys.collisionMethod =  CGSGCollisionMethod.GHOSTONDEMAND;
+
 </script>
+<script type="text/javascript" src="js/class.main.js"></script>
 </body>
 </html>

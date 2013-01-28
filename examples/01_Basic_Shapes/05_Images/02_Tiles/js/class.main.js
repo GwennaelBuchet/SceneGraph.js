@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize: function (canvas) {
+		initialize : function (canvas) {
 
 			//call the contructor of the parent class (ie : CGSGScene)
 			this._super(canvas);
@@ -44,7 +44,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas: function () {
+		initializeCanvas : function () {
 			//resize the dimension of the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -53,10 +53,7 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * Just create a single node (an image node)
 		 */
-		createScene: function () {
-
-			this.isDragSelectEnabled = true;
-
+		createScene : function () {
 			//first, create a root node
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -98,7 +95,7 @@ var CGMain = CGSGScene.extend(
 		 * Fired when the image loading is complete.
 		 * Set the image object (img) to our image nodes
 		 */
-		onImageLoaded: function () {
+		onImageLoaded : function () {
 			this.imgNode1.setImage(this.img);
 			this.imgNode2.setImage(this.img);
 		}

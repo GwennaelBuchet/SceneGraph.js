@@ -30,15 +30,16 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGPickNodeMethod = {
-	/**
-	 * @property GHOST
-	 */
-	GHOST : "ghost",
-	/**
-	 * @property REGION
-	 */
-	REGION: "region"
+    /**
+     * @property GHOST
+     */
+    GHOST : "ghost",
+    /**
+     * @property REGION
+     */
+    REGION: "region"
 };
+
 
 /**
  * Global properties of the framework
@@ -55,7 +56,7 @@ var CGSGPickNodeMethod = {
  * @static
  * @type {String}
  */
-var cgsgVersion = "1.4.0";
+var cgsgVersion = "1.4.1";
 
 /**
  * Current display ratio
@@ -79,14 +80,14 @@ var cgsgResizeHandleThreshold = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD;
  * @type {Object}
  */
 var cgsgExplorerParams = {
-	IE10     : {name: "IE 10 or above", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
-	IE9      : {name: "IE 9", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
-	SAFARI   : {name: "Safari", browserName: "", fullVersion: "", textDecalYTop: 4.0, textDecalYBottom: 1.27, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
-	CHROME   : {name: "Chrome", browserName: "", fullVersion: "", textDecalYTop: 3.3, textDecalYBottom: 1.268, textDecalYMiddle: 2.09, textDecalYAlpha: 0.983, webworker: false},
-	OPERA    : {name: "Opera", browserName: "", fullVersion: "", textDecalYTop: 3.5, textDecalYBottom: 1.28, textDecalYMiddle: 2.0, textDecalYAlpha: 0.995, webworker: false},
-	FIREFOX  : {name: "Firefox", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
-	KONQUEROR: {name: "Konqueror", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
-	UNKNOWN  : {name: "Unknown", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false}
+    IE10      : {name : "IE 10 or above", browserName : "", fullVersion : "", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+    IE9       : {name : "IE 9", browserName : "", fullVersion : "", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
+    SAFARI    : {name : "Safari", browserName : "", fullVersion : "", textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+    CHROME    : {name : "Chrome", browserName : "", fullVersion : "", textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
+    OPERA     : {name : "Opera", browserName : "", fullVersion : "", textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
+    FIREFOX   : {name : "Firefox", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+    KONQUEROR : {name : "Konqueror", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
+    UNKNOWN   : {name : "Unknown", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
 };
 
 /**
@@ -140,20 +141,43 @@ var cgsgGhostColor = "#FF0000";
 var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
 
 /**
+ * Instance of CollisionTesterFactory
+ * @property cgsgCollisionTestFactory
+ * @type {CGSGCollisionTesterFactory}
+ */
+var cgsgCollisionManager = new CGSGCollisionManager();
+
+/**
  * Object that defines the performance keys.
  * Change values to adapt your project.
  *
- * cgsgPerformanceKeys.collisionMethod =
- *                Method to compute collision detection on the Scene
- *                Default : CGSGPickNodeMethod.REGION
+ * cgsgPerformanceKeys._collisionMethod =
+ * 	   		Key to specify collision detection mod
+ * 	   	    Use setCollisionMethod to modify value;
+ * 	   		Default : CGSGCollisionMethod.REGION
  *
- * cgsgPerformanceKeys.collisionMethod =
- *                Method to compute collision detection on the Scene
- *                Default : CGSGPickNodeMethod.REGION
+ * cgsgPerformanceKeys.collisionTester =
+ * 	   		Collision tester depending on _collisionMethod;
+ * 	   		Default : CGSGCollisionRegionTester
  *
  * @property cgsgPerformanceKeys
  * @type {Object}
  */
 var cgsgPerformanceKeys = {
-	collisionMethod: CGSGPickNodeMethod.REGION
+    _collisionMethod : CGSGCollisionMethod.REGION,
+
+    _cgsgCollisionTesterFactory : new CGSGCollisionTesterFactory(),
+
+    collisionTester : new CGSGCollisionRegionTester(),
+
+    /**
+     * Redefines the collision method
+	 * @method setCollisionMethod
+     * @param method
+     */
+    setCollisionMethod : function(method){
+        this._collisionMethod = method;
+        this.collisionTester =  this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+    }
 };
+
