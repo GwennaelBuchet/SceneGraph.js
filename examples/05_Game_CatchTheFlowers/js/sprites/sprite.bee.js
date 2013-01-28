@@ -8,7 +8,7 @@
  */
 var BeeNode = CGSGNodeSprite.extend(
 	{
-		initialize : function(x, y, context, parentState, id) {
+		initialize: function (x, y, context, parentState, id) {
 			this._super(x, y, null, context);
 
 			this.speed = CGSGMath.fixedPoint(200 + Math.random() * 200);
@@ -20,8 +20,7 @@ var BeeNode = CGSGNodeSprite.extend(
 			this.addAnimation("fly", 4, 3, 0, 0, 16, 16, 1);
 		},
 
-
-		start : function() {
+		start: function () {
 			this.initPosAndSpeed();
 			this.play("fly", null);
 			this.startAnim();
@@ -30,8 +29,7 @@ var BeeNode = CGSGNodeSprite.extend(
 			sceneGraph.getTimeline(this, "position.x").onAnimationEnd = bindReStartAnim;
 		},
 
-
-		initPosAndSpeed : function() {
+		initPosAndSpeed: function () {
 			this.currentPos = 0;
 			var x = -30;
 			var y = 20 + CGSGMath.fixedPoint(Math.random() * (cgsgCanvas.height * 0.8));
@@ -39,12 +37,12 @@ var BeeNode = CGSGNodeSprite.extend(
 			this.speed = CGSGMath.fixedPoint(200 + Math.random() * 200);
 		},
 
-		startAnim : function() {
+		startAnim: function () {
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-			                   cgsgCanvas.width + 20, "linear", 0, true);
+							   cgsgCanvas.width + 20, "linear", 0, true);
 		},
 
-		reStartAnim : function() {
+		reStartAnim: function () {
 			sceneGraph.getTimeline(this, "position.x").removeAll();
 			this.initPosAndSpeed();
 			this.startAnim();

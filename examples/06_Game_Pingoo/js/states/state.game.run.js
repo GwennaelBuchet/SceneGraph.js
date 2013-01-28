@@ -10,17 +10,17 @@
  */
 
 var BOARD_ITEM = {
-	NONE    : 0,
-	HOLE    : 1,
-	SNOWMAN : 2,
-	IGLOO   : 3,
-	FISH    : 4,
-	FLAG    : 5
+	NONE   : 0,
+	HOLE   : 1,
+	SNOWMAN: 2,
+	IGLOO  : 3,
+	FISH   : 4,
+	FLAG   : 5
 };
 
 var StateGameRun = CGSGObject.extend(
 	{
-		initialize : function(context) {
+		initialize: function (context) {
 			this.context = context;
 			this.boardPosition = new CGSGPosition(cellWidth, cellWidth);
 			this.image = null;
@@ -33,7 +33,7 @@ var StateGameRun = CGSGObject.extend(
 
 			this.pingoo = new Pingoo(204, 34, context);
 			this.board = new CGSGNodeImage(0, 0, null);
-            this.board.setSlice(0, 0, 476, 635);
+			this.board.setSlice(0, 0, 476, 635);
 			this.igloo = new CGSGNodeImage(341, 545, null);
 
 			this.pingoo.play("front", -1);
@@ -47,7 +47,7 @@ var StateGameRun = CGSGObject.extend(
 		 * Start this state by starting animations, counters, ...
 		 * @method run
 		 */
-		start : function() {
+		start: function () {
 			//currentLevel is a global variable, defined in the "globals.js" file
 			this.initGame(currentLevel);
 		},
@@ -56,11 +56,11 @@ var StateGameRun = CGSGObject.extend(
 		 * Stop this state by stopping animations, counters, ...
 		 * @method stop
 		 */
-		stop : function() {
+		stop: function () {
 
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 			this.image = image;
 			this.pingoo.setImage(image);
 			this.board.setImage(image);
@@ -76,7 +76,7 @@ var StateGameRun = CGSGObject.extend(
 		 * init a new game
 		 * @param level a PingmineLevel
 		 */
-		initGame : function(level) {
+		initGame: function (level) {
 			do {
 				this.initMatrices(level);
 			} while (!this.checkExistingPath());
@@ -90,8 +90,8 @@ var StateGameRun = CGSGObject.extend(
 				for (y = 0; y < this.nbLines; y++) {
 					if (this.matrixBoard[x][y] == BOARD_ITEM.HOLE) {
 						var hole = new CGSGNodeSprite(this.boardPosition.x + cellWidth * x,
-						                                      this.boardPosition.y + cellWidth * y, null,
-						                                      this.context);
+													  this.boardPosition.y + cellWidth * y, null,
+													  this.context);
 						hole.setImage(this.image);
 						hole.addAnimation("wave", 4, 16, 476, 172, cellWidth, cellWidth, 4);
 						this.board.addChildAt(hole, this.board.children.length - 2);
@@ -100,14 +100,14 @@ var StateGameRun = CGSGObject.extend(
 					}
 					else if (this.matrixBoard[x][y] == BOARD_ITEM.SNOWMAN) {
 						var snowman = new CGSGNodeImage(this.boardPosition.x + cellWidth * x,
-						                                this.boardPosition.y + cellWidth * y, null);
+														this.boardPosition.y + cellWidth * y, null);
 						snowman.setImage(this.image);
 						this.board.addChildAt(snowman, this.board.children.length - 2);
 						this.items[this.items.length] = snowman;
 					}
 					else if (this.matrixBoard[x][y] == BOARD_ITEM.FISH) {
 						var fish = new CGSGNodeImage(this.boardPosition.x + cellWidth * x,
-						                             this.boardPosition.y + cellWidth * y, null);
+													 this.boardPosition.y + cellWidth * y, null);
 						fish.setImage(this.image);
 						this.board.addChildAt(fish, this.board.children.length - 2);
 						this.items[this.items.length] = fish;
@@ -120,7 +120,7 @@ var StateGameRun = CGSGObject.extend(
 		 * int a new matrixBoard witn new holes
 		 * @param level
 		 */
-		initMatrices : function(level) {
+		initMatrices: function (level) {
 			this.matrixBoard.clear();
 			this.matrixFlags.clear();
 
@@ -187,24 +187,23 @@ var StateGameRun = CGSGObject.extend(
 		 *
 		 * @return {Boolean} true if the current matrixBoard has a full path from the start point to the end point.
 		 */
-		checkExistingPath : function() {
+		checkExistingPath: function () {
 			return true;
 		},
 
-		getItemAt : function(x, y) {
+		getItemAt: function (x, y) {
 			return this.matrixBoard[x][y];
 		},
 
-		getPositionOfCell : function(x, y) {
-			return ({ x : this.boardPosition.x + cellWidth * x,
-				y       : this.boardPosition.y + cellWidth * y });
+		getPositionOfCell: function (x, y) {
+			return ({ x: this.boardPosition.x + cellWidth * x,
+				y      : this.boardPosition.y + cellWidth * y });
 		},
-
 
 		/**
 		 * @return next cell in the current pingoo direction
 		 */
-		getNextCell : function() {
+		getNextCell: function () {
 			var coord = this.pingoo.coord.copy();
 			var m = this.pingoo.animations[this.pingoo.currentDirection].move;
 			if (this.pingoo.animations[this.pingoo.currentDirection].axe == "x" && coord.x + m >= 0 && coord.x + m
@@ -217,7 +216,7 @@ var StateGameRun = CGSGObject.extend(
 			return coord;
 		},
 
-		putFlag : function() {
+		putFlag: function () {
 			var coord = this.getNextCell();
 			//if the next cell is the same as now (ie on border), don't put a flag
 			if (coord.x != this.pingoo.coord.x || coord.y != this.pingoo.coord.y) {
@@ -230,24 +229,24 @@ var StateGameRun = CGSGObject.extend(
 					var flag = new CGSGNodeImage(pos.x, pos.y, null);
 					flag.setImage(this.image);
 					this.board.addChildAt(flag, this.board.children.length - 2);
-					this.matrixFlags[coord.x][coord.y] = {item : BOARD_ITEM.FLAG, node : flag};
+					this.matrixFlags[coord.x][coord.y] = {item: BOARD_ITEM.FLAG, node: flag};
 				}
 			}
 		},
 
-		moveDown   : function() {
+		moveDown  : function () {
 			this.movePingoo("front");
 		},
-		moveUp     : function() {
+		moveUp    : function () {
 			this.movePingoo("back");
 		},
-		moveLeft   : function() {
+		moveLeft  : function () {
 			this.movePingoo("left");
 		},
-		moveRight  : function() {
+		moveRight : function () {
 			this.movePingoo("right");
 		},
-		movePingoo : function(direction) {
+		movePingoo: function (direction) {
 			var oldDirection = this.pingoo.currentDirection;
 
 			this.pingoo.turn(direction);
@@ -282,7 +281,7 @@ var StateGameRun = CGSGObject.extend(
 		 * @param x
 		 * @param y
 		 */
-		displayNbHolesAround : function(x, y) {
+		displayNbHolesAround: function (x, y) {
 			var nbHoles = this.checkNbHoles(x, y);
 			if (nbHoles > 0) {
 				var number = new CGSGNodeImage(0, 0, null);
@@ -299,7 +298,7 @@ var StateGameRun = CGSGObject.extend(
 		 * @param y
 		 * @return {Number} the number of holes around the position passed in parameter
 		 */
-		checkNbHoles : function(x, y) {
+		checkNbHoles: function (x, y) {
 			var nbHole = 0;
 
 			nbHole += this.getNbHoleAt(x - 1, y - 1);
@@ -320,7 +319,7 @@ var StateGameRun = CGSGObject.extend(
 		 * @param y
 		 * @return {Number}
 		 */
-		getNbHoleAt : function(x, y) {
+		getNbHoleAt: function (x, y) {
 			if (x < 0 || y < 0 || x >= this.nbCols || y >= this.nbLines) {
 				return 0;
 			}
@@ -331,7 +330,7 @@ var StateGameRun = CGSGObject.extend(
 			return 0;
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			if (!this.pingoo.isPlaying) {
@@ -357,7 +356,7 @@ var StateGameRun = CGSGObject.extend(
 			return keynum;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			return keynum;

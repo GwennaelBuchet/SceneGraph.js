@@ -10,7 +10,7 @@
  */
 var StateHome = CGSGObject.extend(
 	{
-		initialize : function(context, parent) {
+		initialize: function (context, parent) {
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 
 			var bkg = new CGSGNodeSquare(0, 0, cgsgCanvas.width, cgsgCanvas.height);
@@ -50,7 +50,7 @@ var StateHome = CGSGObject.extend(
 			textGo.pickNodeMethod = CGSGPickNodeMethod.REGION;
 			this.rootNode.addChild(textGo);
 			var that = this;
-			textGo.onClick = function(event) {
+			textGo.onClick = function (event) {
 				currentLevel = that.choosedLevel;
 				parent.changeGameState(GAME_STATE.PLAY);
 			}
@@ -60,18 +60,18 @@ var StateHome = CGSGObject.extend(
 			this.initializeSnow();
 		},
 
-		addButtonLevel : function(x, y, level) {
+		addButtonLevel: function (x, y, level) {
 			var textLevel = new CGSGNodeText(x, y, level.name);
 			textLevel.color = "#5871F0";
 			textLevel.translateTo((cgsgCanvas.width - textLevel.getWidth()) / 2, y);
 			textLevel.pickNodeMethod = CGSGPickNodeMethod.REGION;
 
 			var that = this;
-			textLevel.onClick = function(event) {
+			textLevel.onClick = function (event) {
 				that.selectLevel(level);
 			}
 
-			textLevel.onMouseOver = function(event) {
+			textLevel.onMouseOver = function (event) {
 				that.selectLevel(level);
 			}
 
@@ -79,7 +79,7 @@ var StateHome = CGSGObject.extend(
 			this.buttonsLevel[level] = textLevel;
 		},
 
-		setLevelDescription : function(level) {
+		setLevelDescription: function (level) {
 			this.textDescr.setText(level.desc);
 			this.textDescr.translateTo((cgsgCanvas.width - this.textDescr.getWidth()) / 2, 360);
 		},
@@ -88,7 +88,7 @@ var StateHome = CGSGObject.extend(
 		 * @method selectLevel
 		 * @param {PingmineLevel} level
 		 */
-		selectLevel : function(level) {
+		selectLevel: function (level) {
 			this.choosedLevel = level;
 			this.setLevelDescription(level);
 
@@ -100,7 +100,7 @@ var StateHome = CGSGObject.extend(
 		 * Initialize the particles for the falling snow
 		 * @method initializeSnow
 		 */
-		initializeSnow : function() {
+		initializeSnow: function () {
 			//create the particle system instance
 			this.particlesSystem = new CGSGParticleSystem(0, 0); //x, y
 
@@ -118,10 +118,10 @@ var StateHome = CGSGObject.extend(
 
 			//tell the this.snowEmitter how to init a particle.
 			//be sure to call this BEFORE the initParticles function
-			this.snowEmitter.onInitParticle = function(event) {
+			this.snowEmitter.onInitParticle = function (event) {
 				event.particle.node.globalAlpha = 0.3 + Math.random() * 0.4;
 				event.particle.node.color = "white";
-				event.particle.checkCTL = function(particle) {
+				event.particle.checkCTL = function (particle) {
 					return particle.position.y <= cgsgCanvas.height + 40;
 				};
 
@@ -129,16 +129,16 @@ var StateHome = CGSGObject.extend(
 
 				//add some custom info to the particles
 				event.particle.userdata = {
-					amplitude : 18 + Math.random() * 10,
-					period    : 0.005 + Math.random() * 0.02
+					amplitude: 18 + Math.random() * 10,
+					period   : 0.005 + Math.random() * 0.02
 				};
 			};
 
 			//add an update handler, fired each time a particle position was updated by the this.snowEmitter
-			this.snowEmitter.onUpdateParticleEnd = function(particle) {
+			this.snowEmitter.onUpdateParticleEnd = function (particle) {
 				//apply a sinusoidal movement on X
 				particle.node.translateWith(Math.sin(particle.age * particle.userdata.period)
-					                            * particle.userdata.amplitude, 0);
+												* particle.userdata.amplitude, 0);
 			};
 
 			//finally, add the particle system into the scenegraph
@@ -149,7 +149,7 @@ var StateHome = CGSGObject.extend(
 		 * Start this state by starting animations, counters, ...
 		 * @method run
 		 */
-		start : function() {
+		start: function () {
 			//start the snow animation
 			this.snowEmitter.start();
 		},
@@ -158,20 +158,20 @@ var StateHome = CGSGObject.extend(
 		 * Stop this state by stopping animations, counters, ...
 		 * @method stop
 		 */
-		stop : function() {
+		stop: function () {
 			//stop the snow animation
 			this.snowEmitter.stop();
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 			//this.pingoo.setImage(image);
 		}
 	}

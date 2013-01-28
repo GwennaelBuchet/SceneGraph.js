@@ -1,12 +1,7 @@
 /**
- * User: Toan
- * Date: 14/01/13
- * Time: 23:11
- * To change this template use File | Settings | File Templates.
+ * @author xymostech (Emily Eisenberg)
  */
 
-
-// Copy CGSGNodeCircle because it's wrong
 
 var CGSGNodeRealCircle = CGSGNode.extend({
     initialize: function (centerX, centerY, radius) {

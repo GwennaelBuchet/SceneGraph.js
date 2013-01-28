@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -29,7 +29,7 @@
  * Template project
  * */var CGMain = CGSGScene.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -44,7 +44,7 @@
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
+		initializeCanvas: function () {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -54,7 +54,7 @@
 		 * Just create a single node (a square node)
 		 *
 		 */
-		createScene : function () {
+		createScene: function () {
 			this.squareNode = new CGSGNodeSquare(60, 20, 200, 200);
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;

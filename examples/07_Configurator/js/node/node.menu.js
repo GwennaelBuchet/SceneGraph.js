@@ -34,7 +34,7 @@
  */
 var MenuNode = CGSGNode.extend(
 	{
-		initialize : function (x, width) {
+		initialize: function (x, width) {
 			//call the constructor of CGSGNode
 			this._super(x, cgsgCanvas.height - MENU_HEIGHT, width, MENU_HEIGHT);
 
@@ -92,7 +92,7 @@ var MenuNode = CGSGNode.extend(
 		 * @method initShape
 		 * @private
 		 */
-		_initShape : function () {
+		_initShape: function () {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = this.dimension.width;
 			this._tmpCanvas.height = this.dimension.height;
@@ -106,7 +106,7 @@ var MenuNode = CGSGNode.extend(
 
 		},
 
-		setImage : function (img) {
+		setImage: function (img) {
 			this.buttonStructure.setImage(img);
 			this.buttonPanel.setImage(img);
 			this.buttonInside.setImage(img);
@@ -119,7 +119,7 @@ var MenuNode = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function (context) {
+		render: function (context) {
 			//call this before your custom rendering
 			this.beforeRender(context);
 
@@ -137,9 +137,9 @@ var MenuNode = CGSGNode.extend(
 		 * @method copy
 		 * @return {BackgroundNode} a copy of this node
 		 */
-		copy : function () {
+		copy: function () {
 			var node = new BackgroundNode(this.position.x, this.position.y, this.dimension.width,
-			                              this.dimension.height);
+										  this.dimension.height);
 			//call the super method
 			node = this._super(node);
 

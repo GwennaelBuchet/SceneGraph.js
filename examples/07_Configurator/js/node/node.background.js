@@ -36,7 +36,7 @@
  */
 var BackgroundNode = CGSGNode.extend(
 	{
-		initialize : function (x, y, width, height) {
+		initialize: function (x, y, width, height) {
 			//call the constructor of CGSGNode
 			this._super(x, y, width, height);
 
@@ -55,7 +55,7 @@ var BackgroundNode = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function (context) {
+		render: function (context) {
 			//call this before your custom rendering
 			this.beforeRender(context);
 
@@ -79,17 +79,17 @@ var BackgroundNode = CGSGNode.extend(
 
 			//white light on the wall
 			/*var centerX = cgsgCanvas.width / 2;
-			var centerY = FLOOR_POSITION / 2;
-			var radius = 30;
+			 var centerY = FLOOR_POSITION / 2;
+			 var radius = 30;
 
-			context.beginPath();
-			context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-			context.fillStyle = 'white';
-			context.shadowColor = 'white';
-			context.shadowBlur = 170;
-			context.shadowOffsetX = 0;
-			context.shadowOffsetY = 0;
-			context.fill();*/
+			 context.beginPath();
+			 context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+			 context.fillStyle = 'white';
+			 context.shadowColor = 'white';
+			 context.shadowBlur = 170;
+			 context.shadowOffsetX = 0;
+			 context.shadowOffsetY = 0;
+			 context.fill();*/
 
 			//call this after your custom rendering
 			this.afterRender(context);
@@ -100,9 +100,9 @@ var BackgroundNode = CGSGNode.extend(
 		 * @method copy
 		 * @return {BackgroundNode} a copy of this node
 		 */
-		copy : function () {
+		copy: function () {
 			var node = new BackgroundNode(this.position.x, this.position.y, this.dimension.width,
-			                              this.dimension.height);
+										  this.dimension.height);
 			//call the super method
 			node = this._super(node);
 

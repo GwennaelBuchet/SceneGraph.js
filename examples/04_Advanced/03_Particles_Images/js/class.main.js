@@ -31,7 +31,7 @@
 
 var CGMain = CGSGScene.extend(
 	{
-		initialize : function(canvas) {
+		initialize: function (canvas) {
 
 			this._super(canvas);
 
@@ -43,7 +43,7 @@ var CGMain = CGSGScene.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function() {
+		initializeCanvas: function () {
 			var dim = new CGSGDimension(600, 480);
 			this.setCanvasDimension(dim);
 		},
@@ -52,7 +52,7 @@ var CGMain = CGSGScene.extend(
 		 * create a random scene with some nodes
 		 *
 		 */
-		createScene : function() {
+		createScene: function () {
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);
@@ -74,12 +74,12 @@ var CGMain = CGSGScene.extend(
 		 * Fired when the image loading is complete.
 		 * Set the image object (img) to our image nodes
 		 */
-		onImageLoaded : function() {
+		onImageLoaded: function () {
 			//create an emitter, "simulating a fountain", and add it to the particle system
 			this.createFountainEmitter();
 		},
 
-		createFountainEmitter : function() {
+		createFountainEmitter: function () {
 			var imgNode = new CGSGNodeImage(0, 0, null);
 			imgNode.setImage(this.img);
 
@@ -95,10 +95,10 @@ var CGMain = CGSGScene.extend(
 				, 10                            //outflow
 			);
 
-			emitter.onInitParticle = function(event) {
+			emitter.onInitParticle = function (event) {
 				event.particle.node.globalAlpha = 1.0;
-				event.particle.userdata = {ttl : 280 + Math.random() * 240};
-				event.particle.checkCTL = function(particle) {
+				event.particle.userdata = {ttl: 280 + Math.random() * 240};
+				event.particle.checkCTL = function (particle) {
 					return particle.age <= particle.userdata.ttl;
 				};
 			};
@@ -107,7 +107,7 @@ var CGMain = CGSGScene.extend(
 			//emitter.addForce(new CGSGVector2D(5, 0.0), null); //force vector, ttl
 			emitter.addForce(new CGSGVector2D(0, -8), null); //force vector, ttl
 
-			emitter.onUpdateParticleEnd = function(particle) {
+			emitter.onUpdateParticleEnd = function (particle) {
 				particle.node.globalAlpha = 1.0 - (particle.age / particle.userdata.ttl);
 			};
 

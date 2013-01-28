@@ -26,86 +26,84 @@
  * @date 10/08/2012
  * */
 var CGMain = CGSGScene.extend(
-    {
-        initialize:function (canvas) {
+	{
+		initialize: function (canvas) {
 
-            this._super(canvas);
+			this._super(canvas);
 
-            ////// INITIALIZATION /////////
+			////// INITIALIZATION /////////
 
-            this.initializeCanvas();
+			this.initializeCanvas();
 
-            this.createScene();
+			this.createScene();
 
-            this.startPlaying();
-        },
+			this.startPlaying();
+		},
 
-        initializeCanvas:function () {
-            //resize the canvas to fulfill the viewport
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
-        },
+		initializeCanvas: function () {
+			//resize the canvas to fulfill the viewport
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
+		},
 
-        /**
-         *
-         *
-         */
-        createScene:function () {
+		/**
+		 *
+		 *
+		 */
+		createScene: function () {
 
-            //create a root node to the graph, with arbitrary position and size
-            var rootNode = new CGSGNodeSquare(10, 10, 200, 400);
-            rootNode.color = "white";
-            rootNode.lineColor = "gray";
-            rootNode.lineWidth = 1;
-            this.sceneGraph.addNode(rootNode, null);
+			//create a root node to the graph, with arbitrary position and size
+			var rootNode = new CGSGNodeSquare(10, 10, 200, 400);
+			rootNode.color = "white";
+			rootNode.lineColor = "gray";
+			rootNode.lineWidth = 1;
+			this.sceneGraph.addNode(rootNode, null);
 
-            var that = this;
+			var that = this;
 
-            this.tabMenu = new CGSGNodeTabMenu(0, 0, 200);
-            rootNode.addChild(this.tabMenu);
+			this.tabMenu = new CGSGNodeTabMenu(0, 0, 200);
+			rootNode.addChild(this.tabMenu);
 
-            //now, create tabs
-            this.createFirstTab();
-            this.createSecondTab();
-        },
+			//now, create tabs
+			this.createFirstTab();
+			this.createSecondTab();
+		},
 
-        createFirstTab : function() {
-            //a tab is just a text with a root node to render into when it's selected (called the "view").
-            //So we create a node to render bound with the tab
+		createFirstTab: function () {
+			//a tab is just a text with a root node to render into when it's selected (called the "view").
+			//So we create a node to render bound with the tab
 
-            var root = new CGSGNode(0, 0, 0, 0);
+			var root = new CGSGNode(0, 0, 0, 0);
 
-            var sq = new CGSGNodeSquare(10, 10, 30, 40);
-            root.addChild(sq);
+			var sq = new CGSGNodeSquare(10, 10, 30, 40);
+			root.addChild(sq);
 
-            var txt = new CGSGNodeText(10, 70, "tab1");
-            root.addChild(txt);
+			var txt = new CGSGNodeText(10, 70, "tab1");
+			root.addChild(txt);
 
+			//create the tab with "root" as view.
+			var tab = this.tabMenu.addTab("tab 1", root);
 
-            //create the tab with "root" as view.
-            var tab = this.tabMenu.addTab("tab 1",root);
+			//"tab" now contains tab.text and tab.view
+		},
 
-            //"tab" now contains tab.text and tab.view
-        },
+		createSecondTab: function () {
+			//a tab is just a text with a root node to render into when it's selected (called the "view").
+			//So we create a node to render bound with the tab
 
-        createSecondTab : function() {
-            //a tab is just a text with a root node to render into when it's selected (called the "view").
-            //So we create a node to render bound with the tab
+			var root = new CGSGNode(0, 0, 0, 0);
 
-            var root = new CGSGNode(0, 0, 0, 0);
+			var sq = new CGSGNodeButton(50, 20, "Hello !")
+			root.addChild(sq);
 
-            var sq = new CGSGNodeButton(50, 20, "Hello !")
-            root.addChild(sq);
+			var txt = new CGSGNodeText(10, 70, "tab2");
+			root.addChild(txt);
 
-            var txt = new CGSGNodeText(10, 70, "tab2");
-            root.addChild(txt);
+			//create the tab with "root" as view.
+			var tab = this.tabMenu.addTab("tab 2", root);
 
+			//"tab" now contains tab.text and tab.view
+		}
 
-            //create the tab with "root" as view.
-            var tab = this.tabMenu.addTab("tab 2",root);
-
-            //"tab" now contains tab.text and tab.view
-        }
-
-    }
+	}
 );

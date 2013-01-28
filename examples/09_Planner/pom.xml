@@ -71,41 +71,41 @@ Any failure to comply with the above shall automatically terminate the license a
 
                             <includes>
 
-                                 <include>js/node/node.overlay.js</include>
-                                 <include>js/node/node.load.js</include>
-                                 <include>js/node/utils/node.popup.js</include>
-                                 <include>js/node/node.wallCoatingSelector.js</include>
-                                 <include>js/node/node.floorCoatingSelector.js</include>
-                                 <include>js/node/node.config.js</include>
-                                 <include>js/node/utils/class.position3d.js</include>
-                                 <include>js/event/event.common.js</include>
-                                 <include>js/translation/en.js</include>
-                                 <include>js/node/collision/enum.collision.method.js</include>
-                                 <include>js/node/collision/class.collision.tester.ghost.precompute.js</include>
-                                 <include>js/node/collision/class.collision.manager.js</include>
-                                 <include>js/global.js</include>
-                                 <include>js/node/utils/class.node.scroll.js</include>
-                                 <include>js/constraintEngine.js</include>
-                                 <include>js/entity/class.variant.js</include>
-                                 <include>js/entity/class.product.js</include>
-                                 <include>js/entity/class.category.js</include>
-                                 <include>js/entity/class.basket.js</include>
-                                 <include>js/entity/class.slot.js</include>
-                                 <include>js/entity/class.config.js</include>
-                                 <include>js/catalog.js</include>
-                                 <include>js/node/node.basket.js</include>
-                                 <include>js/node/node.variantPreview.js</include>
-                                 <include>js/node/node.categoryView.js</include>
-                                 <include>js/node/node.categoryPanel.js</include>
-                                 <include>js/node/node.detailPanel.js</include>
-                                 <include>js/node/node.menu.js</include>
-                                 <include>js/node/node.backgroundWall.js</include>
-                                 <include>js/node/node.backgroundFloor.js</include>
-                                 <include>js/node/node.zoomMenu.js</include>
-                                 <include>js/node/node.fileMenu.js</include>
-                                 <include>js/node/node.scene.js</include>
-                                 <include>js/loadProducts.js</include>
-                                 <include>js/class.main.js</include>
+                                <include>js/node/node.overlay.js</include>
+                                <include>js/node/node.load.js</include>
+                                <include>js/node/utils/node.popup.js</include>
+                                <include>js/node/node.wallCoatingSelector.js</include>
+                                <include>js/node/node.floorCoatingSelector.js</include>
+                                <include>js/node/node.config.js</include>
+                                <include>js/node/utils/class.position3d.js</include>
+                                <include>js/event/event.common.js</include>
+                                <include>js/translation/en.js</include>
+                                <include>js/node/collision/enum.collision.method.js</include>
+                                <include>js/node/collision/class.collision.tester.ghost.precompute.js</include>
+                                <include>js/node/collision/class.collision.manager.js</include>
+                                <include>js/global.js</include>
+                                <include>js/node/utils/class.node.scroll.js</include>
+                                <include>js/constraintEngine.js</include>
+                                <include>js/entity/class.variant.js</include>
+                                <include>js/entity/class.product.js</include>
+                                <include>js/entity/class.category.js</include>
+                                <include>js/entity/class.basket.js</include>
+                                <include>js/entity/class.slot.js</include>
+                                <include>js/entity/class.config.js</include>
+                                <include>js/catalog.js</include>
+                                <include>js/node/node.basket.js</include>
+                                <include>js/node/node.variantPreview.js</include>
+                                <include>js/node/node.categoryView.js</include>
+                                <include>js/node/node.categoryPanel.js</include>
+                                <include>js/node/node.detailPanel.js</include>
+                                <include>js/node/node.menu.js</include>
+                                <include>js/node/node.backgroundWall.js</include>
+                                <include>js/node/node.backgroundFloor.js</include>
+                                <include>js/node/node.zoomMenu.js</include>
+                                <include>js/node/node.fileMenu.js</include>
+                                <include>js/node/node.scene.js</include>
+                                <include>js/loadProducts.js</include>
+                                <include>js/class.main.js</include>
 
                             </includes>
                         </aggregation>

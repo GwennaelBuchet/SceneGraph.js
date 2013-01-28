@@ -31,7 +31,7 @@
  */
 var SkyNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height, context) {
+		initialize: function (x, y, width, height, context) {
 			//call the initialize of the parent
 			this._super(x, y, width, height);
 
@@ -51,7 +51,7 @@ var SkyNode = CGSGNode.extend(
 			this.addChild(this.stars);
 		},
 
-		reStartAnim : function() {
+		reStartAnim: function () {
 			//this.firstColorCurrent = this.firstColors[this.currentColorIndex];
 			//this.lastColorCurrent = this.lastColors[this.currentColorIndex];
 		},
@@ -59,13 +59,13 @@ var SkyNode = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			this.firstColorCurrent =
 			CGSGColor.lerp(this.firstColors[currentColorIndex], this.firstColors[currentColorIndex + 1],
-			                currentColorLerp);
+						   currentColorLerp);
 			this.lastColorCurrent =
 			CGSGColor.lerp(this.lastColors[currentColorIndex], this.lastColors[currentColorIndex + 1],
-			                currentColorLerp);
+						   currentColorLerp);
 
 			this.sun.globalAlpha =
 			CGSGMath.lerp(this.alpha[currentColorIndex], this.alpha[currentColorIndex + 1], currentColorLerp);
@@ -93,7 +93,7 @@ var SkyNode = CGSGNode.extend(
 		/**
 		 * once the image is loaded, set it to the sprites
 		 */
-		onImageLoaded : function() {
+		onImageLoaded: function () {
 			this.spirale.setImage(this.img);
 			this.spirale.rotationCenter.x = 0.5;
 			this.spirale.rotationCenter.y = 0.5;

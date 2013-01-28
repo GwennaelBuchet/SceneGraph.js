@@ -29,7 +29,7 @@
     <script src="js/cufon-yui.js" type="text/javascript"></script>
     <script src="js/Aller.font.js" type="text/javascript"></script>
     <script type="text/javascript">
-        Cufon.replace('ul.oe_menu div a', {hover : true});
+        Cufon.replace('ul.oe_menu div a', {hover: true});
         Cufon.replace('h1,h2,.oe_heading');
     </script>
 
@@ -134,7 +134,8 @@
                     <div id="center">
                         <h1>General Concept of a Scene Graph</h1>
 
-<h2>What is a Scene Graph</h2>
+                        <h2>What is a Scene Graph</h2>
+
                         <p>cgSceneGraph is a scene graph developed in Javascript.<br/>
                             Hence, like a tree, it maintains a hierarchy of "nodes".
                             <br/><br/>
@@ -163,6 +164,7 @@
                              alt="Concept of a graph"/>
                         </p>
                         <h2>Inheritance in a Scene Graph</h2>
+
                         <p>So, each node encapsulates its own properties but some will inherit from its parent.
                             <br/>
                             Example with the scale attribute:<br/><img class="imgCenter"
@@ -171,13 +173,16 @@
                                                                        alt="concept : inheritance"/><br/><br/>
                             Here is an example with 2 nodes : a cloud having a tree as child node.<br/>
 
-                        <img class="imgCenter"
+                            <img class="imgCenter"
                                  src="img/concepts_tree_cloud.png" width="900"
                                  height="500" alt="concept : inheritance"/></p>
-                        <p>In the same way, the scale, rotation, translation and &quot;isVisible&quot; attributes will be impacted by the ones of their hierarchy.<br />
-                          However, every other properties (globalAlpha, isDraggable, isResizable, ...) will override the ones defined in the parent hierarchy.
-                          <br/>
-                          
+
+                        <p>In the same way, the scale, rotation, translation and &quot;isVisible&quot; attributes will
+                            be impacted by the ones of their hierarchy.<br/>
+                            However, every other properties (globalAlpha, isDraggable, isResizable, ...) will override
+                            the ones defined in the parent hierarchy.
+                            <br/>
+
                         </p>
 
                         <p>&nbsp;</p>

@@ -10,7 +10,7 @@
  */
 var StateLoading = CGSGObject.extend(
 	{
-		initialize : function(context) {
+		initialize: function (context) {
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 
 			this.text = new CGSGNodeText(0, 0, "LOADING...");
@@ -29,7 +29,7 @@ var StateLoading = CGSGObject.extend(
 		 * Start this state by starting animations, counters, ...
 		 * @method run
 		 */
-		start : function() {
+		start: function () {
 
 		},
 
@@ -37,19 +37,19 @@ var StateLoading = CGSGObject.extend(
 		 * Stop this state by stopping animations, counters, ...
 		 * @method stop
 		 */
-		stop : function() {
+		stop: function () {
 
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 			//this.pingoo.setImage(image);
 		}
 	}

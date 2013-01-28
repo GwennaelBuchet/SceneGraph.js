@@ -23,12 +23,11 @@
  *  These Terms of Use are subject to French law.
  */
 
-
 var PRODUCT_TYPE = {
-	UNKNOWN : {name : "Unknown"},
-	TABLE : {name : "Table"},
-	SHELF : {name : "Shelf"},
-	TV : {name : "TV"}
+	UNKNOWN: {name: "Unknown"},
+	TABLE  : {name: "Table"},
+	SHELF  : {name: "Shelf"},
+	TV     : {name: "TV"}
 };
 
 /**
@@ -38,7 +37,7 @@ var PRODUCT_TYPE = {
  */
 var Product = CGSGObject.extend(
 	{
-		initialize : function (name, price, type, urlImage) {
+		initialize: function (name, price, type, urlImage) {
 			/**
 			 * @property name
 			 * @type {String}
