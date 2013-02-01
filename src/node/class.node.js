@@ -673,6 +673,9 @@ var CGSGNode = CGSGObject.extend(
 			//move the context to the nodes's relative position
 			context.translate(this.position.x, this.position.y);
 
+
+            context.scale(this.scale.x, this.scale.y);
+
 			// translate context to center of canvas
 			if (cgsgExist(this.rotationCenter)) {
 				context.translate(this.dimension.width * this.rotationCenter.x,
@@ -684,7 +687,6 @@ var CGSGNode = CGSGObject.extend(
 			else {
 				context.rotate(this.rotation.angle);
 			}
-			context.scale(this.scale.x, this.scale.y);
 		},
 
 		/**
