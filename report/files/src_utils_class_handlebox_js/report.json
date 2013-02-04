@@ -1,0 +1,306 @@
+{
+  "info": {
+    "file": "src\\utils\\class.handlebox.js",
+    "fileShort": "src\\utils\\class.handlebox.js",
+    "fileSafe": "src_utils_class_handlebox_js",
+    "link": "files/src_utils_class_handlebox_js/index.html"
+  },
+  "complexity": {
+    "aggregate": {
+      "line": 41,
+      "complexity": {
+        "sloc": {
+          "physical": 92,
+          "logical": 19
+        },
+        "cyclomatic": 1,
+        "halstead": {
+          "operators": {
+            "distinct": 16,
+            "total": 133,
+            "identifiers": [
+              "__stripped__"
+            ]
+          },
+          "operands": {
+            "distinct": 30,
+            "total": 164,
+            "identifiers": [
+              "__stripped__"
+            ]
+          },
+          "length": 297,
+          "vocabulary": 46,
+          "difficulty": 43.733333333333334,
+          "volume": 1640.497900948933,
+          "effort": 71744.44153483334,
+          "bugs": 0.5468326336496443,
+          "time": 3985.8023074907414
+        }
+      }
+    },
+    "functions": [
+      {
+        "name": "initialize",
+        "line": 43,
+        "complexity": {
+          "sloc": {
+            "physical": 38,
+            "logical": 6
+          },
+          "cyclomatic": 1,
+          "halstead": {
+            "operators": {
+              "distinct": 3,
+              "total": 13,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "operands": {
+              "distinct": 11,
+              "total": 27,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "length": 40,
+            "vocabulary": 14,
+            "difficulty": 3.6818181818181817,
+            "volume": 152.29419688230416,
+            "effort": 560.7195430666653,
+            "bugs": 0.05076473229410139,
+            "time": 31.151085725925853
+          }
+        }
+      },
+      {
+        "name": "render",
+        "line": 86,
+        "complexity": {
+          "sloc": {
+            "physical": 13,
+            "logical": 5
+          },
+          "cyclomatic": 1,
+          "halstead": {
+            "operators": {
+              "distinct": 4,
+              "total": 41,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "operands": {
+              "distinct": 15,
+              "total": 53,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "length": 94,
+            "vocabulary": 19,
+            "difficulty": 7.066666666666666,
+            "volume": 399.305186263697,
+            "effort": 2821.756649596792,
+            "bugs": 0.13310172875456566,
+            "time": 156.7642583109329
+          }
+        }
+      },
+      {
+        "name": "checkIfSelected",
+        "line": 107,
+        "complexity": {
+          "sloc": {
+            "physical": 14,
+            "logical": 1
+          },
+          "cyclomatic": 1,
+          "halstead": {
+            "operators": {
+              "distinct": 8,
+              "total": 60,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "operands": {
+              "distinct": 10,
+              "total": 62,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "length": 122,
+            "vocabulary": 18,
+            "difficulty": 24.8,
+            "volume": 508.7308501759621,
+            "effort": 12616.52508436386,
+            "bugs": 0.16957695005865403,
+            "time": 700.9180602424367
+          }
+        }
+      },
+      {
+        "name": "translateTo",
+        "line": 127,
+        "complexity": {
+          "sloc": {
+            "physical": 4,
+            "logical": 2
+          },
+          "cyclomatic": 1,
+          "halstead": {
+            "operators": {
+              "distinct": 2,
+              "total": 6,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "operands": {
+              "distinct": 6,
+              "total": 10,
+              "identifiers": [
+                "__stripped__"
+              ]
+            },
+            "length": 16,
+            "vocabulary": 8,
+            "difficulty": 1.6666666666666667,
+            "volume": 48,
+            "effort": 80,
+            "bugs": 0.016,
+            "time": 4.444444444444445
+          }
+        }
+      }
+    ],
+    "maintainability": 122.32274517081575,
+    "module": "src\\utils\\class.handlebox.js"
+  },
+  "jshint": {
+    "messages": [
+      {
+        "severity": "error",
+        "line": 91,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 92,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 93,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 95,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 96,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 97,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 109,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 110,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 111,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 112,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 113,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 114,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 115,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 116,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 117,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 118,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      },
+      {
+        "severity": "error",
+        "line": 119,
+        "column": 3,
+        "message": "Mixed spaces and tabs.",
+        "source": "Mixed spaces and tabs."
+      }
+    ]
+  }
+}
