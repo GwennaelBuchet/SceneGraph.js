@@ -81,6 +81,9 @@ var CGMain = CGSGScene.extend(
 			this.redSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.redSquareNode);
 
+            this.blueSquareNode.isCollisionManaged = true;
+            this.redSquareNode.isCollisionManaged = true;
+
 			//the log text
 			this.logNode = new CGSGNodeText(160, 10, "Collision : false");
 			this.rootNode.addChild(this.logNode);
