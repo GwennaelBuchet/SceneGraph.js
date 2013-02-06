@@ -106,9 +106,7 @@ var CGSGPositionMode = {
  * @constructor
  * @param {Number} x Relative position on X
  * @param {Number} y Relative position on X
- * @param {Number} width Relative dimension
- * @param {Number} height Relative Dimension
- * @param {Number} radius Radius for the round corner
+ * @param {String} text
  * @type {CGSGNodeButton}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */

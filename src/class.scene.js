@@ -758,6 +758,7 @@ var CGSGScene = CGSGObject.extend(
 
 								if (canMove) {
 									this._selectedNode.translateWith(nodeOffsetX, nodeOffsetY);
+                                    this._selectedNode.computeAbsoluteMatrix(true);
 									if (this._selectedNode.onDrag !== null) {
 										this._selectedNode.onDrag({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
 									}
@@ -869,7 +870,7 @@ var CGSGScene = CGSGObject.extend(
 										}
 										break;
 								}
-								this._selectedNode.computeAbsoluteMatrix(false);
+								this._selectedNode.computeAbsoluteMatrix(true);
 								if (this._selectedNode.onResize !== null) {
 									this._selectedNode.onResize({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
 								}

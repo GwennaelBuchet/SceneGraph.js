@@ -47,6 +47,14 @@ TODO LIST:
 HISTORY
 =====================================================================
 
+v1.4.2
+
+CHANGES:
+- Correction. Compute absolute matrix for children nodes while moving.
+- Correction. Apply scale on rotation center too.
+
+---------------------------------------------------------------------
+
 v1.4.1
 
 CHANGES:

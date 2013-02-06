@@ -898,7 +898,7 @@ var CGSGNode = CGSGObject.extend(
 		 * Return all nodes (Array) in the given region
 		 * @public
 		 * @method pickNodes
-		 * @param {CGSGRegion} Region of the canvas to check
+		 * @param {CGSGRegion} region of the canvas to check
 		 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
 		 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
 		 * @param {Boolean} recursively if false, don't traverse the children of this nodes
@@ -1228,10 +1228,10 @@ var CGSGNode = CGSGObject.extend(
 				this.translateTo(this.position.x, value, this.needToKeepAbsoluteMatrix);
 			}
 			else if (attribute == "dimension.width") {
-				this.resizeTo(value, this.dimension.height, this.needToKeepAbsoluteMatrix);
+				this.resizeTo(value, this.dimension.height);
 			}
 			else if (attribute == "dimension.height") {
-				this.resizeTo(this.dimension.width, value, this.needToKeepAbsoluteMatrix);
+				this.resizeTo(this.dimension.width, value);
 			}
 			else if (attribute == "scale.x") {
 				this.scaleTo(value, this.scale.y, this.needToKeepAbsoluteMatrix);
