@@ -166,6 +166,8 @@ var CGMain = CGSGScene.extend(
             square.color = color;
             square.name = color;
 
+            square.isCollisionManaged = true;
+
             //add a text to the square node
 			var textNode = new CGSGNodeText(5, 5, color + "\n" + text);
 			textNode.setSize(10);
