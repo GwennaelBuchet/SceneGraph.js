@@ -74,12 +74,18 @@ var CGMain = CGSGScene.extend(
 			this.blueSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.blueSquareNode);
 
-			//the red square
+
+            //the red square
 			this.redSquareNode = new CGSGNodeSquare(0, 60, 100, 100);
 			this.redSquareNode.color = "red";
 			this.redSquareNode.isResizable = true;
 			this.redSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.redSquareNode);
+
+            //indicate that the squares will be checked by the collision manager
+            //(new to v1.4.1)
+            this.blueSquareNode.isCollisionManaged = true;
+            this.redSquareNode.isCollisionManaged = true;
 
 			//the log text
 			this.logNode = new CGSGNodeText(160, 10, "Collision : false");
@@ -128,7 +134,7 @@ var CGMain = CGSGScene.extend(
 			//var isColliding = this.redSquareNode.isCollidingABrother();
 
 			var isColliding = this.redSquareNode.isColliding(this.blueSquareNode, 0);
-			this.logNode.setText("Collision : " + isColliding);
+			this.logNode.setText("Collision : " + isColliding, true);
 		}
 
 	}

@@ -159,6 +159,10 @@ var CGMain = CGSGScene.extend(
 			square.color = color;
 			square.name = color;
 
+            //indicate that the square will be checked by the collision manager
+            //(new to v1.4.1)
+            square.isCollisionManaged = true;
+
 			//add a text to the square node
 			var textNode = new CGSGNodeText(5, 5, color + "\n" + text);
 			textNode.setSize(10);
