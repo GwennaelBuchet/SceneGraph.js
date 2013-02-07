@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap-3.0.0-wip.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome-ie7.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="brand" href="http://github.com/jsoverson/plato">Plato on Github</a>
+    <ul class="nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>src\node\class.node.colorPicker.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="span6">
+      <h2 class="header">Maintainability <a href="http://www.virtualmachinery.com/sidebar4.htm"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between -INF and 171 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
+      <p class="stat">104.27</p>
+    </div>
+    <div class="span6">
+      <h2 class="header">Estimated # Bugs  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
+      <p class="stat">1.86</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty"></i></a></h2>
+      <p class="stat">53.92</p>
+    </div>
+    <div class="span6">
+      <h2 class="header">SLOC/LSLOC <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h2>
+      <p class="stat">237 / 111</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="span6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="span12">/*
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License/Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ */
+
+var CGSG_COLORPICKER_WIDTH = 256;
+var CGSG_COLORPICKER_HEIGHT = 384;
+
+/**
+ * A color Picker
+ * @class CGSGNodeColorPicker
+ * @constructor
+ * @param {Number} x X Position
+ * @param {Number} y Y Position
+ * @type {CGSGNodeColorPicker}
+ */
+var CGSGNodeColorPicker = CGSGNode.extend(
+    {
+        initialize:function (x, y) {
+            this._super(x, y, CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
+
+            /**
+             * @property _imgData
+             * @type {ImageData}
+             * @private
+             */
+            this._imgData = null;
+
+            //fake canvas to pre-render static display
+            this._tmpCanvas = null;
+            this._initShape();
+
+            var that = this;
+            this.onMouseOver = function (event) {
+                that._onMouseOverHandler(event);
+            };
+			this.onMouseUp = function (event) {
+				that._onClickHandler(event);
+			};
+            this.onClick = function (event) {
+                that._onClickHandler(event);
+            };
+
+            /**
+             * Event fired when the mice cursor move over the color picker. Return a {r, g, b} Object.
+             * @property onOverColor
+             * @default null
+             * @type {Function}
+             */
+            this.onOverColor = null;
+            /**
+             * Event fired when the user click on the color picker. Return a {r, g, b} Object.
+             * @property onClickColor
+             * @default null
+             * @type {Function}
+             */
+            this.onClickColor = null;
+        },
+
+        /**
+         * Pre-render the node into a temp canvas to optimize the perfs
+         * @method _initShape
+         * @private
+         */
+        _initShape:function () {
+            this._tmpCanvas = document.createElement('canvas');
+            this._tmpCanvas.width = this.dimension.width + 2;
+            this._tmpCanvas.height = this.dimension.height + 2;
+            var tmpContext = this._tmpCanvas.getContext('2d');
+
+            this._imgData = tmpContext.createImageData(this.getWidth(), this.getHeight());
+
+            //draw the colors panel
+            var x, y, intensity = 1, stepX, currentPixel = 0;
+            var rgb = [255, 0, 0], clr = 0, delta, value, tmpClr;
+            var widthGray = CGSGMath.fixedPoint(Math.min(this.getWidth() * 0.1, 20));
+            var width = this.getWidth() - widthGray;
+            var steps = [
+                {index:1, sens:1},
+                {index:0, sens:-1},
+                {index:2, sens:1},
+                {index:1, sens:-1},
+                {index:0, sens:1},
+                {index:2, sens:-1}
+            ];
+            //A color is divided in 256 values (from 0 to 255).
+            //ALl these 256 values won't be displayed because a lack of space in the screen (limited to this.getWidth().
+            //Also, there are 6 steps in the colorpicker : red, yellow, green, cyan, blue, violet
+            // So, stepX is the step between 2 computed values, depending of the width of the node
+            stepX = 256 / (width / 6);
+            var halfH = this.getHeight() / 2;
+
+            //the white to black column
+            for (x=0; x<widthGray; x++) {
+                for (y = 0; y < this.getHeight(); y++) {
+                    //current pixel in the linear table
+                    currentPixel = (y * this.getWidth() + x) * 4; // 4 because 4 values per pixel : RGBA
+
+                    intensity = 1 - (y / this.getHeight());
+
+                    this._imgData.data[currentPixel + 0] = 255 * intensity;
+                    this._imgData.data[currentPixel + 1] = 255 * intensity;
+                    this._imgData.data[currentPixel + 2] = 255 * intensity;
+                    this._imgData.data[currentPixel + 3] = 255;
+                }
+            }
+
+            //the colors columns
+            for (x = widthGray; x < this.getWidth(); x++) {
+                intensity = 1;
+                for (y = 0; y < this.getHeight(); y++) {
+                    //current pixel in the linear table
+                    currentPixel = (y * this.getWidth() + x) * 4; // 4 because 4 values per pixel : RGBA
+
+                    //from white to current color
+                    if (y < halfH) {
+                        intensity = 2 - (y / halfH);
+                        tmpClr = CGSGColor.litRGB(rgb[0], rgb[1], rgb[2], intensity);
+                    }
+                    //from current color to black
+                    else {
+                        intensity = 1 - ((y - halfH) / halfH);
+                        tmpClr = CGSGColor.darkenRGB(rgb[0], rgb[1], rgb[2], intensity);
+                    }
+
+                    this._imgData.data[currentPixel + 0] = tmpClr.r;
+                    this._imgData.data[currentPixel + 1] = tmpClr.g;
+                    this._imgData.data[currentPixel + 2] = tmpClr.b;
+                    this._imgData.data[currentPixel + 3] = 255;
+                }
+                delta = stepX * steps[clr].sens;
+                value = rgb[steps[clr].index] + delta;
+                rgb[steps[clr].index] = value;
+                if (value <= 0 || value >= 255) {
+                    rgb[steps[clr].index] = Math.min(Math.max(value, 0), 255);
+                    clr++;
+                }
+            }
+
+            tmpContext.putImageData(this._imgData, 0, 0);
+        },
+
+        /**
+         * Override the parent method.
+         * @method resizeTo
+         * @param {Number} x
+         * @param {Number} y
+         */
+        resizeTo:function (x, y) {
+            this._super(x, y);
+            this._initShape();
+        },
+
+        /**
+         * Override the parent method.
+         * @method resizeWith
+         * @param {Number} w
+         * @param {Number} h
+         */
+        resizeWith:function (w, h) {
+            this._super(w, h);
+            this._initShape();
+        },
+
+        /**
+         * Override the parent method.
+         * @method resizeBy
+         * @param {Number} w
+         * @param {Number} h
+         */
+        resizeBy:function (w, h) {
+            this._super(w, h);
+            this._initShape();
+        },
+
+        /**
+         * @method _onMouseOverHandler
+         * @param {Event} event
+         * @private
+         */
+        _onMouseOverHandler:function (event) {
+            if (cgsgExist(this.onOverColor)) {
+                var rgb = this.getColorAt(event.position[0]);
+
+                this.onOverColor(rgb);
+            }
+        },
+
+        /**
+         * @method _onClickHandler
+         * @param {Event} event
+         * @private
+         */
+        _onClickHandler:function (event) {
+            if (cgsgExist(this.onClickColor)) {
+                var rgb = this.getColorAt(event.position[0]);
+
+                this.onClickColor(rgb);
+            }
+        },
+
+        /**
+         * @method getColorAt
+         * @param {CGSGPosition} relativePosition position of the cursor inside the colorPicker
+         * @return {Object} Object with {r:x, g:x, b:x} value
+         */
+        getColorAt:function (absolutePosition) {
+            var ap = this.getAbsolutePosition();
+            var aw = this.getAbsoluteWidth();
+            //get the color under the mice
+            var data = this._imgData.data;
+            //get cursor position under the colorPicker
+			//todo : still need to fix the scale (will be done in v2.0 with the matrix class)
+            var x =  CGSGMath.fixedPoint((absolutePosition.x - ap.x) /*/ this.getAbsoluteScale().x*/);
+            var y =  CGSGMath.fixedPoint((absolutePosition.y - ap.y) /*/ this.getAbsoluteScale().y*/);
+
+            return {r:data[((aw * y) + x) * 4],
+                g:data[((aw * y) + x) * 4 + 1],
+                b:data[((aw * y) + x) * 4 + 2]};
+        },
+
+        /**
+         * Custom rendering. Must be defined to allow the traverser to render this node
+         * @method render
+         * @protected
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * */
+        render:function (context) {
+            //call this before your custom rendering
+            this.beforeRender(context);
+
+            context.globalAlpha = this.globalAlpha;
+
+            //render the pre-rendered canvas
+            context.drawImage(this._tmpCanvas, 0, 0);
+
+            //call this after your custom rendering
+            this.afterRender(context);
+        }
+
+    }
+);</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+<script>
+  $('[rel=popover]').popover();
+</script>
+
+</body>
+</html>

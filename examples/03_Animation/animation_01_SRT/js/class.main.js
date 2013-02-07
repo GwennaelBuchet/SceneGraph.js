@@ -74,6 +74,7 @@ var CGMain = CGSGScene.extend(
 			this.squareNode = new CGSGNodeSquare(0, 60, 100, 100);
 
 			this.squareNode.rotationCenter = new CGSGPosition(0.5, 0.5);
+            this.squareNode.scaleTo(2.0, 2.0);
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;
 			this.rootNode.addChild(this.squareNode);

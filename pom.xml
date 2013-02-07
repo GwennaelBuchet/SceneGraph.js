@@ -30,7 +30,7 @@ Any failure to comply with the above shall automatically terminate the license a
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini</groupId>
     <artifactId>cgscenegraph</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <name>cgSceneGraph</name>
 
     <!--

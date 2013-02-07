@@ -118,6 +118,14 @@ var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD = 3;
 var CGSG_DEFAULT_FRAMERATE_DELAY = 30;
 
 /**
+ * Default maximum number of frames per second.
+ * @property CGSG_DEFAULT_MAX_FRAMERATE
+ * @default NaN
+ * @type {Number}
+ */
+var CGSG_DEFAULT_MAX_FRAMERATE = NaN;
+
+/**
  * Default value for the double touch detection.
  * This property is the delay between 2 touches to be considered as a dbl touch event.
  * @property CGSG_DEFAULT_DBLTOUCH_DELAY

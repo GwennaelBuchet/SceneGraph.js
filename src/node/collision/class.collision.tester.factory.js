@@ -46,7 +46,7 @@ var CGSGCollisionTesterFactory = CGSGObject.extend(
 
         /**
          * Return a collision tester depending on the collision method
-         *
+         * @method getCollisionTester
          * @param collisionMethod
          * @return {Object}
          */

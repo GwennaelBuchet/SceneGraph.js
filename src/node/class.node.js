@@ -673,6 +673,9 @@ var CGSGNode = CGSGObject.extend(
 			//move the context to the nodes's relative position
 			context.translate(this.position.x, this.position.y);
 
+
+            context.scale(this.scale.x, this.scale.y);
+
 			// translate context to center of canvas
 			if (cgsgExist(this.rotationCenter)) {
 				context.translate(this.dimension.width * this.rotationCenter.x,
@@ -684,7 +687,6 @@ var CGSGNode = CGSGObject.extend(
 			else {
 				context.rotate(this.rotation.angle);
 			}
-			context.scale(this.scale.x, this.scale.y);
 		},
 
 		/**
@@ -896,7 +898,7 @@ var CGSGNode = CGSGObject.extend(
 		 * Return all nodes (Array) in the given region
 		 * @public
 		 * @method pickNodes
-		 * @param {CGSGRegion} Region of the canvas to check
+		 * @param {CGSGRegion} region of the canvas to check
 		 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
 		 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
 		 * @param {Boolean} recursively if false, don't traverse the children of this nodes
@@ -1226,10 +1228,10 @@ var CGSGNode = CGSGObject.extend(
 				this.translateTo(this.position.x, value, this.needToKeepAbsoluteMatrix);
 			}
 			else if (attribute == "dimension.width") {
-				this.resizeTo(value, this.dimension.height, this.needToKeepAbsoluteMatrix);
+				this.resizeTo(value, this.dimension.height);
 			}
 			else if (attribute == "dimension.height") {
-				this.resizeTo(this.dimension.width, value, this.needToKeepAbsoluteMatrix);
+				this.resizeTo(this.dimension.width, value);
 			}
 			else if (attribute == "scale.x") {
 				this.scaleTo(value, this.scale.y, this.needToKeepAbsoluteMatrix);

@@ -2,7 +2,7 @@
     "project": {
         "name": "cgSceneGraph",
         "description": "HTML5 Scene Graph Framework",
-        "version": "1.4.1",
+        "version": "1.4.2",
         "url": "http://gwennaelbuchet.github.com/cgSceneGraph/",
         "themedir": "D:/PROJETS/Cellule_Innovation/R_D/cgSceneGraph/medias/theme_yuidoc/cgsg/theme.json"
     },
@@ -806,19 +806,9 @@
                     "type": "Number"
                 },
                 {
-                    "name": "width",
-                    "description": "Relative dimension",
-                    "type": "Number"
-                },
-                {
-                    "name": "height",
-                    "description": "Relative Dimension",
-                    "type": "Number"
-                },
-                {
-                    "name": "radius",
-                    "description": "Radius for the round corner",
-                    "type": "Number"
+                    "name": "text",
+                    "description": "",
+                    "type": "String"
                 }
             ],
             "type": "{CGSGNodeButton}",
@@ -2720,6 +2710,8 @@
             "file": "src\\node\\collision\\class.collision.manager.js",
             "line": 41,
             "description": "Indicate if two nodes are colliding",
+            "itemtype": "method",
+            "name": "isColliding",
             "params": [
                 {
                     "name": "currentNode",
@@ -2745,6 +2737,8 @@
             "file": "src\\node\\collision\\class.collision.manager.js",
             "line": 58,
             "description": "Defines a node as managed by the collision manager",
+            "itemtype": "method",
+            "name": "manageNode",
             "params": [
                 {
                     "name": "node",
@@ -2758,6 +2752,8 @@
             "file": "src\\node\\collision\\class.collision.manager.js",
             "line": 67,
             "description": "Defines a node as not managed by the collision manager",
+            "itemtype": "method",
+            "name": "unManageNode",
             "params": [
                 {
                     "name": "node",
@@ -2771,6 +2767,8 @@
             "file": "src\\node\\collision\\class.collision.tester.factory.js",
             "line": 47,
             "description": "Return a collision tester depending on the collision method",
+            "itemtype": "method",
+            "name": "getCollisionTester",
             "params": [
                 {
                     "name": "collisionMethod",
@@ -2788,6 +2786,8 @@
             "file": "src\\node\\collision\\class.collision.tester.ghost.ondemand.js",
             "line": 42,
             "description": "Indicate if two nodes are colliding",
+            "itemtype": "method",
+            "name": "isColliding",
             "params": [
                 {
                     "name": "currentNode",
@@ -2813,6 +2813,8 @@
             "file": "src\\node\\collision\\class.collision.tester.region.js",
             "line": 42,
             "description": "Indicate if two nodes are colliding",
+            "itemtype": "method",
+            "name": "isColliding",
             "params": [
                 {
                     "name": "currentNode",
@@ -3377,7 +3379,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 120,
+            "line": 118,
             "description": "High colors for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_firstColors",
@@ -3390,7 +3392,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 128,
+            "line": 126,
             "description": "Low color for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_lastColors",
@@ -3403,7 +3405,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 137,
+            "line": 135,
             "description": "Shadow color for the button in 3 mode : normal, over, deactivated. Can be null.",
             "itemtype": "property",
             "name": "_shadowColors",
@@ -3416,7 +3418,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 146,
+            "line": 144,
             "description": "Radius for the round corner in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_radiuses",
@@ -3429,7 +3431,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 155,
+            "line": 153,
             "description": "Text for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_texts",
@@ -3442,7 +3444,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 164,
+            "line": 162,
             "description": "Text size for the button in 3 mode : normal, over, deactivated",
             "itemtype": "property",
             "name": "_textSizes",
@@ -3455,7 +3457,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 173,
+            "line": 171,
             "description": "Color for the text in the 3 mode  : normal, over, deactivated",
             "itemtype": "property",
             "name": "_textColors",
@@ -3468,7 +3470,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 182,
+            "line": 180,
             "description": "Text Node encapsulating the text rendering",
             "itemtype": "property",
             "name": "_textsNode",
@@ -3478,7 +3480,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 194,
+            "line": 192,
             "itemtype": "property",
             "name": "_picto",
             "type": "{CGSGNodeImage}",
@@ -3487,7 +3489,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 199,
+            "line": 197,
             "itemtype": "property",
             "name": "_slices",
             "type": "{Array}",
@@ -3496,7 +3498,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 205,
+            "line": 203,
             "itemtype": "property",
             "name": "_pictoPosition",
             "default": "CGSGPositionMode.LEFT",
@@ -3508,7 +3510,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 213,
+            "line": 211,
             "description": "Distance between the picto and the text",
             "itemtype": "property",
             "name": "_distancePictoText",
@@ -3521,7 +3523,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 222,
+            "line": 220,
             "description": "Fake canvases to pre-render static display",
             "itemtype": "property",
             "name": "_tmpCanvas",
@@ -3533,7 +3535,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 231,
+            "line": 229,
             "description": "Padding applied to the left and right of the text",
             "itemtype": "property",
             "name": "_horizontalPadding",
@@ -3546,7 +3548,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 239,
+            "line": 237,
             "description": "Padding applied to the top and bottom of the text",
             "itemtype": "property",
             "name": "_verticalPadding",
@@ -3559,7 +3561,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 248,
+            "line": 246,
             "description": "Computed dimensions of the button in the 3 modes.\nDo not edit manually!",
             "itemtype": "property",
             "name": "_dimensions",
@@ -3571,7 +3573,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 257,
+            "line": 255,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -3582,7 +3584,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 267,
+            "line": 265,
             "description": "Current mode of the button",
             "itemtype": "property",
             "name": "_currentMode",
@@ -3595,7 +3597,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 292,
+            "line": 290,
             "description": "Change the position of the picto : CGSGPositionMode.LEFT, CGSGPositionMode.TOP, CGSGPositionMode.RIGHT, CGSGPositionMode.BOTTOM",
             "itemtype": "method",
             "name": "setPictoPosition",
@@ -3611,7 +3613,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 302,
+            "line": 300,
             "description": "Set the image for the picto",
             "itemtype": "method",
             "name": "setImage",
@@ -3627,7 +3629,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 312,
+            "line": 310,
             "description": "Set the URL for the picto",
             "itemtype": "method",
             "name": "setImageURL",
@@ -3642,7 +3644,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 326,
+            "line": 324,
             "description": "Return the slices in the image for the 3 modes",
             "itemtype": "method",
             "name": "getSlices",
@@ -3655,7 +3657,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 334,
+            "line": 332,
             "description": "Set the slices in the image for the 3 modes",
             "itemtype": "method",
             "name": "setSlices",
@@ -3671,7 +3673,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 344,
+            "line": 342,
             "description": "Return the High color for the button",
             "itemtype": "method",
             "name": "getFirstColor",
@@ -3684,7 +3686,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 352,
+            "line": 350,
             "description": "Set the values for the high color of the button",
             "itemtype": "method",
             "name": "setFirstColor",
@@ -3700,7 +3702,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 362,
+            "line": 360,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getLastColor",
@@ -3713,7 +3715,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 370,
+            "line": 368,
             "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setLastColor",
@@ -3729,7 +3731,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 380,
+            "line": 378,
             "description": "Return the Shadow color for the button",
             "itemtype": "method",
             "name": "getShadowColor",
@@ -3742,7 +3744,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 388,
+            "line": 386,
             "description": "Set the values for the shadow color of the button",
             "itemtype": "method",
             "name": "setShadowColor",
@@ -3758,7 +3760,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 398,
+            "line": 396,
             "description": "Return the Low color for the button",
             "itemtype": "method",
             "name": "getRadius",
@@ -3771,7 +3773,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 406,
+            "line": 404,
             "description": "Set the values for the low color of the button",
             "itemtype": "method",
             "name": "setRadius",
@@ -3787,7 +3789,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 416,
+            "line": 414,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getText",
@@ -3800,7 +3802,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 424,
+            "line": 422,
             "description": "Set the values for text of the button",
             "itemtype": "method",
             "name": "setText",
@@ -3819,7 +3821,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 442,
+            "line": 440,
             "description": "Return the text sizes of the button",
             "itemtype": "method",
             "name": "getTextSize",
@@ -3832,7 +3834,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 450,
+            "line": 448,
             "description": "Set the values for text sizes of the button",
             "itemtype": "method",
             "name": "setTextSize",
@@ -3848,7 +3850,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 460,
+            "line": 458,
             "description": "Return the text of the button",
             "itemtype": "method",
             "name": "getTextColor",
@@ -3861,7 +3863,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 468,
+            "line": 466,
             "description": "Set the color for text of the button",
             "itemtype": "method",
             "name": "setTextColor",
@@ -3880,7 +3882,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 480,
+            "line": 478,
             "description": "Return the horizontal padding of the button",
             "itemtype": "method",
             "name": "getHorizontalPadding",
@@ -3893,7 +3895,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 488,
+            "line": 486,
             "description": "Set the horizontal padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
@@ -3909,7 +3911,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 498,
+            "line": 496,
             "description": "Return the vertical padding of the button",
             "itemtype": "method",
             "name": "getVerticalPadding",
@@ -3922,7 +3924,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 506,
+            "line": 504,
             "description": "Set the vertical padding of the button",
             "itemtype": "method",
             "name": "setHorizontalPadding",
@@ -3938,7 +3940,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 516,
+            "line": 514,
             "itemtype": "method",
             "name": "setFixedSize",
             "params": [
@@ -3953,7 +3955,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 528,
+            "line": 526,
             "description": "Pre-render the button into a temp canvas to optimize the perfs",
             "itemtype": "method",
             "name": "_initShape",
@@ -3964,7 +3966,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 540,
+            "line": 538,
             "description": "Pre-render the shape for normal rendering",
             "itemtype": "method",
             "name": "_initShape",
@@ -3982,7 +3984,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 674,
+            "line": 672,
             "description": "Switch current mode",
             "itemtype": "method",
             "name": "setMode",
@@ -3998,7 +4000,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 685,
+            "line": 683,
             "itemtype": "method",
             "name": "getMode",
             "return": {
@@ -4010,7 +4012,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 693,
+            "line": 691,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -4028,7 +4030,7 @@
         },
         {
             "file": "src\\node\\class.node.button.js",
-            "line": 716,
+            "line": 714,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -5542,7 +5544,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 690,
+            "line": 692,
             "description": "Must be called after a render",
             "access": "protected",
             "tagname": "",
@@ -5560,7 +5562,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 712,
+            "line": 714,
             "description": "Must be called before begin to render the nodes in GHOST mode",
             "access": "protected",
             "tagname": "",
@@ -5578,7 +5580,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 727,
+            "line": 729,
             "description": "Must be called before begin to render",
             "access": "protected",
             "tagname": "",
@@ -5596,7 +5598,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 738,
+            "line": 740,
             "description": "Mark this nodes as selected",
             "itemtype": "method",
             "name": "setSelected",
@@ -5612,7 +5614,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 755,
+            "line": 757,
             "description": "return this if this nodes is under the mice cursor\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -5640,7 +5642,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 794,
+            "line": 796,
             "description": "return this if this nodes is under the region\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -5668,7 +5670,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 846,
+            "line": 848,
             "description": "Check if this nodes is under the cursor position.",
             "access": "public",
             "tagname": "",
@@ -5706,7 +5708,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 895,
+            "line": 897,
             "description": "Return all nodes (Array) in the given region",
             "access": "public",
             "tagname": "",
@@ -5714,7 +5716,7 @@
             "name": "pickNodes",
             "params": [
                 {
-                    "name": "Region",
+                    "name": "region",
                     "description": "of the canvas to check",
                     "type": "CGSGRegion"
                 },
@@ -5744,7 +5746,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 946,
+            "line": 948,
             "description": "Return true if this nodes has no child",
             "itemtype": "method",
             "name": "isALeaf",
@@ -5753,7 +5755,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 956,
+            "line": 958,
             "description": "Replace current relative position by this new one",
             "itemtype": "method",
             "name": "translateTo",
@@ -5779,7 +5781,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 970,
+            "line": 972,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateWith",
@@ -5805,7 +5807,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 984,
+            "line": 986,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateBy",
@@ -5831,7 +5833,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 998,
+            "line": 1000,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -5852,7 +5854,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1008,
+            "line": 1010,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeBy",
@@ -5873,7 +5875,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1018,
+            "line": 1020,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -5894,7 +5896,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1028,
+            "line": 1030,
             "description": "Replace current relative relativeScale by this new one",
             "itemtype": "method",
             "name": "scaleTo",
@@ -5920,7 +5922,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1043,
+            "line": 1045,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "scaleBy",
@@ -5946,7 +5948,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1058,
+            "line": 1060,
             "description": "Add to the current relative Scale",
             "itemtype": "method",
             "name": "scaleWith",
@@ -5972,7 +5974,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1073,
+            "line": 1075,
             "description": "Replace current relative relativeRotation by this new oneScale",
             "itemtype": "method",
             "name": "rotateTo",
@@ -5993,7 +5995,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1087,
+            "line": 1089,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "rotateBy",
@@ -6014,7 +6016,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1100,
+            "line": 1102,
             "description": "Add this angle to the current relative relativeRotation",
             "itemtype": "method",
             "name": "rotateWith",
@@ -6035,7 +6037,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1115,
+            "line": 1117,
             "description": "Add a new nodes into this one, at the end of the list",
             "itemtype": "method",
             "name": "addChild",
@@ -6051,7 +6053,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1125,
+            "line": 1127,
             "description": "Add a new nodes at a particular index in the list of children.\nIf the index is too large, the nodes will be inserted at the end of the list",
             "itemtype": "method",
             "name": "addChildAt",
@@ -6072,7 +6074,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1145,
+            "line": 1147,
             "description": "Remove the child passed in parameter and delete it",
             "itemtype": "method",
             "name": "removeChild",
@@ -6097,7 +6099,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1173,
+            "line": 1175,
             "description": "remove all children, delete them and reset the current parameters",
             "itemtype": "method",
             "name": "removeAll",
@@ -6106,7 +6108,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1187,
+            "line": 1189,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -6122,7 +6124,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1198,
+            "line": 1200,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -6138,7 +6140,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1211,
+            "line": 1213,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -6162,7 +6164,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1286,
+            "line": 1288,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -6180,7 +6182,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1296,
+            "line": 1298,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6194,7 +6196,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1316,
+            "line": 1318,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6208,7 +6210,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1331,
+            "line": 1333,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6222,7 +6224,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1346,
+            "line": 1348,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -6240,7 +6242,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1366,
+            "line": 1368,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -6252,7 +6254,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1373,
+            "line": 1375,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -6264,7 +6266,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1380,
+            "line": 1382,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -6276,7 +6278,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1387,
+            "line": 1389,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -6288,7 +6290,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1394,
+            "line": 1396,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -6300,7 +6302,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1401,
+            "line": 1403,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -6312,7 +6314,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1408,
+            "line": 1410,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -6324,7 +6326,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1415,
+            "line": 1417,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -6336,7 +6338,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1423,
+            "line": 1425,
             "description": "Test if this node is colliding the node in parameter. Don't forget to add nodes to CGSGCollisionManager.",
             "access": "public",
             "tagname": "",
@@ -6363,7 +6365,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1436,
+            "line": 1438,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6384,7 +6386,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1455,
+            "line": 1457,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6405,7 +6407,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1505,
+            "line": 1507,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -6425,7 +6427,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1574,
+            "line": 1576,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -9554,7 +9556,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 353,
+            "line": 352,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -9570,7 +9572,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 371,
+            "line": 370,
             "description": "Remove the nodes selected in the scene graph",
             "itemtype": "method",
             "name": "deleteSelected",
@@ -9579,7 +9581,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 384,
+            "line": 383,
             "description": "Deselect all nodes",
             "access": "public",
             "tagname": "",
@@ -9597,7 +9599,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 400,
+            "line": 399,
             "description": "the main rendering loop",
             "access": "protected",
             "tagname": "",
@@ -9608,7 +9610,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 447,
+            "line": 446,
             "description": "Call this to start the update of the scene",
             "access": "public",
             "tagname": "",
@@ -9652,7 +9654,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 504,
+            "line": 512,
             "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
             "itemtype": "method",
             "name": "_updateFramerateContainer",
@@ -9663,7 +9665,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 515,
+            "line": 523,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -9680,7 +9682,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 524,
+            "line": 532,
             "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
             "access": "public",
             "tagname": "",
@@ -9698,7 +9700,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 540,
+            "line": 548,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -9712,7 +9714,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 549,
+            "line": 557,
             "description": "click mouse Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9730,7 +9732,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 560,
+            "line": 568,
             "description": "touch down Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9748,7 +9750,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 608,
+            "line": 616,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9770,7 +9772,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 701,
+            "line": 709,
             "description": "mouse move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9788,7 +9790,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 711,
+            "line": 719,
             "description": "touch move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9806,7 +9808,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 725,
+            "line": 733,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9823,7 +9825,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 960,
+            "line": 969,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -9867,7 +9869,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 989,
+            "line": 998,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9885,7 +9887,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 999,
+            "line": 1008,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9903,7 +9905,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1013,
+            "line": 1022,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -9920,7 +9922,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1072,
+            "line": 1081,
             "description": "Select the nodes under the drag select rectangle",
             "access": "protected",
             "tagname": "",
@@ -9931,7 +9933,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1104,
+            "line": 1113,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -9949,7 +9951,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1116,
+            "line": 1125,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -9970,7 +9972,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1140,
+            "line": 1149,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -9991,7 +9993,7 @@
         },
         {
             "file": "src\\class.scene.js",
-            "line": 1158,
+            "line": 1167,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",
@@ -10514,6 +10516,17 @@
         {
             "file": "src\\constants.js",
             "line": 120,
+            "description": "Default maximum number of frames per second.",
+            "itemtype": "property",
+            "name": "CGSG_DEFAULT_MAX_FRAMERATE",
+            "default": "NaN",
+            "type": "{Number}",
+            "class": "GLOBAL_CONSTANTS",
+            "module": "Util"
+        },
+        {
+            "file": "src\\constants.js",
+            "line": 128,
             "description": "Default value for the double touch detection.\nThis property is the delay between 2 touches to be considered as a dbl touch event.",
             "itemtype": "property",
             "name": "CGSG_DEFAULT_DBLTOUCH_DELAY",
@@ -10652,6 +10665,20 @@
         {
             "file": "src\\globals.js",
             "line": 143,
+            "description": "Maximum number of frames per second. Set it if you want your application to slow down.",
+            "itemtype": "property",
+            "name": "cgsgMaxFramerate",
+            "default": "CGSG_DEFAULT_MAX_FRAMERATE",
+            "type": "{Number}",
+            "example": [
+                "\n    //limit the fps of the application to 30\n    cgsgMaxFramerate = 30;"
+            ],
+            "class": "GLOBAL_PROPERTIES",
+            "module": "Util"
+        },
+        {
+            "file": "src\\globals.js",
+            "line": 154,
             "description": "Instance of CollisionTesterFactory",
             "itemtype": "property",
             "name": "cgsgCollisionTestFactory",
@@ -10661,7 +10688,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 150,
+            "line": 161,
             "description": "Object that defines the performance keys.\nChange values to adapt your project.\n\ncgsgPerformanceKeys._collisionMethod =\n\t   \t\tKey to specify collision detection mod\n\t   \t    Use setCollisionMethod to modify value;\n\t   \t\tDefault : CGSGCollisionMethod.REGION\n\ncgsgPerformanceKeys.collisionTester =\n\t   \t\tCollision tester depending on _collisionMethod;\n\t   \t\tDefault : CGSGCollisionRegionTester",
             "itemtype": "property",
             "name": "cgsgPerformanceKeys",
@@ -10671,7 +10698,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 173,
+            "line": 184,
             "description": "Redefines the collision method",
             "itemtype": "method",
             "name": "setCollisionMethod",
@@ -10684,5 +10711,6 @@
             "class": "GLOBAL_PROPERTIES",
             "module": "Util"
         }
-    ]
+    ],
+    "warnings": []
 }

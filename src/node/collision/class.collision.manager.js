@@ -40,7 +40,7 @@ var CGSGCollisionManager = CGSGObject.extend(
 
         /**
          * Indicate if two nodes are colliding
-         *
+         * @method isColliding
          * @param currentNode
          * @param testedNode
          * @param threshold
@@ -57,7 +57,7 @@ var CGSGCollisionManager = CGSGObject.extend(
 
         /**
          * Defines a node as managed by the collision manager
-         *
+         * @method manageNode
          * @param node
          */
         manageNode : function(node){
@@ -66,7 +66,7 @@ var CGSGCollisionManager = CGSGObject.extend(
 
         /**
          * Defines a node as not managed by the collision manager
-         *
+         * @method unManageNode
          * @param node
          */
         unManageNode : function(node){
