@@ -53,6 +53,7 @@ var CGMain = CGSGScene.extend(
 		 *
 		 */
 		createScene : function () {
+
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 			this.sceneGraph.addNode(this.rootNode, null);

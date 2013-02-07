@@ -141,6 +141,17 @@ var cgsgGhostColor = "#FF0000";
 var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
 
 /**
+ * Maximum number of frames per second. Set it if you want your application to slow down.
+ * @property cgsgMaxFramerate
+ * @default CGSG_DEFAULT_MAX_FRAMERATE
+ * @type {Number}
+ * @example
+ *     //limit the fps of the application to 30
+ *     cgsgMaxFramerate = 30;
+ */
+var cgsgMaxFramerate = CGSG_DEFAULT_MAX_FRAMERATE;
+
+/**
  * Instance of CollisionTesterFactory
  * @property cgsgCollisionTestFactory
  * @type {CGSGCollisionTesterFactory}

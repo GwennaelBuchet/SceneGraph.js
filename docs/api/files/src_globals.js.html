@@ -230,7 +230,7 @@ var CGSGPickNodeMethod = {
  * @static
  * @type {String}
  *&#x2F;
-var cgsgVersion = &quot;1.4.1&quot;;
+var cgsgVersion = &quot;1.4.2&quot;;
 
 &#x2F;**
  * Current display ratio
@@ -313,6 +313,17 @@ var cgsgGhostColor = &quot;#FF0000&quot;;
  * @type {Number}
  *&#x2F;
 var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
+
+&#x2F;**
+ * Maximum number of frames per second. Set it if you want your application to slow down.
+ * @property cgsgMaxFramerate
+ * @default CGSG_DEFAULT_MAX_FRAMERATE
+ * @type {Number}
+ * @example
+ *     &#x2F;&#x2F;limit the fps of the application to 30
+ *     cgsgMaxFramerate = 30;
+ *&#x2F;
+var cgsgMaxFramerate = CGSG_DEFAULT_MAX_FRAMERATE;
 
 &#x2F;**
  * Instance of CollisionTesterFactory

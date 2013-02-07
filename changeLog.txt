@@ -52,6 +52,7 @@ v1.4.2
 CHANGES:
 - Correction. Compute absolute matrix for children nodes while moving.
 - Correction. Apply scale on rotation center too.
+- Evolution. Add of cgsgMaxFramerate property to limit the speed of the rendering loop
 
 ---------------------------------------------------------------------
 

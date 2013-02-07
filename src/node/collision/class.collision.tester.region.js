@@ -41,7 +41,7 @@ var CGSGCollisionRegionTester = CGSGObject.extend(
 
         /**
          * Indicate if two nodes are colliding
-         *
+         * @method isColliding
          * @param currentNode
          * @param testedNode
          * @param threshold
