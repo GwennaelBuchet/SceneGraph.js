@@ -563,8 +563,8 @@ var CGSGNodeText = CGSGNode.extend(
             var decalX = 0;
             var decalY = this._computeDecalY();
 
-            this._absolutePosition = this.getAbsolutePosition();
-            this._absoluteScale = this.getAbsoluteScale();
+            this._absolutePosition = this.getAbsolutePosition(false);
+            this._absoluteScale = this.getAbsoluteScale(false);
 
             var height = this.getHeight();
             var width = this.getWidth();

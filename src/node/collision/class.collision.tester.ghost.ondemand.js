@@ -73,7 +73,8 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
             tmpCanvas.width = currentNode.getAbsoluteWidth();
             tmpCanvas.height = currentNode.getAbsoluteHeight();
             var ctx = tmpCanvas.getContext("2d");
-            ctx.scale(currentNode.getAbsoluteScale().x, currentNode.getAbsoluteScale().y);
+            //ctx.scale(currentNode.getAbsoluteScale().x, currentNode.getAbsoluteScale().y);
+            ctx.scale(currentNode._absoluteScale.x, currentNode._absoluteScale.y);
 
             // draw 1st at 0x0; (backup position, render, restore position)
             var backupPosition = currentNode.position;
@@ -95,7 +96,8 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
 
             // compute both with mask at deltas
             ctx.globalCompositeOperation = "destination-in";
-            ctx.drawImage(tmpCanvas2, deltaX / currentNode.getAbsoluteScale().x, deltaY / currentNode.getAbsoluteScale().y);
+            //ctx.drawImage(tmpCanvas2, deltaX / currentNode.getAbsoluteScale().x, deltaY / currentNode.getAbsoluteScale().y);
+            ctx.drawImage(tmpCanvas2, deltaX / currentNode._absoluteScale.x, deltaY / currentNode._absoluteScale.y);
 
             // WARN : security exception with chrome when calling .html directly (no apache server)
             var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);

@@ -765,8 +765,8 @@ var CGSGScene = CGSGObject.extend(
                             }
 
                             if (canMove) {
-                                this._selectedNode.translateWith(nodeOffsetX, nodeOffsetY);
-                                this._selectedNode.computeAbsoluteMatrix(true);
+                                this._selectedNode.translateWith(nodeOffsetX, nodeOffsetY, true);
+                                //this._selectedNode.computeAbsoluteMatrix(true);
                                 if (this._selectedNode.onDrag !== null) {
                                     this._selectedNode.onDrag({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
                                 }

@@ -182,7 +182,7 @@ var CGSGSceneGraph = CGSGObject.extend(
                         this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
 
                         var n = node;
-                        var t = n.getAbsolutePosition();
+                        var t = n._absolutePosition;//getAbsolutePosition(false);
 
                         this.context.translate(t.x, t.y);
                         this.context.rotate(node._absoluteRotation);
@@ -217,7 +217,7 @@ var CGSGSceneGraph = CGSGObject.extend(
         selectNode:function (nodeToSelect) {
             if (!nodeToSelect.isSelected) {
                 nodeToSelect.setSelected(true);
-                nodeToSelect.computeAbsoluteMatrix();
+                nodeToSelect.computeAbsoluteMatrix(false);
                 this.selectedNodes[this.selectedNodes.length] = nodeToSelect;
             }
         },

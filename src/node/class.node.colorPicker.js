@@ -221,11 +221,11 @@ var CGSGNodeColorPicker = CGSGNode.extend(
 
         /**
          * @method getColorAt
-         * @param {CGSGPosition} relativePosition position of the cursor inside the colorPicker
+         * @param {CGSGPosition} absolutePosition position of the cursor inside the colorPicker
          * @return {Object} Object with {r:x, g:x, b:x} value
          */
         getColorAt:function (absolutePosition) {
-            var ap = this.getAbsolutePosition();
+            var ap = this._absolutePosition;//getAbsolutePosition();
             var aw = this.getAbsoluteWidth();
             //get the color under the mice
             var data = this._imgData.data;
