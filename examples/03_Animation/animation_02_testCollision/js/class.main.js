@@ -68,7 +68,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(buttonNode);
 
 			//the blue square
-			this.blueSquareNode = new CGSGNodeSquare(220, 80, 260, 160);
+			this.blueSquareNode = new CGSGNodeSquare(240, 80, 260, 160);
 			this.blueSquareNode.color = "blue";
 			this.blueSquareNode.isResizable = true;
 			this.blueSquareNode.isDraggable = true;
@@ -83,7 +83,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(this.redSquareNode);
 
             //the red square
-            this.greenSquareNode = new CGSGNodeSquare(0, 60, 100, 100);
+            this.greenSquareNode = new CGSGNodeSquare(110, 60, 80, 80);
             this.greenSquareNode.color = "green";
             this.greenSquareNode.isResizable = true;
             this.greenSquareNode.isDraggable = true;
