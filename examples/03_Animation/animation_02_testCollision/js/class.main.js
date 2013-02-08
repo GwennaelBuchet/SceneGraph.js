@@ -82,10 +82,18 @@ var CGMain = CGSGScene.extend(
 			this.redSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.redSquareNode);
 
+            //the red square
+            this.greenSquareNode = new CGSGNodeSquare(0, 60, 100, 100);
+            this.greenSquareNode.color = "green";
+            this.greenSquareNode.isResizable = true;
+            this.greenSquareNode.isDraggable = true;
+            this.redSquareNode.addChild(this.greenSquareNode);
+
             //indicate that the squares will be checked by the collision manager
             //(new to v1.4.1)
             this.blueSquareNode.isCollisionManaged = true;
             this.redSquareNode.isCollisionManaged = true;
+            this.greenSquareNode.isCollisionManaged = true;
 
 			//the log text
 			this.logNode = new CGSGNodeText(160, 10, "Collision : false");
@@ -133,7 +141,8 @@ var CGMain = CGSGScene.extend(
 			//uncomment to chek the collision with all brothers (text node included)
 			//var isColliding = this.redSquareNode.isCollidingABrother();
 
-			var isColliding = this.redSquareNode.isColliding(this.blueSquareNode, 0);
+			//var isColliding = this.redSquareNode.isColliding(this.blueSquareNode, 0);
+			var isColliding = this.greenSquareNode.isColliding(this.blueSquareNode, 0);
 			this.logNode.setText("Collision : " + isColliding, true);
 		}
 
