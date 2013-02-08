@@ -768,8 +768,8 @@ var CGSGNode = CGSGObject.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * *&#x2F;
 		renderSelected: function (context) {
-			this._absolutePosition = this.getAbsolutePosition();
-			this._absoluteScale = this.getAbsoluteScale();
+			this._absolutePosition = this.getAbsolutePosition(false);
+			this._absoluteScale = this.getAbsoluteScale(false);
 
 			context.strokeStyle = this.selectionLineColor;
 
@@ -1038,7 +1038,7 @@ var CGSGNode = CGSGObject.extend(
 				childAbsoluteScale.multiply(this.scale);
 			}
 			else {
-				childAbsoluteScale = this.getAbsoluteScale();
+				childAbsoluteScale = this.getAbsoluteScale(false);
 			}
 
 			if (this.isTraversable &amp;&amp; (this.isClickable || this.isResizable || this.isDraggable)) {
@@ -1088,7 +1088,7 @@ var CGSGNode = CGSGObject.extend(
 				childAbsoluteScale.multiply(this.scale);
 			}
 			else {
-				childAbsoluteScale = this.getAbsoluteScale();
+				childAbsoluteScale = this.getAbsoluteScale(false);
 			}
 
 			if (this.isTraversable &amp;&amp; (&#x2F;*this.isClickable ||*&#x2F; this.isResizable || this.isDraggable)) {
@@ -1139,7 +1139,7 @@ var CGSGNode = CGSGObject.extend(
 		translateTo: function (newRelativeX, newRelativeY, computeAbsoluteValue) {
 			this.position.translateTo(newRelativeX, newRelativeY);
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absolutePosition = this.getAbsolutePosition();
+				this._absolutePosition = this.getAbsolutePosition(true);
 			}
 		},
 
@@ -1153,7 +1153,7 @@ var CGSGNode = CGSGObject.extend(
 		translateWith: function (x, y, computeAbsoluteValue) {
 			this.position.translateWith(x, y);
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absolutePosition = this.getAbsolutePosition();
+				this._absolutePosition = this.getAbsolutePosition(true);
 			}
 		},
 
@@ -1167,7 +1167,7 @@ var CGSGNode = CGSGObject.extend(
 		translateBy: function (x, y, computeAbsoluteValue) {
 			this.position.translateBy(x, y);
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absolutePosition = this.getAbsolutePosition();
+				this._absolutePosition = this.getAbsolutePosition(true);
 			}
 		},
 
@@ -1212,7 +1212,7 @@ var CGSGNode = CGSGObject.extend(
 			this.scale.x = scaleX;
 			this.scale.y = scaleY;
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteScale = this.getAbsoluteScale();
+				this._absoluteScale = this.getAbsoluteScale(true);
 			}
 		},
 
@@ -1227,7 +1227,7 @@ var CGSGNode = CGSGObject.extend(
 			this.scale.x *= scaleFactorX;
 			this.scale.y *= scaleFactorY;
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteScale = this.getAbsoluteScale();
+				this._absoluteScale = this.getAbsoluteScale(true);
 			}
 		},
 
@@ -1242,7 +1242,7 @@ var CGSGNode = CGSGObject.extend(
 			this.scale.x += x;
 			this.scale.y += y;
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteScale = this.getAbsoluteScale();
+				this._absoluteScale = this.getAbsoluteScale(true);
 			}
 		},
 
@@ -1256,7 +1256,7 @@ var CGSGNode = CGSGObject.extend(
 		rotateTo: function (newAngle, computeAbsoluteValue) {
 			this.rotation.rotateTo(newAngle);
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteRotation = this.getAbsoluteRotation();
+				this._absoluteRotation = this.getAbsoluteRotation(true);
 			}
 		},
 
@@ -1269,7 +1269,7 @@ var CGSGNode = CGSGObject.extend(
 		rotateBy: function (rotateFactor, computeAbsoluteValue) {
 			this.rotation.rotateBy(rotateFactor);
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteRotation = this.getAbsoluteRotation();
+				this._absoluteRotation = this.getAbsoluteRotation(true);
 			}
 		},
 
@@ -1282,7 +1282,7 @@ var CGSGNode = CGSGObject.extend(
 		rotateWith: function (angle, computeAbsoluteValue) {
 			this.rotation.rotateWith(angle);
 			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteRotation = this.getAbsoluteRotation();
+				this._absoluteRotation = this.getAbsoluteRotation(true);
 			}
 		},
 
@@ -1448,13 +1448,13 @@ var CGSGNode = CGSGObject.extend(
 
 			&#x2F;*if (this.needToKeepAbsoluteMatrix) {
 			 if (attribute.indexOf(&quot;position&quot;) == 0) {
-			 this._absolutePosition = this.getAbsolutePosition();
+			 this._absolutePosition = this.getAbsolutePosition(true);
 			 }
 			 else if (attribute.indexOf(&quot;rotation&quot;) == 0) {
-			 this._absoluteRotation = this.getAbsoluteRotation();
+			 this._absoluteRotation = this.getAbsoluteRotation(true);
 			 }
 			 else if (attribute.indexOf(&quot;scale&quot;) == 0) {
-			 this._absoluteScale = this.getAbsoluteScale();
+			 this._absoluteScale = this.getAbsoluteScale(true);
 			 }
 			 }*&#x2F;
 		},
@@ -1474,7 +1474,7 @@ var CGSGNode = CGSGObject.extend(
 		 * @method getAbsolutePosition
 		 * @return {CGSGPosition} the absolute positions of this node
 		 *&#x2F;
-		getAbsolutePosition: function () {
+		getAbsolutePosition: function (recursive) {
 			var n = this;
 			var translation = this.position.copy();
 			while (n._parentNode !== null) {
@@ -1483,8 +1483,16 @@ var CGSGNode = CGSGObject.extend(
 			}
 
 			if (this._parentNode !== null) {
-				translation.add(this._parentNode.getAbsolutePosition());
+				translation.add(this._parentNode.getAbsolutePosition(false));
 			}
+
+            if (recursive !== false) {
+                for (var c = 0; c &lt; this.children.length; c++) {
+                    if (cgsgExist(this.children[c])) {
+                        this.children[c]._absolutePosition = this.children[c].getAbsolutePosition(recursive);
+                    }
+                }
+            }
 
 			return translation;
 		},
@@ -1494,13 +1502,22 @@ var CGSGNode = CGSGObject.extend(
 		 * @method getAbsoluteScale
 		 * @return {CGSGScale} the absolute scale of this node
 		 *&#x2F;
-		getAbsoluteScale: function () {
+		getAbsoluteScale: function (recursive) {
 			var n = this;
 			var s = this.scale.copy();
 			while (n._parentNode !== null) {
 				s.multiply(n._parentNode.scale);
 				n = n._parentNode;
 			}
+
+            if (recursive !== false) {
+                for (var c = 0; c &lt; this.children.length; c++) {
+                    if (cgsgExist(this.children[c])) {
+                        this.children[c]._absoluteScale = this.children[c].getAbsoluteScale(recursive);
+                    }
+                }
+            }
+
 			return s;
 		},
 
@@ -1509,13 +1526,22 @@ var CGSGNode = CGSGObject.extend(
 		 * @method getAbsoluteRotation
 		 * @return {CGSGRotation} the absolute rotation of this node
 		 *&#x2F;
-		getAbsoluteRotation: function () {
+		getAbsoluteRotation: function (recursive) {
 			var n = this;
 			var r = this.rotation.copy();
 			while (n._parentNode !== null) {
 				r.add(n._parentNode.rotation.angle);
 				n = n._parentNode;
 			}
+
+            if (recursive !== false) {
+                for (var c = 0; c &lt; this.children.length; c++) {
+                    if (cgsgExist(this.children[c])) {
+                        this.children[c]._absoluteRotation = this.children[c].getAbsoluteRotation(recursive);
+                    }
+                }
+            }
+
 			return r;
 		},
 
@@ -1526,9 +1552,9 @@ var CGSGNode = CGSGObject.extend(
 		 * @param {Boolean} recursive if !== false, compute recursively
 		 * *&#x2F;
 		computeAbsoluteMatrix: function (recursive) {
-			this._absolutePosition = this.getAbsolutePosition();
-			this._absoluteScale = this.getAbsoluteScale();
-			this._absoluteRotation = this.getAbsoluteRotation();
+			this._absolutePosition = this.getAbsolutePosition(false);
+			this._absoluteScale = this.getAbsoluteScale(false);
+			this._absoluteRotation = this.getAbsoluteRotation(false);
 
 			if (recursive !== false) {
 				for (var c = 0; c &lt; this.children.length; c++) {

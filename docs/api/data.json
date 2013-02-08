@@ -4403,7 +4403,7 @@
             "name": "getColorAt",
             "params": [
                 {
-                    "name": "relativePosition",
+                    "name": "absolutePosition",
                     "description": "position of the cursor inside the colorPicker",
                     "type": "CGSGPosition"
                 }
@@ -6196,7 +6196,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1318,
+            "line": 1326,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6210,7 +6210,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1333,
+            "line": 1350,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6224,7 +6224,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1348,
+            "line": 1374,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -6242,7 +6242,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1368,
+            "line": 1394,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -6254,7 +6254,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1375,
+            "line": 1401,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -6266,7 +6266,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1382,
+            "line": 1408,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -6278,7 +6278,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1389,
+            "line": 1415,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -6290,7 +6290,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1396,
+            "line": 1422,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -6302,7 +6302,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1403,
+            "line": 1429,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -6314,7 +6314,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1410,
+            "line": 1436,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -6326,7 +6326,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1417,
+            "line": 1443,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -6338,7 +6338,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1425,
+            "line": 1451,
             "description": "Test if this node is colliding the node in parameter. Don't forget to add nodes to CGSGCollisionManager.",
             "access": "public",
             "tagname": "",
@@ -6365,7 +6365,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1438,
+            "line": 1464,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6386,7 +6386,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1457,
+            "line": 1483,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6407,7 +6407,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1507,
+            "line": 1533,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -6427,7 +6427,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1576,
+            "line": 1602,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",

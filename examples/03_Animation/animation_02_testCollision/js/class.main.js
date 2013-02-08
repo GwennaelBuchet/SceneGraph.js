@@ -82,8 +82,7 @@ var CGMain = CGSGScene.extend(
 			this.rootNode.addChild(this.redSquareNode);
 
             //the green square
-            this.greenSquareNode = new CGSGNodeSquare(120, 60, 100, 100);
-            this.greenSquareNode = new CGSGNodeSquare(120, 60, 100, 100);
+            this.greenSquareNode = new CGSGNodeSquare(100, 60, 100, 100);
             this.greenSquareNode.color = "green";
             this.greenSquareNode.isResizable = true;
             this.greenSquareNode.isDraggable = true;
