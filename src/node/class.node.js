@@ -860,8 +860,7 @@ var CGSGNode = CGSGObject.extend(
 			var selectedNode = null;
 			var childAbsoluteScale = null;
 			if (cgsgExist(absoluteScale)) {
-				childAbsoluteScale = absoluteScale.copy();
-				childAbsoluteScale.multiply(this.scale);
+				childAbsoluteScale = absoluteScale.multiply(this.scale);
 			}
 			else {
 				childAbsoluteScale = this.getAbsoluteScale(false);
@@ -910,8 +909,7 @@ var CGSGNode = CGSGObject.extend(
 
 			var childAbsoluteScale = null;
 			if (cgsgExist(absoluteScale)) {
-				childAbsoluteScale = absoluteScale.copy();
-				childAbsoluteScale.multiply(this.scale);
+				childAbsoluteScale = absoluteScale.multiply(this.scale);
 			}
 			else {
 				childAbsoluteScale = this.getAbsoluteScale(false);
@@ -1304,12 +1302,12 @@ var CGSGNode = CGSGObject.extend(
 			var n = this;
 			var translation = this.position.copy();
 			while (n._parentNode !== null) {
-				translation.multiply(n._parentNode.scale);
+				translation.multiplyEquals(n._parentNode.scale);
 				n = n._parentNode;
 			}
 
 			if (this._parentNode !== null) {
-				translation.add(this._parentNode.getAbsolutePosition(false));
+				translation.addEquals(this._parentNode.getAbsolutePosition(false));
 			}
 
             if (recursive !== false) {
