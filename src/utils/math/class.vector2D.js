@@ -127,7 +127,7 @@ var CGSGVector2D = CGSGObject.extend(
 		* @method divide
 		* @param {CGSGVector2D} vector
 		*/
-		divide = function(vector) {
+		divide: function(vector) {
 			return new CGSGVector2D(this.x / vector.x, this.y / vector.y);
 		},
 	
