@@ -56,7 +56,7 @@ var CGSGPickNodeMethod = {
  * @static
  * @type {String}
  */
-var cgsgVersion = "1.4.2";
+var cgsgVersion = "2.0.0-SNAPSHOT";
 
 /**
  * Current display ratio

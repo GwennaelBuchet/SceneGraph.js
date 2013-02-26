@@ -346,12 +346,12 @@ var CGSGRotation = CGSGObject.extend(
 		},
 
 		&#x2F;**
-		 * Substract this angle to the current one
+		 * Subtract this angle to the current one
 		 * @public
-		 * @method substract
+		 * @method subtract
 		 * @param {Number} angle
 		 *&#x2F;
-		substract : function (angle) {
+		subtract : function (angle) {
 			this.angle -= angle;
 		},
 
@@ -498,10 +498,10 @@ var CGSGRegion = CGSGObject.extend(
 		},
 
 		&#x2F;**
-		 * @method substract
+		 * @method subtract
 		 * @param {CGSGRegion} region
 		 *&#x2F;
-		substract : function (region) {
+		subtract : function (region) {
 			this.position.translateWith(-region.position.x, -region.position.y);
 			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
 		}
