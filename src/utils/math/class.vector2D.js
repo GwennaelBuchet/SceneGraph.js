@@ -257,7 +257,7 @@ var CGSGVector2D = CGSGObject.extend(
 			var perpVector = this.perp();
 	
 			return perpVector.dot(vector) < 0 ? -1 : 1;
-		}
+		},
 	
 		/**
 		* Get dot product of this vector and another vector
