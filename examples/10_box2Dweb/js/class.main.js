@@ -37,7 +37,7 @@ var b2Vec2 = Box2D.Common.Math.b2Vec2
     ;
 
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
         {
             initialize: function (canvas) {
                 this._super(canvas);

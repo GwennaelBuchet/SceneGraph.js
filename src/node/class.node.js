@@ -53,7 +53,7 @@ var CGSGNode = CGSGObject.extend(
             this.name = "";
             /**
              * Indicate whether this node is selected or not.
-             * Use CGSGScene::scenegraph.selectNode(nodeToSelect) to select a node
+             * Use CGSGView::scenegraph.selectNode(nodeToSelect) to select a node
              * @property isSelected
              * @readonly
              * @default false

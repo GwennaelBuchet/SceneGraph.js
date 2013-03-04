@@ -25,7 +25,7 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  * @date 10/08/2012
  * */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
     {
         initialize:function (canvas) {
 

@@ -28,7 +28,7 @@
  * Purpose :
  * animated sprite example
  * */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
     {
         initialize:function (canvas) {
             this._super(canvas);

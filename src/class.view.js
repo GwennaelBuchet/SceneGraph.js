@@ -1,186 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>src\class.scene.js - cgSceneGraph</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
-    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
-    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
-    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
-</head>
-<body class="yui3-skin-sam">
-
-<div id="doc">
-    <div id="bd" class="yui3-g">
-
-        <div class="yui3-u-1-4">
-            <div id="docs-sidebar" class="sidebar apidocs">
-                <div id="api-list">
-    <h2 class="off-left">APIs</h2>
-    <div id="api-tabview" class="tabview">
-        <ul class="tabs">
-            <li><a href="#api-classes">Classes</a></li>
-            <li><a href="#api-modules">Modules</a></li>
-        </ul>
-
-        <div id="api-tabview-filter">
-            <input type="search" id="api-filter" placeholder="Type to filter APIs">
-        </div>
-
-        <div id="api-tabview-panel">
-            <ul id="api-classes" class="apis classes">
-            
-                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGParticle.html">CGSGParticle</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGPosition.html">CGSGPosition</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGRegion.html">CGSGRegion</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGRotation.html">CGSGRotation</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGScale.html">CGSGScale</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGScene.html">CGSGScene</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGTimeline.html">CGSGTimeline</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGTraverser.html">CGSGTraverser</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGVector2D.html">CGSGVector2D</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
-            
-                <li><a href="..&#x2F;classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
-            
-                <li><a href="..&#x2F;classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
-            
-                <li><a href="..&#x2F;classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
-            
-                <li><a href="..&#x2F;classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
-            
-            </ul>
-
-            <ul id="api-modules" class="apis modules">
-            
-                <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
-            
-                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
-            
-                <li><a href="..&#x2F;modules/Math.html">Math</a></li>
-            
-                <li><a href="..&#x2F;modules/Node.html">Node</a></li>
-            
-                <li><a href="..&#x2F;modules/ParticleSystem.html">ParticleSystem</a></li>
-            
-                <li><a href="..&#x2F;modules/Scene.html">Scene</a></li>
-            
-                <li><a href="..&#x2F;modules/Util.html">Util</a></li>
-            
-            </ul>
-        </div>
-    </div>
-</div>
-
-            </div>
-        </div>
-        <div class="yui3-u-3-4">
-                <div id="api-options">
-        Show:
-        <label for="api-show-inherited">
-            <input type="checkbox" id="api-show-inherited" checked>
-            Inherited
-        </label>
-
-        <label for="api-show-protected">
-            <input type="checkbox" id="api-show-protected">
-            Protected
-        </label>
-
-        <label for="api-show-private">
-            <input type="checkbox" id="api-show-private">
-            Private
-        </label>
-        <label for="api-show-deprecated">
-            <input type="checkbox" id="api-show-deprecated">
-            Deprecated
-        </label>
-
-    </div>
-
-
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <h1 class="file-heading">File: src\class.scene.js</h1>
-
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;*
+/*
  * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
  *
- * License&#x2F;Terms of Use
+ * License/Terms of Use
  *
  * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
- * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
+ * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -188,7 +12,7 @@
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
  *
- *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -197,36 +21,36 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- * *&#x2F;
+ * */
 
-&quot;use strict&quot;;
+"use strict";
 
-&#x2F;**
+/**
  * Provides requestAnimationFrame in a cross browser way.
  * @property cgsgGlobalRenderingTimer
  * @private
  * @type {Number}
- *&#x2F;
+ */
 var cgsgGlobalRenderingTimer = null;
-&#x2F;&#x2F;var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
+//var cgsgGlobalFramerate = CGSG_DEFAULT_FRAMERATE;
 (function () {
     var lastTime = 0;
-    var vendors = [&#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27;];
-    for (var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x] + &#x27;RequestAnimationFrame&#x27;];
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
         window.cancelAnimationFrame =
-            window[vendors[x] + &#x27;CancelAnimationFrame&#x27;] || window[vendors[x] + &#x27;CancelRequestAnimationFrame&#x27;];
+            window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
 
     if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = function (callback, element) {
             var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 17 - (currTime - lastTime)); &#x2F;&#x2F;1000&#x2F;60 = 16.667
+            var timeToCall = Math.max(0, 17 - (currTime - lastTime)); //1000/60 = 16.667
             cgsgGlobalRenderingTimer = window.setTimeout(function () {
                 callback(currTime + timeToCall);
             }, timeToCall);
             lastTime = currTime + timeToCall;
-            &#x2F;&#x2F;return id;
+            //return id;
         };
     }
 
@@ -237,151 +61,151 @@ var cgsgGlobalRenderingTimer = null;
     }
 }());
 
-&#x2F;**
+/**
  * Represent the scene of the application.
  * It encapsulates the scene graph itself and several methods to track mouse and touch events, ...
  *
- * @class CGSGScene
+ * @class CGSGView
  * @constructor
  * @module Scene
  * @main Scene
  * @extends {Object}
  * @param {HTMLElement} canvas a handler to the canvas HTML element
- * @type {CGSGScene}
+ * @type {CGSGView}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- *&#x2F;
-var CGSGScene = CGSGObject.extend(
+ */
+var CGSGView = CGSGObject.extend(
     {
         initialize: function (canvas) {
 
-            &#x2F;&#x2F;detect the current explorer to apply correct parameters
+            //detect the current explorer to apply correct parameters
             cgsgDetectCurrentExplorer();
 
-            &#x2F;&#x2F;for IE10 on Win8 : disable the default touch actions
-            if (typeof canvas.style.msTouchAction != &#x27;undefined&#x27;) {
-                canvas.style.msTouchAction = &quot;none&quot;;
+            //for IE10 on Win8 : disable the default touch actions
+            if (typeof canvas.style.msTouchAction != 'undefined') {
+                canvas.style.msTouchAction = "none";
             }
 
-            &#x2F;&#x2F;noinspection JSUndeclaredVariable
+            //noinspection JSUndeclaredVariable
             CGSG.canvas = canvas;
-            &#x2F;**
+            /**
              * @property context
              * @type {CanvasRenderingContext2D}
-             *&#x2F;
-            CGSG.context = canvas.getContext(&quot;2d&quot;);
+             */
+            CGSG.context = canvas.getContext("2d");
 
-            &#x2F;**
+            /**
              * Multiselection boolean.
              * @property allowMultiSelect
              * @default true
              * @type {Boolean}
-             *&#x2F;
+             */
             this.allowMultiSelect = true;
 
-            &#x2F;**
+            /**
              * Fill color for the drag selection selection rectangle
              * @property dragSelectFillColor
-             * @default &quot;#C0C0C0&quot;
+             * @default "#C0C0C0"
              * @type {String}
-             *&#x2F;
+             */
             this.dragSelectFillColor = CGSG_DEFAULT_DRAG_SELECT_FILL_COLOR;
 
-            &#x2F;**
+            /**
              * Stroke color for the drag selection selection rectangle
              * @property dragSelectStrokeColor
-             * @default &quot;#808080&quot;
+             * @default "#808080"
              * @type {String}
-             *&#x2F;
+             */
             this.dragSelectStrokeColor = CGSG_DEFAULT_DRAG_SELECT_STROKE_COLOR;
 
-            &#x2F;**
+            /**
              * Alpha value for the drag selection rectangle
              * @property dragSelectAlpha
              * @default 0.6
              * @type {Number}
-             *&#x2F;
+             */
             this.dragSelectAlpha = CGSG_DEFAULT_DRAG_SELECT_ALPHA;
 
-            &#x2F;**
+            /**
              * The scene graph itself
              * @property sceneGraph
              * @type {CGSGSceneGraph}
-             *&#x2F;
+             */
             this.sceneGraph = new CGSGSceneGraph(CGSG.canvas, CGSG.context);
 
-            &#x2F;**
+            /**
              * List of the current selected nodes in the scenegraph.
              * @property selectedNodes
              * @type {Array}
-             *&#x2F;
+             */
             this.selectedNodes = this.sceneGraph.selectedNodes;
 
-            &#x2F;**
+            /**
              * Current framerate of the application
              * @property fps
              * @type {Number}
-             *&#x2F;
+             */
             this.fps = 0;
 
-            &#x2F;*
+            /*
              * If true, framework will take care of multi-touch : NOT EFFECTIVE YET
              * @property multitouch
              * @default false
              * @type {Boolean}
-             *&#x2F;
-            &#x2F;&#x2F;this.multitouch = false;
+             */
+            //this.multitouch = false;
 
-            &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; @private &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
-            &#x2F;**
+            ////// @private /////////
+            /**
              * @property _isRunning
              * @type {Boolean}
              * @private
-             *&#x2F;
+             */
             this._isRunning = false;
-            &#x2F;&#x2F; when set to true, the canvas will redraw everything
-            &#x2F;&#x2F; invalidate() just sets this to false right now
-            &#x2F;&#x2F; we want to call invalidate() whenever we make a change
+            // when set to true, the canvas will redraw everything
+            // invalidate() just sets this to false right now
+            // we want to call invalidate() whenever we make a change
             this._needRedraw = true;
 
-            &#x2F;**
+            /**
              * @property _frameContainer Handler to the HTML Element displaying the FPS
              * @type {HTMLElement}
              * @private
-             *&#x2F;
+             */
             this._frameContainer = null;
 
-            &#x2F;**
+            /**
              * True if the [CTRL} key is being pressed
              * @property _keyDownedCtrl
              * @default false
              * @type {Boolean}
              * @private
-             *&#x2F;
+             */
             this._keyDownedCtrl = false;
 
-            &#x2F;**
+            /**
              * @property _timerDblTouch
              * @default null
              * @type {Number}
              * @private
-             *&#x2F;
+             */
             this._timerDblTouch = null;
 
-            &#x2F;**
+            /**
              * The delay between 2 touches to be considered as a dbl touch event.
              * To remove the double touch, just set it to 0
              * @property dblTouchDelay
              * @default CGSG_DEFAULT_DBLTOUCH_DELAY
              * @type {Number}
-             *&#x2F;
+             */
             this.dblTouchDelay = CGSG_DEFAULT_DBLTOUCH_DELAY;
 
-            &#x2F;**
+            /**
              * Current positions of the mouse or touch (Array of CGSGPosition)
              * @property _mousePosition
              * @type {Array}
              * @private
-             *&#x2F;
+             */
             this._mousePosition = [];
             this._mouseOldPosition = [];
             this._dragSelectStartMousePosition = [];
@@ -390,26 +214,26 @@ var CGSGScene = CGSGObject.extend(
             this._isResizeDrag = false;
             this._isDragSelect = false;
             this._resizingDirection = -1;
-            &#x2F;**
+            /**
              * @property _listCursors List of the names for the cursor when overring a handlebox
              * @type {Array}
              * @private
-             *&#x2F;
+             */
             this._listCursors =
-                [&#x27;nw-resize&#x27;, &#x27;n-resize&#x27;, &#x27;ne-resize&#x27;, &#x27;w-resize&#x27;, &#x27;e-resize&#x27;, &#x27;sw-resize&#x27;,
-                    &#x27;s-resize&#x27;, &#x27;se-resize&#x27;];
+                ['nw-resize', 'n-resize', 'ne-resize', 'w-resize', 'e-resize', 'sw-resize',
+                    's-resize', 'se-resize'];
             this._offsetX = 0;
             this._offsetY = 0;
-            &#x2F;**
+            /**
              * @property _selectedNode The current last selected node
              * @type {null}
              * @private
-             *&#x2F;
+             */
             this._selectedNode = null;
 
-            &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+            ////// INITIALIZATION /////////
 
-            &#x2F;&#x2F;use an external variable to define the scope of the processes
+            //use an external variable to define the scope of the processes
             var scope = this;
             CGSG.canvas.onmousedown = function (event) {
                 scope.onMouseDown(event);
@@ -429,23 +253,23 @@ var CGSGScene = CGSGObject.extend(
             document.onkeyup = function (event) {
                 scope.onKeyUpHandler(event);
             };
-            CGSG.canvas.addEventListener(&#x27;touchstart&#x27;, function (event) {
+            CGSG.canvas.addEventListener('touchstart', function (event) {
                 scope.onTouchStart(event);
             }, false);
-            CGSG.canvas.addEventListener(&#x27;touchmove&#x27;, function (event) {
+            CGSG.canvas.addEventListener('touchmove', function (event) {
                 scope.onTouchMove(event);
             }, false);
-            CGSG.canvas.addEventListener(&#x27;touchend&#x27;, function (event) {
+            CGSG.canvas.addEventListener('touchend', function (event) {
                 scope.onTouchEnd(event);
             }, false);
 
-            CGSG.canvas.addEventListener(&#x27;MSPointerDown&#x27;, function (event) {
+            CGSG.canvas.addEventListener('MSPointerDown', function (event) {
                 scope.onTouchStart(event);
             }, false);
-            CGSG.canvas.addEventListener(&quot;MSPointerMove&quot;, function (event) {
+            CGSG.canvas.addEventListener("MSPointerMove", function (event) {
                 scope.onTouchMove(event);
             }, false);
-            CGSG.canvas.addEventListener(&#x27;MSPointerUp&#x27;, function (event) {
+            CGSG.canvas.addEventListener('MSPointerUp', function (event) {
                 scope.onTouchEnd(event);
             }, false);
 
@@ -453,120 +277,120 @@ var CGSGScene = CGSGObject.extend(
 
             this._nodeMouseOver = null;
 
-            &#x2F;**
+            /**
              * Callback on click down on scene event.
              * @property onSceneClickStart
              * @default null
              * @type {Function}
              * @example
              *  this.onSceneClickStart = function (event) {
-			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
-			 *      event.event; &#x2F;&#x2F;Event
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
 			 *  }
-             *&#x2F;
+             */
             this.onSceneClickStart = null;
-            &#x2F;**
+            /**
              * Callback on click up on scene event
              * @property onSceneClickEnd
              * @default null
              * @type {Function}
              * @example
              *  this.onSceneClickEnd = function (event) {
-			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
-			 *      event.event; &#x2F;&#x2F;Event
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
 			 *  }
-             *&#x2F;
+             */
             this.onSceneClickEnd = null;
-            &#x2F;**
+            /**
              * Callback on double click start on scene event
              * @property onSceneDblClickStart
              * @default null
              * @type {Function}
              * @example
              *  this.onSceneDblClickStart = function (event) {
-			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
-			 *      event.event; &#x2F;&#x2F;Event
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
 			 *  }
-             *&#x2F;
+             */
             this.onSceneDblClickStart = null;
-            &#x2F;**
+            /**
              * Callback on double click up on scene event
              * @property onSceneDblClickEnd
              * @default null
              * @type {Function}
              * @example
              *  this.onSceneDblClickEnd = function (event) {
-			 *      event.position; &#x2F;&#x2F;Array of CGSGPosition
-			 *      event.event; &#x2F;&#x2F;Event
+			 *      event.position; //Array of CGSGPosition
+			 *      event.event; //Event
 			 *  }
-             *&#x2F;
+             */
             this.onSceneDblClickEnd = null;
-            &#x2F;**
+            /**
              * Callback on start rendering event
              * @property onRenderStart
              * @default null
              * @type {Function}
              * @example
              *  this.onSceneClickStart = function () {
-			 *      &#x2F;&#x2F;...
+			 *      //...
 			 *  }
-             *&#x2F;
+             */
             this.onRenderStart = null;
-            &#x2F;**
+            /**
              * Callback on end rendering event
              * @property onRenderEnd
              * @default null
              * @type {Function}
              * @example
              *  this.onRenderEnd = function () {
-			 *      &#x2F;&#x2F;...
+			 *      //...
 			 *  }
-             *&#x2F;
+             */
             this.onRenderEnd = null;
 
 
-            &#x2F;&#x2F;initialize the current frame to 0
-            &#x2F;&#x2F;noinspection JSUndeclaredVariable
+            //initialize the current frame to 0
+            //noinspection JSUndeclaredVariable
             CGSG.currentFrame = 0;
         },
 
-        &#x2F;**
+        /**
          * Change the dimension of the canvas.
          * Does not really change the dimension of the rendering canvas container,
          *  but is used by the different computations
          * @method setCanvasDimension
          * @param {CGSGDimension} newDimension
-         * *&#x2F;
+         * */
         setCanvasDimension: function (newDimension) {
             CGSG.canvas.width = newDimension.width;
             CGSG.canvas.height = newDimension.height;
             this.sceneGraph.setCanvasDimension(newDimension);
 
-            &#x2F;&#x2F;Experimental
-            &#x2F;*this._dblCanvas.width = newDimension.x;
+            //Experimental
+            /*this._dblCanvas.width = newDimension.x;
              this._dblCanvas.height = newDimension.y;
-             this._dblContext = this._dblCanvas.getContext(&#x27;2d&#x27;);*&#x2F;
+             this._dblContext = this._dblCanvas.getContext('2d');*/
         },
 
-        &#x2F;**
+        /**
          * Remove the nodes selected in the scene graph
          * @method deleteSelected
-         *&#x2F;
+         */
         deleteSelected: function () {
-            if (this.sceneGraph.selectedNodes.length &gt; 0) {
-                for (var i = this.sceneGraph.selectedNodes.length - 1; i &gt;= 0; i--) {
+            if (this.sceneGraph.selectedNodes.length > 0) {
+                for (var i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
                     this.sceneGraph.removeNode(this._selectedNode, true);
                 }
             }
         },
 
-        &#x2F;**
+        /**
          * Deselect all nodes
          * @public
          * @method deselectAll
          * @param {Array} excludedArray CGSGNodes not to deselect
-         *&#x2F;
+         */
         deselectAll: function (excludedArray) {
             this._isDrag = false;
             this._isResizeDrag = false;
@@ -577,21 +401,21 @@ var CGSGScene = CGSGObject.extend(
             this.invalidate();
         },
 
-        &#x2F;**
+        /**
          * the main rendering loop
          * @protected
          * @method render
-         *&#x2F;
+         */
         render: function () {
-            if (this._isRunning &amp;&amp; this._needRedraw) {
+            if (this._isRunning && this._needRedraw) {
                 if (this.onRenderStart !== null) {
                     this.onRenderStart();
                 }
 
                 this.sceneGraph.render();
 
-                &#x2F;&#x2F;render the drag selection box directly onto the scene graph ontop of everything else
-                if (this._dragSelectStartMousePosition.length &gt; 0 &amp;&amp; this._dragSelectEndMousePosition.length &gt; 0) {
+                //render the drag selection box directly onto the scene graph ontop of everything else
+                if (this._dragSelectStartMousePosition.length > 0 && this._dragSelectEndMousePosition.length > 0) {
 
                     var p1 = this._dragSelectStartMousePosition[0];
                     var p2 = this._dragSelectEndMousePosition[0];
@@ -616,23 +440,23 @@ var CGSGScene = CGSGObject.extend(
 
             }
 
-            &#x2F;&#x2F;if (!this.sceneGraph.stillHaveAnimation()) {
-            &#x2F;&#x2F;	this._needRedraw = false;
-            &#x2F;&#x2F;}
+            //if (!this.sceneGraph.stillHaveAnimation()) {
+            //	this._needRedraw = false;
+            //}
 
             this._updateFramerate();
             this._updateFramerateContainer();
         },
 
-        &#x2F;**
+        /**
          * Call this to start the update of the scene
          * @public
          * @method startPlaying
-         *&#x2F;
+         */
         startPlaying: function () {
-            &#x2F;&#x2F;we want the callback of the requestAnimationFrame function to be this one.
-            &#x2F;&#x2F;however, the scope of &#x27;this&#x27; won&#x27;t be the same on the requestAnimationFrame function (scope = window)
-            &#x2F;&#x2F; and this one (scope = this). So we bind this function to this scope
+            //we want the callback of the requestAnimationFrame function to be this one.
+            //however, the scope of 'this' won't be the same on the requestAnimationFrame function (scope = window)
+            // and this one (scope = this). So we bind this function to this scope
             var bindStartPlaying = this.startPlaying.bind(this);
             window.requestAnimationFrame(bindStartPlaying);
             this._isRunning = true;
@@ -640,30 +464,30 @@ var CGSGScene = CGSGObject.extend(
             this.render();
         },
 
-        &#x2F;**
+        /**
          * Call this to stop the rendering (and so animation) update
          * @public
          * @method stopPlaying
-         *&#x2F;
+         */
         stopPlaying: function () {
             window.cancelAnimationFrame(cgsgGlobalRenderingTimer);
             this._isRunning = false;
         },
 
-        &#x2F;**
+        /**
          * Inform the SceneGraph that a new render is needed
          * @public
          * @method invalidate
-         *&#x2F;
+         */
         invalidate: function () {
             this._needRedraw = true;
         },
 
-        &#x2F;**
+        /**
          * Update the current framerate
          * @method _updateFramerate
          * @private
-         *&#x2F;
+         */
         _updateFramerate: function () {
             if (!cgsgExist(this._fpss)) {
                 this._fpss = [];
@@ -674,13 +498,13 @@ var CGSGScene = CGSGObject.extend(
             var delta = (now - this._lastUpdate);
 
             if (!isNaN(CGSG.maxFramerate)) {
-                while ((1000.0 &#x2F; delta) &gt; CGSG.maxFramerate) {
+                while ((1000.0 / delta) > CGSG.maxFramerate) {
                     now = new Date().getTime();
                     delta = (now - this._lastUpdate);
                 }
             }
 
-            this._fpss[this.currentFps++] = 1000.0 &#x2F; delta;
+            this._fpss[this.currentFps++] = 1000.0 / delta;
 
             if (this.currentFps == CGSG.framerateDelay) {
                 this.currentFps = 0;
@@ -690,68 +514,68 @@ var CGSGScene = CGSGObject.extend(
             this._lastUpdate = now;
         },
 
-        &#x2F;**
-         * Update the innerHTML of the HTMLElement passed as parameter of the &quot;showFPS&quot; function
+        /**
+         * Update the innerHTML of the HTMLElement passed as parameter of the "showFPS" function
          * @method _updateFramerateContainer
          * @private
-         *&#x2F;
+         */
         _updateFramerateContainer: function () {
             if (this._frameContainer !== null) {
                 this._frameContainer.innerHTML = Math.round(this.fps).toString();
             }
         },
 
-        &#x2F;**
+        /**
          * @public
          * @method showFPS
          * @param {HTMLElement} elt an HTML element to receive the FPS. Can be null if you want to remove the framerate
-         *&#x2F;
+         */
         showFPS: function (elt) {
             this._frameContainer = elt;
         },
 
-        &#x2F;**
+        /**
          * Set the new value for the display ratio.
          * The display ratio is used to resize all the elements on the graph to be adapted to the screen,
          * depending on the reference screen size.
-         * You can compute the ratio like this: x = canvas.width&#x2F;reference.width ; y = canvas.height&#x2F;reference.height
+         * You can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height
          * @public
          * @method setDisplayRatio
          * @param {CGSGScale} newRatio a CGSGScale value
-         *&#x2F;
+         */
         setDisplayRatio: function (newRatio) {
-            &#x2F;&#x2F;noinspection JSUndeclaredVariable
+            //noinspection JSUndeclaredVariable
             CGSG.displayRatio = newRatio;
-            this.sceneGraph.initializeGhost(CGSG.canvas.width &#x2F; CGSG.displayRatio.x,
-                CGSG.canvas.height &#x2F; CGSG.displayRatio.y);
+            this.sceneGraph.initializeGhost(CGSG.canvas.width / CGSG.displayRatio.x,
+                CGSG.canvas.height / CGSG.displayRatio.y);
         },
 
-        &#x2F;**
+        /**
          * @public
          * @method getDisplayRatio
          * @return {CGSGScale} the current display ratio
-         *&#x2F;
+         */
         getDisplayRatio: function () {
             return CGSG.displayRatio;
         },
 
-        &#x2F;**
+        /**
          * click mouse Event handler function
          * @protected
          * @method onMouseDown
          * @param {MouseEvent} event
-         *&#x2F;
+         */
         onMouseDown: function (event) {
-            &#x2F;&#x2F;this._clickOnScene(event, true);
+            //this._clickOnScene(event, true);
             this.onTouchStart(event);
         },
 
-        &#x2F;**
+        /**
          * touch down Event handler function
          * @protected
          * @method onTouchStart
          * @param {Event} event
-         *&#x2F;
+         */
         onTouchStart: function (event) {
             if (event.preventManipulation)
                 event.preventManipulation();
@@ -769,9 +593,9 @@ var CGSGScene = CGSGObject.extend(
                 this._selectedNode = this._tmpSelectedNode;
             }
 
-            &#x2F;&#x2F;if the touch was over a node with the onDblClick method defined, check whether it&#x27;s a dbl touch or not
+            //if the touch was over a node with the onDblClick method defined, check whether it's a dbl touch or not
             if (cgsgExist(this._selectedNode)) {
-                &#x2F;&#x2F;if the timer exists, then it&#x27;s a dbl touch
+                //if the timer exists, then it's a dbl touch
                 if (cgsgExist(this._timerDblTouch)) {
                     clearTimeout(this._timerDblTouch);
                     this._timerDblTouch = null;
@@ -788,18 +612,18 @@ var CGSGScene = CGSGObject.extend(
                 }
             }
             else {
-                &#x2F;&#x2F;not a touch on a node with the onDblClick event defined,
-                &#x2F;&#x2F; so it&#x27;s a single touch, just call the _clickOnScene method usually
+                //not a touch on a node with the onDblClick event defined,
+                // so it's a single touch, just call the _clickOnScene method usually
                 this._clickOnScene(event, true);
             }
         },
 
-        &#x2F;**
+        /**
          * @private
          * @method _clickOnScene
          * @param {Event} event MouseEvent or TouchEvent
          * @param {Boolean} mustPickNode
-         *&#x2F;
+         */
         _clickOnScene: function (event, mustPickNode) {
             this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
 
@@ -807,7 +631,7 @@ var CGSGScene = CGSGObject.extend(
                 this.onSceneClickStart({position: this._mousePosition.copy(), event: event});
             }
 
-            &#x2F;&#x2F;if the mouse cursor is over a handle box (ie: a resize marker)
+            //if the mouse cursor is over a handle box (ie: a resize marker)
             if (this._resizingDirection !== -1) {
                 this._mouseOldPosition = this._mousePosition.copy();
                 this._isResizeDrag = true;
@@ -817,21 +641,21 @@ var CGSGScene = CGSGObject.extend(
                 return;
             }
 
-            &#x2F;&#x2F;try to pick up the nodes under the cursor
+            //try to pick up the nodes under the cursor
             if (mustPickNode) {
                 this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
-                    return (node.isTraversable === true &amp;&amp; (node.isClickable === true || node.isDraggable === true
+                    return (node.isTraversable === true && (node.isClickable === true || node.isDraggable === true
                         || node.isResizable === true));
                 });
             }
-            &#x2F;&#x2F;if a node is under the cursor, select it if it is (clickable || reiszable || draggable)
-            if (this._selectedNode !== null &amp;&amp; this._selectedNode !== undefined &amp;&amp;
+            //if a node is under the cursor, select it if it is (clickable || reiszable || draggable)
+            if (this._selectedNode !== null && this._selectedNode !== undefined &&
                 (this._selectedNode.isClickable || this._selectedNode.isDraggable
                     || this._selectedNode.isResizable)) {
                 if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
 
-                    &#x2F;&#x2F;if multiselection is activated
-                    if (this.allowMultiSelect &amp;&amp; this._keyDownedCtrl) {
+                    //if multiselection is activated
+                    if (this.allowMultiSelect && this._keyDownedCtrl) {
                         if (!this._selectedNode.isSelected) {
                             this.sceneGraph.selectNode(this._selectedNode);
                         }
@@ -839,9 +663,9 @@ var CGSGScene = CGSGObject.extend(
                             this.sceneGraph.deselectNode(this._selectedNode);
                         }
                     }
-                    &#x2F;&#x2F;no multiselection
+                    //no multiselection
                     else {
-                        &#x2F;&#x2F;if node not already selected
+                        //if node not already selected
                         if (!this._selectedNode.isSelected) {
                             this.deselectAll(null);
                             this.sceneGraph.selectNode(this._selectedNode);
@@ -851,23 +675,23 @@ var CGSGScene = CGSGObject.extend(
                     this._isDrag = true;
                     this._isResizeDrag = false;
 
-                    &#x2F;&#x2F;ask for redraw
+                    //ask for redraw
                     this.invalidate();
                 }
 
-                &#x2F;&#x2F;execute the action bound with the click event
+                //execute the action bound with the click event
                 if (this._selectedNode.isClickable) {
                     if (cgsgExist(this._selectedNode.onClick)) {
                         this._selectedNode.onClick({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
                     }
-                    &#x2F;&#x2F;deselect all node except the new _selectedNode
-                    if (this._selectedNode.isDraggable === false &amp;&amp; this._selectedNode.isResizable === false) {
+                    //deselect all node except the new _selectedNode
+                    if (this._selectedNode.isDraggable === false && this._selectedNode.isResizable === false) {
                         this.deselectAll([this._selectedNode]);
                     }
                 }
 
             }
-            &#x2F;&#x2F;if no nodes were hit (that were clickable,reizeable or draggable) lets start a drag selection if we are allowed
+            //if no nodes were hit (that were clickable,reizeable or draggable) lets start a drag selection if we are allowed
             else if (this.allowMultiSelect) {
 
                 this._isDragSelect = true;
@@ -875,7 +699,7 @@ var CGSGScene = CGSGObject.extend(
                 this._dragSelectEndMousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
                 this.deselectAll(null);
             }
-            &#x2F;&#x2F;else if no nodes was clicked
+            //else if no nodes was clicked
             else {
                 this.deselectAll(null);
             }
@@ -887,22 +711,22 @@ var CGSGScene = CGSGObject.extend(
             this._mouseOldPosition = this._mousePosition.copy();
         },
 
-        &#x2F;**
+        /**
          * mouse move Event handler function
          * @protected
          * @method onMouseMove
          * @param {MouseEvent} event
-         *&#x2F;
+         */
         onMouseMove: function (event) {
             this._moveOnScene(event);
         },
 
-        &#x2F;**
+        /**
          * touch move Event handler function
          * @protected
          * @method onTouchMove
          * @param {Event} event
-         *&#x2F;
+         */
         onTouchMove: function (event) {
             if (event.preventManipulation)
                 event.preventManipulation();
@@ -911,31 +735,31 @@ var CGSGScene = CGSGObject.extend(
             this._moveOnScene(event);
         },
 
-        &#x2F;**
+        /**
          * @private
          * @method _moveOnScene
          * @param {Event} event MouseEvent or TouchEvent
-         *&#x2F;
+         */
         _moveOnScene: function (event) {
             var i, nodeOffsetX, nodeOffsetY;
             this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
             this._selectedNode = null;
 
             if (this._isDrag) {
-                if (this.sceneGraph.selectedNodes.length &gt; 0) {
+                if (this.sceneGraph.selectedNodes.length > 0) {
                     this._offsetX = this._mousePosition[0].x - this._mouseOldPosition[0].x;
                     this._offsetY = this._mousePosition[0].y - this._mouseOldPosition[0].y;
                     var canMove = true;
-                    for (i = this.sceneGraph.selectedNodes.length - 1; i &gt;= 0; i--) {
+                    for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                         this._selectedNode = this.sceneGraph.selectedNodes[i];
-                        if (this._selectedNode !== null &amp;&amp; this._selectedNode.isDraggable) {
+                        if (this._selectedNode !== null && this._selectedNode.isDraggable) {
                             this._selectedNode.isMoving = true;
-                            &#x2F;&#x2F;TODO : appliquer aussi l&#x27;opposée de la rotation
-                            nodeOffsetX = this._offsetX &#x2F;
-                                (this._selectedNode._absoluteScale.x &#x2F; this._selectedNode.scale.x);
-                            nodeOffsetY = this._offsetY &#x2F;
-                                (this._selectedNode._absoluteScale.y &#x2F; this._selectedNode.scale.y);
-                            &#x2F;&#x2F;check for the region constraint
+                            //TODO : appliquer aussi l'opposée de la rotation
+                            nodeOffsetX = this._offsetX /
+                                (this._selectedNode._absoluteScale.x / this._selectedNode.scale.x);
+                            nodeOffsetY = this._offsetY /
+                                (this._selectedNode._absoluteScale.y / this._selectedNode.scale.y);
+                            //check for the region constraint
                             if (this._selectedNode.regionConstraint !== null) {
                                 var reg = this._selectedNode.getRegion().copy();
                                 reg.position.x += nodeOffsetX;
@@ -947,7 +771,7 @@ var CGSGScene = CGSGObject.extend(
 
                             if (canMove) {
                                 this._selectedNode.translateWith(nodeOffsetX, nodeOffsetY, true);
-                                &#x2F;&#x2F;this._selectedNode.computeAbsoluteMatrix(true);
+                                //this._selectedNode.computeAbsoluteMatrix(true);
                                 if (this._selectedNode.onDrag !== null) {
                                     this._selectedNode.onDrag({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
                                 }
@@ -957,21 +781,21 @@ var CGSGScene = CGSGObject.extend(
 
                     this._mouseOldPosition = this._mousePosition.copy();
 
-                    &#x2F;&#x2F; something is changing position so we better invalidate the canvas!
+                    // something is changing position so we better invalidate the canvas!
                     this.invalidate();
                 }
             }
             else if (this._isResizeDrag) {
-                if (this.sceneGraph.selectedNodes.length &gt; 0) {
+                if (this.sceneGraph.selectedNodes.length > 0) {
                     this._offsetX = this._mousePosition[0].x - this._mouseOldPosition[0].x;
                     this._offsetY = this._mousePosition[0].y - this._mouseOldPosition[0].y;
-                    for (i = this.sceneGraph.selectedNodes.length - 1; i &gt;= 0; i--) {
+                    for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                         this._selectedNode = this.sceneGraph.selectedNodes[i];
                         if (this._selectedNode.isResizable) {
                             this._selectedNode.isResizing = true;
-                            &#x2F;&#x2F;TODO : appliquer aussi l&#x27;opposée de la rotation
-                            nodeOffsetX = this._offsetX &#x2F; this._selectedNode._absoluteScale.x;
-                            nodeOffsetY = this._offsetY &#x2F; this._selectedNode._absoluteScale.y;
+                            //TODO : appliquer aussi l'opposée de la rotation
+                            nodeOffsetX = this._offsetX / this._selectedNode._absoluteScale.x;
+                            nodeOffsetY = this._offsetY / this._selectedNode._absoluteScale.y;
 
                             var delta = Math.max(nodeOffsetX, nodeOffsetY);
                             if (delta == 0) {
@@ -982,9 +806,9 @@ var CGSGScene = CGSGObject.extend(
                             var realDimY = this._selectedNode.dimension.height *
                                 this._selectedNode._absoluteScale.y;
                             var d = {dW: 0, dH: 0};
-                            &#x2F;&#x2F; 0  1  2
-                            &#x2F;&#x2F; 3     4
-                            &#x2F;&#x2F; 5  6  7
+                            // 0  1  2
+                            // 3     4
+                            // 5  6  7
                             switch (this._resizingDirection) {
                                 case 0:
                                     if (this._selectedNode.isProportionalResize) {
@@ -1070,21 +894,21 @@ var CGSGScene = CGSGObject.extend(
 
                 this.invalidate();
             }
-            &#x2F;&#x2F; if there&#x27;s a selection, see if we grabbed one of the resize handles
-            else if (this.sceneGraph.selectedNodes.length &gt; 0 &amp;&amp; this._isResizeDrag == false) {
-                for (i = this.sceneGraph.selectedNodes.length - 1; i &gt;= 0; i--) {
+            // if there's a selection, see if we grabbed one of the resize handles
+            else if (this.sceneGraph.selectedNodes.length > 0 && this._isResizeDrag == false) {
+                for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
                     if (this._selectedNode.isResizable) {
-                        for (var h = 0; h &lt; 8; h++) {
+                        for (var h = 0; h < 8; h++) {
                             var selectionHandle = this._selectedNode.resizeHandles[h];
 
-                            &#x2F;&#x2F; resize handles will always be rectangles
+                            // resize handles will always be rectangles
                             if (selectionHandle.checkIfSelected(this._mousePosition[0],
                                 CGSG.resizeHandleThreshold)) {
-                                &#x2F;&#x2F; we found one!
+                                // we found one!
                                 this._resizingDirection = h;
 
-                                &#x2F;&#x2F;draw the correct cursor
+                                //draw the correct cursor
                                 CGSG.canvas.style.cursor = this._listCursors[h];
 
                                 return;
@@ -1093,26 +917,26 @@ var CGSGScene = CGSGObject.extend(
                     }
                 }
 
-                &#x2F;&#x2F; not over a selection box, return to normal
+                // not over a selection box, return to normal
                 this._isResizeDrag = false;
                 this._resizingDirection = -1;
-                CGSG.canvas.style.cursor = &#x27;auto&#x27;;
+                CGSG.canvas.style.cursor = 'auto';
 
-                &#x2F;&#x2F;ask for redraw
+                //ask for redraw
                 this.invalidate();
             }
-            &#x2F;&#x2F;if we are drag selecting
+            //if we are drag selecting
             else if (this._isDragSelect) {
                 this._dragSelectEndMousePosition = this._mousePosition.copy();
 
-                &#x2F;&#x2F;ask to redraw for the selection box
+                //ask to redraw for the selection box
                 this.invalidate();
             }
 
-            &#x2F;&#x2F;mouse over a node ?
-            if (!this._isDrag &amp;&amp; !this._isResizeDrag) {
+            //mouse over a node ?
+            if (!this._isDrag && !this._isResizeDrag) {
                 var n = null;
-                &#x2F;&#x2F;first test the mouse over the current _nodeMouseOver. If it&#x27;s ok, no need to traverse other
+                //first test the mouse over the current _nodeMouseOver. If it's ok, no need to traverse other
                 if (cgsgExist(this._nodeMouseOver)) {
                     n = this._nodeMouseOver.pickNode(this._mousePosition[0], null, CGSG.ghostContext, false, null);
 
@@ -1130,7 +954,7 @@ var CGSGScene = CGSGObject.extend(
                     }
                 }
 
-                &#x2F;&#x2F;if the previous node under the mouse is no more under the mouse, test the other nodes
+                //if the previous node under the mouse is no more under the mouse, test the other nodes
                 if (n === null) {
                     if ((n = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
                         return (node.onMouseEnter !== null || node.onMouseOver !== null)
@@ -1147,7 +971,7 @@ var CGSGScene = CGSGObject.extend(
             }
         },
 
-        &#x2F;**
+        /**
          * @method _getDeltaOnMove
          * @param delta
          * @param nodeOffsetX
@@ -1158,17 +982,17 @@ var CGSGScene = CGSGObject.extend(
          * @param signeY
          * @return {Object}
          * @private
-         *&#x2F;
+         */
         _getDeltaOnMove: function (delta, nodeOffsetX, nodeOffsetY, w, h, signeX, signeY) {
             var dW = nodeOffsetX, dH = nodeOffsetY;
             var ratio = 1.0;
             if (delta == nodeOffsetX) {
-                ratio = (w + signeX * delta) &#x2F; w;
+                ratio = (w + signeX * delta) / w;
                 dW = signeX * delta;
                 dH = (ratio - 1.0) * h;
             }
             else {
-                ratio = (h + signeY * delta) &#x2F; h;
+                ratio = (h + signeY * delta) / h;
                 dH = signeY * delta;
                 dW = (ratio - 1.0) * w;
             }
@@ -1176,22 +1000,22 @@ var CGSGScene = CGSGObject.extend(
             return {dW: dW, dH: dH};
         },
 
-        &#x2F;**
+        /**
          * mouse up Event handler function
          * @protected
          * @method onMouseUp
          * @param {MouseEvent} event
-         *&#x2F;
+         */
         onMouseUp: function (event) {
             this._upOnScene(event);
         },
 
-        &#x2F;**
+        /**
          * touch up Event handler function
          * @protected
          * @method onTouchEnd
          * @param {Event} event
-         *&#x2F;
+         */
         onTouchEnd: function (event) {
             if (event.preventManipulation)
                 event.preventManipulation();
@@ -1200,17 +1024,17 @@ var CGSGScene = CGSGObject.extend(
             this._upOnScene(event);
         },
 
-        &#x2F;**
+        /**
          * @method _upOnScene
          * @param {Event} event MouseEvent or TouchEvent
          * @private
-         *&#x2F;
+         */
         _upOnScene: function (event) {
             var i = 0;
 
-            &#x2F;&#x2F;if current action was to drag nodes
+            //if current action was to drag nodes
             if (this._isDrag) {
-                for (i = this.sceneGraph.selectedNodes.length - 1; i &gt;= 0; i--) {
+                for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
                     if (this._selectedNode.isMoving) {
                         this._selectedNode.isMoving = false;
@@ -1223,9 +1047,9 @@ var CGSGScene = CGSGObject.extend(
                 this._isDrag = false;
             }
 
-            &#x2F;&#x2F;else if current action was to resize nodes
+            //else if current action was to resize nodes
             else if (this._isResizeDrag) {
-                for (i = this.sceneGraph.selectedNodes.length - 1; i &gt;= 0; i--) {
+                for (i = this.sceneGraph.selectedNodes.length - 1; i >= 0; i--) {
                     this._selectedNode = this.sceneGraph.selectedNodes[i];
                     if (this._selectedNode.isResizing) {
                         this._selectedNode.isResizing = false;
@@ -1237,21 +1061,21 @@ var CGSGScene = CGSGObject.extend(
                 }
                 this._isResizeDrag = false;
             }
-            &#x2F;&#x2F;else if this is a drag select
+            //else if this is a drag select
             else if (this._isDragSelect) {
                 this._isDragSelect = false;
                 this._doDragSelect();
                 this._dragSelectStartMousePosition = [];
                 this._dragSelectEndMousePosition = [];
 
-                &#x2F;&#x2F;request a re-render for the drag select rect to be killed with
+                //request a re-render for the drag select rect to be killed with
                 this.invalidate();
             }
 
-            &#x2F;&#x2F;else if jst up the mice of nodes
+            //else if jst up the mice of nodes
             else {
                 this._selectedNode = this.sceneGraph.selectedNodes[this.sceneGraph.selectedNodes.length - 1];
-                if (cgsgExist(this._selectedNode) &amp;&amp; this._selectedNode.onMouseUp !== null) {
+                if (cgsgExist(this._selectedNode) && this._selectedNode.onMouseUp !== null) {
                     this._selectedNode.onMouseUp({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
                 }
             }
@@ -1259,11 +1083,11 @@ var CGSGScene = CGSGObject.extend(
             this._resizingDirection = -1;
         },
 
-        &#x2F;**
+        /**
          * Select the nodes under the drag select rectangle
          * @protected
          * @method _doDragSelect
-         *&#x2F;
+         */
         _doDragSelect: function () {
 
             var p1 = this._dragSelectStartMousePosition[0];
@@ -1271,45 +1095,45 @@ var CGSGScene = CGSGObject.extend(
 
             var dx = p2.x - p1.x, dy = p2.y - p1.y;
 
-            if (dx &lt; 0) {
+            if (dx < 0) {
                 dx = Math.abs(dx);
                 p1.x -= dx;
             }
 
-            if (dy &lt; 0) {
+            if (dy < 0) {
                 dy = Math.abs(dy);
                 p1.y -= dy;
             }
 
             var region = new CGSGRegion(p1.x, p1.y, dx, dy);
             var newSelections = this.sceneGraph.pickNodes(region, function (node) {
-                return (node.isTraversable === true &amp;&amp; (&#x2F;*node.isClickable === true ||*&#x2F; node.isDraggable === true
+                return (node.isTraversable === true && (/*node.isClickable === true ||*/ node.isDraggable === true
                     || node.isResizable === true))
             });
 
-            for (var i = 0, len = newSelections.length; i &lt; len; ++i) {
+            for (var i = 0, len = newSelections.length; i < len; ++i) {
                 this.sceneGraph.selectNode(newSelections[i]);
             }
         },
-        &#x2F;**
+        /**
          * mouse double click Event handler function
          * @protected
          * @method onMouseDblClick
          * @param {MouseEvent} event
-         *&#x2F;
+         */
         onMouseDblClick: function (event) {
-            &#x2F;&#x2F;this._dblClickOnScene(event);
+            //this._dblClickOnScene(event);
             event.preventDefault();
             event.stopPropagation();
         },
 
-        &#x2F;**
+        /**
          * @protected
          * @method _dblClickOnScene
          * @param {Event} event
          * @return {CGSGNode} the node that was double-clicked
          * @private
-         *&#x2F;
+         */
         _dblClickOnScene: function (event) {
             if (this.onSceneDblClickStart !== null) {
                 this.onSceneDblClickStart(event);
@@ -1318,7 +1142,7 @@ var CGSGScene = CGSGObject.extend(
             this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
                 return true;
             });
-            if (cgsgExist(this._selectedNode) &amp;&amp; this._selectedNode.onDblClick !== null) {
+            if (cgsgExist(this._selectedNode) && this._selectedNode.onDblClick !== null) {
                 this._selectedNode.onDblClick({node: this._selectedNode, position: this._mousePosition.copy(), event: event});
             }
             else if (this.onSceneDblClickEnd !== null) {
@@ -1327,12 +1151,12 @@ var CGSGScene = CGSGObject.extend(
             return this._selectedNode;
         },
 
-        &#x2F;**
+        /**
          * @method onKeyDownHandler
          * @protected
          * @param {KeyboardEvent} event
          * @return {Number}
-         *&#x2F;
+         */
         onKeyDownHandler: function (event) {
             var keynum = (window.event) ? event.keyCode : event.which;
 
@@ -1345,12 +1169,12 @@ var CGSGScene = CGSGObject.extend(
             return keynum;
         },
 
-        &#x2F;**
+        /**
          * @method onKeyUpHandler
          * @protected
          * @param {KeyboardEvent} event
          * @return {Number}
-         *&#x2F;
+         */
         onKeyUpHandler: function (event) {
             var keynum = (window.event) ? event.keyCode : event.which;
 
@@ -1364,23 +1188,3 @@ var CGSGScene = CGSGObject.extend(
         }
     }
 );
-
-    </pre>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
-<script>prettyPrint();</script>
-<script src="..&#x2F;assets/js/yui-prettify.js"></script>
-<script src="..&#x2F;assets/../api.js"></script>
-<script src="..&#x2F;assets/js/api-filter.js"></script>
-<script src="..&#x2F;assets/js/api-list.js"></script>
-<script src="..&#x2F;assets/js/api-search.js"></script>
-<script src="..&#x2F;assets/js/apidocs.js"></script>
-</body>
-</html>

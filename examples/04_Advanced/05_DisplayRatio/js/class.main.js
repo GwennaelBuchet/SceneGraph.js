@@ -29,7 +29,7 @@
  * displayRatio example
  * */
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function (canvas) {
 

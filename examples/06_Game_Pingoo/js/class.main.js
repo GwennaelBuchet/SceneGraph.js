@@ -9,7 +9,7 @@ var GAME_STATE = {
 	PLAY       : { instance : null }
 };
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function(canvas) {
 
@@ -31,7 +31,7 @@ var CGMain = CGSGScene.extend(
 				scope.onKeyUp(event);
 			};
 
-			//ask the CGSGScene to start the rendering loop
+			//ask the CGSGView to start the rendering loop
 			this.startPlaying();
 		},
 

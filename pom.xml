@@ -107,7 +107,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>animation/class.particles.js</include>
 
                                 <include>class.scenegraph.js</include>
-                                <include>class.scene.js</include>
+                                <include>class.view.js</include>
                             </includes>
                         </aggregation>
                     </aggregations>

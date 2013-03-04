@@ -29,11 +29,11 @@
  * image loading example
  * */
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function (canvas) {
 
-            //call the contructor of the parent class (ie : CGSGScene)
+            //call the contructor of the parent class (ie : CGSGView)
 			this._super(canvas);
 
 			////// INITIALIZATION /////////

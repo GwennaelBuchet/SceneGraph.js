@@ -36,7 +36,7 @@ var SQ_HEIGHT = NaN; //if NaN, value will be computed to keep the ratio of the o
 var startX = 70, startY = 60;
 
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
     {
         initialize:function (canvas) {
             this._super(canvas);

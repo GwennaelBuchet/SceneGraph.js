@@ -1,6 +1,6 @@
 
 var canvasScene = document.getElementById("scene");
-var game = new CGSGScene(canvasScene);
+var game = new CGSGView(canvasScene);
 
 //create a scene
 createScene();

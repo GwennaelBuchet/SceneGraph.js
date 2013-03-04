@@ -306,22 +306,22 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\class.scene.js": {
-            "name": "src\\class.scene.js",
-            "modules": {
-                "Scene": 1
-            },
-            "classes": {
-                "CGSGScene": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "src\\class.scenegraph.js": {
             "name": "src\\class.scenegraph.js",
             "modules": {},
             "classes": {
                 "CGSGSceneGraph": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\class.view.js": {
+            "name": "src\\class.view.js",
+            "modules": {
+                "Scene": 1
+            },
+            "classes": {
+                "CGSGView": 1
             },
             "fors": {},
             "namespaces": {}
@@ -523,14 +523,14 @@
             "name": "Scene",
             "submodules": {},
             "classes": {
-                "CGSGScene": 1,
-                "CGSGSceneGraph": 1
+                "CGSGSceneGraph": 1,
+                "CGSGView": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "main",
-            "file": "src\\class.scenegraph.js",
-            "line": 26,
+            "file": "src\\class.view.js",
+            "line": 64,
             "description": "Represent the scene of the application.\nIt encapsulates the scene graph itself and several methods to track mouse and touch events, ...",
             "is_constructor": 1,
             "itemtype": "main"
@@ -1510,35 +1510,6 @@
             "static": 1,
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
-        "CGSGScene": {
-            "name": "CGSGScene",
-            "shortname": "CGSGScene",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Scene",
-            "namespace": "",
-            "file": "src\\class.scene.js",
-            "line": 64,
-            "description": "Represent the scene of the application.\nIt encapsulates the scene graph itself and several methods to track mouse and touch events, ...",
-            "is_constructor": 1,
-            "mainName": "Scene",
-            "tag": "main",
-            "itemtype": "main",
-            "_main": true,
-            "extends": "{Object}",
-            "params": [
-                {
-                    "name": "canvas",
-                    "description": "a handler to the canvas HTML element",
-                    "type": "HTMLElement"
-                }
-            ],
-            "type": "{CGSGScene}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
-        },
         "CGSGSceneGraph": {
             "name": "CGSGSceneGraph",
             "shortname": "CGSGSceneGraph",
@@ -1567,6 +1538,35 @@
                 }
             ],
             "type": "{CGSGSceneGraph}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
+        "CGSGView": {
+            "name": "CGSGView",
+            "shortname": "CGSGView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Scene",
+            "namespace": "",
+            "file": "src\\class.view.js",
+            "line": 64,
+            "description": "Represent the scene of the application.\nIt encapsulates the scene graph itself and several methods to track mouse and touch events, ...",
+            "is_constructor": 1,
+            "mainName": "Scene",
+            "tag": "main",
+            "itemtype": "main",
+            "_main": true,
+            "extends": "{Object}",
+            "params": [
+                {
+                    "name": "canvas",
+                    "description": "a handler to the canvas HTML element",
+                    "type": "HTMLElement"
+                }
+            ],
+            "type": "{CGSGView}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
         "GLOBAL_CONSTANTS": {
@@ -4796,7 +4796,7 @@
         {
             "file": "src\\node\\class.node.js",
             "line": 54,
-            "description": "Indicate whether this node is selected or not.\nUse CGSGScene::scenegraph.selectNode(nodeToSelect) to select a node",
+            "description": "Indicate whether this node is selected or not.\nUse CGSGView::scenegraph.selectNode(nodeToSelect) to select a node",
             "itemtype": "property",
             "name": "isSelected",
             "readonly": "",
@@ -9575,735 +9575,6 @@
             "module": "Util"
         },
         {
-            "file": "src\\class.scene.js",
-            "line": 28,
-            "description": "Provides requestAnimationFrame in a cross browser way.",
-            "itemtype": "property",
-            "name": "cgsgGlobalRenderingTimer",
-            "access": "private",
-            "tagname": "",
-            "type": "{Number}",
-            "class": "CGSGScene",
-            "module": "Util"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 91,
-            "itemtype": "property",
-            "name": "context",
-            "type": "{CanvasRenderingContext2D}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 97,
-            "description": "Multiselection boolean.",
-            "itemtype": "property",
-            "name": "allowMultiSelect",
-            "default": "true",
-            "type": "{Boolean}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 105,
-            "description": "Fill color for the drag selection selection rectangle",
-            "itemtype": "property",
-            "name": "dragSelectFillColor",
-            "default": "\"#C0C0C0\"",
-            "type": "{String}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 113,
-            "description": "Stroke color for the drag selection selection rectangle",
-            "itemtype": "property",
-            "name": "dragSelectStrokeColor",
-            "default": "\"#808080\"",
-            "type": "{String}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 121,
-            "description": "Alpha value for the drag selection rectangle",
-            "itemtype": "property",
-            "name": "dragSelectAlpha",
-            "default": "0.6",
-            "type": "{Number}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 129,
-            "description": "The scene graph itself",
-            "itemtype": "property",
-            "name": "sceneGraph",
-            "type": "{CGSGSceneGraph}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 136,
-            "description": "List of the current selected nodes in the scenegraph.",
-            "itemtype": "property",
-            "name": "selectedNodes",
-            "type": "{Array}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 143,
-            "description": "Current framerate of the application",
-            "itemtype": "property",
-            "name": "fps",
-            "type": "{Number}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 159,
-            "itemtype": "property",
-            "name": "_isRunning",
-            "type": "{Boolean}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 170,
-            "itemtype": "property",
-            "name": "_frameContainer Handler to the HTML Element displaying the FPS",
-            "type": "{HTMLElement}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 177,
-            "description": "True if the [CTRL} key is being pressed",
-            "itemtype": "property",
-            "name": "_keyDownedCtrl",
-            "default": "false",
-            "type": "{Boolean}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 186,
-            "itemtype": "property",
-            "name": "_timerDblTouch",
-            "default": "null",
-            "type": "{Number}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 194,
-            "description": "The delay between 2 touches to be considered as a dbl touch event.\nTo remove the double touch, just set it to 0",
-            "itemtype": "property",
-            "name": "dblTouchDelay",
-            "default": "CGSG_DEFAULT_DBLTOUCH_DELAY",
-            "type": "{Number}",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 203,
-            "description": "Current positions of the mouse or touch (Array of CGSGPosition)",
-            "itemtype": "property",
-            "name": "_mousePosition",
-            "type": "{Array}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 217,
-            "itemtype": "property",
-            "name": "_listCursors List of the names for the cursor when overring a handlebox",
-            "type": "{Array}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 227,
-            "itemtype": "property",
-            "name": "_selectedNode The current last selected node",
-            "type": "{null}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 280,
-            "description": "Callback on click down on scene event.",
-            "itemtype": "property",
-            "name": "onSceneClickStart",
-            "default": "null",
-            "type": "{Function}",
-            "example": [
-                "\n this.onSceneClickStart = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 292,
-            "description": "Callback on click up on scene event",
-            "itemtype": "property",
-            "name": "onSceneClickEnd",
-            "default": "null",
-            "type": "{Function}",
-            "example": [
-                "\n this.onSceneClickEnd = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 304,
-            "description": "Callback on double click start on scene event",
-            "itemtype": "property",
-            "name": "onSceneDblClickStart",
-            "default": "null",
-            "type": "{Function}",
-            "example": [
-                "\n this.onSceneDblClickStart = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 316,
-            "description": "Callback on double click up on scene event",
-            "itemtype": "property",
-            "name": "onSceneDblClickEnd",
-            "default": "null",
-            "type": "{Function}",
-            "example": [
-                "\n this.onSceneDblClickEnd = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 328,
-            "description": "Callback on start rendering event",
-            "itemtype": "property",
-            "name": "onRenderStart",
-            "default": "null",
-            "type": "{Function}",
-            "example": [
-                "\n this.onSceneClickStart = function () {\n     //...\n }"
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 339,
-            "description": "Callback on end rendering event",
-            "itemtype": "property",
-            "name": "onRenderEnd",
-            "default": "null",
-            "type": "{Function}",
-            "example": [
-                "\n this.onRenderEnd = function () {\n     //...\n }"
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 357,
-            "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
-            "itemtype": "method",
-            "name": "setCanvasDimension",
-            "params": [
-                {
-                    "name": "newDimension",
-                    "description": "",
-                    "type": "CGSGDimension"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 375,
-            "description": "Remove the nodes selected in the scene graph",
-            "itemtype": "method",
-            "name": "deleteSelected",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 388,
-            "description": "Deselect all nodes",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "deselectAll",
-            "params": [
-                {
-                    "name": "excludedArray",
-                    "description": "CGSGNodes not to deselect",
-                    "type": "Array"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 404,
-            "description": "the main rendering loop",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "render",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 451,
-            "description": "Call this to start the update of the scene",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "startPlaying",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 467,
-            "description": "Call this to stop the rendering (and so animation) update",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "stopPlaying",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 477,
-            "description": "Inform the SceneGraph that a new render is needed",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "invalidate",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 486,
-            "description": "Update the current framerate",
-            "itemtype": "method",
-            "name": "_updateFramerate",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 517,
-            "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
-            "itemtype": "method",
-            "name": "_updateFramerateContainer",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 528,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "showFPS",
-            "params": [
-                {
-                    "name": "elt",
-                    "description": "an HTML element to receive the FPS. Can be null if you want to remove the framerate",
-                    "type": "HTMLElement"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 537,
-            "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "setDisplayRatio",
-            "params": [
-                {
-                    "name": "newRatio",
-                    "description": "a CGSGScale value",
-                    "type": "CGSGScale"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 553,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "getDisplayRatio",
-            "return": {
-                "description": "the current display ratio",
-                "type": "CGSGScale"
-            },
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 562,
-            "description": "click mouse Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onMouseDown",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "MouseEvent"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 573,
-            "description": "touch down Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onTouchStart",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "Event"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 621,
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_clickOnScene",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "MouseEvent or TouchEvent",
-                    "type": "Event"
-                },
-                {
-                    "name": "mustPickNode",
-                    "description": "",
-                    "type": "Boolean"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 714,
-            "description": "mouse move Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onMouseMove",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "MouseEvent"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 724,
-            "description": "touch move Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onTouchMove",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "Event"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 738,
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_moveOnScene",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "MouseEvent or TouchEvent",
-                    "type": "Event"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 974,
-            "itemtype": "method",
-            "name": "_getDeltaOnMove",
-            "params": [
-                {
-                    "name": "delta",
-                    "description": ""
-                },
-                {
-                    "name": "nodeOffsetX",
-                    "description": ""
-                },
-                {
-                    "name": "nodeOffsetY",
-                    "description": ""
-                },
-                {
-                    "name": "w",
-                    "description": ""
-                },
-                {
-                    "name": "h",
-                    "description": ""
-                },
-                {
-                    "name": "signeX",
-                    "description": ""
-                },
-                {
-                    "name": "signeY",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Object"
-            },
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1003,
-            "description": "mouse up Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onMouseUp",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "MouseEvent"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1013,
-            "description": "touch up Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onTouchEnd",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "Event"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1027,
-            "itemtype": "method",
-            "name": "_upOnScene",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "MouseEvent or TouchEvent",
-                    "type": "Event"
-                }
-            ],
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1086,
-            "description": "Select the nodes under the drag select rectangle",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_doDragSelect",
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1118,
-            "description": "mouse double click Event handler function",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "onMouseDblClick",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "MouseEvent"
-                }
-            ],
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1130,
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_dblClickOnScene",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "Event"
-                }
-            ],
-            "return": {
-                "description": "the node that was double-clicked",
-                "type": "CGSGNode"
-            },
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1154,
-            "itemtype": "method",
-            "name": "onKeyDownHandler",
-            "access": "protected",
-            "tagname": "",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "KeyboardEvent"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Number"
-            },
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scene.js",
-            "line": 1172,
-            "itemtype": "method",
-            "name": "onKeyUpHandler",
-            "access": "protected",
-            "tagname": "",
-            "params": [
-                {
-                    "name": "event",
-                    "description": "",
-                    "type": "KeyboardEvent"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Number"
-            },
-            "class": "CGSGScene",
-            "module": "Scene"
-        },
-        {
             "file": "src\\class.scenegraph.js",
             "line": 43,
             "description": "Root node of the graph",
@@ -10692,6 +9963,735 @@
                 "type": "CGSGTimeline"
             },
             "class": "CGSGSceneGraph",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 28,
+            "description": "Provides requestAnimationFrame in a cross browser way.",
+            "itemtype": "property",
+            "name": "cgsgGlobalRenderingTimer",
+            "access": "private",
+            "tagname": "",
+            "type": "{Number}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 91,
+            "itemtype": "property",
+            "name": "context",
+            "type": "{CanvasRenderingContext2D}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 97,
+            "description": "Multiselection boolean.",
+            "itemtype": "property",
+            "name": "allowMultiSelect",
+            "default": "true",
+            "type": "{Boolean}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 105,
+            "description": "Fill color for the drag selection selection rectangle",
+            "itemtype": "property",
+            "name": "dragSelectFillColor",
+            "default": "\"#C0C0C0\"",
+            "type": "{String}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 113,
+            "description": "Stroke color for the drag selection selection rectangle",
+            "itemtype": "property",
+            "name": "dragSelectStrokeColor",
+            "default": "\"#808080\"",
+            "type": "{String}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 121,
+            "description": "Alpha value for the drag selection rectangle",
+            "itemtype": "property",
+            "name": "dragSelectAlpha",
+            "default": "0.6",
+            "type": "{Number}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 129,
+            "description": "The scene graph itself",
+            "itemtype": "property",
+            "name": "sceneGraph",
+            "type": "{CGSGSceneGraph}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 136,
+            "description": "List of the current selected nodes in the scenegraph.",
+            "itemtype": "property",
+            "name": "selectedNodes",
+            "type": "{Array}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 143,
+            "description": "Current framerate of the application",
+            "itemtype": "property",
+            "name": "fps",
+            "type": "{Number}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 159,
+            "itemtype": "property",
+            "name": "_isRunning",
+            "type": "{Boolean}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 170,
+            "itemtype": "property",
+            "name": "_frameContainer Handler to the HTML Element displaying the FPS",
+            "type": "{HTMLElement}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 177,
+            "description": "True if the [CTRL} key is being pressed",
+            "itemtype": "property",
+            "name": "_keyDownedCtrl",
+            "default": "false",
+            "type": "{Boolean}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 186,
+            "itemtype": "property",
+            "name": "_timerDblTouch",
+            "default": "null",
+            "type": "{Number}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 194,
+            "description": "The delay between 2 touches to be considered as a dbl touch event.\nTo remove the double touch, just set it to 0",
+            "itemtype": "property",
+            "name": "dblTouchDelay",
+            "default": "CGSG_DEFAULT_DBLTOUCH_DELAY",
+            "type": "{Number}",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 203,
+            "description": "Current positions of the mouse or touch (Array of CGSGPosition)",
+            "itemtype": "property",
+            "name": "_mousePosition",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 217,
+            "itemtype": "property",
+            "name": "_listCursors List of the names for the cursor when overring a handlebox",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 227,
+            "itemtype": "property",
+            "name": "_selectedNode The current last selected node",
+            "type": "{null}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 280,
+            "description": "Callback on click down on scene event.",
+            "itemtype": "property",
+            "name": "onSceneClickStart",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneClickStart = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 292,
+            "description": "Callback on click up on scene event",
+            "itemtype": "property",
+            "name": "onSceneClickEnd",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneClickEnd = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 304,
+            "description": "Callback on double click start on scene event",
+            "itemtype": "property",
+            "name": "onSceneDblClickStart",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneDblClickStart = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 316,
+            "description": "Callback on double click up on scene event",
+            "itemtype": "property",
+            "name": "onSceneDblClickEnd",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneDblClickEnd = function (event) {\n     event.position; //Array of CGSGPosition\n     event.event; //Event\n }"
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 328,
+            "description": "Callback on start rendering event",
+            "itemtype": "property",
+            "name": "onRenderStart",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onSceneClickStart = function () {\n     //...\n }"
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 339,
+            "description": "Callback on end rendering event",
+            "itemtype": "property",
+            "name": "onRenderEnd",
+            "default": "null",
+            "type": "{Function}",
+            "example": [
+                "\n this.onRenderEnd = function () {\n     //...\n }"
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 357,
+            "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
+            "itemtype": "method",
+            "name": "setCanvasDimension",
+            "params": [
+                {
+                    "name": "newDimension",
+                    "description": "",
+                    "type": "CGSGDimension"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 375,
+            "description": "Remove the nodes selected in the scene graph",
+            "itemtype": "method",
+            "name": "deleteSelected",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 388,
+            "description": "Deselect all nodes",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "deselectAll",
+            "params": [
+                {
+                    "name": "excludedArray",
+                    "description": "CGSGNodes not to deselect",
+                    "type": "Array"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 404,
+            "description": "the main rendering loop",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "render",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 451,
+            "description": "Call this to start the update of the scene",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "startPlaying",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 467,
+            "description": "Call this to stop the rendering (and so animation) update",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "stopPlaying",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 477,
+            "description": "Inform the SceneGraph that a new render is needed",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "invalidate",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 486,
+            "description": "Update the current framerate",
+            "itemtype": "method",
+            "name": "_updateFramerate",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 517,
+            "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
+            "itemtype": "method",
+            "name": "_updateFramerateContainer",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 528,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "showFPS",
+            "params": [
+                {
+                    "name": "elt",
+                    "description": "an HTML element to receive the FPS. Can be null if you want to remove the framerate",
+                    "type": "HTMLElement"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 537,
+            "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "setDisplayRatio",
+            "params": [
+                {
+                    "name": "newRatio",
+                    "description": "a CGSGScale value",
+                    "type": "CGSGScale"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 553,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "getDisplayRatio",
+            "return": {
+                "description": "the current display ratio",
+                "type": "CGSGScale"
+            },
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 562,
+            "description": "click mouse Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onMouseDown",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "MouseEvent"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 573,
+            "description": "touch down Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onTouchStart",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 621,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_clickOnScene",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "MouseEvent or TouchEvent",
+                    "type": "Event"
+                },
+                {
+                    "name": "mustPickNode",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 714,
+            "description": "mouse move Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onMouseMove",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "MouseEvent"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 724,
+            "description": "touch move Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onTouchMove",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 738,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_moveOnScene",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "MouseEvent or TouchEvent",
+                    "type": "Event"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 974,
+            "itemtype": "method",
+            "name": "_getDeltaOnMove",
+            "params": [
+                {
+                    "name": "delta",
+                    "description": ""
+                },
+                {
+                    "name": "nodeOffsetX",
+                    "description": ""
+                },
+                {
+                    "name": "nodeOffsetY",
+                    "description": ""
+                },
+                {
+                    "name": "w",
+                    "description": ""
+                },
+                {
+                    "name": "h",
+                    "description": ""
+                },
+                {
+                    "name": "signeX",
+                    "description": ""
+                },
+                {
+                    "name": "signeY",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1003,
+            "description": "mouse up Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onMouseUp",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "MouseEvent"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1013,
+            "description": "touch up Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onTouchEnd",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1027,
+            "itemtype": "method",
+            "name": "_upOnScene",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "MouseEvent or TouchEvent",
+                    "type": "Event"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1086,
+            "description": "Select the nodes under the drag select rectangle",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_doDragSelect",
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1118,
+            "description": "mouse double click Event handler function",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "onMouseDblClick",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "MouseEvent"
+                }
+            ],
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1130,
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_dblClickOnScene",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "the node that was double-clicked",
+                "type": "CGSGNode"
+            },
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1154,
+            "itemtype": "method",
+            "name": "onKeyDownHandler",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "KeyboardEvent"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "CGSGView",
+            "module": "Scene"
+        },
+        {
+            "file": "src\\class.view.js",
+            "line": 1172,
+            "itemtype": "method",
+            "name": "onKeyUpHandler",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "KeyboardEvent"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "CGSGView",
             "module": "Scene"
         },
         {

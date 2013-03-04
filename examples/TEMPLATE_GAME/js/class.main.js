@@ -41,7 +41,7 @@ var GAME_STATE = {
 	SCORE    : { instance : null }
 };
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function(canvas) {
 

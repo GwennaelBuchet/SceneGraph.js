@@ -22,7 +22,7 @@
  *
  *  These Terms of Use are subject to French law.
  */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function (canvas) {
 

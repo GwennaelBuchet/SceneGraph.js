@@ -56,6 +56,7 @@ CHANGES:
 - Evolution. new Clipping item
 - Evolution. new EventManager system
 - Evolution. CGSGNode : new "getLocalZIndex", "setLocalZIndexToLast", "setLocalZIndex", "moveLocalZIndex"
+- Evolution. Rename "CGSGScene" to "CGSGView"
 
 ---------------------------------------------------------------------
 
