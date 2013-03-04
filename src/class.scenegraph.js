@@ -53,16 +53,13 @@ var CGSGSceneGraph = CGSGObject.extend(
              */
             this.context = context;
 
-            //initialize the current frame to 0
-            //noinspection JSUndeclaredVariable
-            cgsgCurrentFrame = 0;
-
             /**
              * The nodes currently selected by the user
              * @property selectedNodes
              * @type {Array}
              */
             this.selectedNodes = [];
+
             /**
              *
              * @property _nextNodeID
@@ -91,7 +88,7 @@ var CGSGSceneGraph = CGSGObject.extend(
             this.initializeGhost(canvas.width, canvas.height);
 
             //fixes a problem where double clicking causes text to get selected on the canvas
-            cgsgCanvas.onselectstart = function () {
+            CGSG.canvas.onselectstart = function () {
                 return false;
             };
         },
@@ -107,7 +104,7 @@ var CGSGSceneGraph = CGSGObject.extend(
             this.ghostCanvas.height = height;
             this.ghostCanvas.width = width;
             //noinspection JSUndeclaredVariable
-            cgsgGhostContext = this.ghostCanvas.getContext('2d');
+            CGSG.ghostContext = this.ghostCanvas.getContext('2d');
         },
 
         /**
@@ -122,7 +119,6 @@ var CGSGSceneGraph = CGSGObject.extend(
             if (this.root !== null && this.root !== undefined) {
                 var node = null;
                 var i = 0;
-                var len = 0;
                 var key = null;
                 //set the new values for all the animated nodes
                 if (this._listTimelines.length > 0) {
@@ -133,7 +129,7 @@ var CGSGSceneGraph = CGSGObject.extend(
                         node = timeline.parentNode;
 
                         if (node.isVisible) {
-                            value = timeline.getValue(cgsgCurrentFrame);
+                            value = timeline.getValue(CGSG.currentFrame);
                             if (value !== undefined) {
                                 node.evalSet(timeline.attribute, value.value);
                                 if (timeline.onAnimate !== null) {
@@ -143,14 +139,14 @@ var CGSGSceneGraph = CGSGObject.extend(
 
                             //fire event if this is the first animation key for this timeline
                             key = timeline.getFirstKey();
-                            if (key !== null && key.frame == cgsgCurrentFrame &&
+                            if (key !== null && key.frame == CGSG.currentFrame &&
                                 timeline.onAnimationStart !== null) {
                                 timeline.onAnimationStart({node:node});
                             }
 
                             //fire event if this is the last animation key for this timeline
                             key = timeline.getLastKey();
-                            if (key !== null && key.frame == cgsgCurrentFrame) {
+                            if (key !== null && key.frame == CGSG.currentFrame) {
                                 timeline.removeAll();
                                 //this._listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
@@ -165,9 +161,9 @@ var CGSGSceneGraph = CGSGObject.extend(
 
                 //run the rendering traverser
                 this.context.save();
-                this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
+                this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
                 if (this.root.isVisible) {
-                    this.root.render(this.context, cgsgCurrentFrame);
+                    this.root.doRender(this.context, CGSG.currentFrame);
                 }
                 this.context.restore();
             }
@@ -177,12 +173,11 @@ var CGSGSceneGraph = CGSGObject.extend(
                 for (i = this.selectedNodes.length - 1; i >= 0; i--) {
                     node = this.selectedNodes[i];
                     if (node.isVisible) {
-                        //node.computeAbsoluteMatrix();
+                        node.computeAbsoluteMatrix(true);
                         this.context.save();
-                        this.context.scale(cgsgDisplayRatio.x, cgsgDisplayRatio.y);
+                        this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
 
-                        var n = node;
-                        var t = n._absolutePosition;//getAbsolutePosition(false);
+                        var t = node._absolutePosition;//getAbsolutePosition(false);
 
                         this.context.translate(t.x, t.y);
                         this.context.rotate(node._absoluteRotation);
@@ -194,7 +189,7 @@ var CGSGSceneGraph = CGSGObject.extend(
                 }
             }
 
-            cgsgCurrentFrame++;
+            CGSG.currentFrame++;
         },
 
         /**
@@ -264,7 +259,7 @@ var CGSGSceneGraph = CGSGObject.extend(
         pickNode:function (mousePosition, condition) {
             //empty the current selection first
             //this.selectedNodes = new Array();
-            cgsgClearContext(cgsgGhostContext);
+            cgsgClearContext(CGSG.ghostContext);
             //recursively traverse the nodes to get the selected nodes
             if (!cgsgExist(this.root)) {
                 return null;
@@ -273,9 +268,9 @@ var CGSGSceneGraph = CGSGObject.extend(
                 return this.root.pickNode(
                     mousePosition.copy(), //position of the cursor on the viewport
                     new CGSGScale(1, 1), //absolute scale for the nodes
-                    cgsgGhostContext, //context for the ghost rendering
+                    CGSG.ghostContext, //context for the ghost rendering
                     true, //recursively ?
-                    //cgsgCanvas.width / cgsgDisplayRatio.x, cgsgCanvas.height / cgsgDisplayRatio.y,
+                    //CGSG.canvas.width / CGSG.displayRatio.x, CGSG.canvas.height / CGSG.displayRatio.y,
                     //dimension of the canvas container
                     condition);  // condition to the picknode be executed
             }
@@ -294,7 +289,7 @@ var CGSGSceneGraph = CGSGObject.extend(
         pickNodes:function (region, condition) {
             //empty the current selection first
             //this.selectedNodes = new Array();
-            cgsgClearContext(cgsgGhostContext);
+            cgsgClearContext(CGSG.ghostContext);
             //recursively traverse the nodes to get the selected nodes
             if (!cgsgExist(this.root)) {
                 return null;
@@ -303,9 +298,9 @@ var CGSGSceneGraph = CGSGObject.extend(
                 return this.root.pickNodes(
                     region.copy(), //position of the cursor on the viewport
                     new CGSGScale(1, 1), //absolute scale for the nodes
-                    cgsgGhostContext, //context for the ghost rendering
+                    CGSG.ghostContext, //context for the ghost rendering
                     true, //recursively ?
-                    //cgsgCanvas.width / cgsgDisplayRatio.x, cgsgCanvas.height / cgsgDisplayRatio.y,
+                    //CGSG.canvas.width / CGSG.displayRatio.x, CGSG.canvas.height / CGSG.displayRatio.y,
                     //dimension of the canvas container
                     condition);  // condition to the picknode be executed
             }
@@ -328,11 +323,11 @@ var CGSGSceneGraph = CGSGObject.extend(
         },
 
         /**
-         * Add a nodes on the scene.
-         * If the root does not already exist, this nodes will be used as root
+         * Add a node on the scene.
+         * If the root does not already exist, this node will be used as root
          * @method addNode
-         * @param {CGSGNode} node the nodes to add
-         * @param {CGSGNode} parent the parent nodes of the new one. If it's null, the root will be used as nodes.
+         * @param {CGSGNode} node the node to add
+         * @param {CGSGNode} parent the parent node of the new one. If it's null, the node will be the root.
          * */
         addNode:function (node, parent) {
             node._id = this._nextNodeID++;
@@ -369,7 +364,7 @@ var CGSGSceneGraph = CGSGObject.extend(
 
             //if the user want to precompute the animation, do it now
             if (precompute) {
-                timeline.computeValues(cgsgCurrentFrame, method);
+                timeline.computeValues(CGSG.currentFrame, method);
             }
         },
 
@@ -387,9 +382,9 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
          */
         animate:function (node, attribute, duration, from, to, method, delay, precompute) {
-            this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay), from,
+            this.addAnimationKey(node, attribute, CGSG.currentFrame + CGSGMath.fixedPoint(delay), from,
                 method, false);
-            this.addAnimationKey(node, attribute, cgsgCurrentFrame + CGSGMath.fixedPoint(delay + duration),
+            this.addAnimationKey(node, attribute, CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration),
                 to, method, precompute);
         },
 
@@ -404,7 +399,7 @@ var CGSGSceneGraph = CGSGObject.extend(
             else {
                 for (var i = 0, len = this._listTimelines.length; i < len; ++i) {
                     if (this._listTimelines[i].getLastKey() !== null &&
-                        this._listTimelines[i].getLastKey().frame <= cgsgCurrentFrame) {
+                        this._listTimelines[i].getLastKey().frame <= CGSG.currentFrame) {
                         return true;
                     }
                 }

@@ -32,7 +32,7 @@
 
 var LiveNode = CGSGNode.extend(
 	{
-		initialize : function(x, y) {
+		initialize: function (x, y) {
 			//call the initialize of the parent
 			this._super(x, y, 20, 20);
 
@@ -42,11 +42,10 @@ var LiveNode = CGSGNode.extend(
 			this._tmpCanvas = null;
 		},
 
-
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//save current state
 			//always call it
 			this.beforeRender(context);

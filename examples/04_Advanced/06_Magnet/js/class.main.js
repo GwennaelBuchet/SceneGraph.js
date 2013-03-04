@@ -79,11 +79,11 @@ var CGMain = CGSGScene.extend(
 		},
 
 		createRandomSquare : function() {
-			var w = CGSGMath.fixedPoint(cgsgCanvas.width / 6);
-			var h = CGSGMath.fixedPoint(cgsgCanvas.height / 6);
+			var w = CGSGMath.fixedPoint(CGSG.canvas.width / 6);
+			var h = CGSGMath.fixedPoint(CGSG.canvas.height / 6);
 
-			var x = Math.random() * CGSGMath.fixedPoint(cgsgCanvas.width - w);
-			var y = Math.random() * CGSGMath.fixedPoint(cgsgCanvas.height - h);
+			var x = Math.random() * CGSGMath.fixedPoint(CGSG.canvas.width - w);
+			var y = Math.random() * CGSGMath.fixedPoint(CGSG.canvas.height - h);
 
 			var colors = ["red", "green", "blue", "yellow", "#34A8BE", "magenta", "gray"];
 			var color = colors[Math.floor(Math.random() * colors.length)];

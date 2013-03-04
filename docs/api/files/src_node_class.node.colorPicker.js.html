@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -210,7 +212,7 @@ var CGSG_COLORPICKER_HEIGHT = 384;
  *&#x2F;
 var CGSGNodeColorPicker = CGSGNode.extend(
     {
-        initialize:function (x, y) {
+        initialize: function (x, y) {
             this._super(x, y, CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
 
             &#x2F;**
@@ -220,17 +222,13 @@ var CGSGNodeColorPicker = CGSGNode.extend(
              *&#x2F;
             this._imgData = null;
 
-            &#x2F;&#x2F;fake canvas to pre-render static display
-            this._tmpCanvas = null;
-            this._initShape();
-
             var that = this;
             this.onMouseOver = function (event) {
                 that._onMouseOverHandler(event);
             };
-			this.onMouseUp = function (event) {
-				that._onClickHandler(event);
-			};
+            this.onMouseUp = function (event) {
+                that._onClickHandler(event);
+            };
             this.onClick = function (event) {
                 that._onClickHandler(event);
             };
@@ -249,20 +247,72 @@ var CGSGNodeColorPicker = CGSGNode.extend(
              * @type {Function}
              *&#x2F;
             this.onClickColor = null;
+
+            &#x2F;**
+             * @property classType
+             * @readonly
+             * @type {String}
+             * @default &quot;CGSGNodeButton&quot;
+             *&#x2F;
+            this.classType = &quot;CGSGNodeColorPicker&quot;;
+
+            this.setPrecomputed(true);
         },
 
         &#x2F;**
-         * Pre-render the node into a temp canvas to optimize the perfs
-         * @method _initShape
+         * @method _onMouseOverHandler
+         * @param {Event} event
          * @private
          *&#x2F;
-        _initShape:function () {
-            this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
-            this._tmpCanvas.width = this.dimension.width + 2;
-            this._tmpCanvas.height = this.dimension.height + 2;
-            var tmpContext = this._tmpCanvas.getContext(&#x27;2d&#x27;);
+        _onMouseOverHandler: function (event) {
+            if (cgsgExist(this.onOverColor)) {
+                var rgb = this.getColorAt(event.position[0]);
 
-            this._imgData = tmpContext.createImageData(this.getWidth(), this.getHeight());
+                this.onOverColor(rgb);
+            }
+        },
+
+        &#x2F;**
+         * @method _onClickHandler
+         * @param {Event} event
+         * @private
+         *&#x2F;
+        _onClickHandler: function (event) {
+            if (cgsgExist(this.onClickColor)) {
+                var rgb = this.getColorAt(event.position[0]);
+
+                this.onClickColor(rgb);
+            }
+        },
+
+        &#x2F;**
+         * @method getColorAt
+         * @param {CGSGPosition} absolutePosition position of the cursor inside the colorPicker
+         * @return {Object} Object with {r:x, g:x, b:x} value
+         *&#x2F;
+        getColorAt: function (absolutePosition) {
+            var ap = this._absolutePosition;&#x2F;&#x2F;getAbsolutePosition();
+            var aw = this.getAbsoluteWidth();
+            &#x2F;&#x2F;get the color under the mice
+            var data = this._imgData.data;
+            &#x2F;&#x2F;get cursor position under the colorPicker
+            &#x2F;&#x2F;todo : still need to fix the scale (will be done in v2.0 with the matrix class)
+            var x = CGSGMath.fixedPoint((absolutePosition.x - ap.x) &#x2F;*&#x2F; this.getAbsoluteScale().x*&#x2F;);
+            var y = CGSGMath.fixedPoint((absolutePosition.y - ap.y) &#x2F;*&#x2F; this.getAbsoluteScale().y*&#x2F;);
+
+            return {r: data[((aw * y) + x) * 4],
+                g: data[((aw * y) + x) * 4 + 1],
+                b: data[((aw * y) + x) * 4 + 2]};
+        },
+
+        &#x2F;**
+         * Custom rendering. Must be defined to allow the traverser to render this node
+         * @method render
+         * @protected
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * *&#x2F;
+        render: function (context) {
+            this._imgData = context.createImageData(this.getWidth(), this.getHeight());
 
             &#x2F;&#x2F;draw the colors panel
             var x, y, intensity = 1, stepX, currentPixel = 0;
@@ -270,12 +320,12 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             var widthGray = CGSGMath.fixedPoint(Math.min(this.getWidth() * 0.1, 20));
             var width = this.getWidth() - widthGray;
             var steps = [
-                {index:1, sens:1},
-                {index:0, sens:-1},
-                {index:2, sens:1},
-                {index:1, sens:-1},
-                {index:0, sens:1},
-                {index:2, sens:-1}
+                {index: 1, sens: 1},
+                {index: 0, sens: -1},
+                {index: 2, sens: 1},
+                {index: 1, sens: -1},
+                {index: 0, sens: 1},
+                {index: 2, sens: -1}
             ];
             &#x2F;&#x2F;A color is divided in 256 values (from 0 to 255).
             &#x2F;&#x2F;ALl these 256 values won&#x27;t be displayed because a lack of space in the screen (limited to this.getWidth().
@@ -285,7 +335,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             var halfH = this.getHeight() &#x2F; 2;
 
             &#x2F;&#x2F;the white to black column
-            for (x=0; x&lt;widthGray; x++) {
+            for (x = 0; x &lt; widthGray; x++) {
                 for (y = 0; y &lt; this.getHeight(); y++) {
                     &#x2F;&#x2F;current pixel in the linear table
                     currentPixel = (y * this.getWidth() + x) * 4; &#x2F;&#x2F; 4 because 4 values per pixel : RGBA
@@ -301,139 +351,50 @@ var CGSGNodeColorPicker = CGSGNode.extend(
 
             &#x2F;&#x2F;the colors columns
             for (x = widthGray; x &lt; this.getWidth(); x++) {
-                intensity = 1;
-                for (y = 0; y &lt; this.getHeight(); y++) {
-                    &#x2F;&#x2F;current pixel in the linear table
-                    currentPixel = (y * this.getWidth() + x) * 4; &#x2F;&#x2F; 4 because 4 values per pixel : RGBA
+                if (clr &lt; 6) {
+                    intensity = 1;
+                    for (y = 0; y &lt; this.getHeight(); y++) {
+                        &#x2F;&#x2F;current pixel in the linear table
+                        currentPixel = (y * this.getWidth() + x) * 4; &#x2F;&#x2F; 4 because 4 values per pixel : RGBA
 
-                    &#x2F;&#x2F;from white to current color
-                    if (y &lt; halfH) {
-                        intensity = 2 - (y &#x2F; halfH);
-                        tmpClr = CGSGColor.litRGB(rgb[0], rgb[1], rgb[2], intensity);
+                        &#x2F;&#x2F;from white to current color
+                        if (y &lt; halfH) {
+                            intensity = 2 - (y &#x2F; halfH);
+                            tmpClr = CGSGColor.litRGB(rgb[0], rgb[1], rgb[2], intensity);
+                        }
+                        &#x2F;&#x2F;from current color to black
+                        else {
+                            intensity = 1 - ((y - halfH) &#x2F; halfH);
+                            tmpClr = CGSGColor.darkenRGB(rgb[0], rgb[1], rgb[2], intensity);
+                        }
+
+                        this._imgData.data[currentPixel + 0] = tmpClr.r;
+                        this._imgData.data[currentPixel + 1] = tmpClr.g;
+                        this._imgData.data[currentPixel + 2] = tmpClr.b;
+                        this._imgData.data[currentPixel + 3] = 255;
                     }
-                    &#x2F;&#x2F;from current color to black
-                    else {
-                        intensity = 1 - ((y - halfH) &#x2F; halfH);
-                        tmpClr = CGSGColor.darkenRGB(rgb[0], rgb[1], rgb[2], intensity);
+                    delta = stepX * steps[clr].sens;
+                    value = rgb[steps[clr].index] + delta;
+                    rgb[steps[clr].index] = value;
+                    if (value &lt;= 0 || value &gt;= 255) {
+                        rgb[steps[clr].index] = Math.min(Math.max(value, 0), 255);
+                        clr++;
                     }
-
-                    this._imgData.data[currentPixel + 0] = tmpClr.r;
-                    this._imgData.data[currentPixel + 1] = tmpClr.g;
-                    this._imgData.data[currentPixel + 2] = tmpClr.b;
-                    this._imgData.data[currentPixel + 3] = 255;
-                }
-                delta = stepX * steps[clr].sens;
-                value = rgb[steps[clr].index] + delta;
-                rgb[steps[clr].index] = value;
-                if (value &lt;= 0 || value &gt;= 255) {
-                    rgb[steps[clr].index] = Math.min(Math.max(value, 0), 255);
-                    clr++;
                 }
             }
 
-            tmpContext.putImageData(this._imgData, 0, 0);
-        },
-
-        &#x2F;**
-         * Override the parent method.
-         * @method resizeTo
-         * @param {Number} x
-         * @param {Number} y
-         *&#x2F;
-        resizeTo:function (x, y) {
-            this._super(x, y);
-            this._initShape();
-        },
-
-        &#x2F;**
-         * Override the parent method.
-         * @method resizeWith
-         * @param {Number} w
-         * @param {Number} h
-         *&#x2F;
-        resizeWith:function (w, h) {
-            this._super(w, h);
-            this._initShape();
-        },
-
-        &#x2F;**
-         * Override the parent method.
-         * @method resizeBy
-         * @param {Number} w
-         * @param {Number} h
-         *&#x2F;
-        resizeBy:function (w, h) {
-            this._super(w, h);
-            this._initShape();
-        },
-
-        &#x2F;**
-         * @method _onMouseOverHandler
-         * @param {Event} event
-         * @private
-         *&#x2F;
-        _onMouseOverHandler:function (event) {
-            if (cgsgExist(this.onOverColor)) {
-                var rgb = this.getColorAt(event.position[0]);
-
-                this.onOverColor(rgb);
+            x = 0;
+            y = 0;
+            if (!this._isPrecomputed) {
+                x = this._absolutePosition.x;
+                y = this._absolutePosition.y;
             }
-        },
-
-        &#x2F;**
-         * @method _onClickHandler
-         * @param {Event} event
-         * @private
-         *&#x2F;
-        _onClickHandler:function (event) {
-            if (cgsgExist(this.onClickColor)) {
-                var rgb = this.getColorAt(event.position[0]);
-
-                this.onClickColor(rgb);
-            }
-        },
-
-        &#x2F;**
-         * @method getColorAt
-         * @param {CGSGPosition} absolutePosition position of the cursor inside the colorPicker
-         * @return {Object} Object with {r:x, g:x, b:x} value
-         *&#x2F;
-        getColorAt:function (absolutePosition) {
-            var ap = this._absolutePosition;&#x2F;&#x2F;getAbsolutePosition();
-            var aw = this.getAbsoluteWidth();
-            &#x2F;&#x2F;get the color under the mice
-            var data = this._imgData.data;
-            &#x2F;&#x2F;get cursor position under the colorPicker
-			&#x2F;&#x2F;todo : still need to fix the scale (will be done in v2.0 with the matrix class)
-            var x =  CGSGMath.fixedPoint((absolutePosition.x - ap.x) &#x2F;*&#x2F; this.getAbsoluteScale().x*&#x2F;);
-            var y =  CGSGMath.fixedPoint((absolutePosition.y - ap.y) &#x2F;*&#x2F; this.getAbsoluteScale().y*&#x2F;);
-
-            return {r:data[((aw * y) + x) * 4],
-                g:data[((aw * y) + x) * 4 + 1],
-                b:data[((aw * y) + x) * 4 + 2]};
-        },
-
-        &#x2F;**
-         * Custom rendering. Must be defined to allow the traverser to render this node
-         * @method render
-         * @protected
-         * @param {CanvasRenderingContext2D} context the context into render the node
-         * *&#x2F;
-        render:function (context) {
-            &#x2F;&#x2F;call this before your custom rendering
-            this.beforeRender(context);
-
-            context.globalAlpha = this.globalAlpha;
-
-            &#x2F;&#x2F;render the pre-rendered canvas
-            context.drawImage(this._tmpCanvas, 0, 0);
-
-            &#x2F;&#x2F;call this after your custom rendering
-            this.afterRender(context);
+            context.putImageData(this._imgData, x, y);
         }
 
     }
 );
+
     </pre>
 </div>
 

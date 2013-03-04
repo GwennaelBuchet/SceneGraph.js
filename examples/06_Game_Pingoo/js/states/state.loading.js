@@ -18,7 +18,7 @@ var StateLoading = CGSGObject.extend(
 			this.text.setMaxWidth(476);
 			this.text.color = "#3322DE";
 
-			this.bkg = new CGSGNodeSquare(0, 0, cgsgCanvas.width, cgsgCanvas.height);
+			this.bkg = new CGSGNodeSquare(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 			this.bkg.color = "EEEEFE";
 
 			this.rootNode.addChild(this.bkg);

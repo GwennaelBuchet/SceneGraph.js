@@ -33,13 +33,12 @@ var CGSGPickNodeMethod = {
     /**
      * @property GHOST
      */
-    GHOST : "ghost",
+    GHOST: "ghost",
     /**
      * @property REGION
      */
     REGION: "region"
 };
-
 
 /**
  * Global properties of the framework
@@ -51,43 +50,19 @@ var CGSGPickNodeMethod = {
  */
 
 /**
- * Current version of the framework
- * @property cgsgVersion
- * @static
- * @type {String}
- */
-var cgsgVersion = "2.0.0-SNAPSHOT";
-
-/**
- * Current display ratio
- * @property cgsgDisplayRatio
- * @static
- * @type {CGSGScale}
- */
-var cgsgDisplayRatio = CGSG_DEFAULT_DISPLAYRATIO;
-
-/**
- * Default threshold to detect the handle boxes on a resizable node
- * @property cgsgResizeHandleThreshold
- * @static
- * @type {Number}
- */
-var cgsgResizeHandleThreshold = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD;
-
-/**
  * List of the parameters of different browsers
  * @property cgsgExplorerParams
  * @type {Object}
  */
 var cgsgExplorerParams = {
-    IE10      : {name : "IE 10 or above", browserName : "", fullVersion : "", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-    IE9       : {name : "IE 9", browserName : "", fullVersion : "", textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-    SAFARI    : {name : "Safari", browserName : "", fullVersion : "", textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-    CHROME    : {name : "Chrome", browserName : "", fullVersion : "", textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
-    OPERA     : {name : "Opera", browserName : "", fullVersion : "", textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
-    FIREFOX   : {name : "Firefox", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-    KONQUEROR : {name : "Konqueror", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-    UNKNOWN   : {name : "Unknown", browserName : "", fullVersion : "", textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
+    IE10: {name: "IE 10 or above", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
+    IE9: {name: "IE 9", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
+    SAFARI: {name: "Safari", browserName: "", fullVersion: "", textDecalYTop: 4.0, textDecalYBottom: 1.27, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    CHROME: {name: "Chrome", browserName: "", fullVersion: "", textDecalYTop: 3.3, textDecalYBottom: 1.268, textDecalYMiddle: 2.09, textDecalYAlpha: 0.983, webworker: false},
+    OPERA: {name: "Opera", browserName: "", fullVersion: "", textDecalYTop: 3.5, textDecalYBottom: 1.28, textDecalYMiddle: 2.0, textDecalYAlpha: 0.995, webworker: false},
+    FIREFOX: {name: "Firefox", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    KONQUEROR: {name: "Konqueror", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    UNKNOWN: {name: "Unknown", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false}
 };
 
 /**
@@ -99,96 +74,140 @@ var cgsgExplorerParams = {
  */
 var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 
-/**
- * The global ghost context for fake rendering
- * @property cgsgGhostContext
- * @readonly
- * @type {CanvasRenderingContext2D}
- */
-var cgsgGhostContext = null;
+
 
 /**
- * The current frame in hte global timeline
- * @property cgsgCurrentFrame
- * @readonly
- * @type {Number}
- */
-var cgsgCurrentFrame = 0;
-
-/**
- * The canvas container for this scene graph
- * @property cgsgCanvas
- * @readonly
- * @type {HTMLElement}
- */
-var cgsgCanvas = null;
-
-/**
- * the color used for the ghost mode rendering
- * @property _ghostColor
- * @type {String}
- * @public
- */
-var cgsgGhostColor = "#FF0000";
-
-/**
- * Number of frames to average the FPS.
- * Reduce this number to get more accurate FPS
- * @property cgsgFramerateDelay
- * @default CGSG_DEFAULT_FRAMERATE_DELAY
- * @type {Number}
- */
-var cgsgFramerateDelay = CGSG_DEFAULT_FRAMERATE_DELAY;
-
-/**
- * Maximum number of frames per second. Set it if you want your application to slow down.
- * @property cgsgMaxFramerate
- * @default CGSG_DEFAULT_MAX_FRAMERATE
- * @type {Number}
- * @example
- *     //limit the fps of the application to 30
- *     cgsgMaxFramerate = 30;
- */
-var cgsgMaxFramerate = CGSG_DEFAULT_MAX_FRAMERATE;
-
-/**
- * Instance of CollisionTesterFactory
- * @property cgsgCollisionTestFactory
- * @type {CGSGCollisionTesterFactory}
- */
-var cgsgCollisionManager = new CGSGCollisionManager();
-
-/**
- * Object that defines the performance keys.
- * Change values to adapt your project.
+ * Global properties for the current scene
  *
- * cgsgPerformanceKeys._collisionMethod =
- * 	   		Key to specify collision detection mod
- * 	   	    Use setCollisionMethod to modify value;
- * 	   		Default : CGSGCollisionMethod.REGION
- *
- * cgsgPerformanceKeys.collisionTester =
- * 	   		Collision tester depending on _collisionMethod;
- * 	   		Default : CGSGCollisionRegionTester
- *
- * @property cgsgPerformanceKeys
- * @type {Object}
+ * @class CGSG
+ * @module Util
+ * @static
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var cgsgPerformanceKeys = {
-    _collisionMethod : CGSGCollisionMethod.REGION,
-
-    _cgsgCollisionTesterFactory : new CGSGCollisionTesterFactory(),
-
-    collisionTester : new CGSGCollisionRegionTester(),
+ var CGSG = {
 
     /**
-     * Redefines the collision method
-	 * @method setCollisionMethod
-     * @param method
+     * Current version of the framework
+     * @property cgsgVersion
+     * @static
+     * @type {String}
      */
-    setCollisionMethod : function(method){
-        this._collisionMethod = method;
-        this.collisionTester =  this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+    version : "2.0.0-SNAPSHOT",
+
+    /**
+     * Current display ratio
+     * @property displayRatio
+     * @static
+     * @type {CGSGScale}
+     */
+    displayRatio : CGSG_DEFAULT_DISPLAYRATIO,
+
+    /**
+     * Default threshold to detect the handle boxes on a resizable node
+     * @property resizeHandleThreshold
+     * @static
+     * @type {Number}
+     */
+    resizeHandleThreshold : CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
+
+    /**
+     * The current frame in hte global timeline
+     * @property currentFrame
+     * @readonly
+     * @type {Number}
+     */
+    currentFrame : 0,
+
+    /**
+     * The canvas container for this scene
+     * @property canvas
+     * @readonly
+     * @type {HTMLElement}
+     */
+    canvas : null,
+
+    /**
+     * The main rendering 2D context for this scene
+     * @property context
+     * @type {CanvasRenderingContext2D}
+     */
+    context : null,
+
+    /**
+     * The global ghost context for fake rendering
+     * @property ghostContext
+     * @readonly
+     * @type {CanvasRenderingContext2D}
+     */
+    ghostContext : null,
+
+    /**
+     * the color used for the ghost mode rendering
+     * @property ghostColor
+     * @type {String}
+     * @public
+     */
+    ghostColor : "#FF0000",
+
+    /**
+     * Number of frames to average the FPS.
+     * Reduce this number to get more accurate FPS
+     * @property framerateDelay
+     * @default CGSG_DEFAULT_FRAMERATE_DELAY
+     * @type {Number}
+     */
+    framerateDelay : CGSG_DEFAULT_FRAMERATE_DELAY,
+
+    /**
+     * Maximum number of frames per second. Set it if you want your application to slow down.
+     * @property maxFramerate
+     * @default CGSG_DEFAULT_MAX_FRAMERATE
+     * @type {Number}
+     * @example
+     *     //limit the fps of the application to 30
+     *     CGSG.maxFramerate : 30,
+     */
+    maxFramerate : CGSG_DEFAULT_MAX_FRAMERATE,
+
+    /**
+     * Instance of CollisionTesterFactory
+     * @property collisionTestFactory
+     * @type {CGSGCollisionTesterFactory}
+     */
+    collisionManager : new CGSGCollisionManager(),
+
+    /**
+     * Object that defines the performance keys.
+     * Change values to adapt your project.
+     *
+     * CGSG.performanceKeys._collisionMethod :
+     *                Key to specify collision detection mod
+     *                Use setCollisionMethod to modify value,
+     *                Default : CGSGCollisionMethod.REGION
+     *
+     * CGSG.performanceKeys.collisionTester :
+     *                Collision tester depending on _collisionMethod,
+     *                Default : CGSGCollisionRegionTester
+     *
+     * @property performanceKeys
+     * @type {Object}
+     */
+    performanceKeys : {
+        _collisionMethod: CGSGCollisionMethod.REGION,
+
+        _cgsgCollisionTesterFactory: new CGSGCollisionTesterFactory(),
+
+        collisionTester: new CGSGCollisionRegionTester(),
+
+        /**
+         * Redefines the collision method
+         * @method setCollisionMethod
+         * @param method
+         */
+        setCollisionMethod: function (method) {
+            this._collisionMethod = method,
+            this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+        }
     }
 };
 

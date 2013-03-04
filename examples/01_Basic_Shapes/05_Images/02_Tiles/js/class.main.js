@@ -64,7 +64,7 @@ var CGMain = CGSGScene.extend(
 				40, null); //
 
 			//cut the slice from the source image
-			this.imgNode1.setSlice(476, 0, 34, 34, true);
+			this.imgNode1.setSlice(612, 34, 34, 34, true);
 
 			//add some attributes
 			this.imgNode1.isResizable = true;
@@ -82,10 +82,9 @@ var CGMain = CGSGScene.extend(
 			this.imgNode2.isDraggable = true;
 			this.rootNode.addChild(this.imgNode2);
 			//cut the slice from the source image
-			this.imgNode2.setSlice(612, 34, 34, 34, true);
+			this.imgNode2.setSlice(476, 0, 34, 34, true);
 
 			//then load the image normally, like in any JS context
-			// Warning : the web page must be on a web server (apache, ...)
 			this.img = new Image();
 			this.img.onload = this.onImageLoaded.bind(this);
 			this.img.src = "images/board.png";

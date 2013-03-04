@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\collision\class.collision.manager.js - cgSceneGraph</title>
+    <title>src\collision\class.collision.tester.region.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -30,6 +30,8 @@
 
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
@@ -168,7 +170,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\collision\class.collision.manager.js</h1>
+                        <h1 class="file-heading">File: src\collision\class.collision.tester.region.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -201,16 +203,17 @@
 
 &#x2F;**
  * @module Collision
- * @class CGSGCollisionManager
+ * @class CGSGCollisionRegionTester
  * @extends {Object}
  * @constructor
- * @type {CGSGCollisionManager}
+ * @type {CGSGCollisionRegionTester}
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  *&#x2F;
-var CGSGCollisionManager = CGSGObject.extend(
-	{
-		initialize : function () {
-		},
+var CGSGCollisionRegionTester = CGSGObject.extend(
+    {
+        initialize : function () {
+            this.classType=&quot;CGSGCollisionRegionTester&quot;;
+        },
 
         &#x2F;**
          * Indicate if two nodes are colliding
@@ -220,35 +223,28 @@ var CGSGCollisionManager = CGSGObject.extend(
          * @param threshold
          * @return {boolean} true if nodes are colliding
          *&#x2F;
-        isColliding : function(currentNode, testedNode, threshold){
-            if (currentNode.isCollisionManaged &amp;&amp; testedNode.isCollisionManaged){
-                if (cgsgExist(cgsgPerformanceKeys)){
-                    return cgsgPerformanceKeys.collisionTester.isColliding(currentNode,testedNode,threshold);
+        isColliding : function(currentNode, testedNode,threshold){
+            if (threshold === null) {
+                threshold = 0;
+            }
+            var nodeRight = testedNode.getAbsoluteRight();
+            var nodeBottom = testedNode.getAbsoluteBottom();
+
+            if ((currentNode.getAbsoluteLeft() &lt;= nodeRight + threshold &amp;&amp;
+                currentNode.getAbsoluteRight() &gt;= testedNode.getAbsoluteLeft() - threshold) ||
+                (currentNode.getAbsoluteRight() &gt;= testedNode.getAbsoluteLeft() - threshold &amp;&amp;
+                    currentNode.getAbsoluteLeft() &lt;= nodeRight + threshold)) {
+
+                if (currentNode.getAbsoluteTop() &lt;= nodeBottom + threshold &amp;&amp;
+                    currentNode.getAbsoluteBottom() &gt;= testedNode.getAbsoluteTop() - threshold) {
+                    return true;
                 }
             }
+
             return false;
-        },
-
-        &#x2F;**
-         * Defines a node as managed by the collision manager
-         * @method manageNode
-         * @param node
-         *&#x2F;
-        manageNode : function(node){
-            node.isCollisionManaged = true;
-        },
-
-        &#x2F;**
-         * Defines a node as not managed by the collision manager
-         * @method unManageNode
-         * @param node
-         *&#x2F;
-        unManageNode : function(node){
-            node.isCollisionManaged = false;
         }
-	}
+    }
 );
-
 
     </pre>
 </div>

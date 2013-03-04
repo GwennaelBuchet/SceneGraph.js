@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -357,13 +359,6 @@
 
                     <ul class="index-list methods extends">
                         
-                            <li class="index-item method private">
-                                <a href="#method__checkDimension">_checkDimension</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method private inherited">
                                 <a href="#method__clearContext">_clearContext</a>
 
@@ -394,6 +389,13 @@
                         
                             <li class="index-item method private">
                                 <a href="#method__onImageLoaded">_onImageLoaded</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private inherited">
+                                <a href="#method__preCompute">_preCompute</a>
 
                                 
                                 
@@ -441,6 +443,13 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_checkDimension">checkDimension</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public inherited">
                                 <a href="#method_computeAbsoluteMatrix">computeAbsoluteMatrix</a>
 
@@ -478,6 +487,20 @@
                         
                             <li class="index-item method protected inherited">
                                 <a href="#method_detectSelectionInRegion">detectSelectionInRegion</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#method_doRender">doRender</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#method_doRenderGhost">doRenderGhost</a>
 
                                 
                                 
@@ -574,6 +597,13 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_getImage">getImage</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public inherited">
                                 <a href="#method_getListOfCollidingBrothers">getListOfCollidingBrothers</a>
 
@@ -596,6 +626,13 @@
                             </li>
                         
                             <li class="index-item method inherited">
+                                <a href="#method_invalidate">invalidate</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
                                 <a href="#method_isALeaf">isALeaf</a>
 
                                 
@@ -611,6 +648,13 @@
                         
                             <li class="index-item method public inherited">
                                 <a href="#method_isCollidingABrother">isCollidingABrother</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#method_moveLocalZIndex">moveLocalZIndex</a>
 
                                 
                                 
@@ -651,7 +695,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected inherited">
+                            <li class="index-item method inherited">
                                 <a href="#method_renderGhost">renderGhost</a>
 
                                 
@@ -737,6 +781,13 @@
                         
                             <li class="index-item method public">
                                 <a href="#method_setImage">setImage</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method inherited">
+                                <a href="#method_setPrecomputed">setPrecomputed</a>
 
                                 
                                 
@@ -831,6 +882,13 @@
                         
                             <li class="index-item property private">
                                 <a href="#property__img">_img</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private inherited">
+                                <a href="#property__isDimensionChanged">_isDimensionChanged</a>
 
                                 
                                 
@@ -985,6 +1043,20 @@
                         
                             <li class="index-item property inherited">
                                 <a href="#property_needToKeepAbsoluteMatrix">needToKeepAbsoluteMatrix</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property inherited">
+                                <a href="#property_onAfterRender">onAfterRender</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property inherited">
+                                <a href="#property_onBeforeRender">onBeforeRender</a>
 
                                 
                                 
@@ -1200,63 +1272,6 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__checkDimension" class="method item private">
-    <span class="attribute-name">_checkDimension</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l171"><code>src\node\class.node.image.js:171</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Check the true dimension of the image and fill the this.dimension property with it,
-only if dimension is not already defined in the constructor</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method__clearContext" class="method item private inherited">
     <span class="attribute-name">_clearContext</span>
 
@@ -1310,7 +1325,7 @@ only if dimension is not already defined in the constructor</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l549"><code>src\node\class.node.js:549</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l623"><code>src\node\class.node.js:623</code></a>
         
         </p>
 
@@ -1515,7 +1530,17 @@ only if dimension is not already defined in the constructor</p>
     <span class="attribute-name">_onImageAbort</span>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -1545,7 +1570,7 @@ only if dimension is not already defined in the constructor</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l160"><code>src\node\class.node.image.js:160</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l163"><code>src\node\class.node.image.js:163</code></a>
         
         </p>
 
@@ -1560,6 +1585,29 @@ only if dimension is not already defined in the constructor</p>
     </div>
 
     
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
 
@@ -1571,7 +1619,17 @@ only if dimension is not already defined in the constructor</p>
     <span class="attribute-name">_onImageError</span>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -1601,7 +1659,7 @@ only if dimension is not already defined in the constructor</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l150"><code>src\node\class.node.image.js:150</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l152"><code>src\node\class.node.image.js:152</code></a>
         
         </p>
 
@@ -1616,6 +1674,29 @@ only if dimension is not already defined in the constructor</p>
     </div>
 
     
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
 
@@ -1627,7 +1708,17 @@ only if dimension is not already defined in the constructor</p>
     <span class="attribute-name">_onImageLoaded</span>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -1670,6 +1761,82 @@ only if dimension is not already defined in the constructor</p>
     <div class="description">
         <p>fired when the image is loaded.
 Check the dimension of the image and fired the onLoadEnd event</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__preCompute" class="method item private inherited">
+    <span class="attribute-name">_preCompute</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method__preCompute">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l656"><code>src\node\class.node.js:656</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
     </div>
 
     
@@ -1719,7 +1886,7 @@ Check the dimension of the image and fired the onLoadEnd event</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1115"><code>src\node\class.node.js:1115</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1267"><code>src\node\class.node.js:1267</code></a>
         
         </p>
 
@@ -1809,7 +1976,7 @@ Check the dimension of the image and fired the onLoadEnd event</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1125"><code>src\node\class.node.js:1125</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1277"><code>src\node\class.node.js:1277</code></a>
         
         </p>
 
@@ -1911,7 +2078,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l692"><code>src\node\class.node.js:692</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l845"><code>src\node\class.node.js:845</code></a>
         
         </p>
 
@@ -1997,7 +2164,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l729"><code>src\node\class.node.js:729</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l882"><code>src\node\class.node.js:882</code></a>
         
         </p>
 
@@ -2083,7 +2250,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l663"><code>src\node\class.node.js:663</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l818"><code>src\node\class.node.js:818</code></a>
         
         </p>
 
@@ -2169,7 +2336,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l714"><code>src\node\class.node.js:714</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l867"><code>src\node\class.node.js:867</code></a>
         
         </p>
 
@@ -2206,6 +2373,61 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
             </ul>
         </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_checkDimension" class="method item">
+    <span class="attribute-name">checkDimension</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l175"><code>src\node\class.node.image.js:175</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Check the true dimension of the image and fill the this.dimension property with it,
+only if dimension is not already defined in the constructor</p>
+    </div>
+
     
 
     
@@ -2255,7 +2477,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1372"><code>src\node\class.node.js:1372</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1529"><code>src\node\class.node.js:1529</code></a>
         
         </p>
 
@@ -2338,7 +2560,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l318"><code>src\node\class.node.image.js:318</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l301"><code>src\node\class.node.image.js:301</code></a>
         
         </p>
 
@@ -2412,7 +2634,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1198"><code>src\node\class.node.js:1198</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1350"><code>src\node\class.node.js:1350</code></a>
         
         </p>
 
@@ -2496,7 +2718,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1187"><code>src\node\class.node.js:1187</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1339"><code>src\node\class.node.js:1339</code></a>
         
         </p>
 
@@ -2594,7 +2816,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l757"><code>src\node\class.node.js:757</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l910"><code>src\node\class.node.js:910</code></a>
         
         </p>
 
@@ -2724,7 +2946,7 @@ This default function used the ghost rendering method</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l796"><code>src\node\class.node.js:796</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l949"><code>src\node\class.node.js:949</code></a>
         
         </p>
 
@@ -2801,6 +3023,174 @@ This default function used the ghost rendering method</p>
 </div>
 
                 
+                    <div id="method_doRender" class="method item inherited">
+    <span class="attribute-name">doRender</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>context</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_doRender">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l672"><code>src\node\class.node.js:672</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>internal method of the framework that encapsulate all the work aroud the rendering method</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_doRenderGhost" class="method item inherited">
+    <span class="attribute-name">doRenderGhost</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>ghostContext</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_doRenderGhost">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l712"><code>src\node\class.node.js:712</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>internal method of the framework that encapsulate all the work around the ghost rendering method</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">ghostContext</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_evalSet" class="method item inherited">
     <span class="attribute-name">evalSet</span>
 
@@ -2846,7 +3236,7 @@ This default function used the ghost rendering method</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1211"><code>src\node\class.node.js:1211</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1363"><code>src\node\class.node.js:1363</code></a>
         
         </p>
 
@@ -2944,7 +3334,7 @@ Used to set new value to an attribute of a node</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1600"><code>src\node\class.node.js:1600</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1756"><code>src\node\class.node.js:1756</code></a>
         
         </p>
 
@@ -3000,7 +3390,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1413"><code>src\node\class.node.js:1413</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1570"><code>src\node\class.node.js:1570</code></a>
         
         </p>
 
@@ -3067,7 +3457,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1427"><code>src\node\class.node.js:1427</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1584"><code>src\node\class.node.js:1584</code></a>
         
         </p>
 
@@ -3134,7 +3524,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1392"><code>src\node\class.node.js:1392</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1549"><code>src\node\class.node.js:1549</code></a>
         
         </p>
 
@@ -3203,7 +3593,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1296"><code>src\node\class.node.js:1296</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1453"><code>src\node\class.node.js:1453</code></a>
         
         </p>
 
@@ -3273,7 +3663,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l536"><code>src\node\class.node.js:536</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l610"><code>src\node\class.node.js:610</code></a>
         
         </p>
 
@@ -3340,7 +3730,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1399"><code>src\node\class.node.js:1399</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1556"><code>src\node\class.node.js:1556</code></a>
         
         </p>
 
@@ -3409,7 +3799,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1348"><code>src\node\class.node.js:1348</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1505"><code>src\node\class.node.js:1505</code></a>
         
         </p>
 
@@ -3479,7 +3869,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1324"><code>src\node\class.node.js:1324</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1481"><code>src\node\class.node.js:1481</code></a>
         
         </p>
 
@@ -3547,7 +3937,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1406"><code>src\node\class.node.js:1406</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1563"><code>src\node\class.node.js:1563</code></a>
         
         </p>
 
@@ -3614,7 +4004,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1420"><code>src\node\class.node.js:1420</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1577"><code>src\node\class.node.js:1577</code></a>
         
         </p>
 
@@ -3681,7 +4071,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1441"><code>src\node\class.node.js:1441</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1598"><code>src\node\class.node.js:1598</code></a>
         
         </p>
 
@@ -3705,6 +4095,76 @@ The 'userData' property won't be freed</p>
                 
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getImage" class="method item">
+    <span class="attribute-name">getImage</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Image</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l251"><code>src\node\class.node.image.js:251</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>return the Javascript image encapsulated in this node</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Image</span>:
                     
                 
             </div>
@@ -3760,7 +4220,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1462"><code>src\node\class.node.js:1462</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1619"><code>src\node\class.node.js:1619</code></a>
         
         </p>
 
@@ -3853,7 +4313,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l526"><code>src\node\class.node.js:526</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l600"><code>src\node\class.node.js:600</code></a>
         
         </p>
 
@@ -3920,7 +4380,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1434"><code>src\node\class.node.js:1434</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1591"><code>src\node\class.node.js:1591</code></a>
         
         </p>
 
@@ -3948,6 +4408,57 @@ The 'userData' property won't be freed</p>
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_invalidate" class="method item inherited">
+    <span class="attribute-name">invalidate</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_invalidate">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l646"><code>src\node\class.node.js:646</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Force the redraw of the node if it's precomputed</p>
+    </div>
+
+    
+
     
 
     
@@ -3983,7 +4494,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l946"><code>src\node\class.node.js:946</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1092"><code>src\node\class.node.js:1092</code></a>
         
         </p>
 
@@ -4056,7 +4567,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1449"><code>src\node\class.node.js:1449</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1606"><code>src\node\class.node.js:1606</code></a>
         
         </p>
 
@@ -4174,7 +4685,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1481"><code>src\node\class.node.js:1481</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1638"><code>src\node\class.node.js:1638</code></a>
         
         </p>
 
@@ -4226,6 +4737,90 @@ The 'userData' property won't be freed</p>
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_moveLocalZIndex" class="method item inherited">
+    <span class="attribute-name">moveLocalZIndex</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>step</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_moveLocalZIndex">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l563"><code>src\node\class.node.js:563</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">step</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
     
 
     
@@ -4297,7 +4892,7 @@ The 'userData' property won't be freed</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l848"><code>src\node\class.node.js:848</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l991"><code>src\node\class.node.js:991</code></a>
         
         </p>
 
@@ -4468,7 +5063,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l896"><code>src\node\class.node.js:896</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1039"><code>src\node\class.node.js:1039</code></a>
         
         </p>
 
@@ -4603,7 +5198,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1173"><code>src\node\class.node.js:1173</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1325"><code>src\node\class.node.js:1325</code></a>
         
         </p>
 
@@ -4674,7 +5269,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1145"><code>src\node\class.node.js:1145</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1297"><code>src\node\class.node.js:1297</code></a>
         
         </p>
 
@@ -4791,7 +5386,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l243"><code>src\node\class.node.image.js:243</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l260"><code>src\node\class.node.image.js:260</code></a>
         
         </p>
 
@@ -4836,7 +5431,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
 </div>
 
                 
-                    <div id="method_renderGhost" class="method item protected">
+                    <div id="method_renderGhost" class="method item inherited">
     <span class="attribute-name">renderGhost</span>
 
     
@@ -4858,8 +5453,6 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     
 
     
-        <span class="flag protected">protected</span>
-    
 
     
 
@@ -4871,16 +5464,13 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
 
     <div class="meta">
         
-            <p>Inherited from
-            <a href="..\classes\CGSGNode.html#method_renderGhost">
-                CGSGNode
-            </a>
             
-            but overwritten in
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_renderGhost">CGSGNode</a>:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l278"><code>src\node\class.node.image.js:278</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l735"><code>src\node\class.node.js:735</code></a>
         
         </p>
 
@@ -4891,7 +5481,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     </div>
 
     <div class="description">
-        <p>Ghost rendering function.
+        <p>Empty ghost rendering function.
 Render here your custom nodes with a single color (cgsgGhostColor).
 This will be used by the SceneGraph to know if the mouse cursor is over this nodes.</p>
     </div>
@@ -4905,7 +5495,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
                 <li class="param">
                     
                         <code class="param-name">ghostContext</code>
-                        <span class="type">CanvasRenderingContext2D</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
@@ -4968,7 +5558,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l590"><code>src\node\class.node.js:590</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l747"><code>src\node\class.node.js:747</code></a>
         
         </p>
 
@@ -5058,7 +5648,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1008"><code>src\node\class.node.js:1008</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1156"><code>src\node\class.node.js:1156</code></a>
         
         </p>
 
@@ -5163,7 +5753,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l998"><code>src\node\class.node.js:998</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1144"><code>src\node\class.node.js:1144</code></a>
         
         </p>
 
@@ -5273,7 +5863,7 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l305"><code>src\node\class.node.image.js:305</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l288"><code>src\node\class.node.image.js:288</code></a>
         
         </p>
 
@@ -5379,7 +5969,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1087"><code>src\node\class.node.js:1087</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1239"><code>src\node\class.node.js:1239</code></a>
         
         </p>
 
@@ -5484,7 +6074,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1073"><code>src\node\class.node.js:1073</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1225"><code>src\node\class.node.js:1225</code></a>
         
         </p>
 
@@ -5589,7 +6179,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1100"><code>src\node\class.node.js:1100</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1252"><code>src\node\class.node.js:1252</code></a>
         
         </p>
 
@@ -5700,7 +6290,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1043"><code>src\node\class.node.js:1043</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1195"><code>src\node\class.node.js:1195</code></a>
         
         </p>
 
@@ -5826,7 +6416,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1028"><code>src\node\class.node.js:1028</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1180"><code>src\node\class.node.js:1180</code></a>
         
         </p>
 
@@ -5952,7 +6542,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1058"><code>src\node\class.node.js:1058</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1210"><code>src\node\class.node.js:1210</code></a>
         
         </p>
 
@@ -6071,7 +6661,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l269"><code>src\node\class.node.image.js:269</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l279"><code>src\node\class.node.image.js:279</code></a>
         
         </p>
 
@@ -6160,7 +6750,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l211"><code>src\node\class.node.image.js:211</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l218"><code>src\node\class.node.image.js:218</code></a>
         
         </p>
 
@@ -6189,7 +6779,92 @@ the image with the handle boxes</p>
                     
 
                     <div class="param-description">
-                        <p>new Image object. Must bea already loaded before</p>
+                        <p>new Image object. Must be already loaded before</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setPrecomputed" class="method item inherited">
+    <span class="attribute-name">setPrecomputed</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>isPrecomputed</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method_setPrecomputed">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l635"><code>src\node\class.node.js:635</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Use this method to make the node precomputed or not.
+If it's precomputed, it won't be redraw every frame, but only when the "invalidate" method is called.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">isPrecomputed</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
                     </div>
 
                     
@@ -6246,7 +6921,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1286"><code>src\node\class.node.js:1286</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1443"><code>src\node\class.node.js:1443</code></a>
         
         </p>
 
@@ -6330,7 +7005,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l740"><code>src\node\class.node.js:740</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l893"><code>src\node\class.node.js:893</code></a>
         
         </p>
 
@@ -6441,7 +7116,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l191"><code>src\node\class.node.image.js:191</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l196"><code>src\node\class.node.image.js:196</code></a>
         
         </p>
 
@@ -6588,7 +7263,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l225"><code>src\node\class.node.image.js:225</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.image.js.html#l233"><code>src\node\class.node.image.js:233</code></a>
         
         </p>
 
@@ -6684,7 +7359,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l984"><code>src\node\class.node.js:984</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1130"><code>src\node\class.node.js:1130</code></a>
         
         </p>
 
@@ -6810,7 +7485,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l956"><code>src\node\class.node.js:956</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1102"><code>src\node\class.node.js:1102</code></a>
         
         </p>
 
@@ -6936,7 +7611,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l970"><code>src\node\class.node.js:970</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l1116"><code>src\node\class.node.js:1116</code></a>
         
         </p>
 
@@ -7041,7 +7716,7 @@ the image with the handle boxes</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l264"><code>src\node\class.node.js:264</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l269"><code>src\node\class.node.js:269</code></a>
         
         </p>
 
@@ -7085,7 +7760,7 @@ Never use it to move the node, use translateBy/translateWith/translateTo instead
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l309"><code>src\node\class.node.js:309</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l314"><code>src\node\class.node.js:314</code></a>
         
         </p>
 
@@ -7129,7 +7804,7 @@ Never use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo inst
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l291"><code>src\node\class.node.js:291</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l296"><code>src\node\class.node.js:296</code></a>
         
         </p>
 
@@ -7240,6 +7915,51 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
+                    <div id="property__isDimensionChanged" class="property item private inherited">
+    <span class="attribute-name">_isDimensionChanged</span>
+    <span class="type">Unknown</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#property__isDimensionChanged">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l351"><code>src\node\class.node.js:351</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set to true if dimension of the node is not the original one anymore</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property__isDrag" class="property item private inherited">
     <span class="attribute-name">_isDrag</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
@@ -7262,7 +7982,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l319"><code>src\node\class.node.js:319</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l324"><code>src\node\class.node.js:324</code></a>
         
         </p>
 
@@ -7523,7 +8243,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l273"><code>src\node\class.node.js:273</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l278"><code>src\node\class.node.js:278</code></a>
         
         </p>
 
@@ -7700,7 +8420,7 @@ If true, this node is clickable and so will be checked by the pickNode function<
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l336"><code>src\node\class.node.js:336</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l341"><code>src\node\class.node.js:341</code></a>
         
         </p>
 
@@ -8043,7 +8763,7 @@ Use CGSGScene::scenegraph.selectNode(nodeToSelect) to select a node</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l329"><code>src\node\class.node.js:329</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l334"><code>src\node\class.node.js:334</code></a>
         
         </p>
 
@@ -8194,6 +8914,112 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
 </div>
 
                 
+                    <div id="property_onAfterRender" class="property item inherited">
+    <span class="attribute-name">onAfterRender</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#property_onAfterRender">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l547"><code>src\node\class.node.js:547</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Callback on after render this node</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>this.onAfterRender = function (event) {
+     event.context; //CGSGNode.
+ }</p>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="property_onBeforeRender" class="property item inherited">
+    <span class="attribute-name">onBeforeRender</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#property_onBeforeRender">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l535"><code>src\node\class.node.js:535</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Callback on before render this node and after put it at its absolute position</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>this.onBeforeRender = function (event) {
+     event.context;
+ }</p>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="property_onClick" class="property item inherited">
     <span class="attribute-name">onClick</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
@@ -8214,7 +9040,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l410"><code>src\node\class.node.js:410</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l422"><code>src\node\class.node.js:422</code></a>
         
         </p>
 
@@ -8269,7 +9095,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l424"><code>src\node\class.node.js:424</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l436"><code>src\node\class.node.js:436</code></a>
         
         </p>
 
@@ -8324,7 +9150,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l508"><code>src\node\class.node.js:508</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l520"><code>src\node\class.node.js:520</code></a>
         
         </p>
 
@@ -8347,9 +9173,9 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
 
             <div class="example-content">
                 <p>this.onDeselect = function (event) {
-     event.node; //CGSGNode
-     event.position; //Array of CGSGPosition
-     event.event; //Event
+     event.node; //CGSGNode.
+     event.position; //Array of CGSGPosition.
+     event.event; //Event.
  }</p>
             </div>
         </div>
@@ -8379,7 +9205,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l438"><code>src\node\class.node.js:438</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l450"><code>src\node\class.node.js:450</code></a>
         
         </p>
 
@@ -8434,7 +9260,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l452"><code>src\node\class.node.js:452</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l464"><code>src\node\class.node.js:464</code></a>
         
         </p>
 
@@ -8471,7 +9297,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
                 
                     <div id="property_onLoadAbort" class="property item">
     <span class="attribute-name">onLoadAbort</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+    <span class="type">Function node:this</span>
 
     
 
@@ -8517,7 +9343,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
                 
                     <div id="property_onLoadEnd" class="property item">
     <span class="attribute-name">onLoadEnd</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+    <span class="type">Function node:this</span>
 
     
 
@@ -8563,7 +9389,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
                 
                     <div id="property_onLoadError" class="property item">
     <span class="attribute-name">onLoadError</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+    <span class="type">Function node:this</span>
 
     
 
@@ -8627,7 +9453,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l368"><code>src\node\class.node.js:368</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l380"><code>src\node\class.node.js:380</code></a>
         
         </p>
 
@@ -8682,7 +9508,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l382"><code>src\node\class.node.js:382</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l394"><code>src\node\class.node.js:394</code></a>
         
         </p>
 
@@ -8737,7 +9563,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l354"><code>src\node\class.node.js:354</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l366"><code>src\node\class.node.js:366</code></a>
         
         </p>
 
@@ -8792,7 +9618,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l396"><code>src\node\class.node.js:396</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l408"><code>src\node\class.node.js:408</code></a>
         
         </p>
 
@@ -8847,7 +9673,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l466"><code>src\node\class.node.js:466</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l478"><code>src\node\class.node.js:478</code></a>
         
         </p>
 
@@ -8902,7 +9728,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l480"><code>src\node\class.node.js:480</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l492"><code>src\node\class.node.js:492</code></a>
         
         </p>
 
@@ -8957,7 +9783,7 @@ Set it to false to gain performance if you don't need to keep trace of absolute 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l494"><code>src\node\class.node.js:494</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l506"><code>src\node\class.node.js:506</code></a>
         
         </p>
 
@@ -9061,7 +9887,7 @@ Possible values CGSGPickNodeMethod.REGION and CGSGPickNodeMethod.GHOST.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l255"><code>src\node\class.node.js:255</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l260"><code>src\node\class.node.js:260</code></a>
         
         </p>
 
@@ -9193,7 +10019,7 @@ the resize handles will be in this order:
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l300"><code>src\node\class.node.js:300</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l305"><code>src\node\class.node.js:305</code></a>
         
         </p>
 
@@ -9282,7 +10108,7 @@ The point is a value between [0, 0] and [1, 1].
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l282"><code>src\node\class.node.js:282</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l287"><code>src\node\class.node.js:287</code></a>
         
         </p>
 

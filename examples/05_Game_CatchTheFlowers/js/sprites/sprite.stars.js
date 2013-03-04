@@ -8,7 +8,7 @@
  */
 var StarsNode = CGSGNode.extend(
 	{
-		initialize : function() {
+		initialize: function () {
 			this._super(0, 0, cgsgCanvas.width, cgsgCanvas.height);
 
 			this.initShape();
@@ -17,7 +17,7 @@ var StarsNode = CGSGNode.extend(
 		/**
 		 * Pre-render the flower into a temp canvas to optimize the perfs
 		 */
-		initShape : function() {
+		initShape: function () {
 			this._tmpCanvas = document.createElement('canvas');
 			this._tmpCanvas.width = cgsgCanvas.width;
 			this._tmpCanvas.height = cgsgCanvas.height;
@@ -37,7 +37,6 @@ var StarsNode = CGSGNode.extend(
 				tmpContext.fillStyle = 'white';
 				tmpContext.fill();
 			}
-
 
 			//draw the moon
 			centerX = 110;
@@ -72,7 +71,7 @@ var StarsNode = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			//save current state
 			//always call it
 			this.beforeRender(context);

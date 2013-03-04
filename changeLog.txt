@@ -29,7 +29,6 @@ cgSceneGraph Framework.
 TODO LIST:
 =====================================================================
 
-- Evolution. Caching system
 - Evolution. Filter class
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
@@ -46,6 +45,19 @@ TODO LIST:
 =====================================================================
 HISTORY
 =====================================================================
+
+v2.0.0
+
+CHANGES:
+- Evolution. CGSGNode : new events : onBeforeRender and onAfterRender
+- Evolution. CGSGNode : new invalidate method
+- Evolution. CGSGNode : new caching system with new "setPreComputed" method
+- Evolution. Custom CGSGNode : ease of overriding render and renderGhost method
+- Evolution. new Clipping item
+- Evolution. new EventManager system
+- Evolution. CGSGNode : new "getLocalZIndex", "setLocalZIndexToLast", "setLocalZIndex", "moveLocalZIndex"
+
+---------------------------------------------------------------------
 
 v1.4.2
 

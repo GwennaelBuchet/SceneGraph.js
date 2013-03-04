@@ -148,7 +148,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @param {Number} rotateFactor
 		 */
 		rotateBy : function (rotateFactor) {
-			this.multiply(rotateFactor);
+			this.multiplyEquals(rotateFactor);
 		},
 
 		/**
@@ -158,7 +158,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @param {Number} angle
 		 */
 		rotateWith : function (angle) {
-			this.add(angle);
+			this.addEquals(angle);
 		},
 
 		/**
@@ -167,7 +167,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method add
 		 * @param {Number} angle
 		 */
-		add : function (angle) {
+		addEquals : function (angle) {
 			this.angle += angle;
 		},
 
@@ -177,7 +177,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method subtract
 		 * @param {Number} angle
 		 */
-		subtract : function (angle) {
+		subtractEquals : function (angle) {
 			this.angle -= angle;
 		},
 
@@ -187,7 +187,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method multiply
 		 * @param {Number} angle
 		 */
-		multiply : function (angle) {
+		multiplyEquals : function (angle) {
 			this.angle *= angle;
 		}
 	}
@@ -275,7 +275,16 @@ var CGSGDimension = CGSGVector2D.extend(
 			if (this.height + height >= 0) {
 				this.height += height;
 			}
-		}
+		},
+
+        /**
+         * Return true if no pixels are inside the dimension
+         * @method isEmpty
+         * @return {boolean}
+         */
+        isEmpty : function() {
+            return (this.width == 0 || this.height == 0);
+        }
 	}
 );
 
@@ -318,7 +327,7 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method add
 		 * @param region {CGSGRegion}
 		 */
-		add : function (region) {
+		addEquals : function (region) {
 			this.position.translateWith(region.position.x, region.position.y);
 			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
 		},
@@ -327,10 +336,19 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method subtract
 		 * @param {CGSGRegion} region
 		 */
-		subtract : function (region) {
+		subtractEquals : function (region) {
 			this.position.translateWith(-region.position.x, -region.position.y);
 			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
-		}
+		},
+
+        /**
+         * Return true if no pixels are inside the region
+         * @method isEmpty
+         * @return {boolean}
+         */
+        isEmpty : function() {
+            return this.dimension.isEmpty();
+        }
 	}
 );
 

@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -438,11 +440,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * Custom rendering
 		 * *&#x2F;
 		render : function (context) {
-			&#x2F;&#x2F;save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
 			if (this._mode === CGSGWEBVIEWMODE.LIVE) {
 				context.fillStyle = this.color;
 				context.strokeStyle = this.lineColor;
@@ -473,9 +470,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 				&#x2F;&#x2F;we draw the rect at (0,0) because we have already translated the context to the correct position
 				context.fillRect(0, 0, this.getWidth(), this.getHeight());
 			}
-
-			&#x2F;&#x2F;restore state
-			this.afterRender(context);
 		},
 
 		&#x2F;**
@@ -484,7 +478,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 *&#x2F;
 		free : function () {
 			if (cgsgExist(this._liveContainer)) {
-				cgsgCanvas.removeChild(this._liveContainer);
+				CGSG.canvas.removeChild(this._liveContainer);
 				delete (this._liveContainer);
 			}
 

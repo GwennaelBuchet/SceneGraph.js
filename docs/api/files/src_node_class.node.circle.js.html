@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -296,11 +298,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * *&#x2F;
 		render : function (context) {
-			&#x2F;&#x2F;save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
 			context.beginPath();
 			context.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0, 2 * Math.PI,
 			            false);
@@ -311,9 +308,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 				context.strokeStyle = this.lineColor;
 				context.stroke();
 			}
-
-			&#x2F;&#x2F;restore state
-			this.afterRender(context);
 		},
 
 		&#x2F;**
@@ -364,31 +358,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 			this._center.y += r;
 		},
 
-		&#x2F;**
-		 * @method renderGhost
-		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
-		 *&#x2F;
-		renderGhost : function (ghostContext) {
-			&#x2F;&#x2F;save current state
-			this.beforeRenderGhost(ghostContext);
-
-			if (this.globalAlpha &gt; 0) {
-				ghostContext.beginPath();
-				ghostContext.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0,
-				                 2 * Math.PI,
-				                 false);
-				ghostContext.fillStyle = this.color;
-				ghostContext.fill();
-				if (this.lineWidth &gt; 0) {
-					ghostContext.lineWidth = this.lineWidth;
-					ghostContext.strokeStyle = this.lineColor;
-					ghostContext.stroke();
-				}
-			}
-
-			&#x2F;&#x2F;restore state
-			this.afterRenderGhost(ghostContext);
-		},
 
 		&#x2F;**
 		 * @method copy

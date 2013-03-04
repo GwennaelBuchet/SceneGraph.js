@@ -75,7 +75,7 @@ var CGMain = CGSGScene.extend(
             var targetRatio = 1600 / 1200;
 
 
-			var displayRatio = new CGSGScale(cgsgCanvas.width / 1600, cgsgCanvas.height / 1200);
+			var displayRatio = new CGSGScale(CGSG.canvas.width / 1600, CGSG.canvas.height / 1200);
 			this.setDisplayRatio(displayRatio);
 		},
 
@@ -85,7 +85,7 @@ var CGMain = CGSGScene.extend(
 		 */
 		createScene : function () {
 
-            var background = new CGSGNodeSquare(0, 0, cgsgCanvas.width/2, cgsgCanvas.height/2);
+            var background = new CGSGNodeSquare(0, 0, CGSG.canvas.width/2, CGSG.canvas.height/2);
             background.color = "lightgray";
             this.sceneGraph.addNode(background, null);
 

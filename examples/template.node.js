@@ -57,13 +57,9 @@ var CGSGNodeTemplate = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function(context) {
-			//call this before your custom rendering
-			this.beforeRender(context);
 
 			//your rendering here
 
-			//call this after your custom rendering
-			this.afterRender(context);
 		},
 
 		/**

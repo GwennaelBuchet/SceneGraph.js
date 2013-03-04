@@ -48,8 +48,8 @@ var CGSGCollisionManager = CGSGObject.extend(
          */
         isColliding : function(currentNode, testedNode, threshold){
             if (currentNode.isCollisionManaged && testedNode.isCollisionManaged){
-                if (cgsgExist(cgsgPerformanceKeys)){
-                    return cgsgPerformanceKeys.collisionTester.isColliding(currentNode,testedNode,threshold);
+                if (cgsgExist(CGSG.performanceKeys)){
+                    return CGSG.performanceKeys.collisionTester.isColliding(currentNode,testedNode,threshold);
                 }
             }
             return false;

@@ -60,12 +60,12 @@ var CGMain = CGSGScene.extend(
 			this.sceneGraph.addNode(this.rootNode, null);
 
 			//create and add random children
-			for (var i = 0; i < 50; i++) {
+			for (var i = 0; i < 100; i++) {
 				var squareNode = this.createRandomSquare(0, 0);
 				this.rootNode.addChild(squareNode);
 
 				//create and add children for this node too
-				for (var c = 0; c < 10; c++) {
+				for (var c = 0; c < 20; c++) {
 					var child = this.createRandomSquare(squareNode.position.x, squareNode.position.y);
 					squareNode.addChild(child);
 				}
@@ -77,14 +77,16 @@ var CGMain = CGSGScene.extend(
 			};
 
 			var traverser = new CGSGTraverser();
+            var before = new Date().getTime();
 			var listSquares = traverser.traverse(this.rootNode, condition, null);
+            var delay = (new Date().getTime() - before);
 			for (var s = 0; s < listSquares.length; s++) {
 				this.sceneGraph.selectNode(listSquares[s]);
 			}
 
 			this.textNode = new CGSGNodeText(20, 10,
 			                                 "Number of nodes found by the Traverser with the condition \"color == 'yellow'\" = "
-				                                 + listSquares.length + " / 500");
+				                                 + listSquares.length + " / 2000 (in " + delay + " ms.)");
 			this.textNode.setSize(14);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.textNode);
@@ -92,11 +94,11 @@ var CGMain = CGSGScene.extend(
 		},
 
 		createRandomSquare : function(parentX, parentY) {
-			var w = 20 + Math.random() * 40;
-			var h = 20 + Math.random() * 40;
+			var w = 15 + Math.random() * 40;
+			var h = 15 + Math.random() * 40;
 
-			var x = 100 + Math.random() * (cgsgCanvas.width - 200) - w - parentX;
-			var y = 100 + Math.random() * (cgsgCanvas.height - 200) - h - parentY;
+			var x = 50 + Math.random() * (CGSG.canvas.width - 100) - w - parentX;
+			var y = 100 + Math.random() * (CGSG.canvas.height - 100) - h - parentY;
 
 			var colors = ["red", "green", "blue", "yellow", "#34A8BE", "magenta", "gray"];
 			var color = colors[Math.floor(Math.random() * colors.length)];

@@ -35,11 +35,8 @@ var CGMain = CGSGScene.extend(
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
-
 			this.initializeCanvas();
-
 			this.createScene();
-
 			this.startPlaying();
 		},
 
@@ -54,16 +51,33 @@ var CGMain = CGSGScene.extend(
 		 *
 		 */
 		createScene : function () {
+            //first create a root node with an arbitrary size and position
+            this.rootNode = new CGSGNode(0, 0, 0, 0);
+            this.sceneGraph.addNode(this.rootNode, null);
+
 			//X, Y, WIDTH, HEIGHT
 			var square = new CGSGNodeSquare(20, 20, 150, 150);
+
 			square.isDraggable = true;
 			square.isResizable = true;
 			square.globalAlpha = 0.8;
 			square.color = "lightgray";
 			square.lineWidth = 2;
 			square.lineColor = "gray";
+            //square.setPrecomputed(true);
+            //square.scaleTo(2.0, 1.2);
+            this.rootNode.addChild(square);
 
-			this.sceneGraph.addNode(square, null);
+            var s2 = new CGSGNodeSquare(20, 20, 50, 50);
+            s2.isDraggable = true;
+            s2.isResizable = true;
+            s2.globalAlpha = 0.8;
+            s2.color = "#A0A0FE";
+            s2.lineWidth = 1;
+            s2.lineColor = "gray";
+            //s2.scaleTo(2.0, 1.2);
+            //s2.setPrecomputed(true);
+            square.addChild(s2);
 		}
 	}
 );

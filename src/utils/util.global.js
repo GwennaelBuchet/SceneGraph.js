@@ -105,41 +105,6 @@ function cgsgDetectCurrentExplorer () {
 	cgsgCurrentExplorer.webworker = typeof(Worker) !== "undefined";
 }
 
-/*
- * Load asynchronously an external page and return the content (or null)
- *
- * @method cgsgLoadExternalDoc
- * @async
- * @beta
- * @param url {String} Page to load
- * @param successCallback {function} an function handler to call on success. The function must take the content ({String} as parameter)
- * @param errorCallback {function} an function handler to call on error
- */
-/*function cgsgLoadExternalDoc (url, successCallback, errorCallback) {
- var xhr;
- if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
- xhr = new XMLHttpRequest();
- }
- else {// code for IE6, IE5
- try {
- xhr = new ActiveXObject("Msxml2.XMLHTTP");
- }
- catch (e) {
- xhr = new ActiveXObject("Microsoft.XMLHTTP");
- }
- }
- xhr.onreadystatechange = function () {
- if (xhr.readyState == 4 && xhr.status == 200) {
- successCallback(xhr.responseText);
- }
- else {
- errorCallback(xhr.responseText);
- }
- };
- xhr.open("GET", url, true);
- xhr.send();
- }*/
-
 cgsgStylePaddingLeft = 0;
 cgsgStylePaddingTop = 0;
 cgsgStyleBorderLeft = 0;
@@ -164,8 +129,8 @@ function cgsgGetRealViewportDimension () {
  */
 function cgsgGetDisplayedViewportDimension () {
 	var realDim = cgsgGetRealViewportDimension();
-	return new CGSGDimension(Math.round(realDim.width / cgsgDisplayRatio.x),
-	                         Math.round(realDim.height / cgsgDisplayRatio.y));
+	return new CGSGDimension(Math.round(realDim.width / CGSG.displayRatio.x),
+	                         Math.round(realDim.height / CGSG.displayRatio.y));
 }
 
 /**
@@ -229,13 +194,13 @@ function cgsgGetCursorPositions (event, canvas) {
 		for (var i = 0; i < touchPoints.length; i++) {
 			touch = touchPoints[i];
 
-			positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
-			                                (touch.pageY - offsetY) / cgsgDisplayRatio.y));
+			positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
+			                                (touch.pageY - offsetY) / CGSG.displayRatio.y));
 		}
 	}
 	else {
-		positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
-		                                (touch.pageY - offsetY) / cgsgDisplayRatio.y));
+		positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
+		                                (touch.pageY - offsetY) / CGSG.displayRatio.y));
 	}
 
 	return positions;
@@ -250,7 +215,7 @@ function cgsgGetCursorPositions (event, canvas) {
 function cgsgClearContext (context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	// Will always clear the right space
-	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
+	context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 }
 
 /**

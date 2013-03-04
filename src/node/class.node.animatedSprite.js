@@ -148,15 +148,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 			 */
 			this.onAnimationStart = null;
 
-			/**
-			 * Fake canvas to pre-render the animated sprite (not used yet)
-			 * Still beta
-			 * @property _tmpCanvas
-			 * @type {HTMLElement}
-			 * @private
-			 */
-			this._tmpCanvas = document.createElement('canvas');
-
 			///// INITIALIZATION //////
 			//finally load the image
 			if (this._urlImage !== null && this._urlImage != "") {
@@ -186,13 +177,13 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @method _onImageLoaded
 		 */
 		_onImageLoaded : function () {
-			this._checkDimension();
+			this.checkDimension();
 			this._isLoaded = true;
 			//this._initShape();
 			if (this.onLoadEnd !== null) {
 				this.onLoadEnd();
 			}
-			this.render(this._context);
+			this.invalidate();
 		},
 
 		/**
@@ -204,31 +195,12 @@ var CGSGNodeSprite = CGSGNode.extend(
 			console.log("Error while loading image : " + this._urlImage);
 		},
 
-		/*
-		 * pre-render the image to optimize the perfs
-		 */
-		/*_initShape:function () {
-		 this.tmpCanvas.width = this.dimension.width;
-		 this.tmpCanvas.height = this.dimension.height;
-		 var tmpContext = this.tmpCanvas.getContext('2d');
-
-		 tmpContext.drawImage(
-		 this.img, // image
-		 0, 0, // start position on the image
-		 this.dimension.width, this.dimension.height, // dimension on the image
-		 0, 0,
-		 // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
-		 this.dimension.width, this.dimension.height                // dimension on the screen
-		 );
-		 },*/
-
 		/**
 		 * Check the true dimension of the image and fill the this.dimension property with it,
 		 * only if dimension is not already defined in the constructor
-		 * @private
-		 * @method _checkDimension
+		 * @method checkDimension
 		 */
-		_checkDimension : function () {
+		checkDimension : function () {
 			//if no width or height are specified in the constructor
 			if (this.dimension.width <= 0 && this.dimension.height <= 0) {
 				this.dimension.width = this._img.width;
@@ -266,7 +238,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 			if (cgsgExist(this._img)) {
 				this._urlImage = this._img.src;
 				this._isLoaded = true;
-				//this._initShape();
+				this.invalidate();
 			}
 		},
 
@@ -294,6 +266,8 @@ var CGSGNodeSprite = CGSGNode.extend(
 					this.stop();
 				}
 			}
+
+            this.invalidate();
 		},
 
 		/**
@@ -320,6 +294,8 @@ var CGSGNodeSprite = CGSGNode.extend(
 					this.stop();
 				}
 			}
+
+            this.invalidate();
 		},
 
 		/**
@@ -329,6 +305,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 */
 		goToFirstFrame : function () {
 			this._currentFrame = 0;
+            this.invalidate();
 		},
 
 		/**
@@ -338,6 +315,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 */
 		goToLastFrame : function () {
 			this._currentFrame = this.currentAnimation.frames - 1;
+            this.invalidate();
 		},
 
 		/**
@@ -348,8 +326,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * */
 		render : function (context) {
 			if (this._isLoaded && this._img.src != "") {
-				//save current state
-				this.beforeRender(context);
 
 				//compute the current slice of the current sprite
 				if (cgsgExist(this.currentAnimation)) {
@@ -373,11 +349,9 @@ var CGSGNodeSprite = CGSGNode.extend(
 					//go to next frame
 					if (this._isPlaying) {
 						this.goToNextFrame();
+                        this.invalidate();
 					}
 				}
-
-				//restore state
-				this.afterRender(context);
 			}
 		},
 
@@ -475,6 +449,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 			if (this.onAnimationEnd !== null) {
 				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame});
 			}
+            this.invalidate();
 		},
 
 		/**
@@ -485,6 +460,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		reset : function () {
 			this._currentFrame = 0;
 			this._currentLoop = 1;
+            this.invalidate();
 		},
 
 		/**

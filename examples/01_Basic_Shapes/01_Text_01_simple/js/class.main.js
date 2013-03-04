@@ -71,7 +71,7 @@ var CGMain = CGSGScene.extend(
 			textNode.setTypo("Arial");
 			textNode.isDraggable = true;
 
-			//add the textNode as child of the root
+            //add the textNode as child of the root
 			this.rootNode.addChild(textNode);
 		},
 
@@ -94,17 +94,21 @@ var CGMain = CGSGScene.extend(
 				event.node.setMaxWidth(event.node.dimension.width);
 			}
 
+            textNode.setPrecomputed(true);
+
 			//add the textNode as child of the root
 			this.rootNode.addChild(textNode);
 		},
 
 		createCarriageReturnText : function () {
-			var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return:\njust\there");
+			var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return and a tabulation :\njust\there");
 			textNode.setSize(14);
 			textNode.setTypo("Times New Roman");
 			textNode.isDraggable = true;
+            textNode.name = "Carriage Return Text";
 
 			textNode.color = "blue";
+            textNode.setPrecomputed(true);
 
 			//add the textNode as child of the root
 			this.rootNode.addChild(textNode);
@@ -120,6 +124,8 @@ var CGMain = CGSGScene.extend(
 			textNodeBottom.isDraggable = true;
 			textNodeBottom.color = "white";
 			textNodeBottom.setTextBaseline("bottom");
+
+            //textNodeBottom.setPrecomputed(true);
 
 			var textNodeMiddle = new CGSGNodeText(10, 30, "Middle on " + cgsgCurrentExplorer.name);
 			textNodeMiddle.setSize(14);

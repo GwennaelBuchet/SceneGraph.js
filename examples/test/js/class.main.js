@@ -39,7 +39,7 @@ function createScene() {
  * @param {CGSGNode} circle
  */
 function resetCircle(circle) {
-    circle.translateTo(Math.random() * cgsgCanvas.width, Math.random() * cgsgCanvas.height);
+    circle.translateTo(Math.random() * CGSG.canvas.width, Math.random() * CGSG.canvas.height);
 
     //animate size and alpha
     var r = 20 + Math.random() * 30;

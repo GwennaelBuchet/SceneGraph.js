@@ -107,7 +107,7 @@ var CGMain = CGSGScene.extend(
 
 			//add a force vector on the mouse click
 			var scope = this;
-			cgsgCanvas.onmousedown = function (event) {
+			CGSG.canvas.onmousedown = function (event) {
 				var force = emitter.addForce(new CGSGVector2D(0.0, -12), 30); //force of -12 on Y (up direction), for 30 frames
 				//scope._super(event);
 			};

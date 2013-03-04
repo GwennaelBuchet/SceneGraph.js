@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\collision\class.collision.tester.ghost.ondemand.js - cgSceneGraph</title>
+    <title>src\collision\enum.collision.method.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -30,6 +30,8 @@
 
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
@@ -168,7 +170,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\collision\class.collision.tester.ghost.ondemand.js</h1>
+                        <h1 class="file-heading">File: src\collision\enum.collision.method.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -200,95 +202,26 @@
 &quot;use strict&quot;;
 
 &#x2F;**
+ * List the methods to check the collision on two nodes
  * @module Collision
- * @class CGSGCollisionGhostOnDemandTester
+ * @class CGSGCollisionMethod
  * @extends {Object}
  * @constructor
- * @type {CGSGCollisionGhostOnDemandTester}
+ * @type {Object}
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  *&#x2F;
-var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
-    {
-        initialize : function () {
-            this.classType=&quot;CGSGCollisionGhostOnDemandTester&quot;;
-        },
+var CGSGCollisionMethod = {
+    &#x2F;**
+     * @property GHOSTONDEMAND
+     *&#x2F;
+    GHOSTONDEMAND : &quot;ghostOnDemand&quot;,
 
-        &#x2F;**
-         * Indicate if two nodes are colliding
-         * @method isColliding
-         * @param currentNode
-         * @param testedNode
-         * @param threshold
-         * @return {boolean} true if nodes are colliding
-         *&#x2F;
-        isColliding : function(currentNode, testedNode,threshold){
-            &#x2F;&#x2F; get deltas to run through minimum pixels (only union of both nodes)
-            var deltaX = testedNode.getAbsoluteLeft() - currentNode.getAbsoluteLeft();
-            var deltaY = testedNode.getAbsoluteTop() - currentNode.getAbsoluteTop();
+    &#x2F;**
+     * @property REGION
+     *&#x2F;
+    REGION: &quot;region&quot;
+};
 
-            &#x2F;&#x2F; with delta, calculate the start and end (length) of x and y
-            var lengthX = (deltaX &gt;= 0) ?
-                Math.min(currentNode.getAbsoluteWidth() - deltaX, testedNode.getAbsoluteWidth()) :
-                Math.min(testedNode.getAbsoluteWidth() + deltaX, currentNode.getAbsoluteWidth());
-
-            var lengthY = (deltaY &gt;= 0) ?
-                Math.min(currentNode.getAbsoluteHeight() - deltaY, testedNode.getAbsoluteHeight()) :
-                Math.min(testedNode.getAbsoluteHeight() + deltaY, currentNode.getAbsoluteHeight());
-
-            if ((lengthX &lt;= 0) || (lengthY &lt;= 0)) {
-                return false;
-            }
-
-            var startX = (deltaX &gt;= 0) ? deltaX : 0;
-            var startY = (deltaY &gt;= 0) ? deltaY : 0;
-
-            &#x2F;&#x2F; draw 1st
-            var tmpCanvas = document.createElement(&#x27;canvas&#x27;);
-            tmpCanvas.width = currentNode.getAbsoluteWidth();
-            tmpCanvas.height = currentNode.getAbsoluteHeight();
-            var ctx = tmpCanvas.getContext(&quot;2d&quot;);
-            &#x2F;&#x2F;ctx.scale(currentNode.getAbsoluteScale().x, currentNode.getAbsoluteScale().y);
-            ctx.scale(currentNode._absoluteScale.x, currentNode._absoluteScale.y);
-
-            &#x2F;&#x2F; draw 1st at 0x0; (backup position, render, restore position)
-            var backupPosition = currentNode.position;
-            currentNode.position = new CGSGPosition(0, 0);
-            currentNode.render(ctx);
-            currentNode.position = backupPosition;
-
-            &#x2F;&#x2F; draw node : canvas
-            var tmpCanvas2 = document.createElement(&#x27;canvas&#x27;);
-            tmpCanvas2.width = testedNode.getAbsoluteWidth();
-            tmpCanvas2.height = testedNode.getAbsoluteHeight();
-            var ctx2 = tmpCanvas2.getContext(&quot;2d&quot;);
-
-            &#x2F;&#x2F; draw node  (backup position, render, restore position)
-            backupPosition = testedNode.position;
-            testedNode.position = new CGSGPosition(0,0);
-            testedNode.render(ctx2);
-            testedNode.position = backupPosition;
-
-            &#x2F;&#x2F; compute both with mask at deltas
-            ctx.globalCompositeOperation = &quot;destination-in&quot;;
-            &#x2F;&#x2F;ctx.drawImage(tmpCanvas2, deltaX &#x2F; currentNode.getAbsoluteScale().x, deltaY &#x2F; currentNode.getAbsoluteScale().y);
-            ctx.drawImage(tmpCanvas2, deltaX &#x2F; currentNode._absoluteScale.x, deltaY &#x2F; currentNode._absoluteScale.y);
-
-            &#x2F;&#x2F; WARN : security exception with chrome when calling .html directly (no apache server)
-            var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);
-            &#x2F;&#x2F;run through data canvas, in the common zone
-            for (var x = 0; x &lt; canvasData.width; x++) {
-                for (var y = 0; y &lt; canvasData.height; y++) {
-                    var idx = ((x) + (y) * canvasData.width) * 4;
-                    &#x2F;&#x2F; check alpha
-                    if (canvasData.data[idx + 3] &gt; 0) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-    }
-);
 
     </pre>
 </div>

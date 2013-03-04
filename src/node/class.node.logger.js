@@ -164,10 +164,6 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function (context) {
-			//save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
 			//draw this zone
 			context.fillStyle = this.color;
 			context.strokeStyle = this.lineColor;
@@ -186,9 +182,6 @@ var CGSGNodeLogger = CGSGNode.extend(
 			context.lineTo(rectX + rectWidth, rectY + rectHeight);
 			context.fill();
 			context.stroke();
-
-			//restore state
-			this.afterRender(context);
 		},
 
 		/**

@@ -64,8 +64,8 @@ var CGMain = CGSGScene.extend(
             for (var s = 0; s < 400; s++) {
                 var s1 = this.addSquare({
                     hasEvent:true, name:"Pingoo " + s,
-                    x:Math.random() * cgsgCanvas.width / 1.5,
-                    y:40 + Math.random() * cgsgCanvas.height / 1.5,
+                    x:Math.random() * CGSG.canvas.width / 1.5,
+                    y:40 + Math.random() * CGSG.canvas.height / 1.5,
                     w:30 + Math.random() * 50});
                 //add squares to the scene
                 this.rootNode.addChild(s1);

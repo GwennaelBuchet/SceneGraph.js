@@ -336,7 +336,7 @@ var CGSGTimeline = CGSGObject.extend(
 		 */
 		exportValues : function () {
 			if (this.listValues.length === 0) {
-				this.computeValues(cgsgCurrentFrame, this.method);
+				this.computeValues(CGSG.currentFrame, this.method);
 			}
 
 			var values = [], i;

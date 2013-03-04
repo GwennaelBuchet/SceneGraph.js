@@ -98,8 +98,6 @@ var CGSGNodeTabMenu = CGSGNode.extend(
          * @return {Object} The new created tab
          */
         addTab:function (text, view) {
-            var pX = this.tabs.length;
-
             var button = new CGSGNodeButton(0, 0, text);
             button.setHorizontalPadding(10);
             button.setVerticalPadding(8);

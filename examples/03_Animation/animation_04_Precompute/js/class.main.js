@@ -117,9 +117,9 @@ var CGMain = CGSGScene.extend(
          */
         moveSquares:function () {
             //import values into the timeline, starting to the current frame (or later if you need)
-            this.sceneGraph.getTimeline(this.squareNode1, "position.x").importValues(this.animationValues, cgsgCurrentFrame);
-            this.sceneGraph.getTimeline(this.squareNode2, "position.x").importValues(this.animationValues, cgsgCurrentFrame);
-            this.sceneGraph.getTimeline(this.squareNode3, "position.x").importValues(this.animationValues, cgsgCurrentFrame);
+            this.sceneGraph.getTimeline(this.squareNode1, "position.x").importValues(this.animationValues, CGSG.currentFrame);
+            this.sceneGraph.getTimeline(this.squareNode2, "position.x").importValues(this.animationValues, CGSG.currentFrame);
+            this.sceneGraph.getTimeline(this.squareNode3, "position.x").importValues(this.animationValues, CGSG.currentFrame);
         }
 
     }

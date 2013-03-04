@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -258,11 +260,6 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * *&#x2F;
 		render : function (context) {
-			&#x2F;&#x2F;save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
 			var centerX = this.dimension.width &#x2F; 2;
 			var centerY = this.dimension.height &#x2F; 2;
 
@@ -289,50 +286,6 @@ var CGSGNodeEllipse = CGSGNode.extend(
 			}
 
 			context.closePath();
-
-			&#x2F;&#x2F;restore state
-			this.afterRender(context);
-		},
-
-		&#x2F;**
-		 * @method renderGhost
-		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
-		 *&#x2F;
-		renderGhost : function (ghostContext) {
-			&#x2F;&#x2F;save current state
-			this.beforeRenderGhost(ghostContext);
-
-			if (this.globalAlpha &gt; 0) {
-				var centerX = this.dimension.width &#x2F; 2;
-				var centerY = this.dimension.height &#x2F; 2;
-
-				ghostContext.beginPath();
-
-				ghostContext.moveTo(centerX, 0);
-
-				ghostContext.bezierCurveTo(
-					this.dimension.width, 0,
-					this.dimension.width, this.dimension.height,
-					centerX, this.dimension.height);
-
-				ghostContext.bezierCurveTo(
-					0, this.dimension.height,
-					0, 0,
-					centerX, 0);
-
-				ghostContext.fillStyle = this.color;
-				ghostContext.fill();
-				if (this.lineWidth &gt; 0) {
-					ghostContext.lineWidth = this.lineWidth;
-					ghostContext.strokeStyle = this.lineColor;
-					ghostContext.stroke();
-				}
-
-				ghostContext.closePath();
-			}
-
-			&#x2F;&#x2F;restore state
-			this.afterRenderGhost(ghostContext);
 		},
 
 		&#x2F;**

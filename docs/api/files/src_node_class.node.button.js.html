@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -209,20 +211,20 @@ var CGSGButtonMode = {
     &#x2F;**
      * @property NORMAL
      *&#x2F;
-    NORMAL:{index:0, isClickable:true},
+    NORMAL: {index: 0, isClickable: true},
     &#x2F;**
      * @property OVER
      *&#x2F;
-    OVER:{index:1, isClickable:true},
+    OVER: {index: 1, isClickable: true},
     &#x2F;**
      * @property DEACTIVATED
      *&#x2F;
-    DEACTIVATED:{index:2, isClickable:false},
+    DEACTIVATED: {index: 2, isClickable: false},
 
     &#x2F;**
      * @property SELECTED
      *&#x2F;
-    SELECTED:{index:1, isClickable:true}
+    SELECTED: {index: 1, isClickable: true}
 };
 
 
@@ -230,42 +232,42 @@ var CGSGPositionMode = {
     &#x2F;**
      * @property TOP
      *&#x2F;
-    TOP:{index:0, decalX:0, decalY:-1, dt:1, dy:1,
-        computeWidth:function (item1, item2) {
+    TOP: {index: 0, decalX: 0, decalY: -1, dt: 1, dy: 1,
+        computeWidth: function (item1, item2) {
             return Math.max(item1, item2);
         },
-        computeHeight:function (item1, item2) {
+        computeHeight: function (item1, item2) {
             return 0;
         }},
 
     &#x2F;**
      * @property BOTTOM
      *&#x2F;
-    BOTTOM:{index:1, decalX:0, decalY:1, dt:0, dy:1,
-        computeWidth:function (item1, item2) {
+    BOTTOM: {index: 1, decalX: 0, decalY: 1, dt: 0, dy: 1,
+        computeWidth: function (item1, item2) {
             return Math.max(item1, item2);
         },
-        computeHeight:function (item1, item2) {
+        computeHeight: function (item1, item2) {
             return 0;
         }},
     &#x2F;**
      * @property LEFT
      *&#x2F;
-    LEFT:{index:2, decalX:-1, decalY:0, dt:0, dy:0,
-        computeWidth:function (item1, item2) {
+    LEFT: {index: 2, decalX: -1, decalY: 0, dt: 0, dy: 0,
+        computeWidth: function (item1, item2) {
             return 0;
         },
-        computeHeight:function (item1, item2) {
+        computeHeight: function (item1, item2) {
             return Math.max(item1, item2);
         }},
     &#x2F;**
      * @property RIGHT
      *&#x2F;
-    RIGHT:{index:3, decalX:1, decalY:0, dt:1, dy:0,
-        computeWidth:function (item1, item2) {
+    RIGHT: {index: 3, decalX: 1, decalY: 0, dt: 1, dy: 0,
+        computeWidth: function (item1, item2) {
             return 0;
         },
-        computeHeight:function (item1, item2) {
+        computeHeight: function (item1, item2) {
             return Math.max(item1, item2);
         }}
 };
@@ -286,7 +288,7 @@ var CGSGPositionMode = {
  *&#x2F;
 var CGSGNodeButton = CGSGNode.extend(
     {
-        initialize:function (x, y, text) {
+        initialize: function (x, y, text) {
             this._super(x, y, 0, 0);
 
             &#x2F;**
@@ -397,7 +399,7 @@ var CGSGNodeButton = CGSGNode.extend(
              * @type {Array}
              * @private
              *&#x2F;
-            this._tmpCanvas =
+            this._tmpCanvases =
                 [document.createElement(&#x27;canvas&#x27;), document.createElement(&#x27;canvas&#x27;), document.createElement(&#x27;canvas&#x27;)];
 
             &#x2F;**
@@ -459,6 +461,8 @@ var CGSGNodeButton = CGSGNode.extend(
                     that.setMode(CGSGButtonMode.NORMAL);
                 }
             };
+
+            this._isInitialized = true;
         },
 
         &#x2F;**
@@ -466,7 +470,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setPictoPosition
          * @param {CGSGPositionMode} p
          *&#x2F;
-        setPictoPosition:function (p) {
+        setPictoPosition: function (p) {
             this._pictoPosition = p;
             this._needRedraw = true;
         },
@@ -476,7 +480,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setImage
          * @param {Image} img
          *&#x2F;
-        setImage:function (img) {
+        setImage: function (img) {
             this._picto.setImage(img);
             this._needRedraw = true;
         },
@@ -486,12 +490,12 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setImageURL
          * @param url
          *&#x2F;
-        setImageURL:function (url) {
+        setImageURL: function (url) {
             this._picto.onLoadEnd = this._onLoadImageEnd.bind(this);
             this._picto.setURL(url);
         },
 
-        _onLoadImageEnd:function () {
+        _onLoadImageEnd: function () {
             this._needRedraw = true;
         },
 
@@ -500,7 +504,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getSlices
          * @return {Array}
          *&#x2F;
-        getSlices:function () {
+        getSlices: function () {
             return this._slices;
         },
         &#x2F;**
@@ -508,7 +512,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setSlices
          * @param {Array} values
          *&#x2F;
-        setSlices:function (values) {
+        setSlices: function (values) {
             this._slices = values;
             this._needRedraw = true;
         },
@@ -518,7 +522,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getFirstColor
          * @return {Array}
          *&#x2F;
-        getFirstColors:function () {
+        getFirstColors: function () {
             return this._firstColors;
         },
         &#x2F;**
@@ -526,7 +530,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setFirstColor
          * @param values {Array}
          *&#x2F;
-        setFirstColors:function (values) {
+        setFirstColors: function (values) {
             this._firstColors = values;
             this._needRedraw = true;
         },
@@ -536,7 +540,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getLastColor
          * @return {Array}
          *&#x2F;
-        getLastColors:function () {
+        getLastColors: function () {
             return this._lastColors;
         },
         &#x2F;**
@@ -544,7 +548,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setLastColor
          * @param values {Array}
          *&#x2F;
-        setLastColors:function (values) {
+        setLastColors: function (values) {
             this._lastColors = values;
             this._needRedraw = true;
         },
@@ -554,7 +558,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getShadowColor
          * @return {Array}
          *&#x2F;
-        getShadowColors:function () {
+        getShadowColors: function () {
             return this._shadowColors;
         },
         &#x2F;**
@@ -562,7 +566,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setShadowColor
          * @param values {Array}
          *&#x2F;
-        setShadowColors:function (values) {
+        setShadowColors: function (values) {
             this._shadowColors = values;
             this._needRedraw = true;
         },
@@ -572,7 +576,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getRadius
          * @return {Array}
          *&#x2F;
-        getRadiuses:function () {
+        getRadiuses: function () {
             return this._radiuses;
         },
         &#x2F;**
@@ -580,7 +584,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setRadius
          * @param values {Array}
          *&#x2F;
-        setRadiuses:function (values) {
+        setRadiuses: function (values) {
             this._radiuses = values;
             this._needRedraw = true;
         },
@@ -590,7 +594,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getText
          * @return {Array}
          *&#x2F;
-        getTexts:function () {
+        getTexts: function () {
             return this._texts;
         },
         &#x2F;**
@@ -600,7 +604,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @example
          *  button.setText([&quot;normal&quot;, &quot;over&quot;, &quot;deactivated&quot;]);
          *&#x2F;
-        setTexts:function (valuess) {
+        setTexts: function (valuess) {
             &#x2F;&#x2F;if valuess is not an array, create an array of 3 times this values
             if (!cgsgIsArray(valuess)) {
                 var v = valuess.toString();
@@ -616,7 +620,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getTextSize
          * @return {Array}
          *&#x2F;
-        getTextSizes:function () {
+        getTextSizes: function () {
             return this._textSizes;
         },
         &#x2F;**
@@ -624,7 +628,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setTextSize
          * @param values {Array}
          *&#x2F;
-        setTextSizes:function (values) {
+        setTextSizes: function (values) {
             this._textSizes = values;
             this._needRedraw = true;
         },
@@ -634,7 +638,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getTextColor
          * @return {Array}
          *&#x2F;
-        getTextColors:function () {
+        getTextColors: function () {
             return this._textColors;
         },
         &#x2F;**
@@ -644,7 +648,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @example
          *  button.setTextColor([&quot;white&quot;, &quot;green&quot;, &quot;yellow&quot;]);
          *&#x2F;
-        setTextColors:function (values) {
+        setTextColors: function (values) {
             this._textColors = values;
             this._needRedraw = true;
         },
@@ -654,7 +658,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getHorizontalPadding
          * @return {Number}
          *&#x2F;
-        getHorizontalPadding:function () {
+        getHorizontalPadding: function () {
             return this._horizontalPadding;
         },
         &#x2F;**
@@ -662,7 +666,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setHorizontalPadding
          * @param values {Number}
          *&#x2F;
-        setHorizontalPadding:function (values) {
+        setHorizontalPadding: function (values) {
             this._horizontalPadding = values;
             this._needRedraw = true;
         },
@@ -672,7 +676,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getVerticalPadding
          * @return {Number}
          *&#x2F;
-        getVerticalPadding:function () {
+        getVerticalPadding: function () {
             return this._verticalPadding;
         },
         &#x2F;**
@@ -680,7 +684,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setHorizontalPadding
          * @param values {Number}
          *&#x2F;
-        setVerticalPadding:function (values) {
+        setVerticalPadding: function (values) {
             this._verticalPadding = values;
             this._needRedraw = true;
         },
@@ -689,7 +693,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setFixedSize
          * @param {CGSGDimension} dim Can be null to remove fixed size
          *&#x2F;
-        setFixedSize:function (dim) {
+        setFixedSize: function (dim) {
             this._dimensions[0] = dim;
             this._dimensions[1] = dim;
             this._dimensions[2] = dim;
@@ -697,17 +701,23 @@ var CGSGNodeButton = CGSGNode.extend(
             this._needRedraw = true;
         },
 
+        invalidate: function () {
+            if (cgsgExist(this._isInitialized) &amp;&amp; this._isInitialized === true)
+                this._initShapes();
+        },
+
         &#x2F;**
          * Pre-render the button into a temp canvas to optimize the perfs
          * @method _initShape
          * @private
          *&#x2F;
-        _initShapes:function () {
+        _initShapes: function () {
             this._initShape(0);
             this._initShape(1);
             this._initShape(2);
             this._needRedraw = false;
         },
+
 
         &#x2F;**
          * Pre-render the shape for normal rendering
@@ -715,12 +725,12 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param {Number} index
          * @private
          *&#x2F;
-        _initShape:function (index) {
+        _initShape: function (index) {
             this.textNode.setSize(this._textSizes[index], false);
             this.textNode.setText(this._texts[index], true);
 
             var dPT = this._distancePictoText;
-            if (this._texts[index] === &quot;&quot;){
+            if (this._texts[index] === &quot;&quot;) {
                 dPT = 0;
             }
 
@@ -741,23 +751,24 @@ var CGSGNodeButton = CGSGNode.extend(
             }
 
             if (this._fixedSize) {
-                this.resizeTo(this._dimensions[index].width, this._dimensions[index].height);
+                this.dimension.resizeTo(this._dimensions[index].width, this._dimensions[index].height);
+                this._isDimensionChanged = true;
             }
             else {
-                this.resizeTo(
+                this.dimension.resizeTo(
                     (2 * this._horizontalPadding) + decalPictoX + this.textNode.getWidth() * Math.abs(this._pictoPosition.decalX) +
                         this._pictoPosition.computeWidth(this.textNode.getWidth(), wImg),
                     (2 * this._verticalPadding) + decalPictoY + this.textNode.getHeight() * Math.abs(this._pictoPosition.decalY) +
                         this._pictoPosition.computeHeight(this.textNode.getHeight(), hImg));
 
                 this._dimensions[index] = this.dimension.copy();
+                this._isDimensionChanged = true;
             }
 
 
-
-            this._tmpCanvas[index].width = this.dimension.width + 2 * this._radiuses[index];
-            this._tmpCanvas[index].height = this.dimension.height + 2 * this._radiuses[index];
-            var tmpContext = this._tmpCanvas[index].getContext(&#x27;2d&#x27;);
+            this._tmpCanvases[index].width = this.dimension.width + 2 * this._radiuses[index];
+            this._tmpCanvases[index].height = this.dimension.height + 2 * this._radiuses[index];
+            var tmpContext = this._tmpCanvases[index].getContext(&#x27;2d&#x27;);
 
             cgsgClearContext(tmpContext);
 
@@ -836,11 +847,11 @@ var CGSGNodeButton = CGSGNode.extend(
                     &#x2F;&#x2F;+ this._pictoPosition.dy * (textY - this.textNode._size &#x2F; 2 - ( this._pictoPosition.dt) * this.textNode.getHeight())
                 );
 
-                this._picto.render(tmpContext);
+                this._picto.doRender(tmpContext);
             }
 
-            this.textNode.translateTo(textX, textY);
-            this.textNode.render(tmpContext);
+            this.textNode.translateTo(textX, textY, false);
+            this.textNode.doRender(tmpContext);
         },
 
         &#x2F;**
@@ -848,17 +859,18 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setMode
          * @param {CGSGButtonMode} mode
          *&#x2F;
-        setMode:function (mode) {
+        setMode: function (mode) {
             this._currentMode = mode;
             this.isClickable = mode.isClickable;
-            this.resizeTo(this._dimensions[mode.index].width, this._dimensions[mode.index].height);
+            this.dimension.resizeTo(this._dimensions[mode.index].width, this._dimensions[mode.index].height);
+            this._isDimensionChanged = true;
         },
 
         &#x2F;**
          * @method getMode
          * @return {CGSGButtonMode}
          *&#x2F;
-        getMode:function () {
+        getMode: function () {
             return this._currentMode;
         },
 
@@ -868,28 +880,20 @@ var CGSGNodeButton = CGSGNode.extend(
          * @protected
          * @param {CanvasRenderingContext2D} context the context into render the node
          * *&#x2F;
-        render:function (context) {
-            &#x2F;&#x2F;save current state
-            this.beforeRender(context);
-
-            context.globalAlpha = this.globalAlpha;
-
+        render: function (context) {
             if (this._needRedraw) {
                 this._initShapes();
             }
 
             &#x2F;&#x2F;render the pre-rendered canvas
-            context.drawImage(this._tmpCanvas[this._currentMode.index], 0, 0);
-
-            &#x2F;&#x2F;restore state
-            this.afterRender(context);
+            context.drawImage(this._tmpCanvases[this._currentMode.index], 0, 0);
         },
 
         &#x2F;**
          * @method copy
          * @return {CGSGNodeSquare} a copy of this node
          *&#x2F;
-        copy:function () {
+        copy: function () {
             var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
                 this.dimension.height);
             &#x2F;&#x2F;call the super method

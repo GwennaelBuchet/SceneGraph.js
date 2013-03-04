@@ -31,7 +31,7 @@
  */
 var FloorNode = CGSGNode.extend(
 	{
-		initialize : function(x, y, width, height) {
+		initialize: function (x, y, width, height) {
 			//call the initialize of the parent
 			this._super(x, y, width, height);
 
@@ -56,24 +56,23 @@ var FloorNode = CGSGNode.extend(
 				centerX = Math.random() * cgsgCanvas.width;
 				centerY = cgsgCanvas.height - Math.random() * 100;
 				radius = 2 + Math.random() * 2.3;
-				this.flowersPosition.push({x : centerX, y : centerY, r : radius});
+				this.flowersPosition.push({x: centerX, y: centerY, r: radius});
 			}
 		},
 
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * */
-		render : function(context) {
+		render: function (context) {
 			this.firstColorCurrent =
 			CGSGColor.lerp(this.firstColors[currentColorIndex], this.firstColors[currentColorIndex + 1],
-			                currentColorLerp);
+						   currentColorLerp);
 			this.lastColorCurrent =
 			CGSGColor.lerp(this.lastColors[currentColorIndex], this.lastColors[currentColorIndex + 1],
-			                currentColorLerp);
+						   currentColorLerp);
 			this.flowerColorCurrent =
 			CGSGColor.lerp(this.flowerColors[currentColorIndex], this.flowerColors[currentColorIndex + 1],
-			                currentColorLerp);
-
+						   currentColorLerp);
 
 			//save current state
 			//always call it
@@ -96,13 +95,13 @@ var FloorNode = CGSGNode.extend(
 			context.moveTo(startX, startY);
 
 			context.bezierCurveTo(startX - 10, startY + 20, startX - 40, startY + 70,
-			                      startX + 30, startY + 70);
+								  startX + 30, startY + 70);
 			context.bezierCurveTo(startX + 60, startY + 60, startX + 250,
-			                      startY + 40, startX + 220, startY + 20);
+								  startY + 40, startX + 220, startY + 20);
 			context.bezierCurveTo(startX + 240, startY - 40, startX + 200, startY - 50,
-			                      startX + 170, startY - 30);
+								  startX + 170, startY - 30);
 			context.bezierCurveTo(startX + 50, startY - 60,
-			                      startX, startY - 30, startX, startY); //left-top
+								  startX, startY - 30, startX, startY); //left-top
 
 			context.closePath();
 
@@ -124,11 +123,10 @@ var FloorNode = CGSGNode.extend(
 			for (var s = 0; s < this.flowersPosition.length; s++) {
 				context.beginPath();
 				context.arc(this.flowersPosition[s].x, this.flowersPosition[s].y, this.flowersPosition[s].r, 0,
-				            CGSGMath.PI2, false);
+							CGSGMath.PI2, false);
 				context.fillStyle = this.flowerColorCurrent;
 				context.fill();
 			}
-
 
 			//restore state
 			//always call it

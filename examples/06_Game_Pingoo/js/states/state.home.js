@@ -13,14 +13,14 @@ var StateHome = CGSGObject.extend(
 		initialize : function(context, parent) {
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
 
-			var bkg = new CGSGNodeSquare(0, 0, cgsgCanvas.width, cgsgCanvas.height);
+			var bkg = new CGSGNodeSquare(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 			bkg.color = "#CCD6FF";
 			this.rootNode.addChild(bkg);
 
 			var textTitle = new CGSGNodeText(20, 10, "Ping Mine");
 			textTitle.color = "#3322DE";
 			this.rootNode.addChild(textTitle);
-			textTitle.translateTo((cgsgCanvas.width - textTitle.getWidth()) / 2, 10);
+			textTitle.translateTo((CGSG.canvas.width - textTitle.getWidth()) / 2, 10);
 
 			var textLevel = new CGSGNodeText(0, 100, "Choose your level :");
 			textLevel.color = "#3322DE";
@@ -30,8 +30,8 @@ var StateHome = CGSGObject.extend(
 
 			this.textDescr = new CGSGNodeText(0, 360, "");
 			this.textDescr.color = "#AA2222";
-			this.textDescr.translateTo((cgsgCanvas.width - this.textDescr.getWidth()) / 2, 360);
-			this.textDescr.setMaxWidth(cgsgCanvas.width - 130, false);
+			this.textDescr.translateTo((CGSG.canvas.width - this.textDescr.getWidth()) / 2, 360);
+			this.textDescr.setMaxWidth(CGSG.canvas.width - 130, false);
 			this.textDescr.setTextAlign("center", false);
 			this.textDescr.setLineHeight(36, false);
 			this.textDescr.setWrapMode(CGSGWrapMode.WORD, true);
@@ -46,7 +46,7 @@ var StateHome = CGSGObject.extend(
 			var textGo = new CGSGNodeText(0, 500, "Let' Go !");
 			textGo.color = "#3322DE";
 			textGo.computeRealDimension();
-			textGo.translateTo((cgsgCanvas.width - textGo.getWidth()) / 2, 500);
+			textGo.translateTo((CGSG.canvas.width - textGo.getWidth()) / 2, 500);
 			textGo.pickNodeMethod = CGSGPickNodeMethod.REGION;
 			this.rootNode.addChild(textGo);
 			var that = this;
@@ -63,7 +63,7 @@ var StateHome = CGSGObject.extend(
 		addButtonLevel : function(x, y, level) {
 			var textLevel = new CGSGNodeText(x, y, level.name);
 			textLevel.color = "#5871F0";
-			textLevel.translateTo((cgsgCanvas.width - textLevel.getWidth()) / 2, y);
+			textLevel.translateTo((CGSG.canvas.width - textLevel.getWidth()) / 2, y);
 			textLevel.pickNodeMethod = CGSGPickNodeMethod.REGION;
 
 			var that = this;
@@ -81,7 +81,7 @@ var StateHome = CGSGObject.extend(
 
 		setLevelDescription : function(level) {
 			this.textDescr.setText(level.desc);
-			this.textDescr.translateTo((cgsgCanvas.width - this.textDescr.getWidth()) / 2, 360);
+			this.textDescr.translateTo((CGSG.canvas.width - this.textDescr.getWidth()) / 2, 360);
 		},
 
 		/**
@@ -107,7 +107,7 @@ var StateHome = CGSGObject.extend(
 			//first create and add an this.snowEmitter to the particle system
 			this.snowEmitter = this.particlesSystem.addEmitter(
 				new CGSGNodeCircle(0, 0, 10)
-				, new CGSGRegion(0, 30, cgsgCanvas.width, 0)     //emission area
+				, new CGSGRegion(0, 30, CGSG.canvas.width, 0)     //emission area
 				, 90                               //nbParticlesMax
 				, new CGSGVector2D(0.0, -1.0)        //initial velocity of a particle
 				, 0.0                     //angle area to rotate the direction vector
@@ -122,7 +122,7 @@ var StateHome = CGSGObject.extend(
 				event.particle.node.globalAlpha = 0.3 + Math.random() * 0.4;
 				event.particle.node.color = "white";
 				event.particle.checkCTL = function(particle) {
-					return particle.position.y <= cgsgCanvas.height + 40;
+					return particle.position.y <= CGSG.canvas.height + 40;
 				};
 
 				event.particle.node.resizeTo(5 + Math.random() * 5, 5 + Math.random() * 5);

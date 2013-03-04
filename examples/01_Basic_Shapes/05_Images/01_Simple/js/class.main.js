@@ -45,9 +45,9 @@ var CGMain = CGSGScene.extend(
 		},
 
 		initializeCanvas : function () {
-			//resize the dimension of the canvas to fulfill the viewport
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
+            //resize the canvas to fulfill the viewport
+            this.viewDimension = cgsgGetRealViewportDimension();
+            this.setCanvasDimension(this.viewDimension);
 		},
 
         /**
@@ -67,8 +67,9 @@ var CGMain = CGSGScene.extend(
                 60,     //y
                 "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 
-            this.imgNode.resizeTo(500, 500);
-            this.imgNode.setSlice(0, 0, 0, 0, true);
+            //this.imgNode.resizeTo(120, 100);
+            //this.imgNode.setSlice(30, 30, 80, 200, true);
+
             //add some attributes
             this.imgNode.isResizable = true;
             this.imgNode.isDraggable = true;
@@ -87,10 +88,13 @@ var CGMain = CGSGScene.extend(
 			this.currentImg = 1 - this.currentImg;
 			var src = ["images/hello.png", "images/board.png"];
 
-            //first reset slice of the image, so the dimension will be recomputed after the url is loaded
-            this.imgNode.setSlice(0, 0, 0, 0, true);
             //set the new URL
 			this.imgNode.setURL(src[this.currentImg]);
+
+            //to force the check of the dimension ofr this new image:
+            this.imgNode.onLoadEnd = function(event) {
+                event.node.checkDimension();
+            }
 		}
 	}
 );

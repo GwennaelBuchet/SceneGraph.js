@@ -41,13 +41,13 @@ var StateGameRun = Object.extend(
 		 * called each frame, just before the rendering process
 		 */
 		onRenderStartHandler : function() {
-			if (this.nbBees < this.maxBees && (cgsgCurrentFrame % 900) == 0) {
+			if (this.nbBees < this.maxBees && (CGSG.currentFrame % 900) == 0) {
 				//this.gameNode.addChild(this.bees[this.nbBees]);
 				this.bees[this.nbBees].start();
 				this.nbBees++;
 			}
 
-			if (this.isRunning === true && this.nbFlowers < this.maxFlowers && (cgsgCurrentFrame % 500) == 0) {
+			if (this.isRunning === true && this.nbFlowers < this.maxFlowers && (CGSG.currentFrame % 500) == 0) {
 				var flower = this.flowers[this.nbFlowers];
 				flower.isVisible = true;
 				flower.start();

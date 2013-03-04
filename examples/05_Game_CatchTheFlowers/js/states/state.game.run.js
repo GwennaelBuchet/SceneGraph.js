@@ -11,7 +11,7 @@
 
 var StateGameRun = CGSGObject.extend(
 	{
-		initialize : function(context, parent) {
+		initialize: function (context, parent) {
 			this.context = context;
 			this.image = null;
 
@@ -23,7 +23,7 @@ var StateGameRun = CGSGObject.extend(
 		/**
 		 * called each time this state is activated
 		 */
-		run : function() {
+		run: function () {
 			this.initGame();
 
 			for (var c = 0; c < this.maxClouds; c++) {
@@ -40,7 +40,7 @@ var StateGameRun = CGSGObject.extend(
 		/**
 		 * called each frame, just before the rendering process
 		 */
-		onRenderStartHandler : function() {
+		onRenderStartHandler: function () {
 			if (this.nbBees < this.maxBees && (cgsgCurrentFrame % 900) == 0) {
 				//this.gameNode.addChild(this.bees[this.nbBees]);
 				this.bees[this.nbBees].start();
@@ -61,7 +61,7 @@ var StateGameRun = CGSGObject.extend(
 			}
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 			this.image = image;
 		},
 
@@ -69,7 +69,7 @@ var StateGameRun = CGSGObject.extend(
 		 * create all the environment elements for the game
 		 * @private
 		 */
-		_createEnvironment : function() {
+		_createEnvironment: function () {
 			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 
 			var floor = new FloorNode(0, 0, 1, 1);
@@ -90,7 +90,7 @@ var StateGameRun = CGSGObject.extend(
 		 * create gfx elements and node for the game board
 		 * @private
 		 */
-		_createGameEnvironment : function() {
+		_createGameEnvironment: function () {
 			this.gameNode = new CGSGNode(0, 0, 1, 1);
 			this.rootNode.addChild(this.gameNode);
 
@@ -138,7 +138,7 @@ var StateGameRun = CGSGObject.extend(
 		 * create gfx elements and nodes for the "you lose" board
 		 * @private
 		 */
-		_createLoseEnvironment : function() {
+		_createLoseEnvironment: function () {
 			this.loseNode = new CGSGNode(0, 0, 1, 1);
 			this.rootNode.addChild(this.loseNode);
 
@@ -147,7 +147,7 @@ var StateGameRun = CGSGObject.extend(
 			var hButton = 40;
 			this.buttonGoBack =
 			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
-			               CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 1.5), wButton, hButton, 10);
+						   CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 1.5), wButton, hButton, 10);
 			this.loseNode.addChild(this.buttonGoBack);
 
 			var textGoBack = new CGSGNodeText(28, 18, "Go Home");
@@ -166,7 +166,7 @@ var StateGameRun = CGSGObject.extend(
 		/**
 		 * Change replace the game root node with the lose root node
 		 */
-		renderLose : function() {
+		renderLose: function () {
 			if (this.isRunning) {
 				this.isRunning = false;
 				this.rootNode.detachChild(this.gameNode);
@@ -174,14 +174,14 @@ var StateGameRun = CGSGObject.extend(
 			}
 		},
 
-		onButtonGoBackClick : function() {
+		onButtonGoBackClick: function () {
 			this.game.changeGameState(GAME_STATE.HOME);
 		},
 
 		/**
 		 * init a new game
 		 */
-		initGame : function() {
+		initGame: function () {
 			this.rootNode.detachChild(this.loseNode);
 			this.rootNode.addChild(this.gameNode);
 			this.score = 0;
@@ -204,7 +204,7 @@ var StateGameRun = CGSGObject.extend(
 			this.liveNode.reinit();
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			switch (keynum) {
@@ -223,7 +223,7 @@ var StateGameRun = CGSGObject.extend(
 			return keynum;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			return keynum;
@@ -233,7 +233,7 @@ var StateGameRun = CGSGObject.extend(
 		 * called when the player hit a bee
 		 * @param event
 		 */
-		killBee : function(event) {
+		killBee: function (event) {
 			event.node.reStartAnim();
 			this.nbLive = Math.max(0, this.nbLive - 1);
 			this.updateLive();
@@ -242,7 +242,7 @@ var StateGameRun = CGSGObject.extend(
 		/**
 		 * called when a flower hit the ground
 		 */
-		killFlower : function() {
+		killFlower: function () {
 			this.nbLive = Math.max(0, this.nbLive - 1);
 			this.updateLive();
 		},
@@ -251,12 +251,12 @@ var StateGameRun = CGSGObject.extend(
 		 * called when the player catch a flower
 		 * @param event
 		 */
-		catchFlower : function(event) {
+		catchFlower: function (event) {
 			this.score += event.node.points;
 			this.nbLive = Math.min(this.nbLive + event.node.live, maxLive);
 
 			sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.0, "linear", 0, true);
-			sceneGraph.getTimeline(event.node, "globalAlpha").onAnimationEnd = function(event) {
+			sceneGraph.getTimeline(event.node, "globalAlpha").onAnimationEnd = function (event) {
 				event.node.reStartAnim(1);
 			}
 
@@ -267,14 +267,14 @@ var StateGameRun = CGSGObject.extend(
 		/**
 		 * update the score panel
 		 */
-		updateScore : function() {
+		updateScore: function () {
 			this.scoreNode.setScore(this.score);
 		},
 
 		/**
 		 * Update the lives panel
 		 */
-		updateLive : function() {
+		updateLive: function () {
 			while (this.nbLive <= maxLive && this.nbLive > this.liveNode.nbLive) {
 				this.liveNode.addLive();
 			}

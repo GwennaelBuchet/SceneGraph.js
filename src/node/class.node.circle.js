@@ -122,11 +122,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function (context) {
-			//save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
 			context.beginPath();
 			context.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0, 2 * Math.PI,
 			            false);
@@ -137,9 +132,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 				context.strokeStyle = this.lineColor;
 				context.stroke();
 			}
-
-			//restore state
-			this.afterRender(context);
 		},
 
 		/**
@@ -190,31 +182,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 			this._center.y += r;
 		},
 
-		/**
-		 * @method renderGhost
-		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
-		 */
-		renderGhost : function (ghostContext) {
-			//save current state
-			this.beforeRenderGhost(ghostContext);
-
-			if (this.globalAlpha > 0) {
-				ghostContext.beginPath();
-				ghostContext.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0,
-				                 2 * Math.PI,
-				                 false);
-				ghostContext.fillStyle = this.color;
-				ghostContext.fill();
-				if (this.lineWidth > 0) {
-					ghostContext.lineWidth = this.lineWidth;
-					ghostContext.strokeStyle = this.lineColor;
-					ghostContext.stroke();
-				}
-			}
-
-			//restore state
-			this.afterRenderGhost(ghostContext);
-		},
 
 		/**
 		 * @method copy

@@ -11,7 +11,7 @@
 
 var StateHome = CGSGObject.extend(
 	{
-		initialize : function(context, parent) {
+		initialize: function (context, parent) {
 			this.context = context;
 			this.image = null;
 
@@ -23,16 +23,15 @@ var StateHome = CGSGObject.extend(
 		/**
 		 * called each time this state is activated
 		 */
-		run : function() {
+		run: function () {
 			this.initGame();
-
 
 		},
 
 		/**
 		 * called each frame, just before the rendering process
 		 */
-		onRenderStartHandler : function() {
+		onRenderStartHandler: function () {
 			currentColorLerp += 0.001;
 			if (currentColorLerp >= 1) {
 				currentColorLerp = 0;
@@ -40,11 +39,11 @@ var StateHome = CGSGObject.extend(
 			}
 		},
 
-		setImage : function(image) {
+		setImage: function (image) {
 			this.image = image;
 		},
 
-		_createEnvironment : function() {
+		_createEnvironment: function () {
 			this.rootNode = new SkyNode(0, 0, cgsgCanvas.width, cgsgCanvas.height, this.context);
 			this.rootNode.isClickable = false;
 
@@ -72,7 +71,7 @@ var StateHome = CGSGObject.extend(
 			var hButton = 50;
 			this.buttonGo =
 			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
-			               CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 2.5), wButton, hButton, 10);
+						   CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 2.5), wButton, hButton, 10);
 			this.rootNode.addChild(this.buttonGo);
 
 			var textGo = new CGSGNodeText(22, 22, "Let's Catch Flowers !");
@@ -87,7 +86,7 @@ var StateHome = CGSGObject.extend(
 			hButton = 40;
 			this.buttonAbout =
 			new ButtonNode(CGSGMath.fixedPoint((cgsgCanvas.width - wButton - 10) / 2.0),
-			               CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 1.25), wButton, hButton, 10);
+						   CGSGMath.fixedPoint((cgsgCanvas.height - hButton) / 1.25), wButton, hButton, 10);
 			this.rootNode.addChild(this.buttonAbout);
 
 			var textAbout = new CGSGNodeText(28, 18, "About");
@@ -98,11 +97,11 @@ var StateHome = CGSGObject.extend(
 			this.buttonAbout.onClick = bindOnButtonAboutClick;
 		},
 
-		onButtonGoClick : function() {
+		onButtonGoClick: function () {
 			this.game.changeGameState(GAME_STATE.PLAY_RUN);
 		},
 
-		onButtonAboutClick : function() {
+		onButtonAboutClick: function () {
 			this.game.changeGameState(GAME_STATE.ABOUT);
 		},
 
@@ -110,11 +109,11 @@ var StateHome = CGSGObject.extend(
 		 * init a new game
 		 * @param level
 		 */
-		initGame : function(level) {
+		initGame: function (level) {
 			this.rootNode.reStartAnim();
 		},
 
-		onKeyDown : function(event) {
+		onKeyDown: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			switch (keynum) {
@@ -133,7 +132,7 @@ var StateHome = CGSGObject.extend(
 			return keynum;
 		},
 
-		onKeyUp : function(event) {
+		onKeyUp: function (event) {
 			var keynum = (window.event) ? event.keyCode : event.which;
 
 			return keynum;

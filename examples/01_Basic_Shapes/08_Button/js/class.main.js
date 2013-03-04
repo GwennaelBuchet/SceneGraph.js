@@ -29,113 +29,135 @@
  * button example
  * */
 var CGMain = CGSGScene.extend(
-    {
-        initialize:function (canvas) {
+        {
+            initialize: function (canvas) {
 
-            this._super(canvas);
+                this._super(canvas);
 
-            ////// INITIALIZATION /////////
+                ////// INITIALIZATION /////////
 
-            this.initializeCanvas();
+                this.initializeCanvas();
 
-            this.createScene();
+                this.createScene();
 
-            this.startPlaying();
-        },
+                this.startPlaying();
+            },
 
-        initializeCanvas:function () {
-            //resize the canvas to fulfill the viewport
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
-        },
+            initializeCanvas: function () {
+                //resize the canvas to fulfill the viewport
+                this.viewDimension = cgsgGetRealViewportDimension();
+                this.setCanvasDimension(this.viewDimension);
+            },
 
-        /**
-         *
-         *
-         */
-        createScene:function () {
+            /**
+             *
+             *
+             */
+            createScene: function () {
+                //create a root node to the graph, with arbitrary position and size
+                var rootNode = new CGSGNode(0, 0, 0, 0);
+                this.sceneGraph.addNode(rootNode, null);
 
-            //create a root node to the graph, with arbitrary position and size
-            var rootNode = new CGSGNode(0, 0, 0, 0);
-            this.sceneGraph.addNode(rootNode, null);
+                //handler method on click
+                var bindClickHandler = this.clickHandler.bind(this);
 
-            //X, Y, WIDTH, HEIGHT
-            var buttonNormal = new CGSGNodeButton(10, 10, "Normal");
-            buttonNormal.name = "Normal Button";
-            buttonNormal.onClick = function (event) {
-                alert(event.node.name);
-            };
-            rootNode.addChild(buttonNormal, null);
+                //X, Y, WIDTH, HEIGHT
+                var buttonNormal = new CGSGNodeButton(10, 60, "Normal");
+                buttonNormal.name = "Normal Button";
+                buttonNormal.onClick = bindClickHandler;
+                rootNode.addChild(buttonNormal, null);
 
-            var buttonDeactivated = new CGSGNodeButton(110, 10, "Deactivated");
-            buttonDeactivated.setMode(CGSGButtonMode.DEACTIVATED);
-            buttonDeactivated.onClick = function (event) {
-                alert("click on button : " + event.node.getTexts()[0]);
-            };
-            rootNode.addChild(buttonDeactivated, null);
+                var buttonDeactivated = new CGSGNodeButton(110, 60, "Deactivated");
+                buttonDeactivated.setMode(CGSGButtonMode.DEACTIVATED);
+                buttonDeactivated.onClick = bindClickHandler;
+                rootNode.addChild(buttonDeactivated, null);
 
-            var buttonLittle = new CGSGNodeButton(35, 80, "Tiny");
-            buttonLittle.onClick = function (event) {
-                alert("click on button : " + event.node.getTexts()[0]);
-            };
-            buttonLittle.setVerticalPadding(2);
-            buttonLittle.setHorizontalPadding(4);
-            //3 radius : normal, over, deactivated
-            buttonLittle.setRadiuses([5, 5, 5]);
-            //3 sizes : normal, over, deactivated
-            buttonLittle.setTextSizes([8, 8, 8]);
-            rootNode.addChild(buttonLittle, null);
+                var buttonLittle = new CGSGNodeButton(250, 70, "Tiny");
+                buttonLittle.name = "Tiny Button";
+                buttonLittle.onClick = bindClickHandler;
+                buttonLittle.setVerticalPadding(2);
+                buttonLittle.setHorizontalPadding(4);
+                //3 radius : normal, over, deactivated
+                buttonLittle.setRadiuses([5, 5, 5]);
+                //3 sizes : normal, over, deactivated
+                buttonLittle.setTextSizes([8, 8, 8]);
+                rootNode.addChild(buttonLittle, null);
 
 
-            var buttonCustom = new CGSGNodeButton(110, 60, "Custom\nbutton");
-            //3 colors : normal, over, deactivated
-            buttonCustom.setFirstColors(["#FFADAD", "#D89393", "#F9DBDB"]);
-            buttonCustom.setLastColors(["#FF8E8E", "#D37676", "#D8BEBE"]);
-            buttonCustom.setTextColors(["green", "#8EA7FF", "gray"]);
-            buttonCustom.setRadiuses([0, 20, 10]);
-            rootNode.addChild(buttonCustom, null);
+                var buttonCustom = new CGSGNodeButton(310, 50, "Custom\nbutton");
+                //3 colors : normal, over, deactivated
+                buttonCustom.setFirstColors(["#FFADAD", "#D89393", "#F9DBDB"]);
+                buttonCustom.setLastColors(["#FF8E8E", "#D37676", "#D8BEBE"]);
+                buttonCustom.setTextColors(["green", "#8EA7FF", "gray"]);
+                buttonCustom.setRadiuses([0, 20, 10]);
+                rootNode.addChild(buttonCustom, null);
+                buttonCustom.name = "Custom Button";
+                buttonCustom.onClick = bindClickHandler;
 
-            var buttonPictoTop = new CGSGNodeButton(10, 140, "Picto @ TOP");
-            buttonPictoTop.setPictoPosition(CGSGPositionMode.TOP);
-            buttonPictoTop.setImageURL("images/alert.png");
-            rootNode.addChild(buttonPictoTop, null);
+                var buttonPictoTop = new CGSGNodeButton(10, 140, "Picto @ TOP");
+                buttonPictoTop.setPictoPosition(CGSGPositionMode.TOP);
+                buttonPictoTop.setImageURL("images/alert.png");
+                rootNode.addChild(buttonPictoTop, null);
+                buttonPictoTop.name = "picto top Button";
+                buttonPictoTop.onClick = bindClickHandler;
 
-            var buttonPictoLeft = new CGSGNodeButton(140, 120, "Picto @ LEFT");
-            buttonPictoLeft.setPictoPosition(CGSGPositionMode.LEFT);
-            buttonPictoLeft.setImageURL("images/error.png");
-            rootNode.addChild(buttonPictoLeft, null);
-            var buttonPictoRight = new CGSGNodeButton(137, 180, "Picto @ RIGHT");
-            buttonPictoRight.setPictoPosition(CGSGPositionMode.RIGHT);
-            buttonPictoRight.setImageURL("images/error.png");
-            rootNode.addChild(buttonPictoRight, null);
-            var buttonPictoBottom = new CGSGNodeButton(325, 140, "Picto @ BOTTOM");
-            buttonPictoBottom.setPictoPosition(CGSGPositionMode.BOTTOM);
-            buttonPictoBottom.setImageURL("images/alert.png");
-            rootNode.addChild(buttonPictoBottom, null);
+                var buttonPictoLeft = new CGSGNodeButton(140, 120, "Picto @ LEFT");
+                buttonPictoLeft.setPictoPosition(CGSGPositionMode.LEFT);
+                buttonPictoLeft.setImageURL("images/error.png");
+                rootNode.addChild(buttonPictoLeft, null);
+                buttonPictoLeft.name = "picto left Button";
+                buttonPictoLeft.onClick = bindClickHandler;
 
-            this.img = new Image();
-            this.img.onload = this.onImageLoaded.bind(this);
-            this.img.src = "images/board.png";
-            this.buttonSpritesheet = new CGSGNodeButton(150, 240, "Pictos in \nspritesheet");
-            this.buttonSpritesheet.setSlices([
-                new CGSGRegion(0, 0, 32, 32),
-                new CGSGRegion(32, 0, 32, 32),
-                new CGSGRegion(64, 0, 32, 32)]);
-            this.buttonSpritesheet.isDraggable = true;
-            rootNode.addChild(this.buttonSpritesheet, null);
+                var buttonPictoRight = new CGSGNodeButton(137, 180, "Picto @ RIGHT");
+                buttonPictoRight.setPictoPosition(CGSGPositionMode.RIGHT);
+                buttonPictoRight.setImageURL("images/error.png");
+                rootNode.addChild(buttonPictoRight, null);
+                buttonPictoRight.name = "picto right Button";
+                buttonPictoRight.onClick = bindClickHandler;
 
-            var buttonOver = new CGSGNodeButton(10, 310, "Big & initially Overed");
-            //3 text : normal, over, deactivated
-            buttonOver.setTexts(["Still BIG but mouse out", "Big & initially Overed", "Big and deactivated"]);
-            buttonOver.setTextSizes([24, 28, 24]);
-            buttonOver.setMode(CGSGButtonMode.OVER);
-            buttonOver.setVerticalPadding(42);
-            buttonOver.setHorizontalPadding(42);
-            rootNode.addChild(buttonOver, null);
-        },
+                var buttonPictoBottom = new CGSGNodeButton(325, 140, "Picto @ BOTTOM");
+                buttonPictoBottom.setPictoPosition(CGSGPositionMode.BOTTOM);
+                buttonPictoBottom.setImageURL("images/alert.png");
+                rootNode.addChild(buttonPictoBottom, null);
+                buttonPictoBottom.name = "picto bottom Button";
+                buttonPictoBottom.onClick = bindClickHandler;
 
-        onImageLoaded:function () {
-            this.buttonSpritesheet.setImage(this.img);
+                this.img = new Image();
+                this.img.onload = this.onImageLoaded.bind(this);
+                this.img.src = "images/board.png";
+                this.buttonSpritesheet = new CGSGNodeButton(150, 240, "Pictos in \nspritesheet");
+                this.buttonSpritesheet.setSlices([
+                    new CGSGRegion(0, 0, 32, 32),
+                    new CGSGRegion(32, 0, 32, 32),
+                    new CGSGRegion(64, 0, 32, 32)]);
+                this.buttonSpritesheet.isDraggable = true;
+                rootNode.addChild(this.buttonSpritesheet, null);
+                this.buttonSpritesheet.name = "Spritesheet Button";
+                this.buttonSpritesheet.onClick = bindClickHandler;
+
+                var buttonOver = new CGSGNodeButton(10, 310, "Big & initially Overed");
+                //3 text : normal, over, deactivated
+                buttonOver.setTexts(["Still BIG but mouse out", "Big & initially Overed", "Big and deactivated"]);
+                buttonOver.setTextSizes([24, 28, 24]);
+                buttonOver.setMode(CGSGButtonMode.OVER);
+                buttonOver.setVerticalPadding(42);
+                buttonOver.setHorizontalPadding(42);
+                rootNode.addChild(buttonOver, null);
+                buttonOver.name = "Initially overed Button";
+                buttonOver.onClick = bindClickHandler;
+
+                //just a title text
+                this.txtNode = new CGSGNodeText(10, 10, "Button examples.");
+                rootNode.addChild(this.txtNode);
+            },
+
+            clickHandler: function (event) {
+                this.txtNode.setText("Button examples. Click on : " + event.node.name);
+            },
+
+            onImageLoaded: function () {
+                this.buttonSpritesheet.setImage(this.img);
+            }
         }
-    }
-);
+    )
+    ;

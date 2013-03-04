@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
 
-    <!--script type="text/javascript" src="js/cgscenegraph_1.3.0.min.js"></script-->
+    <!--script type="text/javascript" src="js/cgscenegraph_2.0.0-SNAPSHOT.min.js"></script-->
 
     <script type="text/javascript" src="../../src/utils/util.array.js"></script>
     <script type="text/javascript" src="../../src/utils/class.class.js"></script>
@@ -16,11 +16,11 @@
     <script type="text/javascript" src="../../src/utils/class.region.js"></script>
     <script type="text/javascript" src="../../src/constants.js"></script>
     <script type="text/javascript" src="../../src/utils/class.traverser.js"></script>
-    <script type="text/javascript" src="../../src/node/collision/enum.collision.method.js"></script>
-    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.region.js"></script>
-    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.ghost.ondemand.js"></script>
-    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.ghost.precompute.js"></script>
-    <script type="text/javascript" src="../../src/node/collision/class.collision.tester.factory.js"></script>
+    <script type="text/javascript" src="../../src/collision/enum.collision.method.js"></script>
+    <script type="text/javascript" src="../../src/collision/class.collision.tester.region.js"></script>
+    <script type="text/javascript" src="../../src/collision/class.collision.tester.ghost.ondemand.js"></script>
+    <script type="text/javascript" src="../../src/collision/class.collision.tester.ghost.precompute.js"></script>
+    <script type="text/javascript" src="../../src/collision/class.collision.tester.factory.js"></script>
     <script type="text/javascript" src="../../src/globals.js"></script>
     <script type="text/javascript" src="../../src/utils/util.global.js"></script>
     <script type="text/javascript" src="../../src/utils/util.color.js"></script>
@@ -59,8 +59,8 @@
     //var canvasScene = document.getElementById("scene");
     //var game = new CGMain(canvasScene);
 
-    cgsgPerformanceKeys.collisionMethod =  CGSGCollisionMethod.REGION;
-    //cgsgPerformanceKeys.collisionMethod =  CGSGCollisionMethod.GHOSTONDEMAND;
+    CGSG.performanceKeys.collisionMethod =  CGSGCollisionMethod.REGION;
+    //CGSG.performanceKeys.collisionMethod =  CGSGCollisionMethod.GHOSTONDEMAND;
 
 </script>
 <script type="text/javascript" src="js/class.main.js"></script>

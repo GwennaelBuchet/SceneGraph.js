@@ -264,11 +264,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 * Custom rendering
 		 * */
 		render : function (context) {
-			//save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
 			if (this._mode === CGSGWEBVIEWMODE.LIVE) {
 				context.fillStyle = this.color;
 				context.strokeStyle = this.lineColor;
@@ -299,9 +294,6 @@ var CGSGNodeWebview = CGSGNode.extend(
 				//we draw the rect at (0,0) because we have already translated the context to the correct position
 				context.fillRect(0, 0, this.getWidth(), this.getHeight());
 			}
-
-			//restore state
-			this.afterRender(context);
 		},
 
 		/**
@@ -310,7 +302,7 @@ var CGSGNodeWebview = CGSGNode.extend(
 		 */
 		free : function () {
 			if (cgsgExist(this._liveContainer)) {
-				cgsgCanvas.removeChild(this._liveContainer);
+				CGSG.canvas.removeChild(this._liveContainer);
 				delete (this._liveContainer);
 			}
 

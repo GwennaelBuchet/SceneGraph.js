@@ -84,11 +84,6 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function (context) {
-			//save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
 			var centerX = this.dimension.width / 2;
 			var centerY = this.dimension.height / 2;
 
@@ -115,50 +110,6 @@ var CGSGNodeEllipse = CGSGNode.extend(
 			}
 
 			context.closePath();
-
-			//restore state
-			this.afterRender(context);
-		},
-
-		/**
-		 * @method renderGhost
-		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
-		 */
-		renderGhost : function (ghostContext) {
-			//save current state
-			this.beforeRenderGhost(ghostContext);
-
-			if (this.globalAlpha > 0) {
-				var centerX = this.dimension.width / 2;
-				var centerY = this.dimension.height / 2;
-
-				ghostContext.beginPath();
-
-				ghostContext.moveTo(centerX, 0);
-
-				ghostContext.bezierCurveTo(
-					this.dimension.width, 0,
-					this.dimension.width, this.dimension.height,
-					centerX, this.dimension.height);
-
-				ghostContext.bezierCurveTo(
-					0, this.dimension.height,
-					0, 0,
-					centerX, 0);
-
-				ghostContext.fillStyle = this.color;
-				ghostContext.fill();
-				if (this.lineWidth > 0) {
-					ghostContext.lineWidth = this.lineWidth;
-					ghostContext.strokeStyle = this.lineColor;
-					ghostContext.stroke();
-				}
-
-				ghostContext.closePath();
-			}
-
-			//restore state
-			this.afterRenderGhost(ghostContext);
 		},
 
 		/**

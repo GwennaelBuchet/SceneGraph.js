@@ -31,6 +31,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -322,15 +324,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 			 *&#x2F;
 			this.onAnimationStart = null;
 
-			&#x2F;**
-			 * Fake canvas to pre-render the animated sprite (not used yet)
-			 * Still beta
-			 * @property _tmpCanvas
-			 * @type {HTMLElement}
-			 * @private
-			 *&#x2F;
-			this._tmpCanvas = document.createElement(&#x27;canvas&#x27;);
-
 			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 			&#x2F;&#x2F;finally load the image
 			if (this._urlImage !== null &amp;&amp; this._urlImage != &quot;&quot;) {
@@ -360,13 +353,13 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * @method _onImageLoaded
 		 *&#x2F;
 		_onImageLoaded : function () {
-			this._checkDimension();
+			this.checkDimension();
 			this._isLoaded = true;
 			&#x2F;&#x2F;this._initShape();
 			if (this.onLoadEnd !== null) {
 				this.onLoadEnd();
 			}
-			this.render(this._context);
+			this.invalidate();
 		},
 
 		&#x2F;**
@@ -378,31 +371,12 @@ var CGSGNodeSprite = CGSGNode.extend(
 			console.log(&quot;Error while loading image : &quot; + this._urlImage);
 		},
 
-		&#x2F;*
-		 * pre-render the image to optimize the perfs
-		 *&#x2F;
-		&#x2F;*_initShape:function () {
-		 this.tmpCanvas.width = this.dimension.width;
-		 this.tmpCanvas.height = this.dimension.height;
-		 var tmpContext = this.tmpCanvas.getContext(&#x27;2d&#x27;);
-
-		 tmpContext.drawImage(
-		 this.img, &#x2F;&#x2F; image
-		 0, 0, &#x2F;&#x2F; start position on the image
-		 this.dimension.width, this.dimension.height, &#x2F;&#x2F; dimension on the image
-		 0, 0,
-		 &#x2F;&#x2F; position on the screen. let it to [0,0] because the &#x27;beforeRender&#x27; function will translate the image
-		 this.dimension.width, this.dimension.height                &#x2F;&#x2F; dimension on the screen
-		 );
-		 },*&#x2F;
-
 		&#x2F;**
 		 * Check the true dimension of the image and fill the this.dimension property with it,
 		 * only if dimension is not already defined in the constructor
-		 * @private
-		 * @method _checkDimension
+		 * @method checkDimension
 		 *&#x2F;
-		_checkDimension : function () {
+		checkDimension : function () {
 			&#x2F;&#x2F;if no width or height are specified in the constructor
 			if (this.dimension.width &lt;= 0 &amp;&amp; this.dimension.height &lt;= 0) {
 				this.dimension.width = this._img.width;
@@ -440,7 +414,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 			if (cgsgExist(this._img)) {
 				this._urlImage = this._img.src;
 				this._isLoaded = true;
-				&#x2F;&#x2F;this._initShape();
+				this.invalidate();
 			}
 		},
 
@@ -468,6 +442,8 @@ var CGSGNodeSprite = CGSGNode.extend(
 					this.stop();
 				}
 			}
+
+            this.invalidate();
 		},
 
 		&#x2F;**
@@ -494,6 +470,8 @@ var CGSGNodeSprite = CGSGNode.extend(
 					this.stop();
 				}
 			}
+
+            this.invalidate();
 		},
 
 		&#x2F;**
@@ -503,6 +481,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 *&#x2F;
 		goToFirstFrame : function () {
 			this._currentFrame = 0;
+            this.invalidate();
 		},
 
 		&#x2F;**
@@ -512,6 +491,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 *&#x2F;
 		goToLastFrame : function () {
 			this._currentFrame = this.currentAnimation.frames - 1;
+            this.invalidate();
 		},
 
 		&#x2F;**
@@ -522,8 +502,6 @@ var CGSGNodeSprite = CGSGNode.extend(
 		 * *&#x2F;
 		render : function (context) {
 			if (this._isLoaded &amp;&amp; this._img.src != &quot;&quot;) {
-				&#x2F;&#x2F;save current state
-				this.beforeRender(context);
 
 				&#x2F;&#x2F;compute the current slice of the current sprite
 				if (cgsgExist(this.currentAnimation)) {
@@ -547,11 +525,9 @@ var CGSGNodeSprite = CGSGNode.extend(
 					&#x2F;&#x2F;go to next frame
 					if (this._isPlaying) {
 						this.goToNextFrame();
+                        this.invalidate();
 					}
 				}
-
-				&#x2F;&#x2F;restore state
-				this.afterRender(context);
 			}
 		},
 
@@ -649,6 +625,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 			if (this.onAnimationEnd !== null) {
 				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame});
 			}
+            this.invalidate();
 		},
 
 		&#x2F;**
@@ -659,6 +636,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		reset : function () {
 			this._currentFrame = 0;
 			this._currentLoop = 1;
+            this.invalidate();
 		},
 
 		&#x2F;**
