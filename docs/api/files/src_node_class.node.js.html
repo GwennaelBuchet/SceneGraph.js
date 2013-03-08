@@ -434,6 +434,31 @@ var CGSGNode = CGSGObject.extend(
             this._tmpContext = null;
 
             &#x2F;**
+             * @property shadowOffsetX
+             * @default 0
+             * @type {number}
+             *&#x2F;
+            this.shadowOffsetX = 0;
+            &#x2F;**
+             * @property shadowOffsetY
+             * @default 0
+             * @type {number}
+             *&#x2F;
+            this.shadowOffsetY = 0;
+            &#x2F;**
+             * @property shadowBlur
+             * @default 0
+             * @type {number}
+             *&#x2F;
+            this.shadowBlur = 0;
+            &#x2F;**
+             * @property shadowColor
+             * @default &quot;#333333&quot;
+             * @type {string}
+             *&#x2F;
+            this.shadowColor = &quot;#333333&quot;;
+
+            &#x2F;**
              * Relative position of this nodes on the canvas container, relatively to the position of its parent node.
              * Never use it to move the node, use translateBy&#x2F;translateWith&#x2F;translateTo instead
              * @readonly
@@ -829,6 +854,15 @@ var CGSGNode = CGSGObject.extend(
             }
         },
 
+        _applyShadow: function () {
+            if (this.shadowOffsetX !== 0 || this.shadowOffsetY !== 0) {
+                this._tmpContext.shadowOffsetX = this.shadowOffsetX;
+                this._tmpContext.shadowOffsetY = this.shadowOffsetY;
+                this._tmpContext.shadowBlur = this.shadowBlur;
+                this._tmpContext.shadowColor = this.shadowColor;
+            }
+        },
+
         &#x2F;**
          * @method _preCompute
          * @private
@@ -842,6 +876,7 @@ var CGSGNode = CGSGObject.extend(
             this._tmpCanvas.height = CGSG.canvas.height;
             cgsgClearContext(this._tmpContext);
 
+            this._applyShadow();
             this.render(this._tmpContext);
         },
 
@@ -865,6 +900,7 @@ var CGSGNode = CGSGObject.extend(
                     context.drawImage(this._tmpCanvas, 0, 0);
                 }
                 else {
+                    this._applyShadow();
                     this.render(context);
                 }
             }

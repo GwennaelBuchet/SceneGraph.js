@@ -258,6 +258,31 @@ var CGSGNode = CGSGObject.extend(
             this._tmpContext = null;
 
             /**
+             * @property shadowOffsetX
+             * @default 0
+             * @type {number}
+             */
+            this.shadowOffsetX = 0;
+            /**
+             * @property shadowOffsetY
+             * @default 0
+             * @type {number}
+             */
+            this.shadowOffsetY = 0;
+            /**
+             * @property shadowBlur
+             * @default 0
+             * @type {number}
+             */
+            this.shadowBlur = 0;
+            /**
+             * @property shadowColor
+             * @default "#333333"
+             * @type {string}
+             */
+            this.shadowColor = "#333333";
+
+            /**
              * Relative position of this nodes on the canvas container, relatively to the position of its parent node.
              * Never use it to move the node, use translateBy/translateWith/translateTo instead
              * @readonly
@@ -653,6 +678,15 @@ var CGSGNode = CGSGObject.extend(
             }
         },
 
+        _applyShadow: function () {
+            if (this.shadowOffsetX !== 0 || this.shadowOffsetY !== 0) {
+                this._tmpContext.shadowOffsetX = this.shadowOffsetX;
+                this._tmpContext.shadowOffsetY = this.shadowOffsetY;
+                this._tmpContext.shadowBlur = this.shadowBlur;
+                this._tmpContext.shadowColor = this.shadowColor;
+            }
+        },
+
         /**
          * @method _preCompute
          * @private
@@ -666,6 +700,7 @@ var CGSGNode = CGSGObject.extend(
             this._tmpCanvas.height = CGSG.canvas.height;
             cgsgClearContext(this._tmpContext);
 
+            this._applyShadow();
             this.render(this._tmpContext);
         },
 
@@ -689,6 +724,7 @@ var CGSGNode = CGSGObject.extend(
                     context.drawImage(this._tmpCanvas, 0, 0);
                 }
                 else {
+                    this._applyShadow();
                     this.render(context);
                 }
             }
