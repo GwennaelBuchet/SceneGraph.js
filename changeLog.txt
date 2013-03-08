@@ -57,6 +57,9 @@ CHANGES:
 - Evolution. new EventManager system
 - Evolution. CGSGNode : new "getLocalZIndex", "setLocalZIndexToLast", "setLocalZIndex", "moveLocalZIndex"
 - Evolution. Rename "CGSGScene" to "CGSGView"
+- Evolution. globalAlpha of a custom node is defined directly on the framework. No need to re-define it on the render method
+- Evolution. shadow of a custom node is defined directly on the framework. No need to re-define it on the render method.
+             New properties : shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor.
 
 ---------------------------------------------------------------------
 
