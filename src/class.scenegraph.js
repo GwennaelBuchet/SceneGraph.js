@@ -180,7 +180,19 @@ var CGSGSceneGraph = CGSGObject.extend(
                         var t = node._absolutePosition;//getAbsolutePosition(false);
 
                         this.context.translate(t.x, t.y);
-                        this.context.rotate(node._absoluteRotation);
+
+	                    if (cgsgExist(node.rotationCenter)) {
+
+	                    this.context.translate(node.dimension.width * node.rotationCenter.x,
+	                                           node.dimension.height * node.rotationCenter.y);
+	                    this.context.rotate(node.rotation.angle);
+	                    this.context.translate(-node.dimension.width * node.rotationCenter.x,
+	                                      -node.dimension.height * node.rotationCenter.y);
+	                    }
+	                    else {
+		                    this.context.rotate(node.rotation.angle);
+	                    }
+
                         this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
 
                         node.renderSelected(this.context);
