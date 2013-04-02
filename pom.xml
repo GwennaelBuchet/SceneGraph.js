@@ -72,12 +72,15 @@ Any failure to comply with the above shall automatically terminate the license a
                             <includes>
                                 <include>utils/util.array.js</include>
                                 <include>utils/class.class.js</include>
-                                <include>utils/class.hashmap.js</include>
+                                <include>utils/class.map.js</include>
                                 <include>utils/util.color.js</include>
                                 <include>utils/math/class.vector2D.js</include>
                                 <include>utils/class.region.js</include>
                                 <include>constants.js</include>
                                 <include>utils/class.traverser.js</include>
+
+                                <include>utils/class.event.js</include>
+                                <include>utils/class.eventmanager.js</include>
 
                                 <include>collision/enum.collision.method.js</include>
                                 <include>collision/class.collision.tester.region.js</include>
@@ -88,6 +91,10 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>globals.js</include>
                                 <include>utils/util.global.js</include>
                                 <include>utils/util.color.js</include>
+
+                                <include>mask/class.mask.js</include>
+                                <include>mask/class.mask.clip.js</include>
+
                                 <include>utils/math/math.js</include>
                                 <include>utils/class.handlebox.js</include>
                                 <include>animation/class.anim.key.js</include>
