@@ -40,7 +40,7 @@ var GAME_STATE = {
 	PLAY_RUN: { instance: null }
 };
 
-var CGMain = CGSGView.extend(
+var CGMain = CGSGScene.extend(
 	{
 		initialize: function (canvas) {
 
@@ -48,7 +48,7 @@ var CGMain = CGSGView.extend(
 
 			this.gameState = GAME_STATE.LOADING;
 
-			sceneGraph = this.sceneGraph;
+			sceneGraph = CGSG.sceneGraph;
 			this.createScene();
 
 			//keyboard events handler
@@ -71,7 +71,7 @@ var CGMain = CGSGView.extend(
 		 */
 		createScene: function () {
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode);
+			CGSG.sceneGraph.addNode(this.rootNode);
 
 			GAME_STATE.LOADING.instance = new StateLoading(this.context);
 			GAME_STATE.HOME.instance = new StateHome(this.context, this);

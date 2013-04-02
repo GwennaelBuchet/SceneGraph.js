@@ -59,7 +59,7 @@ var CGMain = CGSGView.extend(
 		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
 			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
@@ -92,20 +92,20 @@ var CGMain = CGSGView.extend(
 			 * @param duration Integer. Duration of the animation, in frames
 			 * @param from Start value
 			 * @param to End value
-			 * @param method String. animation method: 'linear', 'catmullrom'
 			 * @param delay Integer. Delay before start the animation, in frames
 			 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
 			 *
-			 * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
+			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
 
-			this.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, true);
-			this.sceneGraph.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, "linear", 0, true);
+			CGSG.animationManager.animate(this.squareNode, "position.x", 30, 0, 330, 0, true);
+			var timeline = CGSG.animationManager.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, 0, true);
 
-			this.sceneGraph.getTimeline(this.squareNode, "rotation.angle").onAnimationStart = function (event) {
+            //timeline = CGSG.animationManager.getTimeline(this.squareNode, "rotation.angle");
+            timeline.onAnimationStart = function (event) {
 				console.log("animation started");
 			};
-			this.sceneGraph.getTimeline(this.squareNode, "rotation.angle").onAnimationEnd = function (event) {
+            timeline.onAnimationEnd = function (event) {
 				console.log("animation ended");
 			};
 		}

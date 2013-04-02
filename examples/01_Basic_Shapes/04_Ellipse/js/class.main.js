@@ -63,7 +63,7 @@ var CGMain = CGSGView.extend(
 			ellipse.lineWidth = 2;
 			ellipse.lineColor = "gray";
 
-			this.sceneGraph.addNode(ellipse, null);
+			CGSG.sceneGraph.addNode(ellipse, null);
 		}
 	}
 );

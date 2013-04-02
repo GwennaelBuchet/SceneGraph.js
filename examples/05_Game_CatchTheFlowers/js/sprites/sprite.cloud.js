@@ -120,7 +120,7 @@ var CloudNode = CGSGNode.extend(
 
 		startAnim: function () {
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-							   CGSGMath.fixedPoint(cgsgCanvas.width + Math.random() * 50), "linear", 0, true);
+							   CGSGMath.fixedPoint(cgsgCanvas.width + Math.random() * 50), 0, true);
 		},
 
 		reStartAnim: function () {

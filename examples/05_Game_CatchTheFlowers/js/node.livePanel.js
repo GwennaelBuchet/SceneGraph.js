@@ -92,7 +92,7 @@ var LivePanelNode = CGSGNodeSquare.extend(
 				var live = this.live[this.nbLive];
 				sceneGraph.getTimeline(live, "globalAlpha").removeAll();
 				sceneGraph.animate(live, "globalAlpha", 30, live.globalAlpha,
-								   1.0, "linear", 0, true);
+								   1.0, 0, true);
 
 				this.nbLive++;
 			}
@@ -103,7 +103,7 @@ var LivePanelNode = CGSGNodeSquare.extend(
 				var live = this.live[this.nbLive - 1];
 				sceneGraph.getTimeline(live, "globalAlpha").removeAll();
 				sceneGraph.animate(live, "globalAlpha", 30, live.globalAlpha,
-								   0.0, "linear", 0, true);
+								   0.0, 0, true);
 
 				this.nbLive--;
 			}

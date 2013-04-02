@@ -255,7 +255,7 @@ var StateGameRun = Object.extend(
 			this.score += event.node.points;
 			this.nbLive = Math.min(this.nbLive + event.node.live, maxLive);
 
-			sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.0, "linear", 0, true);
+			sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.0, 0, true);
 			sceneGraph.getTimeline(event.node, "globalAlpha").onAnimationEnd = function(event) {
 				event.node.reStartAnim(1);
 			}

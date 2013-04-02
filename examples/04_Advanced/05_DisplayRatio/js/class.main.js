@@ -87,7 +87,7 @@ var CGMain = CGSGView.extend(
 
             var background = new CGSGNodeSquare(0, 0, CGSG.canvas.width/2, CGSG.canvas.height/2);
             background.color = "lightgray";
-            this.sceneGraph.addNode(background, null);
+            CGSG.sceneGraph.addNode(background, null);
 
             var text = new CGSGNodeText(10, 10, "The square and text will be full sized at 1600x1200.\n" +
                 "In other size, the scene will be automatically resized to allow all rezolutions to see the entiere scene.\n\n" +

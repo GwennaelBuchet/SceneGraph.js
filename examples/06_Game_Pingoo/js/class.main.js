@@ -17,7 +17,7 @@ var CGMain = CGSGView.extend(
 
 			this.gameState = GAME_STATE.LOADING;
 
-			sceneGraph = this.sceneGraph;
+			sceneGraph = CGSG.sceneGraph;
 
 			//create the different items of the game
 			this.createScene();
@@ -43,7 +43,7 @@ var CGMain = CGSGView.extend(
 		createScene : function() {
 			//create a root node to the graph, with an arbitrary position and size
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode);
+			CGSG.sceneGraph.addNode(this.rootNode);
 
 			//first, initialize the LOADING state and switch to it
 			GAME_STATE.LOADING.instance = new StateLoading(this.context);

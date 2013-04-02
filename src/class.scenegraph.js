@@ -105,11 +105,11 @@ var CGSGSceneGraph = CGSGObject.extend(
                 var i = 0;
                 var key = null;
                 //set the new values for all the animated nodes
-                if (CGSG.listTimelines.length > 0) {
+                if (CGSG.animationManager.listTimelines.length > 0) {
                     node = null;
                     var value, timeline;
-                    for (i = CGSG.listTimelines.length - 1; i >= 0; --i) {
-                        timeline = CGSG.listTimelines[i];
+                    for (i = CGSG.animationManager.listTimelines.length - 1; i >= 0; --i) {
+                        timeline = CGSG.animationManager.listTimelines[i];
                         node = timeline.parentNode;
 
                         if (node.isVisible) {
@@ -347,92 +347,6 @@ var CGSGSceneGraph = CGSGObject.extend(
                 }
                 parent.addChild(node);
             }
-        },
-
-        /**
-         * Add a key
-         * @method addAnimationKey
-         * @param {CGSGNode} node handler to the nodes to animate
-         * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
-         * @param {Number} frame the date for the key
-         * @param {Number} value value for the attribute at the frame
-         * @param {String} method animation method. Must be 'linear' for now
-         * @param {Boolean} precompute  Set to true if you want to precompute the animations steps
-         *
-         * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
-         */
-        addAnimationKey:function (node, attribute, frame, value, method, precompute) {
-            //if a timeline already exist fot this nodes and attribute use it, else create a new one
-            var timeline = this.getTimeline(node, attribute);
-            timeline.method = method;
-
-            //add the new key to the timeline
-            timeline.addKey(CGSGMath.fixedPoint(frame), value);
-
-            //if the user want to precompute the animation, do it now
-            if (precompute) {
-                timeline.computeValues(CGSG.currentFrame, method);
-            }
-        },
-
-        /**
-         * Animate an attribute of a nodes
-         * @method animate
-         * @param {CGSGNode} node Handler to the nodes to animate
-         * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
-         * @param {Number} duration Duration of the animation, in frame
-         * @param {Number} from Start value
-         * @param {Number} to End value
-         * @param {String} method Animation method. Must be 'linear' for now
-         * @param {Number} delay Delay before start the animation, in frames
-         * @param {Boolean} precompute Set to true if you want to precompute the animations steps
-         * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
-         */
-        animate:function (node, attribute, duration, from, to, method, delay, precompute) {
-            this.addAnimationKey(node, attribute, CGSG.currentFrame + CGSGMath.fixedPoint(delay), from,
-                method, false);
-            this.addAnimationKey(node, attribute, CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration),
-                to, method, precompute);
-        },
-
-        /**
-         * @method stillHaveAnimation
-         * @return {Boolean} true if there are still animation key after the current frame
-         */
-        stillHaveAnimation:function () {
-            if (CGSG.listTimelines.length == 0) {
-                return false;
-            }
-            else {
-                for (var i = 0, len = CGSG.listTimelines.length; i < len; ++i) {
-                    if (CGSG.listTimelines[i].getLastKey() !== null &&
-                        CGSG.listTimelines[i].getLastKey().frame <= CGSG.currentFrame) {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        },
-
-        /**
-         * Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet
-         * @method getTimeline
-         * @param {CGSGNode} node Handle to the nodes
-         * @param {String} attribute String. the attribute name
-         * @return {CGSGTimeline}
-         */
-        getTimeline:function (node, attribute) {
-            for (var i = 0, len = CGSG.listTimelines.length; i < len; ++i) {
-                if (CGSG.listTimelines[i].parentNode === node && CGSG.listTimelines[i].attribute == attribute) {
-                    return CGSG.listTimelines[i];
-                }
-            }
-
-            //no timeline yet, create a new one
-            var timeline = new CGSGTimeline(node, attribute, "linear");
-            CGSG.listTimelines.push(timeline);
-            return timeline;
         }
     }
 );

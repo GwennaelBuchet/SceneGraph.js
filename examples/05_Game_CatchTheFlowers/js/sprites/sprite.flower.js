@@ -145,7 +145,7 @@ var FlowerNode = CGSGNode.extend(
 
 		startAnim: function () {
 			sceneGraph.animate(this, "position.y", this.speed, this.position.y,
-							   CGSGMath.fixedPoint(cgsgCanvas.height - 15), "linear", 0, true);
+							   CGSGMath.fixedPoint(cgsgCanvas.height - 15), 0, true);
 		},
 
 		reStartAnim: function (speed) {
@@ -162,10 +162,10 @@ var FlowerNode = CGSGNode.extend(
 		onExplode: function () {
 			this.game.killFlower();
 			sceneGraph.getTimeline(this, "position.y").removeAll();
-			sceneGraph.animate(this, "position.x", 15, this.position.x, this.position.x - 16, "linear", 0, true);
-			sceneGraph.animate(this, "scale.x", 15, 1, 3, "linear", 0, true);
-			sceneGraph.animate(this, "scale.y", 15, 1, 3, "linear", 0, true);
-			sceneGraph.animate(this, "globalAlpha", 15, 1, 0, "linear", 0, true);
+			sceneGraph.animate(this, "position.x", 15, this.position.x, this.position.x - 16, 0, true);
+			sceneGraph.animate(this, "scale.x", 15, 1, 3, 0, true);
+			sceneGraph.animate(this, "scale.y", 15, 1, 3, 0, true);
+			sceneGraph.animate(this, "globalAlpha", 15, 1, 0, 0, true);
 			sceneGraph.getTimeline(this, "globalAlpha").onAnimationEnd = function (event) {
 				event.node.reStartAnim(1);
 			}

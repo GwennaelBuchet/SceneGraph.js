@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
 		createScene : function () {
 			//first, create a root node
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//second, create the 2 nodes, with no image URL, and add them to the root node
 			this.imgNode1 = new CGSGNodeImage(

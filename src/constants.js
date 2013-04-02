@@ -110,12 +110,13 @@ var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR = "#9068FF";
 var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD = 3;
 
 /**
- * Default number of frames to average the FPS
+ * Default number of frames to average the FPS.
+ * The current FPS will be the average of the "CGSG_DEFAULT_FRAMERATE_DELAY" frames.
  * @property CGSG_DEFAULT_FRAMERATE_DELAY
  * @default 30 (ie: each 30 frames)
  * @type {Number}
  */
-var CGSG_DEFAULT_FRAMERATE_DELAY = 30;
+var CGSG_DEFAULT_FRAMERATE_DELAY = 20;
 
 /**
  * Default maximum number of frames per second.

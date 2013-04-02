@@ -39,7 +39,7 @@ var BeeNode = CGSGNodeSprite.extend(
 
 		startAnim: function () {
 			sceneGraph.animate(this, "position.x", this.speed, this.position.x,
-							   cgsgCanvas.width + 20, "linear", 0, true);
+							   cgsgCanvas.width + 20, 0, true);
 		},
 
 		reStartAnim: function () {

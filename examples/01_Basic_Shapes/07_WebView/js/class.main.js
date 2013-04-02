@@ -50,7 +50,7 @@ var CGMain = CGSGView.extend(
 		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 500, 500);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//create a webview node
 			this.webviewNode = new CGSGNodeWebview(20, 60, this.viewDimension.width / 2, this.viewDimension.height / 2,

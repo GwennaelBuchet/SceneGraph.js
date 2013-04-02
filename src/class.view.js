@@ -131,7 +131,7 @@ var CGSGView = CGSGObject.extend(
              * @property sceneGraph
              * @type {CGSGSceneGraph}
              */
-            this.sceneGraph = new CGSGSceneGraph(CGSG.canvas, this.context);
+            CGSG.sceneGraph = new CGSGSceneGraph(CGSG.canvas, this.context);
 
             /*
              * If true, framework will take care of multi-touch : NOT EFFECTIVE YET
@@ -363,7 +363,7 @@ var CGSGView = CGSGObject.extend(
         setCanvasDimension: function (newDimension) {
             CGSG.canvas.width = newDimension.width;
             CGSG.canvas.height = newDimension.height;
-            this.sceneGraph.setCanvasDimension(newDimension);
+            CGSG.sceneGraph.setCanvasDimension(newDimension);
 
             //Experimental
             /*this._dblCanvas.width = newDimension.x;
@@ -380,7 +380,7 @@ var CGSGView = CGSGObject.extend(
                 //for (var i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
                 cgsgIterateReverse(CGSG.selectedNodes, (function(i, node) {
                     this._selectedNode = CGSG.selectedNodes[i];
-                    this.sceneGraph.removeNode(this._selectedNode, true);
+                    CGSG.sceneGraph.removeNode(this._selectedNode, true);
                 }).bind(this));
             }
         },
@@ -396,7 +396,7 @@ var CGSGView = CGSGObject.extend(
             this._isResizeDrag = false;
             this._resizingDirection = -1;
             //CGSG.canvas.style.cursor = 'auto';
-            this.sceneGraph.deselectAll(excludedArray);
+            CGSG.sceneGraph.deselectAll(excludedArray);
             this.invalidate();
         },
 
@@ -413,7 +413,7 @@ var CGSGView = CGSGObject.extend(
                     //this.onRenderStart();
                 }
 
-                this.sceneGraph.render();
+                CGSG.sceneGraph.render();
 
                 //render the drag selection box directly onto the scene graph ontop of everything else
                 if (this._dragSelectStartMousePosition.length > 0 && this._dragSelectEndMousePosition.length > 0) {
@@ -423,15 +423,15 @@ var CGSGView = CGSGObject.extend(
 
                     var dx = p2.x - p1.x, dy = p2.y - p1.y;
 
-                    this.sceneGraph.context.save();
+                    CGSG.sceneGraph.context.save();
 
-                    this.sceneGraph.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
-                    this.sceneGraph.context.strokeStyle = this.dragSelectStrokeColor;
-                    this.sceneGraph.context.fillStyle = this.dragSelectFillColor;
-                    this.sceneGraph.context.globalAlpha = this.dragSelectAlpha;
-                    this.sceneGraph.context.fillRect(p1.x, p1.y, dx, dy);
-                    this.sceneGraph.context.strokeRect(p1.x, p1.y, dx, dy);
-                    this.sceneGraph.context.restore();
+                    CGSG.sceneGraph.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
+                    CGSG.sceneGraph.context.strokeStyle = this.dragSelectStrokeColor;
+                    CGSG.sceneGraph.context.fillStyle = this.dragSelectFillColor;
+                    CGSG.sceneGraph.context.globalAlpha = this.dragSelectAlpha;
+                    CGSG.sceneGraph.context.fillRect(p1.x, p1.y, dx, dy);
+                    CGSG.sceneGraph.context.strokeRect(p1.x, p1.y, dx, dy);
+                    CGSG.sceneGraph.context.restore();
                 }
 
                 if (this.onRenderEnd !== null) {
@@ -442,7 +442,7 @@ var CGSGView = CGSGObject.extend(
 
             }
 
-            //if (!this.sceneGraph.stillHaveAnimation()) {
+            //if (!CGSG.sceneGraph.stillHaveAnimation()) {
             //	this._needRedraw = false;
             //}
 
@@ -498,6 +498,8 @@ var CGSGView = CGSGObject.extend(
             var now = new Date().getTime();
             var delta = (now - this._lastUpdate);
 
+            //CGSG.fps =  1000.0 / delta;
+
             if (!isNaN(CGSG.maxFramerate)) {
                 while ((1000.0 / delta) > CGSG.maxFramerate) {
                     now = new Date().getTime();
@@ -512,11 +514,12 @@ var CGSGView = CGSGObject.extend(
                 CGSG.fps = this._fpss.average();
             }
 
-            if (this._frameRatio === 0) {
+
+            /*if (this._frameRatio === 0) {
                 this._frameRatio = CGSG.fps;
             } else {
                 this._frameRatio = ((this._frameRatio * (CGSG.currentFrame - 1)) + CGSG.fps) / CGSG.currentFrame;
-            }
+            }*/
 
             this._lastUpdate = now;
         },
@@ -528,7 +531,7 @@ var CGSGView = CGSGObject.extend(
          */
         _updateFramerateContainer: function () {
             if (this._frameContainer !== null) {
-                this._frameContainer.innerHTML = Math.round(CGSG.fps).toString() + " | ~" + (this._frameRatio);
+                this._frameContainer.innerHTML = CGSGMath.fixedPoint(CGSG.fps)/*.toString() + " | ~" + (this._frameRatio)*/;
             }
         },
 
@@ -553,7 +556,7 @@ var CGSGView = CGSGObject.extend(
         setDisplayRatio: function (newRatio) {
             //noinspection JSUndeclaredVariable
             CGSG.displayRatio = newRatio;
-            this.sceneGraph.initializeGhost(CGSG.canvas.width / CGSG.displayRatio.x,
+            CGSG.sceneGraph.initializeGhost(CGSG.canvas.width / CGSG.displayRatio.x,
                 CGSG.canvas.height / CGSG.displayRatio.y);
         },
 
@@ -589,7 +592,7 @@ var CGSGView = CGSGObject.extend(
             }
 
             this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
-            this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], null);
+            this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], null);
             if (cgsgExist(this._selectedNode) && this._selectedNode.onClickStart) {
                 CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_CLICK_START, new CGSGEvent(this, {nativeEvent : event, position : this._mousePosition}));
             }
@@ -613,10 +616,10 @@ var CGSGView = CGSGObject.extend(
                     //if multiselection is activated
                     if (this.allowMultiSelect && this._keyDownedCtrl) {
                         if (!this._selectedNode.isSelected) {
-                            this.sceneGraph.selectNode(this._selectedNode);
+                            CGSG.sceneGraph.selectNode(this._selectedNode);
                         }
                         else {
-                            this.sceneGraph.deselectNode(this._selectedNode);
+                            CGSG.sceneGraph.deselectNode(this._selectedNode);
                         }
                     }
                     //no multiselection
@@ -624,7 +627,7 @@ var CGSGView = CGSGObject.extend(
                         //if node not already selected
                         if (!this._selectedNode.isSelected) {
                             this.deselectAll(null);
-                            this.sceneGraph.selectNode(this._selectedNode);
+                            CGSG.sceneGraph.selectNode(this._selectedNode);
                         }
                     }
 
@@ -710,7 +713,7 @@ var CGSGView = CGSGObject.extend(
 
             //try to pick up the nodes under the cursor
             if (mustPickNode) {
-                this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
+                this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], function (node) {
                     return (node.isTraversable === true && (node.isClickable === true || node.isDraggable === true
                         || node.isResizable === true));
                 });
@@ -971,7 +974,7 @@ var CGSGView = CGSGObject.extend(
 
                 //if the previous node under the mouse is no more under the mouse, test the other nodes
                 if (n === null) {
-                    if ((n = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
+                    if ((n = CGSG.sceneGraph.pickNode(this._mousePosition[0], function (node) {
                         return (node.onMouseEnter !== null || node.onMouseOver !== null)
                     })) !== null) {
                         n.isMouseOver = true;
@@ -1243,13 +1246,13 @@ var CGSGView = CGSGObject.extend(
             }
 
             var region = new CGSGRegion(p1.x, p1.y, dx, dy);
-            var newSelections = this.sceneGraph.pickNodes(region, function (node) {
+            var newSelections = CGSG.sceneGraph.pickNodes(region, function (node) {
                 return (node.isTraversable === true && (/*node.isClickable === true ||*/ node.isDraggable === true
                     || node.isResizable === true))
             });
 
             for (var i = 0, len = newSelections.length; i < len; ++i) {
-                this.sceneGraph.selectNode(newSelections[i]);
+                CGSG.sceneGraph.selectNode(newSelections[i]);
             }
         },
         /**
@@ -1282,7 +1285,7 @@ var CGSGView = CGSGObject.extend(
 
             if (mustPickNode) {
                 //this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
-                this._selectedNode = this.sceneGraph.pickNode(this._mousePosition[0], function (node) {
+                this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], function (node) {
                     return true;
                 });
             }

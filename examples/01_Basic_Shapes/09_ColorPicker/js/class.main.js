@@ -54,7 +54,7 @@ var CGMain = CGSGView.extend(
 
             //create a root node to the graph, with arbitrary position and size
             var rootNode = new CGSGNode(0, 0, 0, 0);
-            this.sceneGraph.addNode(rootNode, null);
+            CGSG.sceneGraph.addNode(rootNode, null);
 
 			rootNode.translateTo(230, 50);
 

@@ -56,7 +56,7 @@ var Pingoo = CGSGNodeSprite.extend(
 			var anim = this.animations[direction];
 			var currentPos = this.position[anim.axe];
 			var nextPos = currentPos + anim.move * cellWidth;
-			sceneGraph.animate(this, anim.sens, 30, currentPos, nextPos, "linear", 0, true);
+			sceneGraph.animate(this, anim.sens, 30, currentPos, nextPos, 0, true);
 			this.play(direction, 2);
 
 			var x = (anim.axe == "x") ? this.coord.x + anim.move : this.coord.x;
