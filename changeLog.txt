@@ -40,6 +40,8 @@ TODO LIST:
 - Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
 - Evolution. Use of CSS to define the visual properties (sizes, colors, ...)
+- Rename CGSGHashmap to CGSGMap
+- Evolution. new isProportionalResizeOnly to CGSGNode
 
 
 =====================================================================
@@ -60,6 +62,7 @@ CHANGES:
 - Evolution. globalAlpha of a custom node is defined directly on the framework. No need to re-define it on the render method
 - Evolution. shadow of a custom node is defined directly on the framework. No need to re-define it on the render method.
              New properties : shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor.
+- Evolution. Delete CGSGScene.selectedNodes and CGSGSceneGraph.selectedNodes. New global CGSG.selectedNodes property.
 
 ---------------------------------------------------------------------
 

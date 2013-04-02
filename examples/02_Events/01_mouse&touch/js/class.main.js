@@ -77,7 +77,7 @@ var CGMain = CGSGView.extend(
             var that = this; // avoid the problem of binding
 
             this.onSceneClickEnd = function(event) {
-                if (this.selectedNodes.length == 0)
+                if (CGSG.selectedNodes.length == 0)
                     that.textNode.setText("Event : click on scene");
             };
 

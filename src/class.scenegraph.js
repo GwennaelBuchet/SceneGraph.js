@@ -54,28 +54,12 @@ var CGSGSceneGraph = CGSGObject.extend(
             this.context = context;
 
             /**
-             * The nodes currently selected by the user
-             * @property selectedNodes
-             * @type {Array}
-             */
-            this.selectedNodes = [];
-
-            /**
              *
              * @property _nextNodeID
              * @type {Number}
              * @private
              */
             this._nextNodeID = 1;
-
-            /**
-             * List of the timelines for the animations.
-             * A timeline consists of a list of animation keys for 1 attribute of the nodes
-             * @property _listTimelines
-             * @type {Array}
-             * @private
-             */
-            this._listTimelines = [];
 
             ///// INITIALIZATION //////
 
@@ -116,16 +100,16 @@ var CGSGSceneGraph = CGSGObject.extend(
             //erase previous rendering
             cgsgClearContext(this.context);
 
-            if (this.root !== null && this.root !== undefined) {
+            if (cgsgExist(this.root)) {
                 var node = null;
                 var i = 0;
                 var key = null;
                 //set the new values for all the animated nodes
-                if (this._listTimelines.length > 0) {
+                if (CGSG.listTimelines.length > 0) {
                     node = null;
                     var value, timeline;
-                    for (i = this._listTimelines.length - 1; i >= 0; --i) {
-                        timeline = this._listTimelines[i];
+                    for (i = CGSG.listTimelines.length - 1; i >= 0; --i) {
+                        timeline = CGSG.listTimelines[i];
                         node = timeline.parentNode;
 
                         if (node.isVisible) {
@@ -133,7 +117,8 @@ var CGSGSceneGraph = CGSGObject.extend(
                             if (value !== undefined) {
                                 node.evalSet(timeline.attribute, value.value);
                                 if (timeline.onAnimate !== null) {
-                                    timeline.onAnimate({node : node});
+                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE, new CGSGEvent(this, {node : node}));
+                                    //timeline.onAnimate({node : node});
                                 }
                             }
 
@@ -141,16 +126,23 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getFirstKey();
                             if (key !== null && key.frame == CGSG.currentFrame &&
                                 timeline.onAnimationStart !== null) {
-                                timeline.onAnimationStart({node:node});
+	                            var evt = new CGSGEvent(this, {node:node});
+	                            evt.node = node;
+	                            CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
+	                            //timeline.onAnimationStart({node:node});
                             }
 
                             //fire event if this is the last animation key for this timeline
                             key = timeline.getLastKey();
                             if (key !== null && key.frame == CGSG.currentFrame) {
                                 timeline.removeAll();
-                                //this._listTimelines.without(timeline);
+                                //CGSG.listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
-                                    timeline.onAnimationEnd({node:node});
+                                    //timeline.onAnimationEnd({node:node});
+	                                var evt = new CGSGEvent(this, {node:node});
+	                                evt.node = node;
+	                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
+	                                //timeline.onAnimationStart({node:node});
                                 }
 
                                 //cgsgFree(timeline);
@@ -164,38 +156,41 @@ var CGSGSceneGraph = CGSGObject.extend(
                 this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
                 if (this.root.isVisible) {
                     this.root.doRender(this.context, CGSG.currentFrame);
+                    //cgsgRender(this.context, this.root);
                 }
                 this.context.restore();
             }
 
             //draw the selection markers around the selected nodes
-            if (this.selectedNodes.length > 0) {
-                for (i = this.selectedNodes.length - 1; i >= 0; i--) {
-                    node = this.selectedNodes[i];
+            if (CGSG.selectedNodes.length > 0) {
+                for (i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
+                    node = CGSG.selectedNodes[i];
                     if (node.isVisible) {
+                        //todo valider l'interet de calculer la matrice absolue
                         node.computeAbsoluteMatrix(true);
+
                         this.context.save();
                         this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
 
-                        var t = node._absolutePosition;//getAbsolutePosition(false);
+                        var n = node;
+                        var t = n.getAbsolutePosition();
 
                         this.context.translate(t.x, t.y);
 
-	                    if (cgsgExist(node.rotationCenter)) {
+                        if (cgsgExist(node.rotationCenter)) {
 
-	                    this.context.translate(node.dimension.width * node.rotationCenter.x,
-	                                           node.dimension.height * node.rotationCenter.y);
-	                    this.context.rotate(node.rotation.angle);
-	                    this.context.translate(-node.dimension.width * node.rotationCenter.x,
-	                                      -node.dimension.height * node.rotationCenter.y);
-	                    }
-	                    else {
-		                    this.context.rotate(node.rotation.angle);
-	                    }
-
+                            this.context.translate(node.dimension.width * node.rotationCenter.x,
+                                node.dimension.height * node.rotationCenter.y);
+                            this.context.rotate(node.rotation.angle);
+                            this.context.translate(-node.dimension.width * node.rotationCenter.x,
+                                -node.dimension.height * node.rotationCenter.y);
+                        }
+                        else {
+                            this.context.rotate(node.rotation.angle);
+                        }
                         this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
 
-                        node.renderSelected(this.context);
+                        node.renderBoundingBox(this.context);
                         this.context.restore();
                     }
                 }
@@ -225,7 +220,7 @@ var CGSGSceneGraph = CGSGObject.extend(
             if (!nodeToSelect.isSelected) {
                 nodeToSelect.setSelected(true);
                 nodeToSelect.computeAbsoluteMatrix(false);
-                this.selectedNodes[this.selectedNodes.length] = nodeToSelect;
+                CGSG.selectedNodes[CGSG.selectedNodes.length] = nodeToSelect;
             }
         },
 
@@ -236,8 +231,8 @@ var CGSGSceneGraph = CGSGObject.extend(
          * */
         deselectNode:function (nodeToDeselect) {
             nodeToDeselect.setSelected(false);
-            /*this.selectedNodes = */
-            this.selectedNodes.without(nodeToDeselect);
+            /*CGSG.selectedNodes = */
+            CGSG.selectedNodes.without(nodeToDeselect);
         },
 
         /**
@@ -247,15 +242,15 @@ var CGSGSceneGraph = CGSGObject.extend(
          * */
         deselectAll:function (excludedArray) {
             var node = null;
-            for (var i = this.selectedNodes.length - 1; i >= 0; i--) {
-                node = this.selectedNodes[i];
+            for (var i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
+                node = CGSG.selectedNodes[i];
                 if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
                     this.deselectNode(node);
                 }
             }
 
             //just to be sure
-            this.selectedNodes.clear();
+            CGSG.selectedNodes.clear();
         },
 
         /**
@@ -270,7 +265,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          */
         pickNode:function (mousePosition, condition) {
             //empty the current selection first
-            //this.selectedNodes = new Array();
+            //CGSG.selectedNodes = new Array();
             cgsgClearContext(CGSG.ghostContext);
             //recursively traverse the nodes to get the selected nodes
             if (!cgsgExist(this.root)) {
@@ -300,7 +295,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          */
         pickNodes:function (region, condition) {
             //empty the current selection first
-            //this.selectedNodes = new Array();
+            //CGSG.selectedNodes = new Array();
             cgsgClearContext(CGSG.ghostContext);
             //recursively traverse the nodes to get the selected nodes
             if (!cgsgExist(this.root)) {
@@ -405,13 +400,13 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @return {Boolean} true if there are still animation key after the current frame
          */
         stillHaveAnimation:function () {
-            if (this._listTimelines.length == 0) {
+            if (CGSG.listTimelines.length == 0) {
                 return false;
             }
             else {
-                for (var i = 0, len = this._listTimelines.length; i < len; ++i) {
-                    if (this._listTimelines[i].getLastKey() !== null &&
-                        this._listTimelines[i].getLastKey().frame <= CGSG.currentFrame) {
+                for (var i = 0, len = CGSG.listTimelines.length; i < len; ++i) {
+                    if (CGSG.listTimelines[i].getLastKey() !== null &&
+                        CGSG.listTimelines[i].getLastKey().frame <= CGSG.currentFrame) {
                         return true;
                     }
                 }
@@ -428,15 +423,15 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @return {CGSGTimeline}
          */
         getTimeline:function (node, attribute) {
-            for (var i = 0, len = this._listTimelines.length; i < len; ++i) {
-                if (this._listTimelines[i].parentNode === node && this._listTimelines[i].attribute == attribute) {
-                    return this._listTimelines[i];
+            for (var i = 0, len = CGSG.listTimelines.length; i < len; ++i) {
+                if (CGSG.listTimelines[i].parentNode === node && CGSG.listTimelines[i].attribute == attribute) {
+                    return CGSG.listTimelines[i];
                 }
             }
 
             //no timeline yet, create a new one
             var timeline = new CGSGTimeline(node, attribute, "linear");
-            this._listTimelines.push(timeline);
+            CGSG.listTimelines.push(timeline);
             return timeline;
         }
     }

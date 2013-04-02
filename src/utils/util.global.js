@@ -129,8 +129,8 @@ function cgsgGetRealViewportDimension () {
  */
 function cgsgGetDisplayedViewportDimension () {
 	var realDim = cgsgGetRealViewportDimension();
-	return new CGSGDimension(Math.round(realDim.width / CGSG.displayRatio.x),
-	                         Math.round(realDim.height / CGSG.displayRatio.y));
+    return new CGSGDimension(Math.round(realDim.width / CGSG.displayRatio.x),
+        Math.round(realDim.height / CGSG.displayRatio.y));
 }
 
 /**
@@ -189,39 +189,77 @@ function cgsgGetCursorPositions (event, canvas) {
 
 	var touch = event;
 	//if multi-touch, get all the positions
-	if (event.targetTouches) { // or changedTouches
-		var touchPoints = (typeof event.targetTouches !== 'undefined') ? event.targetTouches : [event];
-		for (var i = 0; i < touchPoints.length; i++) {
-			touch = touchPoints[i];
+    if (event.targetTouches) { // or changedTouches
+        var touchPoints = (typeof event.targetTouches !== 'undefined') ? event.targetTouches : [event];
+        for (var i = 0; i < touchPoints.length; i++) {
+            touch = touchPoints[i];
 
-			positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
-			                                (touch.pageY - offsetY) / CGSG.displayRatio.y));
-		}
-	}
-	else {
-		positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
-		                                (touch.pageY - offsetY) / CGSG.displayRatio.y));
-	}
+            positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
+                (touch.pageY - offsetY) / CGSG.displayRatio.y));
+        }
+    }
+    else {
+        positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
+            (touch.pageY - offsetY) / CGSG.displayRatio.y));
+    }
 
 	return positions;
 }
 
 /**
  * Wipes the canvas context
- * @private
  * @method cgsgClearContext
  * @param {CanvasRenderingContext2D} context context to render on
  * */
 function cgsgClearContext (context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	// Will always clear the right space
-	context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
+    context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 }
 
 /**
+ * Iterates the given array and, at each iteration, calls the given callback function. The loop stops if the callback
+ * function returns false.
+ *
+ * Optimized loop is used here and should be prefer to other approaches, especially on old browser versions and IE.
+ *
+ * @method cgsgIterate
+ * @param array {Array} the array
+ * @param callback {Function} the callback
+ */
+function cgsgIterate(array, callback) {
+    var i = 0, len = array.length;
+
+    for (; i < len && callback(i, array[i++]) !== false;) {
+    }
+}
+
+/**
+ * Iterates the given array from the end to the beginning of the array. The loop stops if the callback function returns
+ * false.
+ *
+ * Prefer to use this method for the same reasons than cgsgIterate.
+ *
+ * @method cgsgIterateReverse
+ * @param array {Array} the array
+ * @param callback {Function} the callback
+ */
+function cgsgIterateReverse(array, callback) {
+    var i = array.length - 1;
+
+    for (; i >= 0 && callback(i, array[i--]) !== false;) {
+    }
+}
+
+/**
+ * Free the given object and notify listeners with appropriate event.
+ *
  * @method cgsgFree
  * @param {*} object
  */
 function cgsgFree(object) {
+	if (cgsgExist(object.onFreeEvent)) {
+        CGSG.eventManager.dispatch(object, cgsgEventTypes.ON_FREE, new CGSGEvent(this, null));
+	}
     object = null;
 }

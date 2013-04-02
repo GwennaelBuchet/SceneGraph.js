@@ -95,10 +95,12 @@ var CGMain = CGSGView.extend(
 				, 10                            //outflow
 			);
 
+            var data;
 			emitter.onInitParticle = function(event) {
-				event.particle.node.globalAlpha = 1.0;
-				event.particle.userdata = {ttl : 280 + Math.random() * 240};
-				event.particle.checkCTL = function(particle) {
+                data = event.data.particle;
+				data.node.globalAlpha = 1.0;
+                data.userdata = {ttl : 280 + Math.random() * 240};
+                data.checkCTL = function(particle) {
 					return particle.age <= particle.userdata.ttl;
 				};
 			};
@@ -107,8 +109,9 @@ var CGMain = CGSGView.extend(
 			//emitter.addForce(new CGSGVector2D(5, 0.0), null); //force vector, ttl
 			emitter.addForce(new CGSGVector2D(0, -8), null); //force vector, ttl
 
-			emitter.onUpdateParticleEnd = function(particle) {
-				particle.node.globalAlpha = 1.0 - (particle.age / particle.userdata.ttl);
+			emitter.onUpdateParticleEnd = function(event) {
+                data = event.data.particle;
+                data.node.globalAlpha = 1.0 - (data.age / data.userdata.ttl);
 			};
 
 			//launch the emitters

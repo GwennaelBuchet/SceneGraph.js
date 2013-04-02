@@ -90,7 +90,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          */
         _onMouseOverHandler: function (event) {
             if (cgsgExist(this.onOverColor)) {
-                var rgb = this.getColorAt(event.position[0]);
+                var rgb = this.getColorAt(event.data.positions[0]);
 
                 this.onOverColor(rgb);
             }
@@ -103,7 +103,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          */
         _onClickHandler: function (event) {
             if (cgsgExist(this.onClickColor)) {
-                var rgb = this.getColorAt(event.position[0]);
+                var rgb = this.getColorAt(event.data.positions[0]);
 
                 this.onClickColor(rgb);
             }

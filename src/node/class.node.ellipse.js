@@ -40,92 +40,92 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGNodeEllipse = CGSGNode.extend(
-	{
-		initialize : function (x, y, width, height) {
-			this._super(x, y, width, height);
+    {
+        initialize : function (x, y, width, height) {
+            this._super(x, y, width, height);
 
-			/**
-			 * Color  to fill the ellipse
-			 * @property color
-			 * @default "#444444"
-			 * @type {String}
-			 */
-			this.color = "#444444";
-			/**
-			 * Color to stroke the ellipse
-			 * @property lineColor
-			 * @default "#222222"
-			 * @type {String}
-			 */
-			this.lineColor = "#222222";
-			/**
-			 * Width of the line that stroke the ellipse.
-			 * Let 0 if you don't want to stroke the ellipse.
-			 * @property lineWidth
-			 * @default 0
-			 * @type {Number}
-			 */
-			this.lineWidth = 0;
+            /**
+             * Color  to fill the ellipse
+             * @property color
+             * @default "#444444"
+             * @type {String}
+             */
+            this.color = "#444444";
+            /**
+             * Color to stroke the ellipse
+             * @property lineColor
+             * @default "#222222"
+             * @type {String}
+             */
+            this.lineColor = "#222222";
+            /**
+             * Width of the line that stroke the ellipse.
+             * Let 0 if you don't want to stroke the ellipse.
+             * @property lineWidth
+             * @default 0
+             * @type {Number}
+             */
+            this.lineWidth = 0;
 
-			/**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 */
-			this.classType = "CGSGNodeEllipse";
+            /**
+             * @property classType
+             * @readonly
+             * @type {String}
+             */
+            this.classType = "CGSGNodeEllipse";
 
-			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
-		},
+            this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
+        },
 
-		/**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * */
-		render : function (context) {
-			var centerX = this.dimension.width / 2;
-			var centerY = this.dimension.height / 2;
+        /**
+         * Custom rendering
+         * @method render
+         * @protected
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * */
+        render : function (context) {
+            var centerX = this.dimension.width / 2;
+            var centerY = this.dimension.height / 2;
 
-			context.beginPath();
+            context.beginPath();
 
-			context.moveTo(centerX, 0);
+            context.moveTo(centerX, 0);
 
-			context.bezierCurveTo(
-				this.dimension.width, 0,
-				this.dimension.width, this.dimension.height,
-				centerX, this.dimension.height);
+            context.bezierCurveTo(
+                this.dimension.width, 0,
+                this.dimension.width, this.dimension.height,
+                centerX, this.dimension.height);
 
-			context.bezierCurveTo(
-				0, this.dimension.height,
-				0, 0,
-				centerX, 0);
+            context.bezierCurveTo(
+                0, this.dimension.height,
+                0, 0,
+                centerX, 0);
 
-			context.fillStyle = this.color;
-			context.fill();
-			if (this.lineWidth > 0) {
-				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.lineColor;
-				context.stroke();
-			}
+            context.fillStyle = this.color;
+            context.fill();
+            if (this.lineWidth > 0) {
+                context.lineWidth = this.lineWidth;
+                context.strokeStyle = this.lineColor;
+                context.stroke();
+            }
 
-			context.closePath();
-		},
+            context.closePath();
+        },
 
-		/**
-		 * @method copy
-		 * @return {CGSGNodeEllipse} a copy of this node
-		 */
-		copy : function () {
-			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
-			                               this.dimension.height);
-			//call the super method
-			node = this._super(node);
+        /**
+         * @method copy
+         * @return {CGSGNodeEllipse} a copy of this node
+         */
+        copy : function () {
+            var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
+                this.dimension.height);
+            //call the super method
+            node = this._super(node);
 
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
-		}
-	}
+            node.color = this.color;
+            node.lineColor = this.lineColor;
+            node.lineWidth = this.lineWidth;
+            return node;
+        }
+    }
 );

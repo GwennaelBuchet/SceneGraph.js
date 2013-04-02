@@ -96,19 +96,19 @@ var CGMain = CGSGView.extend(
 				var that = this;
 				//animate a scale + with shadow
 				square.onMouseEnter = function (event) {
-					that.textNode.setText("Enter on : " + event.node.name);
+					that.textNode.setText("Enter on : " + event.data.node.name);
 					//some cool animation effect
-					that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
-					that.sceneGraph.animate(event.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
-					that.sceneGraph.animate(event.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
+					that.sceneGraph.animate(event.data.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
+					that.sceneGraph.animate(event.data.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
+					that.sceneGraph.animate(event.data.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
 				};
 				//initial scale + without shadow
 				square.onMouseOut = function (event) {
-					that.textNode.setText("Out of : " + event.node.name);
+					that.textNode.setText("Out of : " + event.data.node.name);
 					//some cool animation effect
-					that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
-					that.sceneGraph.animate(event.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
-					that.sceneGraph.animate(event.node, "scale.y", 10, 1.1, 1.0, "linear", 0, true);
+					that.sceneGraph.animate(event.data.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
+					that.sceneGraph.animate(event.data.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
+					that.sceneGraph.animate(event.data.node, "scale.y", 10, 1.1, 1.0, "linear", 0, true);
 				};
 			}
 

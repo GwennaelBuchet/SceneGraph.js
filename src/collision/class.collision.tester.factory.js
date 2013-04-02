@@ -34,15 +34,15 @@
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  */
 var CGSGCollisionTesterFactory = CGSGObject.extend(
-	{
-		initialize : function () {
+    {
+        initialize: function () {
 
-            this.collisionTesters = new CGSGHashmap();
+            this.collisionTesters = new CGSGMap();
 
             // initialize collision testers
-            this.collisionTesters.addOrReplace(CGSGCollisionMethod.REGION,new CGSGCollisionRegionTester());
-            this.collisionTesters.addOrReplace(CGSGCollisionMethod.GHOSTONDEMAND,new CGSGCollisionGhostOnDemandTester());
-		},
+            this.collisionTesters.addOrReplace(CGSGCollisionMethod.REGION, new CGSGCollisionRegionTester());
+            this.collisionTesters.addOrReplace(CGSGCollisionMethod.GHOSTONDEMAND, new CGSGCollisionGhostOnDemandTester());
+        },
 
         /**
          * Return a collision tester depending on the collision method
@@ -50,9 +50,9 @@ var CGSGCollisionTesterFactory = CGSGObject.extend(
          * @param collisionMethod
          * @return {Object}
          */
-        getCollisionTester : function(collisionMethod){
+        getCollisionTester: function (collisionMethod) {
             return this.collisionTesters.getValue(collisionMethod);
         }
-	}
+    }
 );
 

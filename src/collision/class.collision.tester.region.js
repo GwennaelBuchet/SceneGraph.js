@@ -35,8 +35,8 @@
  */
 var CGSGCollisionRegionTester = CGSGObject.extend(
     {
-        initialize : function () {
-            this.classType="CGSGCollisionRegionTester";
+        initialize: function () {
+            this.classType = "CGSGCollisionRegionTester";
         },
 
         /**
@@ -47,7 +47,7 @@ var CGSGCollisionRegionTester = CGSGObject.extend(
          * @param threshold
          * @return {boolean} true if nodes are colliding
          */
-        isColliding : function(currentNode, testedNode,threshold){
+        isColliding: function (currentNode, testedNode, threshold) {
             if (threshold === null) {
                 threshold = 0;
             }

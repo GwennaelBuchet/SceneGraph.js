@@ -34,9 +34,9 @@
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  */
 var CGSGCollisionManager = CGSGObject.extend(
-	{
-		initialize : function () {
-		},
+    {
+        initialize: function () {
+        },
 
         /**
          * Indicate if two nodes are colliding
@@ -46,10 +46,10 @@ var CGSGCollisionManager = CGSGObject.extend(
          * @param threshold
          * @return {boolean} true if nodes are colliding
          */
-        isColliding : function(currentNode, testedNode, threshold){
-            if (currentNode.isCollisionManaged && testedNode.isCollisionManaged){
-                if (cgsgExist(CGSG.performanceKeys)){
-                    return CGSG.performanceKeys.collisionTester.isColliding(currentNode,testedNode,threshold);
+        isColliding: function (currentNode, testedNode, threshold) {
+            if (currentNode.isCollisionManaged && testedNode.isCollisionManaged) {
+                if (cgsgExist(CGSG.performanceKeys)) {
+                    return CGSG.performanceKeys.collisionTester.isColliding(currentNode, testedNode, threshold);
                 }
             }
             return false;
@@ -60,7 +60,7 @@ var CGSGCollisionManager = CGSGObject.extend(
          * @method manageNode
          * @param node
          */
-        manageNode : function(node){
+        manageNode: function (node) {
             node.isCollisionManaged = true;
         },
 
@@ -69,9 +69,9 @@ var CGSGCollisionManager = CGSGObject.extend(
          * @method unManageNode
          * @param node
          */
-        unManageNode : function(node){
+        unManageNode: function (node) {
             node.isCollisionManaged = false;
         }
-	}
+    }
 );
 

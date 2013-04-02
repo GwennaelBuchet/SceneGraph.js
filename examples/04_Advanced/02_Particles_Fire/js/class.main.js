@@ -85,23 +85,24 @@ var CGMain = CGSGView.extend(
 
 			//tell the emitter how to init a particle.
 			//be sure to call this BEFORE the initParticles function
+            var data;
 			emitter.onInitParticle = function (event) {
+                data = event.data.particle;
 				var colors = ["#FFF9AA", "#FFDB61", "#FBC22D", "#E98523", "#E65D0C", "#E3681B", "#D43B11", "#D23910",
 							  "#C51E0C"];
-				event.particle.node.globalAlpha = 1.0;
-				event.particle.node.color = colors[Math.floor(Math.random() * colors.length)];
-				event.particle.node.lineColor = event.particle.node.color;
-				event.particle.userdata = {ttl : 50 + Math.random() * 40};
-				event.particle.checkCTL = function(particle) {
+                data.node.globalAlpha = 1.0;
+                data.node.color = colors[Math.floor(Math.random() * colors.length)];
+                data.node.lineColor = data.node.color;
+                data.userdata = {ttl : 50 + Math.random() * 40};
+                data.checkCTL = function(particle) {
 					return particle.age <= particle.userdata.ttl;
 				};
 
 				//event.particle.node.scaleTo(1.0, 1.0);
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
-                event.particle.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
+                data.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
 
-				var rgb = CGSGColor.hex2rgb(event.particle.node.color);
-				event.particle.initColor = rgb;
+                data.initColor = CGSGColor.hex2rgb(data.node.color);
 			};
 
 			//remove the gravity of this emitter.
@@ -109,15 +110,16 @@ var CGMain = CGSGView.extend(
 			emitter.removeForce(emitter.gravity);
 
 			//add an update handler, fired each time a particle position was updated by the emitter
-            emitter.onUpdateParticleEnd = function (particle) {
-				var a = 1.0 - (particle.age / particle.userdata.ttl);
-				particle.node.globalAlpha = Math.max(a, 0);
-				var rgb = CGSGColor.hex2rgb(particle.node.color);
-				rgb.r = particle.initColor.r * a;
-				rgb.g = particle.initColor.g * a;
-				rgb.b = particle.initColor.b * a;
-				particle.node.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
-				particle.node.lineColor = particle.node.color;
+            emitter.onUpdateParticleEnd = function (event) {
+                data = event.data.particle;
+				var a = 1.0 - (data.age / data.userdata.ttl);
+                data.node.globalAlpha = Math.max(a, 0);
+				var rgb = CGSGColor.hex2rgb(data.node.color);
+				rgb.r = data.initColor.r * a;
+				rgb.g = data.initColor.g * a;
+				rgb.b = data.initColor.b * a;
+                data.node.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+                data.node.lineColor = data.node.color;
 				//particle.node.rotateWith(emitter.speed * Math.random() / 10.0);
 			};
 

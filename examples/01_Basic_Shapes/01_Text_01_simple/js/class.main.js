@@ -91,7 +91,7 @@ var CGMain = CGSGView.extend(
 			textNode.setLineHeight(18);
 
 			textNode.onResize = function (event) {
-				event.node.setMaxWidth(event.node.dimension.width);
+				event.data.node.setMaxWidth(event.data.node.dimension.width);
 			}
 
             textNode.setPrecomputed(true);

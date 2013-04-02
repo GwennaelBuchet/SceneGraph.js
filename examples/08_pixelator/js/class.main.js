@@ -24,11 +24,13 @@
  */
 
 //number of horizontal squares
-var NB_HORIZONTAL_SLIDE = 50;
+var NB_HORIZONTAL_SLIDE = 60;
 //number of vertical squares
-var NB_VERTICAL_SLIDE = 50;
+var NB_VERTICAL_SLIDE = 60;
+//total width of the generated wall of squares
+var TOTAL_WIDTH = 200;
 //width of a square
-var SQ_WIDTH = 3;
+var SQ_WIDTH = CGSGMath.fixedPoint(TOTAL_WIDTH / NB_HORIZONTAL_SLIDE);
 //height of a square
 var SQ_HEIGHT = NaN; //if NaN, value will be computed to keep the ratio of the original image
 
@@ -58,12 +60,12 @@ var CGMain = CGSGView.extend(
 
             this.listSquares = [];
 
-            this.buttonRelease = new CGSGNodeButton(10, 10, "Release them !");
+            this.buttonRelease = new CGSGNodeButton(10, 10, "Release them all ("+ (NB_HORIZONTAL_SLIDE * NB_VERTICAL_SLIDE) + " texels) !");
             this.rootNode.addChild(this.buttonRelease);
             this.buttonRelease.setMode(CGSGButtonMode.DEACTIVATED);
             this.buttonRelease.onClick = this.explode.bind(this);
 
-            this.buttonReload = new CGSGNodeButton(170, 10, "Reload");
+            this.buttonReload = new CGSGNodeButton(270, 10, "Reload");
             this.rootNode.addChild(this.buttonReload);
             this.buttonReload.onClick = function (event) {
                 document.location.reload(true);

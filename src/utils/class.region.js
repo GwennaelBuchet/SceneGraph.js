@@ -42,6 +42,17 @@ var CGSGPosition = CGSGVector2D.extend(
 		},
 
 		/**
+		 * Indicates if this position meaningfully equals to the given position.
+		 * @public
+		 * @method equalsTo
+		 * @param position {CGSGPosition} the position to compare to this position
+		 * @return {Boolean} true if given position exists and has same coordinates as this position, false otherwise
+		 */
+		equalsTo : function(position) {
+			return cgsgExist(position) && position.x === this.x && position.y === this.y;
+		},
+
+		/**
 		 * return a new object with these attributes
 		 * @public
 		 * @method copy
@@ -167,17 +178,17 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method add
 		 * @param {Number} angle
 		 */
-		addEquals : function (angle) {
+        addEquals : function (angle) {
 			this.angle += angle;
 		},
 
 		/**
 		 * Subtract this angle to the current one
 		 * @public
-		 * @method subtract
+		 * @method substract
 		 * @param {Number} angle
 		 */
-		subtractEquals : function (angle) {
+        subtractEquals : function (angle) {
 			this.angle -= angle;
 		},
 
@@ -187,7 +198,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method multiply
 		 * @param {Number} angle
 		 */
-		multiplyEquals : function (angle) {
+        multiplyEquals : function (angle) {
 			this.angle *= angle;
 		}
 	}
@@ -275,7 +286,7 @@ var CGSGDimension = CGSGVector2D.extend(
 			if (this.height + height >= 0) {
 				this.height += height;
 			}
-		},
+        },
 
         /**
          * Return true if no pixels are inside the dimension
@@ -327,7 +338,7 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method add
 		 * @param region {CGSGRegion}
 		 */
-		addEquals : function (region) {
+        addEquals : function (region) {
 			this.position.translateWith(region.position.x, region.position.y);
 			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
 		},
@@ -336,10 +347,10 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method subtract
 		 * @param {CGSGRegion} region
 		 */
-		subtractEquals : function (region) {
+        subtractEquals : function (region) {
 			this.position.translateWith(-region.position.x, -region.position.y);
 			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
-		},
+        },
 
         /**
          * Return true if no pixels are inside the region

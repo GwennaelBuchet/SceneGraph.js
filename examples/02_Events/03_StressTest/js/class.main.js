@@ -87,10 +87,6 @@ var CGMain = CGSGView.extend(
 	        imgNode.setSlice(476, 0, 34, 34, true);
 
             imgNode.name = attributes.name;
-            //imgNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
-            //imgNode.resizeTo(attributes.w, attributes.w);
-            //imgNode._initShape();
-
 
             if (attributes.hasEvent === false) {
                 //create the text inside
@@ -101,12 +97,14 @@ var CGMain = CGSGView.extend(
             else {
                 //add mouse over and out events
                 var that = this;
+                var node;
                 //animate a scale + with shadow
                 imgNode.onMouseOver = function (event) {
-                    that.textNode.setText("Over on : " + event.node.name);
+                    node = event.data.node;
+                    that.textNode.setText("Over on : " + node.name);
 
-	                event.node.globalAlpha = 1.0;
-	                event.node.scaleTo(1.1, 1.1, false);
+	                node.globalAlpha = 1.0;
+	                node.scaleTo(1.1, 1.1, false);
                     //some cool animation effect
                     //that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
                     //that.sceneGraph.animate(event.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
@@ -114,10 +112,11 @@ var CGMain = CGSGView.extend(
                 };
                 //initial scale + without shadow
                 imgNode.onMouseOut = function (event) {
+                    node = event.data.node;
                     that.textNode.setText("Over on : (nothing)");
 
-	                event.node.globalAlpha = 0.5;
-	                event.node.scaleTo(1.0, 1.0, false);
+	                node.globalAlpha = 0.5;
+	                node.scaleTo(1.0, 1.0, false);
                     //some cool animation effect
                     //that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
                     //that.sceneGraph.animate(event.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
@@ -126,19 +125,6 @@ var CGMain = CGSGView.extend(
             }
 
             return imgNode;
-
-            //create the square
-            /*var square = new CGSGNodeSquare(attributes.x, attributes.y, attributes.w, attributes.w);
-            square.isDraggable = true;
-            square.isResizable = true;
-            square.globalAlpha = 0.5;
-            square.color = attributes.color;
-            square.lineWidth = 2;
-            square.name = attributes.name;
-
-
-
-            return square;*/
         }
 
     }

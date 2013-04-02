@@ -152,7 +152,7 @@ var CGMain = CGSGView.extend(
             },
 
             clickHandler: function (event) {
-                this.txtNode.setText("Button examples. Click on : " + event.node.name);
+                this.txtNode.setText("Button examples. Click on : " + event.data.node.name);
             },
 
             onImageLoaded: function () {

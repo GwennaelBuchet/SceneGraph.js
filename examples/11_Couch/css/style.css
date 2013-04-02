@@ -1,0 +1,47 @@
+html {
+    background: #fff;
+    margin: 0 0 0 -1px;
+    padding: 0;
+    overflow-Y: scroll;
+}
+
+@font-face {
+    font-family: font_din;
+    src: url('DIN-Medium.ttf'); 
+} 
+
+body {
+    padding: 0;
+    margin: 0;
+    display: table;
+    width: 100%;
+    color: #B6B6B6;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+}
+
+div {
+	padding:0;
+	margin:0;
+}
+
+#center {
+	margin: 0 auto;
+	width: 980px;
+	padding: 0;
+	
+}
+
+#scene {
+    border: 0;
+    /*background-color: rgb(255, 225, 255);*/
+}
+
+/*p {*/
+    /*padding: 0px 300px;*/
+    /*margin: 0px;*/
+    /*text-align: center;*/
+/*}*/
+

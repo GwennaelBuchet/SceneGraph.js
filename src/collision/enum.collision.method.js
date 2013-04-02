@@ -38,7 +38,7 @@ var CGSGCollisionMethod = {
     /**
      * @property GHOSTONDEMAND
      */
-    GHOSTONDEMAND : "ghostOnDemand",
+    GHOSTONDEMAND: "ghostOnDemand",
 
     /**
      * @property REGION

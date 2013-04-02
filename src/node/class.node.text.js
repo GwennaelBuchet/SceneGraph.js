@@ -304,7 +304,8 @@ var CGSGNodeText = CGSGNode.extend(
          */
         setMaxWidth: function (m, mustRecomputeDimension) {
             this._maxWidth = m;
-            this.resizeTo(m, this.getHeight());
+            this.dimension.width = m;
+            //this.resizeTo(m, this.getHeight());
             if (mustRecomputeDimension !== false) {
                 this.computeRealDimension();
             }
@@ -552,10 +553,10 @@ var CGSGNodeText = CGSGNode.extend(
         /**
          * Render the resize handler
          * @protected
-         * @method renderSelected
+         * @method renderBoundingBox
          * @param {CanvasRenderingContext2D} context the context into render the node
          */
-        renderSelected: function (context) {
+        renderBoundingBox: function (context) {
             var decalX = 0;
             var decalY = this._computeDecalY();
 

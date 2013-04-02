@@ -388,9 +388,11 @@ var CGSGParticleEmitter = CGSGNode.extend(
 			var isAlive = particle.updatePosition(this.speed, this._acceleration);
 
 			//finally, call the update method of the particle node to apply extra animations
-			if (this.onUpdateParticleEnd !== null) {
-				this.onUpdateParticleEnd(particle);
-			}
+			//if (this.onUpdateParticleEnd !== null) {
+                this.onUpdateParticleEnd && CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_UPDATE_PARTICLE_END, new CGSGEvent(this, {particle : particle}));
+				//this.onUpdateParticleEnd(particle);
+                //this.onUpdateParticleEnd({data:{particle : particle}});
+			//}
 
 			return isAlive;
 		},
@@ -416,7 +418,9 @@ var CGSGParticleEmitter = CGSGNode.extend(
 			particle.initSpeedThreshold(-this.speedThreshold + Math.random() * this.speedThreshold * 2.0);
 
 			if (this.onInitParticle !== null) {
-				this.onInitParticle({index : index, particle : particle});
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_INIT_PARTICLE, new CGSGEvent(this, {index : index, particle : particle}));
+				//this.onInitParticle({index : index, particle : particle});
+                //this.onInitParticle({data :{index : index, particle : particle}});
 			}
 		},
 

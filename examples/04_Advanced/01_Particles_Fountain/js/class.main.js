@@ -88,12 +88,15 @@ var CGMain = CGSGView.extend(
                 , 1         //outflow
 			);
 
+            var data;
+
 			emitter.onInitParticle = function (event) {
-				event.particle.node.globalAlpha = 1.0;
-				event.particle.node.color = "#B5D2FF";
-				event.particle.node.lineColor = event.particle.node.color;
-				event.particle.userdata = {ttl : 180 + Math.random() * 240};
-				event.particle.checkCTL = function(particle) {
+                data = event.data.particle;
+				data.node.globalAlpha = 1.0;
+				data.node.color = "#B5D2FF";
+				data.node.lineColor = data.node.color;
+				data.userdata = {ttl : 180 + Math.random() * 240};
+				data.checkCTL = function(particle) {
 					return particle.age <= particle.userdata.ttl;
 				};
 			};
@@ -101,8 +104,9 @@ var CGMain = CGSGView.extend(
 			//add a force  representing the wind
 			//emitter.addForce(new CGSGVector2D(5, 0.0), null); //force vector, ttl
 
-			emitter.onUpdateParticleEnd = function (particle) {
-				particle.node.globalAlpha = 1.0 - (particle.age / particle.userdata.ttl);
+			emitter.onUpdateParticleEnd = function (event) {
+                data = event.data.particle;
+                data.node.globalAlpha = 1.0 - (data.age / data.userdata.ttl);
 			};
 
 			//add a force vector on the mouse click

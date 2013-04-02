@@ -35,8 +35,8 @@
  */
 var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
     {
-        initialize : function () {
-            this.classType="CGSGCollisionGhostOnDemandTester";
+        initialize: function () {
+            this.classType = "CGSGCollisionGhostOnDemandTester";
         },
 
         /**
@@ -47,7 +47,7 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
          * @param threshold
          * @return {boolean} true if nodes are colliding
          */
-        isColliding : function(currentNode, testedNode,threshold){
+        isColliding: function (currentNode, testedNode, threshold) {
             // get deltas to run through minimum pixels (only union of both nodes)
             var deltaX = testedNode.getAbsoluteLeft() - currentNode.getAbsoluteLeft();
             var deltaY = testedNode.getAbsoluteTop() - currentNode.getAbsoluteTop();
@@ -90,7 +90,7 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
 
             // draw node  (backup position, render, restore position)
             backupPosition = testedNode.position;
-            testedNode.position = new CGSGPosition(0,0);
+            testedNode.position = new CGSGPosition(0, 0);
             testedNode.render(ctx2);
             testedNode.position = backupPosition;
 

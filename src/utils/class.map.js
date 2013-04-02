@@ -26,12 +26,12 @@
 /**
  * A Hashmap class.
  *
- * @class CGSGHashmap
+ * @class CGSGMap
  * @module Util
  * @constructor
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGHashmap = CGSGObject.extend(
+var CGSGMap = CGSGObject.extend(
     {
         initialize:function () {
             this._map = {};
@@ -61,6 +61,14 @@ var CGSGHashmap = CGSGObject.extend(
             }
 
             return this._map.values[i];
+        },
+
+        /**
+         * @method getValues
+         * @return {Array}
+         */
+        getValues:function() {
+          return this._map.values.copy();
         },
 
         /**
@@ -108,10 +116,10 @@ var CGSGHashmap = CGSGObject.extend(
 
         /**
          * @method clone
-         * @return {CGSGHashmap}
+         * @return {CGSGMap}
          */
         clone:function () {
-            var newMap = new CGSGHashmap();
+            var newMap = new CGSGMap();
             newMap._map.keys = this._map.keys.clone();
             newMap._map.values = this._map.value.clone();
 
