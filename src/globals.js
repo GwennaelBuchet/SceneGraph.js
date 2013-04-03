@@ -236,8 +236,8 @@ var CGSG = {
              * @param method
              */
             setCollisionMethod: function (method) {
-                this._collisionMethod = method,
-                    this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+                this._collisionMethod = method;
+                this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
             }
         },
 

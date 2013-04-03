@@ -33,17 +33,9 @@
 
 			this._super(canvas);
 
-			this.initializeCanvas();
-
 			this.createScene();
 
 			this.startPlaying();
-		},
-
-		initializeCanvas : function () {
-			//redimensionnement du canvas pour être full viewport en largeur
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
 		},
 
 		/**
@@ -54,9 +46,16 @@
 			this.rootNode = new CGSGNode(0, 0, 0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
-            this.marxzel = new CGSGNodeSprite(10, 10, null, CGSG.context);
-            this.rootNode.addChild(this.marxzel);
+            var skyNode = new SkyNode();
+            this.rootNode.addChild(skyNode);
 
+            var floorNode = new FloorNode("img/floor.png");
+            this.rootNode.addChild(floorNode);
+
+            this.marxzel = new CGSGNodeSprite(10, 10, null);
+            this.rootNode.addChild(this.marxzel);
+            this.marxzel.addAnimation("run", 5, 3, 0, 0, 32, 32, 1);
+            this.marxzel.isDraggable = true;
 
             //load the global image
             this.imgBoard = new Image();
@@ -66,6 +65,7 @@
 
         onLoadImgBoard : function() {
             this.marxzel.setImage(this.imgBoard);
+            this.marxzel.play("run");
         }
 
 	}
