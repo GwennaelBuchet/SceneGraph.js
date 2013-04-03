@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -214,177 +226,177 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGNodeLogger = CGSGNode.extend(
-	{
-		initialize : function (x, y) {
-			this._super(x, y, 100, 100);
+    {
+        initialize : function (x, y) {
+            this._super(x, y, 100, 100);
 
-			&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; @public &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
-			this.isTraversable = false;
-			this.isResizable = false;
-			this.isDraggable = true;
+            &#x2F;&#x2F;&#x2F;&#x2F;&#x2F; @public &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+            this.isTraversable = false;
+            this.isResizable = false;
+            this.isDraggable = true;
 
-			&#x2F;**
-			 * background color of the panel
-			 * @property color
-			 * @default &quot;#444444&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.color = &quot;#444444&quot;;
-			&#x2F;**
-			 * Radius of the corners of the panel
-			 * @property cornerRadius
-			 * @default 5
-			 * @type {Number}
-			 *&#x2F;
-			this.cornerRadius = 5;
-			&#x2F;**
-			 * Color of the line around the panel
-			 * @property lineColor
-			 * @default &quot;#222222&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.lineColor = &quot;#222222&quot;;
-			&#x2F;**
-			 * Width of the line around the panel
-			 * @property lineWidth
-			 * @default 2
-			 * @type {Number}
-			 *&#x2F;
-			this.lineWidth = 2;
-			&#x2F;**
-			 * Transparency level of the panel (between 0 and 1)
-			 * @property globalAlpha
-			 * @default 0.6
-			 * @type {Number}
-			 *&#x2F;
-			this.globalAlpha = 0.6;
-			&#x2F;**
-			 * Size of the typo
-			 * @property textSize
-			 * @default 12
-			 * @type {Number}
-			 *&#x2F;
-			this.textSize = 12;
-			&#x2F;**
-			 * Color for the text
-			 * @property textColor
-			 * @default &quot;white&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.textColor = &quot;white&quot;;
+            &#x2F;**
+             * background color of the panel
+             * @property color
+             * @default &quot;#444444&quot;
+             * @type {String}
+             *&#x2F;
+            this.color = &quot;#444444&quot;;
+            &#x2F;**
+             * Radius of the corners of the panel
+             * @property cornerRadius
+             * @default 5
+             * @type {Number}
+             *&#x2F;
+            this.cornerRadius = 5;
+            &#x2F;**
+             * Color of the line around the panel
+             * @property lineColor
+             * @default &quot;#222222&quot;
+             * @type {String}
+             *&#x2F;
+            this.lineColor = &quot;#222222&quot;;
+            &#x2F;**
+             * Width of the line around the panel
+             * @property lineWidth
+             * @default 2
+             * @type {Number}
+             *&#x2F;
+            this.lineWidth = 2;
+            &#x2F;**
+             * Transparency level of the panel (between 0 and 1)
+             * @property globalAlpha
+             * @default 0.6
+             * @type {Number}
+             *&#x2F;
+            this.globalAlpha = 0.6;
+            &#x2F;**
+             * Size of the typo
+             * @property textSize
+             * @default 12
+             * @type {Number}
+             *&#x2F;
+            this.textSize = 12;
+            &#x2F;**
+             * Color for the text
+             * @property textColor
+             * @default &quot;white&quot;
+             * @type {String}
+             *&#x2F;
+            this.textColor = &quot;white&quot;;
 
-			&#x2F;**
-			 * List of attributes displayed in the panel
-			 * @property _attributes
-			 * @type {Array}
-			 * @private
-			 *&#x2F;
-			this._attributes = [];
+            &#x2F;**
+             * List of attributes displayed in the panel
+             * @property _attributes
+             * @type {Array}
+             * @private
+             *&#x2F;
+            this._attributes = [];
 
-			&#x2F;**
-			 * @property classType
-			 * @type {String}
-			 *&#x2F;
-			this.classType = &quot;CGSGNodeLogger&quot;;
+            &#x2F;**
+             * @property classType
+             * @type {String}
+             *&#x2F;
+            this.classType = &quot;CGSGNodeLogger&quot;;
 
-			&#x2F;&#x2F;construct the panel
-			this._createPanel();
-		},
+            &#x2F;&#x2F;construct the panel
+            this._createPanel();
+        },
 
-		&#x2F;**
-		 * Create the panel graph that drw the attributes
-		 * @method _createPanel
-		 * @private
-		 *&#x2F;
-		_createPanel : function () {
+        &#x2F;**
+         * Create the panel graph that drw the attributes
+         * @method _createPanel
+         * @private
+         *&#x2F;
+        _createPanel : function () {
 
-		},
+        },
 
-		&#x2F;**
-		 * Set a new couple name&#x2F;value to render onto the logger.
-		 * If an attribute already exists with that name, just update the value
-		 * @method set
-		 * @param {String} name
-		 * @param {String} value
-		 *&#x2F;
-		set : function (name, value) {
-			&#x2F;&#x2F;if the attribute already exists,just update the value
-			var attr = null;
-			for (var a = 0; a &lt; this._attributes[a]; a++) {
-				if (name === this._attributes[a].name) {
-					attr = this._attributes[a];
-					attr.value = value;
-					attr.nodeValue.setText(value);
-					break;
-				}
-			}
+        &#x2F;**
+         * Set a new couple name&#x2F;value to render onto the logger.
+         * If an attribute already exists with that name, just update the value
+         * @method set
+         * @param {String} name
+         * @param {String} value
+         *&#x2F;
+        set : function (name, value) {
+            &#x2F;&#x2F;if the attribute already exists,just update the value
+            var attr = null;
+            for (var a = 0; a &lt; this._attributes[a]; a++) {
+                if (name === this._attributes[a].name) {
+                    attr = this._attributes[a];
+                    attr.value = value;
+                    attr.nodeValue.setText(value);
+                    break;
+                }
+            }
 
-			&#x2F;&#x2F;else create it, and add it to the window
-			if (attr === null) {
-				var tnn = new CGSGNodeText(10, 10, name);
-				var tnv = new CGSGNodeText(100, 10, value);
-				tnn.setSize(this.textSize);
-				tnn.color = this.textColor;
-				tnv.setSize(this.textSize);
-				tnv.color = this.textColor;
-				attr = {name : name, value : value, nodeName : tnn, nodeValue : tnv};
-				this._attributes.push(attr);
-			}
+            &#x2F;&#x2F;else create it, and add it to the window
+            if (attr === null) {
+                var tnn = new CGSGNodeText(10, 10, name);
+                var tnv = new CGSGNodeText(100, 10, value);
+                tnn.setSize(this.textSize);
+                tnn.color = this.textColor;
+                tnv.setSize(this.textSize);
+                tnv.color = this.textColor;
+                attr = {name : name, value : value, nodeName : tnn, nodeValue : tnv};
+                this._attributes.push(attr);
+            }
 
-		},
+        },
 
-		&#x2F;**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * *&#x2F;
-		render : function (context) {
-			&#x2F;&#x2F;draw this zone
-			context.fillStyle = this.color;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
+        &#x2F;**
+         * Custom rendering
+         * @method render
+         * @protected
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * *&#x2F;
+        render : function (context) {
+            &#x2F;&#x2F;draw this zone
+            context.fillStyle = this.color;
+            context.strokeStyle = this.lineColor;
+            context.lineWidth = this.lineWidth;
 
-			var rectWidth = 200;
-			var rectHeight = 100;
-			var rectX = 189;
-			var rectY = 50;
-			var cornerRadius = 50;
+            var rectWidth = 200;
+            var rectHeight = 100;
+            var rectX = 189;
+            var rectY = 50;
+            var cornerRadius = 50;
 
-			context.beginPath();
-			context.moveTo(rectX, rectY);
-			context.lineTo(rectX + rectWidth - cornerRadius, rectY);
-			context.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);
-			context.lineTo(rectX + rectWidth, rectY + rectHeight);
-			context.fill();
-			context.stroke();
-		},
+            context.beginPath();
+            context.moveTo(rectX, rectY);
+            context.lineTo(rectX + rectWidth - cornerRadius, rectY);
+            context.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);
+            context.lineTo(rectX + rectWidth, rectY + rectHeight);
+            context.fill();
+            context.stroke();
+        },
 
-		&#x2F;**
-		 * @method copy
-		 * @return {CGSGNodeLogger} a copy of this node
-		 *&#x2F;
-		copy : function () {
-			var node = new CGSGNodeLogger(this.position.x, this.position.y);
-			&#x2F;&#x2F;call the super method
-			node = this._super(node);
+        &#x2F;**
+         * @method copy
+         * @return {CGSGNodeLogger} a copy of this node
+         *&#x2F;
+        copy : function () {
+            var node = new CGSGNodeLogger(this.position.x, this.position.y);
+            &#x2F;&#x2F;call the super method
+            node = this._super(node);
 
-			node.isTraversable = this.isTraversable;
-			node.isResizable = this.isResizable;
-			node.isDraggable = this.isDraggable;
+            node.isTraversable = this.isTraversable;
+            node.isResizable = this.isResizable;
+            node.isDraggable = this.isDraggable;
 
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			node.globalAlpha = this.globalAlpha;
+            node.color = this.color;
+            node.lineColor = this.lineColor;
+            node.lineWidth = this.lineWidth;
+            node.globalAlpha = this.globalAlpha;
 
-			for (var i = 0; i &lt; this._attributes.length; i++) {
-				node.setAttribute(this._attributes[i].name, this._attributes[i].value);
-			}
+            for (var i = 0; i &lt; this._attributes.length; i++) {
+                node.setAttribute(this._attributes[i].name, this._attributes[i].value);
+            }
 
-			return node;
-		}
-	}
+            return node;
+        }
+    }
 );
 
     </pre>

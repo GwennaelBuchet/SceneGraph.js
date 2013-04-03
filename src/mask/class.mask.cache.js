@@ -55,7 +55,6 @@ var CGSGMaskCache = CGSGMask.extend(
         },
 
         /**
-         * @override
          * @param {CGSGNode} node the npde
          * @method _internalApply
          * @private
@@ -92,7 +91,6 @@ var CGSGMaskCache = CGSGMask.extend(
         },
 
         /**
-         * @override
          * @param {CGSGNode} node the npde
          * @method _internalRemove
          * @private

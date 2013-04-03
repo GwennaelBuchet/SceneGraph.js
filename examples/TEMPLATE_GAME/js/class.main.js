@@ -55,8 +55,6 @@ var CGMain = CGSGView.extend(
 			 */
 			this.gameState = GAME_STATE.LOADING;
 
-			//save the sceneGraph as a global variable
-			sceneGraph = this.sceneGraph;
 			this.createScene();
 
 			//keyboard events handler

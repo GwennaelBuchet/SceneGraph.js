@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -210,15 +222,15 @@
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  *&#x2F;
 var CGSGCollisionTesterFactory = CGSGObject.extend(
-	{
-		initialize : function () {
+    {
+        initialize: function () {
 
-            this.collisionTesters = new CGSGHashmap();
+            this.collisionTesters = new CGSGMap();
 
             &#x2F;&#x2F; initialize collision testers
-            this.collisionTesters.addOrReplace(CGSGCollisionMethod.REGION,new CGSGCollisionRegionTester());
-            this.collisionTesters.addOrReplace(CGSGCollisionMethod.GHOSTONDEMAND,new CGSGCollisionGhostOnDemandTester());
-		},
+            this.collisionTesters.addOrReplace(CGSGCollisionMethod.REGION, new CGSGCollisionRegionTester());
+            this.collisionTesters.addOrReplace(CGSGCollisionMethod.GHOSTONDEMAND, new CGSGCollisionGhostOnDemandTester());
+        },
 
         &#x2F;**
          * Return a collision tester depending on the collision method
@@ -226,10 +238,10 @@ var CGSGCollisionTesterFactory = CGSGObject.extend(
          * @param collisionMethod
          * @return {Object}
          *&#x2F;
-        getCollisionTester : function(collisionMethod){
+        getCollisionTester: function (collisionMethod) {
             return this.collisionTesters.getValue(collisionMethod);
         }
-	}
+    }
 );
 
 

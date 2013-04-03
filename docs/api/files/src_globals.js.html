@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -251,7 +263,6 @@ var cgsgExplorerParams = {
 var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
 
 
-
 &#x2F;**
  * Global properties for the current scene
  *
@@ -260,131 +271,226 @@ var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
  * @static
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
- var CGSG = {
-
-    &#x2F;**
-     * Current version of the framework
-     * @property cgsgVersion
-     * @static
-     * @type {String}
-     *&#x2F;
-    version : &quot;2.0.0-SNAPSHOT&quot;,
-
-    &#x2F;**
-     * Current display ratio
-     * @property displayRatio
-     * @static
-     * @type {CGSGScale}
-     *&#x2F;
-    displayRatio : CGSG_DEFAULT_DISPLAYRATIO,
-
-    &#x2F;**
-     * Default threshold to detect the handle boxes on a resizable node
-     * @property resizeHandleThreshold
-     * @static
-     * @type {Number}
-     *&#x2F;
-    resizeHandleThreshold : CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
-
-    &#x2F;**
-     * The current frame in hte global timeline
-     * @property currentFrame
-     * @readonly
-     * @type {Number}
-     *&#x2F;
-    currentFrame : 0,
-
-    &#x2F;**
-     * The canvas container for this scene
-     * @property canvas
-     * @readonly
-     * @type {HTMLElement}
-     *&#x2F;
-    canvas : null,
-
-    &#x2F;**
-     * The main rendering 2D context for this scene
-     * @property context
-     * @type {CanvasRenderingContext2D}
-     *&#x2F;
-    context : null,
-
-    &#x2F;**
-     * The global ghost context for fake rendering
-     * @property ghostContext
-     * @readonly
-     * @type {CanvasRenderingContext2D}
-     *&#x2F;
-    ghostContext : null,
-
-    &#x2F;**
-     * the color used for the ghost mode rendering
-     * @property ghostColor
-     * @type {String}
-     * @public
-     *&#x2F;
-    ghostColor : &quot;#FF0000&quot;,
-
-    &#x2F;**
-     * Number of frames to average the FPS.
-     * Reduce this number to get more accurate FPS
-     * @property framerateDelay
-     * @default CGSG_DEFAULT_FRAMERATE_DELAY
-     * @type {Number}
-     *&#x2F;
-    framerateDelay : CGSG_DEFAULT_FRAMERATE_DELAY,
-
-    &#x2F;**
-     * Maximum number of frames per second. Set it if you want your application to slow down.
-     * @property maxFramerate
-     * @default CGSG_DEFAULT_MAX_FRAMERATE
-     * @type {Number}
-     * @example
-     *     &#x2F;&#x2F;limit the fps of the application to 30
-     *     CGSG.maxFramerate : 30,
-     *&#x2F;
-    maxFramerate : CGSG_DEFAULT_MAX_FRAMERATE,
-
-    &#x2F;**
-     * Instance of CollisionTesterFactory
-     * @property collisionTestFactory
-     * @type {CGSGCollisionTesterFactory}
-     *&#x2F;
-    collisionManager : new CGSGCollisionManager(),
-
-    &#x2F;**
-     * Object that defines the performance keys.
-     * Change values to adapt your project.
-     *
-     * CGSG.performanceKeys._collisionMethod :
-     *                Key to specify collision detection mod
-     *                Use setCollisionMethod to modify value,
-     *                Default : CGSGCollisionMethod.REGION
-     *
-     * CGSG.performanceKeys.collisionTester :
-     *                Collision tester depending on _collisionMethod,
-     *                Default : CGSGCollisionRegionTester
-     *
-     * @property performanceKeys
-     * @type {Object}
-     *&#x2F;
-    performanceKeys : {
-        _collisionMethod: CGSGCollisionMethod.REGION,
-
-        _cgsgCollisionTesterFactory: new CGSGCollisionTesterFactory(),
-
-        collisionTester: new CGSGCollisionRegionTester(),
+var CGSG = {
 
         &#x2F;**
-         * Redefines the collision method
-         * @method setCollisionMethod
-         * @param method
+         * Current version of the framework
+         * @property cgsgVersion
+         * @static
+         * @type {String}
          *&#x2F;
-        setCollisionMethod: function (method) {
-            this._collisionMethod = method,
-            this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
-        }
+        version: &quot;2.0.0-SNAPSHOT&quot;,
+
+        &#x2F;**
+         * Current display ratio
+         * @property displayRatio
+         * @static
+         * @type {CGSGScale}
+         *&#x2F;
+        displayRatio: CGSG_DEFAULT_DISPLAYRATIO,
+
+        &#x2F;**
+         * Default threshold to detect the handle boxes on a resizable node
+         * @property resizeHandleThreshold
+         * @static
+         * @type {Number}
+         *&#x2F;
+        resizeHandleThreshold: CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
+
+        &#x2F;**
+         * The current frame in hte global timeline
+         * @property currentFrame
+         * @readonly
+         * @type {Number}
+         *&#x2F;
+        currentFrame: 0,
+
+        &#x2F;**
+         * The canvas container for this scene
+         * @property canvas
+         * @readonly
+         * @type {HTMLElement}
+         *&#x2F;
+        canvas: null,
+
+        &#x2F;**
+         * The main rendering 2D context for this scene
+         * @property context
+         * @type {CanvasRenderingContext2D}
+         *&#x2F;
+        context: null,
+
+        &#x2F;**
+         * The global ghost context for fake rendering
+         * @property ghostContext
+         * @readonly
+         * @type {CanvasRenderingContext2D}
+         *&#x2F;
+        ghostContext: null,
+
+        &#x2F;**
+         * the color used for the ghost mode rendering
+         * @property ghostColor
+         * @type {String}
+         * @public
+         *&#x2F;
+        ghostColor: &quot;#FF0000&quot;,
+
+
+        &#x2F;**
+         * List of the current selected nodes in the scenegraph.
+         * @property selectedNodes
+         * @type {Array}
+         *&#x2F;
+        selectedNodes: [],
+
+        &#x2F;**
+         * List of the timelines for the animations.
+         * A timeline consists of a list of animation keys for 1 attribute of 1 node
+         * @property listTimelines
+         * @type {Array}
+         * @private
+         *&#x2F;
+        listTimelines: [],
+
+        &#x2F;**
+         * Number of frames to average the FPS.
+         * Reduce this number to get more accurate FPS
+         * @property framerateDelay
+         * @default CGSG_DEFAULT_FRAMERATE_DELAY
+         * @type {Number}
+         *&#x2F;
+        framerateDelay: CGSG_DEFAULT_FRAMERATE_DELAY,
+
+        &#x2F;**
+         * Maximum number of frames per second. Set it if you want your application to slow down.
+         * @property maxFramerate
+         * @default CGSG_DEFAULT_MAX_FRAMERATE
+         * @type {Number}
+         * @example
+         *     &#x2F;&#x2F;limit the fps of the application to 30
+         *     CGSG.maxFramerate : 30,
+         *&#x2F;
+        maxFramerate: CGSG_DEFAULT_MAX_FRAMERATE,
+
+        &#x2F;**
+         * Current framerate of the application
+         * @property fps
+         * @type {Number}
+         *&#x2F;
+        fps: 0,
+
+        &#x2F;**
+         * Instance of CollisionTesterFactory
+         * @property collisionTestFactory
+         * @type {CGSGCollisionTesterFactory}
+         *&#x2F;
+        collisionManager: new CGSGCollisionManager(),
+
+        &#x2F;**
+         * Object that defines the performance keys.
+         * Change values to adapt your project.
+         *
+         * CGSG.performanceKeys._collisionMethod :
+         *                Key to specify collision detection mod
+         *                Use setCollisionMethod to modify value,
+         *                Default : CGSGCollisionMethod.REGION
+         *
+         * CGSG.performanceKeys.collisionTester :
+         *                Collision tester depending on _collisionMethod,
+         *                Default : CGSGCollisionRegionTester
+         *
+         * @property performanceKeys
+         * @type {Object}
+         *&#x2F;
+        performanceKeys: {
+            _collisionMethod: CGSGCollisionMethod.REGION,
+
+            _cgsgCollisionTesterFactory: new CGSGCollisionTesterFactory(),
+
+            collisionTester: new CGSGCollisionRegionTester(),
+
+            &#x2F;**
+             * Redefines the collision method
+             * @method setCollisionMethod
+             * @param method
+             *&#x2F;
+            setCollisionMethod: function (method) {
+                this._collisionMethod = method,
+                    this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+            }
+        },
+
+
+        &#x2F;**
+         * Event manager to use to bind events to objects.
+         *
+         * @property eventManager
+         * @type {CGSGEventManager}
+         *&#x2F;
+        eventManager: new CGSGEventManager()
     }
+    ;
+
+
+&#x2F;**
+ * All kinds of events defined by the CGSceneGraph framework.
+ *
+ * @property cgsgEventTypes
+ * @type {Object}
+ *&#x2F;
+var cgsgEventTypes = {
+
+    &#x2F;&#x2F; Nodes rendering
+    ON_BEGIN_RENDER: &quot;onBeginRender&quot;,
+    ON_FINISH_RENDER: &quot;onFinishRender&quot;,
+    BEFORE_RENDER_END: &quot;onBeforeRenderEnd&quot;,
+    AFTER_RENDER_START: &quot;onAfterRenderStart&quot;,
+
+    &#x2F;&#x2F; Node SRT
+    ON_TRANSLATE: &quot;onTranslate&quot;,
+    ON_ROTATE: &quot;onRotate&quot;,
+    ON_SCALE: &quot;onScale&quot;,
+    ON_RESIZE: &quot;onResize&quot;,
+    ON_RESIZE_END: &quot;onResizeEnd&quot;,
+
+    &#x2F;&#x2F; Node mouse event
+    ON_MOUSE_UP: &quot;onMouseUp&quot;,
+    ON_MOUSE_OVER: &quot;onMouseOver&quot;,
+    ON_MOUSE_OUT: &quot;onMouseOut&quot;,
+    ON_MOUSE_ENTER: &quot;onMouseEnter&quot;,
+    ON_CLICK: &quot;onClick&quot;,
+    ON_CLICK_START: &quot;onClickStart&quot;,
+    ON_DBL_CLICK: &quot;onDblClick&quot;,
+    ON_DRAG: &quot;onDrag&quot;,
+    ON_DRAG_END: &quot;onDragEnd&quot;,
+
+    &#x2F;&#x2F; Node state event
+    ON_CHILD_ADD: &quot;onChildAdd&quot;,
+    ON_CHILD_REMOVED: &quot;onChildRemove&quot;,
+    ON_SELECT: &quot;onSelect&quot;,
+    ON_DESELECT: &quot;onDeselect&quot;,
+    ON_FREE: &quot;onFreeEvent&quot;,
+
+    &#x2F;&#x2F; Scene
+    ON_RENDER_START: &quot;onRenderStart&quot;,
+    ON_RENDER_END: &quot;onRenderEnd&quot;,
+    ON_SCENE_DBL_CLICK_START: &quot;onSceneDblClickStart&quot;,
+    ON_SCENE_DBL_CLICK_END: &quot;onSceneDblClickEnd&quot;,
+    ON_SCENE_CLICK_START: &quot;onSceneClickStart&quot;,
+    ON_SCENE_CLICK_END: &quot;onSceneClickEnd&quot;,
+
+    &#x2F;&#x2F; Timeline
+    ON_ANIMATE: &quot;onAnimate&quot;,
+    ON_ANIMATION_START: &quot;onAnimationStart&quot;,
+    ON_ANIMATION_END: &quot;onAnimationEnd&quot;,
+
+    &#x2F;&#x2F; Particle
+    ON_UPDATE_PARTICLE_END: &quot;onUpdateParticleEnd&quot;,
+    ON_INIT_PARTICLE: &quot;onInitParticle&quot;,
+
+    &#x2F;&#x2F; Tab
+    ON_TAB_CHANGED: &quot;onTabChanged&quot;
 };
 
 

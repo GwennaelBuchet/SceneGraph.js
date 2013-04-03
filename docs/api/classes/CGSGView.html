@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -318,6 +330,13 @@ It encapsulates the scene graph itself and several methods to track mouse and to
 
                     <ul class="index-list methods extends">
                         
+                            <li class="index-item method protected">
+                                <a href="#method__canStartDragSelection">_canStartDragSelection</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method private">
                                 <a href="#method__clickOnScene">_clickOnScene</a>
 
@@ -327,6 +346,20 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                         
                             <li class="index-item method private">
                                 <a href="#method__dblClickOnScene">_dblClickOnScene</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__detectResizeMode">_detectResizeMode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__dispatchClick">_dispatchClick</a>
 
                                 
                                 
@@ -354,6 +387,20 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                             </li>
                         
                             <li class="index-item method private">
+                                <a href="#method__upAndClick">_upAndClick</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__upAndDblClick">_upAndDblClick</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
                                 <a href="#method__updateFramerate">_updateFramerate</a>
 
                                 
@@ -362,6 +409,13 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                         
                             <li class="index-item method private">
                                 <a href="#method__updateFramerateContainer">_updateFramerateContainer</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__updateSelection">_updateSelection</a>
 
                                 
                                 
@@ -383,13 +437,6 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                         
                             <li class="index-item method public">
                                 <a href="#method_deselectAll">deselectAll</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method public">
-                                <a href="#method_getDisplayRatio">getDisplayRatio</a>
 
                                 
                                 
@@ -432,6 +479,13 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                         
                             <li class="index-item method protected">
                                 <a href="#method_onMouseMove">onMouseMove</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_onMouseOutHandler">onMouseOutHandler</a>
 
                                 
                                 
@@ -616,13 +670,6 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_fps">fps</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item property">
                                 <a href="#property_onRenderEnd">onRenderEnd</a>
 
                                 
@@ -671,13 +718,6 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                                 
                             </li>
                         
-                            <li class="index-item property">
-                                <a href="#property_selectedNodes">selectedNodes</a>
-
-                                
-                                
-                            </li>
-                        
                     </ul>
                 </div>
             
@@ -690,6 +730,113 @@ It encapsulates the scene graph itself and several methods to track mouse and to
         
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method__canStartDragSelection" class="method item protected">
+    <span class="attribute-name">_canStartDragSelection</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l660"><code>src\class.view.js:660</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This method indicates if, according to the current state of the scene, a drag selection could starts. Called
+when a touchStart event triggered. Could be overridden to specify different behaviour.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the event</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    true if drag selection could starts, false otherwise
+                
+            </div>
+        </div>
+    
+
+    
+</div>
 
                 
                     <div id="method__clickOnScene" class="method item private">
@@ -742,7 +889,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l621"><code>src\class.view.js:621</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l696"><code>src\class.view.js:696</code></a>
         
         </p>
 
@@ -753,7 +900,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
     </div>
 
     <div class="description">
-        
+        <p>Click on the scene</p>
     </div>
 
     
@@ -765,13 +912,13 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                 <li class="param">
                     
                         <code class="param-name">event</code>
-                        <span class="type">Event</span>
+                        <span class="type"><a href="..\classes\CGSGEvent.html" class="crosslink">CGSGEvent</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>MouseEvent or TouchEvent</p>
+                        <p>wrapper of MouseEvent or TouchEvent</p>
                     </div>
 
                     
@@ -815,6 +962,12 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                     
                 </li>
             
+                <li class="arg">
+                    
+                        <code>mustPickNode</code>
+                    
+                </li>
+            
             </ul><span class="paren">)</span>
         </div>
     
@@ -850,7 +1003,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1130"><code>src\class.view.js:1130</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1268"><code>src\class.view.js:1268</code></a>
         
         </p>
 
@@ -873,7 +1026,22 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                 <li class="param">
                     
                         <code class="param-name">event</code>
-                        <span class="type">Event</span>
+                        <span class="type"><a href="..\classes\CGSGEvent.html" class="crosslink">CGSGEvent</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>wrapping the native event</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">mustPickNode</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                     
 
                     
@@ -902,6 +1070,201 @@ It encapsulates the scene graph itself and several methods to track mouse and to
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__detectResizeMode" class="method item private">
+    <span class="attribute-name">_detectResizeMode</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>mousePosition</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l993"><code>src\class.view.js:993</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Detects if the mouse if over the handle box of a selected node.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">mousePosition</code>
+                        <span class="type"><a href="..\classes\CGSGPosition.html" class="crosslink">CGSGPosition</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the cursor position</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    true if we resize, false otherwise
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__dispatchClick" class="method item private">
+    <span class="attribute-name">_dispatchClick</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l673"><code>src\class.view.js:673</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Dispatch a 'click' event and for any selected node which is clickable and and only if 'this._isDblClick' == false.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="..\classes\CGSGEvent.html" class="crosslink">CGSGEvent</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the event to dispatch</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
     
 
     
@@ -942,7 +1305,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1086"><code>src\class.view.js:1086</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1224"><code>src\class.view.js:1224</code></a>
         
         </p>
 
@@ -1048,7 +1411,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l974"><code>src\class.view.js:974</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1035"><code>src\class.view.js:1035</code></a>
         
         </p>
 
@@ -1239,7 +1602,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l738"><code>src\class.view.js:738</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l755"><code>src\class.view.js:755</code></a>
         
         </p>
 
@@ -1269,6 +1632,184 @@ It encapsulates the scene graph itself and several methods to track mouse and to
 
                     <div class="param-description">
                         <p>MouseEvent or TouchEvent</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__upAndClick" class="method item private">
+    <span class="attribute-name">_upAndClick</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1109"><code>src\class.view.js:1109</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Creates the custom event by calling _upOnScene and then call _clickOnScene.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the event</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__upAndDblClick" class="method item private">
+    <span class="attribute-name">_upAndDblClick</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1123"><code>src\class.view.js:1123</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Creates the custom event by calling _upOnScene and then call _dblClickOnScene.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the event</p>
                     </div>
 
                     
@@ -1318,7 +1859,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l486"><code>src\class.view.js:486</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l487"><code>src\class.view.js:487</code></a>
         
         </p>
 
@@ -1374,7 +1915,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l517"><code>src\class.view.js:517</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l524"><code>src\class.view.js:524</code></a>
         
         </p>
 
@@ -1396,8 +1937,8 @@ It encapsulates the scene graph itself and several methods to track mouse and to
 </div>
 
                 
-                    <div id="method__upOnScene" class="method item private">
-    <span class="attribute-name">_upOnScene</span>
+                    <div id="method__updateSelection" class="method item private">
+    <span class="attribute-name">_updateSelection</span>
 
     
         <div class="args">
@@ -1440,7 +1981,100 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1027"><code>src\class.view.js:1027</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l600"><code>src\class.view.js:600</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Updates the current selection according to the given event.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">Event</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the event</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__upOnScene" class="method item private">
+    <span class="attribute-name">_upOnScene</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1137"><code>src\class.view.js:1137</code></a>
         
         </p>
 
@@ -1480,6 +2114,19 @@ It encapsulates the scene graph itself and several methods to track mouse and to
     
 
     
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    a structure indicating is the node has been moved or resize
+                
+            </div>
+        </div>
+    
 
     
 </div>
@@ -1517,7 +2164,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l375"><code>src\class.view.js:375</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l374"><code>src\class.view.js:374</code></a>
         
         </p>
 
@@ -1628,79 +2275,6 @@ It encapsulates the scene graph itself and several methods to track mouse and to
 </div>
 
                 
-                    <div id="method_getDisplayRatio" class="method item public">
-    <span class="attribute-name">getDisplayRatio</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="..\classes\CGSGScale.html" class="crosslink">CGSGScale</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l553"><code>src\class.view.js:553</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <div class="method-item">Returns:</div>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="..\classes\CGSGScale.html" class="crosslink">CGSGScale</a></span>:
-                    
-                    the current display ratio
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="method_invalidate" class="method item public">
     <span class="attribute-name">invalidate</span>
 
@@ -1735,7 +2309,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l477"><code>src\class.view.js:477</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l478"><code>src\class.view.js:478</code></a>
         
         </p>
 
@@ -1805,7 +2379,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1154"><code>src\class.view.js:1154</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1304"><code>src\class.view.js:1304</code></a>
         
         </p>
 
@@ -1910,7 +2484,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1172"><code>src\class.view.js:1172</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1322"><code>src\class.view.js:1322</code></a>
         
         </p>
 
@@ -2011,7 +2585,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1118"><code>src\class.view.js:1118</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1256"><code>src\class.view.js:1256</code></a>
         
         </p>
 
@@ -2100,7 +2674,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l562"><code>src\class.view.js:562</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l569"><code>src\class.view.js:569</code></a>
         
         </p>
 
@@ -2189,7 +2763,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l714"><code>src\class.view.js:714</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l731"><code>src\class.view.js:731</code></a>
         
         </p>
 
@@ -2219,6 +2793,93 @@ It encapsulates the scene graph itself and several methods to track mouse and to
 
                     <div class="param-description">
                          
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_onMouseOutHandler" class="method item">
+    <span class="attribute-name">onMouseOutHandler</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l560"><code>src\class.view.js:560</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Detects when the mouse leaves the canvas.</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">MouseEvent</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the event</p>
                     </div>
 
                     
@@ -2278,7 +2939,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1003"><code>src\class.view.js:1003</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1064"><code>src\class.view.js:1064</code></a>
         
         </p>
 
@@ -2367,7 +3028,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1013"><code>src\class.view.js:1013</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l1074"><code>src\class.view.js:1074</code></a>
         
         </p>
 
@@ -2456,7 +3117,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l724"><code>src\class.view.js:724</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l741"><code>src\class.view.js:741</code></a>
         
         </p>
 
@@ -2545,7 +3206,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l573"><code>src\class.view.js:573</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l579"><code>src\class.view.js:579</code></a>
         
         </p>
 
@@ -2624,7 +3285,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l404"><code>src\class.view.js:404</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l403"><code>src\class.view.js:403</code></a>
         
         </p>
 
@@ -2688,7 +3349,7 @@ It encapsulates the scene graph itself and several methods to track mouse and to
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l357"><code>src\class.view.js:357</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l356"><code>src\class.view.js:356</code></a>
         
         </p>
 
@@ -2779,7 +3440,7 @@ Does not really change the dimension of the rendering canvas container,
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l537"><code>src\class.view.js:537</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l544"><code>src\class.view.js:544</code></a>
         
         </p>
 
@@ -2871,7 +3532,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l528"><code>src\class.view.js:528</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l535"><code>src\class.view.js:535</code></a>
         
         </p>
 
@@ -2950,7 +3611,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l451"><code>src\class.view.js:451</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l453"><code>src\class.view.js:453</code></a>
         
         </p>
 
@@ -3006,7 +3667,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l467"><code>src\class.view.js:467</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l468"><code>src\class.view.js:468</code></a>
         
         </p>
 
@@ -3061,7 +3722,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l170"><code>src\class.view.js:170</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l156"><code>src\class.view.js:156</code></a>
         
         </p>
 
@@ -3107,7 +3768,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l159"><code>src\class.view.js:159</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l145"><code>src\class.view.js:145</code></a>
         
         </p>
 
@@ -3153,7 +3814,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l177"><code>src\class.view.js:177</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l163"><code>src\class.view.js:163</code></a>
         
         </p>
 
@@ -3201,7 +3862,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l217"><code>src\class.view.js:217</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l209"><code>src\class.view.js:209</code></a>
         
         </p>
 
@@ -3247,7 +3908,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l203"><code>src\class.view.js:203</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l189"><code>src\class.view.js:189</code></a>
         
         </p>
 
@@ -3293,7 +3954,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l227"><code>src\class.view.js:227</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l219"><code>src\class.view.js:219</code></a>
         
         </p>
 
@@ -3339,7 +4000,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l186"><code>src\class.view.js:186</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l172"><code>src\class.view.js:172</code></a>
         
         </p>
 
@@ -3521,7 +4182,7 @@ You can compute the ratio like this: x = canvas.width/reference.width ; y = canv
             
         
         
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l194"><code>src\class.view.js:194</code></a>
+        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l180"><code>src\class.view.js:180</code></a>
         
         </p>
 
@@ -3675,50 +4336,6 @@ To remove the double touch, just set it to 0</p>
 
     
         <p><strong>Default:</strong> &quot;#808080&quot;</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_fps" class="property item">
-    <span class="attribute-name">fps</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l143"><code>src\class.view.js:143</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Current framerate of the application</p>
-    </div>
-
     
 
     
@@ -4101,50 +4718,6 @@ To remove the double touch, just set it to 0</p>
 
     <div class="description">
         <p>The scene graph itself</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_selectedNodes" class="property item">
-    <span class="attribute-name">selectedNodes</span>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_class.view.js.html#l136"><code>src\class.view.js:136</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>List of the current selected nodes in the scenegraph.</p>
     </div>
 
     

@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -305,8 +317,8 @@ function cgsgGetRealViewportDimension () {
  *&#x2F;
 function cgsgGetDisplayedViewportDimension () {
 	var realDim = cgsgGetRealViewportDimension();
-	return new CGSGDimension(Math.round(realDim.width &#x2F; CGSG.displayRatio.x),
-	                         Math.round(realDim.height &#x2F; CGSG.displayRatio.y));
+    return new CGSGDimension(Math.round(realDim.width &#x2F; CGSG.displayRatio.x),
+        Math.round(realDim.height &#x2F; CGSG.displayRatio.y));
 }
 
 &#x2F;**
@@ -365,40 +377,78 @@ function cgsgGetCursorPositions (event, canvas) {
 
 	var touch = event;
 	&#x2F;&#x2F;if multi-touch, get all the positions
-	if (event.targetTouches) { &#x2F;&#x2F; or changedTouches
-		var touchPoints = (typeof event.targetTouches !== &#x27;undefined&#x27;) ? event.targetTouches : [event];
-		for (var i = 0; i &lt; touchPoints.length; i++) {
-			touch = touchPoints[i];
+    if (event.targetTouches) { &#x2F;&#x2F; or changedTouches
+        var touchPoints = (typeof event.targetTouches !== &#x27;undefined&#x27;) ? event.targetTouches : [event];
+        for (var i = 0; i &lt; touchPoints.length; i++) {
+            touch = touchPoints[i];
 
-			positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; CGSG.displayRatio.x,
-			                                (touch.pageY - offsetY) &#x2F; CGSG.displayRatio.y));
-		}
-	}
-	else {
-		positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; CGSG.displayRatio.x,
-		                                (touch.pageY - offsetY) &#x2F; CGSG.displayRatio.y));
-	}
+            positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; CGSG.displayRatio.x,
+                (touch.pageY - offsetY) &#x2F; CGSG.displayRatio.y));
+        }
+    }
+    else {
+        positions.push(new CGSGPosition((touch.pageX - offsetX) &#x2F; CGSG.displayRatio.x,
+            (touch.pageY - offsetY) &#x2F; CGSG.displayRatio.y));
+    }
 
 	return positions;
 }
 
 &#x2F;**
  * Wipes the canvas context
- * @private
  * @method cgsgClearContext
  * @param {CanvasRenderingContext2D} context context to render on
  * *&#x2F;
 function cgsgClearContext (context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	&#x2F;&#x2F; Will always clear the right space
-	context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
+    context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 }
 
 &#x2F;**
+ * Iterates the given array and, at each iteration, calls the given callback function. The loop stops if the callback
+ * function returns false.
+ *
+ * Optimized loop is used here and should be prefer to other approaches, especially on old browser versions and IE.
+ *
+ * @method cgsgIterate
+ * @param array {Array} the array
+ * @param callback {Function} the callback
+ *&#x2F;
+function cgsgIterate(array, callback) {
+    var i = 0, len = array.length;
+
+    for (; i &lt; len &amp;&amp; callback(i, array[i++]) !== false;) {
+    }
+}
+
+&#x2F;**
+ * Iterates the given array from the end to the beginning of the array. The loop stops if the callback function returns
+ * false.
+ *
+ * Prefer to use this method for the same reasons than cgsgIterate.
+ *
+ * @method cgsgIterateReverse
+ * @param array {Array} the array
+ * @param callback {Function} the callback
+ *&#x2F;
+function cgsgIterateReverse(array, callback) {
+    var i = array.length - 1;
+
+    for (; i &gt;= 0 &amp;&amp; callback(i, array[i--]) !== false;) {
+    }
+}
+
+&#x2F;**
+ * Free the given object and notify listeners with appropriate event.
+ *
  * @method cgsgFree
  * @param {*} object
  *&#x2F;
 function cgsgFree(object) {
+	if (cgsgExist(object.onFreeEvent)) {
+        CGSG.eventManager.dispatch(object, cgsgEventTypes.ON_FREE, new CGSGEvent(this, null));
+	}
     object = null;
 }
     </pre>

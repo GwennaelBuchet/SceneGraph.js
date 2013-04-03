@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -212,169 +224,88 @@
  * @param {Number} centerY Relative position
  * @param {Number} radius Radius
  * @type {CGSGNodeCircle}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author xymostech (Emily Eisenberg)
  *&#x2F;
 var CGSGNodeCircle = CGSGNode.extend(
-	{
-		initialize : function (centerX, centerY, radius) {
+    {
+        initialize: function (centerX, centerY, radius) {
 
-			&#x2F;**
-			 * @property radius
-			 * @type {Number}
-			 * @private
-			 *&#x2F;
-			this._radius = radius;
-			&#x2F;**
-			 * @property center
-			 * @type {CGSGPosition}
-			 * @private
-			 *&#x2F;
-			this._center = new CGSGPosition(centerX, centerY);
+            this.radius = radius;
+            this._center = new CGSGPosition(centerX, centerY);
 
-			this._super(0, 0, radius * 2.0, radius * 2.0);
-			this.translateTo(centerX - radius, centerY - radius);
+            this._super(0, 0, radius * 2.0, radius * 2.0);
 
-			&#x2F;**
-			 * Color  to fill the circle
-			 * @property color
-			 * @default &quot;#444444&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.color = &quot;#444444&quot;;
-			&#x2F;**
-			 * Color to stroke the circle
-			 * @property lineColor
-			 * @default &quot;#222222&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.lineColor = &quot;#222222&quot;;
-			&#x2F;**
-			 * Width of the line that stroke the circle.
-			 * Let 0 if you don&#x27;t want to stroke the circle.
-			 * @property lineWidth
-			 * @default 0
-			 * @type {Number}
-			 *&#x2F;
-			this.lineWidth = 0;
+            this.isProportionalResizeOnly = true;
 
-			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
-			this.isProportionalResize = true;
+            this.translateTo(centerX - radius, centerY - radius);
 
-			&#x2F;**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 *&#x2F;
-			this.classType = &quot;CGSGNodeCircle&quot;;
-		},
+            this.color = &quot;#444444&quot;;
+            this.lineColor = &quot;#222222&quot;;
+            this.lineWidth = 0;
+        },
 
-		&#x2F;**
-		 * Set the new radius and compute new dimension of the circle
-		 * @method setRadius
-		 * @param {Number} radius
-		 *&#x2F;
-		setRadius : function (radius) {
-			this._radius = radius;
-			this.dimension.width = this._radius * 2.0;
-			&#x2F;&#x2F;noinspection JSSuspiciousNameCombination
-			this.dimension.height = this.dimension.width;
-		},
+        render: function (context) {
+            context.beginPath();
+            context.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
+            context.fillStyle = this.color;
+            context.fill();
+            if (this.lineWidth &gt; 0) {
+                context.lineWidth = this.lineWidth;
+                context.strokeStyle = this.lineColor;
+                context.stroke();
+            }
+        },
 
-		&#x2F;**
-		 * Set the new center and compute new position of the circle
-		 * @method setCenter
-		 * @param {CGSGPosition} center
-		 *&#x2F;
-		setCenter : function (center) {
-			this._center = center;
-			this.position.x = this._center.x - this._radius;
-			this.position.y = this._center.y - this._radius;
-		},
+        &#x2F;**
+         * @method _resize
+         * @private
+         *&#x2F;
+        _resize: function () {
+            this.radius = CGSGMath.fixedPoint(this.dimension.width &#x2F; 2);
+            this._isDimensionChanged = true;
+            this.invalidate();
+            if (cgsgExist(this.onResize)) {
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
+            }
+        },
 
-		&#x2F;**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * *&#x2F;
-		render : function (context) {
-			context.beginPath();
-			context.arc(this._center.x - this._radius, this._center.y - this._radius, this._radius, 0, 2 * Math.PI,
-			            false);
-			context.fillStyle = this.color;
-			context.fill();
-			if (this.lineWidth &gt; 0) {
-				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.lineColor;
-				context.stroke();
-			}
-		},
+        resizeTo: function (w, h) {
+            var r = Math.min(w, h);
+            this.dimension.resizeTo(r, r);
+            this._resize();
+        },
 
-		&#x2F;**
-		 * Replace current dimension by these new ones and compute new radius
-		 * @method resizeTo
-		 * @param {Number} newWidth
-		 * @param {Number} newHeight
-		 * *&#x2F;
-		resizeTo : function (newWidth, newHeight) {
-			this.dimension.resizeTo(newWidth, newHeight);
+        resizeBy: function (w, h) {
+            var mw = w * this.dimension.width;
+            var mh = h * this.dimension.height;
+            var r = (mw &lt; mh) ? w : h;
+            this.dimension.resizeBy(r, r);
+            this._resize();
+        },
 
-			this._computeResizedRadius();
-		},
+        resizeWith: function (w, h) {
+            var mw = w + this.dimension.width;
+            var mh = h + this.dimension.height;
+            var r = (mw &lt; mh) ? w : h;
+            this.dimension.resizeWith(r, r);
+            this._resize();
+        },
 
-		&#x2F;**
-		 * Multiply current dimension by these new ones
-		 * @method resizeTBy
-		 * @param {Number} widthFactor
-		 * @param {Number} heightFactor
-		 * *&#x2F;
-		resizeBy : function (widthFactor, heightFactor) {
-			this.dimension.resizeBy(widthFactor, heightFactor);
+        &#x2F;**
+         * @method copy
+         * @return {CGSGNodeCircle} a copy of this node
+         *&#x2F;
+        copy: function () {
+            var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
+            &#x2F;&#x2F;call the super method
+            node = this._super(node);
 
-			this._computeResizedRadius();
-		},
-
-		&#x2F;**
-		 * Increase&#x2F;decrease current dimension with adding values
-		 * @method resizeWith
-		 * @param {Number} width
-		 * @param {Number} height
-		 * *&#x2F;
-		resizeWith : function (width, height) {
-			this.dimension.resizeWith(width, height);
-
-			this._computeResizedRadius();
-		},
-
-		&#x2F;**
-		 * @method _computeResizedRadius
-		 * @private
-		 *&#x2F;
-		_computeResizedRadius : function () {
-			var r = this._radius;
-			this._radius = Math.min(this.dimension.width, this.dimension.height) &#x2F; 2.0;
-			r = -2.0 * (r - this._radius);
-			this._center.x += r;
-			this._center.y += r;
-		},
-
-
-		&#x2F;**
-		 * @method copy
-		 * @return {CGSGNodeCircle} a copy of this node
-		 *&#x2F;
-		copy : function () {
-			var node = new CGSGNodeCircle(this.position.x, this.position.y, this.dimension.width,
-			                              this.dimension.height);
-			&#x2F;&#x2F;call the super method
-			node = this._super(node);
-
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
-		}
-	}
+            node.color = this.color;
+            node.lineColor = this.lineColor;
+            node.lineWidth = this.lineWidth;
+            return node;
+        }
+    }
 );
 
     </pre>

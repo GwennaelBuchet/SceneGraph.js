@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -211,321 +223,321 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGVector2D = CGSGObject.extend(
-	{
-		initialize : function (x, y) {
-			&#x2F;**
-			 * @property x
-			 * @type {Number}
-			 *&#x2F;
-			this.x = x;
-			&#x2F;**
-			 * @property y
-			 * @type {Number}
-			 *&#x2F;
-			this.y = y;
-		},
+    {
+        initialize : function (x, y) {
+            &#x2F;**
+             * @property x
+             * @type {Number}
+             *&#x2F;
+            this.x = x;
+            &#x2F;**
+             * @property y
+             * @type {Number}
+             *&#x2F;
+            this.y = y;
+        },
 
-		&#x2F;**
-		 * @public
-		 * @method copy
-		 * @return {CGSGVector2D} a new CGSGVector2D, clone of this one
-		 *&#x2F;
-		copy : function () {
-			return new CGSGVector2D(this.x, this.y);
-		},
+        &#x2F;**
+         * @public
+         * @method copy
+         * @return {CGSGVector2D} a new CGSGVector2D, clone of this one
+         *&#x2F;
+        copy : function () {
+            return new CGSGVector2D(this.x, this.y);
+        },
 
-		&#x2F;**
-		* returns a new vector added to the value passed in parameter
-		* @public
-		* @method add
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		add: function (vector) {
-			return new CGSGVector2D(this.x + vector.x, this.y + vector.y);
-		},
-	
-		&#x2F;**
-		* add to this vector, the value passed in parameter
-		* @public
-		* @method addEquals
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		addEquals: function (vector) {
-			this.x += vector.x;
-			this.y += vector.y;
-		},
-	
-		&#x2F;**
-		* returns a new vector subtracted from the value passed in parameter
-		* @public
-		* @method subtract
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		subtract: function (vector) {
-			return new CGSGVector2D(this.x - vector.x, this.y - vector.y);
-		},
-	
-		&#x2F;**
-		* subtract to this vector, the value passed in parameter
-		* @public
-		* @method subtractEquals
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		subtractEquals: function(vector) {
-			this.x -= vector.x;
-			this.y -= vector.y;
-		},
-	
-		&#x2F;**
-		* returns a new vector multiplied to the value passed in parameter
-		* @public
-		* @method multiply
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		multiply: function (vector) {
-			return new CGSGVector2D(this.x * vector.x, this.y * vector.y);
-		},
-	
-		&#x2F;**
-		* multiply to this vector, the value passed in parameter
-		* @public
-		* @method multiplyEquals
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		multiplyEquals: function (vector) {
-			this.x *= vector.x;
-			this.y *= vector.y;
-		},
-	
-		&#x2F;**
-		* return a new vector divided by the value passed in parameter
-		* @public
-		* @method divide
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		divide: function(vector) {
-			return new CGSGVector2D(this.x &#x2F; vector.x, this.y &#x2F; vector.y);
-		},
-	
-		&#x2F;**
-		* divide to this vector, the value passed in parameter
-		* @public
-		* @method divideEquals
-		* @param {CGSGVector2D} vector
-		*&#x2F;
-		divideEquals: function (vector) {
-			this.x &#x2F;= vector.x;
-			this.y &#x2F;= vector.y;
-		},
-	
-		&#x2F;**
-		* Multiply x and y by f
-		* @public
-		* @method multiplyByFloat
-		* @param {Number} f
-		*&#x2F;
-		multiplyByFloat: function (f) {
-			return new CGSGVector2D(this.x * f, this.y * f);
-		},
-	
-		&#x2F;**
-		* Multiply x and y by f
-		* @public
-		* @method multiplyByFloatEquals
-		* @param {Number} f
-		*&#x2F;
-		multiplyByFloatEquals: function (f) {
-			this.x *= f;
-			this.y *= f;
-		},
-	
-		&#x2F;**
-		* Divide x and y by f
-		* @public
-		* @method divideByFloat
-		* @param {Number} f
-		*&#x2F;
-		divideByFloat: function (f) {
-			return new CGSGVector2D(this.x &#x2F; f, this.y &#x2F; f);
-		},
-	
-		&#x2F;**
-		* Divide x and y by f
-		* @public
-		* @method divideByFloatEquals
-		* @param {Number} f
-		*&#x2F;
-		divideByFloatEquals: function (f) {
-			this.x &#x2F;= f;
-			this.y &#x2F;= f;
-		},
-	
-		&#x2F;**
-		* Compute the euclidian distance between this vector and the one passe in parameter
-		* @public
-		* @method getDistance
-		* @param {CGSGVector2D} vector
-		* @return {Number}
-		*&#x2F;
-		getDistance: function (vector) {
-			return Math.sqrt(
-				Math.pow(this.x - vector.x, 2) +
-				Math.pow(this.y - vector.y, 2)
-				);
-		},
-	
-		&#x2F;**
-		* rotate this vector around its origin
-		* @public
-		* @method rotate
-		* @param {Number} angle
-		*&#x2F;
-		rotate: function (angle) {
-			var ca = Math.cos(angle);
-			var sa = Math.sin(angle);
-			this.x = this.x * ca + this.y * sa;
-			this.y = this.x * sa - this.y * ca;
-		},
-	
-		&#x2F;**
-		* @public
-		* @method getLength
-		* @return {Number}
-		*&#x2F;
-		getLength: function () {
-			return Math.sqrt((this.x * this.x) + (this.y * this.y));
-		},
-	
-		&#x2F;**
-		* @public
-		* @method getSquaredLength
-		* @return {Number}
-		*&#x2F;
-		getSquaredLength: function () {
-			return (this.x * this.x) + (this.y * this.y);
-		},
-	
-		&#x2F;**
-		* Normalize this vector
-		* @public
-		* @method normalize
-		*&#x2F;
-		normalize: function () {
-			var scalefactor;
-			var length = this.getLength();
-	
-			&#x2F;&#x2F;return if length is 1 or 0
-			if (length == 1 || length == 0) {
-				return;
-			}
-	
-			scalefactor = 1.0 &#x2F; length;
-			this.x *= scalefactor;
-			this.y *= scalefactor;
-		},
-	
-		&#x2F;**
-		* Determines if a given vector is to the right or left of this vector.
-		* @public
-		* @method sign
-		*&#x2F;
-		sign: function(vector) {
-			var perpVector = this.perp();
-	
-			return perpVector.dot(vector) &lt; 0 ? -1 : 1;
-		},
-	
-		&#x2F;**
-		* Get dot product of this vector and another vector
-		* @public
-		* @method dot
-		*&#x2F;
-		dot: function(vector) {
-			return this.x*vector.x + this.y*vector.y;
-		},
-	
-		&#x2F;**
-		* Get cross product of this vector and another vector
-		* @public
-		* @method cross
-		*&#x2F;
-		cross: function(vector) {
-			return this.x*vector.y - this.y*vector.x;
-		},
-	
-		&#x2F;**
-		* Get unit vector of this vector and another vector
-		* @public
-		* @method unit
-		*&#x2F;
-		unit: function() {
-			return this.divide(this.getLength());
-		},
-	
-		&#x2F;**
-		* Get approximation of unit vector of this vector and another vector
-		* @public
-		* @method unitFast
-		*&#x2F;
-		unitFast: function() {
-			var ax = Math.abs(this.x);
-			var ay = Math.abs(this.y);
-	
-			&#x2F;&#x2F; Create a ratio
-			var ratio = 1 &#x2F; Math.max(ax, ay)
-			ratio = ratio * (1.29289 - (ax + ay) * ratio * 0.29289)
-	
-			&#x2F;&#x2F; Multiply by ratio
-			return this.multiplyByFloat(ratio);
-		},
-	
-		&#x2F;**
-		* Get unit vector of this vector and another vector
-		* @public
-		* @method unitEquals
-		*&#x2F;
-		unitEquals: function() {
-			this.divideEquals(this.getLength());
-		},
-	
-		&#x2F;**
-		* Get a perpendicular vector of this vector
-		* @public
-		* @method perp
-		*&#x2F;
-		perp: function() {
-			return new CGSGVector2D(-this.y, this.x);
-		},
-	
-		&#x2F;**
-		* Get a vector perpendicular to this vector and another vector
-		* @public
-		* @method perpendicular
-		*&#x2F;
-		perpendicular: function(vector) {
-			return this.subtract(this.project(vector));
-		},
-	
-		&#x2F;**
-		* Get a projected vector of this vector and another vector
-		* @public
-		* @method project
-		*&#x2F;
-		project: function(vector) {
-			var percent = this.dot(vector) &#x2F; vector.dot(vector);
-	
-			return vector.multiply(percent);
-		},
-	
-		&#x2F;**
-		* Get a string representing this vector
-		* @public
-		* @method toString
-		*&#x2F;
-		toString: function() {
-			return this.x + &quot;,&quot; + this.y;
-		}
-	}
+        &#x2F;**
+         * returns a new vector added to the value passed in parameter
+         * @public
+         * @method add
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        add: function (vector) {
+            return new CGSGVector2D(this.x + vector.x, this.y + vector.y);
+        },
+
+        &#x2F;**
+         * add to this vector, the value passed in parameter
+         * @public
+         * @method addEquals
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        addEquals: function (vector) {
+            this.x += vector.x;
+            this.y += vector.y;
+        },
+
+        &#x2F;**
+         * returns a new vector subtracted from the value passed in parameter
+         * @public
+         * @method subtract
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        subtract: function (vector) {
+            return new CGSGVector2D(this.x - vector.x, this.y - vector.y);
+        },
+
+        &#x2F;**
+         * subtract to this vector, the value passed in parameter
+         * @public
+         * @method subtractEquals
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        subtractEquals: function(vector) {
+            this.x -= vector.x;
+            this.y -= vector.y;
+        },
+
+        &#x2F;**
+         * returns a new vector multiplied to the value passed in parameter
+         * @public
+         * @method multiply
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        multiply: function (vector) {
+            return new CGSGVector2D(this.x * vector.x, this.y * vector.y);
+        },
+
+        &#x2F;**
+         * multiply to this vector, the value passed in parameter
+         * @public
+         * @method multiplyEquals
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        multiplyEquals: function (vector) {
+            this.x *= vector.x;
+            this.y *= vector.y;
+        },
+
+        &#x2F;**
+         * return a new vector divided by the value passed in parameter
+         * @public
+         * @method divide
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        divide: function(vector) {
+            return new CGSGVector2D(this.x &#x2F; vector.x, this.y &#x2F; vector.y);
+        },
+
+        &#x2F;**
+         * divide to this vector, the value passed in parameter
+         * @public
+         * @method divideEquals
+         * @param {CGSGVector2D} vector
+         *&#x2F;
+        divideEquals: function (vector) {
+            this.x &#x2F;= vector.x;
+            this.y &#x2F;= vector.y;
+        },
+
+        &#x2F;**
+         * Multiply x and y by f
+         * @public
+         * @method multiplyByFloat
+         * @param {Number} f
+         *&#x2F;
+        multiplyByFloat: function (f) {
+            return new CGSGVector2D(this.x * f, this.y * f);
+        },
+
+        &#x2F;**
+         * Multiply x and y by f
+         * @public
+         * @method multiplyByFloatEquals
+         * @param {Number} f
+         *&#x2F;
+        multiplyByFloatEquals: function (f) {
+            this.x *= f;
+            this.y *= f;
+        },
+
+        &#x2F;**
+         * Divide x and y by f
+         * @public
+         * @method divideByFloat
+         * @param {Number} f
+         *&#x2F;
+        divideByFloat: function (f) {
+            return new CGSGVector2D(this.x &#x2F; f, this.y &#x2F; f);
+        },
+
+        &#x2F;**
+         * Divide x and y by f
+         * @public
+         * @method divideByFloatEquals
+         * @param {Number} f
+         *&#x2F;
+        divideByFloatEquals: function (f) {
+            this.x &#x2F;= f;
+            this.y &#x2F;= f;
+        },
+
+        &#x2F;**
+         * Compute the euclidian distance between this vector and the one passe in parameter
+         * @public
+         * @method getDistance
+         * @param {CGSGVector2D} vector
+         * @return {Number}
+         *&#x2F;
+        getDistance: function (vector) {
+            return Math.sqrt(
+                Math.pow(this.x - vector.x, 2) +
+                    Math.pow(this.y - vector.y, 2)
+            );
+        },
+
+        &#x2F;**
+         * rotate this vector around its origin
+         * @public
+         * @method rotate
+         * @param {Number} angle
+         *&#x2F;
+        rotate: function (angle) {
+            var ca = Math.cos(angle);
+            var sa = Math.sin(angle);
+            this.x = this.x * ca + this.y * sa;
+            this.y = this.x * sa - this.y * ca;
+        },
+
+        &#x2F;**
+         * @public
+         * @method getLength
+         * @return {Number}
+         *&#x2F;
+        getLength: function () {
+            return Math.sqrt((this.x * this.x) + (this.y * this.y));
+        },
+
+        &#x2F;**
+         * @public
+         * @method getSquaredLength
+         * @return {Number}
+         *&#x2F;
+        getSquaredLength: function () {
+            return (this.x * this.x) + (this.y * this.y);
+        },
+
+        &#x2F;**
+         * Normalize this vector
+         * @public
+         * @method normalize
+         *&#x2F;
+        normalize: function () {
+            var scalefactor;
+            var length = this.getLength();
+
+            &#x2F;&#x2F;return if length is 1 or 0
+            if (length == 1 || length == 0) {
+                return;
+            }
+
+            scalefactor = 1.0 &#x2F; length;
+            this.x *= scalefactor;
+            this.y *= scalefactor;
+        },
+
+        &#x2F;**
+         * Determines if a given vector is to the right or left of this vector.
+         * @public
+         * @method sign
+         *&#x2F;
+        sign: function(vector) {
+            var perpVector = this.perp();
+
+            return perpVector.dot(vector) &lt; 0 ? -1 : 1;
+        },
+
+        &#x2F;**
+         * Get dot product of this vector and another vector
+         * @public
+         * @method dot
+         *&#x2F;
+        dot: function(vector) {
+            return this.x*vector.x + this.y*vector.y;
+        },
+
+        &#x2F;**
+         * Get cross product of this vector and another vector
+         * @public
+         * @method cross
+         *&#x2F;
+        cross: function(vector) {
+            return this.x*vector.y - this.y*vector.x;
+        },
+
+        &#x2F;**
+         * Get unit vector of this vector and another vector
+         * @public
+         * @method unit
+         *&#x2F;
+        unit: function() {
+            return this.divide(this.getLength());
+        },
+
+        &#x2F;**
+         * Get approximation of unit vector of this vector and another vector
+         * @public
+         * @method unitFast
+         *&#x2F;
+        unitFast: function() {
+            var ax = Math.abs(this.x);
+            var ay = Math.abs(this.y);
+
+            &#x2F;&#x2F; Create a ratio
+            var ratio = 1 &#x2F; Math.max(ax, ay)
+            ratio = ratio * (1.29289 - (ax + ay) * ratio * 0.29289)
+
+            &#x2F;&#x2F; Multiply by ratio
+            return this.multiplyByFloat(ratio);
+        },
+
+        &#x2F;**
+         * Get unit vector of this vector and another vector
+         * @public
+         * @method unitEquals
+         *&#x2F;
+        unitEquals: function() {
+            this.divideEquals(this.getLength());
+        },
+
+        &#x2F;**
+         * Get a perpendicular vector of this vector
+         * @public
+         * @method perp
+         *&#x2F;
+        perp: function() {
+            return new CGSGVector2D(-this.y, this.x);
+        },
+
+        &#x2F;**
+         * Get a vector perpendicular to this vector and another vector
+         * @public
+         * @method perpendicular
+         *&#x2F;
+        perpendicular: function(vector) {
+            return this.subtract(this.project(vector));
+        },
+
+        &#x2F;**
+         * Get a projected vector of this vector and another vector
+         * @public
+         * @method project
+         *&#x2F;
+        project: function(vector) {
+            var percent = this.dot(vector) &#x2F; vector.dot(vector);
+
+            return vector.multiply(percent);
+        },
+
+        &#x2F;**
+         * Get a string representing this vector
+         * @public
+         * @method toString
+         *&#x2F;
+        toString: function() {
+            return this.x + &quot;,&quot; + this.y;
+        }
+    }
 );
 
 

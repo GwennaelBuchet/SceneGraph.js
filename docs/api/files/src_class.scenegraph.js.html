@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -230,28 +242,12 @@ var CGSGSceneGraph = CGSGObject.extend(
             this.context = context;
 
             &#x2F;**
-             * The nodes currently selected by the user
-             * @property selectedNodes
-             * @type {Array}
-             *&#x2F;
-            this.selectedNodes = [];
-
-            &#x2F;**
              *
              * @property _nextNodeID
              * @type {Number}
              * @private
              *&#x2F;
             this._nextNodeID = 1;
-
-            &#x2F;**
-             * List of the timelines for the animations.
-             * A timeline consists of a list of animation keys for 1 attribute of the nodes
-             * @property _listTimelines
-             * @type {Array}
-             * @private
-             *&#x2F;
-            this._listTimelines = [];
 
             &#x2F;&#x2F;&#x2F;&#x2F;&#x2F; INITIALIZATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 
@@ -292,16 +288,16 @@ var CGSGSceneGraph = CGSGObject.extend(
             &#x2F;&#x2F;erase previous rendering
             cgsgClearContext(this.context);
 
-            if (this.root !== null &amp;&amp; this.root !== undefined) {
+            if (cgsgExist(this.root)) {
                 var node = null;
                 var i = 0;
                 var key = null;
                 &#x2F;&#x2F;set the new values for all the animated nodes
-                if (this._listTimelines.length &gt; 0) {
+                if (CGSG.listTimelines.length &gt; 0) {
                     node = null;
                     var value, timeline;
-                    for (i = this._listTimelines.length - 1; i &gt;= 0; --i) {
-                        timeline = this._listTimelines[i];
+                    for (i = CGSG.listTimelines.length - 1; i &gt;= 0; --i) {
+                        timeline = CGSG.listTimelines[i];
                         node = timeline.parentNode;
 
                         if (node.isVisible) {
@@ -309,7 +305,8 @@ var CGSGSceneGraph = CGSGObject.extend(
                             if (value !== undefined) {
                                 node.evalSet(timeline.attribute, value.value);
                                 if (timeline.onAnimate !== null) {
-                                    timeline.onAnimate({node : node});
+                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE, new CGSGEvent(this, {node : node}));
+                                    &#x2F;&#x2F;timeline.onAnimate({node : node});
                                 }
                             }
 
@@ -317,16 +314,23 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getFirstKey();
                             if (key !== null &amp;&amp; key.frame == CGSG.currentFrame &amp;&amp;
                                 timeline.onAnimationStart !== null) {
-                                timeline.onAnimationStart({node:node});
+	                            var evt = new CGSGEvent(this, {node:node});
+	                            evt.node = node;
+	                            CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
+	                            &#x2F;&#x2F;timeline.onAnimationStart({node:node});
                             }
 
                             &#x2F;&#x2F;fire event if this is the last animation key for this timeline
                             key = timeline.getLastKey();
                             if (key !== null &amp;&amp; key.frame == CGSG.currentFrame) {
                                 timeline.removeAll();
-                                &#x2F;&#x2F;this._listTimelines.without(timeline);
+                                &#x2F;&#x2F;CGSG.listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
-                                    timeline.onAnimationEnd({node:node});
+                                    &#x2F;&#x2F;timeline.onAnimationEnd({node:node});
+	                                var evt = new CGSGEvent(this, {node:node});
+	                                evt.node = node;
+	                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
+	                                &#x2F;&#x2F;timeline.onAnimationStart({node:node});
                                 }
 
                                 &#x2F;&#x2F;cgsgFree(timeline);
@@ -340,26 +344,41 @@ var CGSGSceneGraph = CGSGObject.extend(
                 this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
                 if (this.root.isVisible) {
                     this.root.doRender(this.context, CGSG.currentFrame);
+                    &#x2F;&#x2F;cgsgRender(this.context, this.root);
                 }
                 this.context.restore();
             }
 
             &#x2F;&#x2F;draw the selection markers around the selected nodes
-            if (this.selectedNodes.length &gt; 0) {
-                for (i = this.selectedNodes.length - 1; i &gt;= 0; i--) {
-                    node = this.selectedNodes[i];
+            if (CGSG.selectedNodes.length &gt; 0) {
+                for (i = CGSG.selectedNodes.length - 1; i &gt;= 0; i--) {
+                    node = CGSG.selectedNodes[i];
                     if (node.isVisible) {
+                        &#x2F;&#x2F;todo valider l&#x27;interet de calculer la matrice absolue
                         node.computeAbsoluteMatrix(true);
+
                         this.context.save();
                         this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
 
-                        var t = node._absolutePosition;&#x2F;&#x2F;getAbsolutePosition(false);
+                        var n = node;
+                        var t = n.getAbsolutePosition();
 
                         this.context.translate(t.x, t.y);
-                        this.context.rotate(node._absoluteRotation);
+
+                        if (cgsgExist(node.rotationCenter)) {
+
+                            this.context.translate(node.dimension.width * node.rotationCenter.x,
+                                node.dimension.height * node.rotationCenter.y);
+                            this.context.rotate(node.rotation.angle);
+                            this.context.translate(-node.dimension.width * node.rotationCenter.x,
+                                -node.dimension.height * node.rotationCenter.y);
+                        }
+                        else {
+                            this.context.rotate(node.rotation.angle);
+                        }
                         this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
 
-                        node.renderSelected(this.context);
+                        node.renderBoundingBox(this.context);
                         this.context.restore();
                     }
                 }
@@ -389,7 +408,7 @@ var CGSGSceneGraph = CGSGObject.extend(
             if (!nodeToSelect.isSelected) {
                 nodeToSelect.setSelected(true);
                 nodeToSelect.computeAbsoluteMatrix(false);
-                this.selectedNodes[this.selectedNodes.length] = nodeToSelect;
+                CGSG.selectedNodes[CGSG.selectedNodes.length] = nodeToSelect;
             }
         },
 
@@ -400,8 +419,8 @@ var CGSGSceneGraph = CGSGObject.extend(
          * *&#x2F;
         deselectNode:function (nodeToDeselect) {
             nodeToDeselect.setSelected(false);
-            &#x2F;*this.selectedNodes = *&#x2F;
-            this.selectedNodes.without(nodeToDeselect);
+            &#x2F;*CGSG.selectedNodes = *&#x2F;
+            CGSG.selectedNodes.without(nodeToDeselect);
         },
 
         &#x2F;**
@@ -411,15 +430,15 @@ var CGSGSceneGraph = CGSGObject.extend(
          * *&#x2F;
         deselectAll:function (excludedArray) {
             var node = null;
-            for (var i = this.selectedNodes.length - 1; i &gt;= 0; i--) {
-                node = this.selectedNodes[i];
+            for (var i = CGSG.selectedNodes.length - 1; i &gt;= 0; i--) {
+                node = CGSG.selectedNodes[i];
                 if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
                     this.deselectNode(node);
                 }
             }
 
             &#x2F;&#x2F;just to be sure
-            this.selectedNodes.clear();
+            CGSG.selectedNodes.clear();
         },
 
         &#x2F;**
@@ -434,7 +453,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          *&#x2F;
         pickNode:function (mousePosition, condition) {
             &#x2F;&#x2F;empty the current selection first
-            &#x2F;&#x2F;this.selectedNodes = new Array();
+            &#x2F;&#x2F;CGSG.selectedNodes = new Array();
             cgsgClearContext(CGSG.ghostContext);
             &#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
             if (!cgsgExist(this.root)) {
@@ -464,7 +483,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          *&#x2F;
         pickNodes:function (region, condition) {
             &#x2F;&#x2F;empty the current selection first
-            &#x2F;&#x2F;this.selectedNodes = new Array();
+            &#x2F;&#x2F;CGSG.selectedNodes = new Array();
             cgsgClearContext(CGSG.ghostContext);
             &#x2F;&#x2F;recursively traverse the nodes to get the selected nodes
             if (!cgsgExist(this.root)) {
@@ -569,13 +588,13 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @return {Boolean} true if there are still animation key after the current frame
          *&#x2F;
         stillHaveAnimation:function () {
-            if (this._listTimelines.length == 0) {
+            if (CGSG.listTimelines.length == 0) {
                 return false;
             }
             else {
-                for (var i = 0, len = this._listTimelines.length; i &lt; len; ++i) {
-                    if (this._listTimelines[i].getLastKey() !== null &amp;&amp;
-                        this._listTimelines[i].getLastKey().frame &lt;= CGSG.currentFrame) {
+                for (var i = 0, len = CGSG.listTimelines.length; i &lt; len; ++i) {
+                    if (CGSG.listTimelines[i].getLastKey() !== null &amp;&amp;
+                        CGSG.listTimelines[i].getLastKey().frame &lt;= CGSG.currentFrame) {
                         return true;
                     }
                 }
@@ -592,15 +611,15 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @return {CGSGTimeline}
          *&#x2F;
         getTimeline:function (node, attribute) {
-            for (var i = 0, len = this._listTimelines.length; i &lt; len; ++i) {
-                if (this._listTimelines[i].parentNode === node &amp;&amp; this._listTimelines[i].attribute == attribute) {
-                    return this._listTimelines[i];
+            for (var i = 0, len = CGSG.listTimelines.length; i &lt; len; ++i) {
+                if (CGSG.listTimelines[i].parentNode === node &amp;&amp; CGSG.listTimelines[i].attribute == attribute) {
+                    return CGSG.listTimelines[i];
                 }
             }
 
             &#x2F;&#x2F;no timeline yet, create a new one
             var timeline = new CGSGTimeline(node, attribute, &quot;linear&quot;);
-            this._listTimelines.push(timeline);
+            CGSG.listTimelines.push(timeline);
             return timeline;
         }
     }

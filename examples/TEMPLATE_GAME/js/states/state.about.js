@@ -35,7 +35,7 @@ var StateAbout = Object.extend(
 		},
 
 		_createEnvironment : function() {
-			this.rootNode = new SkyNode(0, 0, canvasWidth, canvasHeight, this.context);
+			this.rootNode = new SkyNode(0, 0, CGSG.canvas.width, CGSG.canvas.height, this.context);
 			this.rootNode.isClickable = false;
 
 			var floor = new FloorNode(0, 0, 1, 1);
@@ -103,8 +103,7 @@ var StateAbout = Object.extend(
 			textGoBack.color = "#6a7a89";
 			textGoBack.isClickable = false;
 			this.buttonGoBack.addChild(textGoBack);
-			var bindOnButtonGoBackClick = this.onButtonGoBackClick.bind(this);
-			this.buttonGoBack.onClick = bindOnButtonGoBackClick;
+			this.buttonGoBack.onClick = this.onButtonGoBackClick.bind(this);
 		},
 
 		onButtonGoBackClick : function() {

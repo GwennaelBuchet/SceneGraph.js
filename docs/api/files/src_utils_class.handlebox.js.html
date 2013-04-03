@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -215,96 +227,104 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGHandleBox = CGSGObject.extend(
-	{
-		initialize : function (parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
-			&#x2F;**
-			 * @property fillColor
-			 * @type {String}
-			 *&#x2F;
-			this.fillColor = fillColor;
+    {
+        initialize: function (parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
+            &#x2F;**
+             * @property fillColor
+             * @type {String}
+             *&#x2F;
+            this.fillColor = fillColor;
 
-			&#x2F;**
-			 * @property strokeColor
-			 * @type {String}
-			 *&#x2F;
-			this.strokeColor = strokeColor;
+            &#x2F;**
+             * @property strokeColor
+             * @type {String}
+             *&#x2F;
+            this.strokeColor = strokeColor;
 
-			&#x2F;**
-			 * @property lineWidth
-			 * @type {Number}
-			 *&#x2F;
-			this.lineWidth = lineWidth;
+            &#x2F;**
+             * @property lineWidth
+             * @type {Number}
+             *&#x2F;
+            this.lineWidth = lineWidth;
 
-			&#x2F;**
-			 * @property size
-			 * @type {Number}
-			 *&#x2F;
-			this.size = size;
+            &#x2F;**
+             * @property size
+             * @type {Number}
+             *&#x2F;
+            this.size = size;
 
-			&#x2F;**
-			 * @property _parentNode
-			 * @type {CGSGNode}
-			 * @private
-			 *&#x2F;
-			this._parentNode = parentNode;
-			&#x2F;**
-			 * @property _position
-			 * @type {CGSGPosition}
-			 * @private
-			 *&#x2F;
-			this._position = new CGSGPosition(x, y);
-		},
+            &#x2F;**
+             * @property isVisible
+             * @type {boolean}
+             *&#x2F;
+            this.isVisible = true;
 
-		&#x2F;**
-		 * @method render
-		 * @param {CanvasRenderingContext2D} context the context into render the handle box
-		 *&#x2F;
-		render : function (context) {
-			context.lineWidth = this.lineWidth;
-			context.strokeStyle = this.strokeColor;
-			context.fillStyle = this.fillColor;
-			context.strokeRect(this._position.x,
-			                 this._position.y,
-			                 this.size &#x2F; this._parentNode._absoluteScale.x,
-			                 this.size &#x2F; this._parentNode._absoluteScale.y);
-			context.fillRect(this._position.x,
-			                 this._position.y,
-			                 this.size &#x2F; this._parentNode._absoluteScale.x,
-			                 this.size &#x2F; this._parentNode._absoluteScale.y);
-		},
+            &#x2F;**
+             * @property _parentNode
+             * @type {CGSGNode}
+             * @private
+             *&#x2F;
+            this._parentNode = parentNode;
+            &#x2F;**
+             * @property _position
+             * @type {CGSGPosition}
+             * @private
+             *&#x2F;
+            this._position = new CGSGPosition(x, y);
+        },
 
-		&#x2F;**
-		 * Return true if this handleBox is under the coordinate of the mouse.
-		 * @method checkIfSelected
-		 * @param {CGSGPosition} mousePosition
-		 * @param {Number} threshold Threshold of detection around the box
-		 * @return {Boolean}
-		 *&#x2F;
-		checkIfSelected : function (mousePosition, threshold) {
-			return (mousePosition.x &gt;=
-			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
-			        threshold &amp;&amp;
-			        mousePosition.x &lt;=
-			        this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
-			        this.size + threshold &amp;&amp;
-			        mousePosition.y &gt;=
-			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
-			        threshold &amp;&amp;
-			        mousePosition.y &lt;=
-			        this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
-			        this.size + threshold);
-		},
+        &#x2F;**
+         * @method render
+         * @param {CanvasRenderingContext2D} context the context into render the handle box
+         *&#x2F;
+        render: function (context) {
+            if (this.isVisible) {
+                context.lineWidth = this.lineWidth;
+                context.strokeStyle = this.strokeColor;
+                context.fillStyle = this.fillColor;
+                context.strokeRect(this._position.x,
+                    this._position.y,
+                    this.size &#x2F; this._parentNode._absoluteScale.x,
+                    this.size &#x2F; this._parentNode._absoluteScale.y);
+                context.fillRect(this._position.x,
+                    this._position.y,
+                    this.size &#x2F; this._parentNode._absoluteScale.x,
+                    this.size &#x2F; this._parentNode._absoluteScale.y);
+            }
+        },
 
-		&#x2F;**
-		 * @method translateTo
-		 * @param {Number} newRelativeX
-		 * @param {Number} newRelativeY
-		 *&#x2F;
-		translateTo : function (newRelativeX, newRelativeY) {
-			this._position.x = newRelativeX;
-			this._position.y = newRelativeY;
-		}
-	}
+        &#x2F;**
+         * Return true if this handleBox is under the coordinate of the mouse.
+         * @method checkIfSelected
+         * @param {CGSGPosition} mousePosition
+         * @param {Number} threshold Threshold of detection around the box
+         * @return {Boolean}
+         *&#x2F;
+        checkIfSelected: function (mousePosition, threshold) {
+            return (mousePosition.x &gt;=
+                this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
+                    threshold &amp;&amp;
+                mousePosition.x &lt;=
+                    this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
+                        this.size + threshold &amp;&amp;
+                mousePosition.y &gt;=
+                    this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
+                        threshold &amp;&amp;
+                mousePosition.y &lt;=
+                    this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
+                        this.size + threshold);
+        },
+
+        &#x2F;**
+         * @method translateTo
+         * @param {Number} newRelativeX
+         * @param {Number} newRelativeY
+         *&#x2F;
+        translateTo: function (newRelativeX, newRelativeY) {
+            this._position.x = newRelativeX;
+            this._position.y = newRelativeY;
+        }
+    }
 );
 	
     </pre>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\class.map.js - cgSceneGraph</title>
+    <title>src\mask\class.mask.cache.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -170,12 +182,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\class.map.js</h1>
+                        <h1 class="file-heading">File: src\mask\class.mask.cache.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License&#x2F;Terms of Use
  *
@@ -199,137 +211,121 @@
  *  These Terms of Use are subject to French law.
  * *&#x2F;
 
+
 &#x2F;**
- * A Hashmap class.
+ * ALFA VERSION : to be enhanced, essentially for performance reasons.
  *
- * @class CGSGHashmap
- * @module Util
+ * This mask could be applied to a node to cache in memory the rendering of a canvas and its nodes.
+ *
+ * @class CGSGMaskCache
+ * @extends CGSGMask
  * @constructor
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Guillaume Drouet (guidrouet@gmail.com)
+ * @type {CGSGMaskCache}
  *&#x2F;
-var CGSGHashmap = CGSGObject.extend(
+
+var CGSGMaskCache = CGSGMask.extend(
     {
-        initialize:function () {
-            this._map = {};
-
-            this._map.keys = [];
-            this._map.values = [];
+        initialize: function () {
+            this._super();
+            this._cacheTable = new CGSGMap();
         },
 
         &#x2F;**
-         * @method getAt
-         * @param {Number} index
-         * @return {Object} {key, value}
+         * Asks the mask to refresh the canvas cache for the given node in the next rendering. Automatically called when
+         * a node is scaled, resize or translated.
+         *
+         * @param {CGSGNode} node the node
+         * @method invalidate
          *&#x2F;
-        getAt:function(index) {
-            return {key:this._map.keys[index], value:this._map.values[index]};
+        invalidate : function(node) {
+            this._cacheTable.getValue(node)._needRedraw = true;
         },
 
         &#x2F;**
-         * @method getValue
-         * @param {Object} key
-         * @return {Object} the corresponding value or null if the key does not exist
+         * @param {CGSGNode} node the npde
+         * @method _internalApply
+         * @private
          *&#x2F;
-        getValue:function (key) {
-            var i = this.getKeyIndex(key);
-            if (i &lt; 0) {
-                return null;
+        _internalApply : function(node) {
+            &#x2F;&#x2F; Create canvas cache
+            var canvas = document.createElement(&#x27;canvas&#x27;);
+            canvas.width = CGSG.canvas.width;
+            canvas.height = CGSG.canvas.height;
+            var ctx = canvas.getContext(&#x27;2d&#x27;);
+            var entry = {
+                _canvas : canvas,
+                _context : ctx,
+                _needRedraw : true
+            };
+
+            &#x2F;&#x2F; Remove this mask when the node is free
+            CGSG.eventManager.bindHandler(node, cgsgEventTypes.ON_FREE, (function() {
+                this.remove(node);
+            }).bind(this));
+
+            &#x2F;&#x2F; Detect changes that need redraw.
+            var bindInvalidate = (function(e) {
+                console.log(e);
+                this.invalidate(node);
+            }).bind(this);
+
+            CGSG.eventManager.bindHandler(node, cgsgEventTypes.ON_RESIZE, bindInvalidate);
+            CGSG.eventManager.bindHandler(node, cgsgEventTypes.ON_ROTATE, bindInvalidate);
+            CGSG.eventManager.bindHandler(node, cgsgEventTypes.ON_TRANSLATE, bindInvalidate);
+            CGSG.eventManager.bindHandler(node, cgsgEventTypes.ON_SCALE, bindInvalidate);
+
+            this._cacheTable.addOrReplace(node, entry);
+        },
+
+        &#x2F;**
+         * @param {CGSGNode} node the npde
+         * @method _internalRemove
+         * @private
+         *&#x2F;
+        _internalRemove : function(node) {
+            this._cacheTable.remove(node);
+        },
+
+        &#x2F;**
+         * Prepare the rendering of the node by saving the given context and returning the cache context. However, if
+         * the cache is already filled, then the function will return null in order to tell the caller to not render
+         * the node.
+         *
+         * @method prepare
+         * @param node {CGSGNode} the node
+         * @param context {CanvasRenderingContext2D} the context where the node will be drawn
+         * @return {CanvasRenderingContext2D} the context to use
+         *&#x2F;
+        prepare : function(node, context) {
+            var entry = this._cacheTable.getValue(node);
+            var retval = null;
+
+            &#x2F;&#x2F; Entry exists, check if we need to redraw
+            if (entry._needRedraw) {
+                cgsgClearContext(entry._context);
+                retval = entry._context;
+                entry._needRedraw = false;
             }
 
-            return this._map.values[i];
+            this._saveContext = context;
+            this._saveEntry = entry;
+
+            return retval;
         },
 
         &#x2F;**
-         * Add or replace the key in the map with the value.
-         * @method addOrReplace
-         * @param {Object} key
-         * @param {Object} value
-         * @return the index of the key in the map
+         * Finalize this mask by drawing the memory canvas to the saved context.
+         *
+         * @method finalize
+         * @param node {CGSGNode} the node
+         * @param context {CanvasRenderingContext2D} the context returned by prepare()
+         * @return {CanvasRenderingContext2D} the context that was used to invoke prepare()
          *&#x2F;
-        addOrReplace:function (key, value) {
-            var i = this.getKeyIndex(key);
-
-            if (i &gt;= 0) {
-                this._map.values[i] = value;
-            }
-            else {
-                this._map.keys.push(key);
-                this._map.values.push(value);
-                i = this.getLength();
-            }
-
-            return i;
-        },
-
-        &#x2F;**
-         * @method remove
-         * @param {Object} key
-         *&#x2F;
-        remove:function (key) {
-            if (this.containsKey(key)) {
-                var index = this.getKeyIndex(key);
-                this._map.keys.splice(index,1);
-                this._map.values.splice(index,1);
-            }
-        },
-
-        &#x2F;**
-         * Remove all keys in the map
-         * @method removeAll
-         *&#x2F;
-        removeAll:function () {
-            this._map.keys.clear();
-            this._map.values.clear();
-        },
-
-        &#x2F;**
-         * @method clone
-         * @return {CGSGHashmap}
-         *&#x2F;
-        clone:function () {
-            var newMap = new CGSGHashmap();
-            newMap._map.keys = this._map.keys.clone();
-            newMap._map.values = this._map.value.clone();
-
-            return newMap;
-        },
-
-        &#x2F;**
-         * Return true if the key already exists in the map
-         * @method containsKey
-         * @param key
-         * @return {Boolean}
-         *&#x2F;
-        containsKey:function (key) {
-            return this._map.keys.contains(key);
-        },
-
-        &#x2F;**
-         * Return the number of keys in the map
-         * @method getLength
-         * @return {Number}
-         *&#x2F;
-        getLength:function () {
-            return this._map.keys.length;
-        },
-
-        &#x2F;**
-         * @method getKeyIndex
-         * @param {Object} key
-         * @return {Number} The key index or -1 if not exists
-         *&#x2F;
-        getKeyIndex:function (key) {
-            var index;
-
-            for (index = 0; index &lt; this.getLength(); index++) {
-                if (this._map.keys[index] === key) {
-                    return index;
-                }
-            }
-
-            return -1;
+        finalize : function(node, context) {
+            this._saveContext.drawImage(this._saveEntry._canvas, 0, 0);
+            return this._saveContext;
         }
-
     }
 );
 

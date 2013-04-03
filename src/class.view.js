@@ -559,7 +559,7 @@ var CGSGView = CGSGObject.extend(
 
         /**
          * Detects when the mouse leaves the canvas.
-         *
+         * @method onMouseOutHandler
          * @param event {MouseEvent} the event
          */
         onMouseOutHandler : function(event) {
@@ -600,6 +600,7 @@ var CGSGView = CGSGObject.extend(
         /**
          * Updates the current selection according to the given event.
          *
+         * @method _updateSelection
          * @param {Event} event the event
          * @private
          */

@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
@@ -51,9 +53,19 @@
             
                 <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGHashmap.html">CGSGHashmap</a></li>
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
             
@@ -218,6 +230,17 @@ var CGSGPosition = CGSGVector2D.extend(
 		},
 
 		&#x2F;**
+		 * Indicates if this position meaningfully equals to the given position.
+		 * @public
+		 * @method equalsTo
+		 * @param position {CGSGPosition} the position to compare to this position
+		 * @return {Boolean} true if given position exists and has same coordinates as this position, false otherwise
+		 *&#x2F;
+		equalsTo : function(position) {
+			return cgsgExist(position) &amp;&amp; position.x === this.x &amp;&amp; position.y === this.y;
+		},
+
+		&#x2F;**
 		 * return a new object with these attributes
 		 * @public
 		 * @method copy
@@ -343,17 +366,17 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method add
 		 * @param {Number} angle
 		 *&#x2F;
-		addEquals : function (angle) {
+        addEquals : function (angle) {
 			this.angle += angle;
 		},
 
 		&#x2F;**
 		 * Subtract this angle to the current one
 		 * @public
-		 * @method subtract
+		 * @method substract
 		 * @param {Number} angle
 		 *&#x2F;
-		subtractEquals : function (angle) {
+        subtractEquals : function (angle) {
 			this.angle -= angle;
 		},
 
@@ -363,7 +386,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method multiply
 		 * @param {Number} angle
 		 *&#x2F;
-		multiplyEquals : function (angle) {
+        multiplyEquals : function (angle) {
 			this.angle *= angle;
 		}
 	}
@@ -451,7 +474,7 @@ var CGSGDimension = CGSGVector2D.extend(
 			if (this.height + height &gt;= 0) {
 				this.height += height;
 			}
-		},
+        },
 
         &#x2F;**
          * Return true if no pixels are inside the dimension
@@ -503,7 +526,7 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method add
 		 * @param region {CGSGRegion}
 		 *&#x2F;
-		addEquals : function (region) {
+        addEquals : function (region) {
 			this.position.translateWith(region.position.x, region.position.y);
 			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
 		},
@@ -512,10 +535,10 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method subtract
 		 * @param {CGSGRegion} region
 		 *&#x2F;
-		subtractEquals : function (region) {
+        subtractEquals : function (region) {
 			this.position.translateWith(-region.position.x, -region.position.y);
 			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
-		},
+        },
 
         &#x2F;**
          * Return true if no pixels are inside the region
