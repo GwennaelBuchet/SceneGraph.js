@@ -94,6 +94,14 @@ var CGSG = {
         version: "2.0.0-SNAPSHOT",
 
         /**
+         * The scene graph itself
+         * @property sceneGraph
+         * @default null
+         * @type {CGSGSceneGraph}
+         */
+        sceneGraph: null,
+
+        /**
          * Current display ratio
          * @property displayRatio
          * @static

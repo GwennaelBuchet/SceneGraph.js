@@ -78,7 +78,7 @@ var CGMain = CGSGView.extend(
 		 */
 		createScene : function() {
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode);
+			CGSG.sceneGraph.addNode(this.rootNode);
 
 			GAME_STATE.LOADING.instance = new StateLoading(this.context);
 			GAME_STATE.HOME.instance = new StateHome(this.context, this);

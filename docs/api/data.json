@@ -10687,16 +10687,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 91,
-            "itemtype": "property",
-            "name": "context",
-            "type": "{CanvasRenderingContext2D}",
-            "class": "CGSGView",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.view.js",
-            "line": 97,
+            "line": 94,
             "description": "Multiselection boolean.",
             "itemtype": "property",
             "name": "allowMultiSelect",
@@ -10707,7 +10698,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 105,
+            "line": 102,
             "description": "Fill color for the drag selection selection rectangle",
             "itemtype": "property",
             "name": "dragSelectFillColor",
@@ -10718,7 +10709,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 113,
+            "line": 110,
             "description": "Stroke color for the drag selection selection rectangle",
             "itemtype": "property",
             "name": "dragSelectStrokeColor",
@@ -10729,7 +10720,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 121,
+            "line": 118,
             "description": "Alpha value for the drag selection rectangle",
             "itemtype": "property",
             "name": "dragSelectAlpha",
@@ -10740,17 +10731,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 129,
-            "description": "The scene graph itself",
-            "itemtype": "property",
-            "name": "sceneGraph",
-            "type": "{CGSGSceneGraph}",
-            "class": "CGSGView",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.view.js",
-            "line": 145,
+            "line": 138,
             "itemtype": "property",
             "name": "_isRunning",
             "type": "{Boolean}",
@@ -10761,7 +10742,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 156,
+            "line": 149,
             "itemtype": "property",
             "name": "_frameContainer Handler to the HTML Element displaying the FPS",
             "type": "{HTMLElement}",
@@ -10772,7 +10753,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 163,
+            "line": 156,
             "description": "True if the [CTRL} key is being pressed",
             "itemtype": "property",
             "name": "_keyDownedCtrl",
@@ -10785,7 +10766,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 172,
+            "line": 165,
             "itemtype": "property",
             "name": "_timerDblTouch",
             "default": "null",
@@ -10797,7 +10778,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 180,
+            "line": 173,
             "description": "The delay between 2 touches to be considered as a dbl touch event.\nTo remove the double touch, just set it to 0",
             "itemtype": "property",
             "name": "dblTouchDelay",
@@ -10808,7 +10789,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 189,
+            "line": 182,
             "description": "Current positions of the mouse or touch (Array of CGSGPosition)",
             "itemtype": "property",
             "name": "_mousePosition",
@@ -10820,7 +10801,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 209,
+            "line": 202,
             "itemtype": "property",
             "name": "_listCursors List of the names for the cursor when overring a handlebox",
             "type": "{Array}",
@@ -10831,7 +10812,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 219,
+            "line": 212,
             "itemtype": "property",
             "name": "_selectedNode The current last selected node",
             "type": "{null}",
@@ -10842,7 +10823,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 280,
+            "line": 273,
             "description": "Callback on click down on scene event.",
             "itemtype": "property",
             "name": "onSceneClickStart",
@@ -10856,7 +10837,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 292,
+            "line": 285,
             "description": "Callback on click up on scene event",
             "itemtype": "property",
             "name": "onSceneClickEnd",
@@ -10870,7 +10851,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 304,
+            "line": 297,
             "description": "Callback on double click start on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickStart",
@@ -10884,7 +10865,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 316,
+            "line": 309,
             "description": "Callback on double click up on scene event",
             "itemtype": "property",
             "name": "onSceneDblClickEnd",
@@ -10898,7 +10879,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 328,
+            "line": 321,
             "description": "Callback on start rendering event",
             "itemtype": "property",
             "name": "onRenderStart",
@@ -10912,7 +10893,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 339,
+            "line": 332,
             "description": "Callback on end rendering event",
             "itemtype": "property",
             "name": "onRenderEnd",
@@ -10926,7 +10907,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 356,
+            "line": 349,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used by the different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -10942,7 +10923,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 374,
+            "line": 367,
             "description": "Remove the nodes selected in the scene graph",
             "itemtype": "method",
             "name": "deleteSelected",
@@ -10951,7 +10932,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 388,
+            "line": 381,
             "description": "Deselect all nodes",
             "access": "public",
             "tagname": "",
@@ -10969,7 +10950,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 403,
+            "line": 396,
             "description": "the main rendering loop",
             "access": "protected",
             "tagname": "",
@@ -10980,7 +10961,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 453,
+            "line": 445,
             "description": "Call this to start the update of the scene",
             "access": "public",
             "tagname": "",
@@ -10991,7 +10972,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 468,
+            "line": 460,
             "description": "Call this to stop the rendering (and so animation) update",
             "access": "public",
             "tagname": "",
@@ -11002,7 +10983,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 478,
+            "line": 470,
             "description": "Inform the SceneGraph that a new render is needed",
             "access": "public",
             "tagname": "",
@@ -11013,7 +10994,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 487,
+            "line": 479,
             "description": "Update the current framerate",
             "itemtype": "method",
             "name": "_updateFramerate",
@@ -11024,7 +11005,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 524,
+            "line": 516,
             "description": "Update the innerHTML of the HTMLElement passed as parameter of the \"showFPS\" function",
             "itemtype": "method",
             "name": "_updateFramerateContainer",
@@ -11035,7 +11016,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 535,
+            "line": 527,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -11052,7 +11033,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 544,
+            "line": 536,
             "description": "Set the new value for the display ratio.\nThe display ratio is used to resize all the elements on the graph to be adapted to the screen,\ndepending on the reference screen size.\nYou can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height",
             "access": "public",
             "tagname": "",
@@ -11070,7 +11051,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 560,
+            "line": 552,
             "description": "Detects when the mouse leaves the canvas.",
             "itemtype": "method",
             "name": "onMouseOutHandler",
@@ -11086,7 +11067,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 569,
+            "line": 561,
             "description": "click mouse Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11104,7 +11085,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 579,
+            "line": 571,
             "description": "touch down Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11122,7 +11103,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 600,
+            "line": 592,
             "description": "Updates the current selection according to the given event.",
             "itemtype": "method",
             "name": "_updateSelection",
@@ -11140,7 +11121,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 660,
+            "line": 652,
             "description": "This method indicates if, according to the current state of the scene, a drag selection could starts. Called\nwhen a touchStart event triggered. Could be overridden to specify different behaviour.",
             "itemtype": "method",
             "name": "_canStartDragSelection",
@@ -11162,7 +11143,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 673,
+            "line": 665,
             "description": "Dispatch a 'click' event and for any selected node which is clickable and and only if 'this._isDblClick' == false.",
             "itemtype": "method",
             "name": "_dispatchClick",
@@ -11180,7 +11161,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 696,
+            "line": 688,
             "description": "Click on the scene",
             "access": "private",
             "tagname": "",
@@ -11203,7 +11184,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 731,
+            "line": 723,
             "description": "mouse move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11221,7 +11202,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 741,
+            "line": 733,
             "description": "touch move Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11239,7 +11220,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 755,
+            "line": 747,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -11256,7 +11237,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 993,
+            "line": 985,
             "description": "Detects if the mouse if over the handle box of a selected node.",
             "itemtype": "method",
             "name": "_detectResizeMode",
@@ -11278,7 +11259,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1035,
+            "line": 1027,
             "itemtype": "method",
             "name": "_getDeltaOnMove",
             "params": [
@@ -11322,7 +11303,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1064,
+            "line": 1056,
             "description": "mouse up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11340,7 +11321,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1074,
+            "line": 1066,
             "description": "touch up Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11358,7 +11339,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1109,
+            "line": 1101,
             "description": "Creates the custom event by calling _upOnScene and then call _clickOnScene.",
             "itemtype": "method",
             "name": "_upAndClick",
@@ -11376,7 +11357,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1123,
+            "line": 1115,
             "description": "Creates the custom event by calling _upOnScene and then call _dblClickOnScene.",
             "itemtype": "method",
             "name": "_upAndDblClick",
@@ -11394,7 +11375,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1137,
+            "line": 1129,
             "itemtype": "method",
             "name": "_upOnScene",
             "params": [
@@ -11415,7 +11396,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1224,
+            "line": 1216,
             "description": "Select the nodes under the drag select rectangle",
             "access": "protected",
             "tagname": "",
@@ -11426,7 +11407,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1256,
+            "line": 1248,
             "description": "mouse double click Event handler function",
             "access": "protected",
             "tagname": "",
@@ -11444,7 +11425,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1268,
+            "line": 1260,
             "access": "private",
             "tagname": "",
             "itemtype": "method",
@@ -11470,7 +11451,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1304,
+            "line": 1296,
             "itemtype": "method",
             "name": "onKeyDownHandler",
             "access": "protected",
@@ -11491,7 +11472,7 @@
         },
         {
             "file": "src\\class.view.js",
-            "line": 1322,
+            "line": 1314,
             "itemtype": "method",
             "name": "onKeyUpHandler",
             "access": "protected",
@@ -11615,7 +11596,7 @@
             "description": "Default number of frames to average the FPS",
             "itemtype": "property",
             "name": "CGSG_DEFAULT_FRAMERATE_DELAY",
-            "default": "30 (ie: each 30 frames)",
+            "default": "20 (ie: each 20 frames)",
             "type": "{Number}",
             "class": "GLOBAL_CONSTANTS",
             "module": "Util"
@@ -11694,6 +11675,17 @@
         {
             "file": "src\\globals.js",
             "line": 96,
+            "description": "The scene graph itself",
+            "itemtype": "property",
+            "name": "sceneGraph",
+            "default": "null",
+            "type": "{CGSGSceneGraph}",
+            "class": "CGSG",
+            "module": "Util"
+        },
+        {
+            "file": "src\\globals.js",
+            "line": 104,
             "description": "Current display ratio",
             "itemtype": "property",
             "name": "displayRatio",
@@ -11704,7 +11696,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 104,
+            "line": 112,
             "description": "Default threshold to detect the handle boxes on a resizable node",
             "itemtype": "property",
             "name": "resizeHandleThreshold",
@@ -11715,7 +11707,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 112,
+            "line": 120,
             "description": "The current frame in hte global timeline",
             "itemtype": "property",
             "name": "currentFrame",
@@ -11726,7 +11718,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 120,
+            "line": 128,
             "description": "The canvas container for this scene",
             "itemtype": "property",
             "name": "canvas",
@@ -11737,7 +11729,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 128,
+            "line": 136,
             "description": "The main rendering 2D context for this scene",
             "itemtype": "property",
             "name": "context",
@@ -11747,7 +11739,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 135,
+            "line": 143,
             "description": "The global ghost context for fake rendering",
             "itemtype": "property",
             "name": "ghostContext",
@@ -11758,7 +11750,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 143,
+            "line": 151,
             "description": "the color used for the ghost mode rendering",
             "itemtype": "property",
             "name": "ghostColor",
@@ -11770,7 +11762,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 152,
+            "line": 160,
             "description": "List of the current selected nodes in the scenegraph.",
             "itemtype": "property",
             "name": "selectedNodes",
@@ -11780,7 +11772,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 159,
+            "line": 167,
             "description": "List of the timelines for the animations.\nA timeline consists of a list of animation keys for 1 attribute of 1 node",
             "itemtype": "property",
             "name": "listTimelines",
@@ -11792,7 +11784,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 168,
+            "line": 176,
             "description": "Number of frames to average the FPS.\nReduce this number to get more accurate FPS",
             "itemtype": "property",
             "name": "framerateDelay",
@@ -11803,7 +11795,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 177,
+            "line": 185,
             "description": "Maximum number of frames per second. Set it if you want your application to slow down.",
             "itemtype": "property",
             "name": "maxFramerate",
@@ -11817,7 +11809,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 188,
+            "line": 196,
             "description": "Current framerate of the application",
             "itemtype": "property",
             "name": "fps",
@@ -11827,7 +11819,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 195,
+            "line": 203,
             "description": "Instance of CollisionTesterFactory",
             "itemtype": "property",
             "name": "collisionTestFactory",
@@ -11837,7 +11829,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 202,
+            "line": 210,
             "description": "Object that defines the performance keys.\nChange values to adapt your project.\n\nCGSG.performanceKeys._collisionMethod :\n               Key to specify collision detection mod\n               Use setCollisionMethod to modify value,\n               Default : CGSGCollisionMethod.REGION\n\nCGSG.performanceKeys.collisionTester :\n               Collision tester depending on _collisionMethod,\n               Default : CGSGCollisionRegionTester",
             "itemtype": "property",
             "name": "performanceKeys",
@@ -11847,7 +11839,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 225,
+            "line": 233,
             "description": "Redefines the collision method",
             "itemtype": "method",
             "name": "setCollisionMethod",
@@ -11862,7 +11854,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 237,
+            "line": 245,
             "description": "Event manager to use to bind events to objects.",
             "itemtype": "property",
             "name": "eventManager",
@@ -11872,7 +11864,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 248,
+            "line": 256,
             "description": "All kinds of events defined by the CGSceneGraph framework.",
             "itemtype": "property",
             "name": "cgsgEventTypes",

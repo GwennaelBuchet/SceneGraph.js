@@ -63,7 +63,7 @@ var CGMain = CGSGView.extend(
 			circle.lineWidth = 1;
 			circle.lineColor = "gray";
 
-			this.sceneGraph.addNode(circle, null);
+			CGSG.sceneGraph.addNode(circle, null);
 		}
 	}
 );

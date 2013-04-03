@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
 		createScene : function () {
 			//first create a root node with an arbitrary size and position
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			this.textNode = new CGSGNodeText(40, 10, "Event on : (nothing)");
 			this.textNode.setSize(18);

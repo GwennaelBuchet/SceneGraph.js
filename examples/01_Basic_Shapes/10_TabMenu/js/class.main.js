@@ -57,7 +57,7 @@ var CGMain = CGSGView.extend(
             rootNode.color = "white";
             rootNode.lineColor = "gray";
             rootNode.lineWidth = 1;
-            this.sceneGraph.addNode(rootNode, null);
+            CGSG.sceneGraph.addNode(rootNode, null);
 
             var that = this;
 

@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
             createScene: function () {
                 //create a root node to the graph, with arbitrary position and size
                 var rootNode = new CGSGNode(0, 0, 0, 0);
-                this.sceneGraph.addNode(rootNode, null);
+                CGSG.sceneGraph.addNode(rootNode, null);
 
                 //handler method on click
                 var bindClickHandler = this.clickHandler.bind(this);
@@ -134,17 +134,6 @@ var CGMain = CGSGView.extend(
                 rootNode.addChild(this.buttonSpritesheet, null);
                 this.buttonSpritesheet.name = "Spritesheet Button";
                 this.buttonSpritesheet.onClick = bindClickHandler;
-
-                var buttonOver = new CGSGNodeButton(10, 310, "Big & initially Overed");
-                //3 text : normal, over, deactivated
-                buttonOver.setTexts(["Still BIG but mouse out", "Big & initially Overed", "Big and deactivated"]);
-                buttonOver.setTextSizes([24, 28, 24]);
-                buttonOver.setMode(CGSGButtonMode.OVER);
-                buttonOver.setVerticalPadding(42);
-                buttonOver.setHorizontalPadding(42);
-                rootNode.addChild(buttonOver, null);
-                buttonOver.name = "Initially overed Button";
-                buttonOver.onClick = bindClickHandler;
 
                 //just a title text
                 this.txtNode = new CGSGNodeText(10, 10, "Button examples.");

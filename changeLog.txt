@@ -63,6 +63,7 @@ CHANGES:
 - Evolution. shadow of a custom node is defined directly on the framework. No need to re-define it on the render method.
              New properties : shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor.
 - Evolution. Delete CGSGScene.selectedNodes and CGSGSceneGraph.selectedNodes. New global CGSG.selectedNodes property.
+- Evolution. Extenalization of the sceneGraph instance into the CGSG object.
 
 ---------------------------------------------------------------------
 

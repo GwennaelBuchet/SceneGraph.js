@@ -57,7 +57,7 @@ var CGMain = CGSGView.extend(
 
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//create and add random children
 			for (var i = 0; i < 100; i++) {
@@ -81,7 +81,7 @@ var CGMain = CGSGView.extend(
 			var listSquares = traverser.traverse(this.rootNode, condition, null);
             var delay = (new Date().getTime() - before);
 			for (var s = 0; s < listSquares.length; s++) {
-				this.sceneGraph.selectNode(listSquares[s]);
+				CGSG.sceneGraph.selectNode(listSquares[s]);
 			}
 
 			this.textNode = new CGSGNodeText(20, 10,

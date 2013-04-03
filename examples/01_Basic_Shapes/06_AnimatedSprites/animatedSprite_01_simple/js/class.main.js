@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
 		createScene : function () {
 
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			/*
 			 * @param x
@@ -67,7 +67,7 @@ var CGMain = CGSGView.extend(
 			var pingoo = new CGSGNodeSprite(60, 60, "images/board.png", this.context);
             //add the sprite to the scene
             pingoo.isResizable = true;
-            this.sceneGraph.addNode(pingoo, this.rootNode);
+            CGSG.sceneGraph.addNode(pingoo, this.rootNode);
 
 
             //add an animation

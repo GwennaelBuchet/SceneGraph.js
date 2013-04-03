@@ -7,7 +7,7 @@
  */
 var Pingoo = CGSGNodeSprite.extend(
 	{
-		initialize : function(x, y, context) {
+		initialize: function (x, y, context) {
 			this._super(x, y, null, context);
 
 			this.coord = new CGSGPosition(5, 0);
@@ -19,15 +19,15 @@ var Pingoo = CGSGNodeSprite.extend(
 			this.addAnimation("left", speed, 4, 476, 68, cellWidth, cellWidth, 4);
 			this.addAnimation("right", speed, 4, 476, 102, cellWidth, cellWidth, 4);
 			var scope = this;
-			this.onAnimationEnd = function(event) {
+			this.onAnimationEnd = function (event) {
 				scope.reset();
 			};
 
 			this.animations = {
-				"left"  : {axe : "x", sens : "position.x", move : -1},
-				"right" : {axe : "x", sens : "position.x", move : 1},
-				"front" : {axe : "y", sens : "position.y", move : 1},
-				"back"  : {axe : "y", sens : "position.y", move : -1}
+				"left" : {axe: "x", sens: "position.x", move: -1},
+				"right": {axe: "x", sens: "position.x", move: 1},
+				"front": {axe: "y", sens: "position.y", move: 1},
+				"back" : {axe: "y", sens: "position.y", move: -1}
 			};
 			this.currentDirection = "front";
 
@@ -39,19 +39,19 @@ var Pingoo = CGSGNodeSprite.extend(
 		 * @param x
 		 * @param y
 		 */
-		setCoord : function(x, y) {
+		setCoord: function (x, y) {
 			this.coord.x = x;
 			this.coord.y = y;
 		},
 
-		turn : function(direction) {
+		turn: function (direction) {
 			this.currentDirection = direction;
 			this.play(direction, 1);
 			this.stop();
 			this.reset();
 		},
 
-		walk : function(direction) {
+		walk: function (direction) {
 			this.currentDirection = direction;
 			var anim = this.animations[direction];
 			var currentPos = this.position[anim.axe];
@@ -64,7 +64,7 @@ var Pingoo = CGSGNodeSprite.extend(
 			this.setCoord(x, y);
 		},
 
-		fall : function(sceneGraph) {
+		fall: function (sceneGraph) {
 
 		}
 	}

@@ -40,7 +40,7 @@ var GAME_STATE = {
 	PLAY_RUN: { instance: null }
 };
 
-var CGMain = CGSGView.extend(
+var CGMain = CGSGScene.extend(
 	{
 		initialize: function (canvas) {
 

@@ -54,7 +54,7 @@ var CGMain = CGSGView.extend(
 
             //create a root node to the graph, with arbitrary position and size
             var rootNode = new CGSGNode(0, 0, 0, 0);
-            this.sceneGraph.addNode(rootNode, null);
+            CGSG.sceneGraph.addNode(rootNode, null);
 
 			rootNode.translateTo(230, 50);
 
@@ -95,7 +95,6 @@ var CGMain = CGSGView.extend(
             colorPicker3.resizeTo(320, 100);
             rootNode.addChild(colorPicker3);
             colorPicker3.isDraggable = true;
-            colorPicker3.isResizable = true;
 
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
             colorPicker3.onOverColor = function (event) {

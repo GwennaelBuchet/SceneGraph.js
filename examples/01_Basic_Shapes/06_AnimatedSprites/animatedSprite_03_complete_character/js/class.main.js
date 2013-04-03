@@ -59,7 +59,7 @@ var CGMain = CGSGView.extend(
             //create a first root node.
             //that's not mandatory, we could use the first sphere as the root node
             this.rootNode = new CGSGNode(0, 0, 1, 1);
-            this.sceneGraph.addNode(this.rootNode, null);
+            CGSG.sceneGraph.addNode(this.rootNode, null);
 
 
             this.imgNode = new CGSGNodeImage(
@@ -143,8 +143,8 @@ var CGMain = CGSGView.extend(
                     break;
             }
 
-            this.sceneGraph.animate(this.pingoo, "position.y", 24, this.pingoo.position.y, this.pingoo.position.y + y, "linear", 0, true);
-            this.sceneGraph.animate(this.pingoo, "position.x", 24, this.pingoo.position.x, this.pingoo.position.x + x, "linear", 0, true);
+            CGSG.sceneGraph.animate(this.pingoo, "position.y", 24, this.pingoo.position.y, this.pingoo.position.y + y, "linear", 0, true);
+            CGSG.sceneGraph.animate(this.pingoo, "position.x", 24, this.pingoo.position.x, this.pingoo.position.x + x, "linear", 0, true);
         },
 
         /**
@@ -153,7 +153,7 @@ var CGMain = CGSGView.extend(
          * @return {*}
          */
         onKeyUp:function (event) {
-            //this.sceneGraph.animate(this.pingoo, "position.y", 16, this.pingoo.position.y, this.pingoo.position.y - 34, "linear", 0, true);
+            //CGSG.sceneGraph.animate(this.pingoo, "position.y", 16, this.pingoo.position.y, this.pingoo.position.y - 34, "linear", 0, true);
         }
     }
 );

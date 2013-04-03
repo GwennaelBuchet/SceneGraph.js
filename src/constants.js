@@ -112,10 +112,10 @@ var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD = 3;
 /**
  * Default number of frames to average the FPS
  * @property CGSG_DEFAULT_FRAMERATE_DELAY
- * @default 30 (ie: each 30 frames)
+ * @default 20 (ie: each 20 frames)
  * @type {Number}
  */
-var CGSG_DEFAULT_FRAMERATE_DELAY = 30;
+var CGSG_DEFAULT_FRAMERATE_DELAY = 20;
 
 /**
  * Default maximum number of frames per second.

@@ -55,7 +55,7 @@ var CGMain = CGSGView.extend(
          */
         createScene : function () {
 	        var rootNode = new CGSGNode(0, 0, 0, 0);
-	        this.sceneGraph.addNode(rootNode, null);
+	        CGSG.sceneGraph.addNode(rootNode, null);
 
             /*
              * @param x

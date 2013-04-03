@@ -55,7 +55,7 @@
 			this.squareNode.isResizable = true;
 			this.squareNode.isDraggable = true;
 
-			this.sceneGraph.addNode(this.squareNode, null);
+			CGSG.sceneGraph.addNode(this.squareNode, null);
 		}
 
 	}

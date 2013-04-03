@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
 
 			//create and add a root node to the scene, with arbitrary dimension
 			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
             this.textNode = new CGSGNodeText(10, 10, "Click on the scene to add a temporary force on Y.");
             this.textNode.setSize(14);

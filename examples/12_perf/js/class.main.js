@@ -46,7 +46,7 @@ var CGMain = CGSGView.extend(
             this.rootNode = new CGSGNodeSquare(0, 0, CGSG.canvas.width, CGSG.canvas.height);
             this.rootNode.color = "#000000";
             this.rootNode.isTraversable = false;
-            this.sceneGraph.addNode(this.rootNode, null);
+            CGSG.sceneGraph.addNode(this.rootNode, null);
 
             this.mousePosition = new CGSGPosition();
             maxx = CGSG.canvas.width - delta;
