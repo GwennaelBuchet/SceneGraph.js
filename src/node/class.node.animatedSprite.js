@@ -33,13 +33,12 @@
  * @param {Number} x Relative position on X
  * @param {Number} y Relative position on Y
  * @param {String} urlImage URL of the image. Can be null to be set later
- * @param {CanvasRenderingContext2D} context context to render on
  * @type {CGSGNodeSprite}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGNodeSprite = CGSGNode.extend(
     {
-        initialize : function (x, y, urlImage, context) {
+        initialize : function (x, y, urlImage) {
             this._super(x, y, 1, 1);
 
             /**
@@ -119,12 +118,6 @@ var CGSGNodeSprite = CGSGNode.extend(
              * @private
              */
             this._isLoaded = false;
-            /**
-             * @property _context
-             * @type {CanvasRenderingContext2D}
-             * @private
-             */
-            this._context = context;
 
             /**
              * Handler function fired when the image is loaded
@@ -469,7 +462,7 @@ var CGSGNodeSprite = CGSGNode.extend(
          * @return {CGSGNodeSprite} a copy of this node
          */
         copy : function () {
-            var node = new CGSGNodeSprite(this.position.x, this.position.y, this._urlImage, this._context);
+            var node = new CGSGNodeSprite(this.position.x, this.position.y, this._urlImage);
             //call the super method
             node = this._super(node);
 

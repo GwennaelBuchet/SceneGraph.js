@@ -68,21 +68,21 @@ var CGMain = CGSGView.extend(
              * @param image url
              * @param context
              */
-            this.pingoo = new CGSGNodeSprite(60, 60, null, this.context);
+            this.pingoo = new CGSGNodeSprite(60, 60, null);
             this.pingoo.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
             this.pingoo.play("front", null);
             this.rootNode.addChild(this.pingoo);
 
-            this.numbers = new CGSGNodeSprite(60, 120, null, this.context);
+            this.numbers = new CGSGNodeSprite(60, 120, null);
             this.numbers.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.numbers.addAnimation("count", 20, 8, 476, 136, 34, 34, 4);
             this.numbers.play("count", null);
             this.rootNode.addChild(this.numbers);
 
-            this.water = new CGSGNodeSprite(60, 180, null, this.context);
+            this.water = new CGSGNodeSprite(60, 180, null);
             this.water.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.water.addAnimation("wave", 2, 32, 476, 204, 34, 34, 4);

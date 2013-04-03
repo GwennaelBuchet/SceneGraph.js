@@ -77,7 +77,7 @@ var CGMain = CGSGView.extend(
              * @param image url
              * @param context
              */
-            this.pingoo = new CGSGNodeSprite(68, 68, "images/board.png", this.context);
+            this.pingoo = new CGSGNodeSprite(68, 68, "images/board.png");
             this.pingoo.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);

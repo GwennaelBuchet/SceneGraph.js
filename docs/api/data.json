@@ -946,11 +946,6 @@
                     "name": "urlImage",
                     "description": "URL of the image. Can be null to be set later",
                     "type": "String"
-                },
-                {
-                    "name": "context",
-                    "description": "context to render on",
-                    "type": "CanvasRenderingContext2D"
                 }
             ],
             "type": "{CGSGNodeSprite}",
@@ -3541,7 +3536,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 45,
+            "line": 44,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -3550,7 +3545,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 51,
+            "line": 50,
             "description": "array of animations",
             "itemtype": "property",
             "name": "listAnimations",
@@ -3560,7 +3555,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 57,
+            "line": 56,
             "itemtype": "property",
             "name": "currentAnimation",
             "default": "null",
@@ -3570,7 +3565,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 63,
+            "line": 62,
             "itemtype": "property",
             "name": "isProportionalResize",
             "default": "true",
@@ -3580,7 +3575,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 70,
+            "line": 69,
             "description": "Current animated frame",
             "itemtype": "property",
             "name": "_currentFrame",
@@ -3592,7 +3587,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 77,
+            "line": 76,
             "description": "Whether the sprite is being animated or not",
             "itemtype": "property",
             "name": "_isPlaying",
@@ -3605,7 +3600,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 86,
+            "line": 85,
             "description": "Number of loops for the current animation. if -1 then it's an infinite loop.",
             "itemtype": "property",
             "name": "_numberOfLoops",
@@ -3617,7 +3612,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 93,
+            "line": 92,
             "description": "Current loop number",
             "itemtype": "property",
             "name": "_currentLoop",
@@ -3629,7 +3624,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 101,
+            "line": 100,
             "description": "URL of the image",
             "itemtype": "property",
             "name": "_urlImage",
@@ -3641,7 +3636,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 108,
+            "line": 107,
             "description": "The image object itself",
             "itemtype": "property",
             "name": "_img",
@@ -3653,7 +3648,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 116,
+            "line": 115,
             "itemtype": "property",
             "name": "_isLoaded",
             "type": "{Boolean}",
@@ -3665,17 +3660,6 @@
         {
             "file": "src\\node\\class.node.animatedSprite.js",
             "line": 122,
-            "itemtype": "property",
-            "name": "_context",
-            "type": "{CanvasRenderingContext2D}",
-            "access": "private",
-            "tagname": "",
-            "class": "CGSGNodeSprite",
-            "module": "Node"
-        },
-        {
-            "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 129,
             "description": "Handler function fired when the image is loaded",
             "itemtype": "property",
             "name": "onLoadEnd",
@@ -3686,7 +3670,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 136,
+            "line": 129,
             "description": "Handler function fired after an animation loop is ended",
             "itemtype": "property",
             "name": "onAnimationEnd",
@@ -3697,7 +3681,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 143,
+            "line": 136,
             "description": "Handler function fired before an animation loop start",
             "itemtype": "property",
             "name": "onAnimationStart",
@@ -3708,7 +3692,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 159,
+            "line": 152,
             "description": "Used to call delegate method when the image is finally loaded",
             "access": "private",
             "tagname": "",
@@ -3733,7 +3717,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 173,
+            "line": 166,
             "description": "fired when the image is loaded.\nCheck the dimension of the image and fired the onLoadEnd event",
             "access": "protected",
             "tagname": "",
@@ -3744,7 +3728,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 189,
+            "line": 182,
             "description": "To be overrided when the image failed to load",
             "itemtype": "method",
             "name": "_onImageError",
@@ -3755,7 +3739,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 198,
+            "line": 191,
             "description": "Check the true dimension of the image and fill the this.dimension property with it,\nonly if dimension is not already defined in the constructor",
             "itemtype": "method",
             "name": "checkDimension",
@@ -3764,7 +3748,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 211,
+            "line": 204,
             "description": "Set the image for this animated sprite.",
             "example": [
                 "\n\nthis.pingoo = new CGSGNodeSprite(60, 60, null, this.context);\nthis.pingoo.isDraggable = true;\n//name, speed, frames, sliceX, sliceY, width, height, framesPerLine\nthis.pingoo.addAnimation(\"front\", 6, 4, 476, 0, 34, 34, 4);\nthis.pingoo.play(\"front\", null);\n\n//now, load the image containing the sprite sheet.\n//The affectation to the sprite will be done in the loaded handler function\nthis.spriteSheet = new Image();\nthis.spriteSheet.onload = this.onImageLoaded();\nthis.spriteSheet.src = \"images/board.png\";\n\nonImageLoaded : function () {\n\t this.pingoo.setImage(this.spriteSheet);\n\t this.numbers.setImage(this.spriteSheet);\n  this.water.setImage(this.spriteSheet);\n}"
@@ -3783,7 +3767,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 245,
+            "line": 238,
             "description": "Go to the next frame of the current animation",
             "access": "public",
             "tagname": "",
@@ -3794,7 +3778,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 273,
+            "line": 266,
             "description": "Go to the previous frame of the current animation",
             "access": "public",
             "tagname": "",
@@ -3805,7 +3789,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 301,
+            "line": 294,
             "description": "Go to the first frame of the current loop",
             "access": "public",
             "tagname": "",
@@ -3816,7 +3800,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 311,
+            "line": 304,
             "description": "Go to the last frame of the current loop",
             "access": "public",
             "tagname": "",
@@ -3827,7 +3811,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 321,
+            "line": 314,
             "description": "Must be defined to allow the scene graph to render the image nodes",
             "access": "protected",
             "tagname": "",
@@ -3845,7 +3829,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 358,
+            "line": 351,
             "description": "Return position x and y in the image for the slice of the animation and frame passed in parameter.",
             "access": "private",
             "tagname": "",
@@ -3872,7 +3856,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 376,
+            "line": 369,
             "description": "Add an animation for this sprite",
             "access": "public",
             "tagname": "",
@@ -3925,7 +3909,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 412,
+            "line": 405,
             "description": "Start an animation",
             "access": "public",
             "tagname": "",
@@ -3952,7 +3936,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 442,
+            "line": 435,
             "description": "Stop the current animation and stay on the current frame",
             "access": "public",
             "tagname": "",
@@ -3963,7 +3947,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 455,
+            "line": 448,
             "description": "return to the first frame of the first loop of the current animation",
             "access": "public",
             "tagname": "",
@@ -3974,7 +3958,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 466,
+            "line": 459,
             "access": "public",
             "tagname": "",
             "itemtype": "method",

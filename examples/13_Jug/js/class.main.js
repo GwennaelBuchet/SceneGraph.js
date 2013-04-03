@@ -53,7 +53,20 @@
 		createScene : function () {
 			this.rootNode = new CGSGNode(0, 0, 0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
-		}
+
+            this.marxzel = new CGSGNodeSprite(10, 10, null, CGSG.context);
+            this.rootNode.addChild(this.marxzel);
+
+
+            //load the global image
+            this.imgBoard = new Image();
+            this.imgBoard.onload = this.onLoadImgBoard.bind(this);
+            this.imgBoard.src = "img/board.png";
+		},
+
+        onLoadImgBoard : function() {
+            this.marxzel.setImage(this.imgBoard);
+        }
 
 	}
 );
