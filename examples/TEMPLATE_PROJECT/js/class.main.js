@@ -33,11 +33,7 @@
 
 			this._super(canvas);
 
-			////// INITIALIZATION /////////
-
 			this.initializeCanvas();
-
-			this.squareNode = null;
 
 			this.createScene();
 
