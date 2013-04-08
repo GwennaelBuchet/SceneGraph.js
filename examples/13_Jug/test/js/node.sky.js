@@ -1,6 +1,7 @@
 var SkyNode = CGSGNode.extend({
     initialize: function () {
-        this._super(0, 0, CGSG.canvas.width, CGSG.canvas.height);
+        this._super(0, 0);
+        this.resizeTo(CGSG.canvas.width, CGSG.canvas.height);
 
         this.isTraversable = false;
         this.setPrecomputed(true);

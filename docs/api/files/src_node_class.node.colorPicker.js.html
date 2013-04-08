@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -225,7 +227,8 @@ var CGSG_COLORPICKER_HEIGHT = 384;
 var CGSGNodeColorPicker = CGSGNode.extend(
     {
         initialize: function (x, y) {
-            this._super(x, y, CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
+            this._super(x, y);
+            this.resizeTo(CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
 
             &#x2F;**
              * @property _imgData

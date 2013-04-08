@@ -113,7 +113,7 @@ var CGSGPositionMode = {
 var CGSGNodeButton = CGSGNode.extend(
     {
         initialize: function (x, y, text) {
-            this._super(x, y, 0, 0);
+            this._super(x, y);
 
             /**
              * High colors for the button in 3 mode : normal, over, deactivated

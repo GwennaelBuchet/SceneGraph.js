@@ -44,9 +44,9 @@ function resetCircle(circle) {
     //animate size and alpha
     var r = 20 + Math.random() * 30;
     var delay = 10 + Math.random() * 40;
-    game.sceneGraph.animate(circle, "globalAlpha", delay, 1, 0, "linear", 0, true);
-    game.sceneGraph.animate(circle, "scale.x", delay, 1.0, r, "linear", 0, true);
-    game.sceneGraph.animate(circle, "scale.y", delay, 1.0, r, "linear", 0, true);
+    game.sceneGraph.animate(circle, "globalAlpha", delay, 1, 0, 0, true);
+    game.sceneGraph.animate(circle, "scale.x", delay, 1.0, r, 0, true);
+    game.sceneGraph.animate(circle, "scale.y", delay, 1.0, r, 0, true);
 
     //at the end of the animation, reset this node
     game.sceneGraph.getTimeline(circle, "globalAlpha").onAnimationEnd = function (event) {

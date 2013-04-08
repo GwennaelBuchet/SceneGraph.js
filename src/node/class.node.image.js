@@ -39,7 +39,7 @@
 var CGSGNodeImage = CGSGNode.extend(
     {
         initialize: function (x, y, urlImage) {
-            this._super(x, y, 0, 0);
+            this._super(x, y);
 
             /**
              * @property classType

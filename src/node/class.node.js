@@ -35,14 +35,12 @@
  * @constructor
  * @param {Number} x Relative position on X
  * @param {Number} y Relative position on Y
- * @param {Number} width Relative dimension
- * @param {Number} height Relative Dimension
  * @type {CGSGNode}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGNode = CGSGObject.extend(
 	{
-		initialize: function (x, y, width, height) {
+		initialize: function (x, y) {
 
 			/**
 			 * The name of this nodes. Should be unique, but no control is done.
@@ -380,7 +378,7 @@ var CGSGNode = CGSGObject.extend(
 
 			//initialize the position and dimension
 			this.translateTo(x, y, true);
-			this.resizeTo(width, height);
+			this.resizeTo(0, 0);
 
             /**
              * Set to true if dimension of the node is not the original one anymore
@@ -678,12 +676,17 @@ var CGSGNode = CGSGObject.extend(
             }
         },
 
-        _applyShadow: function () {
+        /**
+         * @method _applyShadow
+         * @param ctx
+         * @private
+         */
+        _applyShadow: function (ctx) {
             if (this.shadowOffsetX !== 0 || this.shadowOffsetY !== 0) {
-                this._tmpContext.shadowOffsetX = this.shadowOffsetX;
-                this._tmpContext.shadowOffsetY = this.shadowOffsetY;
-                this._tmpContext.shadowBlur = this.shadowBlur;
-                this._tmpContext.shadowColor = this.shadowColor;
+                ctx.shadowOffsetX = this.shadowOffsetX;
+                ctx.shadowOffsetY = this.shadowOffsetY;
+                ctx.shadowBlur = this.shadowBlur;
+                ctx.shadowColor = this.shadowColor;
             }
         },
 
@@ -700,7 +703,7 @@ var CGSGNode = CGSGObject.extend(
             this._tmpCanvas.height = CGSG.canvas.height;
             cgsgClearContext(this._tmpContext);
 
-            this._applyShadow();
+            this._applyShadow(this._tmpContext);
             this.render(this._tmpContext);
         },
 
@@ -729,31 +732,44 @@ var CGSGNode = CGSGObject.extend(
 
             return end.data.context;*/
 
+            var ctx = context;
+
+            var startEvt = new CGSGEvent(this, {context : context});
+
+            if (cgsgExist(this.onBeforeRender)) {
+               CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_BEFORE_RENDER, startEvt);
+                ctx = startEvt.data.context;
+                //this.onBeforeRender({context: context});
+            }
 
             //save current state
-            this.beforeRender(context);
-
-            if (cgsgExist(this.onBeforeRender))
-                this.onBeforeRender({context: context});
+            this.beforeRender(ctx);
 
             if (this.globalAlpha > 0) {
-                context.globalAlpha = this.globalAlpha;
+                ctx.globalAlpha = this.globalAlpha;
 
                 if (this._isPrecomputed) {
                     //render the pre-rendered canvas
-                    context.drawImage(this._tmpCanvas, 0, 0);
+                    ctx.drawImage(this._tmpCanvas, 0, 0);
                 }
                 else {
-                    this._applyShadow();
-                    this.render(context);
+                    this._applyShadow(ctx);
+                    this.render(ctx);
                 }
             }
 
-            if (cgsgExist(this.onAfterRender))
-                this.onAfterRender({context: context});
+
+            var endEvt = new CGSGEvent(this, {context : ctx});
 
             //restore state
-            this.afterRender(context);
+            this.afterRender(endEvt.data.context);
+
+            if (cgsgExist(this.onAfterRender)) {
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_AFTER_RENDER, endEvt);
+                ctx = endEvt.data.context;
+                //this.onAfterRender({context: context});
+            }
+
         },
 
         /**
@@ -1907,20 +1923,17 @@ var CGSGNode = CGSGObject.extend(
 		 * @return {Boolean} true if this node is colliding one of the other children of its parent node
 		 */
 		isCollidingABrother: function (threshold) {
-			var brother = null;
             var retval = false;
 
-            //for (var n = 0; n < this._parentNode.children.length; n++) {
             cgsgIterate(this._parentNode.children, (function(i, brother) {
 				if (brother !== this && this.isColliding(brother, threshold)) {
 					retval = true;
 
-                    return false; // break the loop
+                    return retval; // break the loop
 				}
             }).bind(this));
-			//}
 
-			return false;
+			return retval;
 		},
 
 		/*
@@ -1963,7 +1976,8 @@ var CGSGNode = CGSGObject.extend(
 		 */
 		copy: function (node) {
 			if (node === null || node === undefined) {
-				node = new CGSGNode(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
+				node = new CGSGNode(this.position.x, this.position.y);
+                node.resizeTo(this.dimension.width, this.dimension.height);
 			}
 			node.classType = this.classType;
 			node.name = this.name;

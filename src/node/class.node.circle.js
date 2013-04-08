@@ -45,7 +45,8 @@ var CGSGNodeCircle = CGSGNode.extend(
             this.radius = radius;
             this._center = new CGSGPosition(centerX, centerY);
 
-            this._super(0, 0, radius * 2.0, radius * 2.0);
+            this._super(0, 0);
+            this.resizeTo(radius * 2.0, radius * 2.0);
 
             this.isProportionalResizeOnly = true;
 

@@ -55,7 +55,7 @@ var CGMain = CGSGView.extend(
         },
 
         createScene:function () {
-            this.rootNode = new CGSGNode(0, 0, 0, 0);
+            this.rootNode = new CGSGNode(0, 0);
             CGSG.sceneGraph.addNode(this.rootNode, null);
 
             this.listSquares = [];
@@ -92,18 +92,16 @@ var CGMain = CGSGView.extend(
                 delay = (NB_VERTICAL_SLIDE - sq.y) * (1 + Math.random()*2);
 
                 //add an animation on y position
-                CGSG.sceneGraph.animate(sq.sq, "position.y", 5 + Math.random() * 5,
+                CGSG.animationManager.animate(sq.sq, "position.y", 5 + Math.random() * 5,
                     sq.sq.position.y,
                     floor - Math.random() * r * 20,
-                    "linear",
                     delay,
                     true);
 
                 //add an animation on rotation angle
-                CGSG.sceneGraph.animate(sq.sq, "rotation.angle", 5 + Math.random() * 5,
+                CGSG.animationManager.animate(sq.sq, "rotation.angle", 5 + Math.random() * 5,
                     0,
                     200 + Math.random() * 360,
-                    "linear",
                     delay,
                     true);
             }

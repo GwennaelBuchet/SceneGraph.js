@@ -53,8 +53,8 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function () {
-			//first create a root node with an arbitrary size and position
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			//first create a root node with an arbitrary position
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
@@ -93,7 +93,7 @@ var CGMain = CGSGView.extend(
             this.greenSquareNode.isCollisionManaged = true;
 
 			//the log text
-			this.logNode = new CGSGNodeText(160, 10, "Collision : false");
+			this.logNode = new CGSGNodeText(160, 10, "Collision between green and blue : false");
 			this.rootNode.addChild(this.logNode);
 
 			//detect collision each frame
@@ -119,17 +119,18 @@ var CGMain = CGSGView.extend(
 			 * @param delay Integer. Delay before start the animation, in frames
 			 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
 			 *
-			 * @example CGSG.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
+			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
-			CGSG.sceneGraph.animate(this.redSquareNode, "position.x", 80, 0, 500, "linear", 0, true);
+			var timeline = CGSG.animationManager.animate(this.redSquareNode, "position.x", 80, 0, 500, 0, true);
 
-			CGSG.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationStart = function (event) {
+            //timeline = CGSG.animationManager.getTimeline(this.redSquareNode, "position.x");
+            timeline.onAnimationStart = function (event) {
 				console.log("animation started");
 			};
-			CGSG.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationEnd = function (event) {
+            timeline.onAnimationEnd = function (event) {
 				console.log("animation ended");
 			};
-			CGSG.sceneGraph.getTimeline(this.redSquareNode, "position.x").onAnimationStart = function (event) {
+            timeline.onAnimationStart = function (event) {
 				console.log("animation started");
 			};
 		},
@@ -140,7 +141,7 @@ var CGMain = CGSGView.extend(
 
 			//var isColliding = this.redSquareNode.isColliding(this.blueSquareNode, 0);
 			var isColliding = this.greenSquareNode.isColliding(this.blueSquareNode, 0);
-			this.logNode.setText("Collision : " + isColliding);
+			this.logNode.setText("Collision between green and blue : " + isColliding);
 		}
 
 	}

@@ -175,7 +175,8 @@ var CGSGParticle = CGSGObject.extend(
 var CGSGParticleEmitter = CGSGNode.extend(
 	{
 		initialize : function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
-			this._super(region.position.x, region.position.y, region.dimension.width, region.dimension.height);
+			this._super(region.position.x, region.position.y);
+            this.resizeTo(region.dimension.width, region.dimension.height);
 
 			/**
 			 * @property classType
@@ -468,7 +469,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 var CGSGParticleSystem = CGSGNode.extend(
 	{
 		initialize : function (x, y) {
-			this._super(x, y, 1, 1);
+			this._super(x, y);
 
 			/**
 			 * @property classType

@@ -41,8 +41,8 @@
 var CGSGMask = CGSGObject.extend(
     {
         initialize: function() {
-            this._prepareEvent = cgsgEventTypes.ON_BEGIN_RENDER;
-            this._finalizeEvent = cgsgEventTypes.ON_FINISH_RENDER;
+            this._prepareEvent = cgsgEventTypes.ON_BEFORE_RENDER;
+            this._finalizeEvent = cgsgEventTypes.ON_AFTER_RENDER;
 
             this._keyEvents = new CGSGMap();
             this._bindEventAdapter = this._eventAdapter.bind(this);

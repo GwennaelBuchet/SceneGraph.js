@@ -55,7 +55,7 @@ var CGMain = CGSGView.extend(
 
 			//create a first root node.
 			//that's not mandatory, we could use the first sphere as the root node
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//then create 2 sprites with the same image : a turning sphere

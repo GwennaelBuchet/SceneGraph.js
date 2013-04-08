@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\animation\class.particles.js - cgSceneGraph</title>
+    <title>src\node\class.particles.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -34,6 +34,8 @@
                 <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
@@ -182,7 +184,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\animation\class.particles.js</h1>
+                        <h1 class="file-heading">File: src\node\class.particles.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -363,7 +365,8 @@ var CGSGParticle = CGSGObject.extend(
 var CGSGParticleEmitter = CGSGNode.extend(
 	{
 		initialize : function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
-			this._super(region.position.x, region.position.y, region.dimension.width, region.dimension.height);
+			this._super(region.position.x, region.position.y);
+            this.resizeTo(region.dimension.width, region.dimension.height);
 
 			&#x2F;**
 			 * @property classType
@@ -656,7 +659,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 var CGSGParticleSystem = CGSGNode.extend(
 	{
 		initialize : function (x, y) {
-			this._super(x, y, 1, 1);
+			this._super(x, y);
 
 			&#x2F;**
 			 * @property classType

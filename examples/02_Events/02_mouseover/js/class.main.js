@@ -54,8 +54,8 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function () {
-			//first create a root node with an arbitrary size and position
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			//first create a root node with an arbitrary position
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			this.textNode = new CGSGNodeText(40, 10, "Event on : (nothing)");
@@ -98,17 +98,17 @@ var CGMain = CGSGView.extend(
 				square.onMouseEnter = function (event) {
 					that.textNode.setText("Enter on : " + event.data.node.name);
 					//some cool animation effect
-					that.sceneGraph.animate(event.data.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
-					that.sceneGraph.animate(event.data.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
-					that.sceneGraph.animate(event.data.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
+					CGSG.animationManager.animate(event.data.node, "globalAlpha", 10, 0.5, 1.0, 0, true);
+                    CGSG.animationManager.animate(event.data.node, "scale.x", 10, 1.0, 1.1, 0, true);
+                    CGSG.animationManager.animate(event.data.node, "scale.y", 10, 1.0, 1.1, 0, true);
 				};
 				//initial scale + without shadow
 				square.onMouseOut = function (event) {
 					that.textNode.setText("Out of : " + event.data.node.name);
 					//some cool animation effect
-					that.sceneGraph.animate(event.data.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
-					that.sceneGraph.animate(event.data.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
-					that.sceneGraph.animate(event.data.node, "scale.y", 10, 1.1, 1.0, "linear", 0, true);
+                    CGSG.animationManager.animate(event.data.node, "globalAlpha", 10, 1.0, 0.5, 0, true);
+                    CGSG.animationManager.animate(event.data.node, "scale.x", 10, 1.1, 1.0, 0, true);
+                    CGSG.animationManager.animate(event.data.node, "scale.y", 10, 1.1, 1.0, 0, true);
 				};
 			}
 

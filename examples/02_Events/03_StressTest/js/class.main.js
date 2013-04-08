@@ -45,8 +45,8 @@ var CGMain = CGSGView.extend(
          *
          */
         createScene:function () {
-            //first create a root node with an arbitrary size and position
-            this.rootNode = new CGSGNode(0, 0, 500, 500);
+            //first create a root node with an arbitrary position
+            this.rootNode = new CGSGNode(0, 0);
             CGSG.sceneGraph.addNode(this.rootNode, null);
 
             this.textNode = new CGSGNodeText(40, 10, "Over on : (nothing)");
@@ -55,8 +55,7 @@ var CGMain = CGSGView.extend(
             this.rootNode.addChild(this.textNode);
 
             this.img = new Image();
-            var bindOnImageLoaded = this.onImageLoaded.bind(this);
-            this.img.onload = bindOnImageLoaded;
+            this.img.onload = this.onImageLoaded.bind(this);
             this.img.src = "images/board.png";
         },
 
@@ -106,9 +105,9 @@ var CGMain = CGSGView.extend(
 	                node.globalAlpha = 1.0;
 	                node.scaleTo(1.1, 1.1, false);
                     //some cool animation effect
-                    //that.sceneGraph.animate(event.node, "globalAlpha", 10, 0.5, 1.0, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.x", 10, 1.0, 1.1, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.y", 10, 1.0, 1.1, "linear", 0, true);
+                    //CGSG.animationManager.animate(event.node, "globalAlpha", 10, 0.5, 1.0, 0, true);
+                    //CGSG.animationManager.animate(event.node, "scale.x", 10, 1.0, 1.1, 0, true);
+                    //CGSG.animationManager.animate(event.node, "scale.y", 10, 1.0, 1.1, 0, true);
                 };
                 //initial scale + without shadow
                 imgNode.onMouseOut = function (event) {
@@ -118,9 +117,9 @@ var CGMain = CGSGView.extend(
 	                node.globalAlpha = 0.5;
 	                node.scaleTo(1.0, 1.0, false);
                     //some cool animation effect
-                    //that.sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.5, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.x", 10, 1.1, 1.0, "linear", 0, true);
-                    //that.sceneGraph.animate(event.node, "scale.y", 10, 1.1, 1.0, "linear", 0, true);
+                    //CGSG.animationManager.animate(event.node, "globalAlpha", 10, 1.0, 0.5, 0, true);
+                    //CGSG.animationManager.animate(event.node, "scale.x", 10, 1.1, 1.0, 0, true);
+                    //CGSG.animationManager.animate(event.node, "scale.y", 10, 1.1, 1.0, 0, true);
                 };
             }
 

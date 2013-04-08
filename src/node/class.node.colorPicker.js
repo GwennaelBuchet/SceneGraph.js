@@ -37,7 +37,8 @@ var CGSG_COLORPICKER_HEIGHT = 384;
 var CGSGNodeColorPicker = CGSGNode.extend(
     {
         initialize: function (x, y) {
-            this._super(x, y, CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
+            this._super(x, y);
+            this.resizeTo(CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
 
             /**
              * @property _imgData

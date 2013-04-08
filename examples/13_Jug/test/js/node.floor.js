@@ -4,11 +4,11 @@ var FloorNode = CGSGNodeImage.extend({
 
         this.isTraversable = false;
 
-        this.onLoad = this.onLoadHandler.bind(this);
+        this.onLoadEnd = this.onLoadEndHandler.bind(this);
     },
 
-    onLoadHandler:function(event) {
+    onLoadEndHandler:function(event) {
         this.translateTo(0, CGSG.canvas.height - this.getHeight());
-        CGSG.animationManager
+        //CGSG.animationManager.animate(this, "position.x", 3000, 0, -2000, 0, false);
     }
 });

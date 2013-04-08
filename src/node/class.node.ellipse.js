@@ -42,7 +42,8 @@
 var CGSGNodeEllipse = CGSGNode.extend(
     {
         initialize : function (x, y, width, height) {
-            this._super(x, y, width, height);
+            this._super(x, y)
+            this.resizeTo(width, height);
 
             /**
              * Color  to fill the ellipse

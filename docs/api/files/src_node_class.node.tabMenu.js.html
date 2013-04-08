@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -227,7 +229,8 @@ var CGSGNodeTabMenu = CGSGNode.extend(
     {
         initialize:function (x, y, w) {
             &#x2F;&#x2F;call the constructor of CGSGNode
-            this._super(x, y, w, CGSGTABHEIGHT);
+            this._super(x, y);
+            this.resizeTo(w, CGSGTABHEIGHT);
 
             &#x2F;**
              * Define the class type.
@@ -239,7 +242,8 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 
             this._buttonRadius = 4;
 
-            this._tabsContainer = new CGSGNode(0, 0, w, 0);
+            this._tabsContainer = new CGSGNode(0, 0);
+            this._tabsContainer.resizeTo(w, 0);
             this._tabsContainer.color = &quot;#A0A0A0&quot;;
             this._tabsContainer.lineWidth = 0;
             this.addChild(this._tabsContainer);
@@ -258,7 +262,8 @@ var CGSGNodeTabMenu = CGSGNode.extend(
             this.hideUnderline.lineWidth = 0;
             this.addChild(this.hideUnderline);
 
-            this._tabsBaseline = new CGSGNode(0, CGSGTABHEIGHT - this._buttonRadius + 1, w, 0);
+            this._tabsBaseline = new CGSGNode(0, CGSGTABHEIGHT - this._buttonRadius + 1);
+            this._tabsBaseline.resizeTo(w, 0);
             this.addChild(this._tabsBaseline);
 
             &#x2F;**

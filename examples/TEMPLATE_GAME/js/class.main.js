@@ -77,7 +77,7 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function() {
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode);
 
 			GAME_STATE.LOADING.instance = new StateLoading(this.context);
@@ -122,16 +122,16 @@ var CGMain = CGSGView.extend(
 		},
 
 		onKeyDown : function(event) {
-			this.gameState.instance.onKeyDown(event);
-			//call the parent handler
-			return this.onKeyDownHandler(event);
-		},
+        this.gameState.instance.onKeyDown(event);
+        //call the parent handler
+        return this.onKeyDownHandler(event);
+    },
 
-		onKeyUp : function(event) {
-			this.gameState.instance.onKeyUp(event);
-			//call the parent handler
-			this.onKeyUpHandler(event);
-		}
+        onKeyUp : function(event) {
+            this.gameState.instance.onKeyUp(event);
+            //call the parent handler
+            this.onKeyUpHandler(event);
+        }
 
 	}
 );

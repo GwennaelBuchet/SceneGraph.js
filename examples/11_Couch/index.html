@@ -31,20 +31,16 @@
 
 <script type="text/javascript">
 
-    function sleep(millis) {
-        var startTime = new Date().getTime();
-        while (new Date().getTime() < startTime + millis);
-    }
 
-    //window.onload = function () {
-        //sleep(4000);
+
+    window.onload = function () {
         var canvasScene = document.getElementById("scene");
         var game = new App(canvasScene);
-    //}
+    }
 </script>
 
 
-<script type="text/javascript" src="js/ext/cgscenegraph_2.0.0-SNAPSHOT.min.js"></script>
+<script type="text/javascript" src="../../min/cgscenegraph_2.0.0-SNAPSHOT.min.js"></script>
 
 <script type="text/javascript" src="js/couch_1.min.js"></script>
 </body>

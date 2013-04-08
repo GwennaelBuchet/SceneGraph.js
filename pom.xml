@@ -82,6 +82,10 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>event/class.event.js</include>
                                 <include>event/class.eventmanager.js</include>
 
+                                <include>animation/class.anim.key.js</include>
+                                <include>animation/class.anim.timeline.js</include>
+                                <include>animation/class.animmanager.js</include>
+
                                 <include>collision/enum.collision.method.js</include>
                                 <include>collision/class.collision.tester.region.js</include>
                                 <include>collision/class.collision.tester.ghost.ondemand.js</include>
@@ -97,8 +101,6 @@ Any failure to comply with the above shall automatically terminate the license a
 
                                 <include>utils/math/math.js</include>
                                 <include>utils/class.handlebox.js</include>
-                                <include>animation/class.anim.key.js</include>
-                                <include>animation/class.anim.timeline.js</include>
                                 <include>node/class.node.js</include>
 
                                 <include>node/class.node.colorPicker.js</include>
@@ -111,7 +113,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>node/class.node.image.js</include>
                                 <include>node/class.node.animatedSprite.js</include>
                                 <include>node/class.node.button.js</include>
-                                <include>animation/class.particles.js</include>
+                                <include>node/class.particles.js</include>
 
                                 <include>class.scenegraph.js</include>
                                 <include>class.view.js</include>

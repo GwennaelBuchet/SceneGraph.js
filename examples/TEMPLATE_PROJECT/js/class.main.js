@@ -27,7 +27,8 @@
  *
  * Purpose :
  * Template project
- * */var CGMain = CGSGView.extend(
+ * */
+var CGMain = CGSGView.extend(
 	{
 		initialize : function (canvas) {
 

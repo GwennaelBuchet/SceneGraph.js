@@ -40,7 +40,9 @@
 var CGSGNodeLogger = CGSGNode.extend(
     {
         initialize : function (x, y) {
-            this._super(x, y, 100, 100);
+            this._super(x, y);
+
+            this.resizeTo(100, 100);
 
             ///// @public //////
             this.isTraversable = false;

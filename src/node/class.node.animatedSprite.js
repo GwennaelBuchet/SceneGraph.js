@@ -39,7 +39,7 @@
 var CGSGNodeSprite = CGSGNode.extend(
     {
         initialize : function (x, y, urlImage) {
-            this._super(x, y, 1, 1);
+            this._super(x, y);
 
             /**
              * @property classType
@@ -400,6 +400,9 @@ var CGSGNodeSprite = CGSGNode.extend(
             if (this.listAnimations.length == 1) {
                 this.currentAnimation = animation;
             }
+
+            this.dimension.width = width;
+            this.dimension.height = height;
         },
 
         /**
@@ -419,6 +422,8 @@ var CGSGNodeSprite = CGSGNode.extend(
             for (var i = 0; i < this.listAnimations.length; i++) {
                 if (this.listAnimations[i].name === animationName) {
                     this.currentAnimation = this.listAnimations[i];
+                    this.dimension.width = this.currentAnimation.width;
+                    this.dimension.height = this.currentAnimation.height;
                     this.reset();
                     this._numberOfLoops = loop;
                     this._isPlaying = true;

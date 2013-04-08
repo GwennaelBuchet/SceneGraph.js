@@ -57,8 +57,8 @@ var CGMain = CGSGView.extend(
          *
          */
         createScene:function () {
-            //first create a root node with an arbitrary size and position
-            this.rootNode = new CGSGNode(0, 0, 1, 1);
+            //first create a root node with an arbitrary position
+            this.rootNode = new CGSGNode(0, 0);
             CGSG.sceneGraph.addNode(this.rootNode, null);
 
             //add a text node ("click me") with a onClick event
@@ -95,9 +95,9 @@ var CGMain = CGSGView.extend(
             //create arbitrary animation on squareNode1
             this.addAnimation(this.squareNode1);
             //save animation values into this.animationValues
-            this.animationValues = CGSG.sceneGraph.getTimeline(this.squareNode1, "position.x").exportValues();
+            this.animationValues = CGSG.animationManager.getTimeline(this.squareNode1, "position.x").exportValues();
             //no need to keep animation values or keys in memory. free them
-            CGSG.sceneGraph.getTimeline(this.squareNode1, "position.x").removeAll();
+            CGSG.animationManager.getTimeline(this.squareNode1, "position.x").removeAll();
         },
 
         /**
@@ -105,11 +105,11 @@ var CGMain = CGSGView.extend(
          * @param node
          */
         addAnimation : function(node) {
-            CGSG.sceneGraph.addAnimationKey(node, "position.x", 0, 30, "linear", false); //don't precompute
-            CGSG.sceneGraph.addAnimationKey(node, "position.x", 30, 300, "linear", true); //precompute
+            CGSG.animationManager.addAnimationKey(node, "position.x", 30, 0, false); //don't precompute
+            CGSG.animationManager.addAnimationKey(node, "position.x", 300, 50, true); //precompute
 
             //we cal also use the helper method which add 2 animation keys ('from' and 'to'):
-            //CGSG.sceneGraph.animate(this.squareNode1, "position.x", 30, 100, 100, "linear", true);
+            //CGSG.animationManager.animate(this.squareNode1, "position.x", 30, 300, 50, true);
         },
 
         /**
@@ -117,9 +117,9 @@ var CGMain = CGSGView.extend(
          */
         moveSquares:function () {
             //import values into the timeline, starting to the current frame (or later if you need)
-            CGSG.sceneGraph.getTimeline(this.squareNode1, "position.x").importValues(this.animationValues, CGSG.currentFrame);
-            CGSG.sceneGraph.getTimeline(this.squareNode2, "position.x").importValues(this.animationValues, CGSG.currentFrame);
-            CGSG.sceneGraph.getTimeline(this.squareNode3, "position.x").importValues(this.animationValues, CGSG.currentFrame);
+            CGSG.animationManager.getTimeline(this.squareNode1, "position.x").importValues(this.animationValues, CGSG.currentFrame);
+            CGSG.animationManager.getTimeline(this.squareNode2, "position.x").importValues(this.animationValues, CGSG.currentFrame);
+            CGSG.animationManager.getTimeline(this.squareNode3, "position.x").importValues(this.animationValues, CGSG.currentFrame);
         }
 
     }

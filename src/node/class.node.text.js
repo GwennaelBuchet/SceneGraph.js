@@ -62,7 +62,7 @@ var CGSGWrapMode = {
 var CGSGNodeText = CGSGNode.extend(
     {
         initialize: function (x, y, text, mustRecomputeDimension) {
-            this._super(x, y, -1, -1);
+            this._super(x, y);
 
             /**
              * @property _text

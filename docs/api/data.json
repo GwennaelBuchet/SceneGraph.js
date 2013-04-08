@@ -27,15 +27,11 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\animation\\class.particles.js": {
-            "name": "src\\animation\\class.particles.js",
-            "modules": {
-                "ParticleSystem": 1
-            },
+        "src\\animation\\class.animmanager.js": {
+            "name": "src\\animation\\class.animmanager.js",
+            "modules": {},
             "classes": {
-                "CGSGParticle": 1,
-                "CGSGParticleEmitter": 1,
-                "CGSGParticleSystem": 1
+                "CGSGAnimationManager": 1
             },
             "fors": {},
             "namespaces": {}
@@ -265,6 +261,19 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\node\\class.particles.js": {
+            "name": "src\\node\\class.particles.js",
+            "modules": {
+                "ParticleSystem": 1
+            },
+            "classes": {
+                "CGSGParticle": 1,
+                "CGSGParticleEmitter": 1,
+                "CGSGParticleSystem": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\utils\\math\\class.vector2D.js": {
             "name": "src\\utils\\math\\class.vector2D.js",
             "modules": {},
@@ -404,6 +413,7 @@
             "classes": {
                 "CGSGAnimationKey": 1,
                 "CGSGTimeline": 1,
+                "CGSGAnimationManager": 1,
                 "CGSGParticle": 1,
                 "CGSGParticleEmitter": 1,
                 "CGSGParticleSystem": 1
@@ -411,8 +421,8 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src\\animation\\class.particles.js",
-            "line": 459,
+            "file": "src\\node\\class.particles.js",
+            "line": 460,
             "extends": "{Object}",
             "is_constructor": 1,
             "params": [
@@ -429,33 +439,6 @@
             ],
             "type": "{CGSGAnimationKey}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
-        },
-        "ParticleSystem": {
-            "name": "ParticleSystem",
-            "submodules": {},
-            "classes": {
-                "CGSGParticle": 1,
-                "CGSGParticleEmitter": 1,
-                "CGSGParticleSystem": 1
-            },
-            "fors": {},
-            "is_submodule": 1,
-            "namespaces": {},
-            "module": "Animation",
-            "namespace": "",
-            "file": "src\\animation\\class.particles.js",
-            "line": 459,
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "node",
-                    "description": "",
-                    "type": "CGSGNode"
-                }
-            ],
-            "type": "{CGSGParticle}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
-            "description": "A particle emitter for the cgSceneGraph Particle System"
         },
         "Collision": {
             "name": "Collision",
@@ -510,6 +493,33 @@
             "description": "Base class for a Node in the Scene Graph.\nEach node encapsulates its position, dimension, scale and rotation, ...",
             "extends": "CGSGObject",
             "itemtype": "main"
+        },
+        "ParticleSystem": {
+            "name": "ParticleSystem",
+            "submodules": {},
+            "classes": {
+                "CGSGParticle": 1,
+                "CGSGParticleEmitter": 1,
+                "CGSGParticleSystem": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Animation",
+            "namespace": "",
+            "file": "src\\node\\class.particles.js",
+            "line": 460,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "node",
+                    "description": "",
+                    "type": "CGSGNode"
+                }
+            ],
+            "type": "{CGSGParticle}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "description": "A particle emitter for the cgSceneGraph Particle System"
         },
         "Math": {
             "name": "Math",
@@ -615,98 +625,18 @@
             "file": "src\\animation\\class.anim.timeline.js",
             "line": 31
         },
-        "CGSGParticle": {
-            "name": "CGSGParticle",
-            "shortname": "CGSGParticle",
+        "CGSGAnimationManager": {
+            "name": "CGSGAnimationManager",
+            "shortname": "CGSGAnimationManager",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "Animation",
-            "submodule": "ParticleSystem",
             "namespace": "",
-            "file": "src\\animation\\class.particles.js",
-            "line": 31
-        },
-        "CGSGParticleEmitter": {
-            "name": "CGSGParticleEmitter",
-            "shortname": "CGSGParticleEmitter",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Animation",
-            "submodule": "ParticleSystem",
-            "namespace": "",
-            "file": "src\\animation\\class.particles.js",
-            "line": 157,
-            "description": "A particle emitter for the cgSceneGraph Particle System",
-            "extends": "{CGSGNode}",
-            "is_constructor": 1,
-            "params": [
-                {
-                    "name": "node",
-                    "description": "",
-                    "type": "CGSGNode"
-                },
-                {
-                    "name": "region",
-                    "description": "",
-                    "type": "CGSGRegion"
-                },
-                {
-                    "name": "nbParticlesMax",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "velocity",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "angle",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "speed",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "speedThreshold",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "outflow",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "type": "{CGSGParticleEmitter}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
-        },
-        "CGSGParticleSystem": {
-            "name": "CGSGParticleSystem",
-            "shortname": "CGSGParticleSystem",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Animation",
-            "submodule": "ParticleSystem",
-            "namespace": "",
-            "file": "src\\animation\\class.particles.js",
-            "line": 459,
-            "description": "A particle System object.",
-            "extends": "{CGSGNode}",
-            "type": "{CGSGParticleSystem}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "file": "src\\animation\\class.animmanager.js",
+            "line": 29
         },
         "CGSGCollisionManager": {
             "name": "CGSGCollisionManager",
@@ -1172,16 +1102,6 @@
                     "name": "y",
                     "description": "Relative position on Y",
                     "type": "Number"
-                },
-                {
-                    "name": "width",
-                    "description": "Relative dimension",
-                    "type": "Number"
-                },
-                {
-                    "name": "height",
-                    "description": "Relative Dimension",
-                    "type": "Number"
                 }
             ],
             "type": "{CGSGNode}",
@@ -1373,6 +1293,99 @@
                 }
             ],
             "type": "{CGSGNodeWebview}"
+        },
+        "CGSGParticle": {
+            "name": "CGSGParticle",
+            "shortname": "CGSGParticle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "submodule": "ParticleSystem",
+            "namespace": "",
+            "file": "src\\node\\class.particles.js",
+            "line": 31
+        },
+        "CGSGParticleEmitter": {
+            "name": "CGSGParticleEmitter",
+            "shortname": "CGSGParticleEmitter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "submodule": "ParticleSystem",
+            "namespace": "",
+            "file": "src\\node\\class.particles.js",
+            "line": 157,
+            "description": "A particle emitter for the cgSceneGraph Particle System",
+            "extends": "{CGSGNode}",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "node",
+                    "description": "",
+                    "type": "CGSGNode"
+                },
+                {
+                    "name": "region",
+                    "description": "",
+                    "type": "CGSGRegion"
+                },
+                {
+                    "name": "nbParticlesMax",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "velocity",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "angle",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "speed",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "speedThreshold",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "outflow",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGParticleEmitter}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
+        "CGSGParticleSystem": {
+            "name": "CGSGParticleSystem",
+            "shortname": "CGSGParticleSystem",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "submodule": "ParticleSystem",
+            "namespace": "",
+            "file": "src\\node\\class.particles.js",
+            "line": 460,
+            "description": "A particle System object.",
+            "extends": "{CGSGNode}",
+            "type": "{CGSGParticleSystem}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
         "CGSGVector2D": {
             "name": "CGSGVector2D",
@@ -2124,716 +2137,147 @@
             "module": "Animation"
         },
         {
-            "file": "src\\animation\\class.particles.js",
-            "line": 43,
+            "file": "src\\animation\\class.animmanager.js",
+            "line": 39,
+            "description": "List of the timelines for the animations.\nA timeline consists of a list of animation keys for 1 attribute of 1 node",
             "itemtype": "property",
-            "name": "node",
-            "type": "{CGSGNode}",
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 53,
-            "description": "A void* property to let the developer store whatever he needs (new properties, ...)",
-            "itemtype": "property",
-            "name": "userdata",
-            "type": "{*}",
-            "default": "null",
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 64,
-            "description": "Initialize attributes of this particle",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "init",
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 85,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "initPosition",
-            "params": [
-                {
-                    "name": "x",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "y",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 97,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "initVelocity",
-            "params": [
-                {
-                    "name": "velocity",
-                    "description": "",
-                    "type": "CGSGVector2D"
-                }
-            ],
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 107,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "initSpeedThreshold",
-            "params": [
-                {
-                    "name": "st",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 116,
-            "description": "update the particle position with an Euler integration\nTODO : externalize the process to choose between RK4 and Euler integration",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "updatePosition",
-            "params": [
-                {
-                    "name": "deltaTime",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "acceleration",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "*"
-            },
-            "class": "CGSGParticle",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 180,
-            "itemtype": "property",
-            "name": "classType",
-            "type": "{String}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 187,
-            "description": "the region from where the particles are emitted",
-            "itemtype": "property",
-            "name": "region",
-            "type": "{CGSGRegion}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 193,
-            "description": "number max of particles out of the emitter on 1 frame",
-            "itemtype": "property",
-            "name": "nbParticlesMax",
-            "type": "{Number}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 199,
-            "itemtype": "property",
-            "name": "velocity",
-            "type": "{CGSGVector2D}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 207,
-            "description": "angle range of emission. a particle is emitted in the this.direction vector + or - this.angle/2 angle.",
-            "itemtype": "property",
-            "name": "angle",
-            "type": "{Number}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 217,
-            "description": "speed of a particle",
-            "itemtype": "property",
-            "name": "speed",
-            "type": "{Number}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 226,
-            "description": "threshold to randomize and add to the speed of a particle",
-            "itemtype": "property",
-            "name": "speedThreshold",
-            "type": "{Number}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 236,
-            "itemtype": "property",
-            "name": "outflow",
-            "type": "{Number}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 253,
-            "description": "Gravity Force added by default with the addForce method",
-            "itemtype": "property",
-            "name": "gravity",
-            "type": "{Object}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 260,
-            "description": "Callback on end of update for 1 particle",
-            "itemtype": "property",
-            "name": "onUpdateParticleEnd",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 267,
-            "description": "Callback when reinit for 1 particle",
-            "itemtype": "property",
-            "name": "onInitParticle",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 274,
-            "description": "Callback when reinit all particles is done",
-            "itemtype": "property",
-            "name": "onInitParticlesEnd",
-            "default": "null",
-            "type": "{function}",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 283,
-            "description": "start the animation",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "start",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 292,
-            "description": "stop the animation",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "stop",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 301,
-            "description": "reset the animation",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "reset",
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 319,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "render",
-            "params": [
-                {
-                    "name": "context",
-                    "description": ""
-                }
-            ],
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 367,
-            "description": "create a new particle, and add it to the emitter",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_createParticle",
-            "params": [
-                {
-                    "name": "index",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 380,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "updateParticle",
-            "params": [
-                {
-                    "name": "particle",
-                    "description": "",
-                    "type": "CGSGParticle"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Boolean"
-            },
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 400,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "initParticle",
-            "params": [
-                {
-                    "name": "particle",
-                    "description": "",
-                    "type": "CGSGParticle"
-                },
-                {
-                    "name": "index",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 427,
-            "description": "Add a force to the emitter",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "addForce",
-            "params": [
-                {
-                    "name": "vector",
-                    "description": "",
-                    "type": "CGSGVector2D"
-                },
-                {
-                    "name": "ttl",
-                    "description": "time to live of the force",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Object"
-            },
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 441,
-            "description": "Remove a previously added force",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "removeForce",
-            "params": [
-                {
-                    "name": "force",
-                    "description": "",
-                    "type": "Object"
-                }
-            ],
-            "class": "CGSGParticleEmitter",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 473,
-            "itemtype": "property",
-            "name": "classType",
-            "type": "{String}",
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 479,
-            "description": "list of emitters",
-            "itemtype": "property",
-            "name": "emitters",
+            "name": "listTimelines",
             "type": "{Array}",
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
+            "class": "CGSGAnimationManager",
+            "module": "Animation"
         },
         {
-            "file": "src\\animation\\class.particles.js",
-            "line": 485,
-            "description": "list of attractors",
-            "itemtype": "property",
-            "name": "attractors",
-            "type": "{Array}",
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 491,
-            "description": "list of repulsors",
-            "itemtype": "property",
-            "name": "repulsors",
-            "type": "{Array}",
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 508,
-            "description": "Add a force to all emitters",
-            "access": "public",
-            "tagname": "",
+            "file": "src\\animation\\class.animmanager.js",
+            "line": 48,
+            "description": "Add a key",
             "itemtype": "method",
-            "name": "addForce",
-            "params": [
-                {
-                    "name": "vector",
-                    "description": "",
-                    "type": "CGSGVector2D"
-                }
-            ],
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 526,
-            "description": "Create a new emitter and return it",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "addEmitter",
+            "name": "addAnimationKey",
             "params": [
                 {
                     "name": "node",
-                    "description": "",
+                    "description": "handler to the nodes to animate",
                     "type": "CGSGNode"
                 },
                 {
-                    "name": "region",
-                    "description": "",
-                    "type": "CGSGRegion"
+                    "name": "attribute",
+                    "description": "String representing the attribute to animate (\"position.y\", \"rotation.angle\", \"fill\", ...)",
+                    "type": "String"
                 },
                 {
-                    "name": "nbParticlesMax",
-                    "description": "",
+                    "name": "value",
+                    "description": "value for the attribute at the frame",
                     "type": "Number"
                 },
                 {
-                    "name": "velocity",
-                    "description": "",
+                    "name": "frame",
+                    "description": "the date for the key",
                     "type": "Number"
                 },
                 {
-                    "name": "angle",
-                    "description": "",
+                    "name": "precompute",
+                    "description": "Set to true if you want to precompute the animations steps",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "the timeline on which tha the key was added",
+                "type": "CGSGTimeline"
+            },
+            "example": [
+                " this.sceneGraph.addAnimation(imgNode, \"position.x\", 2000, 200, \"linear\", true);"
+            ],
+            "class": "CGSGAnimationManager",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.animmanager.js",
+            "line": 76,
+            "description": "Animate an attribute of a nodes",
+            "itemtype": "method",
+            "name": "animate",
+            "params": [
+                {
+                    "name": "node",
+                    "description": "Handler to the nodes to animate",
+                    "type": "CGSGNode"
+                },
+                {
+                    "name": "attribute",
+                    "description": "String representing the attribute to animate (\"position.y\", \"rotation.angle\", \"fill\", ...)",
+                    "type": "String"
+                },
+                {
+                    "name": "duration",
+                    "description": "Duration of the animation, in frame",
                     "type": "Number"
                 },
                 {
-                    "name": "speed",
-                    "description": "",
+                    "name": "from",
+                    "description": "Start value",
                     "type": "Number"
                 },
                 {
-                    "name": "speedThreshold",
-                    "description": "",
+                    "name": "to",
+                    "description": "End value",
                     "type": "Number"
                 },
                 {
-                    "name": "outflow",
-                    "description": "",
+                    "name": "delay",
+                    "description": "Delay before start the animation, in frames",
                     "type": "Number"
+                },
+                {
+                    "name": "precompute",
+                    "description": "Set to true if you want to precompute the animations steps",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "the timeline on which tha the animation was added",
+                "type": "CGSGTimeline"
+            },
+            "example": [
+                " this.sceneGraph.animate(imgNode, \"position.x\", 700, 0, 200, \"linear\", 0, true);"
+            ],
+            "class": "CGSGAnimationManager",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.animmanager.js",
+            "line": 95,
+            "itemtype": "method",
+            "name": "stillHaveAnimation",
+            "return": {
+                "description": "true if there are still animation key after the current frame",
+                "type": "Boolean"
+            },
+            "class": "CGSGAnimationManager",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.animmanager.js",
+            "line": 115,
+            "description": "Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet",
+            "itemtype": "method",
+            "name": "getTimeline",
+            "params": [
+                {
+                    "name": "node",
+                    "description": "Handle to the nodes",
+                    "type": "CGSGNode"
+                },
+                {
+                    "name": "attribute",
+                    "description": "String. the attribute name",
+                    "type": "String"
                 }
             ],
             "return": {
                 "description": "",
-                "type": "CGSGParticleEmitter"
+                "type": "CGSGTimeline"
             },
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 548,
-            "description": "Remove the emitter passed in parameter",
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "removeEmitter",
-            "params": [
-                {
-                    "name": "emitter",
-                    "description": "",
-                    "type": "CGSGParticleEmitter"
-                }
-            ],
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 559,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "addAttractor",
-            "params": [
-                {
-                    "name": "position",
-                    "description": "",
-                    "type": "CGSGPosition"
-                },
-                {
-                    "name": "strength",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "distance",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Object"
-            },
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 577,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "removeAttractor",
-            "params": [
-                {
-                    "name": "attractor",
-                    "description": "",
-                    "type": "Object"
-                }
-            ],
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 586,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "addRepulsor",
-            "params": [
-                {
-                    "name": "position",
-                    "description": "",
-                    "type": "CGSGPosition"
-                },
-                {
-                    "name": "strength",
-                    "description": "",
-                    "type": "Number"
-                },
-                {
-                    "name": "distance",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Object"
-            },
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 604,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "removeRepulsor",
-            "params": [
-                {
-                    "name": "repulsor",
-                    "description": "",
-                    "type": "Object"
-                }
-            ],
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 613,
-            "description": "override the CGSGNode 'pickNode' method to return null due to performance",
-            "access": "protected",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "pickNode",
-            "params": [
-                {
-                    "name": "mousePosition",
-                    "description": ""
-                },
-                {
-                    "name": "absoluteScale",
-                    "description": ""
-                },
-                {
-                    "name": "ghostContext",
-                    "description": ""
-                },
-                {
-                    "name": "recursively",
-                    "description": ""
-                },
-                {
-                    "name": "condition",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "*"
-            },
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
-        },
-        {
-            "file": "src\\animation\\class.particles.js",
-            "line": 628,
-            "access": "public",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "copy",
-            "todo": [
-                ": TODO fill the method"
-            ],
-            "return": {
-                "description": "",
-                "type": "CGSGParticleSystem"
-            },
-            "class": "CGSGParticleSystem",
-            "module": "Animation",
-            "submodule": "ParticleSystem"
+            "class": "CGSGAnimationManager",
+            "module": "Animation"
         },
         {
             "file": "src\\collision\\class.collision.manager.js",
@@ -3909,7 +3353,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 405,
+            "line": 408,
             "description": "Start an animation",
             "access": "public",
             "tagname": "",
@@ -3936,7 +3380,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 435,
+            "line": 440,
             "description": "Stop the current animation and stay on the current frame",
             "access": "public",
             "tagname": "",
@@ -3947,7 +3391,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 448,
+            "line": 453,
             "description": "return to the first frame of the first loop of the current animation",
             "access": "public",
             "tagname": "",
@@ -3958,7 +3402,7 @@
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
-            "line": 459,
+            "line": 464,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -4699,7 +4143,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 71,
+            "line": 72,
             "itemtype": "method",
             "name": "_resize",
             "access": "private",
@@ -4709,7 +4153,7 @@
         },
         {
             "file": "src\\node\\class.node.circle.js",
-            "line": 106,
+            "line": 107,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -4721,7 +4165,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 42,
+            "line": 43,
             "itemtype": "property",
             "name": "_imgData",
             "type": "{ImageData}",
@@ -4732,7 +4176,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 60,
+            "line": 61,
             "description": "Event fired when the mice cursor move over the color picker. Return a {r, g, b} Object.",
             "itemtype": "property",
             "name": "onOverColor",
@@ -4743,7 +4187,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 67,
+            "line": 68,
             "description": "Event fired when the user click on the color picker. Return a {r, g, b} Object.",
             "itemtype": "property",
             "name": "onClickColor",
@@ -4754,7 +4198,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 75,
+            "line": 76,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -4765,7 +4209,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 86,
+            "line": 87,
             "itemtype": "method",
             "name": "_onMouseOverHandler",
             "params": [
@@ -4782,7 +4226,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 99,
+            "line": 100,
             "itemtype": "method",
             "name": "_onClickHandler",
             "params": [
@@ -4799,7 +4243,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 112,
+            "line": 113,
             "itemtype": "method",
             "name": "getColorAt",
             "params": [
@@ -4818,7 +4262,7 @@
         },
         {
             "file": "src\\node\\class.node.colorPicker.js",
-            "line": 132,
+            "line": 133,
             "description": "Custom rendering. Must be defined to allow the traverser to render this node",
             "itemtype": "method",
             "name": "render",
@@ -4836,7 +4280,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 47,
+            "line": 48,
             "description": "Color  to fill the ellipse",
             "itemtype": "property",
             "name": "color",
@@ -4847,7 +4291,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 54,
+            "line": 55,
             "description": "Color to stroke the ellipse",
             "itemtype": "property",
             "name": "lineColor",
@@ -4858,7 +4302,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 61,
+            "line": 62,
             "description": "Width of the line that stroke the ellipse.\nLet 0 if you don't want to stroke the ellipse.",
             "itemtype": "property",
             "name": "lineWidth",
@@ -4869,7 +4313,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 70,
+            "line": 71,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -4879,7 +4323,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 80,
+            "line": 81,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -4897,7 +4341,7 @@
         },
         {
             "file": "src\\node\\class.node.ellipse.js",
-            "line": 115,
+            "line": 116,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -5259,7 +4703,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 47,
+            "line": 45,
             "description": "The name of this nodes. Should be unique, but no control is done.",
             "itemtype": "property",
             "name": "name",
@@ -5270,7 +4714,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 54,
+            "line": 52,
             "description": "Indicate whether this node is selected or not.\nUse CGSGView::scenegraph.selectNode(nodeToSelect) to select a node",
             "itemtype": "property",
             "name": "isSelected",
@@ -5282,7 +4726,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 63,
+            "line": 61,
             "description": "The type of this class. Must be redefined by inherited classes",
             "itemtype": "property",
             "name": "classType",
@@ -5293,7 +4737,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 71,
+            "line": 69,
             "description": "The 8 handleboxes that will be the resize handles\nthe resize handles will be in this order:\n 0  1  2\n 3     4\n 5  6  7",
             "itemtype": "property",
             "name": "resizeHandles",
@@ -5304,7 +4748,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 83,
+            "line": 81,
             "description": "Level of transparency of the node.",
             "default": "1.0",
             "itemtype": "property",
@@ -5315,7 +4759,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 90,
+            "line": 88,
             "description": "Indicate if the node is visible (and so selectable) or not",
             "itemtype": "property",
             "name": "isVisible",
@@ -5326,7 +4770,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 98,
+            "line": 96,
             "description": "If true, the node will be proportionally resized",
             "itemtype": "property",
             "name": "isProportionalResize",
@@ -5336,7 +4780,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 105,
+            "line": 103,
             "description": "Set to true if the node can't be resized only in height or width",
             "itemtype": "property",
             "name": "isProportionalResizeOnly",
@@ -5347,7 +4791,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 113,
+            "line": 111,
             "description": "Define the method the detection (or \"pick\") method will be used for this node.\nPossible values CGSGPickNodeMethod.REGION and CGSGPickNodeMethod.GHOST.\n\n<ul>\n    <li>REGION : the detection returns true if the mouse cursor is inside the bounding box of the node</li>\n    <li>GHOST : the detection will use the \"renderGhost\" method of the node to achieve a more accurate detection</li>\n</ul>",
             "itemtype": "property",
             "name": "pickNodeMethod",
@@ -5358,7 +4802,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 128,
+            "line": 126,
             "description": "List of the children (empty if this nodes is a leaf)",
             "itemtype": "property",
             "name": "children",
@@ -5369,7 +4813,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 136,
+            "line": 134,
             "description": "The constraint region when moving the node",
             "itemtype": "property",
             "name": "regionConstraint",
@@ -5380,7 +4824,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 144,
+            "line": 142,
             "description": "Pivot point to apply a rotation.\nThe point is a value between [0, 0] and [1, 1].\n[0, 0] is the top left corner of the bounding box and [1, 1] the bottom right corner.",
             "itemtype": "property",
             "name": "rotationCenter",
@@ -5391,7 +4835,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 154,
+            "line": 152,
             "description": "can be fulfilled by the developer to put in whatever he needs",
             "itemtype": "property",
             "name": "userdata",
@@ -5402,7 +4846,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 162,
+            "line": 160,
             "description": "selection attributes\nIf true, this node is clickable and so will be checked by the pickNode function",
             "itemtype": "property",
             "name": "isClickable",
@@ -5413,7 +4857,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 170,
+            "line": 168,
             "description": "If true, this node can be resized by the user. In that case, the dimension property will be affected, not the scale one.",
             "itemtype": "property",
             "name": "isResizable",
@@ -5424,7 +4868,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 177,
+            "line": 175,
             "description": "If true, the node can be dragged by the user",
             "itemtype": "property",
             "name": "isDraggable",
@@ -5435,7 +4879,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 185,
+            "line": 183,
             "description": "If true, the absolute matrix will be recomputed after each movement (and so in animation).\nSet it to false to gain performance if you don't need to keep trace of absolute position (no need to collision, picknode, ...)",
             "itemtype": "property",
             "name": "needToKeepAbsoluteMatrix",
@@ -5446,7 +4890,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 194,
+            "line": 192,
             "description": "Color for the line around this node when selected",
             "itemtype": "property",
             "name": "selectionLineColor",
@@ -5457,7 +4901,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 201,
+            "line": 199,
             "description": "Width for the line around this node when selected",
             "itemtype": "property",
             "name": "selectionLineWidth",
@@ -5468,7 +4912,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 208,
+            "line": 206,
             "description": "Color for the handle boxes around this node when selected",
             "itemtype": "property",
             "name": "selectionHandleSize",
@@ -5479,7 +4923,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 215,
+            "line": 213,
             "description": "Color for the handle boxes around this node when selected",
             "itemtype": "property",
             "name": "selectionHandleColor",
@@ -5490,7 +4934,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 223,
+            "line": 221,
             "description": "Updated by the scene itself. Don't update it manually.\nTrue if the mice is over the node, false otherwise",
             "itemtype": "property",
             "name": "isMouseOver",
@@ -5501,7 +4945,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 231,
+            "line": 229,
             "description": "Updated by the scene itself. Don't update it manually.\nTrue if the node is being moved manually, false otherwise",
             "itemtype": "property",
             "name": "isMoving",
@@ -5512,7 +4956,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 239,
+            "line": 237,
             "description": "Updated by the scene itself. Don't update it manually.\nTrue if the node is being resized manually, false otherwise",
             "itemtype": "property",
             "name": "isResizing",
@@ -5523,7 +4967,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 248,
+            "line": 246,
             "description": "ID for the node. Should be filled by the developer. The framework will never use it.",
             "itemtype": "property",
             "name": "_id",
@@ -5535,7 +4979,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 255,
+            "line": 253,
             "description": "parent of this node",
             "itemtype": "property",
             "name": "_parentNode",
@@ -5547,7 +4991,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 268,
+            "line": 266,
             "itemtype": "property",
             "name": "shadowOffsetX",
             "default": "0",
@@ -5557,7 +5001,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 274,
+            "line": 272,
             "itemtype": "property",
             "name": "shadowOffsetY",
             "default": "0",
@@ -5567,7 +5011,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 280,
+            "line": 278,
             "itemtype": "property",
             "name": "shadowBlur",
             "default": "0",
@@ -5577,7 +5021,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 286,
+            "line": 284,
             "itemtype": "property",
             "name": "shadowColor",
             "default": "\"#333333\"",
@@ -5587,7 +5031,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 293,
+            "line": 291,
             "description": "Relative position of this nodes on the canvas container, relatively to the position of its parent node.\nNever use it to move the node, use translateBy/translateWith/translateTo instead",
             "readonly": "",
             "itemtype": "property",
@@ -5599,7 +5043,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 302,
+            "line": 300,
             "description": "Absolute position of this nodes on the canvas container. Generated value. Don't modify it manually\nNever use it to move the node, use translateBy/translateWith/translateTo instead",
             "readonly": "",
             "itemtype": "property",
@@ -5612,7 +5056,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 311,
+            "line": 309,
             "description": "Dimension of this nodes on the canvas container\nNever use it to resize the node, use resizeBy/resizeWith/resizeTo instead",
             "readonly": "",
             "itemtype": "property",
@@ -5624,7 +5068,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 320,
+            "line": 318,
             "description": "Relative scale of this nodes on the canvas container, relatively to the scale of its parent node.\nNever use it to scale or resize the node, use scaleBy/scaleWith/scaleTo instead",
             "readonly": "",
             "itemtype": "property",
@@ -5636,7 +5080,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 329,
+            "line": 327,
             "description": "Absolute scale of this nodes on the canvas container. Generated value. Don't modify it manually\nNever use it to scale the node, use scaleBy/scaleWith/scaleTo instead",
             "readonly": "",
             "itemtype": "property",
@@ -5649,7 +5093,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 338,
+            "line": 336,
             "description": "Relative rotation of this nodes on the canvas container, relatively to the rotation of its parent node.\nNever use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo instead",
             "readonly": "",
             "itemtype": "property",
@@ -5661,7 +5105,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 347,
+            "line": 345,
             "description": "Absolute rotation of this nodes on the canvas container. Generated value. Don't modify it manually\nNever use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo instead",
             "readonly": "",
             "access": "private",
@@ -5674,7 +5118,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 357,
+            "line": 355,
             "itemtype": "property",
             "name": "_isDrag",
             "type": "{Boolean}",
@@ -5685,7 +5129,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 367,
+            "line": 365,
             "description": "true if this node is traversable (recursively) (ie : by the picknode, a traverser, ...)",
             "itemtype": "property",
             "name": "isTraversable",
@@ -5695,7 +5139,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 374,
+            "line": 372,
             "description": "Indicate if this node is managed by the collision manager",
             "itemtype": "property",
             "name": "isCollisionManaged",
@@ -5705,7 +5149,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 385,
+            "line": 383,
             "description": "Set to true if dimension of the node is not the original one anymore",
             "itemtype": "property",
             "name": "_isDimensionChanged",
@@ -5717,7 +5161,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 400,
+            "line": 398,
             "description": "Callback on mouse over the node",
             "itemtype": "property",
             "name": "onMouseOver",
@@ -5731,7 +5175,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 414,
+            "line": 412,
             "description": "Callback on mouse enter on the node",
             "itemtype": "property",
             "name": "onMouseEnter",
@@ -5745,7 +5189,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 428,
+            "line": 426,
             "description": "Callback on mouse out",
             "itemtype": "property",
             "name": "onMouseOut",
@@ -5759,7 +5203,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 442,
+            "line": 440,
             "description": "Callback on mouse up",
             "itemtype": "property",
             "name": "onMouseUp",
@@ -5773,7 +5217,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 456,
+            "line": 454,
             "description": "Callback on mouse or touch click",
             "itemtype": "property",
             "name": "onClick",
@@ -5787,7 +5231,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 470,
+            "line": 468,
             "description": "Callback on mouse or touch double click",
             "itemtype": "property",
             "name": "onDblClick",
@@ -5801,7 +5245,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 484,
+            "line": 482,
             "description": "Callback on drag this node",
             "itemtype": "property",
             "name": "onDrag",
@@ -5815,7 +5259,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 498,
+            "line": 496,
             "description": "Callback on end of drag this node",
             "itemtype": "property",
             "name": "onDragEnd",
@@ -5829,7 +5273,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 512,
+            "line": 510,
             "description": "Callback on resize this node",
             "itemtype": "property",
             "name": "onResize",
@@ -5843,7 +5287,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 526,
+            "line": 524,
             "description": "Callback on end resize this node",
             "itemtype": "property",
             "name": "onResizeEnd",
@@ -5857,7 +5301,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 540,
+            "line": 538,
             "description": "Callback on select this node",
             "itemtype": "property",
             "name": "onSelect",
@@ -5871,7 +5315,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 555,
+            "line": 553,
             "description": "Callback on deselect this node",
             "itemtype": "property",
             "name": "onDeselect",
@@ -5885,7 +5329,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 570,
+            "line": 568,
             "description": "Callback on when a child is removed",
             "itemtype": "property",
             "name": "onChildRemove",
@@ -5899,7 +5343,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 588,
+            "line": 586,
             "itemtype": "method",
             "name": "moveLocalZIndex",
             "params": [
@@ -5914,7 +5358,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 625,
+            "line": 623,
             "description": "return the relative region of this node",
             "access": "public",
             "tagname": "",
@@ -5929,7 +5373,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 635,
+            "line": 633,
             "description": "return the absolute region of this node",
             "access": "public",
             "tagname": "",
@@ -5944,7 +5388,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 648,
+            "line": 646,
             "description": "Wipes the canvas context",
             "itemtype": "method",
             "name": "_clearContext",
@@ -5969,7 +5413,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 660,
+            "line": 658,
             "description": "Use this method to make the node precomputed or not.\nIf it's precomputed, it won't be redraw every frame, but only when the \"invalidate\" method is called.",
             "itemtype": "method",
             "name": "setPrecomputed",
@@ -5985,7 +5429,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 671,
+            "line": 669,
             "description": "Force the redraw of the node if it's precomputed",
             "itemtype": "method",
             "name": "invalidate",
@@ -5994,7 +5438,23 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 690,
+            "line": 679,
+            "itemtype": "method",
+            "name": "_applyShadow",
+            "params": [
+                {
+                    "name": "ctx",
+                    "description": ""
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGNode",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.js",
+            "line": 693,
             "itemtype": "method",
             "name": "_preCompute",
             "access": "private",
@@ -6004,7 +5464,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 707,
+            "line": 710,
             "description": "internal method of the framework that encapsulate all the work aroud the rendering method",
             "itemtype": "method",
             "name": "doRender",
@@ -6020,7 +5480,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 759,
+            "line": 775,
             "description": "Empty rendering function. Must be overrided by the inherited classes",
             "itemtype": "method",
             "name": "render",
@@ -6036,7 +5496,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 767,
+            "line": 783,
             "description": "internal method of the framework that encapsulate all the work around the ghost rendering method",
             "itemtype": "method",
             "name": "doRenderGhost",
@@ -6052,7 +5512,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 790,
+            "line": 806,
             "description": "Empty ghost rendering function.\nRender here your custom nodes with a single color (CGSG.ghostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "itemtype": "method",
             "name": "renderGhost",
@@ -6067,7 +5527,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 802,
+            "line": 818,
             "description": "Render the selection box and handle boxes around the bounding box of this node when selected",
             "access": "protected",
             "tagname": "",
@@ -6085,7 +5545,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 881,
+            "line": 897,
             "description": "Must be called before to start the rendering of the nodes",
             "access": "protected",
             "tagname": "",
@@ -6103,7 +5563,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 912,
+            "line": 928,
             "description": "Must be called after a render",
             "access": "protected",
             "tagname": "",
@@ -6121,7 +5581,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 941,
+            "line": 957,
             "description": "Must be called before begin to render the nodes in GHOST mode",
             "access": "protected",
             "tagname": "",
@@ -6139,7 +5599,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 956,
+            "line": 972,
             "description": "Must be called before begin to render",
             "access": "protected",
             "tagname": "",
@@ -6157,7 +5617,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 967,
+            "line": 983,
             "description": "Mark this nodes as selected",
             "itemtype": "method",
             "name": "setSelected",
@@ -6173,7 +5633,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 986,
+            "line": 1002,
             "description": "Returns a region which represents the total surface covered by this node and its children too.",
             "access": "protected",
             "tagname": "",
@@ -6188,7 +5648,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 996,
+            "line": 1012,
             "description": "Returns a position which represents the lowest position covered between this node and its children too.",
             "access": "protected",
             "tagname": "",
@@ -6203,7 +5663,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1006,
+            "line": 1022,
             "description": "Returns a position which represents the highest dimension covered between this node and its children too.",
             "access": "protected",
             "tagname": "",
@@ -6218,7 +5678,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1016,
+            "line": 1032,
             "description": "return this if this nodes is under the mice cursor\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -6246,7 +5706,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1054,
+            "line": 1070,
             "description": "return this if this nodes is under the region\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -6274,7 +5734,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1096,
+            "line": 1112,
             "description": "Check if this nodes is under the cursor position.",
             "access": "public",
             "tagname": "",
@@ -6312,7 +5772,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1156,
+            "line": 1172,
             "description": "Return all nodes (Array) in the given region",
             "access": "public",
             "tagname": "",
@@ -6350,7 +5810,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1209,
+            "line": 1225,
             "description": "Return true if this nodes has no child",
             "itemtype": "method",
             "name": "isALeaf",
@@ -6359,7 +5819,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1219,
+            "line": 1235,
             "description": "Replace current relative position by this new one",
             "itemtype": "method",
             "name": "translateTo",
@@ -6385,7 +5845,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1237,
+            "line": 1253,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateWith",
@@ -6411,7 +5871,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1255,
+            "line": 1271,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateBy",
@@ -6437,7 +5897,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1273,
+            "line": 1289,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -6458,7 +5918,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1288,
+            "line": 1304,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTBy",
@@ -6479,7 +5939,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1303,
+            "line": 1319,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -6500,7 +5960,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1318,
+            "line": 1334,
             "description": "Replace current relative relativeScale by this new one",
             "itemtype": "method",
             "name": "scaleTo",
@@ -6526,7 +5986,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1337,
+            "line": 1353,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "scaleBy",
@@ -6552,7 +6012,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1356,
+            "line": 1372,
             "description": "Add to the current relative Scale",
             "itemtype": "method",
             "name": "scaleWith",
@@ -6578,7 +6038,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1375,
+            "line": 1391,
             "description": "Replace current relative relativeRotation by this new oneScale",
             "itemtype": "method",
             "name": "rotateTo",
@@ -6599,7 +6059,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1393,
+            "line": 1409,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "rotateBy",
@@ -6620,7 +6080,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1410,
+            "line": 1426,
             "description": "Add this angle to the current relative relativeRotation",
             "itemtype": "method",
             "name": "rotateWith",
@@ -6641,7 +6101,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1429,
+            "line": 1445,
             "description": "Add a new nodes into this one, at the end of the list",
             "itemtype": "method",
             "name": "addChild",
@@ -6657,7 +6117,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1439,
+            "line": 1455,
             "description": "Add a new nodes at a particular index in the list of children.\nIf the index is too large, the nodes will be inserted at the end of the list",
             "itemtype": "method",
             "name": "addChildAt",
@@ -6678,7 +6138,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1463,
+            "line": 1479,
             "description": "Remove the child passed in parameter and delete it",
             "itemtype": "method",
             "name": "removeChild",
@@ -6703,7 +6163,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1496,
+            "line": 1512,
             "description": "remove all children, delete them and reset the current parameters",
             "itemtype": "method",
             "name": "removeAll",
@@ -6712,7 +6172,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1510,
+            "line": 1526,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -6728,7 +6188,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1521,
+            "line": 1537,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -6744,7 +6204,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1534,
+            "line": 1550,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -6768,7 +6228,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1614,
+            "line": 1630,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -6786,7 +6246,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1624,
+            "line": 1640,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6807,7 +6267,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1653,
+            "line": 1669,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6828,7 +6288,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1677,
+            "line": 1693,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6849,7 +6309,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1702,
+            "line": 1718,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -6867,7 +6327,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1724,
+            "line": 1740,
             "description": "Returns the x position with the lowest value between this node and its children.",
             "itemtype": "method",
             "name": "getMinAbsoluteLeft",
@@ -6880,7 +6340,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1744,
+            "line": 1760,
             "description": "Returns the right border's position with the highest value between this node and its children.",
             "itemtype": "method",
             "name": "getMostAbsoluteRight",
@@ -6893,7 +6353,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1765,
+            "line": 1781,
             "description": "Returns the y position with the lowest value between this node and its children.",
             "itemtype": "method",
             "name": "getMinAbsoluteTop",
@@ -6906,7 +6366,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1785,
+            "line": 1801,
             "description": "Returns the bottom border's position with the highest value between this node and its children.",
             "itemtype": "method",
             "name": "getAbsoluteBottom",
@@ -6919,7 +6379,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1805,
+            "line": 1821,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -6931,7 +6391,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1814,
+            "line": 1830,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -6943,7 +6403,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1822,
+            "line": 1838,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -6955,7 +6415,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1830,
+            "line": 1846,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -6967,7 +6427,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1838,
+            "line": 1854,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -6979,7 +6439,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1846,
+            "line": 1862,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -6991,7 +6451,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1854,
+            "line": 1870,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -7003,7 +6463,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1862,
+            "line": 1878,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -7015,7 +6475,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1870,
+            "line": 1886,
             "description": "Test if this node is colliding the node in parameter. Don't forget to add nodes to CGSGCollisionManager.",
             "access": "public",
             "tagname": "",
@@ -7042,7 +6502,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1883,
+            "line": 1899,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -7063,7 +6523,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1903,
+            "line": 1919,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -7084,7 +6544,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1958,
+            "line": 1971,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -7104,7 +6564,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 2026,
+            "line": 2040,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -7113,7 +6573,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 50,
+            "line": 52,
             "description": "background color of the panel",
             "itemtype": "property",
             "name": "color",
@@ -7124,7 +6584,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 57,
+            "line": 59,
             "description": "Radius of the corners of the panel",
             "itemtype": "property",
             "name": "cornerRadius",
@@ -7135,7 +6595,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 64,
+            "line": 66,
             "description": "Color of the line around the panel",
             "itemtype": "property",
             "name": "lineColor",
@@ -7146,7 +6606,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 71,
+            "line": 73,
             "description": "Width of the line around the panel",
             "itemtype": "property",
             "name": "lineWidth",
@@ -7157,7 +6617,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 78,
+            "line": 80,
             "description": "Transparency level of the panel (between 0 and 1)",
             "itemtype": "property",
             "name": "globalAlpha",
@@ -7168,7 +6628,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 85,
+            "line": 87,
             "description": "Size of the typo",
             "itemtype": "property",
             "name": "textSize",
@@ -7179,7 +6639,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 92,
+            "line": 94,
             "description": "Color for the text",
             "itemtype": "property",
             "name": "textColor",
@@ -7190,7 +6650,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 100,
+            "line": 102,
             "description": "List of attributes displayed in the panel",
             "itemtype": "property",
             "name": "_attributes",
@@ -7202,7 +6662,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 108,
+            "line": 110,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -7211,7 +6671,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 118,
+            "line": 120,
             "description": "Create the panel graph that drw the attributes",
             "itemtype": "method",
             "name": "_createPanel",
@@ -7222,7 +6682,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 127,
+            "line": 129,
             "description": "Set a new couple name/value to render onto the logger.\nIf an attribute already exists with that name, just update the value",
             "itemtype": "method",
             "name": "set",
@@ -7243,7 +6703,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 160,
+            "line": 162,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -7261,7 +6721,7 @@
         },
         {
             "file": "src\\node\\class.node.logger.js",
-            "line": 187,
+            "line": 189,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -7273,7 +6733,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 45,
+            "line": 47,
             "description": "Color  to fill the square",
             "itemtype": "property",
             "name": "color",
@@ -7284,7 +6744,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 52,
+            "line": 54,
             "description": "Color to stroke the square",
             "itemtype": "property",
             "name": "lineColor",
@@ -7295,7 +6755,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 59,
+            "line": 61,
             "description": "Width of the line that stroke the square.\nLet 0 if you don't want to stroke the square.",
             "itemtype": "property",
             "name": "lineWidth",
@@ -7306,7 +6766,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 68,
+            "line": 70,
             "itemtype": "property",
             "name": "classType",
             "readonly": "",
@@ -7316,7 +6776,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 76,
+            "line": 78,
             "description": "Custom rendering",
             "itemtype": "method",
             "name": "render",
@@ -7334,7 +6794,7 @@
         },
         {
             "file": "src\\node\\class.node.square.js",
-            "line": 96,
+            "line": 98,
             "itemtype": "method",
             "name": "copy",
             "return": {
@@ -7346,7 +6806,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 44,
+            "line": 45,
             "description": "Define the class type.\nNot mandatory but very useful, as Javascript does not have a mechanism to manage the type of class",
             "itemtype": "property",
             "name": "classType",
@@ -7356,7 +6816,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 76,
+            "line": 79,
             "description": "Array of the buttons in the menu",
             "itemtype": "property",
             "name": "buttons",
@@ -7366,7 +6826,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 83,
+            "line": 86,
             "description": "Event",
             "itemtype": "property",
             "name": "onTabChanged",
@@ -7377,7 +6837,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 94,
+            "line": 97,
             "itemtype": "method",
             "name": "addButton",
             "params": [
@@ -7401,7 +6861,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 131,
+            "line": 134,
             "description": "Select the tab passed in parameter",
             "itemtype": "method",
             "name": "selectTab",
@@ -7421,7 +6881,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 169,
+            "line": 172,
             "itemtype": "method",
             "name": "selectTabByIndex",
             "params": [
@@ -7440,7 +6900,7 @@
         },
         {
             "file": "src\\node\\class.node.tabMenu.js",
-            "line": 178,
+            "line": 181,
             "description": "Recompute width for all buttons",
             "itemtype": "method",
             "name": "_recomputeButtonsWidth",
@@ -8108,7 +7568,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 68,
+            "line": 70,
             "description": "Size of the area around the webview in LIVE mode",
             "itemtype": "property",
             "name": "threshold",
@@ -8119,7 +7579,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 75,
+            "line": 77,
             "description": "Color of the area around the webview in LIVE mode",
             "itemtype": "property",
             "name": "color",
@@ -8130,7 +7590,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 82,
+            "line": 84,
             "description": "Color of line around the webview in LIVE mode",
             "itemtype": "property",
             "name": "color",
@@ -8141,7 +7601,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 90,
+            "line": 92,
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
@@ -8150,7 +7610,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 96,
+            "line": 98,
             "description": "A HTML tag that contains the web view : an iframe",
             "itemtype": "property",
             "name": "_liveContainer",
@@ -8162,7 +7622,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 104,
+            "line": 106,
             "description": "A CGSGNodeImage rendering the preview of the webpage",
             "itemtype": "property",
             "name": "_previewContainer",
@@ -8174,7 +7634,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 112,
+            "line": 114,
             "description": "URL of the web page",
             "itemtype": "property",
             "name": "_url",
@@ -8186,7 +7646,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 120,
+            "line": 122,
             "description": "URL for the preview mode",
             "itemtype": "property",
             "name": "_previewURL",
@@ -8198,7 +7658,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 134,
+            "line": 136,
             "description": "Initialize and add the live container to the HTML body",
             "itemtype": "method",
             "name": "_initLiveContainer",
@@ -8209,7 +7669,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 147,
+            "line": 149,
             "description": "Initialize and add the CGSGNodeImage",
             "itemtype": "method",
             "name": "_initPreviewContainer",
@@ -8220,7 +7680,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 163,
+            "line": 165,
             "description": "Create an IFRAME tag in the _liveContainer property",
             "itemtype": "method",
             "name": "_createLiveContainer",
@@ -8231,7 +7691,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 180,
+            "line": 182,
             "description": "Create the CGSGNodeImage to contain the preview",
             "itemtype": "method",
             "name": "_createPreviewContainer",
@@ -8242,7 +7702,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 201,
+            "line": 203,
             "itemtype": "method",
             "name": "setURL",
             "params": [
@@ -8257,7 +7717,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 213,
+            "line": 215,
             "description": "Get a String representing the URL",
             "itemtype": "method",
             "name": "getURL",
@@ -8270,7 +7730,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 222,
+            "line": 224,
             "description": "Set the URL of the image for the preview mode (CGSGWEBVIEWMODE.PREVIEW)",
             "itemtype": "method",
             "name": "setPreviewURL",
@@ -8286,7 +7746,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 232,
+            "line": 234,
             "description": "Switch between rendering mode",
             "itemtype": "method",
             "name": "switchMode",
@@ -8302,7 +7762,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 253,
+            "line": 255,
             "itemtype": "method",
             "name": "getCurrentMode",
             "return": {
@@ -8314,7 +7774,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 261,
+            "line": 263,
             "access": "protected",
             "tagname": "",
             "itemtype": "method",
@@ -8324,7 +7784,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 299,
+            "line": 301,
             "description": "Free the memory taken by this node",
             "itemtype": "method",
             "name": "free",
@@ -8333,7 +7793,7 @@
         },
         {
             "file": "src\\node\\class.node.webview.js",
-            "line": 312,
+            "line": 314,
             "description": "Return the copy of this node",
             "itemtype": "method",
             "name": "copy",
@@ -8343,6 +7803,718 @@
             },
             "class": "CGSGNodeWebview",
             "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 43,
+            "itemtype": "property",
+            "name": "node",
+            "type": "{CGSGNode}",
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 53,
+            "description": "A void* property to let the developer store whatever he needs (new properties, ...)",
+            "itemtype": "property",
+            "name": "userdata",
+            "type": "{*}",
+            "default": "null",
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 64,
+            "description": "Initialize attributes of this particle",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "init",
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 85,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "initPosition",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 97,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "initVelocity",
+            "params": [
+                {
+                    "name": "velocity",
+                    "description": "",
+                    "type": "CGSGVector2D"
+                }
+            ],
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 107,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "initSpeedThreshold",
+            "params": [
+                {
+                    "name": "st",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 116,
+            "description": "update the particle position with an Euler integration\nTODO : externalize the process to choose between RK4 and Euler integration",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "updatePosition",
+            "params": [
+                {
+                    "name": "deltaTime",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "acceleration",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "CGSGParticle",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 181,
+            "itemtype": "property",
+            "name": "classType",
+            "type": "{String}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 188,
+            "description": "the region from where the particles are emitted",
+            "itemtype": "property",
+            "name": "region",
+            "type": "{CGSGRegion}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 194,
+            "description": "number max of particles out of the emitter on 1 frame",
+            "itemtype": "property",
+            "name": "nbParticlesMax",
+            "type": "{Number}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 200,
+            "itemtype": "property",
+            "name": "velocity",
+            "type": "{CGSGVector2D}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 208,
+            "description": "angle range of emission. a particle is emitted in the this.direction vector + or - this.angle/2 angle.",
+            "itemtype": "property",
+            "name": "angle",
+            "type": "{Number}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 218,
+            "description": "speed of a particle",
+            "itemtype": "property",
+            "name": "speed",
+            "type": "{Number}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 227,
+            "description": "threshold to randomize and add to the speed of a particle",
+            "itemtype": "property",
+            "name": "speedThreshold",
+            "type": "{Number}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 237,
+            "itemtype": "property",
+            "name": "outflow",
+            "type": "{Number}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 254,
+            "description": "Gravity Force added by default with the addForce method",
+            "itemtype": "property",
+            "name": "gravity",
+            "type": "{Object}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 261,
+            "description": "Callback on end of update for 1 particle",
+            "itemtype": "property",
+            "name": "onUpdateParticleEnd",
+            "default": "null",
+            "type": "{function}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 268,
+            "description": "Callback when reinit for 1 particle",
+            "itemtype": "property",
+            "name": "onInitParticle",
+            "default": "null",
+            "type": "{function}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 275,
+            "description": "Callback when reinit all particles is done",
+            "itemtype": "property",
+            "name": "onInitParticlesEnd",
+            "default": "null",
+            "type": "{function}",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 284,
+            "description": "start the animation",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "start",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 293,
+            "description": "stop the animation",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "stop",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 302,
+            "description": "reset the animation",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "reset",
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 320,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "context",
+                    "description": ""
+                }
+            ],
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 368,
+            "description": "create a new particle, and add it to the emitter",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_createParticle",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 381,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "updateParticle",
+            "params": [
+                {
+                    "name": "particle",
+                    "description": "",
+                    "type": "CGSGParticle"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 401,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "initParticle",
+            "params": [
+                {
+                    "name": "particle",
+                    "description": "",
+                    "type": "CGSGParticle"
+                },
+                {
+                    "name": "index",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 428,
+            "description": "Add a force to the emitter",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "addForce",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "CGSGVector2D"
+                },
+                {
+                    "name": "ttl",
+                    "description": "time to live of the force",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 442,
+            "description": "Remove a previously added force",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "removeForce",
+            "params": [
+                {
+                    "name": "force",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "CGSGParticleEmitter",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 474,
+            "itemtype": "property",
+            "name": "classType",
+            "type": "{String}",
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 480,
+            "description": "list of emitters",
+            "itemtype": "property",
+            "name": "emitters",
+            "type": "{Array}",
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 486,
+            "description": "list of attractors",
+            "itemtype": "property",
+            "name": "attractors",
+            "type": "{Array}",
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 492,
+            "description": "list of repulsors",
+            "itemtype": "property",
+            "name": "repulsors",
+            "type": "{Array}",
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 509,
+            "description": "Add a force to all emitters",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "addForce",
+            "params": [
+                {
+                    "name": "vector",
+                    "description": "",
+                    "type": "CGSGVector2D"
+                }
+            ],
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 527,
+            "description": "Create a new emitter and return it",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "addEmitter",
+            "params": [
+                {
+                    "name": "node",
+                    "description": "",
+                    "type": "CGSGNode"
+                },
+                {
+                    "name": "region",
+                    "description": "",
+                    "type": "CGSGRegion"
+                },
+                {
+                    "name": "nbParticlesMax",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "velocity",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "angle",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "speed",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "speedThreshold",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "outflow",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "CGSGParticleEmitter"
+            },
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 549,
+            "description": "Remove the emitter passed in parameter",
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "removeEmitter",
+            "params": [
+                {
+                    "name": "emitter",
+                    "description": "",
+                    "type": "CGSGParticleEmitter"
+                }
+            ],
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 560,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "addAttractor",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "CGSGPosition"
+                },
+                {
+                    "name": "strength",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "distance",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 578,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "removeAttractor",
+            "params": [
+                {
+                    "name": "attractor",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 587,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "addRepulsor",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "CGSGPosition"
+                },
+                {
+                    "name": "strength",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "distance",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 605,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "removeRepulsor",
+            "params": [
+                {
+                    "name": "repulsor",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 614,
+            "description": "override the CGSGNode 'pickNode' method to return null due to performance",
+            "access": "protected",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "pickNode",
+            "params": [
+                {
+                    "name": "mousePosition",
+                    "description": ""
+                },
+                {
+                    "name": "absoluteScale",
+                    "description": ""
+                },
+                {
+                    "name": "ghostContext",
+                    "description": ""
+                },
+                {
+                    "name": "recursively",
+                    "description": ""
+                },
+                {
+                    "name": "condition",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
+        },
+        {
+            "file": "src\\node\\class.particles.js",
+            "line": 629,
+            "access": "public",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "copy",
+            "todo": [
+                ": TODO fill the method"
+            ],
+            "return": {
+                "description": "",
+                "type": "CGSGParticleSystem"
+            },
+            "class": "CGSGParticleSystem",
+            "module": "Animation",
+            "submodule": "ParticleSystem"
         },
         {
             "file": "src\\utils\\math\\class.vector2D.js",
@@ -10523,141 +10695,6 @@
             "module": "Scene"
         },
         {
-            "file": "src\\class.scenegraph.js",
-            "line": 352,
-            "description": "Add a key",
-            "itemtype": "method",
-            "name": "addAnimationKey",
-            "params": [
-                {
-                    "name": "node",
-                    "description": "handler to the nodes to animate",
-                    "type": "CGSGNode"
-                },
-                {
-                    "name": "attribute",
-                    "description": "String representing the attribute to animate (\"position.y\", \"rotation.angle\", \"fill\", ...)",
-                    "type": "String"
-                },
-                {
-                    "name": "frame",
-                    "description": "the date for the key",
-                    "type": "Number"
-                },
-                {
-                    "name": "value",
-                    "description": "value for the attribute at the frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "method",
-                    "description": "animation method. Must be 'linear' for now",
-                    "type": "String"
-                },
-                {
-                    "name": "precompute",
-                    "description": "Set to true if you want to precompute the animations steps",
-                    "type": "Boolean"
-                }
-            ],
-            "example": [
-                " this.sceneGraph.addAnimation(imgNode, \"position.x\", 2000, 200, \"linear\", true);"
-            ],
-            "class": "CGSGSceneGraph",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scenegraph.js",
-            "line": 378,
-            "description": "Animate an attribute of a nodes",
-            "itemtype": "method",
-            "name": "animate",
-            "params": [
-                {
-                    "name": "node",
-                    "description": "Handler to the nodes to animate",
-                    "type": "CGSGNode"
-                },
-                {
-                    "name": "attribute",
-                    "description": "String representing the attribute to animate (\"position.y\", \"rotation.angle\", \"fill\", ...)",
-                    "type": "String"
-                },
-                {
-                    "name": "duration",
-                    "description": "Duration of the animation, in frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "from",
-                    "description": "Start value",
-                    "type": "Number"
-                },
-                {
-                    "name": "to",
-                    "description": "End value",
-                    "type": "Number"
-                },
-                {
-                    "name": "method",
-                    "description": "Animation method. Must be 'linear' for now",
-                    "type": "String"
-                },
-                {
-                    "name": "delay",
-                    "description": "Delay before start the animation, in frames",
-                    "type": "Number"
-                },
-                {
-                    "name": "precompute",
-                    "description": "Set to true if you want to precompute the animations steps",
-                    "type": "Boolean"
-                }
-            ],
-            "example": [
-                " this.sceneGraph.animate(imgNode, \"position.x\", 700, 0, 200, \"linear\", 0, true);"
-            ],
-            "class": "CGSGSceneGraph",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scenegraph.js",
-            "line": 398,
-            "itemtype": "method",
-            "name": "stillHaveAnimation",
-            "return": {
-                "description": "true if there are still animation key after the current frame",
-                "type": "Boolean"
-            },
-            "class": "CGSGSceneGraph",
-            "module": "Scene"
-        },
-        {
-            "file": "src\\class.scenegraph.js",
-            "line": 418,
-            "description": "Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet",
-            "itemtype": "method",
-            "name": "getTimeline",
-            "params": [
-                {
-                    "name": "node",
-                    "description": "Handle to the nodes",
-                    "type": "CGSGNode"
-                },
-                {
-                    "name": "attribute",
-                    "description": "String. the attribute name",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "CGSGTimeline"
-            },
-            "class": "CGSGSceneGraph",
-            "module": "Scene"
-        },
-        {
             "file": "src\\class.view.js",
             "line": 28,
             "description": "Provides requestAnimationFrame in a cross browser way.",
@@ -11577,7 +11614,7 @@
         {
             "file": "src\\constants.js",
             "line": 112,
-            "description": "Default number of frames to average the FPS",
+            "description": "Default number of frames to average the FPS.\nThe current FPS will be the average of the \"CGSG_DEFAULT_FRAMERATE_DELAY\" frames.",
             "itemtype": "property",
             "name": "CGSG_DEFAULT_FRAMERATE_DELAY",
             "default": "20 (ie: each 20 frames)",
@@ -11587,7 +11624,7 @@
         },
         {
             "file": "src\\constants.js",
-            "line": 120,
+            "line": 121,
             "description": "Default maximum number of frames per second.",
             "itemtype": "property",
             "name": "CGSG_DEFAULT_MAX_FRAMERATE",
@@ -11598,7 +11635,7 @@
         },
         {
             "file": "src\\constants.js",
-            "line": 128,
+            "line": 129,
             "description": "Default value for the double touch detection.\nThis property is the delay between 2 touches to be considered as a dbl touch event.",
             "itemtype": "property",
             "name": "CGSG_DEFAULT_DBLTOUCH_DELAY",
@@ -11650,7 +11687,7 @@
             "line": 88,
             "description": "Current version of the framework",
             "itemtype": "property",
-            "name": "cgsgVersion",
+            "name": "version",
             "static": 1,
             "type": "{String}",
             "class": "CGSG",
@@ -11838,7 +11875,17 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 245,
+            "line": 244,
+            "description": "Animation manager",
+            "itemtype": "property",
+            "name": "animationManager",
+            "type": "{CGSGAnimationManager}",
+            "class": "CGSG",
+            "module": "Util"
+        },
+        {
+            "file": "src\\globals.js",
+            "line": 251,
             "description": "Event manager to use to bind events to objects.",
             "itemtype": "property",
             "name": "eventManager",
@@ -11848,7 +11895,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 256,
+            "line": 261,
             "description": "All kinds of events defined by the CGSceneGraph framework.",
             "itemtype": "property",
             "name": "cgsgEventTypes",

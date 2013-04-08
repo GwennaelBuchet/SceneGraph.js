@@ -54,7 +54,7 @@ var CGMain = CGSGView.extend(
 		 */
 		createScene : function() {
 			//create and add a root node to the scene, with arbitrary dimension
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//create the particle system instance

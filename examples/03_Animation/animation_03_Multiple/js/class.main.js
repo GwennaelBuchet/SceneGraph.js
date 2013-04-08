@@ -57,18 +57,15 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function () {
-			//first create a root node with an arbitrary size and position
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			//first create a root node with an arbitrary position
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//add a text node ("click me") with a onClick event
 			var buttonNode = new CGSGNodeButton(10, 10, "Click Me");
 			buttonNode.textBaseline = "bottom";
 			//bind the "this.moveSquare" function to this.
-			var bindMoveSquare = this.moveSquare.bind(this);
-			buttonNode.onClick = function (event) {
-				bindMoveSquare();
-			}
+			buttonNode.onClick = this.moveSquare.bind(this);
 			//add the textNode as child of the root
 			this.rootNode.addChild(buttonNode);
 
@@ -86,6 +83,7 @@ var CGMain = CGSGView.extend(
             //re-init position and scale
             this.squareNode.translateTo(0, 60);
             this.squareNode.scaleTo(1.0, 1.0);
+            this.squareNode.globalAlpha = 1.0;
 
 			/*
 			 * Animate an attribute of a nodes
@@ -94,32 +92,19 @@ var CGMain = CGSGView.extend(
 			 * @param duration Integer. Duration of the animation, in frames
 			 * @param from Start value
 			 * @param to End value
-			 * @param method String. animation method: 'linear', 'catmullrom'
 			 * @param delay Integer. Delay before start the animation, in frames
 			 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
 			 *
-			 * @example CGSG.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
+			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
 
-		    CGSG.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, false);
-            CGSG.sceneGraph.animate(this.squareNode, "position.y", 30, 60, 130, "linear", 30, false);
-            CGSG.sceneGraph.animate(this.squareNode, "scale.x", 30, 1, 2, "linear", 60, false);
-            CGSG.sceneGraph.animate(this.squareNode, "scale.y", 30, 1, 2, "linear", 60, false);
-            CGSG.sceneGraph.animate(this.squareNode, "scale.x", 30, 2, 1, "linear", 90, false);
-            CGSG.sceneGraph.animate(this.squareNode, "scale.y", 30, 2, 1, "linear", 90, false);
-
-            //you can also add animation keys inside a timeline:
-            //CGSG.sceneGraph.addAnimationKey(this.squareNode, "position.x", 90, 90, "linear", true);
-            //CGSG.sceneGraph.addAnimationKey(this.squareNode, "position.x", 45, 90, "linear", true);
-
-
-            //add events to the start and end of animation to log them
-			CGSG.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationStart = function (event) {
-				console.log("animation started");
-			};
-			CGSG.sceneGraph.getTimeline(this.squareNode, "position.x").onAnimationEnd = function (event) {
-				console.log("animation ended");
-			};
+		    CGSG.animationManager.animate(this.squareNode, "position.x", 30, 0, 200, 0, false);
+            CGSG.animationManager.animate(this.squareNode, "position.y", 30, 60, 130, 30, false);
+            CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 1, 2, 60, false);
+            CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 1, 2, 60, false);
+            CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 2, 1, 90, false);
+            CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 2, 1, 90, false);
+            CGSG.animationManager.animate(this.squareNode, "globalAlpha", 30, 1, 0, 90, false);
 		}
 
 	}

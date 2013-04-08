@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -239,16 +241,20 @@ var CGSGCollisionRegionTester = CGSGObject.extend(
             if (threshold === null) {
                 threshold = 0;
             }
-            var nodeRight = testedNode.getAbsoluteRight();
-            var nodeBottom = testedNode.getAbsoluteBottom();
+            var curNodeLeft = currentNode.getAbsoluteLeft();
+            var curNodeRight = currentNode.getAbsoluteRight();
+            var curNodeBottom = currentNode.getAbsoluteBottom();
+            var testedNodeLeft = testedNode.getAbsoluteLeft();
+            var testedNodeRight = testedNode.getAbsoluteRight();
+            var testedNodeBottom = testedNode.getAbsoluteBottom();
 
-            if ((currentNode.getAbsoluteLeft() &lt;= nodeRight + threshold &amp;&amp;
-                currentNode.getAbsoluteRight() &gt;= testedNode.getAbsoluteLeft() - threshold) ||
-                (currentNode.getAbsoluteRight() &gt;= testedNode.getAbsoluteLeft() - threshold &amp;&amp;
-                    currentNode.getAbsoluteLeft() &lt;= nodeRight + threshold)) {
+            if ((curNodeLeft &lt;= testedNodeRight + threshold &amp;&amp;
+                curNodeRight &gt;= testedNodeLeft - threshold) ||
+                (curNodeRight &gt;= testedNodeLeft - threshold &amp;&amp;
+                    curNodeLeft &lt;= testedNodeRight + threshold)) {
 
-                if (currentNode.getAbsoluteTop() &lt;= nodeBottom + threshold &amp;&amp;
-                    currentNode.getAbsoluteBottom() &gt;= testedNode.getAbsoluteTop() - threshold) {
+                if (currentNode.getAbsoluteTop() &lt;= testedNodeBottom + threshold &amp;&amp;
+                    curNodeBottom &gt;= testedNode.getAbsoluteTop() - threshold) {
                     return true;
                 }
             }

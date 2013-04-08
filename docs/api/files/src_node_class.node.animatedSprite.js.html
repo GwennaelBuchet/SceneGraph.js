@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -227,7 +229,7 @@
 var CGSGNodeSprite = CGSGNode.extend(
     {
         initialize : function (x, y, urlImage) {
-            this._super(x, y, 1, 1);
+            this._super(x, y);
 
             &#x2F;**
              * @property classType
@@ -588,6 +590,9 @@ var CGSGNodeSprite = CGSGNode.extend(
             if (this.listAnimations.length == 1) {
                 this.currentAnimation = animation;
             }
+
+            this.dimension.width = width;
+            this.dimension.height = height;
         },
 
         &#x2F;**
@@ -607,6 +612,8 @@ var CGSGNodeSprite = CGSGNode.extend(
             for (var i = 0; i &lt; this.listAnimations.length; i++) {
                 if (this.listAnimations[i].name === animationName) {
                     this.currentAnimation = this.listAnimations[i];
+                    this.dimension.width = this.currentAnimation.width;
+                    this.dimension.height = this.currentAnimation.height;
                     this.reset();
                     this._numberOfLoops = loop;
                     this._isPlaying = true;

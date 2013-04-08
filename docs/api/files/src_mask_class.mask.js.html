@@ -35,6 +35,8 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -229,8 +231,8 @@
 var CGSGMask = CGSGObject.extend(
     {
         initialize: function() {
-            this._prepareEvent = cgsgEventTypes.ON_BEGIN_RENDER;
-            this._finalizeEvent = cgsgEventTypes.ON_FINISH_RENDER;
+            this._prepareEvent = cgsgEventTypes.ON_BEFORE_RENDER;
+            this._finalizeEvent = cgsgEventTypes.ON_AFTER_RENDER;
 
             this._keyEvents = new CGSGMap();
             this._bindEventAdapter = this._eventAdapter.bind(this);

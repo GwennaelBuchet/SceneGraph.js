@@ -85,172 +85,177 @@ var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
  */
 var CGSG = {
 
-        /**
-         * Current version of the framework
-         * @property cgsgVersion
-         * @static
-         * @type {String}
-         */
-        version: "2.0.0-SNAPSHOT",
+    /**
+     * Current version of the framework
+     * @property version
+     * @static
+     * @type {String}
+     */
+    version: "2.0.0-SNAPSHOT",
+
+    /**
+     * The scene graph itself
+     * @property sceneGraph
+     * @default null
+     * @type {CGSGSceneGraph}
+     */
+    sceneGraph: null,
+
+    /**
+     * Current display ratio
+     * @property displayRatio
+     * @static
+     * @type {CGSGScale}
+     */
+    displayRatio: CGSG_DEFAULT_DISPLAYRATIO,
+
+    /**
+     * Default threshold to detect the handle boxes on a resizable node
+     * @property resizeHandleThreshold
+     * @static
+     * @type {Number}
+     */
+    resizeHandleThreshold: CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
+
+    /**
+     * The current frame in hte global timeline
+     * @property currentFrame
+     * @readonly
+     * @type {Number}
+     */
+    currentFrame: 0,
+
+    /**
+     * The canvas container for this scene
+     * @property canvas
+     * @readonly
+     * @type {HTMLElement}
+     */
+    canvas: null,
+
+    /**
+     * The main rendering 2D context for this scene
+     * @property context
+     * @type {CanvasRenderingContext2D}
+     */
+    context: null,
+
+    /**
+     * The global ghost context for fake rendering
+     * @property ghostContext
+     * @readonly
+     * @type {CanvasRenderingContext2D}
+     */
+    ghostContext: null,
+
+    /**
+     * the color used for the ghost mode rendering
+     * @property ghostColor
+     * @type {String}
+     * @public
+     */
+    ghostColor: "#FF0000",
+
+
+    /**
+     * List of the current selected nodes in the scenegraph.
+     * @property selectedNodes
+     * @type {Array}
+     */
+    selectedNodes: [],
+
+    /**
+     * List of the timelines for the animations.
+     * A timeline consists of a list of animation keys for 1 attribute of 1 node
+     * @property listTimelines
+     * @type {Array}
+     * @private
+     */
+    listTimelines: [],
+
+    /**
+     * Number of frames to average the FPS.
+     * Reduce this number to get more accurate FPS
+     * @property framerateDelay
+     * @default CGSG_DEFAULT_FRAMERATE_DELAY
+     * @type {Number}
+     */
+    framerateDelay: CGSG_DEFAULT_FRAMERATE_DELAY,
+
+    /**
+     * Maximum number of frames per second. Set it if you want your application to slow down.
+     * @property maxFramerate
+     * @default CGSG_DEFAULT_MAX_FRAMERATE
+     * @type {Number}
+     * @example
+     *     //limit the fps of the application to 30
+     *     CGSG.maxFramerate : 30,
+     */
+    maxFramerate: CGSG_DEFAULT_MAX_FRAMERATE,
+
+    /**
+     * Current framerate of the application
+     * @property fps
+     * @type {Number}
+     */
+    fps: 0,
+
+    /**
+     * Instance of CollisionTesterFactory
+     * @property collisionTestFactory
+     * @type {CGSGCollisionTesterFactory}
+     */
+    collisionManager: new CGSGCollisionManager(),
+
+    /**
+     * Object that defines the performance keys.
+     * Change values to adapt your project.
+     *
+     * CGSG.performanceKeys._collisionMethod :
+     *                Key to specify collision detection mod
+     *                Use setCollisionMethod to modify value,
+     *                Default : CGSGCollisionMethod.REGION
+     *
+     * CGSG.performanceKeys.collisionTester :
+     *                Collision tester depending on _collisionMethod,
+     *                Default : CGSGCollisionRegionTester
+     *
+     * @property performanceKeys
+     * @type {Object}
+     */
+    performanceKeys: {
+        _collisionMethod: CGSGCollisionMethod.REGION,
+
+        _cgsgCollisionTesterFactory: new CGSGCollisionTesterFactory(),
+
+        collisionTester: new CGSGCollisionRegionTester(),
 
         /**
-         * The scene graph itself
-         * @property sceneGraph
-         * @default null
-         * @type {CGSGSceneGraph}
+         * Redefines the collision method
+         * @method setCollisionMethod
+         * @param method
          */
-        sceneGraph: null,
-
-        /**
-         * Current display ratio
-         * @property displayRatio
-         * @static
-         * @type {CGSGScale}
-         */
-        displayRatio: CGSG_DEFAULT_DISPLAYRATIO,
-
-        /**
-         * Default threshold to detect the handle boxes on a resizable node
-         * @property resizeHandleThreshold
-         * @static
-         * @type {Number}
-         */
-        resizeHandleThreshold: CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
-
-        /**
-         * The current frame in hte global timeline
-         * @property currentFrame
-         * @readonly
-         * @type {Number}
-         */
-        currentFrame: 0,
-
-        /**
-         * The canvas container for this scene
-         * @property canvas
-         * @readonly
-         * @type {HTMLElement}
-         */
-        canvas: null,
-
-        /**
-         * The main rendering 2D context for this scene
-         * @property context
-         * @type {CanvasRenderingContext2D}
-         */
-        context: null,
-
-        /**
-         * The global ghost context for fake rendering
-         * @property ghostContext
-         * @readonly
-         * @type {CanvasRenderingContext2D}
-         */
-        ghostContext: null,
-
-        /**
-         * the color used for the ghost mode rendering
-         * @property ghostColor
-         * @type {String}
-         * @public
-         */
-        ghostColor: "#FF0000",
-
-
-        /**
-         * List of the current selected nodes in the scenegraph.
-         * @property selectedNodes
-         * @type {Array}
-         */
-        selectedNodes: [],
-
-        /**
-         * List of the timelines for the animations.
-         * A timeline consists of a list of animation keys for 1 attribute of 1 node
-         * @property listTimelines
-         * @type {Array}
-         * @private
-         */
-        listTimelines: [],
-
-        /**
-         * Number of frames to average the FPS.
-         * Reduce this number to get more accurate FPS
-         * @property framerateDelay
-         * @default CGSG_DEFAULT_FRAMERATE_DELAY
-         * @type {Number}
-         */
-        framerateDelay: CGSG_DEFAULT_FRAMERATE_DELAY,
-
-        /**
-         * Maximum number of frames per second. Set it if you want your application to slow down.
-         * @property maxFramerate
-         * @default CGSG_DEFAULT_MAX_FRAMERATE
-         * @type {Number}
-         * @example
-         *     //limit the fps of the application to 30
-         *     CGSG.maxFramerate : 30,
-         */
-        maxFramerate: CGSG_DEFAULT_MAX_FRAMERATE,
-
-        /**
-         * Current framerate of the application
-         * @property fps
-         * @type {Number}
-         */
-        fps: 0,
-
-        /**
-         * Instance of CollisionTesterFactory
-         * @property collisionTestFactory
-         * @type {CGSGCollisionTesterFactory}
-         */
-        collisionManager: new CGSGCollisionManager(),
-
-        /**
-         * Object that defines the performance keys.
-         * Change values to adapt your project.
-         *
-         * CGSG.performanceKeys._collisionMethod :
-         *                Key to specify collision detection mod
-         *                Use setCollisionMethod to modify value,
-         *                Default : CGSGCollisionMethod.REGION
-         *
-         * CGSG.performanceKeys.collisionTester :
-         *                Collision tester depending on _collisionMethod,
-         *                Default : CGSGCollisionRegionTester
-         *
-         * @property performanceKeys
-         * @type {Object}
-         */
-        performanceKeys: {
-            _collisionMethod: CGSGCollisionMethod.REGION,
-
-            _cgsgCollisionTesterFactory: new CGSGCollisionTesterFactory(),
-
-            collisionTester: new CGSGCollisionRegionTester(),
-
-            /**
-             * Redefines the collision method
-             * @method setCollisionMethod
-             * @param method
-             */
-            setCollisionMethod: function (method) {
-                this._collisionMethod = method;
+        setCollisionMethod: function (method) {
+            this._collisionMethod = method,
                 this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
-            }
-        },
+        }
+    },
 
+    /**
+     * Animation manager
+     * @property animationManager
+     * @type {CGSGAnimationManager}
+     */
+    animationManager: new CGSGAnimationManager(),
 
-        /**
-         * Event manager to use to bind events to objects.
-         *
-         * @property eventManager
-         * @type {CGSGEventManager}
-         */
-        eventManager: new CGSGEventManager()
-    }
-    ;
+    /**
+     * Event manager to use to bind events to objects.
+     *
+     * @property eventManager
+     * @type {CGSGEventManager}
+     */
+    eventManager: new CGSGEventManager()
+};
 
 
 /**
@@ -262,10 +267,12 @@ var CGSG = {
 var cgsgEventTypes = {
 
     // Nodes rendering
-    ON_BEGIN_RENDER: "onBeginRender",
-    ON_FINISH_RENDER: "onFinishRender",
-    BEFORE_RENDER_END: "onBeforeRenderEnd",
-    AFTER_RENDER_START: "onAfterRenderStart",
+    ON_BEFORE_RENDER : "onBeforeRender",
+    ON_AFTER_RENDER : "onAfterRender",
+    //ON_BEGIN_RENDER: "onBeginRender",
+    //ON_FINISH_RENDER: "onFinishRender",
+    //BEFORE_RENDER_END: "onBeforeRenderEnd",
+    //AFTER_RENDER_START: "onAfterRenderStart",
 
     // Node SRT
     ON_TRANSLATE: "onTranslate",

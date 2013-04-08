@@ -55,11 +55,16 @@ var CGMain = CGSGView.extend(
 		 */
 		createScene : function() {
 			//create and add a root node to the scene, with arbitrary dimension
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
             var w = 350;
             var h = 350;
+
+            var parentNode = new CGSGNodeSquare(10, 120, 40, 40);
+            parentNode.color = "yellow";
+            parentNode.isDraggable = true;
+            this.rootNode.addChild(parentNode);
 
             var squareNode = new CGSGNodeSquare(50, CGSG.canvas.height / 3, w, h);
             squareNode.color = "red";
@@ -75,18 +80,14 @@ var CGMain = CGSGView.extend(
             squareNode.addChild(squareChildBlack);
 
             var clip = new CGSGMaskClip(new CGSGRegion(10, 10, 200, 200));
-            var img = new CGSGNodeImage(CGSG.canvas.width / 3, CGSG.canvas.height / 6, null);
+            var img = new CGSGNodeImage(CGSG.canvas.width / 3, CGSG.canvas.height / 6, "images/cat-and-rabbit.jpg");
             img.scaleTo(0.5, 0.5);
             img.isResizable = true;
+            img.isDraggable = true;
 
-            var rawImg = new Image();
-            rawImg.src = 'images/cat-and-rabbit.jpg';
-            rawImg.onload = function() {
-                img.setImage(rawImg);
-            };
 
             this.rootNode.addChild(img);
-            this.rootNode.addChild(squareNode);
+            parentNode.addChild(squareNode);
 
             squareNode.scaleTo(0.5, 0.5);
 

@@ -63,7 +63,9 @@ var CGSGWEBVIEWMODE = {
 var CGSGNodeWebview = CGSGNode.extend(
     {
         initialize : function (x, y, width, height, url) {
-            this._super(x, y, CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
+            this._super(x, y);
+
+            this.resizeTo(CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
             /**
              * Size of the area around the webview in LIVE mode

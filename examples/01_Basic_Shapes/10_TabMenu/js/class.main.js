@@ -73,7 +73,7 @@ var CGMain = CGSGView.extend(
             //a tab is just a text with a root node to render into when it's selected (called the "view").
             //So we create a node to render bound with the tab
 
-            var root = new CGSGNode(0, 0, 0, 0);
+            var root = new CGSGNode(0, 0);
 
             var sq = new CGSGNodeSquare(10, 10, 30, 40);
             root.addChild(sq);
@@ -92,7 +92,7 @@ var CGMain = CGSGView.extend(
             //a tab is just a text with a root node to render into when it's selected (called the "view").
             //So we create a node to render bound with the tab
 
-            var root = new CGSGNode(0, 0, 0, 0);
+            var root = new CGSGNode(0, 0);
 
 			this.cpWitness = new CGSGNodeSquare(320, 291, 40, 40);
 			this.cpWitness.lineColor = "gray";

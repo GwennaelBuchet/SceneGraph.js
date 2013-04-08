@@ -38,7 +38,7 @@ var CGMain = CGSGView.extend(
 
 			////// INITIALIZATION /////////
 
-			//this.initializeCanvas();
+			this.initializeCanvas();
 			this.createScene();
 
 			this.startPlaying();
@@ -54,7 +54,7 @@ var CGMain = CGSGView.extend(
          * Just create a single node (an image node)
          */
         createScene : function () {
-	        var rootNode = new CGSGNode(0, 0, 0, 0);
+	        var rootNode = new CGSGNode(0, 0);
 	        CGSG.sceneGraph.addNode(rootNode, null);
 
             /*

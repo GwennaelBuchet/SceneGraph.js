@@ -1,0 +1,135 @@
+/*
+ * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ *
+ * License/Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory
+ * conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions
+ *   of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Capgemini.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *
+ *  These Terms of Use are subject to French law.
+ */
+
+/**
+ * @module Animation
+ * @class CGSGAnimationManager
+ * @extends {Object}
+ * @constructor
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
+var CGSGAnimationManager = CGSGObject.extend(
+    {
+        initialize: function () {
+            /**
+             * List of the timelines for the animations.
+             * A timeline consists of a list of animation keys for 1 attribute of 1 node
+             * @property listTimelines
+             * @type {Array}
+             */
+            this.listTimelines = []
+        },
+
+        /**
+         * Add a key
+         * @method addAnimationKey
+         * @param {CGSGNode} node handler to the nodes to animate
+         * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
+         * @param {Number} value value for the attribute at the frame
+         * @param {Number} frame the date for the key
+         * @param {Boolean} precompute  Set to true if you want to precompute the animations steps
+         * @return {CGSGTimeline} the timeline on which tha the key was added
+         *
+         * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
+         */
+        addAnimationKey: function (node, attribute, value, frame, precompute) {
+            //if a timeline already exist fot this nodes and attribute use it, else create a new one
+            var timeline = this.getTimeline(node, attribute);
+            timeline.method = "linear";
+
+            //add the new key to the timeline
+            timeline.addKey(CGSGMath.fixedPoint(frame), value);
+
+            //if the user want to precompute the animation, do it now
+            if (precompute) {
+                timeline.computeValues(CGSG.currentFrame, timeline.method);
+            }
+
+            return timeline;
+        },
+
+        /**
+         * Animate an attribute of a nodes
+         * @method animate
+         * @param {CGSGNode} node Handler to the nodes to animate
+         * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
+         * @param {Number} duration Duration of the animation, in frame
+         * @param {Number} from Start value
+         * @param {Number} to End value
+         * @param {Number} delay Delay before start the animation, in frames
+         * @param {Boolean} precompute Set to true if you want to precompute the animations steps
+         * @return {CGSGTimeline} the timeline on which tha the animation was added
+         * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
+         */
+        animate: function (node, attribute, duration, from, to, delay, precompute) {
+            this.addAnimationKey(node, attribute, from, CGSG.currentFrame + CGSGMath.fixedPoint(delay), false);
+            return this.addAnimationKey(node, attribute,
+                to, CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration), precompute);
+        },
+
+        /**
+         * @method stillHaveAnimation
+         * @return {Boolean} true if there are still animation key after the current frame
+         */
+        stillHaveAnimation: function () {
+            if (this.listTimelines.length == 0) {
+                return false;
+            }
+            else {
+                for (var i = 0, len = this.listTimelines.length; i < len; ++i) {
+                    if (this.listTimelines[i].getLastKey() !== null &&
+                        this.listTimelines[i].getLastKey().frame <= CGSG.currentFrame) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        },
+
+        /**
+         * Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet
+         * @method getTimeline
+         * @param {CGSGNode} node Handle to the nodes
+         * @param {String} attribute String. the attribute name
+         * @return {CGSGTimeline}
+         */
+        getTimeline: function (node, attribute) {
+            for (var i = 0, len = this.listTimelines.length; i < len; ++i) {
+                if (this.listTimelines[i].parentNode === node && this.listTimelines[i].attribute == attribute) {
+                    return this.listTimelines[i];
+                }
+            }
+
+            //no timeline yet, create a new one
+            var timeline = new CGSGTimeline(node, attribute, "linear");
+            this.listTimelines.push(timeline);
+            return timeline;
+        }
+    }
+);

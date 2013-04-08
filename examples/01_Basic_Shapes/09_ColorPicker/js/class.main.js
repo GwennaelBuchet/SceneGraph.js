@@ -53,14 +53,14 @@ var CGMain = CGSGView.extend(
         createScene:function () {
 
             //create a root node to the graph, with arbitrary position and size
-            var rootNode = new CGSGNode(0, 0, 0, 0);
+            var rootNode = new CGSGNode(0, 0);
             CGSG.sceneGraph.addNode(rootNode, null);
 
 			rootNode.translateTo(230, 50);
 
             var that = this;
 
-			var parent = new CGSGNode(10, 10, 1, 1);
+			var parent = new CGSGNode(10, 10);
 			rootNode.addChild(parent);
 
             //the color picker itself, in the default size

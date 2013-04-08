@@ -51,11 +51,11 @@ var CGMain = CGSGView.extend(
          *
          */
         createScene: function () {
-            //first create a root node with an arbitrary size and position
-            this.rootNode = new CGSGNode(0, 0, 0, 0);
+            //first create a root node with an arbitrary position
+            this.rootNode = new CGSGNode(0, 0);
             CGSG.sceneGraph.addNode(this.rootNode, null);
 
-            var rootSquare = new CGSGNode(20, 80, 0, 0);
+            var rootSquare = new CGSGNode(20, 80);
             this.rootNode.addChild(rootSquare);
 
             var i;

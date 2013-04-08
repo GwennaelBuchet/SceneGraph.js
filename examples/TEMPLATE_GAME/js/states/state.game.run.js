@@ -86,7 +86,7 @@ var StateGameRun = Object.extend(
 		 * @private
 		 */
 		_createGameEnvironment : function() {
-			this.gameNode = new CGSGNode(0, 0, 1, 1);
+			this.gameNode = new CGSGNode(0, 0);
 			this.rootNode.addChild(this.gameNode);
 
 			this.maxClouds = 5;
@@ -134,7 +134,7 @@ var StateGameRun = Object.extend(
 		 * @private
 		 */
 		_createLoseEnvironment : function() {
-			this.loseNode = new CGSGNode(0, 0, 1, 1);
+			this.loseNode = new CGSGNode(0, 0);
 			this.rootNode.addChild(this.loseNode);
 
 			//Button "Go Back"
@@ -250,7 +250,7 @@ var StateGameRun = Object.extend(
 			this.score += event.node.points;
 			this.nbLive = Math.min(this.nbLive + event.node.live, maxLive);
 
-			sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.0, "linear", 0, true);
+			sceneGraph.animate(event.node, "globalAlpha", 10, 1.0, 0.0, 0, true);
 			sceneGraph.getTimeline(event.node, "globalAlpha").onAnimationEnd = function(event) {
 				event.node.reStartAnim(1);
 			}
