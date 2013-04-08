@@ -65,6 +65,7 @@ CHANGES:
 - Evolution. Delete CGSGScene.selectedNodes and CGSGSceneGraph.selectedNodes. New global CGSG.selectedNodes property.
 - Evolution. Extenalization of the sceneGraph instance into the CGSG object.
 - Evolution. New CGSG.animationManager property to manage animation.
+- Evolution. CGSGNode has now 2 parameters only : x, y
 
 ---------------------------------------------------------------------
 
