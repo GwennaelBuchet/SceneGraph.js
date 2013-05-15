@@ -108,6 +108,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>node/class.node.text.js</include>
                                 <include>node/class.node.webview.js</include>
                                 <include>node/class.node.square.js</include>
+                                <include>node/class.node.slider.js</include>
                                 <include>node/class.node.circle.js</include>
                                 <include>node/class.node.ellipse.js</include>
                                 <include>node/class.node.image.js</include>
