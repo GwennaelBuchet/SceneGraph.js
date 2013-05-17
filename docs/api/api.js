@@ -27,6 +27,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGNodeColorPicker",
         "CGSGNodeEllipse",
         "CGSGNodeImage",
+        "CGSGNodeSlider",
+        "CGSGNodeSliderHandle",
         "CGSGNodeSprite",
         "CGSGNodeSquare",
         "CGSGNodeTabMenu",

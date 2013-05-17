@@ -83,6 +83,10 @@
             
                 <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGNodeSlider.html">CGSGNodeSlider</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSliderHandle.html">CGSGNodeSliderHandle</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
@@ -389,6 +393,15 @@ var CGSG = {
      * @type {Number}
      *&#x2F;
     fps: 0,
+
+    &#x2F;**
+     * If set to true, the bounding boxes for selected nodes will be rendered on top of the scene
+     * If set to false, the bounding boxes for selected nodes will be rendered on top of the node
+     * @property isBoundingBoxOnTop
+     * @default true
+     * @type {Boolean}
+     *&#x2F;
+    isBoundingBoxOnTop: true,
 
     &#x2F;**
      * Instance of CollisionTesterFactory

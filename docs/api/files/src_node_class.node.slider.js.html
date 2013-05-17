@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\node\class.node.slider.js - cgSceneGraph</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.7.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSlider.html">CGSGNodeSlider</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSliderHandle.html">CGSGNodeSliderHandle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGView.html">CGSGView</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
+            
+                <li><a href="..&#x2F;classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
+            
+                <li><a href="..&#x2F;classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Animation.html">Animation</a></li>
+            
+                <li><a href="..&#x2F;modules/Collision.html">Collision</a></li>
+            
+                <li><a href="..&#x2F;modules/Math.html">Math</a></li>
+            
+                <li><a href="..&#x2F;modules/Node.html">Node</a></li>
+            
+                <li><a href="..&#x2F;modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="..&#x2F;modules/Scene.html">Scene</a></li>
+            
+                <li><a href="..&#x2F;modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\node\class.node.slider.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * A CGSGNodeSliderHandle represent a slider handle
+ *
+ * @class CGSGNodeSliderHandle
+ * @module Node
+ * @extends CGSGNode
+ * @constructor
+ * @param {Number} handleWidth width of the handle
+ * @type {CGSGNodeSliderHandle}
+ * @author Jeremie (jeremie.lussiez@capgemini.com)
+ *&#x2F;
+var CGSGNodeSliderHandle = CGSGNode.extend({
+
+	initialize : function(handleWidth) {
+		this._super(0, 0);
+        this.resizeTo(handleWidth, handleWidth);
+		this.color = &quot;#CCCCCC&quot;;
+		this.rotationCenter = new CGSGPosition(0.5, 0.5);
+		this.handleWidth = handleWidth;
+		this.isDraggable = true;
+		this.onDrag = this.onSlide;
+	},
+
+    &#x2F;**
+     * Get parent slider
+     *
+     * @method getParentSlider
+     * @public
+     * @return {CGSGNodeSlider} parent slider
+     *&#x2F;
+    getParentSlider : function() {
+        return this._parentNode;
+    },
+
+    &#x2F;**
+     * Restrain movement to x axis
+     *
+     * @method onSlide
+     * @protected
+     *&#x2F;
+	onSlide : function() {
+		this.handleWidth = Math.min(this._parentNode.getHeight(), this._parentNode.getWidth()) * 2;
+        var halfWidth = this.handleWidth&#x2F;2;
+		var x = this.position.x;
+		if (x &lt; -halfWidth) {
+			x = -halfWidth;
+		} else if (x &gt; this._parentNode.getWidth()-halfWidth) {
+			x = this._parentNode.getWidth()-halfWidth;
+		}
+		this.translateTo(x, -this.handleWidth &#x2F; 4);
+		var range = this._parentNode.max - this._parentNode.min;
+		this._parentNode.value = (this.position.x+halfWidth) * (range &#x2F; this._parentNode.getWidth()) + this._parentNode.min;
+	},
+	
+	&#x2F;**
+	 * Default handle rendering (A rounded square with some &quot;volume&quot; effect)
+	 * 
+	 * @method render
+	 * @protected
+	 * @param {CanvasRenderingContext2D} context the context into render the node
+	 *&#x2F;
+	render : function(context) {
+
+		this.handleWidth = Math.min(this._parentNode.getHeight(), this._parentNode.getWidth()) * 2;
+
+		var borderRadius = this.handleWidth &#x2F; 10;
+
+		context.lineWidth = 2;
+		context.strokeStyle = CGSGColor.darkenHex(this.color, 0.7);
+
+		var gradient = context.createLinearGradient(this.handleWidth, 0, this.handleWidth, this.handleWidth);
+		gradient.addColorStop(0.3, this.color);
+		gradient.addColorStop(1, CGSGColor.darkenHex(this.color, 0.7));
+
+		context.fillStyle = gradient;
+		context.beginPath();
+		context.arc(borderRadius, borderRadius, borderRadius, Math.PI, -Math.PI &#x2F; 2, false);
+		context.lineTo(this.handleWidth - borderRadius, 0);
+		context.arc(this.handleWidth - borderRadius, borderRadius, borderRadius, -Math.PI &#x2F; 2, 0, false);
+		context.lineTo(this.handleWidth, this.handleWidth - borderRadius);
+		context.arc(this.handleWidth - borderRadius, this.handleWidth - borderRadius, borderRadius, 0, Math.PI &#x2F; 2, false);
+		context.lineTo(borderRadius, this.handleWidth);
+		context.arc(borderRadius, this.handleWidth - borderRadius, borderRadius, Math.PI &#x2F; 2, Math.PI, false);
+		context.closePath();
+
+		context.fill();
+		context.stroke();
+
+	}
+
+});
+
+&#x2F;**
+ * A CGSGNodeSlider represent a slider
+ * 
+ * @class CGSGNodeSlider
+ * @module Node
+ * @extends CGSGNode
+ * @constructor
+ * @param {Number} x Relative position on X
+ * @param {Number} y Relative position on X
+ * @param {Number} width Relative dimension
+ * @param {Number} height Relative Dimension
+ * @type {CGSGNodeSlider}
+ * @author Jeremie (jeremie.lussiez@capgemini.com)
+ *&#x2F;
+var CGSGNodeSlider = CGSGNode.extend({
+
+	initialize : function(x, y, width, height) {
+		this._super(x, y);
+        this.resizeTo(width, height);
+		this.backgroundColor = &quot;#EEEEEE&quot;;
+		this.valueColor = &quot;#50479E&quot;;
+		this.min = -10;
+		this.max = 10;
+		this.value = 5;
+		this.rotationCenter = new CGSGPosition(0.5, 0.5);
+
+		this.onResize = this.updateSliderHandle;
+
+		this.setHandle();
+	},
+
+	&#x2F;**
+	 * Custom rendering
+	 * 
+	 * @method render
+	 * @protected
+	 * @param {CanvasRenderingContext2D} context the context into render the node
+	 *&#x2F;
+	render : function(context) {
+		context.save();
+		this.outlineShape(context);
+		this.renderBackground(context);
+		this.renderValue(context);
+		context.restore();
+	},
+
+	&#x2F;**
+	 * Shape context to allow easy inner shadow and value rendering.
+	 * 
+	 * @method outlineShape
+	 * @private
+	 * @param {CanvasRenderingContext2D} context the context into render the node
+	 *&#x2F;
+	outlineShape : function(context) {
+		var borderRadius = Math.min(this.getWidth(), this.getHeight()) &#x2F; 2;
+		var width = this.getWidth();
+		context.beginPath();
+		context.arc(borderRadius, borderRadius, borderRadius, Math.PI &#x2F; 2, -Math.PI &#x2F; 2, false);
+		context.lineTo(width - borderRadius, 0);
+		context.arc(width - borderRadius, borderRadius, borderRadius, -Math.PI &#x2F; 2, Math.PI &#x2F; 2, false);
+		context.lineTo(borderRadius, borderRadius * 2);
+		context.closePath();
+		context.clip();
+	},
+	
+	&#x2F;**
+	 * Render slider background.
+	 * 
+	 * @method renderBackground
+	 * @private
+	 * @param {CanvasRenderingContext2D} context the context into render the node
+	 *&#x2F;
+	renderBackground : function(context) {
+
+		context.fillStyle = this.backgroundColor;
+		context.strokeStyle = CGSGColor.darkenHex(this.backgroundColor, 0.8);
+		context.lineWidth = 4;
+
+		var borderRadius = Math.min(this.getWidth(), this.getHeight()) &#x2F; 2;
+		var width = this.getWidth();
+
+		context.beginPath();
+		context.arc(borderRadius, borderRadius, borderRadius, Math.PI &#x2F; 2, -Math.PI &#x2F; 2, false);
+		context.lineTo(width - borderRadius, 0);
+		context.arc(width - borderRadius, borderRadius, borderRadius, -Math.PI &#x2F; 2, Math.PI &#x2F; 2, false);
+		context.lineTo(borderRadius, borderRadius * 2);
+		context.closePath();
+
+		context.fill();
+		context.stroke();
+
+		context.shadowColor = &#x27;black&#x27;;
+		context.shadowBlur = 15;
+		context.shadowOffsetX = 0;
+		context.shadowOffsetY = 0;
+
+		context.beginPath();
+		context.rect(0, -this.getHeight(), this.getWidth(), this.getHeight());
+		context.closePath();
+
+		context.fill();
+
+	},
+	
+	&#x2F;**
+	 * Render slider value (Fills background with color).
+	 * 
+	 * @method renderBackground
+	 * @private
+	 * @param {CanvasRenderingContext2D} context the context into render the node
+	 *&#x2F;
+	renderValue : function(context) {
+
+		var fillEnd = this.getWidth() &#x2F; Math.abs(this.max - this.min) * Math.abs(this.value - this.min);
+
+		var gradient = context.createLinearGradient(fillEnd, 0, fillEnd, this.getHeight());
+		gradient.addColorStop(0.7, CGSGColor.darkenHex(this.valueColor, 1.5));
+		gradient.addColorStop(1, this.valueColor);
+
+		context.fillStyle = gradient;
+
+		context.beginPath();
+		context.rect(0, 0, fillEnd, this.getHeight());
+		context.closePath();
+		context.fill();
+
+	},
+	
+	&#x2F;**
+	 * Render slider value (Fills background with color).
+	 * 
+	 * @method updateSliderHandle
+	 * @protected
+	 *&#x2F;
+	updateSliderHandle : function() {
+		var handleWidth = Math.min(this.getWidth(), this.getHeight()) * 2;
+		var valuePosition = this.getWidth() &#x2F; Math.abs(this.max - this.min) * Math.abs(this.value - this.min);
+        this.handle.resizeTo(handleWidth, handleWidth);
+		this.handle.translateTo(valuePosition - handleWidth &#x2F; 2, -handleWidth &#x2F; 4);
+	},
+
+    &#x2F;**
+     * Set default or custom handle for this slider
+     *
+     * @method setHandle
+     * @public
+     * @param {CGSGNode} [handle] slider&#x27;s handle
+     *&#x2F;
+	setHandle : function (handle) {
+		this.handle = handle;
+		var handleWidth = Math.min(this.getWidth(), this.getHeight()) * 2;
+		if (handle == undefined) {
+			this.handle = new CGSGNodeSliderHandle(handleWidth);
+			this.handle.color = this.backgroundColor;
+		}
+		this.addChild(this.handle);
+
+		var valuePosition = this.getWidth() &#x2F; Math.abs(this.max - this.min) * Math.abs(this.value - this.min);
+		this.handle.translateTo(valuePosition - handleWidth &#x2F; 4, -handleWidth &#x2F; 4);
+	},
+
+    &#x2F;**
+     * Get this slider&#x27;s handle
+     *
+     * @method getHandle
+     * @public
+     * @return {CGSGNodeSliderHandle} [handle] slider&#x27;s handle
+     *&#x2F;
+    getHandle : function () {
+        return this.handle;
+    },
+
+    &#x2F;**
+     * Set lower bound of this slider and recompute handle position
+     *
+     * @method addHandle
+     * @public
+     * @param {Number} min lower bound of this slider
+     *&#x2F;
+	setMin : function(min) {
+		if (min != null &amp;&amp; min != this.min &amp;&amp; min &lt; this.max) {
+			this.min = min;
+			this.updateSliderHandle();
+		}
+	},
+
+    &#x2F;**
+     * Set upper bound of this slider and recompute handle position
+     *
+     * @method setMax
+     * @public
+     * @param {Number} max upper bound of this slider
+     *&#x2F;
+	setMax : function(max) {
+		if (max != null &amp;&amp; max != this.max &amp;&amp; max &gt; this.min) {
+			this.max = max;
+			this.updateSliderHandle();
+		}
+	},
+
+    &#x2F;**
+     * Set value of this slider and recompute handle position
+     *
+     * @method setValue
+     * @public
+     * @param {Number} value of this slider
+     *&#x2F;
+	setValue : function(value) {
+		if (value &gt;= this.min &amp;&amp; value &lt;= this.max) {
+			this.value = value;
+			this.updateSliderHandle();
+		}
+	},
+
+    &#x2F;**
+     * Get value of this slider handle position in [0-1] range
+     *
+     * @method getValueAsRangeRatio
+     * @public
+     * @return {Number} handle position in [0-1] range
+     *&#x2F;
+	getValueAsRangeRatio : function() {
+		return 1-Math.abs((this.value+this.min)&#x2F;(this.max - this.min));
+	}
+	
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

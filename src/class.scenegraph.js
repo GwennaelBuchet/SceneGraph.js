@@ -162,7 +162,7 @@ var CGSGSceneGraph = CGSGObject.extend(
             }
 
             //draw the selection markers around the selected nodes
-            if (CGSG.selectedNodes.length > 0) {
+            if (CGSG.isBoundingBoxOnTop && CGSG.selectedNodes.length > 0) {
                 for (i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
                     node = CGSG.selectedNodes[i];
                     if (node.isVisible) {

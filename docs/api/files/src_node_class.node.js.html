@@ -83,6 +83,10 @@
             
                 <li><a href="..&#x2F;classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGNodeSlider.html">CGSGNodeSlider</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeSliderHandle.html">CGSGNodeSliderHandle</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
@@ -229,66 +233,66 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  *&#x2F;
 var CGSGNode = CGSGObject.extend(
-	{
-		initialize: function (x, y) {
+    {
+        initialize: function (x, y) {
 
-			&#x2F;**
-			 * The name of this nodes. Should be unique, but no control is done.
-			 * @property name
-			 * @default &quot;&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.name = &quot;&quot;;
-			&#x2F;**
-			 * Indicate whether this node is selected or not.
-			 * Use CGSGView::scenegraph.selectNode(nodeToSelect) to select a node
-			 * @property isSelected
-			 * @readonly
-			 * @default false
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isSelected = false;
-			&#x2F;**
-			 * The type of this class. Must be redefined by inherited classes
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 *&#x2F;
-			this.classType = &quot;CGSGNODE&quot;;
+            &#x2F;**
+             * The name of this nodes. Should be unique, but no control is done.
+             * @property name
+             * @default &quot;&quot;
+             * @type {String}
+             *&#x2F;
+            this.name = &quot;&quot;;
+            &#x2F;**
+             * Indicate whether this node is selected or not.
+             * Use CGSGView::scenegraph.selectNode(nodeToSelect) to select a node
+             * @property isSelected
+             * @readonly
+             * @default false
+             * @type {Boolean}
+             *&#x2F;
+            this.isSelected = false;
+            &#x2F;**
+             * The type of this class. Must be redefined by inherited classes
+             * @property classType
+             * @readonly
+             * @type {String}
+             *&#x2F;
+            this.classType = &quot;CGSGNODE&quot;;
 
-			&#x2F;**
-			 * The 8 handleboxes that will be the resize handles
-			 * the resize handles will be in this order:
-			 *  0  1  2
-			 *  3     4
-			 *  5  6  7
-			 * @property resizeHandles
-			 * @readonly
-			 * @type {Array}
-			 *&#x2F;
-			this.resizeHandles = [];
+            &#x2F;**
+             * The 8 handleboxes that will be the resize handles
+             * the resize handles will be in this order:
+             *  0  1  2
+             *  3     4
+             *  5  6  7
+             * @property resizeHandles
+             * @readonly
+             * @type {Array}
+             *&#x2F;
+            this.resizeHandles = [];
 
-			&#x2F;**
-			 * Level of transparency of the node.
-			 * @default 1.0
-			 * @property globalAlpha
-			 * @type {Number}
-			 *&#x2F;
-			this.globalAlpha = 1.0;
-			&#x2F;**
-			 * Indicate if the node is visible (and so selectable) or not
-			 * @property isVisible
-			 * @default true
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isVisible = true;
+            &#x2F;**
+             * Level of transparency of the node.
+             * @default 1.0
+             * @property globalAlpha
+             * @type {Number}
+             *&#x2F;
+            this.globalAlpha = 1.0;
+            &#x2F;**
+             * Indicate if the node is visible (and so selectable) or not
+             * @property isVisible
+             * @default true
+             * @type {Boolean}
+             *&#x2F;
+            this.isVisible = true;
 
-			&#x2F;**
-			 * If true, the node will be proportionally resized
-			 * @property isProportionalResize
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isProportionalResize = false;
+            &#x2F;**
+             * If true, the node will be proportionally resized
+             * @property isProportionalResize
+             * @type {Boolean}
+             *&#x2F;
+            this.isProportionalResize = false;
 
             &#x2F;**
              * Set to true if the node can&#x27;t be resized only in height or width
@@ -298,155 +302,155 @@ var CGSGNode = CGSGObject.extend(
              *&#x2F;
             this.isProportionalResizeOnly = false;
 
-			&#x2F;**
-			 * Define the method the detection (or &quot;pick&quot;) method will be used for this node.
-			 * Possible values CGSGPickNodeMethod.REGION and CGSGPickNodeMethod.GHOST.
-			 *
-			 * &lt;ul&gt;
-			 *     &lt;li&gt;REGION : the detection returns true if the mouse cursor is inside the bounding box of the node&lt;&#x2F;li&gt;
-			 *     &lt;li&gt;GHOST : the detection will use the &quot;renderGhost&quot; method of the node to achieve a more accurate detection&lt;&#x2F;li&gt;
-			 * &lt;&#x2F;ul&gt;
-			 *
-			 * @property pickNodeMethod
-			 * @default CGSGPickNodeMethod.REGION
-			 * @type {CGSGPickNodeMethod}
-			 *&#x2F;
-			this.pickNodeMethod = CGSGPickNodeMethod.REGION;
+            &#x2F;**
+             * Define the method the detection (or &quot;pick&quot;) method will be used for this node.
+             * Possible values CGSGPickNodeMethod.REGION and CGSGPickNodeMethod.GHOST.
+             *
+             * &lt;ul&gt;
+             *     &lt;li&gt;REGION : the detection returns true if the mouse cursor is inside the bounding box of the node&lt;&#x2F;li&gt;
+             *     &lt;li&gt;GHOST : the detection will use the &quot;renderGhost&quot; method of the node to achieve a more accurate detection&lt;&#x2F;li&gt;
+             * &lt;&#x2F;ul&gt;
+             *
+             * @property pickNodeMethod
+             * @default CGSGPickNodeMethod.REGION
+             * @type {CGSGPickNodeMethod}
+             *&#x2F;
+            this.pickNodeMethod = CGSGPickNodeMethod.REGION;
 
-			&#x2F;**
-			 * List of the children (empty if this nodes is a leaf)
-			 * @property children
-			 * @readonly
-			 * @type {Array}
-			 *&#x2F;
-			this.children = [];
+            &#x2F;**
+             * List of the children (empty if this nodes is a leaf)
+             * @property children
+             * @readonly
+             * @type {Array}
+             *&#x2F;
+            this.children = [];
 
-			&#x2F;**
-			 * The constraint region when moving the node
-			 * @property regionConstraint
-			 * @default null
-			 * @type {null}
-			 *&#x2F;
-			this.regionConstraint = null;
+            &#x2F;**
+             * The constraint region when moving the node
+             * @property regionConstraint
+             * @default null
+             * @type {null}
+             *&#x2F;
+            this.regionConstraint = null;
 
-			&#x2F;**
-			 * Pivot point to apply a rotation.
-			 * The point is a value between [0, 0] and [1, 1].
-			 * [0, 0] is the top left corner of the bounding box and [1, 1] the bottom right corner.
-			 * @property rotationCenter
-			 * @default null
-			 * @type {CGSGPosition}
-			 *&#x2F;
-			this.rotationCenter = null;
+            &#x2F;**
+             * Pivot point to apply a rotation.
+             * The point is a value between [0, 0] and [1, 1].
+             * [0, 0] is the top left corner of the bounding box and [1, 1] the bottom right corner.
+             * @property rotationCenter
+             * @default null
+             * @type {CGSGPosition}
+             *&#x2F;
+            this.rotationCenter = null;
 
-			&#x2F;**
-			 * can be fulfilled by the developer to put in whatever he needs
-			 * @property userdata
-			 * @default null
-			 * @type {*}
-			 *&#x2F;
-			this.userdata = null;
+            &#x2F;**
+             * can be fulfilled by the developer to put in whatever he needs
+             * @property userdata
+             * @default null
+             * @type {*}
+             *&#x2F;
+            this.userdata = null;
 
-			&#x2F;**
-			 * selection attributes
-			 * If true, this node is clickable and so will be checked by the pickNode function
-			 * @property isClickable
-			 * @default true
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isClickable = true;
-			&#x2F;**
-			 * If true, this node can be resized by the user. In that case, the dimension property will be affected, not the scale one.
-			 * @property isResizable
-			 * @default false
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isResizable = false;
-			&#x2F;**
-			 * If true, the node can be dragged by the user
-			 * @property isDraggable
-			 * @default false
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isDraggable = false;
+            &#x2F;**
+             * selection attributes
+             * If true, this node is clickable and so will be checked by the pickNode function
+             * @property isClickable
+             * @default true
+             * @type {Boolean}
+             *&#x2F;
+            this.isClickable = true;
+            &#x2F;**
+             * If true, this node can be resized by the user. In that case, the dimension property will be affected, not the scale one.
+             * @property isResizable
+             * @default false
+             * @type {Boolean}
+             *&#x2F;
+            this.isResizable = false;
+            &#x2F;**
+             * If true, the node can be dragged by the user
+             * @property isDraggable
+             * @default false
+             * @type {Boolean}
+             *&#x2F;
+            this.isDraggable = false;
 
-			&#x2F;**
-			 * If true, the absolute matrix will be recomputed after each movement (and so in animation).
-			 * Set it to false to gain performance if you don&#x27;t need to keep trace of absolute position (no need to collision, picknode, ...)
-			 * @property needToKeepAbsoluteMatrix
-			 * @default true
-			 * @type {Boolean}
-			 *&#x2F;
-			this.needToKeepAbsoluteMatrix = true;
+            &#x2F;**
+             * If true, the absolute matrix will be recomputed after each movement (and so in animation).
+             * Set it to false to gain performance if you don&#x27;t need to keep trace of absolute position (no need to collision, picknode, ...)
+             * @property needToKeepAbsoluteMatrix
+             * @default true
+             * @type {Boolean}
+             *&#x2F;
+            this.needToKeepAbsoluteMatrix = true;
 
-			&#x2F;**
-			 * Color for the line around this node when selected
-			 * @property selectionLineColor
-			 * @default &quot;#FF6890&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.selectionLineColor = CGSG_DEFAULT_SELECTED_STROKE_COLOR;
-			&#x2F;**
-			 * Width for the line around this node when selected
-			 * @property selectionLineWidth
-			 * @default 2
-			 * @type {Number}
-			 *&#x2F;
-			this.selectionLineWidth = CGSG_DEFAULT_SELECTED_STROKE_SIZE;
-			&#x2F;**
-			 * Color for the handle boxes around this node when selected
-			 * @property selectionHandleSize
-			 * @default 6
-			 * @type {Number}
-			 *&#x2F;
-			this.selectionHandleSize = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE;
-			&#x2F;**
-			 * Color for the handle boxes around this node when selected
-			 * @property selectionHandleColor
-			 * @default &quot;#9068FF&quot;&quot;
-			 * @type {String}
-			 *&#x2F;
-			this.selectionHandleColor = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR;
+            &#x2F;**
+             * Color for the line around this node when selected
+             * @property selectionLineColor
+             * @default &quot;#FF6890&quot;
+             * @type {String}
+             *&#x2F;
+            this.selectionLineColor = CGSG_DEFAULT_SELECTED_STROKE_COLOR;
+            &#x2F;**
+             * Width for the line around this node when selected
+             * @property selectionLineWidth
+             * @default 2
+             * @type {Number}
+             *&#x2F;
+            this.selectionLineWidth = CGSG_DEFAULT_SELECTED_STROKE_SIZE;
+            &#x2F;**
+             * Color for the handle boxes around this node when selected
+             * @property selectionHandleSize
+             * @default 6
+             * @type {Number}
+             *&#x2F;
+            this.selectionHandleSize = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE;
+            &#x2F;**
+             * Color for the handle boxes around this node when selected
+             * @property selectionHandleColor
+             * @default &quot;#9068FF&quot;&quot;
+             * @type {String}
+             *&#x2F;
+            this.selectionHandleColor = CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR;
 
-			&#x2F;**
-			 * Updated by the scene itself. Don&#x27;t update it manually.
-			 * True if the mice is over the node, false otherwise
-			 * @property isMouseOver
-			 * @readonly
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isMouseOver = false;
-			&#x2F;**
-			 * Updated by the scene itself. Don&#x27;t update it manually.
-			 * True if the node is being moved manually, false otherwise
-			 * @property isMoving
-			 * @readonly
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isMoving = false;
-			&#x2F;**
-			 * Updated by the scene itself. Don&#x27;t update it manually.
-			 * True if the node is being resized manually, false otherwise
-			 * @property isResizing
-			 * @readonly
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isResizing = false;
+            &#x2F;**
+             * Updated by the scene itself. Don&#x27;t update it manually.
+             * True if the mice is over the node, false otherwise
+             * @property isMouseOver
+             * @readonly
+             * @type {Boolean}
+             *&#x2F;
+            this.isMouseOver = false;
+            &#x2F;**
+             * Updated by the scene itself. Don&#x27;t update it manually.
+             * True if the node is being moved manually, false otherwise
+             * @property isMoving
+             * @readonly
+             * @type {Boolean}
+             *&#x2F;
+            this.isMoving = false;
+            &#x2F;**
+             * Updated by the scene itself. Don&#x27;t update it manually.
+             * True if the node is being resized manually, false otherwise
+             * @property isResizing
+             * @readonly
+             * @type {Boolean}
+             *&#x2F;
+            this.isResizing = false;
 
-			&#x2F;**
-			 * ID for the node. Should be filled by the developer. The framework will never use it.
-			 * @property _id
-			 * @type {Number}
-			 * @private
-			 *&#x2F;
-			this._id = 0;
-			&#x2F;**
-			 * parent of this node
-			 * @property _parentNode
-			 * @type {CGSGNode}
-			 * @private
-			 *&#x2F;
-			this._parentNode = null;
+            &#x2F;**
+             * ID for the node. Should be filled by the developer. The framework will never use it.
+             * @property _id
+             * @type {Number}
+             * @private
+             *&#x2F;
+            this._id = 0;
+            &#x2F;**
+             * parent of this node
+             * @property _parentNode
+             * @type {CGSGNode}
+             * @private
+             *&#x2F;
+            this._parentNode = null;
 
             this._isPrecomputed = false;
             &#x2F;&#x2F;fake canvas to pre-render static display
@@ -478,86 +482,86 @@ var CGSGNode = CGSGObject.extend(
              *&#x2F;
             this.shadowColor = &quot;#333333&quot;;
 
-			&#x2F;**
-			 * Relative position of this nodes on the canvas container, relatively to the position of its parent node.
-			 * Never use it to move the node, use translateBy&#x2F;translateWith&#x2F;translateTo instead
-			 * @readonly
-			 * @property position
-			 * @default CGSGPosition(0, 0)
-			 * @type {CGSGPosition}
-			 *&#x2F;
-			this.position = new CGSGPosition(0, 0);
-			&#x2F;**
-			 * Absolute position of this nodes on the canvas container. Generated value. Don&#x27;t modify it manually
-			 * Never use it to move the node, use translateBy&#x2F;translateWith&#x2F;translateTo instead
-			 * @readonly
-			 * @property _absolutePosition
-			 * @private
-			 * @type {CGSGPosition}
-			 *&#x2F;
-			this._absolutePosition = new CGSGPosition(0, 0);
-			&#x2F;**
-			 * Dimension of this nodes on the canvas container
-			 * Never use it to resize the node, use resizeBy&#x2F;resizeWith&#x2F;resizeTo instead
-			 * @readonly
-			 * @property dimension
-			 * @default CGSGDimension(0, 0)
-			 * @type {CGSGDimension}
-			 *&#x2F;
-			this.dimension = new CGSGDimension(0, 0);
-			&#x2F;**
-			 * Relative scale of this nodes on the canvas container, relatively to the scale of its parent node.
-			 * Never use it to scale or resize the node, use scaleBy&#x2F;scaleWith&#x2F;scaleTo instead
-			 * @readonly
-			 * @property scale
-			 * @default CGSGScale(1, 1)
-			 * @type {CGSGScale}
-			 *&#x2F;
-			this.scale = new CGSGScale(1, 1);
-			&#x2F;**
-			 * Absolute scale of this nodes on the canvas container. Generated value. Don&#x27;t modify it manually
-			 * Never use it to scale the node, use scaleBy&#x2F;scaleWith&#x2F;scaleTo instead
-			 * @readonly
-			 * @property _absoluteScale
-			 * @private
-			 * @type {CGSGScale}
-			 *&#x2F;
-			this._absoluteScale = new CGSGScale(1, 1);
-			&#x2F;**
-			 * Relative rotation of this nodes on the canvas container, relatively to the rotation of its parent node.
-			 * Never use it to rotate or resize the node, use rotateBy&#x2F;rotateWith&#x2F;rotateTo instead
-			 * @readonly
-			 * @property rotation
-			 * @default CGSGRotation(0)
-			 * @type {CGSGRotation}
-			 *&#x2F;
-			this.rotation = new CGSGRotation(0);
-			&#x2F;**
-			 * Absolute rotation of this nodes on the canvas container. Generated value. Don&#x27;t modify it manually
-			 * Never use it to rotate or resize the node, use rotateBy&#x2F;rotateWith&#x2F;rotateTo instead
-			 * @readonly
-			 * @private
-			 * @property _absoluteRotation
-			 * @type {CGSGRotation}
-			 *&#x2F;
-			this._absoluteRotation = new CGSGRotation(0);
+            &#x2F;**
+             * Relative position of this nodes on the canvas container, relatively to the position of its parent node.
+             * Never use it to move the node, use translateBy&#x2F;translateWith&#x2F;translateTo instead
+             * @readonly
+             * @property position
+             * @default CGSGPosition(0, 0)
+             * @type {CGSGPosition}
+             *&#x2F;
+            this.position = new CGSGPosition(0, 0);
+            &#x2F;**
+             * Absolute position of this nodes on the canvas container. Generated value. Don&#x27;t modify it manually
+             * Never use it to move the node, use translateBy&#x2F;translateWith&#x2F;translateTo instead
+             * @readonly
+             * @property _absolutePosition
+             * @private
+             * @type {CGSGPosition}
+             *&#x2F;
+            this._absolutePosition = new CGSGPosition(0, 0);
+            &#x2F;**
+             * Dimension of this nodes on the canvas container
+             * Never use it to resize the node, use resizeBy&#x2F;resizeWith&#x2F;resizeTo instead
+             * @readonly
+             * @property dimension
+             * @default CGSGDimension(0, 0)
+             * @type {CGSGDimension}
+             *&#x2F;
+            this.dimension = new CGSGDimension(0, 0);
+            &#x2F;**
+             * Relative scale of this nodes on the canvas container, relatively to the scale of its parent node.
+             * Never use it to scale or resize the node, use scaleBy&#x2F;scaleWith&#x2F;scaleTo instead
+             * @readonly
+             * @property scale
+             * @default CGSGScale(1, 1)
+             * @type {CGSGScale}
+             *&#x2F;
+            this.scale = new CGSGScale(1, 1);
+            &#x2F;**
+             * Absolute scale of this nodes on the canvas container. Generated value. Don&#x27;t modify it manually
+             * Never use it to scale the node, use scaleBy&#x2F;scaleWith&#x2F;scaleTo instead
+             * @readonly
+             * @property _absoluteScale
+             * @private
+             * @type {CGSGScale}
+             *&#x2F;
+            this._absoluteScale = new CGSGScale(1, 1);
+            &#x2F;**
+             * Relative rotation of this nodes on the canvas container, relatively to the rotation of its parent node.
+             * Never use it to rotate or resize the node, use rotateBy&#x2F;rotateWith&#x2F;rotateTo instead
+             * @readonly
+             * @property rotation
+             * @default CGSGRotation(0)
+             * @type {CGSGRotation}
+             *&#x2F;
+            this.rotation = new CGSGRotation(0);
+            &#x2F;**
+             * Absolute rotation of this nodes on the canvas container. Generated value. Don&#x27;t modify it manually
+             * Never use it to rotate or resize the node, use rotateBy&#x2F;rotateWith&#x2F;rotateTo instead
+             * @readonly
+             * @private
+             * @property _absoluteRotation
+             * @type {CGSGRotation}
+             *&#x2F;
+            this._absoluteRotation = new CGSGRotation(0);
 
-			&#x2F;**
-			 * @property _isDrag
-			 * @type {Boolean}
-			 * @private
-			 *&#x2F;
-			this._isDrag = false;
+            &#x2F;**
+             * @property _isDrag
+             * @type {Boolean}
+             * @private
+             *&#x2F;
+            this._isDrag = false;
 
-			&#x2F;&#x2F;this.selectableZone =
-			&#x2F;&#x2F;new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
+            &#x2F;&#x2F;this.selectableZone =
+            &#x2F;&#x2F;new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
 
-			&#x2F;**
-			 * true if this node is traversable (recursively) (ie : by the picknode, a traverser, ...)
-			 * @property isTraversable
-			 * @type {Boolean}
-			 *&#x2F;
-			this.isTraversable = true;
+            &#x2F;**
+             * true if this node is traversable (recursively) (ie : by the picknode, a traverser, ...)
+             * @property isTraversable
+             * @type {Boolean}
+             *&#x2F;
+            this.isTraversable = true;
 
             &#x2F;**
              * Indicate if this node is managed by the collision manager
@@ -566,9 +570,9 @@ var CGSGNode = CGSGObject.extend(
              *&#x2F;
             this.isCollisionManaged = false;
 
-			&#x2F;&#x2F;initialize the position and dimension
-			this.translateTo(x, y, true);
-			this.resizeTo(0, 0);
+            &#x2F;&#x2F;initialize the position and dimension
+            this.translateTo(x, y, true);
+            this.resizeTo(0, 0);
 
             &#x2F;**
              * Set to true if dimension of the node is not the original one anymore
@@ -578,200 +582,200 @@ var CGSGNode = CGSGObject.extend(
              *&#x2F;
             this._isDimensionChanged = false;
 
-			&#x2F;&#x2F; initialize the selection handleBoxes
-			for (var i = 0; i &lt; 8; i++) {
-				var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor,
-												  this.selectionLineColor, this.selectionLineWidth, 0, 0);
-				this.resizeHandles.push(handleBox);
-			}
+            &#x2F;&#x2F; initialize the selection handleBoxes
+            for (var i = 0; i &lt; 8; i++) {
+                var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor,
+                    this.selectionLineColor, this.selectionLineWidth, 0, 0);
+                this.resizeHandles.push(handleBox);
+            }
 
-			&#x2F;**
-			 * Callback on mouse over the node
-			 * @property onMouseOver
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onMouseOver = function (event) {
+            &#x2F;**
+             * Callback on mouse over the node
+             * @property onMouseOver
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onMouseOver = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onMouseOver = null;
-			&#x2F;**
-			 * Callback on mouse enter on the node
-			 * @property onMouseEnter
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onMouseEnter = function (event) {
+             *&#x2F;
+            this.onMouseOver = null;
+            &#x2F;**
+             * Callback on mouse enter on the node
+             * @property onMouseEnter
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onMouseEnter = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onMouseEnter = null;
-			&#x2F;**
-			 * Callback on mouse out
-			 * @property onMouseOut
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onMouseOut = function (event) {
+             *&#x2F;
+            this.onMouseEnter = null;
+            &#x2F;**
+             * Callback on mouse out
+             * @property onMouseOut
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onMouseOut = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onMouseOut = null;
-			&#x2F;**
-			 * Callback on mouse up
-			 * @property onMouseUp
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onMouseUp = function (event) {
+             *&#x2F;
+            this.onMouseOut = null;
+            &#x2F;**
+             * Callback on mouse up
+             * @property onMouseUp
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onMouseUp = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onMouseUp = null;
-			&#x2F;**
-			 * Callback on mouse or touch click
-			 * @property onClick
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onClick = function (event) {
+             *&#x2F;
+            this.onMouseUp = null;
+            &#x2F;**
+             * Callback on mouse or touch click
+             * @property onClick
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onClick = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onClick = null;
-			&#x2F;**
-			 * Callback on mouse or touch double click
-			 * @property onDblClick
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onDblClick = function (event) {
+             *&#x2F;
+            this.onClick = null;
+            &#x2F;**
+             * Callback on mouse or touch double click
+             * @property onDblClick
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onDblClick = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onDblClick = null;
-			&#x2F;**
-			 * Callback on drag this node
-			 * @property onDrag
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onDrag = function (event) {
+             *&#x2F;
+            this.onDblClick = null;
+            &#x2F;**
+             * Callback on drag this node
+             * @property onDrag
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onDrag = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onDrag = null;
-			&#x2F;**
-			 * Callback on end of drag this node
-			 * @property onDragEnd
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onDragEnd = function (event) {
+             *&#x2F;
+            this.onDrag = null;
+            &#x2F;**
+             * Callback on end of drag this node
+             * @property onDragEnd
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onDragEnd = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onDragEnd = null;
-			&#x2F;**
-			 * Callback on resize this node
-			 * @property onResize
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onResize = function (event) {
+             *&#x2F;
+            this.onDragEnd = null;
+            &#x2F;**
+             * Callback on resize this node
+             * @property onResize
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onResize = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onResize = null;
-			&#x2F;**
-			 * Callback on end resize this node
-			 * @property onResizeEnd
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onResizeEnd = function (event) {
+             *&#x2F;
+            this.onResize = null;
+            &#x2F;**
+             * Callback on end resize this node
+             * @property onResizeEnd
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onResizeEnd = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onResizeEnd = null;
-			&#x2F;**
-			 * Callback on select this node
-			 * @property onSelect
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onSelect = function (event) {
+             *&#x2F;
+            this.onResizeEnd = null;
+            &#x2F;**
+             * Callback on select this node
+             * @property onSelect
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onSelect = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onSelect = null;
+             *&#x2F;
+            this.onSelect = null;
 
-			&#x2F;**
-			 * Callback on deselect this node
-			 * @property onDeselect
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onDeselect = function (event) {
+            &#x2F;**
+             * Callback on deselect this node
+             * @property onDeselect
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onDeselect = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onDeselect = null;
+             *&#x2F;
+            this.onDeselect = null;
 
-			&#x2F;**
-			 * Callback on when a child is removed
-			 * @property onChildRemove
-			 * @default null
-			 * @type {function}
-			 *
-			 * @example
-			 *  this.onDeselect = function (event) {
+            &#x2F;**
+             * Callback on when a child is removed
+             * @property onChildRemove
+             * @default null
+             * @type {function}
+             *
+             * @example
+             *  this.onDeselect = function (event) {
 			 *      event.data.node; &#x2F;&#x2F;CGSGNode
 			 *      event.data.position; &#x2F;&#x2F;Array of CGSGPosition
 			 *      event.data.nativeEvent; &#x2F;&#x2F;Event
 			 *  }
-			 *&#x2F;
-			this.onChildRemove = null;
+             *&#x2F;
+            this.onChildRemove = null;
 
-			this.computeAbsoluteMatrix(true);
-		},
+            this.computeAbsoluteMatrix(true);
+        },
 
         &#x2F;**
          * @method moveLocalZIndex
@@ -810,40 +814,40 @@ var CGSGNode = CGSGObject.extend(
             return this._parentNode.children.indexOf(this);
         },
 
-		&#x2F;**
-		 * return the relative region of this node
-		 * @public
-		 * @method getRegion
-		 * @return {CGSGRegion}
-		 *&#x2F;
-		getRegion: function () {
-			return new CGSGRegion(this.position.x, this.position.y, this.getWidth(), this.getHeight());
-		},
+        &#x2F;**
+         * return the relative region of this node
+         * @public
+         * @method getRegion
+         * @return {CGSGRegion}
+         *&#x2F;
+        getRegion: function () {
+            return new CGSGRegion(this.position.x, this.position.y, this.getWidth(), this.getHeight());
+        },
 
-		&#x2F;**
-		 * return the absolute region of this node
-		 * @public
-		 * @method getAbsoluteRegion
-		 * @return {CGSGRegion}
-		 *&#x2F;
-		getAbsoluteRegion: function () {
-			return new CGSGRegion(this.getAbsoluteLeft(), this.getAbsoluteTop(), this.getAbsoluteWidth(),
-								  this.getAbsoluteHeight());
-		},
+        &#x2F;**
+         * return the absolute region of this node
+         * @public
+         * @method getAbsoluteRegion
+         * @return {CGSGRegion}
+         *&#x2F;
+        getAbsoluteRegion: function () {
+            return new CGSGRegion(this.getAbsoluteLeft(), this.getAbsoluteTop(), this.getAbsoluteWidth(),
+                this.getAbsoluteHeight());
+        },
 
-		&#x2F;&#x2F;&#x2F;&#x2F; RENDERING MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+        &#x2F;&#x2F;&#x2F;&#x2F; RENDERING MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 
-		&#x2F;**
-		 * Wipes the canvas context
-		 * @method _clearContext
-		 * @param context
-		 * @param canvasWidth
-		 * @param canvasHeight
-		 * @private
-		 *&#x2F;
-		_clearContext: function (context, canvasWidth, canvasHeight) {
-			context.clearRect(0, 0, canvasWidth, canvasHeight);
-		},
+        &#x2F;**
+         * Wipes the canvas context
+         * @method _clearContext
+         * @param context
+         * @param canvasWidth
+         * @param canvasHeight
+         * @private
+         *&#x2F;
+        _clearContext: function (context, canvasWidth, canvasHeight) {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+        },
 
         &#x2F;**
          * Use this method to make the node precomputed or not.
@@ -905,29 +909,29 @@ var CGSGNode = CGSGObject.extend(
         doRender: function (context) {
             &#x2F;*var start = new CGSGEvent(this, {context : context});
 
-            if (node.onBeginRender) {
-                CGSG.eventManager.dispatch(node, cgsgEventTypes.ON_BEGIN_RENDER, start);
-            }
+             if (node.onBeginRender) {
+             CGSG.eventManager.dispatch(node, cgsgEventTypes.ON_BEGIN_RENDER, start);
+             }
 
-            &#x2F;&#x2F; Render if context exists
-            if (cgsgExist(start.data.context)) {
-                node.render(start.data.context, CGSG.currentFrame);
-            }
+             &#x2F;&#x2F; Render if context exists
+             if (cgsgExist(start.data.context)) {
+             node.render(start.data.context, CGSG.currentFrame);
+             }
 
-            var end = new CGSGEvent(this, {context : start.data.context});
+             var end = new CGSGEvent(this, {context : start.data.context});
 
-            if (node.onFinishRender) {
-                CGSG.eventManager.dispatch(node, cgsgEventTypes.ON_FINISH_RENDER, end);
-            }
+             if (node.onFinishRender) {
+             CGSG.eventManager.dispatch(node, cgsgEventTypes.ON_FINISH_RENDER, end);
+             }
 
-            return end.data.context;*&#x2F;
+             return end.data.context;*&#x2F;
 
             var ctx = context;
 
-            var startEvt = new CGSGEvent(this, {context : context});
+            var startEvt = new CGSGEvent(this, {context: context});
 
             if (cgsgExist(this.onBeforeRender)) {
-               CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_BEFORE_RENDER, startEvt);
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_BEFORE_RENDER, startEvt);
                 ctx = startEvt.data.context;
                 &#x2F;&#x2F;this.onBeforeRender({context: context});
             }
@@ -948,8 +952,10 @@ var CGSGNode = CGSGObject.extend(
                 }
             }
 
+            if (!CGSG.isBoundingBoxOnTop &amp;&amp; this.isSelected)
+                this.renderBoundingBox(ctx);
 
-            var endEvt = new CGSGEvent(this, {context : ctx});
+            var endEvt = new CGSGEvent(this, {context: ctx});
 
             &#x2F;&#x2F;restore state
             this.afterRender(endEvt.data.context);
@@ -963,12 +969,12 @@ var CGSGNode = CGSGObject.extend(
         },
 
         &#x2F;**
-		 * Empty rendering function. Must be overrided by the inherited classes
-		 * @method render
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * *&#x2F;
-		render: function (context) {
-		},
+         * Empty rendering function. Must be overrided by the inherited classes
+         * @method render
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * *&#x2F;
+        render: function (context) {
+        },
 
         &#x2F;**
          * internal method of the framework that encapsulate all the work around the ghost rendering method
@@ -1005,13 +1011,13 @@ var CGSGNode = CGSGObject.extend(
             this.render(ghostContext);
         },
 
-		&#x2F;**
-		 * Render the selection box and handle boxes around the bounding box of this node when selected
-		 * @protected
-		 * @method renderBoundingBox
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * *&#x2F;
-		renderBoundingBox: function (context) {
+        &#x2F;**
+         * Render the selection box and handle boxes around the bounding box of this node when selected
+         * @protected
+         * @method renderBoundingBox
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * *&#x2F;
+        renderBoundingBox: function (context) {
             &#x2F;&#x2F;this.computeAbsoluteMatrix(true);
 
             var w = this.getWidth(), h = this.getHeight();
@@ -1082,112 +1088,112 @@ var CGSGNode = CGSGObject.extend(
                     this.resizeHandles[i].render(context);
                 }
             }
-		},
+        },
 
-		&#x2F;**
-		 * Must be called before to start the rendering of the nodes
-		 * @protected
-		 * @method beforeRender
-		 * @param {CanvasRenderingContext2D} context the context into render the nodes
-		 * *&#x2F;
-		beforeRender: function (context) {
-			&#x2F;&#x2F;first save the current context state
-			context.save();
+        &#x2F;**
+         * Must be called before to start the rendering of the nodes
+         * @protected
+         * @method beforeRender
+         * @param {CanvasRenderingContext2D} context the context into render the nodes
+         * *&#x2F;
+        beforeRender: function (context) {
+            &#x2F;&#x2F;first save the current context state
+            context.save();
 
-			&#x2F;&#x2F;move the context to the nodes&#x27;s relative position
-			context.translate(this.position.x, this.position.y);
+            &#x2F;&#x2F;move the context to the nodes&#x27;s relative position
+            context.translate(this.position.x, this.position.y);
             context.scale(this.scale.x, this.scale.y);
 
-			&#x2F;&#x2F; translate context to center of canvas
-			if (cgsgExist(this.rotationCenter)) {
-				context.translate(this.dimension.width * this.rotationCenter.x,
-								  this.dimension.height * this.rotationCenter.y);
-				context.rotate(this.rotation.angle);
-				context.translate(-this.dimension.width * this.rotationCenter.x,
-								  -this.dimension.height * this.rotationCenter.y);
-			}
-			else {
-				context.rotate(this.rotation.angle);
-			}
+            &#x2F;&#x2F; translate context to center of canvas
+            if (cgsgExist(this.rotationCenter)) {
+                context.translate(this.dimension.width * this.rotationCenter.x,
+                    this.dimension.height * this.rotationCenter.y);
+                context.rotate(this.rotation.angle);
+                context.translate(-this.dimension.width * this.rotationCenter.x,
+                    -this.dimension.height * this.rotationCenter.y);
+            }
+            else {
+                context.rotate(this.rotation.angle);
+            }
 
             if (this.onBeforeRenderEnd) {
-               CGSG.eventManager.dispatch(this, cgsgEventTypes.BEFORE_RENDER_END, new CGSGEvent(this, {context : context}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.BEFORE_RENDER_END, new CGSGEvent(this, {context: context}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Must be called after a render
-		 * @protected
-		 * @method afterRender
-		 * @param {CanvasRenderingContext2D} context the context into render the nodes
-		 * *&#x2F;
-		afterRender: function (context) {
+        &#x2F;**
+         * Must be called after a render
+         * @protected
+         * @method afterRender
+         * @param {CanvasRenderingContext2D} context the context into render the nodes
+         * *&#x2F;
+        afterRender: function (context) {
             if (this.onAfterRenderStart) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.AFTER_RENDER_START, new CGSGEvent(this, {context : context}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.AFTER_RENDER_START, new CGSGEvent(this, {context: context}));
             }
 
             &#x2F;&#x2F;var ctx = context;
 
-			&#x2F;&#x2F;render all children
-			if (!this.isALeaf()) {
-				&#x2F;&#x2F;draw children
-				for (var i = 0, len = this.children.length; i &lt; len; ++i) {
-					var childNode = this.children[i];
-					if (childNode.isVisible) {
+            &#x2F;&#x2F;render all children
+            if (!this.isALeaf()) {
+                &#x2F;&#x2F;draw children
+                for (var i = 0, len = this.children.length; i &lt; len; ++i) {
+                    var childNode = this.children[i];
+                    if (childNode.isVisible) {
                         &#x2F;&#x2F;&#x2F;&#x2F; ctx = cgsgRender(ctx, childNode);
                         childNode.doRender(context);
-					}
-				}
-			}
+                    }
+                }
+            }
 
-			&#x2F;&#x2F;restore the context state
-			context.restore();
-		},
+            &#x2F;&#x2F;restore the context state
+            context.restore();
+        },
 
-		&#x2F;**
-		 * Must be called before begin to render the nodes in GHOST mode
-		 * @protected
-		 * @method beforeRenderGhost
-		 * @param {CanvasRenderingContext2D} context the context into render the nodes
-		 *&#x2F;
-		beforeRenderGhost: function (context) {
-			&#x2F;&#x2F;first save the current context state
-			context.save();
-			&#x2F;&#x2F;move the context to the nodes&#x27;s relative position
-			context.translate(this._absolutePosition.x, this._absolutePosition.y);
-			context.rotate(this._absoluteRotation.angle);
-			context.scale(this._absoluteScale.x, this._absoluteScale.y);
-		},
+        &#x2F;**
+         * Must be called before begin to render the nodes in GHOST mode
+         * @protected
+         * @method beforeRenderGhost
+         * @param {CanvasRenderingContext2D} context the context into render the nodes
+         *&#x2F;
+        beforeRenderGhost: function (context) {
+            &#x2F;&#x2F;first save the current context state
+            context.save();
+            &#x2F;&#x2F;move the context to the nodes&#x27;s relative position
+            context.translate(this._absolutePosition.x, this._absolutePosition.y);
+            context.rotate(this._absoluteRotation.angle);
+            context.scale(this._absoluteScale.x, this._absoluteScale.y);
+        },
 
-		&#x2F;**
-		 * Must be called before begin to render
-		 * @protected
-		 * @method afterRenderGhost
-		 * @param {CanvasRenderingContext2D} context the context into render the nodes
-		 * *&#x2F;
-		afterRenderGhost: function (context) {
-			&#x2F;&#x2F;restore the context state
-			context.restore();
-		},
+        &#x2F;**
+         * Must be called before begin to render
+         * @protected
+         * @method afterRenderGhost
+         * @param {CanvasRenderingContext2D} context the context into render the nodes
+         * *&#x2F;
+        afterRenderGhost: function (context) {
+            &#x2F;&#x2F;restore the context state
+            context.restore();
+        },
 
-		&#x2F;**
-		 * Mark this nodes as selected
-		 * @method setSelected
-		 * @param {Boolean} isSelected
-		 * *&#x2F;
-		setSelected: function (isSelected) {
-			this.isSelected = isSelected;
-			this._isDrag = true;
+        &#x2F;**
+         * Mark this nodes as selected
+         * @method setSelected
+         * @param {Boolean} isSelected
+         * *&#x2F;
+        setSelected: function (isSelected) {
+            this.isSelected = isSelected;
+            this._isDrag = true;
 
-			if (isSelected &amp;&amp; this.onSelect !== null) {
-				&#x2F;&#x2F;this.onSelect({node: this});
+            if (isSelected &amp;&amp; this.onSelect !== null) {
+                &#x2F;&#x2F;this.onSelect({node: this});
                 CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SELECT, new CGSGEvent(this, {node: this}));
-			}
-			else if (this.onDeselect !== null) {
+            }
+            else if (this.onDeselect !== null) {
                 CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_DESELECT, new CGSGEvent(this, {node: this}));
-				&#x2F;&#x2F;this.onDeselect({node: this});
-			}
-		},
+                &#x2F;&#x2F;this.onDeselect({node: this});
+            }
+        },
 
         &#x2F;**
          * Returns a region which represents the total surface covered by this node and its children too.
@@ -1195,7 +1201,7 @@ var CGSGNode = CGSGObject.extend(
          * @method getCompleteRegion
          * @return {CGSGRegion}
          *&#x2F;
-        getCompleteRegion : function() {
+        getCompleteRegion: function () {
             return new CGSGRegion(this.getMinAbsoluteLeft(), this.getMinAbsoluteTop(), this.getMaxAbsoluteRight(), this.getMaxAbsoluteBottom());
         },
 
@@ -1205,7 +1211,7 @@ var CGSGNode = CGSGObject.extend(
          * @method getCompletePosition
          * @return {CGSGPosition}
          *&#x2F;
-        getCompletePosition : function() {
+        getCompletePosition: function () {
             return new CGSGPosition(this.getMinAbsoluteLeft(), this.getMinAbsoluteTop());
         },
 
@@ -1215,114 +1221,114 @@ var CGSGNode = CGSGObject.extend(
          * @method getCompleteDimension
          * @return {CGSGDimension}
          *&#x2F;
-        getCompleteDimension : function() {
+        getCompleteDimension: function () {
             return new CGSGDimension(this.getMaxAbsoluteRight(), this.getMaxAbsoluteBottom());
         },
 
-		&#x2F;**
-		 * return this if this nodes is under the mice cursor
-		 * Can be overrided by inherited klass to optimize this perform.
-		 * This default function used the ghost rendering method
-		 * @protected
-		 * @method detectSelection
-		 * @param {CGSGPosition} mousePosition A CGSGPosition object
-		 * @param {CanvasRenderingContext2D} ghostContext
-		 * @param {CGSGScale} absoluteScale
-		 *&#x2F;
-		detectSelection: function (mousePosition, ghostContext, absoluteScale) {
-			if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
-				if (mousePosition.x &gt;= this._absolutePosition.x
-						&amp;&amp; mousePosition.x &lt; this._absolutePosition.x + this.getWidth() * absoluteScale.x
-						&amp;&amp; mousePosition.y &gt;= this._absolutePosition.y
-					    &amp;&amp; mousePosition.y &lt; this._absolutePosition.y + this.getHeight() * absoluteScale.y
-					) {
-					return this;
-				}
-			}
-			else &#x2F;*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*&#x2F; {
-				&#x2F;&#x2F; draw shape onto ghost context
-				this.doRenderGhost(ghostContext);
+        &#x2F;**
+         * return this if this nodes is under the mice cursor
+         * Can be overrided by inherited klass to optimize this perform.
+         * This default function used the ghost rendering method
+         * @protected
+         * @method detectSelection
+         * @param {CGSGPosition} mousePosition A CGSGPosition object
+         * @param {CanvasRenderingContext2D} ghostContext
+         * @param {CGSGScale} absoluteScale
+         *&#x2F;
+        detectSelection: function (mousePosition, ghostContext, absoluteScale) {
+            if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
+                if (mousePosition.x &gt;= this._absolutePosition.x
+                    &amp;&amp; mousePosition.x &lt; this._absolutePosition.x + this.getWidth() * absoluteScale.x
+                    &amp;&amp; mousePosition.y &gt;= this._absolutePosition.y
+                    &amp;&amp; mousePosition.y &lt; this._absolutePosition.y + this.getHeight() * absoluteScale.y
+                    ) {
+                    return this;
+                }
+            }
+            else &#x2F;*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*&#x2F; {
+                &#x2F;&#x2F; draw shape onto ghost context
+                this.doRenderGhost(ghostContext);
 
-				&#x2F;&#x2F; get image data at the mouse x,y pixel
-				var imageData = ghostContext.getImageData(mousePosition.x, mousePosition.y, 1, 1);
+                &#x2F;&#x2F; get image data at the mouse x,y pixel
+                var imageData = ghostContext.getImageData(mousePosition.x, mousePosition.y, 1, 1);
 
-				cgsgClearContext(ghostContext);
+                cgsgClearContext(ghostContext);
 
-				&#x2F;&#x2F; if the mouse pixel exists, select this nodes
-				if (imageData.data[0] != 0 || imageData.data[1] != 0 || imageData.data[2] != 0) {
-					return this;
-				}
-			}
+                &#x2F;&#x2F; if the mouse pixel exists, select this nodes
+                if (imageData.data[0] != 0 || imageData.data[1] != 0 || imageData.data[2] != 0) {
+                    return this;
+                }
+            }
 
-			return null;
-		},
+            return null;
+        },
 
-		&#x2F;**
-		 * return this if this nodes is under the region
-		 * Can be overrided by inherited klass to optimize this perform.
-		 * This default function used the ghost rendering method
-		 * @protected
-		 * @method detectSelectionInRegion
-		 * @param {CGSGRegion} region The region to check
-		 * @param {CanvasRenderingContext2D} ghostContext
-		 * @param {CGSGScale} absoluteScale
-		 *&#x2F;
-		detectSelectionInRegion: function (region, ghostContext, absoluteScale) {
+        &#x2F;**
+         * return this if this nodes is under the region
+         * Can be overrided by inherited klass to optimize this perform.
+         * This default function used the ghost rendering method
+         * @protected
+         * @method detectSelectionInRegion
+         * @param {CGSGRegion} region The region to check
+         * @param {CanvasRenderingContext2D} ghostContext
+         * @param {CGSGScale} absoluteScale
+         *&#x2F;
+        detectSelectionInRegion: function (region, ghostContext, absoluteScale) {
 
-			if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
+            if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 
-				var us = this.getAbsoluteRegion();
-				&#x2F;&#x2F;select this node only if it is totally inside the region
-				if (cgsgRegionIsInRegion(us, region, 0)) {
-					return this;
-				}
+                var us = this.getAbsoluteRegion();
+                &#x2F;&#x2F;select this node only if it is totally inside the region
+                if (cgsgRegionIsInRegion(us, region, 0)) {
+                    return this;
+                }
 
-			}
-			else &#x2F;*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*&#x2F; {
-				&#x2F;&#x2F; draw shape onto ghost context
-				this.renderGhost(ghostContext);
+            }
+            else &#x2F;*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*&#x2F; {
+                &#x2F;&#x2F; draw shape onto ghost context
+                this.renderGhost(ghostContext);
 
-				&#x2F;&#x2F; get image data at the mouse x,y pixel
-				var imageData = ghostContext.getImageData(region.position.x, region.position.y, region.dimension.width,
-														  region.dimension.height);
+                &#x2F;&#x2F; get image data at the mouse x,y pixel
+                var imageData = ghostContext.getImageData(region.position.x, region.position.y, region.dimension.width,
+                    region.dimension.height);
 
-				cgsgClearContext(ghostContext);
+                cgsgClearContext(ghostContext);
 
-				&#x2F;&#x2F; if the a pixel exists in the region then, select this node
+                &#x2F;&#x2F; if the a pixel exists in the region then, select this node
                 for (var i = 0, len = imageData.data.length; i &lt; len; i += 4) {
                     if (imageData.data[i] != 0 || imageData.data[i + 1] != 0 || imageData.data[i + 2] != 0) {
-						return this;
-					}
-				}
-			}
+                        return this;
+                    }
+                }
+            }
 
-			return null;
-		},
+            return null;
+        },
 
-		&#x2F;**
-		 * Check if this nodes is under the cursor position.
-		 * @public
-		 * @method pickNode
-		 * @param {CGSGPosition} mousePosition position of the mouse on the canvas
-		 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
-		 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
-		 * @param {Boolean} recursively if false, don&#x27;t traverse the children of this nodes
-		 * @param {Function} condition Condition to be picked
-		 * ie: &quot;color==&#x27;yellow&#x27;&quot; or &quot;classType==&#x27;CGSGNodeImage&#x27; &amp;&amp; this.globalAlpha&gt;0.5&quot;
-		 *&#x2F;
-		pickNode: function (mousePosition, absoluteScale, ghostContext, recursively, condition) {
-			var selectedNode = null;
-			var childAbsoluteScale = null;
-			if (cgsgExist(absoluteScale)) {
+        &#x2F;**
+         * Check if this nodes is under the cursor position.
+         * @public
+         * @method pickNode
+         * @param {CGSGPosition} mousePosition position of the mouse on the canvas
+         * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
+         * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
+         * @param {Boolean} recursively if false, don&#x27;t traverse the children of this nodes
+         * @param {Function} condition Condition to be picked
+         * ie: &quot;color==&#x27;yellow&#x27;&quot; or &quot;classType==&#x27;CGSGNodeImage&#x27; &amp;&amp; this.globalAlpha&gt;0.5&quot;
+         *&#x2F;
+        pickNode: function (mousePosition, absoluteScale, ghostContext, recursively, condition) {
+            var selectedNode = null;
+            var childAbsoluteScale = null;
+            if (cgsgExist(absoluteScale)) {
                 childAbsoluteScale = absoluteScale.multiply(this.scale);
-			}
-			else {
-				childAbsoluteScale = this.getAbsoluteScale(false);
-			}
+            }
+            else {
+                childAbsoluteScale = this.getAbsoluteScale(false);
+            }
 
-			if (this.isTraversable &amp;&amp; (this.isClickable || this.isResizable || this.isDraggable)) {
-				if (!cgsgExist(condition) || condition(this) === true) {
-					this.computeAbsoluteMatrix(false);
+            if (this.isTraversable &amp;&amp; (this.isClickable || this.isResizable || this.isDraggable)) {
+                if (!cgsgExist(condition) || condition(this) === true) {
+                    this.computeAbsoluteMatrix(false);
 
                     &#x2F;&#x2F; First of all, try to to see if resize handler has been picked
                     if (this.isSelected &amp;&amp; this.isResizable) {
@@ -1335,515 +1341,515 @@ var CGSGNode = CGSGObject.extend(
                         }
                     }
 
-					selectedNode =
-					this.detectSelection(mousePosition, ghostContext, childAbsoluteScale);
-				}
-			}
+                    selectedNode =
+                        this.detectSelection(mousePosition, ghostContext, childAbsoluteScale);
+                }
+            }
 
-			&#x2F;&#x2F;traverse the children if asked
-			if (this.isTraversable &amp;&amp; recursively &amp;&amp; !this.isALeaf()) {
-				for (var i = this.children.length - 1; i &gt;= 0; --i) {
-					var childNode = this.children[i];
-					var selectedChild = childNode.pickNode(mousePosition,
-														   childAbsoluteScale, ghostContext,
-														   recursively, condition);
-					if (cgsgExist(selectedChild)) {
-						selectedNode = selectedChild;
-						break;
-					}
-				}
+            &#x2F;&#x2F;traverse the children if asked
+            if (this.isTraversable &amp;&amp; recursively &amp;&amp; !this.isALeaf()) {
+                for (var i = this.children.length - 1; i &gt;= 0; --i) {
+                    var childNode = this.children[i];
+                    var selectedChild = childNode.pickNode(mousePosition,
+                        childAbsoluteScale, ghostContext,
+                        recursively, condition);
+                    if (cgsgExist(selectedChild)) {
+                        selectedNode = selectedChild;
+                        break;
+                    }
+                }
 
-				childAbsoluteScale = null;
-			}
+                childAbsoluteScale = null;
+            }
 
-			return selectedNode;
-		},
+            return selectedNode;
+        },
 
-		&#x2F;**
-		 * Return all nodes (Array) in the given region
-		 * @public
-		 * @method pickNodes
-		 * @param {CGSGRegion} region of the canvas to check
-		 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
-		 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
-		 * @param {Boolean} recursively if false, don&#x27;t traverse the children of this nodes
-		 * @param {Function} condition Condition to be picked
-		 * ie: &quot;color==&#x27;yellow&#x27;&quot; or &quot;classType==&#x27;CGSGNodeImage&#x27; &amp;&amp; this.globalAlpha&gt;0.5&quot;
-		 *&#x2F;
-		pickNodes: function (region, absoluteScale, ghostContext, recursively, condition) {
-			var selectedNodes = [];
+        &#x2F;**
+         * Return all nodes (Array) in the given region
+         * @public
+         * @method pickNodes
+         * @param {CGSGRegion} region of the canvas to check
+         * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
+         * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
+         * @param {Boolean} recursively if false, don&#x27;t traverse the children of this nodes
+         * @param {Function} condition Condition to be picked
+         * ie: &quot;color==&#x27;yellow&#x27;&quot; or &quot;classType==&#x27;CGSGNodeImage&#x27; &amp;&amp; this.globalAlpha&gt;0.5&quot;
+         *&#x2F;
+        pickNodes: function (region, absoluteScale, ghostContext, recursively, condition) {
+            var selectedNodes = [];
 
             if (region.dimension.width == 0 &amp;&amp; region.dimension.height == 0)
                 return selectedNodes;
 
-			var childAbsoluteScale = null;
-			if (cgsgExist(absoluteScale)) {
+            var childAbsoluteScale = null;
+            if (cgsgExist(absoluteScale)) {
                 childAbsoluteScale = absoluteScale.multiply(this.scale);
-			}
-			else {
-				childAbsoluteScale = this.getAbsoluteScale(false);
-			}
+            }
+            else {
+                childAbsoluteScale = this.getAbsoluteScale(false);
+            }
 
-			if (this.isTraversable &amp;&amp; (&#x2F;*this.isClickable ||*&#x2F; this.isResizable || this.isDraggable)) {
-				if (!cgsgExist(condition) || condition(this) === true) {
-					this.computeAbsoluteMatrix(false);
-					var selected = this.detectSelectionInRegion(region, ghostContext, childAbsoluteScale);
-					if (cgsgExist(selected)) {
-						selectedNodes.push(selected);
-					}
-				}
-			}
+            if (this.isTraversable &amp;&amp; (&#x2F;*this.isClickable ||*&#x2F; this.isResizable || this.isDraggable)) {
+                if (!cgsgExist(condition) || condition(this) === true) {
+                    this.computeAbsoluteMatrix(false);
+                    var selected = this.detectSelectionInRegion(region, ghostContext, childAbsoluteScale);
+                    if (cgsgExist(selected)) {
+                        selectedNodes.push(selected);
+                    }
+                }
+            }
 
-			&#x2F;&#x2F;traverse the children if asked
-			if (this.isTraversable &amp;&amp; recursively &amp;&amp; !this.isALeaf()) {
-				for (var i = this.children.length - 1; i &gt;= 0; --i) {
-					var childNode = this.children[i];
-					var selectedChildren = childNode.pickNodes(region,
-															   childAbsoluteScale, ghostContext,
-															   recursively, condition);
-					if (selectedChildren !== null &amp;&amp; selectedChildren !== undefined) {
-						selectedNodes = selectedNodes.concat(selectedChildren);
-					}
-				}
+            &#x2F;&#x2F;traverse the children if asked
+            if (this.isTraversable &amp;&amp; recursively &amp;&amp; !this.isALeaf()) {
+                for (var i = this.children.length - 1; i &gt;= 0; --i) {
+                    var childNode = this.children[i];
+                    var selectedChildren = childNode.pickNodes(region,
+                        childAbsoluteScale, ghostContext,
+                        recursively, condition);
+                    if (selectedChildren !== null &amp;&amp; selectedChildren !== undefined) {
+                        selectedNodes = selectedNodes.concat(selectedChildren);
+                    }
+                }
 
-				childAbsoluteScale = null;
-			}
+                childAbsoluteScale = null;
+            }
 
-			return selectedNodes;
-		},
+            return selectedNodes;
+        },
 
-		&#x2F;**
-		 * Return true if this nodes has no child
-		 * @method isALeaf
-		 * *&#x2F;
-		isALeaf: function () {
-			return this.children.length &lt;= 0;
-		},
+        &#x2F;**
+         * Return true if this nodes has no child
+         * @method isALeaf
+         * *&#x2F;
+        isALeaf: function () {
+            return this.children.length &lt;= 0;
+        },
 
-		&#x2F;&#x2F;&#x2F;&#x2F; TRANSFORMATION MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+        &#x2F;&#x2F;&#x2F;&#x2F; TRANSFORMATION MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 
-		&#x2F;**
-		 * Replace current relative position by this new one
-		 * @method translateTo
-		 * @param {Number} newRelativeX
-		 * @param {Number} newRelativeY
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 *&#x2F;
-		translateTo: function (newRelativeX, newRelativeY, computeAbsoluteValue) {
-			this.position.translateTo(newRelativeX, newRelativeY);
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absolutePosition = this.getAbsolutePosition(true);
-			}
+        &#x2F;**
+         * Replace current relative position by this new one
+         * @method translateTo
+         * @param {Number} newRelativeX
+         * @param {Number} newRelativeY
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         *&#x2F;
+        translateTo: function (newRelativeX, newRelativeY, computeAbsoluteValue) {
+            this.position.translateTo(newRelativeX, newRelativeY);
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absolutePosition = this.getAbsolutePosition(true);
+            }
 
             if (cgsgExist(this.onTranslate)) {
                 CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, null));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Add new coordinate to the current relative one
-		 * @method translateWith
-		 * @param {Number} x
-		 * @param {Number} y
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		translateWith: function (x, y, computeAbsoluteValue) {
-			this.position.translateWith(x, y);
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absolutePosition = this.getAbsolutePosition(true);
-			}
+        &#x2F;**
+         * Add new coordinate to the current relative one
+         * @method translateWith
+         * @param {Number} x
+         * @param {Number} y
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        translateWith: function (x, y, computeAbsoluteValue) {
+            this.position.translateWith(x, y);
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absolutePosition = this.getAbsolutePosition(true);
+            }
 
             if (cgsgExist(this.onTranslate)) {
                 CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, null));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Add new coordinate to the current relative one
-		 * @method translateBy
-		 * @param {Number} x
-		 * @param {Number} y
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		translateBy: function (x, y, computeAbsoluteValue) {
-			this.position.translateBy(x, y);
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absolutePosition = this.getAbsolutePosition();
-			}
+        &#x2F;**
+         * Add new coordinate to the current relative one
+         * @method translateBy
+         * @param {Number} x
+         * @param {Number} y
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        translateBy: function (x, y, computeAbsoluteValue) {
+            this.position.translateBy(x, y);
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absolutePosition = this.getAbsolutePosition();
+            }
 
             if (cgsgExist(this.onTranslate)) {
                 CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, null));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Replace current dimension by these new ones
-		 * @method resizeTo
-		 * @param {Number} newWidth
-		 * @param {Number} newHeight
-		 * *&#x2F;
-		resizeTo: function (newWidth, newHeight) {
-			this.dimension.resizeTo(newWidth, newHeight);
+        &#x2F;**
+         * Replace current dimension by these new ones
+         * @method resizeTo
+         * @param {Number} newWidth
+         * @param {Number} newHeight
+         * *&#x2F;
+        resizeTo: function (newWidth, newHeight) {
+            this.dimension.resizeTo(newWidth, newHeight);
             this._isDimensionChanged = true;
             this.invalidate();
             if (cgsgExist(this.onResize)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Multiply current dimension by these new ones
-		 * @method resizeTBy
-		 * @param {Number} widthFactor
-		 * @param {Number} heightFactor
-		 * *&#x2F;
-		resizeBy: function (widthFactor, heightFactor) {
-			this.dimension.resizeBy(widthFactor, heightFactor);
+        &#x2F;**
+         * Multiply current dimension by these new ones
+         * @method resizeTBy
+         * @param {Number} widthFactor
+         * @param {Number} heightFactor
+         * *&#x2F;
+        resizeBy: function (widthFactor, heightFactor) {
+            this.dimension.resizeBy(widthFactor, heightFactor);
             this._isDimensionChanged = true;
             this.invalidate();
             if (cgsgExist(this.onResize)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Increase&#x2F;decrease current dimension with adding values
-		 * @method resizeWith
-		 * @param {Number} width
-		 * @param {Number} height
-		 * *&#x2F;
-		resizeWith: function (width, height) {
-			this.dimension.resizeWith(width, height);
+        &#x2F;**
+         * Increase&#x2F;decrease current dimension with adding values
+         * @method resizeWith
+         * @param {Number} width
+         * @param {Number} height
+         * *&#x2F;
+        resizeWith: function (width, height) {
+            this.dimension.resizeWith(width, height);
             this._isDimensionChanged = true;
             this.invalidate();
             if (cgsgExist(this.onResize)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Replace current relative relativeScale by this new one
-		 * @method scaleTo
-		 * @param {Number} scaleX
-		 * @param {Number} scaleY
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		scaleTo: function (scaleX, scaleY, computeAbsoluteValue) {
-			this.scale.x = scaleX;
-			this.scale.y = scaleY;
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteScale = this.getAbsoluteScale(true);
-			}
+        &#x2F;**
+         * Replace current relative relativeScale by this new one
+         * @method scaleTo
+         * @param {Number} scaleX
+         * @param {Number} scaleY
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        scaleTo: function (scaleX, scaleY, computeAbsoluteValue) {
+            this.scale.x = scaleX;
+            this.scale.y = scaleY;
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absoluteScale = this.getAbsoluteScale(true);
+            }
 
             if (cgsgExist(this.onScale)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCALE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCALE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Multiply this relativeScale factor by the current relative relativeScale
-		 * @method scaleBy
-		 * @param {Number} scaleFactorX
-		 * @param {Number} scaleFactorY
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		scaleBy: function (scaleFactorX, scaleFactorY, computeAbsoluteValue) {
-			this.scale.x *= scaleFactorX;
-			this.scale.y *= scaleFactorY;
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteScale = this.getAbsoluteScale(true);
-			}
+        &#x2F;**
+         * Multiply this relativeScale factor by the current relative relativeScale
+         * @method scaleBy
+         * @param {Number} scaleFactorX
+         * @param {Number} scaleFactorY
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        scaleBy: function (scaleFactorX, scaleFactorY, computeAbsoluteValue) {
+            this.scale.x *= scaleFactorX;
+            this.scale.y *= scaleFactorY;
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absoluteScale = this.getAbsoluteScale(true);
+            }
 
             if (cgsgExist(this.onScale)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCALE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCALE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Add to the current relative Scale
-		 * @method scaleWith
-		 * @param {Number} x
-		 * @param {Number} y
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		scaleWith: function (x, y, computeAbsoluteValue) {
-			this.scale.x += x;
-			this.scale.y += y;
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteScale = this.getAbsoluteScale(true);
-			}
+        &#x2F;**
+         * Add to the current relative Scale
+         * @method scaleWith
+         * @param {Number} x
+         * @param {Number} y
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        scaleWith: function (x, y, computeAbsoluteValue) {
+            this.scale.x += x;
+            this.scale.y += y;
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absoluteScale = this.getAbsoluteScale(true);
+            }
 
             if (cgsgExist(this.onScale)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCALE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCALE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Replace current relative relativeRotation by this new oneScale
-		 * @method rotateTo
-		 * @param {Number} newAngle
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 *
-		 * *&#x2F;
-		rotateTo: function (newAngle, computeAbsoluteValue) {
-			this.rotation.rotateTo(newAngle);
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteRotation = this.getAbsoluteRotation(true);
-			}
+        &#x2F;**
+         * Replace current relative relativeRotation by this new oneScale
+         * @method rotateTo
+         * @param {Number} newAngle
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         *
+         * *&#x2F;
+        rotateTo: function (newAngle, computeAbsoluteValue) {
+            this.rotation.rotateTo(newAngle);
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absoluteRotation = this.getAbsoluteRotation(true);
+            }
 
             if (cgsgExist(this.onRotate)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ROTATE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ROTATE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Multiply this relativeScale factor by the current relative relativeScale
-		 * @method rotateBy
-		 * @param {Number} rotateFactor
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		rotateBy: function (rotateFactor, computeAbsoluteValue) {
-			this.rotation.rotateBy(rotateFactor);
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteRotation = this.getAbsoluteRotation(true);
-			}
+        &#x2F;**
+         * Multiply this relativeScale factor by the current relative relativeScale
+         * @method rotateBy
+         * @param {Number} rotateFactor
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        rotateBy: function (rotateFactor, computeAbsoluteValue) {
+            this.rotation.rotateBy(rotateFactor);
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absoluteRotation = this.getAbsoluteRotation(true);
+            }
 
             if (cgsgExist(this.onRotate)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ROTATE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ROTATE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;**
-		 * Add this angle to the current relative relativeRotation
-		 * @method rotateWith
-		 * @param {Number} angle
-		 * @param {Boolean} computeAbsoluteValue (default: true)
-		 * *&#x2F;
-		rotateWith: function (angle, computeAbsoluteValue) {
-			this.rotation.rotateWith(angle);
-			if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
-				this._absoluteRotation = this.getAbsoluteRotation(true);
-			}
+        &#x2F;**
+         * Add this angle to the current relative relativeRotation
+         * @method rotateWith
+         * @param {Number} angle
+         * @param {Boolean} computeAbsoluteValue (default: true)
+         * *&#x2F;
+        rotateWith: function (angle, computeAbsoluteValue) {
+            this.rotation.rotateWith(angle);
+            if (this.needToKeepAbsoluteMatrix &amp;&amp; computeAbsoluteValue !== false) {
+                this._absoluteRotation = this.getAbsoluteRotation(true);
+            }
 
             if (cgsgExist(this.onRotate)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ROTATE, new CGSGEvent(this, {node:this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ROTATE, new CGSGEvent(this, {node: this}));
             }
-		},
+        },
 
-		&#x2F;&#x2F;&#x2F;&#x2F; CHILDREN MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
+        &#x2F;&#x2F;&#x2F;&#x2F; CHILDREN MANIPULATION &#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;
 
-		&#x2F;**
-		 * Add a new nodes into this one, at the end of the list
-		 * @method addChild
-		 * @param {CGSGNode} newNode the nodes to add as a child
-		 * *&#x2F;
-		addChild: function (newNode) {
-			newNode._parentNode = this;
-			this.children[this.children.length] = newNode;
-		},
+        &#x2F;**
+         * Add a new nodes into this one, at the end of the list
+         * @method addChild
+         * @param {CGSGNode} newNode the nodes to add as a child
+         * *&#x2F;
+        addChild: function (newNode) {
+            newNode._parentNode = this;
+            this.children[this.children.length] = newNode;
+        },
 
-		&#x2F;**
-		 * Add a new nodes at a particular index in the list of children.
-		 * If the index is too large, the nodes will be inserted at the end of the list
-		 * @method addChildAt
-		 * @param {CGSGNode} newNode the nodes to insert as a child
-		 * @param {Number} index the position of the new child in the list
-		 * *&#x2F;
-		addChildAt: function (newNode, index) {
-			if (index &gt; this.children.length) {
-				index = this.children.length;
-			}
+        &#x2F;**
+         * Add a new nodes at a particular index in the list of children.
+         * If the index is too large, the nodes will be inserted at the end of the list
+         * @method addChildAt
+         * @param {CGSGNode} newNode the nodes to insert as a child
+         * @param {Number} index the position of the new child in the list
+         * *&#x2F;
+        addChildAt: function (newNode, index) {
+            if (index &gt; this.children.length) {
+                index = this.children.length;
+            }
 
-			for (var i = this.children.length; i &gt;= index; --i) {
-				this.children[i] = this.children[i - 1];
-			}
+            for (var i = this.children.length; i &gt;= index; --i) {
+                this.children[i] = this.children[i - 1];
+            }
 
-			newNode._parentNode = this;
-			this.children[index] = newNode;
+            newNode._parentNode = this;
+            this.children[index] = newNode;
 
-			if (cgsgExist(this.onChildAdd)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_CHILD_ADD, new CGSGEvent(this, {node:this}));
-			}
-		},
+            if (cgsgExist(this.onChildAdd)) {
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_CHILD_ADD, new CGSGEvent(this, {node: this}));
+            }
+        },
 
-		&#x2F;**
-		 * Remove the child passed in parameter and delete it
-		 * @method removeChild
-		 * @param {CGSGNode} node the nodes to remove
-		 * @param {Boolean} searchRecursively if true, search the nodes on all the tree from this nodes
-		 * @return {Boolean} true if the child was correctly removed or false if the nodes was not found.
-		 * *&#x2F;
-		removeChild: function (node, searchRecursively) {
-			var index = this.children.indexOf(node);
+        &#x2F;**
+         * Remove the child passed in parameter and delete it
+         * @method removeChild
+         * @param {CGSGNode} node the nodes to remove
+         * @param {Boolean} searchRecursively if true, search the nodes on all the tree from this nodes
+         * @return {Boolean} true if the child was correctly removed or false if the nodes was not found.
+         * *&#x2F;
+        removeChild: function (node, searchRecursively) {
+            var index = this.children.indexOf(node);
 
-			if (index &gt;= 0) {
-				this.children.without(node);
+            if (index &gt;= 0) {
+                this.children.without(node);
 
-				if (cgsgExist(this.onChildRemove)) {
-                    CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_CHILD_REMOVED, new CGSGEvent(this, {node:this}));
-				}
-				node.free();
+                if (cgsgExist(this.onChildRemove)) {
+                    CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_CHILD_REMOVED, new CGSGEvent(this, {node: this}));
+                }
+                node.free();
 
-				return true;
-			}
+                return true;
+            }
 
-			if (searchRecursively) {
-				for (var i = 0, len = this.children.length; i &lt; len; ++i) {
-					var childNode = this.children[i];
-					if (childNode.removeChild(node, true)) {
-						return true;
-					}
-				}
-			}
+            if (searchRecursively) {
+                for (var i = 0, len = this.children.length; i &lt; len; ++i) {
+                    var childNode = this.children[i];
+                    if (childNode.removeChild(node, true)) {
+                        return true;
+                    }
+                }
+            }
 
-			return false;
-		},
+            return false;
+        },
 
-		&#x2F;**
-		 * remove all children, delete them and reset the current parameters
-		 * @method removeAll
-		 * *&#x2F;
-		removeAll: function () {
-			&#x2F;*for (var i = this.children.length; i &gt;=0; --i) {
-			 var childNode = this.children[i];
-			 childNode.removeAll();
-			 this.removeChild(childNode, true);
-			 }*&#x2F;
+        &#x2F;**
+         * remove all children, delete them and reset the current parameters
+         * @method removeAll
+         * *&#x2F;
+        removeAll: function () {
+            &#x2F;*for (var i = this.children.length; i &gt;=0; --i) {
+             var childNode = this.children[i];
+             childNode.removeAll();
+             this.removeChild(childNode, true);
+             }*&#x2F;
 
-			this.free();
-		},
+            this.free();
+        },
 
-		&#x2F;**
-		 * Detach the nodes in index &#x27;index&#x27; without delete it. So it&#x27;s not a child anymore
-		 * @method detachChildAt
-		 * @param {Number} index
-		 *&#x2F;
-		detachChildAt: function (index) {
-			if (index &gt;= 0 &amp;&amp; index &lt; this.children.length) {
-				this.detachChild(this.children[index]);
-			}
-		},
+        &#x2F;**
+         * Detach the nodes in index &#x27;index&#x27; without delete it. So it&#x27;s not a child anymore
+         * @method detachChildAt
+         * @param {Number} index
+         *&#x2F;
+        detachChildAt: function (index) {
+            if (index &gt;= 0 &amp;&amp; index &lt; this.children.length) {
+                this.detachChild(this.children[index]);
+            }
+        },
 
-		&#x2F;**
-		 * Detach the nodes without delete it. So it&#x27;s not a child anymore
-		 * @method detachChild
-		 * @param {CGSGNode} childNode
-		 *&#x2F;
-		detachChild: function (childNode) {
-			if (cgsgExist(childNode)) {
-				childNode._parentNode = null;
-				&#x2F;*this.children = *&#x2F;
-				this.children.without(childNode);
-			}
-		},
+        &#x2F;**
+         * Detach the nodes without delete it. So it&#x27;s not a child anymore
+         * @method detachChild
+         * @param {CGSGNode} childNode
+         *&#x2F;
+        detachChild: function (childNode) {
+            if (cgsgExist(childNode)) {
+                childNode._parentNode = null;
+                &#x2F;*this.children = *&#x2F;
+                this.children.without(childNode);
+            }
+        },
 
-		&#x2F;**
-		 * Execute&#x2F;Eval the script passed in parameter in &quot;this&quot; scope.
-		 * Used to set new value to an attribute of a node
-		 * @method evalSet
-		 * @param {String} attribute The attribute to be changed
-		 * @param {*} value The new value for the attribute
-		 *
-		 * @example node.evalSet(&quot;position.y&quot;, 12);
-		 *&#x2F;
-		evalSet: function (attribute, value) {
-			&#x2F;&#x2F;check for common properties to optimize performances
-			if (attribute == &quot;position.x&quot;) {
-				this.translateTo(value, this.position.y, this.needToKeepAbsoluteMatrix);
-			}
-			else if (attribute == &quot;position.y&quot;) {
-				this.translateTo(this.position.x, value, this.needToKeepAbsoluteMatrix);
-			}
-			else if (attribute == &quot;dimension.width&quot;) {
-				this.resizeTo(value, this.dimension.height);
-			}
-			else if (attribute == &quot;dimension.height&quot;) {
-				this.resizeTo(this.dimension.width, value);
-			}
-			else if (attribute == &quot;scale.x&quot;) {
-				this.scaleTo(value, this.scale.y, this.needToKeepAbsoluteMatrix);
-			}
-			else if (attribute == &quot;scale.y&quot;) {
-				this.scaleTo(this.scale.x, value, this.needToKeepAbsoluteMatrix);
-			}
-			else if (attribute == &quot;rotation&quot; || attribute == &quot;rotation.angle&quot;) {
-				this.rotateTo(value, this.needToKeepAbsoluteMatrix);
-			}
-			else if (attribute == &quot;globalAlpha&quot;) {
-				this.globalAlpha = value;
+        &#x2F;**
+         * Execute&#x2F;Eval the script passed in parameter in &quot;this&quot; scope.
+         * Used to set new value to an attribute of a node
+         * @method evalSet
+         * @param {String} attribute The attribute to be changed
+         * @param {*} value The new value for the attribute
+         *
+         * @example node.evalSet(&quot;position.y&quot;, 12);
+         *&#x2F;
+        evalSet: function (attribute, value) {
+            &#x2F;&#x2F;check for common properties to optimize performances
+            if (attribute == &quot;position.x&quot;) {
+                this.translateTo(value, this.position.y, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;position.y&quot;) {
+                this.translateTo(this.position.x, value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;dimension.width&quot;) {
+                this.resizeTo(value, this.dimension.height);
+            }
+            else if (attribute == &quot;dimension.height&quot;) {
+                this.resizeTo(this.dimension.width, value);
+            }
+            else if (attribute == &quot;scale.x&quot;) {
+                this.scaleTo(value, this.scale.y, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;scale.y&quot;) {
+                this.scaleTo(this.scale.x, value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;rotation&quot; || attribute == &quot;rotation.angle&quot;) {
+                this.rotateTo(value, this.needToKeepAbsoluteMatrix);
+            }
+            else if (attribute == &quot;globalAlpha&quot;) {
+                this.globalAlpha = value;
                 this.invalidate();
-			}
-			else if (attribute == &quot;isVisible&quot;) {
-				this.isVisible = value;
-			}
-			else if (attribute == &quot;rotationCenter.x&quot;) {
-				this.rotationCenter.x = value;
-			}
-			else if (attribute == &quot;rotationCenter.y&quot;) {
-				this.rotationCenter.y = value;
-			}
-			else if (attribute == &quot;color.r&quot;) {
-				var rgb = CGSGColor.hex2rgb(this.color);
-				this.color = CGSGColor.rgb2hex(value, rgb.g, rgb.b);
+            }
+            else if (attribute == &quot;isVisible&quot;) {
+                this.isVisible = value;
+            }
+            else if (attribute == &quot;rotationCenter.x&quot;) {
+                this.rotationCenter.x = value;
+            }
+            else if (attribute == &quot;rotationCenter.y&quot;) {
+                this.rotationCenter.y = value;
+            }
+            else if (attribute == &quot;color.r&quot;) {
+                var rgb = CGSGColor.hex2rgb(this.color);
+                this.color = CGSGColor.rgb2hex(value, rgb.g, rgb.b);
                 this.invalidate();
-			}
-			else if (attribute == &quot;color.g&quot;) {
-				var rgb = CGSGColor.hex2rgb(this.color);
-				this.color = CGSGColor.rgb2hex(rgb.r, value, rgb.b);
+            }
+            else if (attribute == &quot;color.g&quot;) {
+                var rgb = CGSGColor.hex2rgb(this.color);
+                this.color = CGSGColor.rgb2hex(rgb.r, value, rgb.b);
                 this.invalidate();
-			}
-			else if (attribute == &quot;color.b&quot;) {
-				var rgb = CGSGColor.hex2rgb(this.color);
-				this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, value);
+            }
+            else if (attribute == &quot;color.b&quot;) {
+                var rgb = CGSGColor.hex2rgb(this.color);
+                this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, value);
                 this.invalidate();
-			}
+            }
 
-			&#x2F;&#x2F;generic property
-			else {
-				eval(&quot;this.&quot; + attribute + &quot;=&quot; + value);
+            &#x2F;&#x2F;generic property
+            else {
+                eval(&quot;this.&quot; + attribute + &quot;=&quot; + value);
                 this.invalidate();
-			}
+            }
 
-			&#x2F;*if (this.needToKeepAbsoluteMatrix) {
-			 if (attribute.indexOf(&quot;position&quot;) == 0) {
-			 this._absolutePosition = this.getAbsolutePosition(true);
-			 }
-			 else if (attribute.indexOf(&quot;rotation&quot;) == 0) {
-			 this._absoluteRotation = this.getAbsoluteRotation(true);
-			 }
-			 else if (attribute.indexOf(&quot;scale&quot;) == 0) {
-			 this._absoluteScale = this.getAbsoluteScale(true);
-			 }
-			 }*&#x2F;
-		},
+            &#x2F;*if (this.needToKeepAbsoluteMatrix) {
+             if (attribute.indexOf(&quot;position&quot;) == 0) {
+             this._absolutePosition = this.getAbsolutePosition(true);
+             }
+             else if (attribute.indexOf(&quot;rotation&quot;) == 0) {
+             this._absoluteRotation = this.getAbsoluteRotation(true);
+             }
+             else if (attribute.indexOf(&quot;scale&quot;) == 0) {
+             this._absoluteScale = this.getAbsoluteScale(true);
+             }
+             }*&#x2F;
+        },
 
-		&#x2F;**
-		 * Set the region inside which one this node ca be placed an can move
-		 * @public
-		 * @method setRegionConstraint
-		 * @param {CGSGRegion} region a CGSGRegion relatively to this parent region. Can be null.
-		 *&#x2F;
-		setRegionConstraint: function (region) {
-			this.regionConstraint = region;
-		},
+        &#x2F;**
+         * Set the region inside which one this node ca be placed an can move
+         * @public
+         * @method setRegionConstraint
+         * @param {CGSGRegion} region a CGSGRegion relatively to this parent region. Can be null.
+         *&#x2F;
+        setRegionConstraint: function (region) {
+            this.regionConstraint = region;
+        },
 
-		&#x2F;**
-		 * @public
-		 * @method getAbsolutePosition
+        &#x2F;**
+         * @public
+         * @method getAbsolutePosition
          * @param {boolean} recursive flag indicating if computation should be recusive or not
-		 * @return {CGSGPosition} the absolute positions of this node
-		 *&#x2F;
-		getAbsolutePosition: function (recursive) {
-			var n = this;
-			var translation = this.position.copy();
-			while (n._parentNode !== null) {
-				translation.multiplyEquals(n._parentNode.scale);
-				n = n._parentNode;
-			}
+         * @return {CGSGPosition} the absolute positions of this node
+         *&#x2F;
+        getAbsolutePosition: function (recursive) {
+            var n = this;
+            var translation = this.position.copy();
+            while (n._parentNode !== null) {
+                translation.multiplyEquals(n._parentNode.scale);
+                n = n._parentNode;
+            }
 
-			if (this._parentNode !== null) {
-				translation.addEquals(this._parentNode.getAbsolutePosition(false));
-			}
+            if (this._parentNode !== null) {
+                translation.addEquals(this._parentNode.getAbsolutePosition(false));
+            }
 
             if (recursive !== false) {
                 for (var c = 0; c &lt; this.children.length; c++) {
@@ -1853,22 +1859,22 @@ var CGSGNode = CGSGObject.extend(
                 }
             }
 
-			return translation;
-		},
+            return translation;
+        },
 
-		&#x2F;**
-		 * @public
-		 * @method getAbsoluteScale
+        &#x2F;**
+         * @public
+         * @method getAbsoluteScale
          * @param {boolean} recursive flag indicating if computation should be recusive or not
-		 * @return {CGSGScale} the absolute scale of this node
-		 *&#x2F;
-		getAbsoluteScale: function (recursive) {
-			var n = this;
-			var s = this.scale.copy();
-			while (n._parentNode !== null) {
-				s.multiplyEquals(n._parentNode.scale);
-				n = n._parentNode;
-			}
+         * @return {CGSGScale} the absolute scale of this node
+         *&#x2F;
+        getAbsoluteScale: function (recursive) {
+            var n = this;
+            var s = this.scale.copy();
+            while (n._parentNode !== null) {
+                s.multiplyEquals(n._parentNode.scale);
+                n = n._parentNode;
+            }
 
             if (recursive !== false) {
                 for (var c = 0; c &lt; this.children.length; c++) {
@@ -1877,22 +1883,22 @@ var CGSGNode = CGSGObject.extend(
                     }
                 }
             }
-			return s;
-		},
+            return s;
+        },
 
-		&#x2F;**
-		 * @public
-		 * @method getAbsoluteRotation
+        &#x2F;**
+         * @public
+         * @method getAbsoluteRotation
          * @param {boolean} recursive flag indicating if computation should be recusive or not
          * @return {CGSGRotation} the absolute rotation of this node
-		 *&#x2F;
-		getAbsoluteRotation: function (recursive) {
-			var n = this;
-			var r = this.rotation.copy();
-			while (n._parentNode !== null) {
-				r.addEquals(n._parentNode.rotation.angle);
-				n = n._parentNode;
-			}
+         *&#x2F;
+        getAbsoluteRotation: function (recursive) {
+            var n = this;
+            var r = this.rotation.copy();
+            while (n._parentNode !== null) {
+                r.addEquals(n._parentNode.rotation.angle);
+                n = n._parentNode;
+            }
 
             if (recursive !== false) {
                 for (var c = 0; c &lt; this.children.length; c++) {
@@ -1902,30 +1908,30 @@ var CGSGNode = CGSGObject.extend(
                 }
             }
 
-			return r;
-		},
+            return r;
+        },
 
-		&#x2F;**
-		 * Compute the absolute position, rotation and scale in the canvas container
-		 * @public
-		 * @method computeAbsoluteMatrix
-		 * @param {Boolean} recursive if !== false, compute recursively
-		 * *&#x2F;
-		computeAbsoluteMatrix: function (recursive) {
-			this._absolutePosition = this.getAbsolutePosition(false);
-			this._absoluteScale = this.getAbsoluteScale(false);
-			this._absoluteRotation = this.getAbsoluteRotation(false);
+        &#x2F;**
+         * Compute the absolute position, rotation and scale in the canvas container
+         * @public
+         * @method computeAbsoluteMatrix
+         * @param {Boolean} recursive if !== false, compute recursively
+         * *&#x2F;
+        computeAbsoluteMatrix: function (recursive) {
+            this._absolutePosition = this.getAbsolutePosition(false);
+            this._absoluteScale = this.getAbsoluteScale(false);
+            this._absoluteRotation = this.getAbsoluteRotation(false);
 
-			if (recursive !== false) {
-				&#x2F;&#x2F;for (var c = 0; c &lt; this.children.length; c++) {
-                cgsgIterate(this.children, (function(i, child) {
+            if (recursive !== false) {
+                &#x2F;&#x2F;for (var c = 0; c &lt; this.children.length; c++) {
+                cgsgIterate(this.children, (function (i, child) {
                     if (cgsgExist(child)) {
                         child.computeAbsoluteMatrix(recursive);
                     }
                 }).bind(this));
-				&#x2F;&#x2F;}
-			}
-		},
+                &#x2F;&#x2F;}
+            }
+        },
 
         &#x2F;**
          * Returns the x position with the lowest value between this node and its children.
@@ -1933,11 +1939,11 @@ var CGSGNode = CGSGObject.extend(
          * @method getMinAbsoluteLeft
          * @return {Number}
          *&#x2F;
-        getMinAbsoluteLeft : function () {
+        getMinAbsoluteLeft: function () {
             var retval = this._absolutePosition.x;
 
             if (this.children.length &gt; 0) {
-                cgsgIterate(this.children.length, (function(i, child) {
+                cgsgIterate(this.children.length, (function (i, child) {
                     if (retval &lt; child._absolutePosition.x) {
                         retval = child._absolutePosition.x;
                     }
@@ -1953,11 +1959,11 @@ var CGSGNode = CGSGObject.extend(
          * @method getMostAbsoluteRight
          * @return {Number}
          *&#x2F;
-        getMaxAbsoluteRight : function () {
+        getMaxAbsoluteRight: function () {
             var retval = this._absolutePosition.x + (this.getWidth() * this._absoluteScale.x);
 
             if (this.children.length &gt; 0) {
-                cgsgIterate(this.children.length, (function(i, child) {
+                cgsgIterate(this.children.length, (function (i, child) {
                     var absRight = this._absolutePosition.x + (this.getWidth() * this._absoluteScale.x);
                     if (retval &lt; absRight) {
                         retval = absRight;
@@ -1974,11 +1980,11 @@ var CGSGNode = CGSGObject.extend(
          * @method getMinAbsoluteTop
          * @return {Number}
          *&#x2F;
-        getMinAbsoluteTop : function () {
+        getMinAbsoluteTop: function () {
             var retval = this._absolutePosition.y;
 
             if (this.children.length &gt; 0) {
-                cgsgIterate(this.children.length, (function(i, child) {
+                cgsgIterate(this.children.length, (function (i, child) {
                     if (retval &lt; child._absolutePosition.y) {
                         retval = child._absolutePosition.y;
                     }
@@ -1998,7 +2004,7 @@ var CGSGNode = CGSGObject.extend(
             var retval = this._absolutePosition.y + (this.getHeight() * this._absoluteScale.y);
 
             if (this.children.length &gt; 0) {
-                cgsgIterate(this.children.length, (function(i, child) {
+                cgsgIterate(this.children.length, (function (i, child) {
                     var absRight = this._absolutePosition.y + (this.getHeight() * this._absoluteScale.y);
                     if (retval &lt; absRight) {
                         retval = absRight;
@@ -2008,240 +2014,240 @@ var CGSGNode = CGSGObject.extend(
 
             return retval;
         },
-		&#x2F;**
+        &#x2F;**
          *
-		 * @method getAbsoluteLeft
-		 * @return {Number}
-		 *&#x2F;
-		getAbsoluteLeft  : function () {
-			return this._absolutePosition.x;
-		},
+         * @method getAbsoluteLeft
+         * @return {Number}
+         *&#x2F;
+        getAbsoluteLeft: function () {
+            return this._absolutePosition.x;
+        },
 
-		&#x2F;**
-		 * @method getAbsoluteRight
-		 * @return {Number}
-		 *&#x2F;
-		getAbsoluteRight : function () {
-			return this._absolutePosition.x + this.getAbsoluteWidth();
-		},
+        &#x2F;**
+         * @method getAbsoluteRight
+         * @return {Number}
+         *&#x2F;
+        getAbsoluteRight: function () {
+            return this._absolutePosition.x + this.getAbsoluteWidth();
+        },
 
-		&#x2F;**
-		 * @method getAbsoluteTop
-		 * @return {Number}
-		 *&#x2F;
-		getAbsoluteTop   : function () {
-			return this._absolutePosition.y;
-		},
+        &#x2F;**
+         * @method getAbsoluteTop
+         * @return {Number}
+         *&#x2F;
+        getAbsoluteTop: function () {
+            return this._absolutePosition.y;
+        },
 
-		&#x2F;**
-		 * @method getAbsoluteBottom
-		 * @return {Number}
-		 *&#x2F;
-		getAbsoluteBottom: function () {
-			return this._absolutePosition.y + this.getAbsoluteHeight();
-		},
+        &#x2F;**
+         * @method getAbsoluteBottom
+         * @return {Number}
+         *&#x2F;
+        getAbsoluteBottom: function () {
+            return this._absolutePosition.y + this.getAbsoluteHeight();
+        },
 
-		&#x2F;**
-		 * @method getAbsoluteWidth
-		 * @return {Number}
-		 *&#x2F;
-		getAbsoluteWidth : function () {
-			return this.getWidth() * this._absoluteScale.x;
-		},
+        &#x2F;**
+         * @method getAbsoluteWidth
+         * @return {Number}
+         *&#x2F;
+        getAbsoluteWidth: function () {
+            return this.getWidth() * this._absoluteScale.x;
+        },
 
-		&#x2F;**
-		 * @method getAbsoluteHeight
-		 * @return {Number}
-		 *&#x2F;
-		getAbsoluteHeight: function () {
-			return this.getHeight() * this._absoluteScale.y;
-		},
+        &#x2F;**
+         * @method getAbsoluteHeight
+         * @return {Number}
+         *&#x2F;
+        getAbsoluteHeight: function () {
+            return this.getHeight() * this._absoluteScale.y;
+        },
 
-		&#x2F;**
-		 * @method getWidth
-		 * @return {Number}
-		 *&#x2F;
-		getWidth : function () {
-			return this.dimension.width;
-		},
+        &#x2F;**
+         * @method getWidth
+         * @return {Number}
+         *&#x2F;
+        getWidth: function () {
+            return this.dimension.width;
+        },
 
-		&#x2F;**
-		 * @method getHeight
-		 * @return {Number}
-		 *&#x2F;
-		getHeight  : function () {
-			return this.dimension.height;
-		},
+        &#x2F;**
+         * @method getHeight
+         * @return {Number}
+         *&#x2F;
+        getHeight: function () {
+            return this.dimension.height;
+        },
 
-		&#x2F;**
+        &#x2F;**
          * Test if this node is colliding the node in parameter. Don&#x27;t forget to add nodes to CGSGCollisionManager.
          *
-		 * @public
-		 * @method isColliding
-		 * @return {Boolean} true if the 2 nodes are colliding. They are colliding if the distance between them is minus than the threshold parameter
-		 * @param {CGSGNode} node a CGSGNode
-		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
-		 *&#x2F;
-		isColliding: function (node, threshold) {
+         * @public
+         * @method isColliding
+         * @return {Boolean} true if the 2 nodes are colliding. They are colliding if the distance between them is minus than the threshold parameter
+         * @param {CGSGNode} node a CGSGNode
+         * @param {Number} threshold space between the 2 nodes before considering they are colliding
+         *&#x2F;
+        isColliding: function (node, threshold) {
             return CGSG.collisionManager.isColliding(this, node, threshold);
-		},
+        },
 
-		&#x2F;**
-		 * @public
-		 * @method getListOfCollidingBrothers
-		 * @return {Array} a Array of nodes this one is colliding with (can be empty)
-		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
-		 *&#x2F;
-		getListOfCollidingBrothers: function (threshold) {
-			var listOfCollidingNodes = [];
-			var brother = null;
-			&#x2F;&#x2F;for (var n = 0; n &lt; this._parentNode.children.length; n++) {
-            cgsgIterate(this._parentNode.children, (function(i, brother) {
-				if (brother !== this &amp;&amp; this.isColliding(brother, threshold)) {
-					listOfCollidingNodes.push(brother);
-				}
+        &#x2F;**
+         * @public
+         * @method getListOfCollidingBrothers
+         * @return {Array} a Array of nodes this one is colliding with (can be empty)
+         * @param {Number} threshold space between the 2 nodes before considering they are colliding
+         *&#x2F;
+        getListOfCollidingBrothers: function (threshold) {
+            var listOfCollidingNodes = [];
+            var brother = null;
+            &#x2F;&#x2F;for (var n = 0; n &lt; this._parentNode.children.length; n++) {
+            cgsgIterate(this._parentNode.children, (function (i, brother) {
+                if (brother !== this &amp;&amp; this.isColliding(brother, threshold)) {
+                    listOfCollidingNodes.push(brother);
+                }
             }).bind(this));
-			&#x2F;&#x2F;}
+            &#x2F;&#x2F;}
 
-			return listOfCollidingNodes;
-		},
+            return listOfCollidingNodes;
+        },
 
-		&#x2F;**
-		 * @public
-		 * @method isCollidingABrother
-		 * @param {Number} threshold space between the 2 nodes before considering they are colliding
-		 * @return {Boolean} true if this node is colliding one of the other children of its parent node
-		 *&#x2F;
-		isCollidingABrother: function (threshold) {
+        &#x2F;**
+         * @public
+         * @method isCollidingABrother
+         * @param {Number} threshold space between the 2 nodes before considering they are colliding
+         * @return {Boolean} true if this node is colliding one of the other children of its parent node
+         *&#x2F;
+        isCollidingABrother: function (threshold) {
             var retval = false;
 
-            cgsgIterate(this._parentNode.children, (function(i, brother) {
-				if (brother !== this &amp;&amp; this.isColliding(brother, threshold)) {
-					retval = true;
+            cgsgIterate(this._parentNode.children, (function (i, brother) {
+                if (brother !== this &amp;&amp; this.isColliding(brother, threshold)) {
+                    retval = true;
 
                     return retval; &#x2F;&#x2F; break the loop
-				}
+                }
             }).bind(this));
 
-			return retval;
-		},
+            return retval;
+        },
 
-		&#x2F;*
-		 * TODO : to be completed
-		 * Return the list of lines going joigning nodes&#x27; peaks
-		 * param onlyBrothers a Boolean. Default = true
-		 * param threshold distance from which the detectection is done
-		 * return an array of CGSGVector2D (can be empty)
-		 *&#x2F;
-		&#x2F;*getMagneticLines : function(onlyBrothers, threshold) {
-		 if (!cgsgExist(onlyBrothers)) {
-		 onlyBrothers = true;
-		 }
+        &#x2F;*
+         * TODO : to be completed
+         * Return the list of lines going joigning nodes&#x27; peaks
+         * param onlyBrothers a Boolean. Default = true
+         * param threshold distance from which the detectection is done
+         * return an array of CGSGVector2D (can be empty)
+         *&#x2F;
+        &#x2F;*getMagneticLines : function(onlyBrothers, threshold) {
+         if (!cgsgExist(onlyBrothers)) {
+         onlyBrothers = true;
+         }
 
-		 &#x2F;&#x2F;compute vectors
-		 var topVector = this.getAbsoluteTop();
-		 var bottomVector = this.getAbsoluteBottom();
-		 var leftVector = this.getAbsoluteLeft();
-		 var rightVector = this.getAbsoluteRight();
+         &#x2F;&#x2F;compute vectors
+         var topVector = this.getAbsoluteTop();
+         var bottomVector = this.getAbsoluteBottom();
+         var leftVector = this.getAbsoluteLeft();
+         var rightVector = this.getAbsoluteRight();
 
-		 &#x2F;&#x2F;line = a point and a normalized CGSGVector2D (ie : [0, 1] or [1, 0])
-		 var listOfLines = [];
+         &#x2F;&#x2F;line = a point and a normalized CGSGVector2D (ie : [0, 1] or [1, 0])
+         var listOfLines = [];
 
-		 var brother = null;
-		 for (var n = 0; n &lt; this._parentNode.children.length; n++) {
-		 brother = this._parentNode.children[n];
+         var brother = null;
+         for (var n = 0; n &lt; this._parentNode.children.length; n++) {
+         brother = this._parentNode.children[n];
 
-		 &#x2F;&#x2F;vectors v &amp; v&#x27; are colinear if and only if xy’ - yx’ = 0.
+         &#x2F;&#x2F;vectors v &amp; v&#x27; are colinear if and only if xy’ - yx’ = 0.
 
-		 }
+         }
 
-		 return listOfLines;
-		 },*&#x2F;
+         return listOfLines;
+         },*&#x2F;
 
-		&#x2F;**
-		 * Must be overrided by inherited classes
-		 * @method copy
-		 * @param {CGSGNode} node
-		 * @return {CGSGNode} a copy of this node
-		 *&#x2F;
-		copy: function (node) {
-			if (node === null || node === undefined) {
-				node = new CGSGNode(this.position.x, this.position.y);
+        &#x2F;**
+         * Must be overrided by inherited classes
+         * @method copy
+         * @param {CGSGNode} node
+         * @return {CGSGNode} a copy of this node
+         *&#x2F;
+        copy: function (node) {
+            if (node === null || node === undefined) {
+                node = new CGSGNode(this.position.x, this.position.y);
                 node.resizeTo(this.dimension.width, this.dimension.height);
-			}
-			node.classType = this.classType;
-			node.name = this.name;
-			node.globalAlpha = this.globalAlpha;
-			node.isVisible = this.isVisible;
-			node.isProportionalResize = this.isProportionalResize;
-			node.pickNodeMethod = this.pickNodeMethod;
-			node.needToKeepAbsoluteMatrix = this.needToKeepAbsoluteMatrix;
+            }
+            node.classType = this.classType;
+            node.name = this.name;
+            node.globalAlpha = this.globalAlpha;
+            node.isVisible = this.isVisible;
+            node.isProportionalResize = this.isProportionalResize;
+            node.pickNodeMethod = this.pickNodeMethod;
+            node.needToKeepAbsoluteMatrix = this.needToKeepAbsoluteMatrix;
 
-			&#x2F;&#x2F;list of the children (empty if this nodes is a leaf)
-			&#x2F;&#x2F;this.children = [];
+            &#x2F;&#x2F;list of the children (empty if this nodes is a leaf)
+            &#x2F;&#x2F;this.children = [];
 
-			if (this.regionConstraint !== null) {
-				node.regionConstraint = this.regionConstraint.copy();
-			}
+            if (this.regionConstraint !== null) {
+                node.regionConstraint = this.regionConstraint.copy();
+            }
 
-			&#x2F;&#x2F;can be fulfilled by the developer to put in whatever he needs
-			if (this.userdata !== null) {
-				node.userdata = this.userdata.copy();
-			}
+            &#x2F;&#x2F;can be fulfilled by the developer to put in whatever he needs
+            if (this.userdata !== null) {
+                node.userdata = this.userdata.copy();
+            }
 
-			&#x2F;&#x2F;selection attributes
-			&#x2F;&#x2F;if true, this nodes is clickable and so will be checked by the pickNode function
-			node.isClickable = this.isClickable;
-			&#x2F;&#x2F;if true, this nodes can be selected and so can be transformed (dimension)
-			node.isResizable = this.isResizable;
-			node.isDraggable = this.isDraggable;
-			node.isTraversable = this.isTraversable;
+            &#x2F;&#x2F;selection attributes
+            &#x2F;&#x2F;if true, this nodes is clickable and so will be checked by the pickNode function
+            node.isClickable = this.isClickable;
+            &#x2F;&#x2F;if true, this nodes can be selected and so can be transformed (dimension)
+            node.isResizable = this.isResizable;
+            node.isDraggable = this.isDraggable;
+            node.isTraversable = this.isTraversable;
 
-			node.selectionLineColor = this.selectionLineColor;
-			node.selectionLineWidth = this.selectionLineWidth;
-			node.selectionHandleSize = this.selectionHandleSize;
-			node.selectionHandleColor = this.selectionHandleColor;
-			node._id = this._id;
-			node.translateTo(this.position.x, this.position.y);
-			node.resizeTo(this.dimension.width, this.dimension.height);
-			node.scaleTo(this.scale.x, this.scale.y);
-			node.rotateTo(this.rotation.angle);
+            node.selectionLineColor = this.selectionLineColor;
+            node.selectionLineWidth = this.selectionLineWidth;
+            node.selectionHandleSize = this.selectionHandleSize;
+            node.selectionHandleColor = this.selectionHandleColor;
+            node._id = this._id;
+            node.translateTo(this.position.x, this.position.y);
+            node.resizeTo(this.dimension.width, this.dimension.height);
+            node.scaleTo(this.scale.x, this.scale.y);
+            node.rotateTo(this.rotation.angle);
 
-			node.selectableZone =
-			new CGSGRegion(node.position.x, node.position.y, node.dimension.width, node.dimension.height);
+            node.selectableZone =
+                new CGSGRegion(node.position.x, node.position.y, node.dimension.width, node.dimension.height);
 
-			&#x2F;&#x2F;all the events for the node
-			node.onMouseOver = this.onMouseOver;
-			node.onMouseOut = this.onMouseOut;
-			node.onClick = this.onClick;
-			node.onDblClick = this.onDblClick;
-			node.onDrag = this.onDrag;
-			node.onDragEnd = this.onDragEnd;
-			node.onResize = this.onResize;
-			node.onResizeEnd = this.onResizeEnd;
-			node.onSelect = this.onSelect;
-			node.onDeselect = this.onDeselect;
+            &#x2F;&#x2F;all the events for the node
+            node.onMouseOver = this.onMouseOver;
+            node.onMouseOut = this.onMouseOut;
+            node.onClick = this.onClick;
+            node.onDblClick = this.onDblClick;
+            node.onDrag = this.onDrag;
+            node.onDragEnd = this.onDragEnd;
+            node.onResize = this.onResize;
+            node.onResizeEnd = this.onResizeEnd;
+            node.onSelect = this.onSelect;
+            node.onDeselect = this.onDeselect;
 
-			node.computeAbsoluteMatrix(true);
+            node.computeAbsoluteMatrix(true);
 
-			return node;
-		},
+            return node;
+        },
 
-		&#x2F;**
-		 * free memory taken by this object and it&#x27;s children.
-		 * The &#x27;userData&#x27; property won&#x27;t be freed
-		 * @method free
-		 *&#x2F;
-		free: function () {
-			for (var c = this.children.length - 1; c &gt;= 0; c--) {
-				this.children[c].free();
-			}
+        &#x2F;**
+         * free memory taken by this object and it&#x27;s children.
+         * The &#x27;userData&#x27; property won&#x27;t be freed
+         * @method free
+         *&#x2F;
+        free: function () {
+            for (var c = this.children.length - 1; c &gt;= 0; c--) {
+                this.children[c].free();
+            }
 
-			this.children.clear();
+            this.children.clear();
 
-			cgsgFree(this);
-		}
-	}
+            cgsgFree(this);
+        }
+    }
 );
     </pre>
 </div>

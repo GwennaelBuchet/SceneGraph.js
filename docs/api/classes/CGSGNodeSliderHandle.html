@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CGSGNodeCircle - cgSceneGraph</title>
+    <title>CGSGNodeSliderHandle - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -188,7 +188,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>CGSGNodeCircle Class</h1>
+                        <h1>CGSGNodeSliderHandle Class</h1>
 <div class="box meta">
     
 
@@ -200,7 +200,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_node_class.node.circle.js.html#l26"><code>src\node\class.node.circle.js:26</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_node_class.node.slider.js.html#l1"><code>src\node\class.node.slider.js:1</code></a>
         </div>
     
 
@@ -216,16 +216,14 @@
 
 
 <div class="box intro">
-    <p>A CGSGNodeCircle represent a basic circle.
-By default, the pickNodeMethod used to detect the node under the mice is CGSGPickNodeMethod.GHOST.
-If you don't need precision on detection on your circles, just change the property to pickNodeMethod.REGION.</p>
+    <p>A CGSGNodeSliderHandle represent a slider handle</p>
 </div>
 
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_CGSGNodeCircle" class="method item">
-    <span class="attribute-name">CGSGNodeCircle</span>
+        <div id="method_CGSGNodeSliderHandle" class="method item">
+    <span class="attribute-name">CGSGNodeSliderHandle</span>
 
     
         <div class="args">
@@ -233,19 +231,7 @@ If you don't need precision on detection on your circles, just change the proper
             
                 <li class="arg">
                     
-                        <code>centerX</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>centerY</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>radius</code>
+                        <code>handleWidth</code>
                     
                 </li>
             
@@ -278,7 +264,7 @@ If you don't need precision on detection on your circles, just change the proper
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.circle.js.html#l26"><code>src\node\class.node.circle.js:26</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.slider.js.html#l1"><code>src\node\class.node.slider.js:1</code></a>
         
         </p>
 
@@ -300,44 +286,14 @@ If you don't need precision on detection on your circles, just change the proper
             
                 <li class="param">
                     
-                        <code class="param-name">centerX</code>
+                        <code class="param-name">handleWidth</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Relative position</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">centerY</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Relative position</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">radius</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Radius</p>
+                        <p>width of the handle</p>
                     </div>
 
                     
@@ -393,15 +349,15 @@ If you don't need precision on detection on your circles, just change the proper
                                 
                             </li>
                         
-                            <li class="index-item method private inherited">
-                                <a href="#method__preCompute">_preCompute</a>
+                            <li class="index-item method private">
+                                <a href="#method__createPanel">_createPanel</a>
 
                                 
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method__resize">_resize</a>
+                            <li class="index-item method private inherited">
+                                <a href="#method__preCompute">_preCompute</a>
 
                                 
                                 
@@ -645,6 +601,13 @@ If you don't need precision on detection on your circles, just change the proper
                                 
                             </li>
                         
+                            <li class="index-item method public">
+                                <a href="#method_getParentSlider">getParentSlider</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public inherited">
                                 <a href="#method_getRegion">getRegion</a>
 
@@ -694,6 +657,13 @@ If you don't need precision on detection on your circles, just change the proper
                                 
                             </li>
                         
+                            <li class="index-item method protected">
+                                <a href="#method_onSlide">onSlide</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public inherited">
                                 <a href="#method_pickNode">pickNode</a>
 
@@ -722,7 +692,14 @@ If you don't need precision on detection on your circles, just change the proper
                                 
                             </li>
                         
-                            <li class="index-item method inherited">
+                            <li class="index-item method protected">
+                                <a href="#method_render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected inherited">
                                 <a href="#method_render">render</a>
 
                                 
@@ -806,6 +783,13 @@ If you don't need precision on detection on your circles, just change the proper
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_set">set</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method inherited">
                                 <a href="#method_setPrecomputed">setPrecomputed</a>
 
@@ -879,6 +863,13 @@ If you don't need precision on detection on your circles, just change the proper
                                 
                             </li>
                         
+                            <li class="index-item property private">
+                                <a href="#property__attributes">_attributes</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item property private inherited">
                                 <a href="#property__id">_id</a>
 
@@ -916,6 +907,20 @@ If you don't need precision on detection on your circles, just change the proper
                         
                             <li class="index-item property inherited">
                                 <a href="#property_classType">classType</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_color">color</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_cornerRadius">cornerRadius</a>
 
                                 
                                 
@@ -1014,6 +1019,20 @@ If you don't need precision on detection on your circles, just change the proper
                         
                             <li class="index-item property inherited">
                                 <a href="#property_isVisible">isVisible</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_lineColor">lineColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_lineWidth">lineWidth</a>
 
                                 
                                 
@@ -1224,6 +1243,20 @@ If you don't need precision on detection on your circles, just change the proper
                         
                             <li class="index-item property inherited">
                                 <a href="#property_shadowOffsetY">shadowOffsetY</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_textColor">textColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_textSize">textSize</a>
 
                                 
                                 
@@ -1464,61 +1497,8 @@ If you don't need precision on detection on your circles, just change the proper
 </div>
 
                 
-                    <div id="method__preCompute" class="method item private inherited">
-    <span class="attribute-name">_preCompute</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="..\classes\CGSGNode.html#method__preCompute">CGSGNode</a>:
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l693"><code>src\node\class.node.js:693</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method__resize" class="method item private">
-    <span class="attribute-name">_resize</span>
+                    <div id="method__createPanel" class="method item private">
+    <span class="attribute-name">_createPanel</span>
 
     
         <span class="paren">()</span>
@@ -1551,7 +1531,60 @@ If you don't need precision on detection on your circles, just change the proper
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.circle.js.html#l72"><code>src\node\class.node.circle.js:72</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l120"><code>src\node\class.node.logger.js:120</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Create the panel graph that drw the attributes</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__preCompute" class="method item private inherited">
+    <span class="attribute-name">_preCompute</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                <p>Inherited from
+                <a href="..\classes\CGSGNode.html#method__preCompute">CGSGNode</a>:
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l693"><code>src\node\class.node.js:693</code></a>
         
         </p>
 
@@ -2202,7 +2235,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="..\classes\CGSGNodeCircle.html" class="crosslink">CGSGNodeCircle</a></span>
+            <span class="type">CGSGNodeLogger</span>
         </span>
     
 
@@ -2229,7 +2262,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.circle.js.html#l107"><code>src\node\class.node.circle.js:107</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l189"><code>src\node\class.node.logger.js:189</code></a>
         
         </p>
 
@@ -2252,7 +2285,7 @@ If the index is too large, the nodes will be inserted at the end of the list</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="..\classes\CGSGNodeCircle.html" class="crosslink">CGSGNodeCircle</a></span>:
+                        <span class="type">CGSGNodeLogger</span>:
                     
                     a copy of this node
                 
@@ -4387,6 +4420,79 @@ The 'userData' property won't be freed</p>
 </div>
 
                 
+                    <div id="method_getParentSlider" class="method item public">
+    <span class="attribute-name">getParentSlider</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="..\classes\CGSGNodeSlider.html" class="crosslink">CGSGNodeSlider</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.slider.js.html#l24"><code>src\node\class.node.slider.js:24</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Get parent slider</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="..\classes\CGSGNodeSlider.html" class="crosslink">CGSGNodeSlider</a></span>:
+                    
+                    parent slider
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_getRegion" class="method item public inherited">
     <span class="attribute-name">getRegion</span>
 
@@ -4936,6 +5042,62 @@ The 'userData' property won't be freed</p>
 </div>
 
                 
+                    <div id="method_onSlide" class="method item protected">
+    <span class="attribute-name">onSlide</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.slider.js.html#l35"><code>src\node\class.node.slider.js:35</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Restrain movement to x axis</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_pickNode" class="method item public inherited">
     <span class="attribute-name">pickNode</span>
 
@@ -5451,7 +5613,7 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
 </div>
 
                 
-                    <div id="method_render" class="method item inherited">
+                    <div id="method_render" class="method item protected">
     <span class="attribute-name">render</span>
 
     
@@ -5473,6 +5635,8 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     
 
     
+        <span class="flag protected">protected</span>
+    
 
     
 
@@ -5485,12 +5649,15 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     <div class="meta">
         
             
-                <p>Inherited from
-                <a href="..\classes\CGSGNode.html#method_render">CGSGNode</a>:
+                
+                <p>
+                
+                Defined in
+                
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l777"><code>src\node\class.node.js:777</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.slider.js.html#l55"><code>src\node\class.node.slider.js:55</code></a>
         
         </p>
 
@@ -5501,7 +5668,96 @@ ie: "color=='yellow'" or "classType=='CGSGNodeImage' &amp;&amp; this.globalAlpha
     </div>
 
     <div class="description">
-        <p>Empty rendering function. Must be overrided by the inherited classes</p>
+        <p>Default handle rendering (A rounded square with some "volume" effect)</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the context into render the node</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item protected">
+    <span class="attribute-name">render</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>context</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            <p>Inherited from
+            <a href="..\classes\CGSGNode.html#method_render">
+                CGSGNode
+            </a>
+            
+            but overwritten in
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l162"><code>src\node\class.node.logger.js:162</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Custom rendering</p>
     </div>
 
     
@@ -6715,6 +6971,115 @@ This will be used by the SceneGraph to know if the mouse cursor is over this nod
 </div>
 
                 
+                    <div id="method_set" class="method item">
+    <span class="attribute-name">set</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l129"><code>src\node\class.node.logger.js:129</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set a new couple name/value to render onto the logger.
+If an attribute already exists with that name, just update the value</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_setPrecomputed" class="method item inherited">
     <span class="attribute-name">setPrecomputed</span>
 
@@ -7488,6 +7853,52 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
+                    <div id="property__attributes" class="property item private">
+    <span class="attribute-name">_attributes</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l102"><code>src\node\class.node.logger.js:102</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>List of attributes displayed in the panel</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="property__id" class="property item private inherited">
     <span class="attribute-name">_id</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
@@ -7703,7 +8114,7 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 </div>
 
                 
-                    <div id="property_classType" class="property item inherited">
+                    <div id="property_classType" class="property item">
     <span class="attribute-name">classType</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
@@ -7717,13 +8128,16 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="..\classes\CGSGNode.html#property_classType">
+                CGSGNode
+            </a>
             
-                <p>Inherited from
-                <a href="..\classes\CGSGNode.html#property_classType">CGSGNode</a>:
+            but overwritten in
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l61"><code>src\node\class.node.js:61</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l110"><code>src\node\class.node.logger.js:110</code></a>
         
         </p>
 
@@ -7733,9 +8147,101 @@ Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead</p>
     </div>
 
     <div class="description">
-        <p>The type of this class. Must be redefined by inherited classes</p>
+        
     </div>
 
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_color" class="property item">
+    <span class="attribute-name">color</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l52"><code>src\node\class.node.logger.js:52</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>background color of the panel</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;#444444&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_cornerRadius" class="property item">
+    <span class="attribute-name">cornerRadius</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l59"><code>src\node\class.node.logger.js:59</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Radius of the corners of the panel</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 5</p>
     
 
     
@@ -7788,7 +8294,7 @@ Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead</p>
 </div>
 
                 
-                    <div id="property_globalAlpha" class="property item inherited">
+                    <div id="property_globalAlpha" class="property item">
     <span class="attribute-name">globalAlpha</span>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
 
@@ -7802,13 +8308,16 @@ Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="..\classes\CGSGNode.html#property_globalAlpha">
+                CGSGNode
+            </a>
             
-                <p>Inherited from
-                <a href="..\classes\CGSGNode.html#property_globalAlpha">CGSGNode</a>:
+            but overwritten in
             
         
         
-        <a href="..&#x2F;files&#x2F;src_node_class.node.js.html#l81"><code>src\node\class.node.js:81</code></a>
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l80"><code>src\node\class.node.logger.js:80</code></a>
         
         </p>
 
@@ -7818,11 +8327,11 @@ Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead</p>
     </div>
 
     <div class="description">
-        <p>Level of transparency of the node.</p>
+        <p>Transparency level of the panel (between 0 and 1)</p>
     </div>
 
     
-        <p><strong>Default:</strong> 1.0</p>
+        <p><strong>Default:</strong> 0.6</p>
     
 
     
@@ -8332,6 +8841,98 @@ Use CGSGView::scenegraph.selectNode(nodeToSelect) to select a node</p>
 
     
         <p><strong>Default:</strong> true</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_lineColor" class="property item">
+    <span class="attribute-name">lineColor</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l66"><code>src\node\class.node.logger.js:66</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Color of the line around the panel</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;#222222&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_lineWidth" class="property item">
+    <span class="attribute-name">lineWidth</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l73"><code>src\node\class.node.logger.js:73</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Width of the line around the panel</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 2</p>
     
 
     
@@ -9792,6 +10393,98 @@ Never use it to scale or resize the node, use scaleBy/scaleWith/scaleTo instead<
 
     
         <p><strong>Default:</strong> 0</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_textColor" class="property item">
+    <span class="attribute-name">textColor</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l94"><code>src\node\class.node.logger.js:94</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Color for the text</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;white&quot;</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_textSize" class="property item">
+    <span class="attribute-name">textSize</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_node_class.node.logger.js.html#l87"><code>src\node\class.node.logger.js:87</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Size of the typo</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 12</p>
     
 
     

@@ -51,6 +51,9 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function () {
+
+            CGSG.isBoundingBoxOnTop = false;
+
             //first create a root node with an arbitrary position
             this.rootNode = new CGSGNode(0, 0);
             CGSG.sceneGraph.addNode(this.rootNode, null);
@@ -71,7 +74,7 @@ var CGMain = CGSGView.extend(
             var s2 = new CGSGNodeSquare(20, 20, 50, 50);
             s2.isDraggable = true;
             s2.isResizable = true;
-            s2.globalAlpha = 0.8;
+            s2.globalAlpha = 0.9;
             s2.color = "#A0A0FE";
             s2.lineWidth = 1;
             s2.lineColor = "gray";

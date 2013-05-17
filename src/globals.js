@@ -201,6 +201,15 @@ var CGSG = {
     fps: 0,
 
     /**
+     * If set to true, the bounding boxes for selected nodes will be rendered on top of the scene
+     * If set to false, the bounding boxes for selected nodes will be rendered on top of the node
+     * @property isBoundingBoxOnTop
+     * @default true
+     * @type {Boolean}
+     */
+    isBoundingBoxOnTop: true,
+
+    /**
      * Instance of CollisionTesterFactory
      * @property collisionTestFactory
      * @type {CGSGCollisionTesterFactory}

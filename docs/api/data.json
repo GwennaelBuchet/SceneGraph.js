@@ -223,6 +223,16 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\node\\class.node.slider.js": {
+            "name": "src\\node\\class.node.slider.js",
+            "modules": {},
+            "classes": {
+                "CGSGNodeSliderHandle": 1,
+                "CGSGNodeSlider": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\node\\class.node.square.js": {
             "name": "src\\node\\class.node.square.js",
             "modules": {},
@@ -478,6 +488,8 @@
                 "CGSGNodeEllipse": 1,
                 "CGSGNodeImage": 1,
                 "CGSGNode": 1,
+                "CGSGNodeSliderHandle": 1,
+                "CGSGNodeSlider": 1,
                 "CGSGNodeSquare": 1,
                 "CGSGNodeTabMenu": 1,
                 "CGSGWrapMode": 1,
@@ -1106,6 +1118,71 @@
             ],
             "type": "{CGSGNode}",
             "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
+        "CGSGNodeSliderHandle": {
+            "name": "CGSGNodeSliderHandle",
+            "shortname": "CGSGNodeSliderHandle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.slider.js",
+            "line": 1,
+            "description": "A CGSGNodeSliderHandle represent a slider handle",
+            "extends": "CGSGNode",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "handleWidth",
+                    "description": "width of the handle",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeSliderHandle}",
+            "author": "Jeremie (jeremie.lussiez@capgemini.com)"
+        },
+        "CGSGNodeSlider": {
+            "name": "CGSGNodeSlider",
+            "shortname": "CGSGNodeSlider",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.slider.js",
+            "line": 93,
+            "description": "A CGSGNodeSlider represent a slider",
+            "extends": "CGSGNode",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "width",
+                    "description": "Relative dimension",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "Relative Dimension",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeSlider}",
+            "author": "Jeremie (jeremie.lussiez@capgemini.com)"
         },
         "CGSGNodeSquare": {
             "name": "CGSGNodeSquare",
@@ -5480,7 +5557,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 775,
+            "line": 777,
             "description": "Empty rendering function. Must be overrided by the inherited classes",
             "itemtype": "method",
             "name": "render",
@@ -5496,7 +5573,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 783,
+            "line": 785,
             "description": "internal method of the framework that encapsulate all the work around the ghost rendering method",
             "itemtype": "method",
             "name": "doRenderGhost",
@@ -5512,7 +5589,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 806,
+            "line": 808,
             "description": "Empty ghost rendering function.\nRender here your custom nodes with a single color (CGSG.ghostColor).\nThis will be used by the SceneGraph to know if the mouse cursor is over this nodes.",
             "itemtype": "method",
             "name": "renderGhost",
@@ -5527,7 +5604,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 818,
+            "line": 820,
             "description": "Render the selection box and handle boxes around the bounding box of this node when selected",
             "access": "protected",
             "tagname": "",
@@ -5545,7 +5622,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 897,
+            "line": 899,
             "description": "Must be called before to start the rendering of the nodes",
             "access": "protected",
             "tagname": "",
@@ -5563,7 +5640,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 928,
+            "line": 930,
             "description": "Must be called after a render",
             "access": "protected",
             "tagname": "",
@@ -5581,7 +5658,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 957,
+            "line": 959,
             "description": "Must be called before begin to render the nodes in GHOST mode",
             "access": "protected",
             "tagname": "",
@@ -5599,7 +5676,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 972,
+            "line": 974,
             "description": "Must be called before begin to render",
             "access": "protected",
             "tagname": "",
@@ -5617,7 +5694,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 983,
+            "line": 985,
             "description": "Mark this nodes as selected",
             "itemtype": "method",
             "name": "setSelected",
@@ -5633,7 +5710,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1002,
+            "line": 1004,
             "description": "Returns a region which represents the total surface covered by this node and its children too.",
             "access": "protected",
             "tagname": "",
@@ -5648,7 +5725,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1012,
+            "line": 1014,
             "description": "Returns a position which represents the lowest position covered between this node and its children too.",
             "access": "protected",
             "tagname": "",
@@ -5663,7 +5740,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1022,
+            "line": 1024,
             "description": "Returns a position which represents the highest dimension covered between this node and its children too.",
             "access": "protected",
             "tagname": "",
@@ -5678,7 +5755,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1032,
+            "line": 1034,
             "description": "return this if this nodes is under the mice cursor\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -5706,7 +5783,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1070,
+            "line": 1072,
             "description": "return this if this nodes is under the region\nCan be overrided by inherited klass to optimize this perform.\nThis default function used the ghost rendering method",
             "access": "protected",
             "tagname": "",
@@ -5734,7 +5811,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1112,
+            "line": 1114,
             "description": "Check if this nodes is under the cursor position.",
             "access": "public",
             "tagname": "",
@@ -5772,7 +5849,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1172,
+            "line": 1174,
             "description": "Return all nodes (Array) in the given region",
             "access": "public",
             "tagname": "",
@@ -5810,7 +5887,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1225,
+            "line": 1227,
             "description": "Return true if this nodes has no child",
             "itemtype": "method",
             "name": "isALeaf",
@@ -5819,7 +5896,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1235,
+            "line": 1237,
             "description": "Replace current relative position by this new one",
             "itemtype": "method",
             "name": "translateTo",
@@ -5845,7 +5922,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1253,
+            "line": 1255,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateWith",
@@ -5871,7 +5948,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1271,
+            "line": 1273,
             "description": "Add new coordinate to the current relative one",
             "itemtype": "method",
             "name": "translateBy",
@@ -5897,7 +5974,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1289,
+            "line": 1291,
             "description": "Replace current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTo",
@@ -5918,7 +5995,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1304,
+            "line": 1306,
             "description": "Multiply current dimension by these new ones",
             "itemtype": "method",
             "name": "resizeTBy",
@@ -5939,7 +6016,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1319,
+            "line": 1321,
             "description": "Increase/decrease current dimension with adding values",
             "itemtype": "method",
             "name": "resizeWith",
@@ -5960,7 +6037,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1334,
+            "line": 1336,
             "description": "Replace current relative relativeScale by this new one",
             "itemtype": "method",
             "name": "scaleTo",
@@ -5986,7 +6063,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1353,
+            "line": 1355,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "scaleBy",
@@ -6012,7 +6089,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1372,
+            "line": 1374,
             "description": "Add to the current relative Scale",
             "itemtype": "method",
             "name": "scaleWith",
@@ -6038,7 +6115,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1391,
+            "line": 1393,
             "description": "Replace current relative relativeRotation by this new oneScale",
             "itemtype": "method",
             "name": "rotateTo",
@@ -6059,7 +6136,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1409,
+            "line": 1411,
             "description": "Multiply this relativeScale factor by the current relative relativeScale",
             "itemtype": "method",
             "name": "rotateBy",
@@ -6080,7 +6157,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1426,
+            "line": 1428,
             "description": "Add this angle to the current relative relativeRotation",
             "itemtype": "method",
             "name": "rotateWith",
@@ -6101,7 +6178,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1445,
+            "line": 1447,
             "description": "Add a new nodes into this one, at the end of the list",
             "itemtype": "method",
             "name": "addChild",
@@ -6117,7 +6194,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1455,
+            "line": 1457,
             "description": "Add a new nodes at a particular index in the list of children.\nIf the index is too large, the nodes will be inserted at the end of the list",
             "itemtype": "method",
             "name": "addChildAt",
@@ -6138,7 +6215,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1479,
+            "line": 1481,
             "description": "Remove the child passed in parameter and delete it",
             "itemtype": "method",
             "name": "removeChild",
@@ -6163,7 +6240,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1512,
+            "line": 1514,
             "description": "remove all children, delete them and reset the current parameters",
             "itemtype": "method",
             "name": "removeAll",
@@ -6172,7 +6249,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1526,
+            "line": 1528,
             "description": "Detach the nodes in index 'index' without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChildAt",
@@ -6188,7 +6265,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1537,
+            "line": 1539,
             "description": "Detach the nodes without delete it. So it's not a child anymore",
             "itemtype": "method",
             "name": "detachChild",
@@ -6204,7 +6281,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1550,
+            "line": 1552,
             "description": "Execute/Eval the script passed in parameter in \"this\" scope.\nUsed to set new value to an attribute of a node",
             "itemtype": "method",
             "name": "evalSet",
@@ -6228,7 +6305,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1630,
+            "line": 1632,
             "description": "Set the region inside which one this node ca be placed an can move",
             "access": "public",
             "tagname": "",
@@ -6246,7 +6323,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1640,
+            "line": 1642,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6267,7 +6344,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1669,
+            "line": 1671,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6288,7 +6365,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1693,
+            "line": 1695,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6309,7 +6386,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1718,
+            "line": 1720,
             "description": "Compute the absolute position, rotation and scale in the canvas container",
             "access": "public",
             "tagname": "",
@@ -6327,7 +6404,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1740,
+            "line": 1742,
             "description": "Returns the x position with the lowest value between this node and its children.",
             "itemtype": "method",
             "name": "getMinAbsoluteLeft",
@@ -6340,7 +6417,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1760,
+            "line": 1762,
             "description": "Returns the right border's position with the highest value between this node and its children.",
             "itemtype": "method",
             "name": "getMostAbsoluteRight",
@@ -6353,7 +6430,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1781,
+            "line": 1783,
             "description": "Returns the y position with the lowest value between this node and its children.",
             "itemtype": "method",
             "name": "getMinAbsoluteTop",
@@ -6366,7 +6443,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1801,
+            "line": 1803,
             "description": "Returns the bottom border's position with the highest value between this node and its children.",
             "itemtype": "method",
             "name": "getAbsoluteBottom",
@@ -6379,7 +6456,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1821,
+            "line": 1823,
             "itemtype": "method",
             "name": "getAbsoluteLeft",
             "return": {
@@ -6391,7 +6468,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1830,
+            "line": 1832,
             "itemtype": "method",
             "name": "getAbsoluteRight",
             "return": {
@@ -6403,7 +6480,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1838,
+            "line": 1840,
             "itemtype": "method",
             "name": "getAbsoluteTop",
             "return": {
@@ -6415,7 +6492,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1846,
+            "line": 1848,
             "itemtype": "method",
             "name": "getAbsoluteBottom",
             "return": {
@@ -6427,7 +6504,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1854,
+            "line": 1856,
             "itemtype": "method",
             "name": "getAbsoluteWidth",
             "return": {
@@ -6439,7 +6516,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1862,
+            "line": 1864,
             "itemtype": "method",
             "name": "getAbsoluteHeight",
             "return": {
@@ -6451,7 +6528,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1870,
+            "line": 1872,
             "itemtype": "method",
             "name": "getWidth",
             "return": {
@@ -6463,7 +6540,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1878,
+            "line": 1880,
             "itemtype": "method",
             "name": "getHeight",
             "return": {
@@ -6475,7 +6552,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1886,
+            "line": 1888,
             "description": "Test if this node is colliding the node in parameter. Don't forget to add nodes to CGSGCollisionManager.",
             "access": "public",
             "tagname": "",
@@ -6502,7 +6579,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1899,
+            "line": 1901,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6523,7 +6600,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1919,
+            "line": 1921,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -6544,7 +6621,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 1971,
+            "line": 1973,
             "description": "Must be overrided by inherited classes",
             "itemtype": "method",
             "name": "copy",
@@ -6564,7 +6641,7 @@
         },
         {
             "file": "src\\node\\class.node.js",
-            "line": 2040,
+            "line": 2042,
             "description": "free memory taken by this object and it's children.\nThe 'userData' property won't be freed",
             "itemtype": "method",
             "name": "free",
@@ -6579,7 +6656,7 @@
             "name": "color",
             "default": "\"#444444\"",
             "type": "{String}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6590,7 +6667,7 @@
             "name": "cornerRadius",
             "default": "5",
             "type": "{Number}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6601,7 +6678,7 @@
             "name": "lineColor",
             "default": "\"#222222\"",
             "type": "{String}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6612,7 +6689,7 @@
             "name": "lineWidth",
             "default": "2",
             "type": "{Number}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6623,7 +6700,7 @@
             "name": "globalAlpha",
             "default": "0.6",
             "type": "{Number}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6634,7 +6711,7 @@
             "name": "textSize",
             "default": "12",
             "type": "{Number}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6645,7 +6722,7 @@
             "name": "textColor",
             "default": "\"white\"",
             "type": "{String}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6657,7 +6734,7 @@
             "type": "{Array}",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6666,7 +6743,7 @@
             "itemtype": "property",
             "name": "classType",
             "type": "{String}",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6677,7 +6754,7 @@
             "name": "_createPanel",
             "access": "private",
             "tagname": "",
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6698,7 +6775,7 @@
                     "type": "String"
                 }
             ],
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6716,7 +6793,7 @@
                     "type": "CanvasRenderingContext2D"
                 }
             ],
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
             "module": "Node"
         },
         {
@@ -6728,7 +6805,237 @@
                 "description": "a copy of this node",
                 "type": "CGSGNodeLogger"
             },
-            "class": "CGSGNodeSquare",
+            "class": "CGSGNodeSliderHandle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 24,
+            "description": "Get parent slider",
+            "itemtype": "method",
+            "name": "getParentSlider",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "parent slider",
+                "type": "CGSGNodeSlider"
+            },
+            "class": "CGSGNodeSliderHandle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 35,
+            "description": "Restrain movement to x axis",
+            "itemtype": "method",
+            "name": "onSlide",
+            "access": "protected",
+            "tagname": "",
+            "class": "CGSGNodeSliderHandle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 55,
+            "description": "Default handle rendering (A rounded square with some \"volume\" effect)",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeSliderHandle",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 124,
+            "description": "Custom rendering",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 139,
+            "description": "Shape context to allow easy inner shadow and value rendering.",
+            "itemtype": "method",
+            "name": "outlineShape",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 158,
+            "description": "Render slider background.",
+            "itemtype": "method",
+            "name": "renderBackground",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 197,
+            "description": "Render slider value (Fills background with color).",
+            "itemtype": "method",
+            "name": "renderBackground",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 221,
+            "description": "Render slider value (Fills background with color).",
+            "itemtype": "method",
+            "name": "updateSliderHandle",
+            "access": "protected",
+            "tagname": "",
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 234,
+            "description": "Set default or custom handle for this slider",
+            "itemtype": "method",
+            "name": "setHandle",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "handle",
+                    "description": "slider's handle",
+                    "type": "CGSGNode",
+                    "optional": true
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 254,
+            "description": "Get this slider's handle",
+            "itemtype": "method",
+            "name": "getHandle",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "[handle] slider's handle",
+                "type": "CGSGNodeSliderHandle"
+            },
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 265,
+            "description": "Set lower bound of this slider and recompute handle position",
+            "itemtype": "method",
+            "name": "addHandle",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "min",
+                    "description": "lower bound of this slider",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 279,
+            "description": "Set upper bound of this slider and recompute handle position",
+            "itemtype": "method",
+            "name": "setMax",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "max",
+                    "description": "upper bound of this slider",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 293,
+            "description": "Set value of this slider and recompute handle position",
+            "itemtype": "method",
+            "name": "setValue",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "of this slider",
+                    "type": "Number"
+                }
+            ],
+            "class": "CGSGNodeSlider",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.slider.js",
+            "line": 307,
+            "description": "Get value of this slider handle position in [0-1] range",
+            "itemtype": "method",
+            "name": "getValueAsRangeRatio",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "handle position in [0-1] range",
+                "type": "Number"
+            },
+            "class": "CGSGNodeSlider",
             "module": "Node"
         },
         {
@@ -11841,6 +12148,17 @@
         {
             "file": "src\\globals.js",
             "line": 203,
+            "description": "If set to true, the bounding boxes for selected nodes will be rendered on top of the scene\nIf set to false, the bounding boxes for selected nodes will be rendered on top of the node",
+            "itemtype": "property",
+            "name": "isBoundingBoxOnTop",
+            "default": "true",
+            "type": "{Boolean}",
+            "class": "CGSG",
+            "module": "Util"
+        },
+        {
+            "file": "src\\globals.js",
+            "line": 212,
             "description": "Instance of CollisionTesterFactory",
             "itemtype": "property",
             "name": "collisionTestFactory",
@@ -11850,7 +12168,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 210,
+            "line": 219,
             "description": "Object that defines the performance keys.\nChange values to adapt your project.\n\nCGSG.performanceKeys._collisionMethod :\n               Key to specify collision detection mod\n               Use setCollisionMethod to modify value,\n               Default : CGSGCollisionMethod.REGION\n\nCGSG.performanceKeys.collisionTester :\n               Collision tester depending on _collisionMethod,\n               Default : CGSGCollisionRegionTester",
             "itemtype": "property",
             "name": "performanceKeys",
@@ -11860,7 +12178,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 233,
+            "line": 242,
             "description": "Redefines the collision method",
             "itemtype": "method",
             "name": "setCollisionMethod",
@@ -11875,7 +12193,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 244,
+            "line": 253,
             "description": "Animation manager",
             "itemtype": "property",
             "name": "animationManager",
@@ -11885,7 +12203,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 251,
+            "line": 260,
             "description": "Event manager to use to bind events to objects.",
             "itemtype": "property",
             "name": "eventManager",
@@ -11895,7 +12213,7 @@
         },
         {
             "file": "src\\globals.js",
-            "line": 261,
+            "line": 270,
             "description": "All kinds of events defined by the CGSceneGraph framework.",
             "itemtype": "property",
             "name": "cgsgEventTypes",
