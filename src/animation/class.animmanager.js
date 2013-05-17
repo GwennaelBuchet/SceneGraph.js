@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -27,6 +27,26 @@
  */
 
 /**
+ * List the interpolation methods to compute the values between 2 animation keys
+ * @class CGSGAnimationMethod
+ * @type {Object}
+ * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ */
+var CGSGAnimationMethod = {
+    /**
+     * @property LINEAR
+     * @type {CGSGAnimInterpolatorLinear}
+
+     */
+    LINEAR: new CGSGAnimInterpolatorLinear(),
+    /**
+     * @property NURBS
+     * @type {CGSGAnimInterpolatorCubicSpline}
+     */
+    CUBIC_SPLINE: new CGSGAnimInterpolatorCubicSpline()
+};
+
+/**
  * @module Animation
  * @class CGSGAnimationManager
  * @extends {Object}
@@ -48,29 +68,37 @@ var CGSGAnimationManager = CGSGObject.extend(
         /**
          * Add a key
          * @method addAnimationKey
-         * @param {CGSGNode} node handler to the nodes to animate
-         * @param {String} attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
-         * @param {Number} value value for the attribute at the frame
+         * @param {CGSGTimeline} timeline handler to the timeline to animate
          * @param {Number} frame the date for the key
-         * @param {Boolean} precompute  Set to true if you want to precompute the animations steps
-         * @return {CGSGTimeline} the timeline on which tha the key was added
+         * @param {Number} value value for the attribute at the frame
+         * @param {Boolean} compute  Set to true if you want to compute the all animations values
          *
          * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
          */
-        addAnimationKey: function (node, attribute, value, frame, precompute) {
-            //if a timeline already exist fot this nodes and attribute use it, else create a new one
-            var timeline = this.getTimeline(node, attribute);
-            timeline.method = "linear";
-
+        addAnimationKey: function (timeline, frame, value, compute) {
             //add the new key to the timeline
             timeline.addKey(CGSGMath.fixedPoint(frame), value);
 
-            //if the user want to precompute the animation, do it now
-            if (precompute) {
-                timeline.computeValues(CGSG.currentFrame, timeline.method);
+            //if the user want to compute the animation, do it now
+            if (compute) {
+                timeline.computeAllValues();
             }
+        },
 
-            return timeline;
+        /**
+         * @method removeAnimationKey
+         * @param timeline {CGSGTimeline}
+         * @param frame {Number} the date for the key
+         * @param compute {Boolean} Set to true if you want to compute the all animations values
+         */
+        removeAnimationKey:function(timeline, frame, compute) {
+            //add the new key to the timeline
+            timeline.removeKey(CGSGMath.fixedPoint(frame));
+
+            //if the user want to compute the animation, do it now
+            if (compute) {
+                timeline.computeAllValues();
+            }
         },
 
         /**
@@ -82,19 +110,23 @@ var CGSGAnimationManager = CGSGObject.extend(
          * @param {Number} from Start value
          * @param {Number} to End value
          * @param {Number} delay Delay before start the animation, in frames
-         * @param {Boolean} precompute Set to true if you want to precompute the animations steps
+         * @param {Boolean} compute Set to true if you want to compute the animations values
          * @return {CGSGTimeline} the timeline on which tha the animation was added
-         * @example this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);
+         * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
          */
-        animate: function (node, attribute, duration, from, to, delay, precompute) {
-            this.addAnimationKey(node, attribute, from, CGSG.currentFrame + CGSGMath.fixedPoint(delay), false);
-            return this.addAnimationKey(node, attribute,
-                to, CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration), precompute);
+        animate: function (node, attribute, duration, from, to, delay, compute) {
+            var timeline = this.getTimeline(node, attribute);
+            var d1 = CGSG.currentFrame + CGSGMath.fixedPoint(delay);
+            var d2 = CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration);
+            timeline.removeKeysBetween(d1, d2);
+            this.addAnimationKey(timeline, d1, from, false);
+            this.addAnimationKey(timeline, d2, to, compute);
+            return timeline;
         },
 
         /**
          * @method stillHaveAnimation
-         * @return {Boolean} true if there are still animation key after the current frame
+         * @return {Boolean} true if there is still animation key after the current frame
          */
         stillHaveAnimation: function () {
             if (this.listTimelines.length == 0) {
@@ -127,7 +159,19 @@ var CGSGAnimationManager = CGSGObject.extend(
             }
 
             //no timeline yet, create a new one
-            var timeline = new CGSGTimeline(node, attribute, "linear");
+            return this._createTimeline(node, attribute);
+        },
+
+        /**
+         * Create a new timeline
+         * @private
+         * @method createTimeline
+         * @param node {CGSGNode} Handle to the nodes
+         * @param attribute {String} the attribute name
+         * @return {CGSGTimeline}
+         */
+        _createTimeline: function (node, attribute) {
+            var timeline = new CGSGTimeline(node, attribute);
             this.listTimelines.push(timeline);
             return timeline;
         }

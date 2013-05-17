@@ -37,6 +37,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -193,7 +201,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License&#x2F;Terms of Use
  *
@@ -252,11 +260,20 @@ Array.prototype.without = function (item) {
 };
 
 &#x2F;**
- * Empties the array
+ * Empty the array
  * @method Array.prototype.clear
  *&#x2F;
 Array.prototype.clear = function () {
 	this.length = 0;
+};
+
+&#x2F;**
+ * Check if the array is empty
+ * @method Array.prototype.isEmpty
+ * @return {Boolean} true if the array is empty
+ *&#x2F;
+Array.prototype.isEmpty = function () {
+    return this.length === 0;
 };
 
 &#x2F;**

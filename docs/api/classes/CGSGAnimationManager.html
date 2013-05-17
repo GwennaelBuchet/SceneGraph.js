@@ -37,6 +37,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -196,7 +204,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l29"><code>src\animation\class.animmanager.js:29</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l49"><code>src\animation\class.animmanager.js:49</code></a>
         </div>
     
 
@@ -255,8 +263,22 @@
                                 
                             </li>
                         
+                            <li class="index-item method private">
+                                <a href="#method_createTimeline">createTimeline</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method">
                                 <a href="#method_getTimeline">getTimeline</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_removeAnimationKey">removeAnimationKey</a>
 
                                 
                                 
@@ -309,19 +331,7 @@
             
                 <li class="arg">
                     
-                        <code>node</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>attribute</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>value</code>
+                        <code>timeline</code>
                     
                 </li>
             
@@ -333,7 +343,13 @@
             
                 <li class="arg">
                     
-                        <code>precompute</code>
+                        <code>value</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>compute</code>
                     
                 </li>
             
@@ -341,10 +357,6 @@
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type"><a href="..\classes\CGSGTimeline.html" class="crosslink">CGSGTimeline</a></span>
-        </span>
     
 
     
@@ -370,7 +382,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l48"><code>src\animation\class.animmanager.js:48</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l68"><code>src\animation\class.animmanager.js:68</code></a>
         
         </p>
 
@@ -392,44 +404,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">node</code>
-                        <span class="type"><a href="..\classes\CGSGNode.html" class="crosslink">CGSGNode</a></span>
+                        <code class="param-name">timeline</code>
+                        <span class="type"><a href="..\classes\CGSGTimeline.html" class="crosslink">CGSGTimeline</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>handler to the nodes to animate</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">attribute</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">value</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>value for the attribute at the frame</p>
+                        <p>handler to the timeline to animate</p>
                     </div>
 
                     
@@ -452,14 +434,29 @@
             
                 <li class="param">
                     
-                        <code class="param-name">precompute</code>
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>value for the attribute at the frame</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">compute</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Set to true if you want to precompute the animations steps</p>
+                        <p>Set to true if you want to compute the all animations values</p>
                     </div>
 
                     
@@ -469,19 +466,6 @@
         </div>
     
 
-    
-        <div class="returns">
-            <div class="method-item">Returns:</div>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="..\classes\CGSGTimeline.html" class="crosslink">CGSGTimeline</a></span>:
-                    
-                    the timeline on which tha the key was added
-                
-            </div>
-        </div>
     
 
     
@@ -541,7 +525,7 @@
             
                 <li class="arg">
                     
-                        <code>precompute</code>
+                        <code>compute</code>
                     
                 </li>
             
@@ -578,7 +562,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l76"><code>src\animation\class.animmanager.js:76</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l104"><code>src\animation\class.animmanager.js:104</code></a>
         
         </p>
 
@@ -690,14 +674,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">precompute</code>
+                        <code class="param-name">compute</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Set to true if you want to precompute the animations steps</p>
+                        <p>Set to true if you want to compute the animations values</p>
                     </div>
 
                     
@@ -727,9 +711,135 @@
             <div class="method-item">Example:</div>
 
             <div class="example-content">
-                <p>this.sceneGraph.animate(imgNode, "position.x", 700, 0, 200, "linear", 0, true);</p>
+                <p>CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);</p>
             </div>
         </div>
+    
+</div>
+
+                
+                    <div id="method_createTimeline" class="method item private">
+    <span class="attribute-name">createTimeline</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>node</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>attribute</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="..\classes\CGSGTimeline.html" class="crosslink">CGSGTimeline</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l165"><code>src\animation\class.animmanager.js:165</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Create a new timeline</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">node</code>
+                        <span class="type"><a href="..\classes\CGSGNode.html" class="crosslink">CGSGNode</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Handle to the nodes</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">attribute</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the attribute name</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="..\classes\CGSGTimeline.html" class="crosslink">CGSGTimeline</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
@@ -786,7 +896,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l115"><code>src\animation\class.animmanager.js:115</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l147"><code>src\animation\class.animmanager.js:147</code></a>
         
         </p>
 
@@ -858,6 +968,135 @@
 </div>
 
                 
+                    <div id="method_removeAnimationKey" class="method item">
+    <span class="attribute-name">removeAnimationKey</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>timeline</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>frame</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>compute</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l88"><code>src\animation\class.animmanager.js:88</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">timeline</code>
+                        <span class="type"><a href="..\classes\CGSGTimeline.html" class="crosslink">CGSGTimeline</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">frame</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the date for the key</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">compute</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Set to true if you want to compute the all animations values</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_stillHaveAnimation" class="method item">
     <span class="attribute-name">stillHaveAnimation</span>
 
@@ -894,7 +1133,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l95"><code>src\animation\class.animmanager.js:95</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l127"><code>src\animation\class.animmanager.js:127</code></a>
         
         </p>
 
@@ -919,7 +1158,7 @@
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
-                    true if there are still animation key after the current frame
+                    true if there is still animation key after the current frame
                 
             </div>
         </div>
@@ -960,7 +1199,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l39"><code>src\animation\class.animmanager.js:39</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.animmanager.js.html#l59"><code>src\animation\class.animmanager.js:59</code></a>
         
         </p>
 

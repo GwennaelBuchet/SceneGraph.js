@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -40,325 +40,330 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGTimeline = CGSGObject.extend(
-	{
-		initialize : function (parentNode, attribute, method) {
+    {
+        initialize: function (parentNode, attribute) {
 
-			/**
-			 * The animated nodes
-			 * @property parentNode
-			 * @type {CGSGNode}
-			 */
-			this.parentNode = parentNode;
+            /**
+             * The animated nodes
+             * @property parentNode
+             * @type {CGSGNode}
+             */
+            this.parentNode = parentNode;
 
-			/**
-			 * A string representing the attribute to be animated (eg: "position.x", "rotation.angle", "fill", ...)
-			 * @property attribute
-			 * @type {String}
-			 */
-			this.attribute = attribute;
+            /**
+             * A string representing the attribute to be animated (eg: "position.x", "rotation.angle", "color.g", ...)
+             * The attribute must be a numeric property
+             * @property attribute
+             * @type {String}
+             */
+            this.attribute = attribute;
 
-			if (arguments.length === 3) {
-				this.method = method;
-			} else {
-				this.method = "linear";
-			}
-			/**
-			 * list of the [frame, value] pairs for the animation
-			 * the index of the list begins at 0, not at the first key frame
-			 *
-			 * @property listValues
-			 * @type {Array}
-			 */
-			this.listValues = [];
 
-			//List of the animation keys
-			this._listKeys = [];
-			//precomputed values for animation since first key to latest-1.
-			//Each  cell contains the step, in pixel, from the previous key to the next one
-			this._listSteps = [];
+            /**
+             * @property _method
+             * @type {CGSGAnimInterpolator}
+             * @default {CGSGAnimInterpolatorLinear} CGSGAnimationMethod.LINEAR
+             * @private
+             */
+            this._method = CGSGAnimationMethod.LINEAR;
 
-			/**
-			 * Callback on animation start event
-			 * @property onAnimationStart
-			 * @type {Function}
-			 */
-			this.onAnimationStart = null;
-			/**
-			 * Callback on animation end event
-			 * @property onAnimationEnd
-			 * @type {Function}
-			 */
-			this.onAnimationEnd = null;
+            /**
+             * list of the [frame, value] pairs for the animation
+             * the index of the list begins at 0, not at the first key frame
+             *
+             * @property listValues
+             * @type {Array}
+             */
+            this.listValues = [];
+
+            //List of the animation keys
+            this._listKeys = [];
+            //precomputed values for animation since first key to latest-1.
+            //Each  cell contains the step, in pixel, from the previous key to the next one
+            this._numberOfFrameBetweenKeys = [];
+
+            /**
+             * Callback on animation start event
+             * @property onAnimationStart
+             * @type {Function}
+             */
+            this.onAnimationStart = null;
+            /**
+             * Callback on animation end event
+             * @property onAnimationEnd
+             * @type {Function}
+             */
+            this.onAnimationEnd = null;
             /**
              * Callback on animation event
              * @property onAnimate
              * @type {Function}
              */
             this.onAnimate = null;
-		},
+        },
 
-		/**
-		 * Add a new animation key frame to the timeline and sort the timeline by frame number
-		 * @public
-		 * @method addKey
-		 * @param {Number} frame. Must be an integer value.
-		 * @param {Number} value
-		 */
-		addKey : function (frame, value) {
-			this._listKeys.push(new CGSGAnimationKey(frame, value));
-			this.sortByFrame();
+        /**
+         * Add a new animation key frame to the timeline and sort the timeline by frame number
+         * @public
+         * @method addKey
+         * @param {Number} frame. Must be an integer value.
+         * @param {Number} value
+         */
+        addKey: function (frame, value) {
+            this._listKeys.push(new CGSGAnimationKey(frame, value));
+            this.sortByFrame();
 
-			if (this.getNbKeys() > 1) {
-				this._computeStepsValues();
-			}
+            this._computeNumberOfFrameBetweenKeys();
 
-			this.listValues.clear();
-		},
+            this.listValues.clear();
+        },
 
-		/**
-		 * Remove the key at the specified frame
-		 * @method removeKey
-		 * @param frame {Number} Must be an integer value.
-		 */
-		removeKey : function (frame) {
-			var key = null, k = 0;
-			for (k; k < this._listKeys.length - 1; k++) {
-				if (this._listKeys[k].frame === frame) {
-					key = this._listKeys[k];
-					break;
-				}
-			}
-			this._listKeys.without(key);
+        /**
+         * Remove the key at the specified frame
+         * @method removeKey
+         * @param frame {Number} Must be an integer value.
+         */
+        removeKey: function (frame) {
+            var key = null, k = 0;
+            for (k; k < this._listKeys.length - 1; k++) {
+                if (this._listKeys[k].frame === frame) {
+                    key = this._listKeys[k];
+                    break;
+                }
+            }
+            this._listKeys.without(key);
+            if (this.getNbKeys() > 1) {
+                this._computeNumberOfFrameBetweenKeys();
+            }
+            this.listValues.clear();
+        },
 
-			this._computeStepsValues();
+        /**
+         * @method removeKeysBetween
+         * @param frame1 {number}
+         * @param frame2 {number}
+         */
+        removeKeysBetween: function (frame1, frame2) {
+            for (var k = this._listKeys.length - 1; k >= 0; k--) {
+                if (this._listKeys[k].frame >= frame1 && this._listKeys[k].frame <= frame2) {
+                    this._listKeys.without(this._listKeys[k]);
+                }
+            }
 
-			if (this.listValues.length > 0) {
-				this.computeValues(0);
-			}
-		},
+            this.listValues.clear();
+        },
 
-		/**
-		 * Remove all keys and values
-		 * @public
-		 * @method removeAll
-		 */
-		removeAll : function () {
-			this.listValues.clear();
-			this._listKeys.clear();
-			this._listSteps.clear();
-		},
+        /**
+         * Remove all keys and values
+         * @public
+         * @method removeAll
+         */
+        removeAll: function () {
+            this.listValues.clear();
+            this._listKeys.clear();
+            this._numberOfFrameBetweenKeys.clear();
+        },
 
-		/**
-		 * Compute the number of steps between all keys, 2 by 2
-		 * @private
-		 * @method _computeStepsValues
-		 */
-		_computeStepsValues : function () {
-			this._listSteps.clear();
-			var nbFrameInSection = 0, totalDistance = 0, k = 0;
-			for (k; k < this._listKeys.length - 1; k++) {
-				nbFrameInSection = this._listKeys[k + 1].frame - this._listKeys[k].frame;
-				totalDistance = this._listKeys[k + 1].value - this._listKeys[k].value;
-				this._listSteps.push(totalDistance / nbFrameInSection);
-			}
-		},
+        /**
+         * Compute the number of steps between all keys, 2 by 2
+         * @private
+         * @method _computeNumberOfFrameBetweenKeys
+         */
+        _computeNumberOfFrameBetweenKeys: function () {
+            this._numberOfFrameBetweenKeys.clear();
+            var nbFrameInSection = 0, totalDistance = 0, k = 0;
+            for (k; k < this._listKeys.length - 1; k++) {
+                nbFrameInSection = this._listKeys[k + 1].frame - this._listKeys[k].frame;
+                totalDistance = this._listKeys[k + 1].value - this._listKeys[k].value;
+                this._numberOfFrameBetweenKeys.push(totalDistance / nbFrameInSection);
+            }
+        },
 
-		/**
-		 * @public
-		 * @method getNbKeys
-		 * @return {Number} the number of keys in this timeline. Must be an integer value.
-		 */
-		getNbKeys : function () {
-			return this._listKeys.length;
-		},
+        /**
+         * @public
+         * @method getNbKeys
+         * @return {Number} the number of keys in this timeline. Must be an integer value.
+         */
+        getNbKeys: function () {
+            return this._listKeys.length;
+        },
 
-		/**
-		 * Sort the list of keys by frame number
-		 * @public
-		 * @method sortByFrame
-		 */
-		sortByFrame : function () {
-			this._listKeys.sort(function (a, b) {
-				return a.frame - b.frame;
-			});
-		},
+        /**
+         * Sort the list of keys by frame number
+         * @public
+         * @method sortByFrame
+         */
+        sortByFrame: function () {
+            this._listKeys.sort(function (a, b) {
+                return a.frame - b.frame;
+            });
+        },
 
-		/**
-		 * Compute all the values (steps) for the animation of this timeline
-		 * @public
-		 * @method computeValues
-		 * @param fromFrame {Number} first frame at which one the computing must start. Must be an integer value.
-		 * @param method {String} interpolation method : "linear"
-		 *  for this timeline instance
-		 */
-		computeValues : function (fromFrame, method) {
-			if (arguments.length === 2) {
-				this.method = method;
-			}
-			//empty the list of values
-			this.listValues.clear();
+        /**
+         * Compute all the values (steps) for the animation of this timeline
+         * @public
+         * @method computeAllValues for this timeline instance
+         */
+        computeAllValues: function () {
+            //empty the list of values
+            this.listValues.clear();
 
-			var nbKeys = this.getNbKeys();
+            var nbKeys = this.getNbKeys();
 
-			if (nbKeys <= 1) {
-				return;
-			}
+            if (nbKeys <= 1) {
+                return;
+            }
 
-			var duration = 0, f = 0, v = 0, k = 0;
-			for (k; k < nbKeys - 1; ++k) {
-				duration = this._listKeys[k + 1].frame - this._listKeys[k].frame;
-				for (f = 0; f <= duration; ++f) {
-					this.listValues[v++] = this.computeValue(k, this._listKeys[k].frame + f, method);
-				}
-			}
-		},
+            var duration = 0, f = 0, v = 0, k = 0, l = nbKeys - 1;
+            for (k; k < l; ++k) {
+                duration = this._listKeys[k + 1].frame - this._listKeys[k].frame;
+                for (f = 0; f <= duration; f++) {
+                    this.listValues[v++] = this._computeValue(k, this._listKeys[k].frame + f);
+                }
+            }
+        },
 
-		/**
-		 * Compute animated value for one frame between key ay index keyIndex and keyIndex+1
-		 * @private
-		 * @method computeValue
-		 * @param keyIndex {Number} Must be an integer value.
-		 * @param frame {Number} Must be an integer value.
-		 * @param method {String} = "linear"
-		 * @return {*} Object with 2 properties : frame and value, or undefined if keyIndex < 0
-		 */
-		computeValue : function (keyIndex, frame, method) {
-			if (keyIndex < 0) {
-				return undefined;
-			}
-			var previousKey = this._listKeys[keyIndex];
-			var nextKey = this._listKeys[keyIndex + 1];
+        /**
+         * Compute animated value for one frame between key at index keyIndex and keyIndex+1
+         * @private
+         * @method _computeValue
+         * @param keyIndex {Number} Must be an integer value.
+         * @param frame {Number} Must be an integer value.
+         * @return {*} Object with 2 properties : frame and value, or undefined if keyIndex < 0
+         */
+        _computeValue: function (keyIndex, frame) {
+            if (keyIndex < 0) {
+                return undefined;
+            }
+            var previousKey = this._listKeys[keyIndex];
+            var nextKey = this._listKeys[keyIndex + 1];
 
-			if (frame === previousKey.frame) {
-				return {frame : frame, value : previousKey.value};
-			}
-			if (frame === nextKey.frame) {
-				return {frame : frame, value : nextKey.value};
-			}
+            if (frame === previousKey.frame) {
+                return {frame: frame, value: previousKey.value};
+            }
+            if (frame === nextKey.frame) {
+                return {frame: frame, value: nextKey.value};
+            }
 
-			var currentStep = frame - previousKey.frame;
-			if (method === "linear") {
-				return {frame : frame, value : currentStep * this._listSteps[keyIndex] + previousKey.value};
-			}
+            var currentStep = frame - previousKey.frame;
 
-			return undefined;
-		},
+            return {frame: frame,
+                value: this._method.computeValue(frame, keyIndex, this._listKeys, currentStep, this._numberOfFrameBetweenKeys[keyIndex])
+            };
+        },
 
-		/**
-		 * @method getFirstKey
-		 * @return {CGSGAnimationKey} the first key frame of this timeline
-		 */
-		getFirstKey : function () {
-			if (this.getNbKeys() === 0) {
-				return null;
-			}
+        /**
+         * @method getFirstKey
+         * @return {CGSGAnimationKey} the first key frame of this timeline
+         */
+        getFirstKey: function () {
+            if (this.getNbKeys() === 0) {
+                return null;
+            }
 
-			return this._listKeys[0];
-		},
+            return this._listKeys[0];
+        },
 
-		/**
-		 * @method getLastKey
-		 * @return {CGSGAnimationKey} the last key frame of this timeline
-		 */
-		getLastKey : function () {
-			if (this.getNbKeys() === 0) {
-				return null;
-			}
+        /**
+         * @method getLastKey
+         * @return {CGSGAnimationKey} the last key frame of this timeline
+         */
+        getLastKey: function () {
+            if (this.getNbKeys() === 0) {
+                return null;
+            }
 
-			return this._listKeys[this.getNbKeys() - 1];
-		},
+            return this._listKeys[this.getNbKeys() - 1];
+        },
 
-		/**
-		 * Get the value for the frame number passed in parameter
-		 * @public
-		 * @method getValue
-		 * @param {Number} frame the frame bound with the returned value. Must be an integer value.
-		 * @return {Number} the interpolated value of the attribute at the specified frame
-		 * If no key is defined, return undefined
-		 * If there is only one key, return it's value
-		 * If the frame is before the first key, return the first key value
-		 * If the frame is after the last key, return the last key value
-		 */
-		getValue : function (frame) {
-			var nbKeys = this.getNbKeys();
+        /**
+         * Get the value for the frame number passed in parameter
+         * @public
+         * @method getValue
+         * @param {Number} frame the frame bound with the returned value. Must be an integer value.
+         * @return {*} Object with 2 properties : frame and value, or undefined
+         * If no key is defined, return undefined
+         * If there is only one key, returns it's value
+         * If the frame is before the first key, returns the first key value
+         * If the frame is after the last key, returns the last key value
+         */
+        getValue: function (frame) {
+            var nbKeys = this.getNbKeys();
 
-			//if no keys : no animation
-			if (nbKeys === 0 && this.listValues.length === 0) {
-				return undefined;
-			}
+            //if no keys : no animation
+            if (nbKeys === 0 && this.listValues.isEmpty()) {
+                return undefined;
+            }
 
-			//I have keys, but no precomputed values, so compute value for this frame
-			if (this.listValues.length === 0) {
-				//get keys from which the frame is between
-				var previousKeyIndex = -1;
-				if (frame < this._listKeys[0].frame) {
-					return undefined;
-				}
-				var k;
-				for (k = 1; k < nbKeys; k++) {
-					if (frame < this._listKeys[k].frame) {
-						previousKeyIndex = k - 1;
-						break;
-					}
-				}
-				return this.computeValue(previousKeyIndex, frame, this.method);
-			}
+            //I have keys, but no precomputed values, so compute value for this frame
+            if (this.listValues.isEmpty()) {
+                if (frame < this._listKeys[0].frame) {
+                    return undefined;
+                }
+                //get keys from which the frame is between
+                var k, previousKeyIndex = -1;
+                for (k = 1; k < nbKeys; k++) {
+                    if (frame < this._listKeys[k].frame) {
+                        previousKeyIndex = k - 1;
+                        break;
+                    }
+                }
+                return this._computeValue(previousKeyIndex, frame);
+            }
 
-			//Here, I have precomputed values
+            //Here, I have precomputed values
 
-			//if frame < first frame, return no value
-			if (frame < this.listValues[0].frame) {
-				return undefined;
-				//return this.listValues[0];
-			}
+            //if frame < first frame, return no value
+            if (frame < this.listValues[0].frame) {
+                return undefined;
+            }
 
-			//if frame > last frame (ie last key), return no value
-			if (frame >= this.listValues[this.listValues.length - 1].frame) {
-				//return undefined;
-				return this.listValues[this.listValues.length - 1];
-			}
+            //if frame > last frame (ie last key), return last value
+            if (frame >= this.listValues[this.listValues.length - 1].frame) {
+                return this.listValues[this.listValues.length - 1];
+            }
 
-			var i;
-			//search for value at the frame
-			for (i = 0; i < this.listValues.length; i++) {
-				if (this.listValues[i].frame === frame) {
-					return this.listValues[i];
-				}
-			}
+            var i;
+            //search for value at the frame
+            for (i = 0; i < this.listValues.length; i++) {
+                if (this.listValues[i].frame === frame) {
+                    return this.listValues[i];
+                }
+            }
 
-			return undefined;
-		},
+            return undefined;
+        },
 
-		/**
-		 * Return the precomputed array of values for this timeline
-		 * @method exportValues
-		 * @return {Array}
-		 */
-		exportValues : function () {
-			if (this.listValues.length === 0) {
-				this.computeValues(CGSG.currentFrame, this.method);
-			}
+        /**
+         * Return the precomputed array of values for this timeline
+         * @method exportValues
+         * @return {Array}
+         */
+        exportValues: function () {
+            if (this.listValues.length === 0) {
+                this.computeAllValues();
+            }
 
-			var values = [], i;
-			for (i = 0; i < this.listValues.length; i++) {
-				values.push(this.listValues[i].value);
-			}
-			return values;
-		},
+            var values = [], i;
+            for (i = 0; i < this.listValues.length; i++) {
+                values.push(this.listValues[i].value);
+            }
+            return values;
+        },
 
-		/**
-		 * Import new precomputed values for this timeline.
-		 * The number of values must match the number of frame defined by the keys of this timeline
-		 * @method importValues
-		 * @param newValues {Array} of new values
-		 * @param startFrame {Number} Must be an integer value.
-		 */
-		importValues : function (newValues, startFrame) {
-			this.listValues.clear();
-			var i;
-			for (i = 0; i < newValues.length; i++) {
-				this.listValues.push({frame : startFrame + i, value : newValues[i]});
-			}
-		}
-	}
+        /**
+         * Import new precomputed values for this timeline.
+         * The number of values must match the number of frame defined by the keys of this timeline
+         * @method importValues
+         * @param newValues {Array} of new values
+         * @param startFrame {Number} Must be an integer value.
+         */
+        importValues: function (newValues, startFrame) {
+            this.listValues.clear();
+            var i;
+            for (i = 0; i < newValues.length; i++) {
+                this.listValues.push({frame: startFrame + i, value: newValues[i]});
+            }
+        }
+    }
 );

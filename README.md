@@ -71,7 +71,7 @@ LICENSE
 =======
 The cgSceneGraph is under a slightly modified MIT license, described as below :
 
-Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
 
 License/Terms of Use
 

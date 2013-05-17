@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -58,11 +58,20 @@ Array.prototype.without = function (item) {
 };
 
 /**
- * Empties the array
+ * Empty the array
  * @method Array.prototype.clear
  */
 Array.prototype.clear = function () {
 	this.length = 0;
+};
+
+/**
+ * Check if the array is empty
+ * @method Array.prototype.isEmpty
+ * @return {Boolean} true if the array is empty
+ */
+Array.prototype.isEmpty = function () {
+    return this.length === 0;
 };
 
 /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -25,7 +25,6 @@
 
 /**
  * Represent the scene graph it self.
- * It encapsulates the root node and list of timelines for animations
  *
  * @class CGSGSceneGraph
  * @module Scene
@@ -129,7 +128,6 @@ var CGSGSceneGraph = CGSGObject.extend(
 	                            var evt = new CGSGEvent(this, {node:node});
 	                            evt.node = node;
 	                            CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
-	                            //timeline.onAnimationStart({node:node});
                             }
 
                             //fire event if this is the last animation key for this timeline
@@ -138,11 +136,9 @@ var CGSGSceneGraph = CGSGObject.extend(
                                 timeline.removeAll();
                                 //CGSG.listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
-                                    //timeline.onAnimationEnd({node:node});
 	                                var evt = new CGSGEvent(this, {node:node});
 	                                evt.node = node;
 	                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
-	                                //timeline.onAnimationStart({node:node});
                                 }
 
                                 //cgsgFree(timeline);

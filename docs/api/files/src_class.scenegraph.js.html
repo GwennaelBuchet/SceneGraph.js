@@ -37,6 +37,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -193,7 +201,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License&#x2F;Terms of Use
  *
@@ -219,7 +227,6 @@
 
 &#x2F;**
  * Represent the scene graph it self.
- * It encapsulates the root node and list of timelines for animations
  *
  * @class CGSGSceneGraph
  * @module Scene
@@ -323,7 +330,6 @@ var CGSGSceneGraph = CGSGObject.extend(
 	                            var evt = new CGSGEvent(this, {node:node});
 	                            evt.node = node;
 	                            CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
-	                            &#x2F;&#x2F;timeline.onAnimationStart({node:node});
                             }
 
                             &#x2F;&#x2F;fire event if this is the last animation key for this timeline
@@ -332,11 +338,9 @@ var CGSGSceneGraph = CGSGObject.extend(
                                 timeline.removeAll();
                                 &#x2F;&#x2F;CGSG.listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
-                                    &#x2F;&#x2F;timeline.onAnimationEnd({node:node});
 	                                var evt = new CGSGEvent(this, {node:node});
 	                                evt.node = node;
 	                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
-	                                &#x2F;&#x2F;timeline.onAnimationStart({node:node});
                                 }
 
                                 &#x2F;&#x2F;cgsgFree(timeline);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
 
 License/Terms of Use
 
@@ -84,6 +84,9 @@ Any failure to comply with the above shall automatically terminate the license a
 
                                 <include>animation/class.anim.key.js</include>
                                 <include>animation/class.anim.timeline.js</include>
+                                <include>animation/interpolators/class.anim.interpolator.js</include>
+                                <include>animation/interpolators/class.anim.interpolator.linear.js</include>
+                                <include>animation/interpolators/class.anim.interpolator.nurbs.js</include>
                                 <include>animation/class.animmanager.js</include>
 
                                 <include>collision/enum.collision.method.js</include>

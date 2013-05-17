@@ -2,8 +2,12 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "CGSG",
+        "CGSGAnimInterpolator",
+        "CGSGAnimInterpolatorCubicSpline",
+        "CGSGAnimInterpolatorLinear",
         "CGSGAnimationKey",
         "CGSGAnimationManager",
+        "CGSGAnimationMethod",
         "CGSGBindEntry",
         "CGSGButtonMode",
         "CGSGCollisionGhostOnDemandTester",
@@ -66,7 +70,8 @@ YUI.add("yuidoc-meta", function(Y) {
     "allModules": [
         {
             "displayName": "Animation",
-            "name": "Animation"
+            "name": "Animation",
+            "description": "Linear intepolation"
         },
         {
             "displayName": "Collision",

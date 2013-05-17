@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -88,11 +88,10 @@ var CGMain = CGSGView.extend(
 			/*
 			 * Animate an attribute of a nodes
 			 * @param node Handler to the nodes to animate
-			 * @param attribute String representing the attribute to animate ("position.y", "rotation.angle", "fill", ...)
+			 * @param attribute String representing the attribute to animate ("position.y", "rotation.angle", "color.r", ...)
 			 * @param duration Integer. Duration of the animation, in frames
 			 * @param from Start value
 			 * @param to End value
-			 * @param method String. animation method: 'linear', 'catmullrom'
 			 * @param delay Integer. Delay before start the animation, in frames
 			 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
 			 *

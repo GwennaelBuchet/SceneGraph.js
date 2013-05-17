@@ -37,6 +37,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
@@ -242,7 +250,14 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method private">
-                                <a href="#method__computeStepsValues">_computeStepsValues</a>
+                                <a href="#method__computeNumberOfFrameBetweenKeys">_computeNumberOfFrameBetweenKeys</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__computeValue">_computeValue</a>
 
                                 
                                 
@@ -255,15 +270,8 @@
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method_computeValue">computeValue</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method public">
-                                <a href="#method_computeValues">computeValues</a>
+                                <a href="#method_computeAllValues for this timeline instance">computeAllValues for this timeline instance</a>
 
                                 
                                 
@@ -325,6 +333,13 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_removeKeysBetween">removeKeysBetween</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public">
                                 <a href="#method_sortByFrame">sortByFrame</a>
 
@@ -341,6 +356,13 @@
                     <h3>Properties</h3>
 
                     <ul class="index-list properties">
+                        
+                            <li class="index-item property private">
+                                <a href="#property__method">_method</a>
+
+                                
+                                
+                            </li>
                         
                             <li class="index-item property">
                                 <a href="#property_attribute">attribute</a>
@@ -398,8 +420,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__computeStepsValues" class="method item private">
-    <span class="attribute-name">_computeStepsValues</span>
+                    <div id="method__computeNumberOfFrameBetweenKeys" class="method item private">
+    <span class="attribute-name">_computeNumberOfFrameBetweenKeys</span>
 
     
         <span class="paren">()</span>
@@ -432,7 +454,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l151"><code>src\animation\class.anim.timeline.js:151</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l167"><code>src\animation\class.anim.timeline.js:167</code></a>
         
         </p>
 
@@ -448,6 +470,133 @@
 
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method__computeValue" class="method item private">
+    <span class="attribute-name">_computeValue</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>keyIndex</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>frame</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l226"><code>src\animation\class.anim.timeline.js:226</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Compute animated value for one frame between key at index keyIndex and keyIndex+1</p>
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">keyIndex</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Must be an integer value.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">frame</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Must be an integer value.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"></span>:
+                    
+                    Object with 2 properties : frame and value, or undefined if keyIndex &lt; 0
+                
+            </div>
+        </div>
     
 
     
@@ -504,7 +653,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l100"><code>src\animation\class.anim.timeline.js:100</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l105"><code>src\animation\class.anim.timeline.js:105</code></a>
         
         </p>
 
@@ -564,175 +713,11 @@
 </div>
 
                 
-                    <div id="method_computeValue" class="method item private">
-    <span class="attribute-name">computeValue</span>
+                    <div id="method_computeAllValues for this timeline instance" class="method item public">
+    <span class="attribute-name">computeAllValues for this timeline instance</span>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>keyIndex</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>frame</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>method</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l216"><code>src\animation\class.anim.timeline.js:216</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Compute animated value for one frame between key ay index keyIndex and keyIndex+1</p>
-    </div>
-
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">keyIndex</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Must be an integer value.</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">frame</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Must be an integer value.</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">method</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>= "linear"</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <div class="method-item">Returns:</div>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"></span>:
-                    
-                    Object with 2 properties : frame and value, or undefined if keyIndex &lt; 0
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_computeValues" class="method item public">
-    <span class="attribute-name">computeValues</span>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>fromFrame</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>method</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
     
@@ -762,7 +747,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l186"><code>src\animation\class.anim.timeline.js:186</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l202"><code>src\animation\class.anim.timeline.js:202</code></a>
         
         </p>
 
@@ -776,45 +761,6 @@
         <p>Compute all the values (steps) for the animation of this timeline</p>
     </div>
 
-    
-        <div class="params">
-            <div class="method-item">Parameters:</div>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">fromFrame</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>first frame at which one the computing must start. Must be an integer value.</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">method</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>interpolation method : "linear"
- for this timeline instance</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
@@ -859,7 +805,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l332"><code>src\animation\class.anim.timeline.js:332</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l337"><code>src\animation\class.anim.timeline.js:337</code></a>
         
         </p>
 
@@ -929,7 +875,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l247"><code>src\animation\class.anim.timeline.js:247</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l255"><code>src\animation\class.anim.timeline.js:255</code></a>
         
         </p>
 
@@ -1000,7 +946,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l259"><code>src\animation\class.anim.timeline.js:259</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l267"><code>src\animation\class.anim.timeline.js:267</code></a>
         
         </p>
 
@@ -1073,7 +1019,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l166"><code>src\animation\class.anim.timeline.js:166</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l182"><code>src\animation\class.anim.timeline.js:182</code></a>
         
         </p>
 
@@ -1127,7 +1073,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+            <span class="type"></span>
         </span>
     
 
@@ -1156,7 +1102,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l271"><code>src\animation\class.anim.timeline.js:271</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l279"><code>src\animation\class.anim.timeline.js:279</code></a>
         
         </p>
 
@@ -1202,13 +1148,13 @@
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                        <span class="type"></span>:
                     
-                    the interpolated value of the attribute at the specified frame
+                    Object with 2 properties : frame and value, or undefined
 If no key is defined, return undefined
-If there is only one key, return it's value
-If the frame is before the first key, return the first key value
-If the frame is after the last key, return the last key value
+If there is only one key, returns it's value
+If the frame is before the first key, returns the first key value
+If the frame is after the last key, returns the last key value
                 
             </div>
         </div>
@@ -1266,7 +1212,7 @@ If the frame is after the last key, return the last key value
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l349"><code>src\animation\class.anim.timeline.js:349</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l354"><code>src\animation\class.anim.timeline.js:354</code></a>
         
         </p>
 
@@ -1361,7 +1307,7 @@ The number of values must match the number of frame defined by the keys of this 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l140"><code>src\animation\class.anim.timeline.js:140</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l156"><code>src\animation\class.anim.timeline.js:156</code></a>
         
         </p>
 
@@ -1425,7 +1371,7 @@ The number of values must match the number of frame defined by the keys of this 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l118"><code>src\animation\class.anim.timeline.js:118</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l121"><code>src\animation\class.anim.timeline.js:121</code></a>
         
         </p>
 
@@ -1455,6 +1401,114 @@ The number of values must match the number of frame defined by the keys of this 
 
                     <div class="param-description">
                         <p>Must be an integer value.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_removeKeysBetween" class="method item">
+    <span class="attribute-name">removeKeysBetween</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>frame1</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>frame2</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l141"><code>src\animation\class.anim.timeline.js:141</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">frame1</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">frame2</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
                     </div>
 
                     
@@ -1504,7 +1558,7 @@ The number of values must match the number of frame defined by the keys of this 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l175"><code>src\animation\class.anim.timeline.js:175</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l191"><code>src\animation\class.anim.timeline.js:191</code></a>
         
         </p>
 
@@ -1532,6 +1586,54 @@ The number of values must match the number of frame defined by the keys of this 
         
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property__method" class="property item private">
+    <span class="attribute-name">_method</span>
+    <span class="type"><a href="..\classes\CGSGAnimInterpolator.html" class="crosslink">CGSGAnimInterpolator</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l62"><code>src\animation\class.anim.timeline.js:62</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <p><strong>Default:</strong> {CGSGAnimInterpolatorLinear} CGSGAnimationMethod.LINEAR</p>
+    
+
+    
+
+    
+</div>
 
                 
                     <div id="property_attribute" class="property item">
@@ -1567,7 +1669,8 @@ The number of values must match the number of frame defined by the keys of this 
     </div>
 
     <div class="description">
-        <p>A string representing the attribute to be animated (eg: "position.x", "rotation.angle", "fill", ...)</p>
+        <p>A string representing the attribute to be animated (eg: "position.x", "rotation.angle", "color.g", ...)
+The attribute must be a numeric property</p>
     </div>
 
     
@@ -1601,7 +1704,7 @@ The number of values must match the number of frame defined by the keys of this 
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l65"><code>src\animation\class.anim.timeline.js:65</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l70"><code>src\animation\class.anim.timeline.js:70</code></a>
         
         </p>
 
@@ -1646,7 +1749,7 @@ the index of the list begins at 0, not at the first key frame</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l92"><code>src\animation\class.anim.timeline.js:92</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l97"><code>src\animation\class.anim.timeline.js:97</code></a>
         
         </p>
 
@@ -1690,7 +1793,7 @@ the index of the list begins at 0, not at the first key frame</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l86"><code>src\animation\class.anim.timeline.js:86</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l91"><code>src\animation\class.anim.timeline.js:91</code></a>
         
         </p>
 
@@ -1734,7 +1837,7 @@ the index of the list begins at 0, not at the first key frame</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l80"><code>src\animation\class.anim.timeline.js:80</code></a>
+        <a href="..&#x2F;files&#x2F;src_animation_class.anim.timeline.js.html#l85"><code>src\animation\class.anim.timeline.js:85</code></a>
         
         </p>
 

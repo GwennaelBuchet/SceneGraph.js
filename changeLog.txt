@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -44,6 +44,7 @@ TODO LIST:
 - Evolution. new isProportionalResizeOnly to CGSGNode
 
 
+
 =====================================================================
 HISTORY
 =====================================================================
@@ -64,9 +65,13 @@ CHANGES:
              New properties : shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor.
 - Evolution. Delete CGSGScene.selectedNodes and CGSGSceneGraph.selectedNodes. New global CGSG.selectedNodes property.
 - Evolution. Extenalization of the sceneGraph instance into the CGSG object.
-- Evolution. New CGSG.animationManager property to manage animation.
 - Evolution. CGSGNode has now 2 parameters only : x, y
 - Evolution. Added CGSG.isBoundingBoxOnTop property
+- Evolution. New CGSG.animationManager property to manage animation.
+- Evolution. CGSG.animationManager.removeAnimationKey
+- Correction. CGSG.animationManager.animate first remove previous keys in the frame range
+- Evolution. animationManager : new CGSGAnimationMethod
+- Evolution. new CGSGAnimInterpolatorLinear class
 
 ---------------------------------------------------------------------
 

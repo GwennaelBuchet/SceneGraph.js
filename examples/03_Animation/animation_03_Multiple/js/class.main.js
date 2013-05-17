@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -37,9 +37,6 @@ var CGMain = CGSGView.extend(
 			////// INITIALIZATION /////////
 
 			this.initializeCanvas();
-
-			this.textNode = null;
-			this.squareNode = null;
 
 			this.createScene();
 
@@ -105,6 +102,7 @@ var CGMain = CGSGView.extend(
             CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 2, 1, 90, false);
             CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 2, 1, 90, false);
             CGSG.animationManager.animate(this.squareNode, "globalAlpha", 30, 1, 0, 90, false);
+
 		}
 
 	}

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -37,9 +37,6 @@ var CGMain = CGSGView.extend(
             ////// INITIALIZATION /////////
 
             this.initializeCanvas();
-
-            this.textNode = null;
-            this.squareNode = null;
 
             this.createScene();
 
@@ -93,11 +90,11 @@ var CGMain = CGSGView.extend(
              */
 
             //create arbitrary animation on squareNode1
-            this.addAnimation(this.squareNode1);
+            var timeline = this.addAnimation(this.squareNode1);
             //save animation values into this.animationValues
-            this.animationValues = CGSG.animationManager.getTimeline(this.squareNode1, "position.x").exportValues();
+            this.animationValues = timeline.exportValues();
             //no need to keep animation values or keys in memory. free them
-            CGSG.animationManager.getTimeline(this.squareNode1, "position.x").removeAll();
+            timeline.removeAll();
         },
 
         /**
@@ -105,8 +102,11 @@ var CGMain = CGSGView.extend(
          * @param node
          */
         addAnimation : function(node) {
-            CGSG.animationManager.addAnimationKey(node, "position.x", 30, 0, false); //don't precompute
-            CGSG.animationManager.addAnimationKey(node, "position.x", 300, 50, true); //precompute
+            var timeline = CGSG.animationManager.getTimeline(node, "position.x");
+            CGSG.animationManager.addAnimationKey(timeline, 0, 30, false); //don't precompute
+            CGSG.animationManager.addAnimationKey(timeline, 50, 300, true); //precompute
+
+            return timeline;
 
             //we cal also use the helper method which add 2 animation keys ('from' and 'to'):
             //CGSG.animationManager.animate(this.squareNode1, "position.x", 30, 300, 50, true);

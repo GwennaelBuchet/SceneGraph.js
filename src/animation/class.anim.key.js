@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
  *
@@ -48,6 +48,22 @@ var CGSGAnimationKey = CGSGObject.extend(
 			 * @type {Number}
 			 */
 			this.value = value;
+
+            /**
+             * Incoming tangent for this key
+             * @property inTangent
+             * @default (0, 0)
+             * @type {CGSGVector2D}
+             */
+            this.inTangent = new CGSGVector2D(0, 0);
+
+            /**
+             * Outgoing tangent for this key
+             * @property outTangent
+             * @default (0, 0)
+             * @type {CGSGVector2D}
+             */
+            this.outTangent = new CGSGVector2D(0, 0);
 		}
 	}
 );
