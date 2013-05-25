@@ -61,8 +61,8 @@ var CGSGTimeline = CGSGObject.extend(
 
             /**
              * @property _method
-             * @type {CGSGAnimInterpolator}
-             * @default {CGSGAnimInterpolatorLinear} CGSGAnimationMethod.LINEAR
+             * @type {CGSGInterpolator}
+             * @default {CGSGInterpolatorLinear} CGSGAnimationMethod.LINEAR
              * @private
              */
             this._method = CGSGAnimationMethod.LINEAR;
@@ -81,6 +81,8 @@ var CGSGTimeline = CGSGObject.extend(
             //precomputed values for animation since first key to latest-1.
             //Each  cell contains the step, in pixel, from the previous key to the next one
             this._numberOfFrameBetweenKeys = [];
+            //list of interpolation keys used to compute the values between all frames
+            this._listErpKeys = [];
 
             /**
              * Callback on animation start event
@@ -110,12 +112,13 @@ var CGSGTimeline = CGSGObject.extend(
          * @param {Number} value
          */
         addKey: function (frame, value) {
-            this._listKeys.push(new CGSGAnimationKey(frame, value));
-            this.sortByFrame();
-
-            this._computeNumberOfFrameBetweenKeys();
+            this._listKeys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
+            this.sortByFrame(this._listKeys);
 
             this.listValues.clear();
+
+            //by default, create 1 interpolation key for every animation key
+            this.addInterpolationKey(frame, value);
         },
 
         /**
@@ -124,14 +127,9 @@ var CGSGTimeline = CGSGObject.extend(
          * @param frame {Number} Must be an integer value.
          */
         removeKey: function (frame) {
-            var key = null, k = 0;
-            for (k; k < this._listKeys.length - 1; k++) {
-                if (this._listKeys[k].frame === frame) {
-                    key = this._listKeys[k];
-                    break;
-                }
-            }
-            this._listKeys.without(key);
+            this._removeKeyToList(frame, this._listKeys);
+            this._removeKeyToList(frame, this._listErpKeys);
+
             if (this.getNbKeys() > 1) {
                 this._computeNumberOfFrameBetweenKeys();
             }
@@ -144,13 +142,41 @@ var CGSGTimeline = CGSGObject.extend(
          * @param frame2 {number}
          */
         removeKeysBetween: function (frame1, frame2) {
-            for (var k = this._listKeys.length - 1; k >= 0; k--) {
+            var k;
+            for (k = this._listKeys.length - 1; k >= 0; k--) {
                 if (this._listKeys[k].frame >= frame1 && this._listKeys[k].frame <= frame2) {
                     this._listKeys.without(this._listKeys[k]);
                 }
             }
 
+            for (k = this._listErpKeys.length - 1; k >= 0; k--) {
+                if (this._listErpKeys[k].frame >= frame1 && this._listErpKeys[k].frame <= frame2) {
+                    this._listErpKeys.without(this._listErpKeys[k]);
+                }
+            }
+
             this.listValues.clear();
+        },
+
+        addInterpolationKey:function(frame, value) {
+            this._removeKeyToList(frame, this._listErpKeys);
+            this._listErpKeys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
+            this.sortByFrame(this._listErpKeys);
+        },
+
+        removeInterpolationKey:function(frame) {
+            this._removeKeyToList(frame, this._listErpKeys);
+        },
+
+        _removeKeyToList:function(frame, list) {
+            var key = null, k = 0;
+            for (k; k < list.length - 1; k++) {
+                if (list[k].frame === frame) {
+                    key = list[k];
+                    break;
+                }
+            }
+            list.without(key);
         },
 
         /**
@@ -161,6 +187,7 @@ var CGSGTimeline = CGSGObject.extend(
         removeAll: function () {
             this.listValues.clear();
             this._listKeys.clear();
+            this._listErpKeys.clear();
             this._numberOfFrameBetweenKeys.clear();
         },
 
@@ -171,11 +198,10 @@ var CGSGTimeline = CGSGObject.extend(
          */
         _computeNumberOfFrameBetweenKeys: function () {
             this._numberOfFrameBetweenKeys.clear();
-            var nbFrameInSection = 0, totalDistance = 0, k = 0;
-            for (k; k < this._listKeys.length - 1; k++) {
-                nbFrameInSection = this._listKeys[k + 1].frame - this._listKeys[k].frame;
-                totalDistance = this._listKeys[k + 1].value - this._listKeys[k].value;
-                this._numberOfFrameBetweenKeys.push(totalDistance / nbFrameInSection);
+            var nbFrameInSection = 0, k = 0;
+            for (k; k < this._listErpKeys.length - 1; k++) {
+                nbFrameInSection = this._listErpKeys[k + 1].frame - this._listErpKeys[k].frame;
+                this._numberOfFrameBetweenKeys.push(nbFrameInSection);
             }
         },
 
@@ -193,8 +219,8 @@ var CGSGTimeline = CGSGObject.extend(
          * @public
          * @method sortByFrame
          */
-        sortByFrame: function () {
-            this._listKeys.sort(function (a, b) {
+        sortByFrame: function (list) {
+            list.sort(function (a, b) {
                 return a.frame - b.frame;
             });
         },
@@ -202,59 +228,22 @@ var CGSGTimeline = CGSGObject.extend(
         /**
          * Compute all the values (steps) for the animation of this timeline
          * @public
-         * @method computeAllValues for this timeline instance
+         * @method compute
          */
-        computeAllValues: function () {
+        compute: function () {
             //empty the list of values
             this.listValues.clear();
-
-            var nbKeys = this.getNbKeys();
-
-            if (nbKeys <= 1) {
+            if (this.getNbKeys() < 1) {
                 return;
             }
 
-            var duration = 0, f = 0, v = 0, k = 0, l = nbKeys - 1;
-            for (k; k < l; ++k) {
-                duration = this._listKeys[k + 1].frame - this._listKeys[k].frame;
-                for (f = 0; f <= duration; f++) {
-                    this.listValues[v++] = this._computeValue(k, this._listKeys[k].frame + f);
-                }
-            }
-        },
-
-        /**
-         * Compute animated value for one frame between key at index keyIndex and keyIndex+1
-         * @private
-         * @method _computeValue
-         * @param keyIndex {Number} Must be an integer value.
-         * @param frame {Number} Must be an integer value.
-         * @return {*} Object with 2 properties : frame and value, or undefined if keyIndex < 0
-         */
-        _computeValue: function (keyIndex, frame) {
-            if (keyIndex < 0) {
-                return undefined;
-            }
-            var previousKey = this._listKeys[keyIndex];
-            var nextKey = this._listKeys[keyIndex + 1];
-
-            if (frame === previousKey.frame) {
-                return {frame: frame, value: previousKey.value};
-            }
-            if (frame === nextKey.frame) {
-                return {frame: frame, value: nextKey.value};
-            }
-
-            var currentStep = frame - previousKey.frame;
-
-            return {frame: frame,
-                value: this._method.computeValue(frame, keyIndex, this._listKeys, currentStep, this._numberOfFrameBetweenKeys[keyIndex])
-            };
+            this._computeNumberOfFrameBetweenKeys();
+            this.listValues = this._method.compute(this._listErpKeys, this._numberOfFrameBetweenKeys);
         },
 
         /**
          * @method getFirstKey
-         * @return {CGSGAnimationKey} the first key frame of this timeline
+         * @return {CGSGKeyFrame} the first key frame of this timeline
          */
         getFirstKey: function () {
             if (this.getNbKeys() === 0) {
@@ -266,7 +255,7 @@ var CGSGTimeline = CGSGObject.extend(
 
         /**
          * @method getLastKey
-         * @return {CGSGAnimationKey} the last key frame of this timeline
+         * @return {CGSGKeyFrame} the last key frame of this timeline
          */
         getLastKey: function () {
             if (this.getNbKeys() === 0) {
@@ -295,43 +284,27 @@ var CGSGTimeline = CGSGObject.extend(
                 return undefined;
             }
 
-            //I have keys, but no precomputed values, so compute value for this frame
+            //I have keys, but no precomputed values, so compute values
             if (this.listValues.isEmpty()) {
                 if (frame < this._listKeys[0].frame) {
                     return undefined;
                 }
-                //get keys from which the frame is between
-                var k, previousKeyIndex = -1;
-                for (k = 1; k < nbKeys; k++) {
-                    if (frame < this._listKeys[k].frame) {
-                        previousKeyIndex = k - 1;
-                        break;
-                    }
-                }
-                return this._computeValue(previousKeyIndex, frame);
+                return this.compute();
             }
 
             //Here, I have precomputed values
 
             //if frame < first frame, return no value
-            if (frame < this.listValues[0].frame) {
+            if (frame < this._listKeys[0].frame) {
                 return undefined;
             }
 
             //if frame > last frame (ie last key), return last value
-            if (frame >= this.listValues[this.listValues.length - 1].frame) {
-                return this.listValues[this.listValues.length - 1];
+            if (frame >= this._listKeys[this._listKeys.length - 1].frame) {
+                return this.listValues[this.listValues.length - 1].x;
             }
 
-            var i;
-            //search for value at the frame
-            for (i = 0; i < this.listValues.length; i++) {
-                if (this.listValues[i].frame === frame) {
-                    return this.listValues[i];
-                }
-            }
-
-            return undefined;
+            return this.listValues[frame - this._listKeys[0].frame].x;
         },
 
         /**
@@ -341,12 +314,12 @@ var CGSGTimeline = CGSGObject.extend(
          */
         exportValues: function () {
             if (this.listValues.length === 0) {
-                this.computeAllValues();
+                this.compute();
             }
 
             var values = [], i;
             for (i = 0; i < this.listValues.length; i++) {
-                values.push(this.listValues[i].value);
+                values.push(this.listValues[i]);
             }
             return values;
         },
@@ -359,10 +332,11 @@ var CGSGTimeline = CGSGObject.extend(
          * @param startFrame {Number} Must be an integer value.
          */
         importValues: function (newValues, startFrame) {
-            this.listValues.clear();
+            this.addKey(startFrame, newValues[0]);
+            this.addKey(startFrame + newValues.length - 1, newValues[newValues.length - 1]);
             var i;
             for (i = 0; i < newValues.length; i++) {
-                this.listValues.push({frame: startFrame + i, value: newValues[i]});
+                this.listValues.push(newValues[i]);
             }
         }
     }

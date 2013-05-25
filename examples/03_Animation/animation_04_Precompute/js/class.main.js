@@ -103,8 +103,9 @@ var CGMain = CGSGView.extend(
          */
         addAnimation : function(node) {
             var timeline = CGSG.animationManager.getTimeline(node, "position.x");
-            CGSG.animationManager.addAnimationKey(timeline, 0, 30, false); //don't precompute
-            CGSG.animationManager.addAnimationKey(timeline, 50, 300, true); //precompute
+            CGSG.animationManager.addAnimationKey(timeline, 0, 30);
+            CGSG.animationManager.addAnimationKey(timeline, 50, 300); //precompute
+            timeline.compute();
 
             return timeline;
 

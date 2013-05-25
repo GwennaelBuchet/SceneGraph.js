@@ -7,44 +7,6 @@
         "themedir": "D:/PROJETS/Cellule_Innovation/R_D/cgSceneGraph/medias/theme_yuidoc/cgsg/theme.json"
     },
     "files": {
-        "src\\animation\\interpolators\\class.anim.interpolator.js": {
-            "name": "src\\animation\\interpolators\\class.anim.interpolator.js",
-            "modules": {},
-            "classes": {
-                "CGSGAnimInterpolator": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src\\animation\\interpolators\\class.anim.interpolator.linear.js": {
-            "name": "src\\animation\\interpolators\\class.anim.interpolator.linear.js",
-            "modules": {
-                "Animation": 1
-            },
-            "classes": {
-                "CGSGAnimInterpolatorLinear": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src\\animation\\interpolators\\class.anim.interpolator.nurbs.js": {
-            "name": "src\\animation\\interpolators\\class.anim.interpolator.nurbs.js",
-            "modules": {},
-            "classes": {
-                "CGSGAnimInterpolatorCubicSpline": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src\\animation\\class.anim.key.js": {
-            "name": "src\\animation\\class.anim.key.js",
-            "modules": {},
-            "classes": {
-                "CGSGAnimationKey": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "src\\animation\\class.anim.timeline.js": {
             "name": "src\\animation\\class.anim.timeline.js",
             "modules": {},
@@ -60,6 +22,15 @@
             "classes": {
                 "CGSGAnimationMethod": 1,
                 "CGSGAnimationManager": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\animation\\class.keyframe.js": {
+            "name": "src\\animation\\class.keyframe.js",
+            "modules": {},
+            "classes": {
+                "CGSGKeyFrame": 1
             },
             "fors": {},
             "namespaces": {}
@@ -151,6 +122,35 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\interpolator\\class.interpolator.TCB.js": {
+            "name": "src\\interpolator\\class.interpolator.TCB.js",
+            "modules": {},
+            "classes": {
+                "CGSGInterpolatorTCB": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\interpolator\\class.interpolator.js": {
+            "name": "src\\interpolator\\class.interpolator.js",
+            "modules": {},
+            "classes": {
+                "CGSGInterpolator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\interpolator\\class.interpolator.linear.js": {
+            "name": "src\\interpolator\\class.interpolator.linear.js",
+            "modules": {
+                "Animation": 1
+            },
+            "classes": {
+                "CGSGInterpolatorLinear": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\mask\\class.mask.cache.js": {
             "name": "src\\mask\\class.mask.cache.js",
             "modules": {},
@@ -211,6 +211,15 @@
             "modules": {},
             "classes": {
                 "CGSGNodeColorPicker": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\node\\class.node.curveTCB.js": {
+            "name": "src\\node\\class.node.curveTCB.js",
+            "modules": {},
+            "classes": {
+                "CGSGNodeCurveTCB": 1
             },
             "fors": {},
             "namespaces": {}
@@ -449,13 +458,16 @@
                 "ParticleSystem": 1
             },
             "classes": {
-                "CGSGAnimInterpolator": 1,
-                "CGSGAnimInterpolatorLinear": 1,
-                "CGSGAnimInterpolatorCubicSpline": 1,
-                "CGSGAnimationKey": 1,
                 "CGSGTimeline": 1,
                 "CGSGAnimationMethod": 1,
                 "CGSGAnimationManager": 1,
+                "CGSGKeyFrame": 1,
+                "CGSGInterpolatorTCB": 1,
+                "CGSGInterpolator": 1,
+                "CGSGInterpolatorLinear": 1,
+                "CGSGMaskCache": 1,
+                "CGSGMaskClip": 1,
+                "CGSGMask": 1,
                 "CGSGParticle": 1,
                 "CGSGParticleEmitter": 1,
                 "CGSGParticleSystem": 1
@@ -466,22 +478,27 @@
             "file": "src\\node\\class.particles.js",
             "line": 460,
             "description": "Linear intepolation",
-            "extends": "{CGSGAnimInterpolator}",
+            "extends": "{Object}",
             "is_constructor": 1,
-            "author": "Gwennael buchet (gwennael.buchet@gmail.com)",
             "params": [
                 {
-                    "name": "frame",
-                    "description": "number for this key. Must be an integer value.",
-                    "type": "Number"
+                    "name": "parentNode",
+                    "description": "",
+                    "type": "CGSGNode"
                 },
                 {
-                    "name": "value",
-                    "description": "for this key. Can be a Float value",
-                    "type": "Number"
+                    "name": "attribute",
+                    "description": "string representing the attribute to be animated (eg: \"position.x\", \"rotation.angle\", ...)",
+                    "type": "String"
+                },
+                {
+                    "name": "method",
+                    "description": "A string representing the interpolation method = \"linear\"",
+                    "type": "String"
                 }
             ],
-            "type": "{CGSGAnimationKey}"
+            "type": "{CGSGTimeline}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
         },
         "Collision": {
             "name": "Collision",
@@ -494,16 +511,13 @@
                 "CGSGCollisionMethod": 1,
                 "CGSGEvent": 1,
                 "CGSGBindEntry": 1,
-                "CGSGEventManager": 1,
-                "CGSGMaskCache": 1,
-                "CGSGMaskClip": 1,
-                "CGSGMask": 1
+                "CGSGEventManager": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src\\mask\\class.mask.js",
-            "line": 26,
+            "file": "src\\event\\class.eventmanager.js",
+            "line": 50,
             "extends": "{Object}",
             "is_constructor": 1,
             "type": "{CGSGCollisionManager}",
@@ -518,6 +532,7 @@
                 "CGSGNodeButton": 1,
                 "CGSGNodeCircle": 1,
                 "CGSGNodeColorPicker": 1,
+                "CGSGNodeCurveTCB": 1,
                 "CGSGNodeEllipse": 1,
                 "CGSGNodeImage": 1,
                 "CGSGNode": 1,
@@ -644,64 +659,6 @@
         }
     },
     "classes": {
-        "CGSGAnimInterpolator": {
-            "name": "CGSGAnimInterpolator",
-            "shortname": "CGSGAnimInterpolator",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Animation",
-            "file": "src\\animation\\interpolators\\class.anim.interpolator.js",
-            "line": 31,
-            "extends": "{CGSGObject}",
-            "is_constructor": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
-        },
-        "CGSGAnimInterpolatorLinear": {
-            "name": "CGSGAnimInterpolatorLinear",
-            "shortname": "CGSGAnimInterpolatorLinear",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Animation",
-            "namespace": "",
-            "file": "src\\animation\\interpolators\\class.anim.interpolator.linear.js",
-            "line": 29,
-            "description": "Linear intepolation"
-        },
-        "CGSGAnimInterpolatorCubicSpline": {
-            "name": "CGSGAnimInterpolatorCubicSpline",
-            "shortname": "CGSGAnimInterpolatorCubicSpline",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Animation",
-            "namespace": "",
-            "file": "src\\animation\\interpolators\\class.anim.interpolator.nurbs.js",
-            "line": 29,
-            "extends": "{CGSGAnimInterpolator}",
-            "is_constructor": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
-        },
-        "CGSGAnimationKey": {
-            "name": "CGSGAnimationKey",
-            "shortname": "CGSGAnimationKey",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Animation",
-            "namespace": "",
-            "file": "src\\animation\\class.anim.key.js",
-            "line": 28
-        },
         "CGSGTimeline": {
             "name": "CGSGTimeline",
             "shortname": "CGSGTimeline",
@@ -743,6 +700,19 @@
             "namespace": "",
             "file": "src\\animation\\class.animmanager.js",
             "line": 49
+        },
+        "CGSGKeyFrame": {
+            "name": "CGSGKeyFrame",
+            "shortname": "CGSGKeyFrame",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "namespace": "",
+            "file": "src\\animation\\class.keyframe.js",
+            "line": 28
         },
         "CGSGCollisionManager": {
             "name": "CGSGCollisionManager",
@@ -891,6 +861,52 @@
             "author": "Guillaume Drouet (guidrouet@gmail.com)",
             "type": "{CGSGEventManager}"
         },
+        "CGSGInterpolatorTCB": {
+            "name": "CGSGInterpolatorTCB",
+            "shortname": "CGSGInterpolatorTCB",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "namespace": "",
+            "file": "src\\interpolator\\class.interpolator.TCB.js",
+            "line": 29,
+            "extends": "{CGSGInterpolator}",
+            "is_constructor": 1,
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
+        },
+        "CGSGInterpolator": {
+            "name": "CGSGInterpolator",
+            "shortname": "CGSGInterpolator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "namespace": "",
+            "file": "src\\interpolator\\class.interpolator.js",
+            "line": 31,
+            "extends": "{CGSGObject}",
+            "is_constructor": 1,
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
+        },
+        "CGSGInterpolatorLinear": {
+            "name": "CGSGInterpolatorLinear",
+            "shortname": "CGSGInterpolatorLinear",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Animation",
+            "namespace": "",
+            "file": "src\\interpolator\\class.interpolator.linear.js",
+            "line": 29,
+            "description": "Linear intepolation"
+        },
         "CGSGMaskCache": {
             "name": "CGSGMaskCache",
             "shortname": "CGSGMaskCache",
@@ -899,7 +915,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Collision",
+            "module": "Animation",
             "namespace": "",
             "file": "src\\mask\\class.mask.cache.js",
             "line": 27,
@@ -917,7 +933,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Collision",
+            "module": "Animation",
             "namespace": "",
             "file": "src\\mask\\class.mask.clip.js",
             "line": 26,
@@ -942,7 +958,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "Collision",
+            "module": "Animation",
             "namespace": "",
             "file": "src\\mask\\class.mask.js",
             "line": 26,
@@ -1029,7 +1045,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -1104,6 +1120,36 @@
             ],
             "type": "{CGSGNodeColorPicker}"
         },
+        "CGSGNodeCurveTCB": {
+            "name": "CGSGNodeCurveTCB",
+            "shortname": "CGSGNodeCurveTCB",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Node",
+            "namespace": "",
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 26,
+            "description": "A CGSGNodeSquare represent a basic square",
+            "extends": "CGSGNode",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "Relative position on X",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "Relative position on Y",
+                    "type": "Number"
+                }
+            ],
+            "type": "{CGSGNodeCurveTCB}",
+            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+        },
         "CGSGNodeEllipse": {
             "name": "CGSGNodeEllipse",
             "shortname": "CGSGNodeEllipse",
@@ -1127,7 +1173,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -1167,7 +1213,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -1261,7 +1307,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -1301,7 +1347,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -1394,7 +1440,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -1444,7 +1490,7 @@
                 },
                 {
                     "name": "y",
-                    "description": "Relative position on X",
+                    "description": "Relative position on Y",
                     "type": "Number"
                 },
                 {
@@ -2009,166 +2055,6 @@
     },
     "classitems": [
         {
-            "file": "src\\animation\\interpolators\\class.anim.interpolator.js",
-            "line": 42,
-            "description": "Compute the value for the specified frame",
-            "itemtype": "method",
-            "name": "computeValue",
-            "params": [
-                {
-                    "name": "frame",
-                    "description": "current frame to compute the value",
-                    "type": "Number"
-                },
-                {
-                    "name": "keyIndex",
-                    "description": "index of animation key just before the frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "listKeys",
-                    "description": "list of the animation keys",
-                    "type": "Array"
-                },
-                {
-                    "name": "currentStep",
-                    "description": "number of steps (frames) between the animation key before the frame and frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "nbSteps",
-                    "description": "number of frame between the 2 animation keys around the frame",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "the computed value",
-                "type": "Number"
-            },
-            "class": "CGSGAnimInterpolator",
-            "module": ""
-        },
-        {
-            "file": "src\\animation\\interpolators\\class.anim.interpolator.linear.js",
-            "line": 42,
-            "description": "Compute the value for the specified frame",
-            "itemtype": "method",
-            "name": "computeValue",
-            "params": [
-                {
-                    "name": "frame",
-                    "description": "current frame to compute the value",
-                    "type": "Number"
-                },
-                {
-                    "name": "keyIndex",
-                    "description": "index of animation key just before the frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "listKeys",
-                    "description": "list of the animation keys",
-                    "type": "Array"
-                },
-                {
-                    "name": "currentStep",
-                    "description": "number of steps (frames) between the animation key before the frame and frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "nbSteps",
-                    "description": "number of frame between the 2 animation keys around the frame",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "the computed value",
-                "type": "Number"
-            },
-            "class": "CGSGAnimInterpolatorLinear",
-            "module": "Animation"
-        },
-        {
-            "file": "src\\animation\\interpolators\\class.anim.interpolator.nurbs.js",
-            "line": 42,
-            "description": "Compute the value for the specified frame",
-            "itemtype": "method",
-            "name": "computeValue",
-            "params": [
-                {
-                    "name": "frame",
-                    "description": "current frame to compute the value",
-                    "type": "Number"
-                },
-                {
-                    "name": "keyIndex",
-                    "description": "index of animation key just before the frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "listKeys",
-                    "description": "list of the animation keys",
-                    "type": "Array"
-                },
-                {
-                    "name": "currentStep",
-                    "description": "number of steps (frames) between the animation key before the frame and frame",
-                    "type": "Number"
-                },
-                {
-                    "name": "nbSteps",
-                    "description": "number of frame between the 2 animation keys around the frame",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "the computed value",
-                "type": "Number"
-            },
-            "class": "CGSGAnimInterpolatorCubicSpline",
-            "module": ""
-        },
-        {
-            "file": "src\\animation\\class.anim.key.js",
-            "line": 41,
-            "itemtype": "property",
-            "name": "frame",
-            "type": "{Number}",
-            "class": "CGSGAnimationKey",
-            "module": "Animation"
-        },
-        {
-            "file": "src\\animation\\class.anim.key.js",
-            "line": 46,
-            "itemtype": "property",
-            "name": "value",
-            "type": "{Number}",
-            "class": "CGSGAnimationKey",
-            "module": "Animation"
-        },
-        {
-            "file": "src\\animation\\class.anim.key.js",
-            "line": 52,
-            "description": "Incoming tangent for this key",
-            "itemtype": "property",
-            "name": "inTangent",
-            "default": "(0, 0)",
-            "type": "{CGSGVector2D}",
-            "class": "CGSGAnimationKey",
-            "module": "Animation"
-        },
-        {
-            "file": "src\\animation\\class.anim.key.js",
-            "line": 60,
-            "description": "Outgoing tangent for this key",
-            "itemtype": "property",
-            "name": "outTangent",
-            "default": "(0, 0)",
-            "type": "{CGSGVector2D}",
-            "class": "CGSGAnimationKey",
-            "module": "Animation"
-        },
-        {
             "file": "src\\animation\\class.anim.timeline.js",
             "line": 46,
             "description": "The animated nodes",
@@ -2193,8 +2079,8 @@
             "line": 62,
             "itemtype": "property",
             "name": "_method",
-            "type": "{CGSGAnimInterpolator}",
-            "default": "{CGSGAnimInterpolatorLinear} CGSGAnimationMethod.LINEAR",
+            "type": "{CGSGInterpolator}",
+            "default": "{CGSGInterpolatorLinear} CGSGAnimationMethod.LINEAR",
             "access": "private",
             "tagname": "",
             "class": "CGSGTimeline",
@@ -2212,7 +2098,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 85,
+            "line": 87,
             "description": "Callback on animation start event",
             "itemtype": "property",
             "name": "onAnimationStart",
@@ -2222,7 +2108,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 91,
+            "line": 93,
             "description": "Callback on animation end event",
             "itemtype": "property",
             "name": "onAnimationEnd",
@@ -2232,7 +2118,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 97,
+            "line": 99,
             "description": "Callback on animation event",
             "itemtype": "property",
             "name": "onAnimate",
@@ -2242,7 +2128,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 105,
+            "line": 107,
             "description": "Add a new animation key frame to the timeline and sort the timeline by frame number",
             "access": "public",
             "tagname": "",
@@ -2265,7 +2151,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 121,
+            "line": 124,
             "description": "Remove the key at the specified frame",
             "itemtype": "method",
             "name": "removeKey",
@@ -2281,7 +2167,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 141,
+            "line": 139,
             "itemtype": "method",
             "name": "removeKeysBetween",
             "params": [
@@ -2301,7 +2187,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 156,
+            "line": 182,
             "description": "Remove all keys and values",
             "access": "public",
             "tagname": "",
@@ -2312,7 +2198,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 167,
+            "line": 194,
             "description": "Compute the number of steps between all keys, 2 by 2",
             "access": "private",
             "tagname": "",
@@ -2323,7 +2209,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 182,
+            "line": 208,
             "access": "public",
             "tagname": "",
             "itemtype": "method",
@@ -2337,7 +2223,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 191,
+            "line": 217,
             "description": "Sort the list of keys by frame number",
             "access": "public",
             "tagname": "",
@@ -2348,69 +2234,42 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 202,
+            "line": 228,
             "description": "Compute all the values (steps) for the animation of this timeline",
             "access": "public",
             "tagname": "",
             "itemtype": "method",
-            "name": "computeAllValues for this timeline instance",
+            "name": "compute",
             "class": "CGSGTimeline",
             "module": "Animation"
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 226,
-            "description": "Compute animated value for one frame between key at index keyIndex and keyIndex+1",
-            "access": "private",
-            "tagname": "",
-            "itemtype": "method",
-            "name": "_computeValue",
-            "params": [
-                {
-                    "name": "keyIndex",
-                    "description": "Must be an integer value.",
-                    "type": "Number"
-                },
-                {
-                    "name": "frame",
-                    "description": "Must be an integer value.",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "Object with 2 properties : frame and value, or undefined if keyIndex < 0",
-                "type": "*"
-            },
-            "class": "CGSGTimeline",
-            "module": "Animation"
-        },
-        {
-            "file": "src\\animation\\class.anim.timeline.js",
-            "line": 255,
+            "line": 244,
             "itemtype": "method",
             "name": "getFirstKey",
             "return": {
                 "description": "the first key frame of this timeline",
-                "type": "CGSGAnimationKey"
+                "type": "CGSGKeyFrame"
             },
             "class": "CGSGTimeline",
             "module": "Animation"
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 267,
+            "line": 256,
             "itemtype": "method",
             "name": "getLastKey",
             "return": {
                 "description": "the last key frame of this timeline",
-                "type": "CGSGAnimationKey"
+                "type": "CGSGKeyFrame"
             },
             "class": "CGSGTimeline",
             "module": "Animation"
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 279,
+            "line": 268,
             "description": "Get the value for the frame number passed in parameter",
             "access": "public",
             "tagname": "",
@@ -2432,7 +2291,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 337,
+            "line": 310,
             "description": "Return the precomputed array of values for this timeline",
             "itemtype": "method",
             "name": "exportValues",
@@ -2445,7 +2304,7 @@
         },
         {
             "file": "src\\animation\\class.anim.timeline.js",
-            "line": 354,
+            "line": 327,
             "description": "Import new precomputed values for this timeline.\nThe number of values must match the number of frame defined by the keys of this timeline",
             "itemtype": "method",
             "name": "importValues",
@@ -2469,7 +2328,7 @@
             "line": 36,
             "itemtype": "property",
             "name": "LINEAR",
-            "type": "{CGSGAnimInterpolatorLinear}",
+            "type": "{CGSGInterpolatorLinear}",
             "class": "CGSGAnimationMethod",
             "module": "Animation"
         },
@@ -2478,7 +2337,7 @@
             "line": 42,
             "itemtype": "property",
             "name": "NURBS",
-            "type": "{CGSGAnimInterpolatorCubicSpline}",
+            "type": "{CGSGInterpolatorTCB}",
             "class": "CGSGAnimationMethod",
             "module": "Animation"
         },
@@ -2513,11 +2372,6 @@
                     "name": "value",
                     "description": "value for the attribute at the frame",
                     "type": "Number"
-                },
-                {
-                    "name": "compute",
-                    "description": "Set to true if you want to compute the all animations values",
-                    "type": "Boolean"
                 }
             ],
             "example": [
@@ -2528,7 +2382,7 @@
         },
         {
             "file": "src\\animation\\class.animmanager.js",
-            "line": 88,
+            "line": 82,
             "itemtype": "method",
             "name": "removeAnimationKey",
             "params": [
@@ -2541,11 +2395,6 @@
                     "name": "frame",
                     "description": "the date for the key",
                     "type": "Number"
-                },
-                {
-                    "name": "compute",
-                    "description": "Set to true if you want to compute the all animations values",
-                    "type": "Boolean"
                 }
             ],
             "class": "CGSGAnimationManager",
@@ -2553,7 +2402,7 @@
         },
         {
             "file": "src\\animation\\class.animmanager.js",
-            "line": 104,
+            "line": 92,
             "description": "Animate an attribute of a nodes",
             "itemtype": "method",
             "name": "animate",
@@ -2587,11 +2436,6 @@
                     "name": "delay",
                     "description": "Delay before start the animation, in frames",
                     "type": "Number"
-                },
-                {
-                    "name": "compute",
-                    "description": "Set to true if you want to compute the animations values",
-                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -2606,7 +2450,7 @@
         },
         {
             "file": "src\\animation\\class.animmanager.js",
-            "line": 127,
+            "line": 120,
             "itemtype": "method",
             "name": "stillHaveAnimation",
             "return": {
@@ -2618,7 +2462,7 @@
         },
         {
             "file": "src\\animation\\class.animmanager.js",
-            "line": 147,
+            "line": 140,
             "description": "Return the timeline corresponding with the nodes and attribute. Create it if does not exists yet",
             "itemtype": "method",
             "name": "getTimeline",
@@ -2643,7 +2487,7 @@
         },
         {
             "file": "src\\animation\\class.animmanager.js",
-            "line": 165,
+            "line": 158,
             "description": "Create a new timeline",
             "access": "private",
             "tagname": "",
@@ -2666,6 +2510,60 @@
                 "type": "CGSGTimeline"
             },
             "class": "CGSGAnimationManager",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.keyframe.js",
+            "line": 41,
+            "itemtype": "property",
+            "name": "frame",
+            "type": "{Number}",
+            "class": "CGSGKeyFrame",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.keyframe.js",
+            "line": 46,
+            "itemtype": "property",
+            "name": "value",
+            "type": "{*}",
+            "example": [
+                " {x:10, y:30}; {x:10}"
+            ],
+            "class": "CGSGKeyFrame",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.keyframe.js",
+            "line": 53,
+            "description": "Incoming tangent for this key",
+            "itemtype": "property",
+            "name": "inTangent",
+            "default": "(0, 0)",
+            "type": "{CGSGVector2D}",
+            "class": "CGSGKeyFrame",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.keyframe.js",
+            "line": 61,
+            "description": "Outgoing tangent for this key",
+            "itemtype": "property",
+            "name": "outTangent",
+            "default": "(0, 0)",
+            "type": "{CGSGVector2D}",
+            "class": "CGSGKeyFrame",
+            "module": "Animation"
+        },
+        {
+            "file": "src\\animation\\class.keyframe.js",
+            "line": 69,
+            "description": "can be fulfilled by the developer to put in whatever he needs",
+            "itemtype": "property",
+            "name": "userData",
+            "default": "null",
+            "type": "{*}",
+            "class": "CGSGKeyFrame",
             "module": "Animation"
         },
         {
@@ -3091,6 +2989,126 @@
             "module": "Collision"
         },
         {
+            "file": "src\\interpolator\\class.interpolator.TCB.js",
+            "line": 41,
+            "itemtype": "method",
+            "name": "compute",
+            "params": [
+                {
+                    "name": "keys",
+                    "description": "Array of all the animation keys",
+                    "type": "Array"
+                },
+                {
+                    "name": "steps",
+                    "description": "Array of steps between 2 keys. steps.length = keys.length - 1.",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "Array of {x, y} object corresponding to all the points in the curve",
+                "type": "Array"
+            },
+            "class": "CGSGInterpolatorTCB",
+            "module": ""
+        },
+        {
+            "file": "src\\interpolator\\class.interpolator.TCB.js",
+            "line": 106,
+            "itemtype": "method",
+            "name": "_interpolate",
+            "params": [
+                {
+                    "name": "p1",
+                    "description": ""
+                },
+                {
+                    "name": "p2",
+                    "description": ""
+                },
+                {
+                    "name": "p3",
+                    "description": ""
+                },
+                {
+                    "name": "p4",
+                    "description": ""
+                },
+                {
+                    "name": "t",
+                    "description": ""
+                },
+                {
+                    "name": "c",
+                    "description": ""
+                },
+                {
+                    "name": "b",
+                    "description": ""
+                },
+                {
+                    "name": "steps",
+                    "description": ""
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "CGSGInterpolatorTCB",
+            "module": ""
+        },
+        {
+            "file": "src\\interpolator\\class.interpolator.js",
+            "line": 42,
+            "itemtype": "method",
+            "name": "computeInterpolations",
+            "params": [
+                {
+                    "name": "keys",
+                    "description": "Array of all the animation keys",
+                    "type": "Array"
+                },
+                {
+                    "name": "steps",
+                    "description": "Array of steps between 2 keys. steps.length = keys.length - 1.",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "Array of {x, y} object corresponding to all the points in the curve",
+                "type": "Array"
+            },
+            "class": "CGSGInterpolator",
+            "module": ""
+        },
+        {
+            "file": "src\\interpolator\\class.interpolator.linear.js",
+            "line": 43,
+            "itemtype": "method",
+            "name": "compute",
+            "params": [
+                {
+                    "name": "keys",
+                    "description": "Array of all the animation keys",
+                    "type": "Array"
+                },
+                {
+                    "name": "steps",
+                    "description": "Array of steps between 2 keys. steps.length = keys.length - 1.",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "Array of {x, y} object corresponding to all the points in the curve",
+                "type": "Array"
+            },
+            "class": "CGSGInterpolatorLinear",
+            "module": "Animation"
+        },
+        {
             "file": "src\\mask\\class.mask.cache.js",
             "line": 46,
             "description": "Asks the mask to refresh the canvas cache for the given node in the next rendering. Automatically called when\na node is scaled, resize or translated.",
@@ -3104,7 +3122,7 @@
             "itemtype": "method",
             "name": "invalidate",
             "class": "CGSGMaskCache",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.cache.js",
@@ -3121,7 +3139,7 @@
             "access": "private",
             "tagname": "",
             "class": "CGSGMaskCache",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.cache.js",
@@ -3138,7 +3156,7 @@
             "access": "private",
             "tagname": "",
             "class": "CGSGMaskCache",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.cache.js",
@@ -3163,7 +3181,7 @@
                 "type": "CanvasRenderingContext2D"
             },
             "class": "CGSGMaskCache",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.cache.js",
@@ -3188,7 +3206,7 @@
                 "type": "CanvasRenderingContext2D"
             },
             "class": "CGSGMaskCache",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.clip.js",
@@ -3213,7 +3231,7 @@
                 "type": "CanvasRenderingContext2D"
             },
             "class": "CGSGMaskClip",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.clip.js",
@@ -3238,7 +3256,7 @@
                 "type": "CanvasRenderingContext2D"
             },
             "class": "CGSGMaskClip",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3254,7 +3272,7 @@
                 }
             ],
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3272,7 +3290,7 @@
                 }
             ],
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3287,7 +3305,7 @@
                 }
             ],
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3305,7 +3323,7 @@
                 }
             ],
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3323,7 +3341,7 @@
             "access": "private",
             "tagname": "",
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3344,7 +3362,7 @@
                 }
             ],
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\mask\\class.mask.js",
@@ -3365,7 +3383,7 @@
                 }
             ],
             "class": "CGSGMask",
-            "module": "Collision"
+            "module": "Animation"
         },
         {
             "file": "src\\node\\class.node.animatedSprite.js",
@@ -4668,6 +4686,113 @@
             "module": "Node"
         },
         {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 45,
+            "description": "Color  to fill the square",
+            "itemtype": "property",
+            "name": "color",
+            "default": "\"#444444\"",
+            "type": "{String}",
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 52,
+            "description": "Color to stroke the square",
+            "itemtype": "property",
+            "name": "lineColor",
+            "default": "\"#222222\"",
+            "type": "{String}",
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 59,
+            "description": "Width of the line that stroke the square.\nLet 0 if you don't want to stroke the square.",
+            "itemtype": "property",
+            "name": "lineWidth",
+            "default": "0",
+            "type": "{Number}",
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 75,
+            "itemtype": "property",
+            "name": "classType",
+            "readonly": "",
+            "type": "{String}",
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 83,
+            "itemtype": "method",
+            "name": "addKey",
+            "params": [
+                {
+                    "name": "x",
+                    "description": ""
+                },
+                {
+                    "name": "y",
+                    "description": ""
+                },
+                {
+                    "name": "t",
+                    "description": ""
+                },
+                {
+                    "name": "c",
+                    "description": ""
+                },
+                {
+                    "name": "b",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "CGSGKeyFrame"
+            },
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 114,
+            "description": "Custom rendering",
+            "itemtype": "method",
+            "name": "render",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "the context into render the node",
+                    "type": "CanvasRenderingContext2D"
+                }
+            ],
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
+            "file": "src\\node\\class.node.curveTCB.js",
+            "line": 141,
+            "itemtype": "method",
+            "name": "copy",
+            "return": {
+                "description": "a copy of this node",
+                "type": "CGSGNodeCurveTCB"
+            },
+            "class": "CGSGNodeCurveTCB",
+            "module": "Node"
+        },
+        {
             "file": "src\\node\\class.node.ellipse.js",
             "line": 48,
             "description": "Color  to fill the ellipse",
@@ -5227,7 +5352,7 @@
             "line": 152,
             "description": "can be fulfilled by the developer to put in whatever he needs",
             "itemtype": "property",
-            "name": "userdata",
+            "name": "userData",
             "default": "null",
             "type": "{*}",
             "class": "CGSGNode",
@@ -10481,6 +10606,15 @@
         {
             "file": "src\\utils\\util.array.js",
             "line": 60,
+            "description": "Remove the item at the end of this array",
+            "itemtype": "method",
+            "name": "Array.prototype.pop",
+            "class": "UTIL_ARRAY",
+            "module": "Util"
+        },
+        {
+            "file": "src\\utils\\util.array.js",
+            "line": 68,
             "description": "Empty the array",
             "itemtype": "method",
             "name": "Array.prototype.clear",
@@ -10489,7 +10623,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 68,
+            "line": 76,
             "description": "Check if the array is empty",
             "itemtype": "method",
             "name": "Array.prototype.isEmpty",
@@ -10502,7 +10636,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 77,
+            "line": 85,
             "description": "Return a clone of this array.\nAll references will be passed as is. So a change on an object of the cloned array will also visible on this one.",
             "itemtype": "method",
             "name": "Array.prototype.clone",
@@ -10515,7 +10649,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 87,
+            "line": 95,
             "description": "Return a copy of the array.\nIf an item on this object encapsulates the \"copy\" method, this one will be called to avoid references issues",
             "itemtype": "method",
             "name": "Array.prototype.copy",
@@ -10528,7 +10662,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 107,
+            "line": 115,
             "description": "Checks whether the specified elements exists in the array or not",
             "itemtype": "method",
             "name": "Array.prototype.contains",
@@ -10547,7 +10681,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 122,
+            "line": 130,
             "description": "Removes doubles elements from the array",
             "itemtype": "method",
             "name": "Array.prototype.unique",
@@ -10560,7 +10694,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 139,
+            "line": 147,
             "description": "Compute and return the sum of all elements in this array",
             "itemtype": "method",
             "name": "Array.prototype.sum",
@@ -10573,7 +10707,7 @@
         },
         {
             "file": "src\\utils\\util.array.js",
-            "line": 153,
+            "line": 161,
             "description": "Compute and return the average of all the elements in this array",
             "itemtype": "method",
             "name": "Array.prototype.average",
@@ -11168,7 +11302,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 198,
+            "line": 195,
             "description": "Change the dimension of the canvas.\nDoes not really change the dimension of the rendering canvas container,\n but is used for different computations",
             "itemtype": "method",
             "name": "setCanvasDimension",
@@ -11184,7 +11318,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 209,
+            "line": 206,
             "description": "Mark the nodes as selected so the select marker (also called selectedHandlers)\n will be shown and the SceneGraph will manage the moving and resizing of the selected objects.",
             "itemtype": "method",
             "name": "selectNode",
@@ -11199,7 +11333,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 223,
+            "line": 220,
             "description": "Mark the nodes as not selected",
             "itemtype": "method",
             "name": "deselectNode",
@@ -11215,7 +11349,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 234,
+            "line": 231,
             "description": "Mark all nodes as not selected",
             "itemtype": "method",
             "name": "deselectAll",
@@ -11231,7 +11365,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 252,
+            "line": 249,
             "description": "Recursively traverse the nodes and return the one who is under the mouse coordinates",
             "itemtype": "method",
             "name": "pickNode",
@@ -11259,7 +11393,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 282,
+            "line": 279,
             "description": "Recursively traverse the nodes and return the ones who are under the mouse coordinates",
             "itemtype": "method",
             "name": "pickNodes",
@@ -11287,7 +11421,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 312,
+            "line": 309,
             "description": "Remove the child nodes passed in parameter, from the root nodes",
             "itemtype": "method",
             "name": "removeNode",
@@ -11307,7 +11441,7 @@
         },
         {
             "file": "src\\class.scenegraph.js",
-            "line": 328,
+            "line": 325,
             "description": "Add a node on the scene.\nIf the root does not already exist, this node will be used as root",
             "itemtype": "method",
             "name": "addNode",

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CGSGAnimInterpolator - cgSceneGraph</title>
+    <title>CGSGInterpolatorLinear - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -33,17 +33,9 @@
             
                 <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
-            
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
@@ -69,6 +61,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGInterpolator.html">CGSGInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorLinear.html">CGSGInterpolatorLinear</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorTCB.html">CGSGInterpolatorTCB</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGKeyFrame.html">CGSGKeyFrame</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
@@ -86,6 +86,8 @@
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCurveTCB.html">CGSGNodeCurveTCB</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
             
@@ -196,19 +198,15 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>CGSGAnimInterpolator Class</h1>
+                        <h1>CGSGInterpolatorLinear Class</h1>
 <div class="box meta">
     
 
     
-        <div class="extends">
-            Extends CGSGObject
-        </div>
-    
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_animation_interpolators_class.anim.interpolator.js.html#l31"><code>src\animation\interpolators\class.anim.interpolator.js:31</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_interpolator_class.interpolator.linear.js.html#l29"><code>src\interpolator\class.interpolator.linear.js:29</code></a>
         </div>
     
 
@@ -224,66 +222,9 @@
 
 
 <div class="box intro">
-    
+    <p>Linear intepolation</p>
 </div>
 
-
-    <div class="constructor">
-        <h2>Constructor</h2>
-        <div id="method_CGSGAnimInterpolator" class="method item">
-    <span class="attribute-name">CGSGAnimInterpolator</span>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;src_animation_interpolators_class.anim.interpolator.js.html#l31"><code>src\animation\interpolators\class.anim.interpolator.js:31</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-    </div>
 
 
 <div id="classdocs" class="tabview">
@@ -306,10 +247,10 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
 
-                    <ul class="index-list methods extends">
+                    <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_computeValue">computeValue</a>
+                                <a href="#method_compute">compute</a>
 
                                 
                                 
@@ -331,8 +272,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_computeValue" class="method item">
-    <span class="attribute-name">computeValue</span>
+                    <div id="method_compute" class="method item">
+    <span class="attribute-name">compute</span>
 
     
         <div class="args">
@@ -340,31 +281,13 @@
             
                 <li class="arg">
                     
-                        <code>frame</code>
+                        <code>keys</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>keyIndex</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>listKeys</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>currentStep</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>nbSteps</code>
+                        <code>steps</code>
                     
                 </li>
             
@@ -374,7 +297,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
         </span>
     
 
@@ -394,8 +317,6 @@
         
             
                 
-                    <p>Provided by the <a href="../modules/.html"></a> module.</p>
-                
                 <p>
                 
                 Defined in
@@ -403,7 +324,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;src_animation_interpolators_class.anim.interpolator.js.html#l42"><code>src\animation\interpolators\class.anim.interpolator.js:42</code></a>
+        <a href="..&#x2F;files&#x2F;src_interpolator_class.interpolator.linear.js.html#l43"><code>src\interpolator\class.interpolator.linear.js:43</code></a>
         
         </p>
 
@@ -414,7 +335,7 @@
     </div>
 
     <div class="description">
-        <p>Compute the value for the specified frame</p>
+        
     </div>
 
     
@@ -425,44 +346,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">frame</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>current frame to compute the value</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">keyIndex</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>index of animation key just before the frame</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">listKeys</code>
+                        <code class="param-name">keys</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>list of the animation keys</p>
+                        <p>Array of all the animation keys</p>
                     </div>
 
                     
@@ -470,29 +361,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">currentStep</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">steps</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>number of steps (frames) between the animation key before the frame and frame</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">nbSteps</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>number of frame between the 2 animation keys around the frame</p>
+                        <p>Array of steps between 2 keys. steps.length = keys.length - 1.</p>
                     </div>
 
                     
@@ -509,9 +385,9 @@
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
                     
-                    the computed value
+                    Array of {x, y} object corresponding to all the points in the curve
                 
             </div>
         </div>

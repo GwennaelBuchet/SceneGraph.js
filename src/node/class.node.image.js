@@ -31,7 +31,7 @@
  * @module Node
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {String} urlImage URL of the src image. Can be null tobe loaded later.
  * @type {CGSGNodeImage}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)

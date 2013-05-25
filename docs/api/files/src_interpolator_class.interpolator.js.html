@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\animation\interpolators\class.anim.interpolator.nurbs.js - cgSceneGraph</title>
+    <title>src\interpolator\class.interpolator.js - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -33,17 +33,9 @@
             
                 <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
-            
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
@@ -69,6 +61,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGInterpolator.html">CGSGInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorLinear.html">CGSGInterpolatorLinear</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorTCB.html">CGSGInterpolatorTCB</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGKeyFrame.html">CGSGKeyFrame</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
@@ -86,6 +86,8 @@
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCurveTCB.html">CGSGNodeCurveTCB</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
             
@@ -196,7 +198,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\animation\interpolators\class.anim.interpolator.nurbs.js</h1>
+                        <h1 class="file-heading">File: src\interpolator\class.interpolator.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -228,33 +230,26 @@
  *  These Terms of Use are subject to French law.
  *&#x2F;
 
+
+
 &#x2F;**
  * @module
- * @class CGSGAnimInterpolatorCubicSpline
- * @extends {CGSGAnimInterpolator}
+ * @class CGSGInterpolator
+ * @extends {CGSGObject}
  * @constructor
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  *&#x2F;
-var CGSGAnimInterpolatorCubicSpline = CGSGAnimInterpolator.extend(
+var CGSGInterpolator = CGSGObject.extend(
     {
-        initialize: function () {
-
-        },
+        initialize: function () {},
 
         &#x2F;**
-         * Compute the value for the specified frame
-         * @method computeValue
-         * @param {number} frame current frame to compute the value
-         * @param {number} keyIndex index of animation key just before the frame
-         * @param {Array} listKeys list of the animation keys
-         * @param {number} currentStep number of steps (frames) between the animation key before the frame and frame
-         * @param {number} nbSteps number of frame between the 2 animation keys around the frame
-         * @return {number} the computed value
+         * @method computeInterpolations
+         * @param keys {Array} Array of all the animation keys
+         * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
+         * @return {Array} Array of {x, y} object corresponding to all the points in the curve
          *&#x2F;
-        computeValue:function(frame, keyIndex, listKeys, currentStep, nbSteps) {
-            return currentStep * nbSteps + listKeys[keyIndex].value;
-        }
-
+        compute: function (keys, steps) {}
     }
 );
     </pre>

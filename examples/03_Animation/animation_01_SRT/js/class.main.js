@@ -93,13 +93,19 @@ var CGMain = CGSGView.extend(
 			 * @param from Start value
 			 * @param to End value
 			 * @param delay Integer. Delay before start the animation, in frames
-			 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
 			 *
 			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
 
-			CGSG.animationManager.animate(this.squareNode, "position.x", 30, 0, 330, 0, true);
-			var timeline = CGSG.animationManager.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, 0, true);
+            var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 300, 0, 300, 0);
+            timeline.addInterpolationKey(100, 300);
+            timeline.addInterpolationKey(170, 0);
+            timeline.addInterpolationKey(220, 150);
+            timeline.addInterpolationKey(260, 0);
+            timeline.addInterpolationKey(285, 70);
+            timeline.addInterpolationKey(300, 0);
+            timeline.compute();
+			//CGSG.animationManager.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, 0);
 
             //timeline = CGSG.animationManager.getTimeline(this.squareNode, "rotation.angle");
             timeline.onAnimationStart = function (event) {

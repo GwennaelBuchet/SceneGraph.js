@@ -105,7 +105,7 @@ var CGSGPositionMode = {
  * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {String} text
  * @type {CGSGNodeButton}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)

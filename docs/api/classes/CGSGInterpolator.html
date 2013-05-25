@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\animation\class.anim.key.js - cgSceneGraph</title>
+    <title>CGSGInterpolator - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -33,17 +33,9 @@
             
                 <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
-            
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
@@ -69,6 +61,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGInterpolator.html">CGSGInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorLinear.html">CGSGInterpolatorLinear</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorTCB.html">CGSGInterpolatorTCB</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGKeyFrame.html">CGSGKeyFrame</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
@@ -86,6 +86,8 @@
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCurveTCB.html">CGSGNodeCurveTCB</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
             
@@ -196,81 +198,277 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\animation\class.anim.key.js</h1>
+                        <h1>CGSGInterpolator Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;*
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
- *
- * License&#x2F;Terms of Use
- *
- * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
- * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
- * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
- *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
- *
- *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
- *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
- *
- *  These Terms of Use are subject to French law.
- *&#x2F;
+    
+        <div class="extends">
+            Extends CGSGObject
+        </div>
+    
 
-&quot;use strict&quot;;
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;src_interpolator_class.interpolator.js.html#l31"><code>src\interpolator\class.interpolator.js:31</code></a>
+        </div>
+    
 
-&#x2F;**
- * @module Animation
- * @class CGSGAnimationKey
- * @extends {Object}
- * @constructor
- * @param {Number} frame number for this key. Must be an integer value.
- * @param {Number} value for this key. Can be a Float value
- * @type {CGSGAnimationKey}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- *&#x2F;
-var CGSGAnimationKey = CGSGObject.extend(
-	{
-		initialize : function (frame, value) {
-			&#x2F;**
-			 * @property frame
-			 * @type {Number}
-			 *&#x2F;
-			this.frame = frame;
-			&#x2F;**
-			 * @property value
-			 * @type {Number}
-			 *&#x2F;
-			this.value = value;
+    
+        
+            Module: <a href="../modules/Animation.html">Animation</a>
+        
+    
 
-            &#x2F;**
-             * Incoming tangent for this key
-             * @property inTangent
-             * @default (0, 0)
-             * @type {CGSGVector2D}
-             *&#x2F;
-            this.inTangent = new CGSGVector2D(0, 0);
+    
+</div>
 
-            &#x2F;**
-             * Outgoing tangent for this key
-             * @property outTangent
-             * @default (0, 0)
-             * @type {CGSGVector2D}
-             *&#x2F;
-            this.outTangent = new CGSGVector2D(0, 0);
-		}
-	}
-);
 
-    </pre>
+
+<div class="box intro">
+    
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_CGSGInterpolator" class="method item">
+    <span class="attribute-name">CGSGInterpolator</span>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_interpolator_class.interpolator.js.html#l31"><code>src\interpolator\class.interpolator.js:31</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method">
+                                <a href="#method_computeInterpolations">computeInterpolations</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_computeInterpolations" class="method item">
+    <span class="attribute-name">computeInterpolations</span>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>keys</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>steps</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/.html"></a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_interpolator_class.interpolator.js.html#l42"><code>src\interpolator\class.interpolator.js:42</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <div class="method-item">Parameters:</div>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">keys</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Array of all the animation keys</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">steps</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Array of steps between 2 keys. steps.length = keys.length - 1.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <div class="method-item">Returns:</div>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    
+                    Array of {x, y} object corresponding to all the points in the curve
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

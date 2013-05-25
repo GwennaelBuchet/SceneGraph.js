@@ -117,11 +117,10 @@ var CGMain = CGSGView.extend(
 			 * @param to End value
 			 * @param method String. animation method: 'linear', 'catmullrom'
 			 * @param delay Integer. Delay before start the animation, in frames
-			 * @param precompute Boolean. Set to tru if you want to precompute the animations steps
 			 *
 			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
-			var timeline = CGSG.animationManager.animate(this.redSquareNode, "position.x", 80, 0, 500, 0, true);
+			var timeline = CGSG.animationManager.animate(this.redSquareNode, "position.x", 80, 0, 500, 0);
 
             //timeline = CGSG.animationManager.getTimeline(this.redSquareNode, "position.x");
             timeline.onAnimationStart = function (event) {

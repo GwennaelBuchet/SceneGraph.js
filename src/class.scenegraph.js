@@ -37,7 +37,7 @@
  */
 var CGSGSceneGraph = CGSGObject.extend(
     {
-        initialize:function (canvas, context) {
+        initialize: function (canvas, context) {
 
             /**
              * Root node of the graph
@@ -83,7 +83,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
          * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
          * */
-        initializeGhost:function (width, height) {
+        initializeGhost: function (width, height) {
             this.ghostCanvas.height = height;
             this.ghostCanvas.width = width;
             //noinspection JSUndeclaredVariable
@@ -95,13 +95,13 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @public
          * @method render
          * */
-        render:function () {
+        render: function () {
             //erase previous rendering
             cgsgClearContext(this.context);
 
             if (cgsgExist(this.root)) {
                 var node = null;
-                var i = 0;
+                var i = 0, evt;
                 var key = null;
                 //set the new values for all the animated nodes
                 if (CGSG.animationManager.listTimelines.length > 0) {
@@ -114,10 +114,10 @@ var CGSGSceneGraph = CGSGObject.extend(
                         if (node.isVisible) {
                             value = timeline.getValue(CGSG.currentFrame);
                             if (value !== undefined) {
-                                node.evalSet(timeline.attribute, value.value);
+                                node.evalSet(timeline.attribute, value);
                                 if (timeline.onAnimate !== null) {
-                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE, new CGSGEvent(this, {node : node}));
-                                    //timeline.onAnimate({node : node});
+                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE,
+                                        new CGSGEvent(this, {node: node, attribute: timeline.attribute, value: value}));
                                 }
                             }
 
@@ -125,23 +125,20 @@ var CGSGSceneGraph = CGSGObject.extend(
                             key = timeline.getFirstKey();
                             if (key !== null && key.frame == CGSG.currentFrame &&
                                 timeline.onAnimationStart !== null) {
-	                            var evt = new CGSGEvent(this, {node:node});
-	                            evt.node = node;
-	                            CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
+                                evt = new CGSGEvent(this, {node: node});
+                                evt.node = node;
+                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
                             }
 
                             //fire event if this is the last animation key for this timeline
                             key = timeline.getLastKey();
                             if (key !== null && key.frame == CGSG.currentFrame) {
                                 timeline.removeAll();
-                                //CGSG.listTimelines.without(timeline);
                                 if (timeline.onAnimationEnd !== null) {
-	                                var evt = new CGSGEvent(this, {node:node});
-	                                evt.node = node;
-	                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
+                                    evt = new CGSGEvent(this, {node: node});
+                                    evt.node = node;
+                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
                                 }
-
-                                //cgsgFree(timeline);
                             }
                         }
                     }
@@ -202,7 +199,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @method setCanvasDimension
          * @param {CGSGDimension} newDimension
          * */
-        setCanvasDimension:function (newDimension) {
+        setCanvasDimension: function (newDimension) {
             this.initializeGhost(newDimension.width, newDimension.height);
         },
 
@@ -212,7 +209,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @method selectNode
          * @param nodeToSelect The CGSGNode to be selected
          * */
-        selectNode:function (nodeToSelect) {
+        selectNode: function (nodeToSelect) {
             if (!nodeToSelect.isSelected) {
                 nodeToSelect.setSelected(true);
                 nodeToSelect.computeAbsoluteMatrix(false);
@@ -225,7 +222,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @method deselectNode
          * @param {CGSGNode} nodeToDeselect
          * */
-        deselectNode:function (nodeToDeselect) {
+        deselectNode: function (nodeToDeselect) {
             nodeToDeselect.setSelected(false);
             /*CGSG.selectedNodes = */
             CGSG.selectedNodes.without(nodeToDeselect);
@@ -236,7 +233,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @method deselectAll
          * @param {Array} excludedArray CGSGNodes to not deselect
          * */
-        deselectAll:function (excludedArray) {
+        deselectAll: function (excludedArray) {
             var node = null;
             for (var i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
                 node = CGSG.selectedNodes[i];
@@ -259,7 +256,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          *  this.scenegraph.picknode(mousePosition, 'position.x > 100'); <br/>
          *  this.scenegraph.picknode(mousePosition, 'position.x > 100 && this.position.y > 100');
          */
-        pickNode:function (mousePosition, condition) {
+        pickNode: function (mousePosition, condition) {
             //empty the current selection first
             //CGSG.selectedNodes = new Array();
             cgsgClearContext(CGSG.ghostContext);
@@ -289,7 +286,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          *  this.scenegraph.picknodes(region, 'position.x > 100'); <br/>
          *  this.scenegraph.picknodes(region, 'position.x > 100 && this.position.y > 100');
          */
-        pickNodes:function (region, condition) {
+        pickNodes: function (region, condition) {
             //empty the current selection first
             //CGSG.selectedNodes = new Array();
             cgsgClearContext(CGSG.ghostContext);
@@ -315,7 +312,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @param {CGSGNode} node the nodes to remove
          * @return {Boolean} true if the nodes was found and removed
          * */
-        removeNode:function (node) {
+        removeNode: function (node) {
             if (cgsgExist(node)) {
                 this.deselectNode(node);
                 if (this.root !== null) {
@@ -332,7 +329,7 @@ var CGSGSceneGraph = CGSGObject.extend(
          * @param {CGSGNode} node the node to add
          * @param {CGSGNode} parent the parent node of the new one. If it's null, the node will be the root.
          * */
-        addNode:function (node, parent) {
+        addNode: function (node, parent) {
             node._id = this._nextNodeID++;
             if (this.root === null) {
                 this.root = node;

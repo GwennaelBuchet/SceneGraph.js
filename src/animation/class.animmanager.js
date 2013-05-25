@@ -35,15 +35,15 @@
 var CGSGAnimationMethod = {
     /**
      * @property LINEAR
-     * @type {CGSGAnimInterpolatorLinear}
+     * @type {CGSGInterpolatorLinear}
 
      */
-    LINEAR: new CGSGAnimInterpolatorLinear(),
+    LINEAR: new CGSGInterpolatorLinear(),
     /**
      * @property NURBS
-     * @type {CGSGAnimInterpolatorCubicSpline}
+     * @type {CGSGInterpolatorTCB}
      */
-    CUBIC_SPLINE: new CGSGAnimInterpolatorCubicSpline()
+    CUBIC_SPLINE: new CGSGInterpolatorTCB()
 };
 
 /**
@@ -71,34 +71,22 @@ var CGSGAnimationManager = CGSGObject.extend(
          * @param {CGSGTimeline} timeline handler to the timeline to animate
          * @param {Number} frame the date for the key
          * @param {Number} value value for the attribute at the frame
-         * @param {Boolean} compute  Set to true if you want to compute the all animations values
          *
          * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
          */
-        addAnimationKey: function (timeline, frame, value, compute) {
+        addAnimationKey: function (timeline, frame, value) {
             //add the new key to the timeline
             timeline.addKey(CGSGMath.fixedPoint(frame), value);
-
-            //if the user want to compute the animation, do it now
-            if (compute) {
-                timeline.computeAllValues();
-            }
         },
 
         /**
          * @method removeAnimationKey
          * @param timeline {CGSGTimeline}
          * @param frame {Number} the date for the key
-         * @param compute {Boolean} Set to true if you want to compute the all animations values
          */
-        removeAnimationKey:function(timeline, frame, compute) {
+        removeAnimationKey: function (timeline, frame) {
             //add the new key to the timeline
             timeline.removeKey(CGSGMath.fixedPoint(frame));
-
-            //if the user want to compute the animation, do it now
-            if (compute) {
-                timeline.computeAllValues();
-            }
         },
 
         /**
@@ -110,19 +98,24 @@ var CGSGAnimationManager = CGSGObject.extend(
          * @param {Number} from Start value
          * @param {Number} to End value
          * @param {Number} delay Delay before start the animation, in frames
-         * @param {Boolean} compute Set to true if you want to compute the animations values
          * @return {CGSGTimeline} the timeline on which tha the animation was added
          * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
          */
-        animate: function (node, attribute, duration, from, to, delay, compute) {
+        animate: function (node, attribute, duration, from, to, delay) {
             var timeline = this.getTimeline(node, attribute);
             var d1 = CGSG.currentFrame + CGSGMath.fixedPoint(delay);
             var d2 = CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration);
             timeline.removeKeysBetween(d1, d2);
-            this.addAnimationKey(timeline, d1, from, false);
-            this.addAnimationKey(timeline, d2, to, compute);
+            this.addAnimationKey(timeline, d1, from);
+            this.addAnimationKey(timeline, d2, to);
+            this.compute(timeline);
             return timeline;
         },
+
+        compute: function (timeline) {
+            timeline.compute();
+        },
+
 
         /**
          * @method stillHaveAnimation

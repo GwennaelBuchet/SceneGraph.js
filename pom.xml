@@ -82,11 +82,11 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>event/class.event.js</include>
                                 <include>event/class.eventmanager.js</include>
 
-                                <include>animation/class.anim.key.js</include>
+                                <include>animation/class.keyframe.js</include>
+                                <include>interpolator/class.interpolator.js</include>
+                                <include>interpolator/class.interpolator.linear.js</include>
+                                <include>interpolator/class.interpolator.TCB.js</include>
                                 <include>animation/class.anim.timeline.js</include>
-                                <include>animation/interpolators/class.anim.interpolator.js</include>
-                                <include>animation/interpolators/class.anim.interpolator.linear.js</include>
-                                <include>animation/interpolators/class.anim.interpolator.nurbs.js</include>
                                 <include>animation/class.animmanager.js</include>
 
                                 <include>collision/enum.collision.method.js</include>
@@ -106,6 +106,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>utils/class.handlebox.js</include>
                                 <include>node/class.node.js</include>
 
+                                <include>node/class.node.curveTCB.js</include>
                                 <include>node/class.node.colorPicker.js</include>
                                 <include>node/class.node.tabMenu.js</include>
                                 <include>node/class.node.text.js</include>

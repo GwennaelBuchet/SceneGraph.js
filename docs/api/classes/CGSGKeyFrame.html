@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\animation\interpolators\class.anim.interpolator.linear.js - cgSceneGraph</title>
+    <title>CGSGKeyFrame - cgSceneGraph</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -33,17 +33,9 @@
             
                 <li><a href="..&#x2F;classes/CGSG.html">CGSG</a></li>
             
-                <li><a href="..&#x2F;classes/CGSGAnimationKey.html">CGSGAnimationKey</a></li>
-            
                 <li><a href="..&#x2F;classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolator.html">CGSGAnimInterpolator</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorCubicSpline.html">CGSGAnimInterpolatorCubicSpline</a></li>
-            
-                <li><a href="..&#x2F;classes/CGSGAnimInterpolatorLinear.html">CGSGAnimInterpolatorLinear</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
             
@@ -69,6 +61,14 @@
             
                 <li><a href="..&#x2F;classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
             
+                <li><a href="..&#x2F;classes/CGSGInterpolator.html">CGSGInterpolator</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorLinear.html">CGSGInterpolatorLinear</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGInterpolatorTCB.html">CGSGInterpolatorTCB</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGKeyFrame.html">CGSGKeyFrame</a></li>
+            
                 <li><a href="..&#x2F;classes/CGSGMap.html">CGSGMap</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGMask.html">CGSGMask</a></li>
@@ -86,6 +86,8 @@
                 <li><a href="..&#x2F;classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/CGSGNodeCurveTCB.html">CGSGNodeCurveTCB</a></li>
             
                 <li><a href="..&#x2F;classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
             
@@ -196,68 +198,351 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\animation\interpolators\class.anim.interpolator.linear.js</h1>
+                        <h1>CGSGKeyFrame Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;*
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
- *
- * License&#x2F;Terms of Use
- *
- * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
- * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
- * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory
- * conditions:
- *
- *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions
- *   of the Software.
- *
- *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
- *
- *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
- *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
- *
- *  These Terms of Use are subject to French law.
- *&#x2F;
+    
 
-&#x2F;**
- * Linear intepolation
- * @module Animation
- * @class CGSGAnimInterpolatorLinear
- * @extends {CGSGAnimInterpolator}
- * @constructor
- * @author Gwennael buchet (gwennael.buchet@gmail.com)
- *&#x2F;
-var CGSGAnimInterpolatorLinear = CGSGAnimInterpolator.extend(
-    {
-        initialize: function () {
-        },
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;src_animation_class.keyframe.js.html#l28"><code>src\animation\class.keyframe.js:28</code></a>
+        </div>
+    
 
-        &#x2F;**
-         * Compute the value for the specified frame
-         * @method computeValue
-         * @param {number} frame current frame to compute the value
-         * @param {number} keyIndex index of animation key just before the frame
-         * @param {Array} listKeys list of the animation keys
-         * @param {number} currentStep number of steps (frames) between the animation key before the frame and frame
-         * @param {number} nbSteps number of frame between the 2 animation keys around the frame
-         * @return {number} the computed value
-         *&#x2F;
-        computeValue:function(frame, keyIndex, listKeys, currentStep, nbSteps) {
-            return currentStep * nbSteps + listKeys[keyIndex].value;
-        }
+    
+        
+            Module: <a href="../modules/Animation.html">Animation</a>
+        
+    
 
-    }
-);
-    </pre>
+    
+</div>
+
+
+
+<div class="box intro">
+    
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property">
+                                <a href="#property_frame">frame</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_inTangent">inTangent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_outTangent">outTangent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_userData">userData</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_value">value</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_frame" class="property item">
+    <span class="attribute-name">frame</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.keyframe.js.html#l41"><code>src\animation\class.keyframe.js:41</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_inTangent" class="property item">
+    <span class="attribute-name">inTangent</span>
+    <span class="type"><a href="..\classes\CGSGVector2D.html" class="crosslink">CGSGVector2D</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.keyframe.js.html#l53"><code>src\animation\class.keyframe.js:53</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Incoming tangent for this key</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> (0, 0)</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_outTangent" class="property item">
+    <span class="attribute-name">outTangent</span>
+    <span class="type"><a href="..\classes\CGSGVector2D.html" class="crosslink">CGSGVector2D</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.keyframe.js.html#l61"><code>src\animation\class.keyframe.js:61</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Outgoing tangent for this key</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> (0, 0)</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_userData" class="property item">
+    <span class="attribute-name">userData</span>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.keyframe.js.html#l69"><code>src\animation\class.keyframe.js:69</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>can be fulfilled by the developer to put in whatever he needs</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> null</p>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_value" class="property item">
+    <span class="attribute-name">value</span>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_animation_class.keyframe.js.html#l46"><code>src\animation\class.keyframe.js:46</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+        <div class="example">
+            <div class="method-item">Example:</div>
+
+            <div class="example-content">
+                <p>{x:10, y:30}; {x:10}</p>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

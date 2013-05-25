@@ -30,25 +30,21 @@
 
 /**
  * @module
- * @class CGSGAnimInterpolator
+ * @class CGSGInterpolator
  * @extends {CGSGObject}
  * @constructor
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
-var CGSGAnimInterpolator = CGSGObject.extend(
+var CGSGInterpolator = CGSGObject.extend(
     {
         initialize: function () {},
 
         /**
-         * Compute the value for the specified frame
-         * @method computeValue
-         * @param {number} frame current frame to compute the value
-         * @param {number} keyIndex index of animation key just before the frame
-         * @param {Array} listKeys list of the animation keys
-         * @param {number} currentStep number of steps (frames) between the animation key before the frame and frame
-         * @param {number} nbSteps number of frame between the 2 animation keys around the frame
-         * @return {number} the computed value
+         * @method computeInterpolations
+         * @param keys {Array} Array of all the animation keys
+         * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
+         * @return {Array} Array of {x, y} object corresponding to all the points in the curve
          */
-        computeValue:function(frame, keyIndex, listKeys, currentStep, nbSteps) {}
+        compute: function (keys, steps) {}
     }
 );

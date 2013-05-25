@@ -54,7 +54,7 @@ var CGSGWrapMode = {
  * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {String} text Text to display
  * @type {CGSGNodeText}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)

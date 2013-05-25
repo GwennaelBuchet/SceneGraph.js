@@ -95,13 +95,13 @@ var CGMain = CGSGView.extend(
 			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
 
-		    CGSG.animationManager.animate(this.squareNode, "position.x", 30, 0, 200, 0, false);
-            CGSG.animationManager.animate(this.squareNode, "position.y", 30, 60, 130, 30, false);
-            CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 1, 2, 60, false);
-            CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 1, 2, 60, false);
-            CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 2, 1, 90, false);
-            CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 2, 1, 90, false);
-            CGSG.animationManager.animate(this.squareNode, "globalAlpha", 30, 1, 0, 90, false);
+		    CGSG.animationManager.animate(this.squareNode, "position.x", 30, 0, 200, 0);
+            CGSG.animationManager.animate(this.squareNode, "position.y", 30, 60, 130, 30);
+            CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 1, 2, 60);
+            CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 1, 2, 60);
+            CGSG.animationManager.animate(this.squareNode, "scale.x", 30, 2, 1, 90);
+            CGSG.animationManager.animate(this.squareNode, "scale.y", 30, 2, 1, 90);
+            CGSG.animationManager.animate(this.squareNode, "globalAlpha", 30, 1, 0, 90);
 
 		}
 

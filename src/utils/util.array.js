@@ -58,6 +58,14 @@ Array.prototype.without = function (item) {
 };
 
 /**
+ * Remove the item at the end of this array
+ * @method Array.prototype.pop
+ */
+Array.prototype.pop = function() {
+    this.splice(this.length-1, 1);
+};
+
+/**
  * Empty the array
  * @method Array.prototype.clear
  */

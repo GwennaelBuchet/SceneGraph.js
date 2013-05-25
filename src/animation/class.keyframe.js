@@ -27,15 +27,15 @@
 
 /**
  * @module Animation
- * @class CGSGAnimationKey
+ * @class CGSGKeyFrame
  * @extends {Object}
  * @constructor
  * @param {Number} frame number for this key. Must be an integer value.
- * @param {Number} value for this key. Can be a Float value
- * @type {CGSGAnimationKey}
+ * @param {object} value for this key. For example : {x:10, y:30}; {x:10}
+ * @type {CGSGKeyFrame}
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
-var CGSGAnimationKey = CGSGObject.extend(
+var CGSGKeyFrame = CGSGObject.extend(
 	{
 		initialize : function (frame, value) {
 			/**
@@ -45,7 +45,8 @@ var CGSGAnimationKey = CGSGObject.extend(
 			this.frame = frame;
 			/**
 			 * @property value
-			 * @type {Number}
+			 * @type {*}
+             * @example {x:10, y:30}; {x:10}
 			 */
 			this.value = value;
 
@@ -64,6 +65,14 @@ var CGSGAnimationKey = CGSGObject.extend(
              * @type {CGSGVector2D}
              */
             this.outTangent = new CGSGVector2D(0, 0);
+
+            /**
+             * can be fulfilled by the developer to put in whatever he needs
+             * @property userData
+             * @default null
+             * @type {*}
+             */
+            this.userData = null;
 		}
 	}
 );

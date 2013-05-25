@@ -54,7 +54,7 @@ var CGSGWEBVIEWMODE = {
  * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
  * @param {String} url URL of the webpage

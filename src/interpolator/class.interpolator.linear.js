@@ -27,30 +27,54 @@
  */
 
 /**
- * @module
- * @class CGSGAnimInterpolatorCubicSpline
- * @extends {CGSGAnimInterpolator}
+ * Linear intepolation
+ * @module Animation
+ * @class CGSGInterpolatorLinear
+ * @extends {CGSGInterpolator}
  * @constructor
- * @author Gwennael Buchet (gwennael.buchet@gmail.com)
+ * @author Gwennael buchet (gwennael.buchet@gmail.com)
  */
-var CGSGAnimInterpolatorCubicSpline = CGSGAnimInterpolator.extend(
+var CGSGInterpolatorLinear = CGSGInterpolator.extend(
     {
         initialize: function () {
-
         },
 
+
         /**
-         * Compute the value for the specified frame
-         * @method computeValue
-         * @param {number} frame current frame to compute the value
-         * @param {number} keyIndex index of animation key just before the frame
-         * @param {Array} listKeys list of the animation keys
-         * @param {number} currentStep number of steps (frames) between the animation key before the frame and frame
-         * @param {number} nbSteps number of frame between the 2 animation keys around the frame
-         * @return {number} the computed value
+         * @method compute
+         * @param keys {Array} Array of all the animation keys
+         * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
+         * @return {Array} Array of {x, y} object corresponding to all the points in the curve
          */
-        computeValue:function(frame, keyIndex, listKeys, currentStep, nbSteps) {
-            return currentStep * nbSteps + listKeys[keyIndex].value;
+        compute: function (keys, steps) {
+            var k, s, lenk = keys.length, lens, frame, key, nextKey, stepX, stepY;
+            var values = [];
+
+            for (k = 0; k < lenk - 1; k++) {
+                key = keys[k];
+                nextKey = keys[k + 1];
+                lens = steps[k];
+                stepX = (nextKey.value.x - key.value.x) / steps[k];
+                stepY = (nextKey.value.y - key.value.y) / steps[k];
+
+                for (s = 0; s < lens; s++) {
+                    frame = s;
+                    if (frame === key.frame) {
+                        values.push({x: key.value.x, y: key.value.y});
+                    }
+                    else if (frame === nextKey.frame) {
+                        values.push({x: nextKey.value.x, y: nextKey.value.y});
+                    }
+                    else {
+                        values.push({x: keys[k].value.x + s * stepX, y: keys[k].value.y + s*stepY});
+                    }
+                }
+            }
+
+            var lk = keys[lenk - 1];
+            values.push({x: lk.value.x, y: lk.value.y});
+
+            return values;
         }
 
     }

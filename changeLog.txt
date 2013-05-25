@@ -33,15 +33,12 @@ TODO LIST:
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
 - Evolution. CGSGNodeLink
-- Evolution. Add a "cgsgRenderAlways" property and correctly manage the "invalidate()" method
 - Example. Map
 - Example. Pingoo
 - Example. FallDown
 - Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
 - Evolution. Use of CSS to define the visual properties (sizes, colors, ...)
-- Rename CGSGHashmap to CGSGMap
-- Evolution. new isProportionalResizeOnly to CGSGNode
 
 
 
@@ -71,7 +68,10 @@ CHANGES:
 - Evolution. CGSG.animationManager.removeAnimationKey
 - Correction. CGSG.animationManager.animate first remove previous keys in the frame range
 - Evolution. animationManager : new CGSGAnimationMethod
-- Evolution. new CGSGAnimInterpolatorLinear class
+- Evolution. animationManager : new CGSGInterpolatorLinear and CGSGInterpolatorTCB classes
+- Evolution. timeline : possibility to add several interpolation keys to a timeline
+- Evolution. new Array.prototype.pop() function
+- Evolution. Rename CGSGHashMap to CGSGMap
 
 ---------------------------------------------------------------------
 
