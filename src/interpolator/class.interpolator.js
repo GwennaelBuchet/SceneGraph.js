@@ -45,6 +45,12 @@ var CGSGInterpolator = CGSGObject.extend(
          * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
          * @return {Array} Array of {x, y} object corresponding to all the points in the curve
          */
-        compute: function (keys, steps) {}
+        compute: function (keys, steps) {},
+
+        /**
+         * return the length between the keys, by peer
+         * @method getLengths
+         */
+        getLengths:function() {}
     }
 );

@@ -99,6 +99,8 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
                 this._steps.push(20);
 
             var s = new CGSGNodeSquare(x - 2, y - 2, 4, 4);
+            s.isDraggable = true;
+            s.onDrag = this.compute.bind(this);
             s.color = "#4488AF";
             this.addChild(s);
 
