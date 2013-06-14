@@ -86,6 +86,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>interpolator/class.interpolator.js</include>
                                 <include>interpolator/class.interpolator.linear.js</include>
                                 <include>interpolator/class.interpolator.TCB.js</include>
+                                <include>animation/class.anim.accelerationCurve.js</include>
                                 <include>animation/class.anim.timeline.js</include>
                                 <include>animation/class.animmanager.js</include>
 

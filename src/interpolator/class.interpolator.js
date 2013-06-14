@@ -29,6 +29,12 @@
 
 
 /**
+ * Interpolator mother class used to interpolate values with key frames ({CGSGKeyFrame}).
+ * Native implemetation are :
+ * <ul>
+ *   <li>{CGSGInterpolatorLinear} for linear interpolation </li>
+ *   <li>{CGSGInterpolatorTCB} for curve interpolation (uses the accurate Kotchanek-Bartels curve algorithm)</li>
+ * </ul>
  * @module
  * @class CGSGInterpolator
  * @extends {CGSGObject}
@@ -40,12 +46,13 @@ var CGSGInterpolator = CGSGObject.extend(
         initialize: function () {},
 
         /**
-         * @method computeInterpolations
+         * Compute all the interpolated values for all the keys passed in parameter
+         * @method compute
          * @param keys {Array} Array of all the animation keys
          * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
          * @return {Array} Array of {x, y} object corresponding to all the points in the curve
          */
-        compute: function (keys, steps) {},
+        compute: function (keys, steps) { return []; },
 
         /**
          * return the length between the keys, by peer

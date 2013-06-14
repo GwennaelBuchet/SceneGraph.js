@@ -58,6 +58,24 @@ Array.prototype.without = function (item) {
 };
 
 /**
+ * Remove all the occurrences of the item from the array
+ * @method Array.prototype.withoutByCondition
+ * @param condition {Function} Parameters passed to the function are (this[i], param)
+ * @param param {*} parameters to use in the condition
+ * @example
+ *  var condition = function(item, param) { return item.x === param.x };
+ *  myArray.withoutByCondition(item, condition, {x:x});
+ */
+Array.prototype.withoutByCondition = function (condition, param) {
+    for (var i = 0; i < this.length; i++) {
+        if (condition(this[i], param)) {
+            this.splice(i, 1);
+            //break;
+        }
+    }
+};
+
+/**
  * Remove the item at the end of this array
  * @method Array.prototype.pop
  */

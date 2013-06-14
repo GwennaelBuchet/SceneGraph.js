@@ -67,7 +67,7 @@ var CGMain = CGSGView.extend(
 			var bindMoveSquare = this.moveSquare.bind(this);
 			buttonNode.onClick = function (event) {
 				bindMoveSquare();
-			}
+			};
 			//add the textNode as child of the root
 			this.rootNode.addChild(buttonNode);
 
@@ -97,14 +97,16 @@ var CGMain = CGSGView.extend(
 			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
 			 */
 
-            var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 300, 0, 300, 0);
-            timeline.addInterpolationKey(100, 300);
-            timeline.addInterpolationKey(170, 0);
-            timeline.addInterpolationKey(220, 150);
-            timeline.addInterpolationKey(260, 0);
-            timeline.addInterpolationKey(285, 70);
-            timeline.addInterpolationKey(300, 0);
-            timeline.compute();
+            var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 20, 0, 300, 0);
+            //date, value (in percentage)
+            /*timeline.accelerationCurve.addKey(100, 100);
+            timeline.accelerationCurve.addKey(170, 0);
+            timeline.accelerationCurve.addKey(220, 50);
+            timeline.accelerationCurve.addKey(260, 0);
+            timeline.accelerationCurve.addKey(285, 30);
+            timeline.accelerationCurve.addKey(300, 0);
+            timeline.compute();*/
+
 			//CGSG.animationManager.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, 0);
 
             //timeline = CGSG.animationManager.getTimeline(this.squareNode, "rotation.angle");

@@ -41,10 +41,11 @@ var CGSGInterpolatorLinear = CGSGInterpolator.extend(
 
 
         /**
+         * Compute all the interpolated values for all the keys passed in parameter
          * @method compute
          * @param keys {Array} Array of all the animation keys
          * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
-         * @return {Array} Array of {x, y} object corresponding to all the points in the curve
+         * @return {Array} Array of {x, y} objects corresponding to all the points in the curve
          */
         compute: function (keys, steps) {
             var k, s, lenk = keys.length, lens, frame, key, nextKey, stepX, stepY;
@@ -66,7 +67,7 @@ var CGSGInterpolatorLinear = CGSGInterpolator.extend(
                         values.push({x: nextKey.value.x, y: nextKey.value.y});
                     }
                     else {
-                        values.push({x: keys[k].value.x + s * stepX, y: keys[k].value.y + s*stepY});
+                        values.push({x: keys[k].value.x + s * stepX, y: keys[k].value.y + s * stepY});
                     }
                 }
             }

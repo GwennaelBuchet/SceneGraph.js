@@ -98,15 +98,35 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
             if (this._nbKeys > 1)
                 this._steps.push(20);
 
-            var s = new CGSGNodeSquare(x - 2, y - 2, 4, 4);
+            var s = new CGSGNodeSquare(x - 4, y - 4, 8, 8);
+            s.userData = {key: k};
             s.isDraggable = true;
-            s.onDrag = this.compute.bind(this);
+            var that = this;
+            s.onDrag = function (event) {
+                that.moveKey(event.data.node.userData.key, event.data.node.position.x+4, event.data.node.position.y+4);
+            };
             s.color = "#4488AF";
             this.addChild(s);
 
             return k;
         },
 
+        /**
+         * @method moveKey
+         * @param key {CGSGKeyFrame}
+         * @param x {Number} new value for x position
+         * @param y {Number} new value for y position
+         */
+        moveKey: function (key, x, y) {
+            key.value.x = x;
+            key.value.y = y;
+            this.compute();
+        },
+
+        /**
+         * Compute the values for all the points on the curve
+         * @method compute
+         */
         compute: function () {
             var v = this._interpolator.compute(this._keys, this._steps);
             this._values = v.copy();
@@ -148,9 +168,9 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
             var node = new CGSGNodeCurveTCB(this.position.x, this.position.y);
             //call the super method
             node = this._super(node);
-            
+
             var k;
-            for (var i= 0; i<this._nbKeys; i++) {
+            for (var i = 0; i < this._nbKeys; i++) {
                 k = this._keys[i];
                 node.addKey(k.value.x, k.value.y, k.userData.t, k.userData.c, k.userData.b);
             }

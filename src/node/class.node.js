@@ -152,10 +152,10 @@ var CGSGNode = CGSGObject.extend(
             /**
              * can be fulfilled by the developer to put in whatever he needs
              * @property userData
-             * @default null
+             * @default {}
              * @type {*}
              */
-            this.userData = null;
+            this.userData = {};
 
             /**
              * selection attributes

@@ -39,6 +39,7 @@ var CGSGInterpolatorTCB = CGSGInterpolator.extend(
         },
 
         /**
+         * Compute all the interpolated values for all the keys passed in parameter
          * @method compute
          * @param keys {Array} Array of all the animation keys
          * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
