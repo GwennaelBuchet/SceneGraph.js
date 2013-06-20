@@ -91,15 +91,15 @@ var CGSGAccordion = CGSGNode.extend(
 
             if (open) {
                 //animate the selection
-              CGSG.animationManager.animate(section, "dimension.height", this.speed, section.getHeight(), section.getHeight() + section.core.getHeight() + this.padding, 0);
-              CGSG.animationManager.animate(section, "mask._maskRegion.dimension.height", this.speed, this.lineHeight, this.lineHeight + section.core.getHeight() + this.padding , 0);
+                CGSG.animationManager.animate(section, "dimension.height", this.speed, section.getHeight(), section.getHeight() + section.core.getHeight() + this.padding, 0);
+                CGSG.animationManager.animate(section, "mask._maskRegion.dimension.height", this.speed, this.lineHeight, this.lineHeight + section.core.getHeight() + this.padding , 0);
 
                 //translate other section
-                $.each(this.sections, $.proxy(function(i, sec) {
-                    if(section.index < sec.index) {
-                        CGSG.animationManager.animate(sec, "position.y", this.speed, sec.position.y, section.core.getHeight() + this.padding + sec.index * (this.lineHeight + this.interLine), 0);
+                for( var i = 0; i < this.sections.length; i++) {
+                    if(section.index < this.sections[i].index) {
+                        CGSG.animationManager.animate(this.sections[i], "position.y", this.speed, this.sections[i].position.y, section.core.getHeight() + this.padding + this.sections[i].index * (this.lineHeight + this.interLine), 0);
                     }
-                }, this));
+                }
             }
             section.isOpen = open;
         },
@@ -108,14 +108,18 @@ var CGSGAccordion = CGSGNode.extend(
          * deselect all the section.
          */
         deselectAll : function () {
-                $.each(this.sections, $.proxy(function(i, section) {
-                           CGSG.animationManager.animate(section, "position.y", this.speed, section.position.y, i * (this.lineHeight + this.interLine) , 0);
-                        if(section.isOpen) {
-                            CGSG.animationManager.animate(section, "mask._maskRegion.dimension.height", this.speed, section.mask._maskRegion.dimension.height , this.lineHeight, 0);
-                            CGSG.animationManager.animate(section, "dimension.height", this.speed, section.getHeight(), this.lineHeight, 0);
-                            section.isOpen = false;
-                        }
-                }, this));
+
+            for( var i = 0; i < this.sections.length; i++) {
+                //reorder the section
+                CGSG.animationManager.animate(this.sections[i], "position.y", this.speed, this.sections[i].position.y, this.sections[i].index * (this.lineHeight + this.interLine) , 0);
+
+                //hide the core of the selected this.sections[i]
+                if(this.sections[i].isOpen) {
+                    CGSG.animationManager.animate(this.sections[i], "mask._maskRegion.dimension.height", this.speed, this.sections[i].mask._maskRegion.dimension.height , this.lineHeight, 0);
+                    CGSG.animationManager.animate(this.sections[i], "dimension.height", this.speed, this.sections[i].getHeight(), this.lineHeight, 0);
+                    this.sections[i].isOpen = false;
+                }
+            }
         }
     }
 );
@@ -150,9 +154,15 @@ var CGSGSection = CGSGNode.extend(
 
         /**
          * set the title of the section header
-         * @param {CGSGNode} title
+         * @param {String} title
          */
         setTitle : function (title) {
+
+            var title = new CGSGNodeText(0, 0, title);
+            title.setSize(12);
+            title.color = "white";
+            title.isClickable = false;
+
             this.title = title;
             this.title.translateTo(this.getHeight(),( this.getHeight() - this.title.getHeight() ) / 2 )
             this.addChildAt(title, 0);
