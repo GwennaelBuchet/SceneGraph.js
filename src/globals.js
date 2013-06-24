@@ -258,6 +258,15 @@ var CGSG = {
     animationManager: new CGSGAnimationManager(),
 
     /**
+     * If there is less than {interpolatorAccuracy} frames between 2 animation keys,
+     * their shouldn't be enough steps to get an accurate value for the value of the animation
+     * @property interpolatorAccuracy
+     * @default {CGSG_DEFAULT_INTERPOLATOR_ACCURACY}
+     * @type {Number}
+     */
+    interpolatorAccuracy: CGSG_DEFAULT_INTERPOLATOR_ACCURACY,
+
+    /**
      * Event manager to use to bind events to objects.
      *
      * @property eventManager
@@ -276,8 +285,8 @@ var CGSG = {
 var cgsgEventTypes = {
 
     // Nodes rendering
-    ON_BEFORE_RENDER : "onBeforeRender",
-    ON_AFTER_RENDER : "onAfterRender",
+    ON_BEFORE_RENDER: "onBeforeRender",
+    ON_AFTER_RENDER: "onAfterRender",
     //ON_BEGIN_RENDER: "onBeginRender",
     //ON_FINISH_RENDER: "onFinishRender",
     //BEFORE_RENDER_END: "onBeforeRenderEnd",

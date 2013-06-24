@@ -117,6 +117,7 @@ var CGSGTimeline = CGSGObject.extend(
         /**
          * Add a new animation key frame to the timeline and sort the timeline by frame number.
          * A key is going to be also added to {this.accelerationCurve} for the same frame.
+         * After added the key, developer must call "compute" method in order to recompute the animation.
          * @public
          * @method addKey
          * @param {Number} frame. Must be an integer value.
@@ -124,12 +125,12 @@ var CGSGTimeline = CGSGObject.extend(
          */
         addKey: function (frame, value) {
             //remove previous key at this frame, if exists
-            this.removeKey(frame);
+            //this.removeKey(frame);
             //add the new key
-            this._keys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
-            this.sortByFrame(this._keys);
-
-            this.values.clear();
+            if (!cgsgExist(this.getKeyByValue(value))) {
+                this._keys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
+                this.sortByValue(this._keys);
+            }
 
             //by default, create 1 interpolation key for every animation key
             this.accelerationCurve.setValueToFrame(frame, value, true, false);
@@ -137,7 +138,8 @@ var CGSGTimeline = CGSGObject.extend(
 
         /**
          * Remove the key at the specified frame.
-         * If there is also a key for the same frame on this.accelerationCurve, so it will also be deleted
+         * If there is also a key for the same frame on this.accelerationCurve, so it will also be deleted.
+         * After deleted the key, developer must call "compute" method in order to recompute the animation.
          * @method removeKey
          * @param frame {Number} Must be an integer value.
          */
@@ -147,18 +149,14 @@ var CGSGTimeline = CGSGObject.extend(
             };
             this._keys.withoutByCondition(condition, frame);
 
-            if (this.getNbKeys() > 1) {
-                this._computeNumberOfFrameBetweenKeys();
-            }
-            this.values.clear();
-
             //remove the key for the same frame on the acceleration curve
             this.accelerationCurve.removeKey(frame);
         },
 
         /**
          * Remove all animation keys between the two frames.
-         * For each key removed, also remove the keys at the same frames (and only at the same frames) in the acceleration curve
+         * For each key removed, also remove the keys at the same frames (and only at the same frames) in the acceleration curve.
+         * After deleted the keys, developer must call "compute" method in order to recompute the animation.
          * @method removeKeysBetween
          * @param frame1 {number}
          * @param frame2 {number}
@@ -178,7 +176,8 @@ var CGSGTimeline = CGSGObject.extend(
         },
 
         /**
-         * Remove all keys and values from the timeline and the acceleration curve
+         * Remove all keys and values from the timeline and the acceleration curve.
+         * After deleted the keys, developer must call "compute" method in order to recompute the animation.
          * @public
          * @method removeAll
          */
@@ -198,8 +197,8 @@ var CGSGTimeline = CGSGObject.extend(
             this._numberOfFrameBetweenKeys.clear();
             var nbFrameInSection = 0, k = 0, len = this._keys.length - 1;
             for (k; k < len; k++) {
-                nbFrameInSection = this._keys[k + 1].frame - this._keys[k].frame;
-                this._numberOfFrameBetweenKeys.push(Math.max(100, nbFrameInSection));
+                nbFrameInSection = CGSGMath.fixedPoint(this._keys[k + 1].frame - this._keys[k].frame);
+                this._numberOfFrameBetweenKeys.push(Math.max(CGSG.interpolatorAccuracy, nbFrameInSection));
             }
         },
 
@@ -213,13 +212,29 @@ var CGSGTimeline = CGSGObject.extend(
         },
 
         /**
+         * @method getKeyByValue
+         * @param value {Number}
+         * @returns {CGSGKeyFrame} or undefined if no key corresponds to the value
+         */
+        getKeyByValue: function (value) {
+            var k = 0, len = this._keys.length;
+            for (k; k < len; k++) {
+                if (this._keys[k].value.x === value) {
+                    return this._keys[k];
+                }
+            }
+            return undefined;
+        },
+
+        /**
          * Sort the list of keys by frame number
          * @public
-         * @method sortByFrame
+         * @method sortByValue
          */
-        sortByFrame: function (list) {
+        sortByValue: function (list) {
             list.sort(function (a, b) {
-                return a.frame - b.frame;
+                //return a.frame - b.frame;
+                return a.value.x - b.value.x;
             });
         },
 
@@ -241,6 +256,7 @@ var CGSGTimeline = CGSGObject.extend(
 
             // 2. compute all values for the animation
             this._computeNumberOfFrameBetweenKeys();
+            //todo : this._numberOfFrameBetweenKeys n'est pas le bon nombre
             var v = this._interpolator.compute(this._keys, this._numberOfFrameBetweenKeys);
 
             // 3. put in "this.values" all interpolated values
@@ -250,14 +266,12 @@ var CGSGTimeline = CGSGObject.extend(
                 p = CGSGMath.fixedPoint(lerp[i].x * vl / 100);
 
                 this.values[i] = v[p].x;
-                if (i !== 0 && this.values[i] === 0) {
-                    console.log("i=" + i + "; v[i].x =" + v[i].x + " ; lerp = " + lerp[i].x + " ; p = " + p + " ; value = " + this.values[i]);
-                    for (var k = 0; k < vl; k++) {
-                        console.log("v[" + k + "] = " + v[k].x);
-                    }
-                    console.log("----------------\n");
-                }
-                console.log("===============================================\n\n");
+
+                console.log("i=" + i + "; v[i].x =" + v[i].x + " ; lerp = " + lerp[i].x + " ; p = " + p + " ; value = " + this.values[i]);
+                //for (var k = 0; k < vl; k++) {
+                //    console.log("v[" + k + "] = " + v[k].x);
+                //}
+                //console.log("----------------\n");
             }
 
             return this.values;

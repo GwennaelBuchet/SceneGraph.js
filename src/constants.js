@@ -134,3 +134,11 @@ var CGSG_DEFAULT_MAX_FRAMERATE = NaN;
  * @type {Number}
  */
 var CGSG_DEFAULT_DBLTOUCH_DELAY = 250;
+
+/**
+ * Default value for the {CGSG.interpolatorAccuracy} value.
+ * @property CGSG_DEFAULT_INTERPOLATOR_ACCURACY
+ * @default 100
+ * @type {Number}
+ */
+var CGSG_DEFAULT_INTERPOLATOR_ACCURACY = 100;

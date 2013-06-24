@@ -165,7 +165,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
             if (!inPercent)
                 value = this._convertToPercent(value);
 
-            //range the value between 0 and 100
+            //range the value between 0 and 100 in case of incorrect value would be passed
             value = Math.max(0, Math.min(100, value));
 
             for (var i = 0, l = this._keys.length; i < l; i++) {
@@ -234,13 +234,23 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
         _convertToPercent: function (value) {
             var val = 0, delta, k, i, l;
 
+            //1st key added
             if (isNaN(this._range.min) || value == this._range.min) {
                 this._range.min = value;
                 val = 0;   //0%
             }
+            //2nd key added
             else if (isNaN(this._range.max) || value == this._range.max) {
-                this._range.max = value;
-                val = 100; //100%
+                if (value < this._range.min) {
+                    val = 0;
+                    this._range.max = this._range.min;
+                    this._range.min = value;
+                    this._keys[0] = 100;
+                }
+                else {
+                    this._range.max = value;
+                    val = 100; //100%
+                }
             }
 
             else if (value > this._range.min && value < this._range.max) {

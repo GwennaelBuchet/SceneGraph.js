@@ -94,10 +94,11 @@ var CGMain = CGSGView.extend(
 			 * @param to End value
 			 * @param delay Integer. Delay before start the animation, in frames
 			 *
-			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
+			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0);
 			 */
 
-            var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 260, 10, 500, 20);
+            var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 60, 10, 150, 0);
+            CGSG.animationManager.animate(this.squareNode, "position.x", 60, 150, 10, 70);
             //CGSG.animationManager.animate(this.squareNode, "position.x", 80, 40, 400, 200);
             //date, value (in percentage)
             /*timeline.accelerationCurve.addKey(100, 100);
