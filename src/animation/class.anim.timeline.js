@@ -245,10 +245,19 @@ var CGSGTimeline = CGSGObject.extend(
 
             // 3. put in "this.values" all interpolated values
             var l = lerp.length - 1;
-            var p;
+            var p, vl = v.length;
             for (var i = 0; i < l; i++) {
-                p = CGSGMath.fixedPoint(lerp[i].x);
+                p = CGSGMath.fixedPoint(lerp[i].x * vl / 100);
+
                 this.values[i] = v[p].x;
+                if (i !== 0 && this.values[i] === 0) {
+                    console.log("i=" + i + "; v[i].x =" + v[i].x + " ; lerp = " + lerp[i].x + " ; p = " + p + " ; value = " + this.values[i]);
+                    for (var k = 0; k < vl; k++) {
+                        console.log("v[" + k + "] = " + v[k].x);
+                    }
+                    console.log("----------------\n");
+                }
+                console.log("===============================================\n\n");
             }
 
             return this.values;
@@ -309,7 +318,7 @@ var CGSGTimeline = CGSGObject.extend(
 
             //if frame < first frame, return no value
             if (frame < this._keys[0].frame) {
-                return NaN;
+                return NaN; //this.values[0];
             }
 
             //if frame > last frame (ie last key), return last value

@@ -50,6 +50,7 @@ var CGSGInterpolatorLinear = CGSGInterpolator.extend(
         compute: function (keys, steps) {
             var k, s, lenk = keys.length, lens, frame, key, nextKey, stepX, stepY;
             var values = [];
+            var x, y;
 
             for (k = 0; k < lenk - 1; k++) {
                 key = keys[k];
@@ -59,16 +60,21 @@ var CGSGInterpolatorLinear = CGSGInterpolator.extend(
                 stepY = (nextKey.value.y - key.value.y) / steps[k];
 
                 for (s = 0; s < lens; s++) {
-                    frame = s;
+                    frame = key.frame + s;
                     if (frame === key.frame) {
-                        values.push({x: key.value.x, y: key.value.y});
+                        x = key.value.x;
+                        y = key.value.y;
                     }
                     else if (frame === nextKey.frame) {
-                        values.push({x: nextKey.value.x, y: nextKey.value.y});
+                        x = nextKey.value.x;
+                        y = nextKey.value.y;
                     }
                     else {
-                        values.push({x: keys[k].value.x + s * stepX, y: keys[k].value.y + s * stepY});
+                        x = keys[k].value.x + s * stepX;
+                        y = keys[k].value.y + s * stepY;
                     }
+
+                    values.push({x: x, y: y});
                 }
             }
 

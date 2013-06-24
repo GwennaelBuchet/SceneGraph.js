@@ -113,7 +113,7 @@ var CGSGSceneGraph = CGSGObject.extend(
 
                         if (node.isVisible) {
                             value = timeline.getValue(CGSG.currentFrame);
-                            if (value !== undefined) {
+                            if (!isNaN(value)) {
                                 node.evalSet(timeline.attribute, value);
                                 if (timeline.onAnimate !== null) {
                                     CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE,
@@ -133,7 +133,7 @@ var CGSGSceneGraph = CGSGObject.extend(
                             //fire event if this is the last animation key for this timeline
                             key = timeline.getLastKey();
                             if (key !== null && key.frame == CGSG.currentFrame) {
-                                timeline.removeAll();
+                                //timeline.removeAll();
                                 if (timeline.onAnimationEnd !== null) {
                                     evt = new CGSGEvent(this, {node: node});
                                     evt.node = node;

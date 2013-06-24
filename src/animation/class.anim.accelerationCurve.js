@@ -163,7 +163,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
             var k = null;
             //convert value in percent if it's given in pure value
             if (!inPercent)
-                this._convertToPercent(value);
+                value = this._convertToPercent(value);
 
             //range the value between 0 and 100
             value = Math.max(0, Math.min(100, value));
