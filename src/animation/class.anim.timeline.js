@@ -78,7 +78,21 @@ var CGSGTimeline = CGSGObject.extend(
              */
             this.values = [];
 
-            //List of the animation keys
+            /**
+             * Contains the minimum and maximum values for this acceleration curve.
+             * When compute the values, they'll be values from 0% to 100% from whithin this range
+             * @property _range
+             * @type {{min: CGSGKeyFrame, max: CGSGKeyFrame, delta: number}}
+             * @private
+             */
+            this._range = {min: null, max: null, delta: 0};
+
+            /**
+             * List of the animation keys
+             * @property _keys
+             * @type {Array}
+             * @default []
+             */
             this._keys = [];
             //precomputed values for animation since first key to latest-1.
             //Each  cell contains the step, in pixel, from the previous key to the next one
@@ -126,11 +140,12 @@ var CGSGTimeline = CGSGObject.extend(
         addKey: function (frame, value) {
             //remove previous key at this frame, if exists
             //this.removeKey(frame);
+
             //add the new key
-            if (!cgsgExist(this.getKeyByValue(value))) {
-                this._keys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
-                this.sortByValue(this._keys);
-            }
+            //if (!cgsgExist(this.getKeyByValue(value))) {
+            this._keys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
+            this.sortByFrame(this._keys);
+            //}
 
             //by default, create 1 interpolation key for every animation key
             this.accelerationCurve.setValueToFrame(frame, value, true, false);
@@ -186,6 +201,34 @@ var CGSGTimeline = CGSGObject.extend(
             this._keys.clear();
             this._numberOfFrameBetweenKeys.clear();
             this.accelerationCurve.removeAll();
+            this._range = {min: null, max: null, delta: 0};
+        },
+
+        /**
+         * @method _updateRange
+         * @private
+         */
+        _updateRange: function () {
+            this._range = {min: null, max: null, delta: 0};
+
+            var k, key, len = this._keys.length;
+            for (k=0; k<len; k++) {
+                key = this._keys[k];
+
+                if (!cgsgExist(this._range.min)) {
+                    this._range.min = key;
+                    this._range.max = key;
+                    continue;
+                }
+
+                if (key.value.x < this._range.min.value.x)
+                    this._range.min = key;
+
+                if (key.value.x > this._range.max.value.x)
+                    this._range.max = key;
+            }
+
+            this._range.delta = this._range.max.value.x - this._range.min.value.x;
         },
 
         /**
@@ -195,11 +238,12 @@ var CGSGTimeline = CGSGObject.extend(
          */
         _computeNumberOfFrameBetweenKeys: function () {
             this._numberOfFrameBetweenKeys.clear();
-            var nbFrameInSection = 0, k = 0, len = this._keys.length - 1;
+            /*var nbFrameInSection = 0, k = 0, len = this._keys.length - 1;
             for (k; k < len; k++) {
                 nbFrameInSection = CGSGMath.fixedPoint(this._keys[k + 1].frame - this._keys[k].frame);
                 this._numberOfFrameBetweenKeys.push(Math.max(CGSG.interpolatorAccuracy, nbFrameInSection));
-            }
+            }*/
+            this._numberOfFrameBetweenKeys.push(this._range.delta);
         },
 
         /**
@@ -229,12 +273,12 @@ var CGSGTimeline = CGSGObject.extend(
         /**
          * Sort the list of keys by frame number
          * @public
-         * @method sortByValue
+         * @method sortByFrame
          */
-        sortByValue: function (list) {
+        sortByFrame: function (list) {
             list.sort(function (a, b) {
-                //return a.frame - b.frame;
-                return a.value.x - b.value.x;
+                return a.frame - b.frame;
+                //return a.value.x - b.value.x;
             });
         },
 
@@ -251,16 +295,32 @@ var CGSGTimeline = CGSGObject.extend(
                 return [];
             }
 
+            this._updateRange();
+
             // 1. compute the acceleration curve, with values between 0% and 100%
             var lerp = this.accelerationCurve.compute();
 
+
+
             // 2. compute all values for the animation
-            this._computeNumberOfFrameBetweenKeys();
-            //todo : this._numberOfFrameBetweenKeys n'est pas le bon nombre
-            var v = this._interpolator.compute(this._keys, this._numberOfFrameBetweenKeys);
+            //this._computeNumberOfFrameBetweenKeys();
+            //
+            var keys = [];
+            keys.push(this._range.min);
+            keys.push(this._range.max);
+            for (var k = 0; k < lerp.length; k++) {
+                console.log("lerp[" + k + "] = " + lerp[k].x);
+                var v = this._interpolator.computeOne(keys, lerp[k]);
+                this.values[k] = v.x;
+
+            }
+            console.log("----------------\n");
+
+            //var v = this._interpolator.compute(this._keys, [lerp.length/*this._range.delta*/]);
+            //var v = this._interpolator.compute(this._keys, this._numberOfFrameBetweenKeys);
 
             // 3. put in "this.values" all interpolated values
-            var l = lerp.length - 1;
+            /*var l = lerp.length - 1;
             var p, vl = v.length;
             for (var i = 0; i < l; i++) {
                 p = CGSGMath.fixedPoint(lerp[i].x * vl / 100);
@@ -272,7 +332,7 @@ var CGSGTimeline = CGSGObject.extend(
                 //    console.log("v[" + k + "] = " + v[k].x);
                 //}
                 //console.log("----------------\n");
-            }
+            }*/
 
             return this.values;
         },

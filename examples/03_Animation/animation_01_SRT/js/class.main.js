@@ -98,7 +98,7 @@ var CGMain = CGSGView.extend(
 			 */
 
             var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 60, 10, 150, 0);
-            CGSG.animationManager.animate(this.squareNode, "position.x", 60, 150, 10, 70);
+            CGSG.animationManager.animate(this.squareNode, "position.x", 60, 120, 190, 70);
             //CGSG.animationManager.animate(this.squareNode, "position.x", 80, 40, 400, 200);
             //date, value (in percentage)
             /*timeline.accelerationCurve.addKey(100, 100);

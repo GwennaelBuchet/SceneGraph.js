@@ -145,7 +145,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
         updateKey: function (key, frame, value) {
             var k = this.getKey(key.frame);
             k.frame = frame;
-            k.value = value;
+            k.value.x = value;
             this.sortByFrame();
         },
 
@@ -171,7 +171,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
             for (var i = 0, l = this._keys.length; i < l; i++) {
                 k = this._keys[i];
                 if (k.frame === frame) {
-                    k.value = value;
+                    k.value.x = value;
                     return k;
                 }
             }
@@ -188,7 +188,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
          * @param value {Number} a percentage number between 0 and 100
          */
         setValueToKey: function (key, value) {
-            key.value = value;
+            key.value.x = value;
         },
 
 
@@ -254,8 +254,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
             }
 
             else if (value > this._range.min && value < this._range.max) {
-                delta = this._range.max - this._range.min;
-                val = value * delta / 100;
+                val = 100 * (value - this._range.min) / this._range.delta;
             }
 
             else if (value < this._range.min) {
@@ -264,7 +263,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
                 //rescale the value for every following keys in the curve
                 for (i = 0, l = this._keys.length; i < l; i++) {
                     k = this._keys[i];
-                    k.value *= delta;
+                    k.value.x *= delta;
                 }
 
                 this._range.min = value;
@@ -277,7 +276,7 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
                 //rescale the value for every previous keys in the curve
                 for (i = 0, l = this._keys.length; i < l; i++) {
                     k = this._keys[i];
-                    k.value /= delta;
+                    k.value.x /= delta;
                 }
 
                 this._range.max = value;

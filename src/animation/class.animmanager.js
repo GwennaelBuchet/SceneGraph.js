@@ -107,7 +107,7 @@ var CGSGAnimationManager = CGSGObject.extend(
             var d2 = CGSG.currentFrame + CGSGMath.fixedPoint(delay + duration);
             //remove all animation keys before the current frame to start a new animation
             timeline.removeKeysBetween(0, CGSG.currentFrame - 1);
-            timeline.removeKeysBetween(d1, d2);
+            //timeline.removeKeysBetween(d1, d2);
             this.addAnimationKey(timeline, d1, from);
             this.addAnimationKey(timeline, d2, to);
             this.compute(timeline);
