@@ -258,15 +258,20 @@ var CGSGAnimationAccelerationCurve = CGSGObject.extend(
             }
 
             else if (value < this._range.min) {
-                delta = (this._range.max - value) / (this._range.max - this._range.min);
+				//1st key
+				var  fk = 100 * (1 - (this._range.delta / (this._range.max - value)));
+
+				var d = this._range.min - value;
+				var nd = (this._range.delta + d) / this._range.delta;
 
                 //rescale the value for every following keys in the curve
                 for (i = 0, l = this._keys.length; i < l; i++) {
                     k = this._keys[i];
-                    k.value.x *= delta;
+					delta = (k.value.x / nd) + fk;
+					k.value.x = delta;
                 }
 
-                this._range.min = value;
+				this._range.min = value;
                 val = 0;   //0%
             }
 

@@ -97,8 +97,20 @@ var CGMain = CGSGView.extend(
 			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0);
 			 */
 
-            var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 60, 10, 150, 0);
-            CGSG.animationManager.animate(this.squareNode, "position.x", 60, 120, 190, 70);
+            //var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 60, 10, 150, 0);
+            //CGSG.animationManager.animate(this.squareNode, "position.x", 60, 120, 190, 70);
+
+			var p = this.squareNode.position;
+			//remove previous animation frames
+			var timeline = CGSG.animationManager.getTimeline(this.squareNode, "position.x");
+			if (cgsgExist(timeline))
+				timeline.removeAll();
+			//CGSG.animationManager.animate(this.squareNode, "position.x", 60, p.x, p.x+140, 0);
+			//CGSG.animationManager.animate(this.squareNode, "position.x", 60, p.x+160, p.x+190, 70);
+
+			CGSG.animationManager.animate(this.squareNode, "position.x", 60, 30, 150, 0);
+			CGSG.animationManager.animate(this.squareNode, "position.x", 60, 0, 190, 110);
+
             //CGSG.animationManager.animate(this.squareNode, "position.x", 80, 40, 400, 200);
             //date, value (in percentage)
             /*timeline.accelerationCurve.addKey(100, 100);
