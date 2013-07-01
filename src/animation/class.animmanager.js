@@ -66,30 +66,6 @@ var CGSGAnimationManager = CGSGObject.extend(
 		},
 
 		/**
-		 * Add a key
-		 * @method addAnimationKey
-		 * @param {CGSGTimeline} timeline handler to the timeline to animate
-		 * @param {Number} frame the date for the key
-		 * @param {Number} value value for the attribute at the frame
-		 *
-		 * @example this.sceneGraph.addAnimation(imgNode, "position.x", 2000, 200, "linear", true);
-		 */
-		addAnimationKey : function(timeline, frame, value) {
-			//add the new key to the timeline
-			timeline.addKey(CGSGMath.fixedPoint(frame), value);
-		},
-
-		/**
-		 * @method removeAnimationKey
-		 * @param timeline {CGSGTimeline}
-		 * @param frame {Number} the date for the key
-		 */
-		removeAnimationKey : function(timeline, frame) {
-			//add the new key to the timeline
-			timeline.removeKey(CGSGMath.fixedPoint(frame));
-		},
-
-		/**
 		 * Animate an attribute of a nodes
 		 * @method animate
 		 * @param {CGSGNode} node Handler to the nodes to animate
@@ -113,21 +89,16 @@ var CGSGAnimationManager = CGSGObject.extend(
 			//get value for the key just before the frame "from" to create a new key with the same value and frame = "from" - 1
 			var kb = timeline.getLastKeyBefore(d1);
 			if (cgsgExist(kb) && kb.frame < (d1 - 1)) {
-				this.addAnimationKey(timeline, d1 - 1, kb.value.x);
+				timeline.addKey(d1 - 1, kb.value.x);
 			}
 
-			this.addAnimationKey(timeline, d1, from);
-			this.addAnimationKey(timeline, d2, to);
+			timeline.addKey(d1, from);
+			timeline.addKey(d2, to);
 
-			this.compute(timeline);
+			timeline.compute();
 
 			return timeline;
 		},
-
-		compute : function(timeline) {
-			timeline.compute();
-		},
-
 
 		/**
 		 * @method stillHaveAnimation

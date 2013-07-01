@@ -345,7 +345,7 @@ var CGSGTimeline = CGSGObject.extend(
 
 			//if frame > last frame (ie last key), return last value
 			if (frame >= this._keys[this._keys.length - 1].frame) {
-				return this.values[this.values.length - 1];
+				return NaN;//return this.values[this.values.length - 1];
 			}
 
 			return this.values[frame - this._keys[0].frame];

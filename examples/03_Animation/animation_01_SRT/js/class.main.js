@@ -97,33 +97,31 @@ var CGMain = CGSGView.extend(
 			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0);
 			 */
 
-            //var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 60, 10, 150, 0);
-            //CGSG.animationManager.animate(this.squareNode, "position.x", 60, 120, 190, 70);
-
-			var p = this.squareNode.position;
 			//remove previous animation frames
 			var timeline = CGSG.animationManager.getTimeline(this.squareNode, "position.x");
 			if (cgsgExist(timeline))
 				timeline.removeAll();
-			//CGSG.animationManager.animate(this.squareNode, "position.x", 60, p.x, p.x+140, 0);
-			//CGSG.animationManager.animate(this.squareNode, "position.x", 60, p.x+160, p.x+190, 70);
 
+			//this is a helper method to quickly setup an animation
+			//animate(node, attribute, duration, fromValue, toValue, delayBeforeToStart)
 			CGSG.animationManager.animate(this.squareNode, "position.x", 60, 30, 150, 0);
 			CGSG.animationManager.animate(this.squareNode, "position.x", 60, 0, 190, 110);
 
+			//add another animation key to the timeline
+			//addKey(frame, value);
+			timeline.addKey(CGSG.currentFrame + 220, 210);
+
+
             //CGSG.animationManager.animate(this.squareNode, "position.x", 80, 40, 400, 200);
             //date, value (in percentage)
-            /*timeline.accelerationCurve.addKey(100, 100);
-            timeline.accelerationCurve.addKey(170, 0);
-            timeline.accelerationCurve.addKey(220, 50);
-            timeline.accelerationCurve.addKey(260, 0);
-            timeline.accelerationCurve.addKey(285, 30);
-            timeline.accelerationCurve.addKey(300, 0);
-            timeline.compute();*/
+            timeline.accelerationCurve.addKey(CGSG.currentFrame , 100);
+            timeline.accelerationCurve.addKey(CGSG.currentFrame + 30, 0);
 
-			//CGSG.animationManager.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, 0);
+			//when changing the curve, don't forget to recompute it.
+			//CGSG does not recompute automatically the curve to  avoids performance issues when modifying a lot the curve
+			timeline.compute();
 
-            //timeline = CGSG.animationManager.getTimeline(this.squareNode, "rotation.angle");
+			//add some event handlers
             timeline.onAnimationStart = function (event) {
 				console.log("animation started");
 			};
