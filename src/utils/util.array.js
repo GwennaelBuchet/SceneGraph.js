@@ -23,7 +23,7 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use script";
+"use strict";
 
 /**
  * Utils methods extending the Array prototype

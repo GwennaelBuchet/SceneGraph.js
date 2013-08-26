@@ -118,7 +118,7 @@ var CGMain = CGSGView.extend(
             timeline.accelerationCurve.addKey(CGSG.currentFrame + 30, 0);
 
 			//when changing the curve, don't forget to recompute it.
-			//CGSG does not recompute automatically the curve to  avoids performance issues when modifying a lot the curve
+			//CGSG does not recompute automatically the curve to avoid performance issues when modifying a lot the curve
 			timeline.compute();
 
 			//add some event handlers
