@@ -107,6 +107,22 @@ var CGSGNodeText = CGSGNode.extend(
              * @private
              */
             this._stroke = false;
+
+            /**
+             * @property crossed
+             * @default false
+             * @type {Boolean}
+             * @private
+             */
+            this.crossed = false;
+
+            /**
+             * @property _style
+             * @default ""
+             * @type {String}
+             * @private
+             */
+            this._style = "";
             /**
              * @property _typo
              * @default "Arial"
@@ -285,6 +301,19 @@ var CGSGNodeText = CGSGNode.extend(
         },
 
         /**
+         * @method setStyle
+         * @param {String} s "" by default
+         * @param {Boolean} mustRecomputeDimension (default : true)
+         */
+        setStyle: function (s, mustRecomputeDimension) {
+            this._style = s;
+            this.invalidate();
+            if (mustRecomputeDimension !== false) {
+                this.computeRealDimension();
+            }
+        },
+
+        /**
          * @method setTypo
          * @param {String} t "Arial" by default
          * @param {Boolean} mustRecomputeDimension (default : true)
@@ -333,8 +362,8 @@ var CGSGNodeText = CGSGNode.extend(
         computeRealDimension: function () {
             this.metrics.width = 0;
             var fakeCanvas = document.createElement('canvas');
-            fakeCanvas.height = 800;
-            fakeCanvas.width = 1000;
+            //fakeCanvas.height = 800;
+            //fakeCanvas.width = 1000;
             var fakeContext = fakeCanvas.getContext('2d');
 
             this._doRender(fakeContext, false);
@@ -365,11 +394,18 @@ var CGSGNodeText = CGSGNode.extend(
          * @private
          */
         _doRender: function (context, isGhostmode) {
-            context.font = this._size + "pt " + this._typo;
+            context.font = this._style + (this._style != null && this._style.length > 0 ? ' ' : '') + this._size + "pt " + this._typo;
             context.textAlign = this._textAlign;
             context.textBaseline = this._textBaseline;
             var s = 0, textW = 0, posX = 0, posY = 0;
-
+            if (this.crossed) {
+                context.save();
+                context.strokeStyle = "grey";
+                context.moveTo(this.getWidth(), 3);
+                context.lineTo(0, this.getHeight() + 3);
+                context.stroke();
+                context.restore();
+            }
             if (isNaN(this._maxWidth) || this._maxWidth <= 0) {
                 posX = this._computeDecalX(this.getWidth());
                 for (s = 0; s < this._sections.length; s++) {

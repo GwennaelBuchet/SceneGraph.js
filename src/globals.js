@@ -263,7 +263,15 @@ var CGSG = {
      * @property eventManager
      * @type {CGSGEventManager}
      */
-    eventManager: new CGSGEventManager()
+    eventManager: new CGSGEventManager(),
+
+    /**
+     * Default threshold apply to all new nodes when detecting selection.
+     *
+     * @property globalDetectSelectionThreshold
+     * @type {Number}
+     */
+    globalDetectSelectionThreshold: 0
 };
 
 
