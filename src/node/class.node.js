@@ -580,6 +580,18 @@ var CGSGNode = CGSGObject.extend(
              */
             this.onChildRemove = null;
 
+            /**
+             * Threshold applied when detecting selection. Defalt value is picked from CGSG.globalDetectSelectionThreshold.
+             * Value could be changed after.
+             *
+             * @property detectSelectionThreshold
+             * @type {Number}
+             * @example
+             * var n = new CGSGNode(10, 10);
+             * n.detectSelectionThreshold = 10; // node will be picked in an area [0, 0, 30, 30] (x, y, w, h)
+             */
+            this.detectSelectionThreshold = CGSG.globalDetectSelectionThreshold;
+
             this.computeAbsoluteMatrix(true);
         },
 
@@ -1043,10 +1055,10 @@ var CGSGNode = CGSGObject.extend(
          */
         detectSelection: function (mousePosition, ghostContext, absoluteScale) {
             if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
-                if (mousePosition.x >= this._absolutePosition.x
-                    && mousePosition.x < this._absolutePosition.x + this.getWidth() * absoluteScale.x
-                    && mousePosition.y >= this._absolutePosition.y
-                    && mousePosition.y < this._absolutePosition.y + this.getHeight() * absoluteScale.y
+                if (mousePosition.x >= this._absolutePosition.x - this.detectSelectionThreshold
+                    && mousePosition.x < this._absolutePosition.x + this.detectSelectionThreshold + this.getWidth() * absoluteScale.x
+                    && mousePosition.y >= this._absolutePosition.y - this.detectSelectionThreshold
+                    && mousePosition.y < this._absolutePosition.y + this.detectSelectionThreshold + this.getHeight() * absoluteScale.y
                     ) {
                     return this;
                 }

@@ -51,7 +51,7 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function () {
-
+            CGSG.globalDetectSelectionThreshold = 10; // Threshold applied to all new nodes
             CGSG.isBoundingBoxOnTop = false;
 
             //first create a root node with an arbitrary position
@@ -72,6 +72,7 @@ var CGMain = CGSGView.extend(
             this.rootNode.addChild(square);
 
             var s2 = new CGSGNodeSquare(20, 20, 50, 50);
+            s2.detectSelectionThreshold = 0; // specific threshold for this node
             s2.isDraggable = true;
             s2.isResizable = true;
             s2.globalAlpha = 0.9;
