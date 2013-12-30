@@ -582,8 +582,12 @@ var CGSGView = CGSGObject.extend(
 
             this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
             this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], null);
-            if (cgsgExist(this._selectedNode) && this._selectedNode.onClickStart) {
-                CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_CLICK_START, new CGSGEvent(this, {nativeEvent : event, position : this._mousePosition}));
+            if (cgsgExist(this._selectedNode)) {
+                if (this._selectedNode.onClickStart) {
+                    CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_CLICK_START, new CGSGEvent(this, {nativeEvent : event, position : this._mousePosition}));
+                }
+
+                this._mouseOldPosition = this._mousePosition.copy();
             }
 
             this._updateSelection(event);
