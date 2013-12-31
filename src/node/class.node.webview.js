@@ -44,6 +44,7 @@ var CGSGWEBVIEWMODE = {
  * TODO :
  * - When resize or drag : switch to PREVIEW mode to allow mouse over the webview
  * - load a page in AJAX and make an image from it to assign to the PREVIEW mode
+ * - extend CGSGNodeDomElement
  */
 
 "use strict";
