@@ -340,6 +340,16 @@ var CGSGView = CGSGObject.extend(
 			 *  }
              */
             this.onRenderEnd = null;
+            /**
+             * Callback on frame average changed event.
+             * @property onSceneAverageFtpChanged
+             * @default null
+             * @type {Function}
+             * @example
+             *  this.onSceneAverageFtsChanged = function (event) {
+			 *      event.fps; // The average FPS  }
+             */
+            this.onSceneAverageFpsChanged = null;
 
             //initialize the current frame to 0
             //noinspection JSUndeclaredVariable
@@ -502,6 +512,9 @@ var CGSGView = CGSGObject.extend(
             if (this.currentFps == CGSG.framerateDelay) {
                 this.currentFps = 0;
                 CGSG.fps = this._fpss.average();
+                if (this.onSceneAverageFpsChanged !== null) {
+                    CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_AVERAGE_FPS_CHANGED, new CGSGEvent(this, {fps: CGSG.fps}));
+                }
             }
 
             /*if (this._frameRatio === 0) {

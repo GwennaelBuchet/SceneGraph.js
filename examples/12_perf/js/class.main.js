@@ -101,6 +101,9 @@ var CGMain = CGSGView.extend(
             CGSG.maxFramerate = myfps;
 
             this.onRenderEnd = this.tick.bind(this);
+
+            // Bind FPS
+            CGSG.eventManager.bindHandler(this, cgsgEventTypes.ON_SCENE_AVERAGE_FPS_CHANGED, this.updateFrameRate);
         },
 
         onMouseMove: function (event) {
@@ -137,10 +140,16 @@ var CGMain = CGSGView.extend(
                 blob.vx = vx;
                 blob.vy = vy;
             }
+        },
 
-            msg.setText("FPS: " + Math.round(CGSG.fps) + " / " + myfps);
+        /**
+         * Update frame rate
+         * @param event is the event
+         * @function
+         * @private
+         */
+        updateFrameRate: function(event) {
+            msg.setText("FPS: " + Math.round(event.data.fps));
         }
-
-
     }
 );
