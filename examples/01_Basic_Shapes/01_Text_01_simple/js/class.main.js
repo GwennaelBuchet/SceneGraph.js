@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -29,133 +29,146 @@
  * text example
  * */
 var CGMain = CGSGView.extend(
-	{
-		initialize : function (canvas) {
+    {
+        initialize: function (canvas) {
 
-			this._super(canvas);
+            this._super(canvas);
 
-			////// INITIALIZATION /////////
+            ////// INITIALIZATION /////////
 
-			this.initializeCanvas();
+            this.initializeCanvas();
 
-			this.createScene();
+            this.createScene();
 
-			this.startPlaying();
-		},
+            this.startPlaying();
+        },
 
-		initializeCanvas : function () {
-			//redimensionnement du canvas pour être full viewport en largeur
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
-		},
+        initializeCanvas: function () {
+            //redimensionnement du canvas pour être full viewport en largeur
+            this.viewDimension = cgsgGetRealViewportDimension();
+            this.setCanvasDimension(this.viewDimension);
+        },
 
-		/**
-		 *
-		 *
-		 */
-		createScene : function () {
-			//first create a root node with an arbitrary position
-			this.rootNode = new CGSGNode(0, 0);
-			CGSG.sceneGraph.addNode(this.rootNode, null);
+        /**
+         *
+         *
+         */
+        createScene: function () {
+            //first create a root node with an arbitrary position
+            this.rootNode = new CGSGNode(0, 0);
+            CGSG.sceneGraph.addNode(this.rootNode, null);
 
-			this.create1LineText();
-			this.createMaxWidthText();
-			this.createCarriageReturnText();
-			this.createScaledText();
-		},
+            this.create1LineText();
+            this.createCrossedLineText();
+            this.createMaxWidthText();
+            this.createCarriageReturnText();
+            this.createScaledText();
+        },
 
-		create1LineText : function () {
-			var textNode = new CGSGNodeText(10, 10, "Simple line");
+        create1LineText: function () {
+            var textNode = new CGSGNodeText(10, 10, "Simple line");
             textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
-			textNode.setSize(26);
-			textNode.setTypo("Arial");
-			textNode.isDraggable = true;
+            textNode.setSize(26);
+            textNode.setTypo("Arial");
+            textNode.isDraggable = true;
 
             //add the textNode as child of the root
-			this.rootNode.addChild(textNode);
-		},
+            this.rootNode.addChild(textNode);
+        },
 
-		createMaxWidthText : function () {
-			var maxWidth = 180;
+        createCrossedLineText: function () {
+            var textNode = new CGSGNodeText(200, 50, "Crossed line");
+            textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
+            textNode.setSize(13);
+            textNode.setTypo("Arial");
+            textNode.isDraggable = true;
+            textNode.crossed = true;
 
-			var textNode = new CGSGNodeText(10, 100, "Simple centered and long text with a max of :" + maxWidth +
-													 " px to be on a multiline...");
-			textNode.setSize(14);
-			textNode.setTypo("Arial");
-			textNode.isDraggable = true;
-			textNode.isResizable = true;
+            //add the textNode as child of the root
+            this.rootNode.addChild(textNode);
+        },
 
-			textNode.setWrapMode(CGSGWrapMode.WORD);
-			textNode.setTextAlign("center");
-			textNode.setMaxWidth(maxWidth);
-			textNode.setLineHeight(18);
+        createMaxWidthText: function () {
+            var maxWidth = 180;
 
-			textNode.onResize = function (event) {
-				event.data.node.setMaxWidth(event.data.node.dimension.width);
-			}
+            var textNode = new CGSGNodeText(10, 100, "Simple centered and long text with a max of :" + maxWidth +
+                " px to be on a multiline...");
+            textNode.setSize(14);
+            textNode.setTypo("Arial");
+            textNode.isDraggable = true;
+            textNode.isResizable = true;
+
+            textNode.setWrapMode(CGSGWrapMode.WORD);
+            textNode.setTextAlign("center");
+            textNode.setMaxWidth(maxWidth);
+            textNode.setLineHeight(18);
+
+            textNode.onResize = function (event) {
+                event.data.node.setMaxWidth(event.data.node.dimension.width);
+            }
 
             textNode.setPrecomputed(true);
 
-			//add the textNode as child of the root
-			this.rootNode.addChild(textNode);
-		},
+            //add the textNode as child of the root
+            this.rootNode.addChild(textNode);
+        },
 
-		createCarriageReturnText : function () {
-			var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return and a tabulation :\njust\there");
-			textNode.setSize(14);
-			textNode.setTypo("Times New Roman");
-			textNode.isDraggable = true;
+        createCarriageReturnText: function () {
+            var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return and a tabulation :\njust\there");
+            textNode.setSize(14);
+            textNode.setTypo("Times New Roman");
+            textNode.isDraggable = true;
             textNode.name = "Carriage Return Text";
 
-			textNode.color = "blue";
+            textNode.color = "blue";
             textNode.setPrecomputed(true);
 
-			//add the textNode as child of the root
-			this.rootNode.addChild(textNode);
-		},
+            //add the textNode as child of the root
+            this.rootNode.addChild(textNode);
+        },
 
-		createScaledText : function () {
-			var parent = new CGSGNodeSquare(40, 300, 200, 90);
-			parent.isDraggable = true;
+        createScaledText: function () {
+            var parent = new CGSGNodeSquare(40, 300, 200, 90);
+            parent.isDraggable = true;
 
-			var textNodeBottom = new CGSGNodeText(10, 20, "Bottom on " + cgsgCurrentExplorer.name);
-			textNodeBottom.setSize(14);
-			textNodeBottom.setTypo("courier new");
-			textNodeBottom.isDraggable = true;
-			textNodeBottom.color = "white";
-			textNodeBottom.setTextBaseline("bottom");
+            var textNodeBottom = new CGSGNodeText(10, 20, "Bottom on " + cgsgCurrentExplorer.name);
+            textNodeBottom.setSize(14);
+            textNodeBottom.setTypo("courier new");
+            textNodeBottom.isDraggable = true;
+            textNodeBottom.color = "white";
+            textNodeBottom.setTextBaseline("bottom");
 
             //textNodeBottom.setPrecomputed(true);
 
-			var textNodeMiddle = new CGSGNodeText(10, 30, "Middle on " + cgsgCurrentExplorer.name);
-			textNodeMiddle.setSize(14);
-			textNodeMiddle.setTypo("Arial");
-			textNodeMiddle.isDraggable = true;
-			textNodeMiddle.color = "white";
-			textNodeMiddle.setTextBaseline("middle");
+            var textNodeMiddle = new CGSGNodeText(10, 30, "Middle on " + cgsgCurrentExplorer.name);
+            textNodeMiddle.setSize(14);
+            textNodeMiddle.setTypo("Arial");
+            textNodeMiddle.isDraggable = true;
+            textNodeMiddle.color = "white";
+            textNodeMiddle.setTextBaseline("middle");
 
-			var textNodeTop = new CGSGNodeText(10, 40, "Top on " + cgsgCurrentExplorer.name);
-			textNodeTop.setSize(14);
-			textNodeTop.setTypo("Arial");
-			textNodeTop.isDraggable = true;
-			textNodeTop.color = "white";
-			textNodeTop.setTextBaseline("top");
+            var textNodeTop = new CGSGNodeText(10, 40, "Top on " + cgsgCurrentExplorer.name);
+            textNodeTop.setSize(14);
+            textNodeTop.setTypo("Arial");
+            textNodeTop.isDraggable = true;
+            textNodeTop.color = "white";
+            textNodeTop.setTextBaseline("top");
 
-			var textNodeAlphabetic = new CGSGNodeText(10, 80, "alphabetic on " + cgsgCurrentExplorer.name);
-			textNodeAlphabetic.setSize(14);
-			textNodeAlphabetic.setTypo("Arial");
-			textNodeAlphabetic.isDraggable = true;
-			textNodeAlphabetic.color = "white";
-			textNodeAlphabetic.setTextBaseline("alphabetic");
+            var textNodeAlphabetic = new CGSGNodeText(10, 80, "alphabetic on " + cgsgCurrentExplorer.name);
+            textNodeAlphabetic.setSize(14);
+            textNodeAlphabetic.setTypo("Arial");
+            textNodeAlphabetic.isDraggable = true;
+            textNodeAlphabetic.color = "white";
+            textNodeAlphabetic.setTextBaseline("alphabetic");
 
-			parent.addChild(textNodeTop);
-			parent.addChild(textNodeMiddle);
-			parent.addChild(textNodeBottom);
-			parent.addChild(textNodeAlphabetic);
-			parent.scaleTo(2.0, 2.0);
-			//add the textNode as child of the root
-			this.rootNode.addChild(parent);
-		}
+            parent.addChild(textNodeTop);
+            parent.addChild(textNodeMiddle);
+            parent.addChild(textNodeBottom);
+            parent.addChild(textNodeAlphabetic);
+            parent.scaleTo(2.0, 2.0);
+            //add the textNode as child of the root
+            this.rootNode.addChild(parent);
+        }
 
-	}
+    }
 );

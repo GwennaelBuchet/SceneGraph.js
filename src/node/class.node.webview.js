@@ -51,7 +51,7 @@ var CGSGWEBVIEWMODE = {
 /**
  * @class CGSGNodeWebview
  * @module Node
- * @extends CGSGNode
+ * @extends CGSGNodeDomElement
  * @constructor
  * @param {Number} x Relative position on X
  * @param {Number} y Relative position on Y
@@ -60,10 +60,10 @@ var CGSGWEBVIEWMODE = {
  * @param {String} url URL of the webpage
  * @type {CGSGNodeWebview}
  */
-var CGSGNodeWebview = CGSGNode.extend(
+var CGSGNodeWebview = CGSGNodeDomElement.extend(
     {
         initialize : function (x, y, width, height, url) {
-            this._super(x, y);
+            this._super(x, y, width, height, document.createElement("iframe"));
 
             this.resizeTo(CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
@@ -94,14 +94,6 @@ var CGSGNodeWebview = CGSGNode.extend(
              * @type {String}
              */
             this.classType = "CGSGNodeWebview";
-
-            /**
-             * A HTML tag that contains the web view : an iframe
-             * @property _liveContainer
-             * @type {HTMLElement}
-             * @private
-             */
-            this._liveContainer = null;
 
             /**
              * A CGSGNodeImage rendering the preview of the webpage
@@ -139,11 +131,11 @@ var CGSGNodeWebview = CGSGNode.extend(
          * @private
          */
         _initLiveContainer : function () {
-            if (!cgsgExist(this._liveContainer)) {
+            if (!cgsgExist(this._htmlElement)) {
                 this._createLiveContainer();
             }
 
-            document.body.appendChild(this._liveContainer);
+            document.body.appendChild(this._htmlElement);
         },
 
         /**
@@ -173,10 +165,8 @@ var CGSGNodeWebview = CGSGNode.extend(
                 uri = this._url;
             }
 
-            this._liveContainer = document.createElement("IFRAME");
-
-            this._liveContainer.style.position = "absolute";
-            this._liveContainer.setAttribute("src", uri);
+            this._htmlElement.style.position = "absolute";
+            this._htmlElement.setAttribute("src", uri);
         },
 
         /**
@@ -207,8 +197,8 @@ var CGSGNodeWebview = CGSGNode.extend(
         setURL : function (url) {
             this._url = url;
 
-            if (cgsgExist(this._liveContainer)) {
-                this._liveContainer.setAttribute("src", this._url);
+            if (cgsgExist(this._htmlElement)) {
+                this._htmlElement.setAttribute("src", this._url);
             }
         },
 
@@ -244,7 +234,7 @@ var CGSGNodeWebview = CGSGNode.extend(
             else {
                 //Initially, there is no mode, so we cannot remove the child from the Body
                 if (this._mode === CGSGWEBVIEWMODE.LIVE) {
-                    document.body.removeChild(this._liveContainer);
+                    document.body.removeChild(this._htmlElement);
                 }
                 this._initPreviewContainer();
             }
@@ -280,11 +270,11 @@ var CGSGNodeWebview = CGSGNode.extend(
                     8 + this.dimension.width - this.threshold * 2,
                     8 + this.dimension.height - this.threshold * 2);
 
-                if (cgsgExist(this._liveContainer)) {
-                    this._liveContainer.style.left = (this.getAbsoluteLeft() + this.threshold) + "px";
-                    this._liveContainer.style.top = (this.getAbsoluteTop() + this.threshold) + "px";
-                    this._liveContainer.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + "px";
-                    this._liveContainer.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + "px";
+                if (cgsgExist(this._htmlElement)) {
+                    this._htmlElement.style.left = (this.getAbsoluteLeft() + this.threshold) + "px";
+                    this._htmlElement.style.top = (this.getAbsoluteTop() + this.threshold) + "px";
+                    this._htmlElement.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + "px";
+                    this._htmlElement.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + "px";
                 }
             }
             else {
@@ -303,9 +293,9 @@ var CGSGNodeWebview = CGSGNode.extend(
          * @method free
          */
         free : function () {
-            if (cgsgExist(this._liveContainer)) {
-                CGSG.canvas.removeChild(this._liveContainer);
-                delete (this._liveContainer);
+            if (cgsgExist(this._htmlElement)) {
+                CGSG.canvas.removeChild(this._htmlElement);
+                delete (this._htmlElement);
             }
 
             this._super();

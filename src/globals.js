@@ -263,7 +263,15 @@ var CGSG = {
      * @property eventManager
      * @type {CGSGEventManager}
      */
-    eventManager: new CGSGEventManager()
+    eventManager: new CGSGEventManager(),
+
+    /**
+     * Default threshold apply to all new nodes when detecting selection.
+     *
+     * @property globalDetectSelectionThreshold
+     * @type {Number}
+     */
+    globalDetectSelectionThreshold: 0
 };
 
 
@@ -315,6 +323,7 @@ var cgsgEventTypes = {
     ON_SCENE_DBL_CLICK_END: "onSceneDblClickEnd",
     ON_SCENE_CLICK_START: "onSceneClickStart",
     ON_SCENE_CLICK_END: "onSceneClickEnd",
+    ON_SCENE_AVERAGE_FPS_CHANGED: "onSceneAverageFpsChanged",
 
     // Timeline
     ON_ANIMATE: "onAnimate",

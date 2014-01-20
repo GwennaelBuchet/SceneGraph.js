@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
  *
  * License/Terms of Use
@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Capgemini.
@@ -21,13 +21,7 @@
  *  the use or other dealings in this Software without prior written authorization from Capgemini.
  *
  *  These Terms of Use are subject to French law.
- *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
- * @date 10/08/2012
- *
- * Purpose :
- * event example
- * */
+ */
 var CGMain = CGSGView.extend(
 	{
 		initialize : function (canvas) {
@@ -35,13 +29,16 @@ var CGMain = CGSGView.extend(
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
+
 			this.initializeCanvas();
+
 			this.createScene();
+
 			this.startPlaying();
 		},
 
 		initializeCanvas : function () {
-			//resize the canvas to fulfill the viewport
+			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
 		},
@@ -51,37 +48,28 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function () {
-            CGSG.globalDetectSelectionThreshold = 10; // Threshold applied to all new nodes
-            CGSG.isBoundingBoxOnTop = false;
+			//first create a root node with an arbitrary position
+			this.rootNode = new CGSGNode(0, 0);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
-            //first create a root node with an arbitrary position
-            this.rootNode = new CGSGNode(0, 0);
-            CGSG.sceneGraph.addNode(this.rootNode, null);
+            // Create the input text and add it to the document
+			var inputText = document.createElement("input");
+            inputText.type = "text";
 
-			//X, Y, WIDTH, HEIGHT
-			var square = new CGSGNodeSquare(20, 20, 150, 150);
+            // The element is centered by 'with' and 'height' styles properties manipulation
+            // set to 0 properties having impact on it
+            inputText.style.margin = 0;
+            inputText.style.padding = 0;
+            inputText.style.borderWidth = 0;
 
-			square.isDraggable = true;
-			square.isResizable = true;
-			square.globalAlpha = 0.8;
-			square.color = "lightgray";
-			square.lineWidth = 2;
-			square.lineColor = "gray";
-            //square.setPrecomputed(true);
-            //square.scaleTo(2.0, 1.2);
-            this.rootNode.addChild(square);
+            // Append child to document
+            document.body.appendChild(inputText);
 
-            var s2 = new CGSGNodeSquare(20, 20, 50, 50);
-            s2.detectSelectionThreshold = 0; // specific threshold for this node
-            s2.isDraggable = true;
-            s2.isResizable = true;
-            s2.globalAlpha = 0.9;
-            s2.color = "#A0A0FE";
-            s2.lineWidth = 1;
-            s2.lineColor = "gray";
-            //s2.scaleTo(2.0, 1.2);
-            //s2.setPrecomputed(true);
-            square.addChild(s2);
-		}
+            // Now decorate it with cgSceneGraph support
+            var node = new CGSGNodeDomElement(50, 50, 200, 100, inputText);
+            node.threshold = 40;
+            node.isDraggable = true;
+            this.rootNode.addChild(node);
+        }
 	}
 );
