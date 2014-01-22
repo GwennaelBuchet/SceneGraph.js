@@ -4,6 +4,9 @@ var CGSGNodeScrollPaneViewPort = CGSGNode.extend({
 
     initialize: function (x, y, width, height) {
         this._super(x, y);
+
+        this.classType = "CGSGNodeScrollPaneViewPort";
+
         this.resizeTo(width, height);
     },
 
@@ -51,12 +54,61 @@ var CGSGNodeScrollPane = CGSGNode.extend({
     initialize: function (x, y, width, height) {
         this._viewport = new CGSGNodeScrollPaneViewPort(0, 0, width, height);
         this._super(x, y);
+
+        this.classType = "CGSGNodeScrollPane";
         this.rounding = 0;
 
         this.sliderWidth = 15;
 
         this.resizeTo(width, height);
         this._build();
+
+        var that = this;
+
+        function up(){
+            that.ySlider.handle.translateWith(0, -20);
+            that.ySlider.handle.onSlide();
+            that.onSliderTranslate();
+            that.updateViewPort();
+        };
+
+        function down(){
+            that.ySlider.handle.translateWith(0, 20);
+            that.ySlider.handle.onSlide();
+            that.onSliderTranslate();
+            that.updateViewPort();
+        };
+
+        function wheel(event){
+
+            var delta = 0;
+            if (!event) event = window.event;//for IE
+            if (event.wheelDelta) {
+                delta = event.wheelDelta/120;
+                if (window.opera) delta = -delta;
+            } else if (event.detail) {
+                delta = -event.detail/3;
+            }
+
+            var mousePosition = new CGSGPosition(event.x, event.y),
+                node = CGSG.sceneGraph.pickNode(mousePosition, null);
+
+            if(cgsgExist(node) && cgsgExist(node._parentNode)) {
+                if(node._parentNode.classType == "CGSGNodeScrollPane") {
+                    if (delta > 0)up();
+                    if (delta < 0)down();
+                }
+            }
+
+            return false;
+        };
+
+
+
+        /* Initialization code. */
+        if (window.addEventListener)
+            window.addEventListener('DOMMouseScroll', wheel, false);
+        window.onmousewheel = document.onmousewheel = wheel;
     },
 
     /**

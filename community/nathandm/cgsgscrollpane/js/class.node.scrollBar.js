@@ -1,13 +1,13 @@
 /**
- * A CGSGNodeSliderHandle represent a slider handle
+ * A CGSGNodeScrollBarHandle represent a scrollBar handle
  *
- * @class CGSGNodeSliderHandle
+ * @class CGSGNodeScrollBarHandle
  * @module Node
  * @extends CGSGNode
  * @constructor
  * @param {Number} handleWidth width of the handle
  * @type {CGSGNodeSliderHandle}
- * @author Jeremie (jeremie.lussiez@capgemini.com)
+ * @author Nathan (nathan.damie@capgemini.com)
  */
 var CGSGNodeScrollBarHandle = CGSGNode.extend({
 
@@ -22,7 +22,7 @@ var CGSGNodeScrollBarHandle = CGSGNode.extend({
     },
 
     /**
-     * Restrain movement to x axis
+     * Restrain movement to x axis or y axis
      *
      * @method onSlide
      * @protected
@@ -56,7 +56,7 @@ var CGSGNodeScrollBarHandle = CGSGNode.extend({
     },
 
     /**
-     * Default handle rendering (A rounded square with some "volume" effect)
+     * Default handle rendering
      *
      * @method render
      * @protected
@@ -72,9 +72,9 @@ var CGSGNodeScrollBarHandle = CGSGNode.extend({
 });
 
 /**
- * A CGSGNodeSlider represent a slider
+ * A CGSGNodeScrollBar represent a scrollPane
  *
- * @class CGSGNodeSlider
+ * @class CGSGNodeScrollBar
  * @module Node
  * @extends CGSGNode
  * @constructor
@@ -82,8 +82,8 @@ var CGSGNodeScrollBarHandle = CGSGNode.extend({
  * @param {Number} y Relative position on Y
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
- * @type {CGSGNodeSlider}
- * @author Jeremie (jeremie.lussiez@capgemini.com)
+ * @type {CGSGNodeScrollBar}
+ * @author Nathan (nathan.damie@capgemini.com)
  */
 var CGSGNodeScrollBar = CGSGNode.extend({
 
@@ -99,11 +99,11 @@ var CGSGNodeScrollBar = CGSGNode.extend({
     },
 
     /**
-     * Set default or custom handle for this slider
+     * Set default or custom handle for this scrollBar
      *
      * @method setHandle
      * @public
-     * @param {CGSGNode} [handle] slider's handle
+     * @param {CGSGNode} [handle] scrollBar's handle
      */
     setHandle: function (handle) {
         this.removeAll();
