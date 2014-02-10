@@ -73,35 +73,6 @@ var CGSG_DEFAULT_DRAG_SELECT_STROKE_COLOR = "#808080";
 var CGSG_DEFAULT_DRAG_SELECT_ALPHA = 0.6;
 
 /**
- * Default color for the selection stroke
- * @property CGSG_DEFAULT_SELECTED_STROKE_COLOR
- * @default "#FF6890"
- * @type {String}
- */
-var CGSG_DEFAULT_SELECTED_STROKE_COLOR = "#FF6890";
-/**
- * Default size for the selection stroke
- * @property CGSG_DEFAULT_SELECTED_STROKE_SIZE
- * @default 2
- * @type {Number}
- */
-var CGSG_DEFAULT_SELECTED_STROKE_SIZE = 2;
-/**
- * Default size for the resize handles at the corners of a selected node
- * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE
- * @default 6
- * @type {Number}
- */
-var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_SIZE = 6;
-/**
- * Default size for the resize handles at the corners of a selected node
- * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR
- * @default "#9068FF"
- * @type {String}
- */
-var CGSG_DEFAULT_SELECTED_RESIZEHANDLE_COLOR = "#9068FF";
-
-/**
  * Default threshold to detect the handle boxes on a resizable node
  * @property CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD
  * @default 3
@@ -134,3 +105,19 @@ var CGSG_DEFAULT_MAX_FRAMERATE = NaN;
  * @type {Number}
  */
 var CGSG_DEFAULT_DBLTOUCH_DELAY = 250;
+
+/**
+ * Default CSS class for CGSGNode
+ * @property CGSG_DEFAULT_THEME_NODE_CLS
+ * @default "cgsgnode"
+ * @type {string}
+ */
+var CGSG_DEFAULT_THEME_NODE_CLS = "cgsgnode";
+
+/**
+ * Default CSS class for Bounding box
+ * @property CGSG_DEFAULT_THEME_BBOX_CLS
+ * @default "cgsgnode-bbox"
+ * @type {string}
+ */
+var CGSG_DEFAULT_THEME_BBOX_CLS = "cgsgnode-bbox";

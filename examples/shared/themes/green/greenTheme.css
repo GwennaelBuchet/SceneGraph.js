@@ -1,0 +1,47 @@
+/**
+A custom theme must declare the same CSS classes as the default theme ("gray.css") with all properties.
+Obviouly, change values :)
+
+*/
+
+.cgsg {
+    background-color: #ffffff;
+}
+
+.cgsg-selectionBox {
+    background-color: #86e884;
+    border: 6px #4e844f;
+    opacity: 0.4;
+}
+
+/*
+Bounding box around the node when it's selected
+*/
+.cgsgnode-bbox {
+    /* lines */
+    outline: #5fad5c 2px;
+
+    /* handles */
+    background-color: #6ebd6f;
+    border-width: 6px;
+}
+
+/*
+Regular CGSGNode attributes
+*/
+.cgsgnode {
+    background-color: #baf6c2;
+    border: 3px solid #74cf76;
+    border-radius: 2px;
+    opacity: 0.6;
+}
+
+/*
+Overed CGSGNode attributes
+*/
+.cgsgnode-over {
+    background-color: #666;
+    border: 2px solid #444;
+    border-radius: 2px;
+    opacity: 1.0;
+}

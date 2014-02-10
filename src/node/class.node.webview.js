@@ -46,8 +46,6 @@ var CGSGWEBVIEWMODE = {
  * - load a page in AJAX and make an image from it to assign to the PREVIEW mode
  */
 
-"use strict";
-
 /**
  * @class CGSGNodeWebview
  * @module Node

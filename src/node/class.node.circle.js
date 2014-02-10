@@ -39,84 +39,106 @@
  * @author xymostech (Emily Eisenberg)
  */
 var CGSGNodeCircle = CGSGNode.extend(
-    {
-        initialize: function (centerX, centerY, radius) {
+	{
+		initialize : function(centerX, centerY, radius) {
 
-            this.radius = radius;
-            this._center = new CGSGPosition(centerX, centerY);
+			this.radius = radius;
+			this._center = new CGSGPosition(centerX, centerY);
 
-            this._super(0, 0);
-            this.resizeTo(radius * 2.0, radius * 2.0);
+			this._super(0, 0);
+			this.resizeTo(radius * 2.0, radius * 2.0);
 
-            this.isProportionalResizeOnly = true;
+			this.isProportionalResizeOnly = true;
 
-            this.translateTo(centerX - radius, centerY - radius);
+			this.translateTo(centerX - radius, centerY - radius);
+		},
 
-            this.color = "#444444";
-            this.lineColor = "#222222";
-            this.lineWidth = 0;
-        },
+		render : function(context) {
+			context.beginPath();
+			context.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
+			context.fillStyle = this.color;
+			context.fill();
+			if (this.lineWidth > 0) {
+				context.lineWidth = this.lineWidth;
+				context.strokeStyle = this.strokeStyle;
+				context.stroke();
+			}
+		},
 
-        render: function (context) {
-            context.beginPath();
-            context.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
-            context.fillStyle = this.color;
-            context.fill();
-            if (this.lineWidth > 0) {
-                context.lineWidth = this.lineWidth;
-                context.strokeStyle = this.lineColor;
-                context.stroke();
-            }
-        },
+		/**
+		 * Reload theme (colors, ...) from loaded CSS file
+		 * @method invalidateTheme
+		 * @override
+		 */
+		invalidateTheme : function() {
+			//Use of "this._cls" class name which define the current CSS class used by this object.
+			var fillStyle = CGSG.cssManager.getAttr(this._cls, "background-color");
+			var lineWidth = CGSG.cssManager.getAttr(this._cls, "border-width");
+			var strokeStyle = CGSG.cssManager.getAttr(this._cls, "border-color");
 
-        /**
-         * @method _resize
-         * @private
-         */
-        _resize: function () {
-            this.radius = CGSGMath.fixedPoint(this.dimension.width / 2);
-            this._isDimensionChanged = true;
-            this.invalidate();
-            if (cgsgExist(this.onResize)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
-            }
-        },
+			//Avoid to override previous value if no one is defined now. So check existence of new one first.
+			if (cgsgExist(fillStyle)) {
+				//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
+				var rgb = CGSGColor.fromString(fillStyle);
+				this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+			}
+			if (cgsgExist(lineWidth))
+				this.lineWidth = CGSG.cssManager.getNumber(lineWidth);
+			if (cgsgExist(strokeStyle))
+				this.strokeStyle = strokeStyle;
 
-        resizeTo: function (w, h) {
-            var r = Math.min(w, h);
-            this.dimension.resizeTo(r, r);
-            this._resize();
-        },
+			//call parent's method
+			this._super();
+		},
 
-        resizeBy: function (w, h) {
-            var mw = w * this.dimension.width;
-            var mh = h * this.dimension.height;
-            var r = (mw < mh) ? w : h;
-            this.dimension.resizeBy(r, r);
-            this._resize();
-        },
+		/**
+		 * @method _resize
+		 * @private
+		 */
+		_resize : function() {
+			this.radius = CGSGMath.fixedPoint(this.dimension.width / 2);
+			this._isDimensionChanged = true;
+			this.invalidate();
+			if (cgsgExist(this.onResize)) {
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node : this}));
+			}
+		},
 
-        resizeWith: function (w, h) {
-            var mw = w + this.dimension.width;
-            var mh = h + this.dimension.height;
-            var r = (mw < mh) ? w : h;
-            this.dimension.resizeWith(r, r);
-            this._resize();
-        },
+		resizeTo : function(w, h) {
+			var r = Math.min(w, h);
+			this.dimension.resizeTo(r, r);
+			this._resize();
+		},
 
-        /**
-         * @method copy
-         * @return {CGSGNodeCircle} a copy of this node
-         */
-        copy: function () {
-            var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
-            //call the super method
-            node = this._super(node);
+		resizeBy : function(w, h) {
+			var mw = w * this.dimension.width;
+			var mh = h * this.dimension.height;
+			var r = (mw < mh) ? w : h;
+			this.dimension.resizeBy(r, r);
+			this._resize();
+		},
 
-            node.color = this.color;
-            node.lineColor = this.lineColor;
-            node.lineWidth = this.lineWidth;
-            return node;
-        }
-    }
+		resizeWith : function(w, h) {
+			var mw = w + this.dimension.width;
+			var mh = h + this.dimension.height;
+			var r = (mw < mh) ? w : h;
+			this.dimension.resizeWith(r, r);
+			this._resize();
+		},
+
+		/**
+		 * @method copy
+		 * @return {CGSGNodeCircle} a copy of this node
+		 */
+		copy : function() {
+			var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
+			//call the super method
+			node = this._super(node);
+
+			node.color = this.color;
+			node.lineColor = this.lineColor;
+			node.lineWidth = this.lineWidth;
+			return node;
+		}
+	}
 );

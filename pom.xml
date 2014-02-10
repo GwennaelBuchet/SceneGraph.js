@@ -71,6 +71,7 @@ Any failure to comply with the above shall automatically terminate the license a
 
                             <includes>
                                 <include>utils/util.array.js</include>
+                                <include>utils/util.string.js</include>
                                 <include>utils/class.class.js</include>
                                 <include>utils/class.map.js</include>
                                 <include>utils/util.color.js</include>
@@ -81,6 +82,8 @@ Any failure to comply with the above shall automatically terminate the license a
 
                                 <include>event/class.event.js</include>
                                 <include>event/class.eventmanager.js</include>
+
+                                <include>theme/class.CSSManager.js</include>
 
                                 <include>animation/class.keyframe.js</include>
                                 <include>interpolator/class.interpolator.js</include>

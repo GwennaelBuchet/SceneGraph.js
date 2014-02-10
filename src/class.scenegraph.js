@@ -36,310 +36,329 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGSceneGraph = CGSGObject.extend(
-    {
-        initialize: function (canvas, context) {
+	{
+		initialize : function(canvas, context) {
 
-            /**
-             * Root node of the graph
-             * @property root
-             * @type {CGSGNode}
-             */
-            this.root = null;
+			/**
+			 * Root node of the graph
+			 * @property root
+			 * @type {CGSGNode}
+			 */
+			this.root = null;
 
-            /**
-             * @property context
-             * @type {CanvasRenderingContext2D}
-             */
-            this.context = context;
+			/**
+			 * @property context
+			 * @type {CanvasRenderingContext2D}
+			 */
+			this.context = context;
 
-            /**
-             *
-             * @property _nextNodeID
-             * @type {Number}
-             * @private
-             */
-            this._nextNodeID = 1;
+			/**
+			 *
+			 * @property _nextNodeID
+			 * @type {Number}
+			 * @private
+			 */
+			this._nextNodeID = 1;
 
-            ///// INITIALIZATION //////
+			/**
+			 * If true, on next rendering loop "invalidateTheme" of each node will be called
+			 * @property _themeInvalidated
+			 * @type {boolean}
+			 * @private
+			 */
+			this._themeInvalidated = false;
 
-            /**
-             * Initialize a ghost canvas used to determine which nodes are selected by the user
-             * @property ghostCanvas
-             * @type {HTMLElement}
-             */
-            this.ghostCanvas = document.createElement('canvas');
-            this.initializeGhost(canvas.width, canvas.height);
+			///// INITIALIZATION //////
 
-            //fixes a problem where double clicking causes text to get selected on the canvas
-            CGSG.canvas.onselectstart = function () {
-                return false;
-            };
-        },
+			/**
+			 * Initialize a ghost canvas used to determine which nodes are selected by the user
+			 * @property ghostCanvas
+			 * @type {HTMLElement}
+			 */
+			this.ghostCanvas = document.createElement('canvas');
+			this.initializeGhost(canvas.width, canvas.height);
 
-        /**
-         * Initialize the ghost rendering, used by the PickNode function
-         * @private
-         * @method initializeGhost
-         * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
-         * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
-         * */
-        initializeGhost: function (width, height) {
-            this.ghostCanvas.height = height;
-            this.ghostCanvas.width = width;
-            //noinspection JSUndeclaredVariable
-            CGSG.ghostContext = this.ghostCanvas.getContext('2d');
-        },
+			//fixes a problem where double clicking causes text to get selected on the canvas
+			CGSG.canvas.onselectstart = function() {
+				return false;
+			};
+		},
 
-        /**
-         * Render the SceneGraph
-         * @public
-         * @method render
-         * */
-        render: function () {
-            //erase previous rendering
-            cgsgClearContext(this.context);
+		/**
+		 * Initialize the ghost rendering, used by the PickNode function
+		 * @private
+		 * @method initializeGhost
+		 * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
+		 * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
+		 * */
+		initializeGhost : function(width, height) {
+			this.ghostCanvas.height = height;
+			this.ghostCanvas.width = width;
+			//noinspection JSUndeclaredVariable
+			CGSG.ghostContext = this.ghostCanvas.getContext('2d');
+		},
 
-            if (cgsgExist(this.root)) {
-                var node = null;
-                var i = 0, evt;
-                var key = null;
-                //set the new values for all the animated nodes
-                if (CGSG.animationManager.listTimelines.length > 0) {
-                    node = null;
-                    var value, timeline;
-                    for (i = CGSG.animationManager.listTimelines.length - 1; i >= 0; --i) {
-                        timeline = CGSG.animationManager.listTimelines[i];
-                        node = timeline.parentNode;
+		/**
+		 * Used to enforce theme invalidation for each node during next rendering loop
+		 * @method invalidateTheme
+		 */
+		invalidateTheme : function() {
+			this._themeInvalidated = true;
+		},
 
-                        if (node.isVisible) {
-                            value = timeline.getValue(CGSG.currentFrame);
-                            if (value !== undefined) {
-                                node.evalSet(timeline.attribute, value);
-                                if (timeline.onAnimate !== null) {
-                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE,
-                                        new CGSGEvent(this, {node: node, attribute: timeline.attribute, value: value}));
-                                }
-                            }
+		/**
+		 * Render the SceneGraph
+		 * @public
+		 * @method render
+		 * */
+		render : function() {
+			//erase previous rendering
+			cgsgClearContext(this.context);
 
-                            //fire event if this is the first animation key for this timeline
-                            key = timeline.getFirstKey();
-                            if (key !== null && key.frame == CGSG.currentFrame &&
-                                timeline.onAnimationStart !== null) {
-                                evt = new CGSGEvent(this, {node: node});
-                                evt.node = node;
-                                CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
-                            }
+			if (cgsgExist(this.root)) {
+				var node = null;
+				var i = 0, evt;
+				var key = null;
+				//set the new values for all the animated nodes
+				if (CGSG.animationManager.listTimelines.length > 0) {
+					node = null;
+					var value, timeline;
+					for (i = CGSG.animationManager.listTimelines.length - 1 ; i >= 0 ; --i) {
+						timeline = CGSG.animationManager.listTimelines[i];
+						node = timeline.parentNode;
 
-                            //fire event if this is the last animation key for this timeline
-                            key = timeline.getLastKey();
-                            if (key !== null && key.frame == CGSG.currentFrame) {
-                                timeline.removeAll();
-                                if (timeline.onAnimationEnd !== null) {
-                                    evt = new CGSGEvent(this, {node: node});
-                                    evt.node = node;
-                                    CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
-                                }
-                            }
-                        }
-                    }
-                }
+						if (node.isVisible) {
+							value = timeline.getValue(CGSG.currentFrame);
+							if (value !== undefined) {
+								node.evalSet(timeline.attribute, value);
+								if (timeline.onAnimate !== null) {
+									CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE,
+															   new CGSGEvent(this,
+																			 {node : node, attribute : timeline.attribute, value : value}));
+								}
+							}
 
-                //run the rendering traverser
-                this.context.save();
-                this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
-                if (this.root.isVisible) {
-                    this.root.doRender(this.context, CGSG.currentFrame);
-                    //cgsgRender(this.context, this.root);
-                }
-                this.context.restore();
-            }
+							//fire event if this is the first animation key for this timeline
+							key = timeline.getFirstKey();
+							if (key !== null && key.frame == CGSG.currentFrame &&
+								timeline.onAnimationStart !== null) {
+								evt = new CGSGEvent(this, {node : node});
+								evt.node = node;
+								CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
+							}
 
-            //draw the selection markers around the selected nodes
-            if (CGSG.isBoundingBoxOnTop && CGSG.selectedNodes.length > 0) {
-                for (i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
-                    node = CGSG.selectedNodes[i];
-                    if (node.isVisible) {
-                        //todo valider l'interet de calculer la matrice absolue
-                        node.computeAbsoluteMatrix(true);
+							//fire event if this is the last animation key for this timeline
+							key = timeline.getLastKey();
+							if (key !== null && key.frame == CGSG.currentFrame) {
+								timeline.removeAll();
+								if (timeline.onAnimationEnd !== null) {
+									evt = new CGSGEvent(this, {node : node});
+									evt.node = node;
+									CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
+								}
+							}
+						}
+					}
+				}
 
-                        this.context.save();
-                        this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
+				//run the rendering traverser
+				this.context.save();
+				this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
+				if (this.root.isVisible) {
+					this.root.doRender(this.context, this._themeInvalidated);
+				}
+				this.context.restore();
 
-                        var n = node;
-                        var t = n.getAbsolutePosition();
+				//theme should have been invalidated through this rendering loop
+				this._themeInvalidated = false;
+			}
 
-                        this.context.translate(t.x, t.y);
+			//draw the selection markers around the selected nodes
+			if (CGSG.isBoundingBoxOnTop && CGSG.selectedNodes.length > 0) {
+				for (i = CGSG.selectedNodes.length - 1 ; i >= 0 ; i--) {
+					node = CGSG.selectedNodes[i];
+					if (node.isVisible) {
+						//todo valider l'interet de calculer la matrice absolue
+						node.computeAbsoluteMatrix(true);
 
-                        if (cgsgExist(node.rotationCenter)) {
+						this.context.save();
+						this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
 
-                            this.context.translate(node.dimension.width * node.rotationCenter.x,
-                                node.dimension.height * node.rotationCenter.y);
-                            this.context.rotate(node.rotation.angle);
-                            this.context.translate(-node.dimension.width * node.rotationCenter.x,
-                                -node.dimension.height * node.rotationCenter.y);
-                        }
-                        else {
-                            this.context.rotate(node.rotation.angle);
-                        }
-                        this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
+						var n = node;
+						var t = n.getAbsolutePosition();
 
-                        node.renderBoundingBox(this.context);
-                        this.context.restore();
-                    }
-                }
-            }
+						this.context.translate(t.x, t.y);
 
-            CGSG.currentFrame++;
-        },
+						if (cgsgExist(node.rotationCenter)) {
 
-        /**
-         * Change the dimension of the canvas.
-         * Does not really change the dimension of the rendering canvas container,
-         *  but is used for different computations
-         * @method setCanvasDimension
-         * @param {CGSGDimension} newDimension
-         * */
-        setCanvasDimension: function (newDimension) {
-            this.initializeGhost(newDimension.width, newDimension.height);
-        },
+							this.context.translate(node.dimension.width * node.rotationCenter.x,
+												   node.dimension.height * node.rotationCenter.y);
+							this.context.rotate(node.rotation.angle);
+							this.context.translate(-node.dimension.width * node.rotationCenter.x,
+												   -node.dimension.height * node.rotationCenter.y);
+						}
+						else {
+							this.context.rotate(node.rotation.angle);
+						}
+						this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
 
-        /**
-         * Mark the nodes as selected so the select marker (also called selectedHandlers)
-         *  will be shown and the SceneGraph will manage the moving and resizing of the selected objects.
-         * @method selectNode
-         * @param nodeToSelect The CGSGNode to be selected
-         * */
-        selectNode: function (nodeToSelect) {
-            if (!nodeToSelect.isSelected) {
-                nodeToSelect.setSelected(true);
-                nodeToSelect.computeAbsoluteMatrix(false);
-                CGSG.selectedNodes[CGSG.selectedNodes.length] = nodeToSelect;
-            }
-        },
+						node.renderBoundingBox(this.context);
+						this.context.restore();
+					}
+				}
+			}
 
-        /**
-         * Mark the nodes as not selected
-         * @method deselectNode
-         * @param {CGSGNode} nodeToDeselect
-         * */
-        deselectNode: function (nodeToDeselect) {
-            nodeToDeselect.setSelected(false);
-            /*CGSG.selectedNodes = */
-            CGSG.selectedNodes.without(nodeToDeselect);
-        },
+			CGSG.currentFrame++;
+		},
 
-        /**
-         * Mark all nodes as not selected
-         * @method deselectAll
-         * @param {Array} excludedArray CGSGNodes to not deselect
-         * */
-        deselectAll: function (excludedArray) {
-            var node = null;
-            for (var i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
-                node = CGSG.selectedNodes[i];
-                if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
-                    this.deselectNode(node);
-                }
-            }
+		/**
+		 * Change the dimension of the canvas.
+		 * Does not really change the dimension of the rendering canvas container,
+		 *  but is used for different computations
+		 * @method setCanvasDimension
+		 * @param {CGSGDimension} newDimension
+		 * */
+		setCanvasDimension : function(newDimension) {
+			this.initializeGhost(newDimension.width, newDimension.height);
+		},
 
-            //just to be sure
-            CGSG.selectedNodes.clear();
-        },
+		/**
+		 * Mark the nodes as selected so the select marker (also called selectedHandlers)
+		 *  will be shown and the SceneGraph will manage the moving and resizing of the selected objects.
+		 * @method selectNode
+		 * @param nodeToSelect The CGSGNode to be selected
+		 * */
+		selectNode : function(nodeToSelect) {
+			if (!nodeToSelect.isSelected) {
+				nodeToSelect.setSelected(true);
+				nodeToSelect.computeAbsoluteMatrix(false);
+				CGSG.selectedNodes[CGSG.selectedNodes.length] = nodeToSelect;
+			}
+		},
 
-        /**
-         * Recursively traverse the nodes and return the one who is under the mouse coordinates
-         * @method pickNode
-         * @param {CGSGPosition} mousePosition
-         * @param {String} condition
-         * @return {CGSGNode}
-         * @example
-         *  this.scenegraph.picknode(mousePosition, 'position.x > 100'); <br/>
-         *  this.scenegraph.picknode(mousePosition, 'position.x > 100 && this.position.y > 100');
-         */
-        pickNode: function (mousePosition, condition) {
-            //empty the current selection first
-            //CGSG.selectedNodes = new Array();
-            cgsgClearContext(CGSG.ghostContext);
-            //recursively traverse the nodes to get the selected nodes
-            if (!cgsgExist(this.root)) {
-                return null;
-            }
-            else {
-                return this.root.pickNode(
-                    mousePosition.copy(), //position of the cursor on the viewport
-                    new CGSGScale(1, 1), //absolute scale for the nodes
-                    CGSG.ghostContext, //context for the ghost rendering
-                    true, //recursively ?
-                    //CGSG.canvas.width / CGSG.displayRatio.x, CGSG.canvas.height / CGSG.displayRatio.y,
-                    //dimension of the canvas container
-                    condition);  // condition to the picknode be executed
-            }
-        },
+		/**
+		 * Mark the nodes as not selected
+		 * @method deselectNode
+		 * @param {CGSGNode} nodeToDeselect
+		 * */
+		deselectNode : function(nodeToDeselect) {
+			nodeToDeselect.setSelected(false);
+			/*CGSG.selectedNodes = */
+			CGSG.selectedNodes.without(nodeToDeselect);
+		},
 
-        /**
-         * Recursively traverse the nodes and return the ones who are under the mouse coordinates
-         * @method pickNodes
-         * @param {CGSGRegion} region
-         * @param {String} condition
-         * @return {Array}
-         * @example
-         *  this.scenegraph.picknodes(region, 'position.x > 100'); <br/>
-         *  this.scenegraph.picknodes(region, 'position.x > 100 && this.position.y > 100');
-         */
-        pickNodes: function (region, condition) {
-            //empty the current selection first
-            //CGSG.selectedNodes = new Array();
-            cgsgClearContext(CGSG.ghostContext);
-            //recursively traverse the nodes to get the selected nodes
-            if (!cgsgExist(this.root)) {
-                return null;
-            }
-            else {
-                return this.root.pickNodes(
-                    region.copy(), //position of the cursor on the viewport
-                    new CGSGScale(1, 1), //absolute scale for the nodes
-                    CGSG.ghostContext, //context for the ghost rendering
-                    true, //recursively ?
-                    //CGSG.canvas.width / CGSG.displayRatio.x, CGSG.canvas.height / CGSG.displayRatio.y,
-                    //dimension of the canvas container
-                    condition);  // condition to the picknode be executed
-            }
-        },
+		/**
+		 * Mark all nodes as not selected
+		 * @method deselectAll
+		 * @param {Array} excludedArray CGSGNodes to not deselect
+		 * */
+		deselectAll : function(excludedArray) {
+			var node = null;
+			for (var i = CGSG.selectedNodes.length - 1 ; i >= 0 ; i--) {
+				node = CGSG.selectedNodes[i];
+				if (!cgsgExist(excludedArray) || !excludedArray.contains(node)) {
+					this.deselectNode(node);
+				}
+			}
 
-        /**
-         * Remove the child nodes passed in parameter, from the root nodes
-         * @method removeNode
-         * @param {CGSGNode} node the nodes to remove
-         * @return {Boolean} true if the nodes was found and removed
-         * */
-        removeNode: function (node) {
-            if (cgsgExist(node)) {
-                this.deselectNode(node);
-                if (this.root !== null) {
-                    return this.root.removeChild(node, true);
-                }
-            }
-            return false;
-        },
+			//just to be sure
+			CGSG.selectedNodes.clear();
+		},
 
-        /**
-         * Add a node on the scene.
-         * If the root does not already exist, this node will be used as root
-         * @method addNode
-         * @param {CGSGNode} node the node to add
-         * @param {CGSGNode} parent the parent node of the new one. If it's null, the node will be the root.
-         * */
-        addNode: function (node, parent) {
-            node._id = this._nextNodeID++;
-            if (this.root === null) {
-                this.root = node;
-            }
-            else {
-                if (parent === null) {
-                    parent = this.root;
-                }
-                parent.addChild(node);
-            }
-        }
-    }
+		/**
+		 * Recursively traverse the nodes and return the one who is under the mouse coordinates
+		 * @method pickNode
+		 * @param {CGSGPosition} mousePosition
+		 * @param {String} condition
+		 * @return {CGSGNode}
+		 * @example
+		 *  this.scenegraph.picknode(mousePosition, 'position.x > 100'); <br/>
+		 *  this.scenegraph.picknode(mousePosition, 'position.x > 100 && this.position.y > 100');
+		 */
+		pickNode : function(mousePosition, condition) {
+			//empty the current selection first
+			//CGSG.selectedNodes = new Array();
+			cgsgClearContext(CGSG.ghostContext);
+			//recursively traverse the nodes to get the selected nodes
+			if (!cgsgExist(this.root)) {
+				return null;
+			}
+			else {
+				return this.root.pickNode(
+					mousePosition.copy(), //position of the cursor on the viewport
+					new CGSGScale(1, 1), //absolute scale for the nodes
+					CGSG.ghostContext, //context for the ghost rendering
+					true, //recursively ?
+					//CGSG.canvas.width / CGSG.displayRatio.x, CGSG.canvas.height / CGSG.displayRatio.y,
+					//dimension of the canvas container
+					condition);  // condition to the picknode be executed
+			}
+		},
+
+		/**
+		 * Recursively traverse the nodes and return the ones who are under the mouse coordinates
+		 * @method pickNodes
+		 * @param {CGSGRegion} region
+		 * @param {String} condition
+		 * @return {Array}
+		 * @example
+		 *  this.scenegraph.picknodes(region, 'position.x > 100'); <br/>
+		 *  this.scenegraph.picknodes(region, 'position.x > 100 && this.position.y > 100');
+		 */
+		pickNodes : function(region, condition) {
+			//empty the current selection first
+			//CGSG.selectedNodes = new Array();
+			cgsgClearContext(CGSG.ghostContext);
+			//recursively traverse the nodes to get the selected nodes
+			if (!cgsgExist(this.root)) {
+				return null;
+			}
+			else {
+				return this.root.pickNodes(
+					region.copy(), //position of the cursor on the viewport
+					new CGSGScale(1, 1), //absolute scale for the nodes
+					CGSG.ghostContext, //context for the ghost rendering
+					true, //recursively ?
+					//CGSG.canvas.width / CGSG.displayRatio.x, CGSG.canvas.height / CGSG.displayRatio.y,
+					//dimension of the canvas container
+					condition);  // condition to the picknode be executed
+			}
+		},
+
+		/**
+		 * Remove the child nodes passed in parameter, from the root nodes
+		 * @method removeNode
+		 * @param {CGSGNode} node the nodes to remove
+		 * @return {Boolean} true if the nodes was found and removed
+		 * */
+		removeNode : function(node) {
+			if (cgsgExist(node)) {
+				this.deselectNode(node);
+				if (this.root !== null) {
+					return this.root.removeChild(node, true);
+				}
+			}
+			return false;
+		},
+
+		/**
+		 * Add a node on the scene.
+		 * If the root does not already exist, this node will be used as root
+		 * @method addNode
+		 * @param {CGSGNode} node the node to add
+		 * @param {CGSGNode} parent the parent node of the new one. If it's null, the node will be the root.
+		 * */
+		addNode : function(node, parent) {
+			node._id = this._nextNodeID++;
+			if (this.root === null) {
+				this.root = node;
+			}
+			else {
+				if (parent === null) {
+					parent = this.root;
+				}
+				parent.addChild(node);
+			}
+		}
+	}
 );
