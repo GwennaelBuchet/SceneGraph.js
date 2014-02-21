@@ -45,29 +45,6 @@ var CGSGNodeSquare = CGSGNode.extend(
             this.resizeTo(width, height);
 
             /**
-             * Color  to fill the square
-             * @property color
-             * @default "#444444"
-             * @type {String}
-             */
-            this.color = "#444444";
-            /**
-             * Color to stroke the square
-             * @property lineColor
-             * @default "#222222"
-             * @type {String}
-             */
-            this.lineColor = "#222222";
-            /**
-             * Width of the line that stroke the square.
-             * Let 0 if you don't want to stroke the square.
-             * @property lineWidth
-             * @default 0
-             * @type {Number}
-             */
-            this.lineWidth = 0;
-
-            /**
              * @property classType
              * @readonly
              * @type {String}
@@ -83,7 +60,7 @@ var CGSGNodeSquare = CGSGNode.extend(
          * */
         render:function (context) {
             //draw this zone
-            context.fillStyle = this.color;
+            context.fillStyle = this.bkgcolor;
 
             //we draw the rect at (0,0) because we have already translated the context to the correct position
             context.fillRect(0, 0, this.dimension.width, this.dimension.height);
@@ -94,6 +71,19 @@ var CGSGNodeSquare = CGSGNode.extend(
                 context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
             }
         },
+
+		/**
+		 * Reload theme (colors, ...) from loaded CSS file
+		 * @method invalidateTheme
+		 * @override
+		 */
+		invalidateTheme : function() {
+			//This node uses only attributes defined in CGSGNode class: color, lineColor, lineWidth.
+			//So no need to reload them again
+
+			//call parent's method
+			this._super();
+		},
 
         /**
          * @method copy

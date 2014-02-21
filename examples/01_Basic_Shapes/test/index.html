@@ -6,13 +6,12 @@
     <meta name="viewport"
           content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
 
-    <!-- Load theme -->
-    <link id="theme" rel="stylesheet" type="text/css" href="../../shared/themes/green/greenTheme.css" title="theme"/>
+    <link id="theme" rel="stylesheet" type="text/css" href="../../shared/themes/gray/grayTheme.css" title="theme"/>
 </head>
 
-<body style="margin:0px">
+<body style="margin:0">
 
-<canvas id="scene" width="400" height="600" style="background-color: #8b8b8b">
+<canvas id="scene" width="800" height="600" style="background-color: #a9b7d3">
     Your browser does not support the canvas element.
 </canvas>
 
@@ -54,8 +53,8 @@
 
 <script type="text/javascript" src="../../../src/utils/math/math.js"></script>
 <script type="text/javascript" src="../../../src/utils/class.handlebox.js"></script>
-
 <script type="text/javascript" src="../../../src/node/class.node.js"></script>
+
 <script type="text/javascript" src="../../../src/node/class.node.line.js"></script>
 <script type="text/javascript" src="../../../src/node/class.node.dom.js"></script>
 <script type="text/javascript" src="../../../src/node/class.node.curveTCB.js"></script>
@@ -76,6 +75,7 @@
 <script type="text/javascript" src="../../../src/class.view.js"></script>
 
 <script type="text/javascript" src="js/class.main.js"></script>
+
 <script type="text/javascript">
     var canvasScene = document.getElementById("scene");
     var game = new CGMain(canvasScene);

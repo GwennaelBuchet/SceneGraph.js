@@ -110,6 +110,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>node/class.node.js</include>
 
                                 <include>node/class.node.dom.js</include>
+                                <include>node/class.node.line.js</include>
                                 <include>node/class.node.curveTCB.js</include>
                                 <include>node/class.node.colorPicker.js</include>
                                 <include>node/class.node.tabMenu.js</include>

@@ -6,11 +6,13 @@ Obviouly, change values :)
 
 .cgsg {
     background-color: #ffffff;
+    /* text color */
+    color: #59a255;
 }
 
 .cgsg-selectionBox {
-    background-color: #86e884;
-    border: 6px #4e844f;
+    background-color: #8ef58b;
+    border: 6px #70be72;
     opacity: 0.4;
 }
 
@@ -19,10 +21,10 @@ Bounding box around the node when it's selected
 */
 .cgsgnode-bbox {
     /* lines */
-    outline: #5fad5c 2px;
+    outline: #73d270 2px;
 
     /* handles */
-    background-color: #6ebd6f;
+    background-color: #81dd82;
     border-width: 6px;
 }
 
@@ -30,10 +32,11 @@ Bounding box around the node when it's selected
 Regular CGSGNode attributes
 */
 .cgsgnode {
-    background-color: #baf6c2;
-    border: 3px solid #74cf76;
+    background-color: #bffcc7;
+    border: 3px solid #80e583;
     border-radius: 2px;
-    opacity: 0.6;
+    opacity: 1;
+    color: #59a255;
 }
 
 /*
@@ -44,4 +47,162 @@ Overed CGSGNode attributes
     border: 2px solid #444;
     border-radius: 2px;
     opacity: 1.0;
+}
+
+/*************************************************************************************
+Specific attributes for CGSGNodeText
+**************************************************************************************/
+
+.h1 {
+    color: #458442;
+
+    text-align: left;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    -webkit-text-stroke: 2px #1e3b1d;
+    text-stroke: 2px #1e3b1d;
+
+    /*
+    var style = CGSG.cssManager.getAttr(this._cls, "font-style");
+    var variant = CGSG.cssManager.getAttr(this._cls, "font-variant");
+    var weight = CGSG.cssManager.getAttr(this._cls, "font-weight");
+    var size = CGSG.cssManager.getAttr(this._cls, "font-size");
+    var family = CGSG.cssManager.getAttr(this._cls, "font-family");
+    var height = CGSG.cssManager.getAttr(this._cls, "line-height");
+    var align = CGSG.cssManager.getAttr(this._cls, "text-align");
+    var transform = CGSG.cssManager.getAttr(this._cls, "text-transform");
+    var strokeWidth = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-width");
+    if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttr(this._cls, "text-stroke-width");
+    var strokeColor = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-color");
+    if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttr(this._cls, "text-stroke-color");
+    var clr = CGSG.cssManager.getAttr(this._cls, "color");
+    */
+}
+
+.h2 {
+    color: #478b46;
+    text-align: left;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-transform: capitalize;
+}
+
+.h3 {
+    color: #59a255;
+
+    text-align: left;
+    font-size: 12px;
+    font-weight : bolder;
+    font-family: Arial, sans-serif;
+}
+
+.h4 {
+    color: #59a255;
+
+    text-align: left;
+    font-size: 10pt;
+    font-style: italic;
+    font-family: Arial sans-serif;
+    font-variant: diagonal-fractions;
+}
+
+.h5 {
+    color: #59a255;
+
+    text-align: left;
+    font-size: 10px;
+    font-style: italic;
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+.h6 {
+    color: #59a255;
+
+    text-align: left;
+    font-size: 10px;
+    font-style: italic;
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+.p {
+    color: #253826;
+    text-align: left;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+/*************************************************************************************
+Specific attributes for CGSGNodeButton
+**************************************************************************************/
+.cgsgnode-button {
+    background: -webkit-linear-gradient(#bffcc7, #82e884); /* For Safari */
+    background: -o-linear-gradient(#bffcc7, #82e884); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#bffcc7, #82e884); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#bffcc7, #82e884); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #959595;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color: #2d9a3d;
+}
+
+.cgsgnode-button-over {
+    background: -webkit-linear-gradient(#80e482, #76d772); /* For Safari */
+    background: -o-linear-gradient(#80e482, #76d772); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#80e482, #76d772); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#80e482, #76d772); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 6px;
+    border: 0 #76d772;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    color: #59a255;
+}
+
+.cgsgnode-button-deactivated {
+    background: -webkit-linear-gradient(#d2fdcd, #c2e6b9); /* For Safari */
+    background: -o-linear-gradient(#d2fdcd, #c2e6b9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#d2fdcd, #c2e6b9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#d2fdcd, #c2e6b9); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #82df7e;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #6fca6d;
+}
+
+.cgsgnode-button-selected {
+    background: -webkit-linear-gradient(#80e482, #76d772); /* For Safari */
+    background: -o-linear-gradient(#80e482, #76d772); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#80e482, #76d772); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#80e482, #76d772); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #76d772;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 13px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #59a255;
 }

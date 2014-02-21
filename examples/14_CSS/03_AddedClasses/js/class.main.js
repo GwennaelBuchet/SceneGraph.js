@@ -47,6 +47,16 @@ var CGMain = CGSGView.extend(
 			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
+
+			/*******
+			 *
+			 * Need to invalidate theme first, before creating the nodes
+			 *
+			 *******/
+
+			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
+			// to load all components in cache
+			this.invalidateTheme();
 		},
 
 		/**
@@ -55,12 +65,11 @@ var CGMain = CGSGView.extend(
 		 */
 		createScene : function() {
 
-			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
-			// to load all components in cache
-			this.invalidateTheme();
-
 			var root = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(root, null);
+
+			var txtNode = new CGSGNodeText(10, 10, "This sample shows how to set a custom CSS class to a node.");
+			root.addChild(txtNode);
 
 			//No set of specific class for that circle, so it will use default colors from the current theme imported from index.html
 			var circle1 = new CGSGNodeCircle(60, 160, 30);
@@ -68,13 +77,12 @@ var CGMain = CGSGView.extend(
 			circle1.isResizable = true;
 			root.addChild(circle1);
 
-
 			this.circle2 = new CGSGNodeCircle(160, 160, 30);
 			this.circle2.isDraggable = true;
 			this.circle2.isResizable = true;
 			root.addChild(this.circle2);
 
-			var button = new CGSGNodeButton(10, 10, "switch style", true);
+			var button = new CGSGNodeButton(10, 60, "switch style of 2nd circle", true);
 			root.addChild(button);
 
 			button.onClick = this.switchCls.bind(this);

@@ -44,6 +44,9 @@ var CGMain = CGSGView.extend(
 			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
+			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
+			// to load all components in cache
+			this.invalidateTheme();
 		},
 
 		/**
@@ -60,27 +63,14 @@ var CGMain = CGSGView.extend(
 
 			//X, Y, WIDTH, HEIGHT
 			var square = new CGSGNodeSquare(20, 20, 150, 150);
-
 			square.isDraggable = true;
 			square.isResizable = true;
-			square.globalAlpha = 0.8;
-			square.color = "lightgray";
-			square.lineWidth = 2;
-			square.lineColor = "gray";
-            //square.setPrecomputed(true);
-            //square.scaleTo(2.0, 1.2);
             this.rootNode.addChild(square);
 
             var s2 = new CGSGNodeSquare(20, 20, 50, 50);
             s2.detectSelectionThreshold = 0; // specific threshold for this node
             s2.isDraggable = true;
             s2.isResizable = true;
-            s2.globalAlpha = 0.9;
-            s2.color = "#A0A0FE";
-            s2.lineWidth = 1;
-            s2.lineColor = "gray";
-            //s2.scaleTo(2.0, 1.2);
-            //s2.setPrecomputed(true);
             square.addChild(s2);
 		}
 	}

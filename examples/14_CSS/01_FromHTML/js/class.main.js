@@ -47,6 +47,16 @@ var CGMain = CGSGView.extend(
 			//resize the canvas to fill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
+
+			/*******
+			 *
+			 * NEW : need to invalidate theme first, before creating the nodes
+			 *
+			 *******/
+
+			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
+			// to load all components in cache
+			this.invalidateTheme();
 		},
 
 		/**
@@ -54,22 +64,22 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function() {
+			var rootNode = new CGSGNode(0, 0);
+			CGSG.sceneGraph.addNode(rootNode);
 
-			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
-			// to load all components in cache
-			this.invalidateTheme();
+			var txtNode = new CGSGNodeText(10, 10, "CSS is loaded from index.html file.");
+			rootNode.addChild(txtNode);
 
 			//No set of specific class for that circle, so it will use default colors from the current theme imported from index.html
-			var circle1 = new CGSGNodeCircle(60, 60, 30);
+			var circle1 = new CGSGNodeCircle(60, 80, 30);
 			circle1.isDraggable = true;
 			circle1.isResizable = true;
-			CGSG.sceneGraph.addNode(circle1, null);
+			rootNode.addChild(circle1, null);
 
-
-			var circle2 = new CGSGNodeCircle(60, 60, 30);
+			var circle2 = new CGSGNodeCircle(140, 80, 30);
 			circle2.isDraggable = true;
 			circle2.isResizable = true;
-			CGSG.sceneGraph.addNode(circle2, null);
+			rootNode.addChild(circle2, null);
 
 			//If we invalidate the cache of cssManager after creation of an element, so wee need to invalidate
 			// the cache for that node, eith by calling myNode.invalidateTheme() or by invalidating theme for

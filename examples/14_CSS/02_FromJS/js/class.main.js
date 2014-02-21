@@ -55,17 +55,22 @@ var CGMain = CGSGView.extend(
 		 */
 		createScene : function() {
 
+			var rootNode = new CGSGNode(0, 0);
+			CGSG.sceneGraph.addNode(rootNode);
+
+			var txtNode = new CGSGNodeText(10, 10, "CSS is loaded from inside JS file.");
+			rootNode.addChild(txtNode);
+
 			//No set of specific class for that circle, so it will use default colors from the current theme imported from index.html
-			var circle1 = new CGSGNodeCircle(60, 60, 30);
+			var circle1 = new CGSGNodeCircle(60, 80, 30);
 			circle1.isDraggable = true;
 			circle1.isResizable = true;
-			CGSG.sceneGraph.addNode(circle1, null);
+			rootNode.addChild(circle1, null);
 
-
-			var circle2 = new CGSGNodeCircle(60, 60, 30);
+			var circle2 = new CGSGNodeCircle(140, 80, 30);
 			circle2.isDraggable = true;
 			circle2.isResizable = true;
-			CGSG.sceneGraph.addNode(circle2, null);
+			rootNode.addChild(circle2, null);
 
 			/**********************
 			 Load CSS file here

@@ -9,8 +9,8 @@ Obviouly, change values :)
 }
 
 .cgsg-selectionBox {
-    background-color: #e86e6d;
-    border: 6px #e86e6d;
+    background-color: #f47473;
+    border: 6px #f47473;
     opacity: 0.4;
 }
 
@@ -19,10 +19,10 @@ Bounding box around the node when it's selected
 */
 .cgsgnode-bbox {
     /* lines */
-    outline: #aa1111 2px;
+    outline: #f06b67 2px;
 
     /* handles */
-    background-color: #ff2566;
+    background-color: #ffabba;
     border-width: 6px;
 }
 
@@ -30,10 +30,11 @@ Bounding box around the node when it's selected
 Regular CGSGNode attributes
 */
 .cgsgnode {
-    background-color: #fbdbdc;
-    border: 3px solid #FF6890;
+    background-color: #fededf;
+    border: 3px solid #ffa7bf;
     border-radius: 2px;
-    opacity: 0.6;
+    opacity: 1;
+    color: #d72e82;
 }
 
 /*
@@ -44,4 +45,80 @@ Overed CGSGNode attributes
     border: 2px solid #444;
     border-radius: 2px;
     opacity: 1.0;
+}
+
+
+/*************************************************************************************
+Specific attributes for CGSGNodeButton
+**************************************************************************************/
+.cgsgnode-button {
+    background: -webkit-linear-gradient(#fededf, #ffa4bb); /* For Safari */
+    background: -o-linear-gradient(#fededf, #ffa4bb); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#fededf, #ffa4bb); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#fededf, #ffa4bb); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #d72e82;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color: #FFF;
+}
+
+.cgsgnode-button-over {
+    background: -webkit-linear-gradient(#ff92b2, #e5718d); /* For Safari */
+    background: -o-linear-gradient(#ff92b2, #e5718d); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ff92b2, #e5718d); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ff92b2, #e5718d); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 13px;
+    font-family: "Times New Roman", Serif;
+    color: #FFF;
+}
+
+.cgsgnode-button-deactivated {
+    background: -webkit-linear-gradient(#ffdfe3, #f3c1ce); /* For Safari */
+    background: -o-linear-gradient(#ffdfe3, #f3c1ce); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffdfe3, #f3c1ce); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffdfe3, #f3c1ce); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #cb5373;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, "Lucida Grande", sans-serif;
+    color: #d08aa3;
+}
+
+.cgsgnode-button-selected {
+    background: -webkit-linear-gradient(#ff92b2, #e5718d); /* For Safari */
+    background: -o-linear-gradient(#ff92b2, #e5718d); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ff92b2, #e5718d); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ff92b2, #e5718d); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial;
+    color: #FFF;
 }

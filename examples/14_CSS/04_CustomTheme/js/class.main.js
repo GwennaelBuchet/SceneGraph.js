@@ -47,6 +47,10 @@ var CGMain = CGSGView.extend(
 			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
+
+			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
+			// to load all components in cache
+			this.invalidateTheme();
 		},
 
 		/**
@@ -54,33 +58,61 @@ var CGMain = CGSGView.extend(
 		 *
 		 */
 		createScene : function() {
-
-			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
-			// to load all components in cache
-			this.invalidateTheme();
-
 			var root = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(root, null);
 
+			var txt = new CGSGNodeText(10, 10, "This sample demonstrates how easy it is to switch between themes");
+			txt.setClass("h4");
+			root.addChild(txt);
+
 			//No set of specific class for that circle, so it will use default colors from the current theme imported from index.html
-			var circle1 = new CGSGNodeCircle(260, 60, 30);
-			circle1.isDraggable = true;
-			circle1.isResizable = true;
-			root.addChild(circle1);
+			var circle = new CGSGNodeCircle(300, 80, 30);
+			circle.isDraggable = true;
+			circle.isResizable = true;
+			root.addChild(circle);
+
+			var ellipse = new CGSGNodeEllipse(340, 55, 90, 50);
+			root.addChild(ellipse);
+
+			var square = new CGSGNodeSquare(440, 50, 60, 60);
+			square.isDraggable = true;
+			square.isResizable = true;
+			root.addChild(square);
+
+			var btn = new CGSGNodeButton(280, 130, "Deactivated");
+			btn.setMode(CGSGButtonMode.DEACTIVATED);
+			btn.isDraggable = true;
+			btn.isResizable = true;
+			root.addChild(btn);
+
+			//add lines
+			var points = [
+				new CGSGPosition(270, 160),
+				new CGSGPosition(310, 200),
+				new CGSGPosition(350, 160),
+				new CGSGPosition(390, 200),
+				new CGSGPosition(430, 160),
+				new CGSGPosition(470, 200)
+			];
+
+			var line = new CGSGNodeLine(points);
+			//line.setPoints(points);
+			line.isDraggable = true;
+			line.isResizable = true;
+			root.addChild(line);
 
 
-			this.circle2 = new CGSGNodeCircle(360, 60, 30);
-			this.circle2.isDraggable = true;
-			this.circle2.isResizable = true;
-			root.addChild(this.circle2);
-
-			var buttonPink = new CGSGNodeButton(10, 10, "switch to Pink theme", true);
+			var buttonPink = new CGSGNodeButton(10, 60, "switch to Pink theme", true);
+			buttonPink.setFixedSize(new CGSGDimension(240, 30));
 			root.addChild(buttonPink);
-			var buttonGreen = new CGSGNodeButton(10, 50, "switch to Green theme", true);
+			var buttonGreen = new CGSGNodeButton(10, 100, "switch to Green theme", true);
+			buttonGreen.setFixedSize(new CGSGDimension(240, 30));
 			root.addChild(buttonGreen);
-			var buttonBlue = new CGSGNodeButton(10, 90, "switch to Blue theme", true);
+			var buttonBlue = new CGSGNodeButton(10, 140, "switch to Blue theme", true);
+			buttonBlue.setFixedSize(new CGSGDimension(240, 30));
 			root.addChild(buttonBlue);
-			var buttonGray = new CGSGNodeButton(10, 130, "switch to Gray (default) theme", true);
+			var buttonGray = new CGSGNodeButton(10, 180, "switch to Gray (default) theme", true);
+			buttonGray.setFixedSize(new CGSGDimension(240, 30));
 			root.addChild(buttonGray);
 
 			var bindSwitchTheme = this.switchTheme.bind(this);
@@ -98,7 +130,7 @@ var CGMain = CGSGView.extend(
 				bindSwitchTheme("../../shared/themes/gray/grayTheme.css");
 			};
 
-			this.currentTheme = "../../shared/themes/gray/grayTheme.css";
+			this.currentTheme = "../../shared/themes/green/greenTheme.css";
 		},
 
 		/**
@@ -120,5 +152,7 @@ var CGMain = CGSGView.extend(
 			//Force scene to be validated again, to redraw objects that were in cache.
 			this.invalidateTheme();
 		}
+
+
 	}
 );

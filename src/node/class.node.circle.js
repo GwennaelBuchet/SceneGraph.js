@@ -56,11 +56,11 @@ var CGSGNodeCircle = CGSGNode.extend(
 		render : function(context) {
 			context.beginPath();
 			context.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
-			context.fillStyle = this.color;
+			context.fillStyle = this.bkgcolor;
 			context.fill();
 			if (this.lineWidth > 0) {
 				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.strokeStyle;
+				context.strokeStyle = this.lineColor;
 				context.stroke();
 			}
 		},
@@ -71,21 +71,8 @@ var CGSGNodeCircle = CGSGNode.extend(
 		 * @override
 		 */
 		invalidateTheme : function() {
-			//Use of "this._cls" class name which define the current CSS class used by this object.
-			var fillStyle = CGSG.cssManager.getAttr(this._cls, "background-color");
-			var lineWidth = CGSG.cssManager.getAttr(this._cls, "border-width");
-			var strokeStyle = CGSG.cssManager.getAttr(this._cls, "border-color");
-
-			//Avoid to override previous value if no one is defined now. So check existence of new one first.
-			if (cgsgExist(fillStyle)) {
-				//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
-				var rgb = CGSGColor.fromString(fillStyle);
-				this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
-			}
-			if (cgsgExist(lineWidth))
-				this.lineWidth = CGSG.cssManager.getNumber(lineWidth);
-			if (cgsgExist(strokeStyle))
-				this.strokeStyle = strokeStyle;
+			//This node uses only attributes defined in CGSGNode class: color, lineColor, lineWidth.
+			//So no need to reload them again
 
 			//call parent's method
 			this._super();

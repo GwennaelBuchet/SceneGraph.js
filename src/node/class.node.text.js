@@ -71,19 +71,13 @@ var CGSGNodeText = CGSGNode.extend(
 			 */
 			this._text = "";
 			/**
-			 * Color for the text
-			 * @property color
-			 * @type {String}
-			 */
-			this.color = "#444444";
-			/**
 			 * Size of the text, in pt
 			 * @property _size
 			 * @default 18
 			 * @type {Number}
 			 * @private
 			 */
-			this._size = 18;
+			this._size;
 			/**
 			 * Possible values : "left", "right", "center"
 			 * @property _textAlign
@@ -91,7 +85,7 @@ var CGSGNodeText = CGSGNode.extend(
 			 * @type {String}
 			 * @private
 			 */
-			this._textAlign = "left";
+			this._textAlign;
 			/**
 			 * Possible values : "top", "hanging", "middle", "alphabetic", "ideographic", "bottom"
 			 * @property _textBaseline
@@ -101,12 +95,18 @@ var CGSGNodeText = CGSGNode.extend(
 			 */
 			this._textBaseline = "top";
 			/**
-			 * @property _stroke
-			 * @default false
-			 * @type {Boolean}
+			 * @property _strokeWidth
+			 * @type {Number}
 			 * @private
 			 */
-			this._stroke = false;
+			this._strokeWidth;
+
+			/**
+			 * @property _strokeColor
+			 * @type {String}
+			 * @private
+			 */
+			this._strokeColor;
 
 			/**
 			 * @property crossed
@@ -129,7 +129,12 @@ var CGSGNodeText = CGSGNode.extend(
 			 * @type {String}
 			 * @private
 			 */
-			this._typo = "Arial";
+			this._typo;
+
+			this._variant;
+			this._weight;
+
+			this._transform;
 			/**
 			 * Max width for the text. If -1, so no max will be used
 			 * @property _maxWidth
@@ -201,8 +206,83 @@ var CGSGNodeText = CGSGNode.extend(
 			 */
 			this.classType = "CGSGNodeText";
 
+			this._cls = "p";
+
 			this.setText(text, mustRecomputeDimension !== false);
 			this.resizeTo(this.getWidth(), this.getHeight());
+		},
+
+		/**
+		 * Reload theme (colors, ...) from loaded CSS file
+		 * @method invalidateTheme
+		 * @override
+		 */
+		invalidateTheme : function() {
+			var style = CGSG.cssManager.getAttr(this._cls, "font-style");
+			var variant = CGSG.cssManager.getAttr(this._cls, "font-variant");
+			var weight = CGSG.cssManager.getAttr(this._cls, "font-weight");
+			var size = CGSG.cssManager.getAttr(this._cls, "font-size");
+			var family = CGSG.cssManager.getAttr(this._cls, "font-family");
+			var height = CGSG.cssManager.getAttr(this._cls, "line-height");
+			var align = CGSG.cssManager.getAttr(this._cls, "text-align");
+			var transform = CGSG.cssManager.getAttr(this._cls, "text-transform");
+			var strokeWidth = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-width");
+			if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttr(this._cls, "text-stroke-width");
+			var strokeColor = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-color");
+			if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttr(this._cls, "text-stroke-color");
+			var clr = CGSG.cssManager.getAttr(this._cls, "color");
+
+			if (cgsgExist(style))
+				this._style = style;
+			if (cgsgExist(variant))
+				this._variant = variant;
+			if (cgsgExist(weight))
+				this._weight = weight;
+			if (cgsgExist(size)) {
+				this._size = size/*CGSG.cssManager.getNumber(size)*/;
+				this._lineHeight = this._size;
+			}
+			if (cgsgExist(family))
+				this._typo = family;
+			if (cgsgExist(height))
+				this._lineHeight = height;
+			if (cgsgExist(align))
+				this._textAlign = align;
+			if (cgsgExist(transform))
+				this._transform = transform;
+			if (cgsgExist(strokeWidth))
+				this._strokeWidth = strokeWidth;
+			if (cgsgExist(strokeColor))
+				this._strokeColor = strokeColor;
+			if (cgsgExist(clr))
+				this.color = clr;
+
+			this._invalidateFont();
+		},
+
+		_invalidateFont : function() {
+			//context.font="italic small-caps bold 12px arial";
+			//[font style] [font weight] [font size] [font face]
+			/*
+			 this._style;
+			 this._variant;
+			 this._weight;
+			 this._size;
+			 this._typo;
+			 this._lineHeight;
+			 this._textAlign;
+			 this._transform;
+			 this._strokeWidth;
+			 this._strokeColor;
+			 this.color;
+			 */
+			var st = (cgsgExist(this._style) && this._style.length > 0) ? (this._style + ' ') : "";
+			var va = (cgsgExist(this._variant) && this._variant.length > 0) ? (this._variant + ' ') : "";
+			var we = (cgsgExist(this._weight) && this._weight.length > 0) ? (this._weight + ' ') : "";
+			var si = (cgsgExist(this._size)) ? (this._size + ' ') : "";
+			var ty = (cgsgExist(this._typo) && this._typo.length > 0) ? (this._typo + ' ') : "";
+
+			this._fullfont = st + va + we + si + ty;
 		},
 
 		/**
@@ -237,19 +317,6 @@ var CGSGNodeText = CGSGNode.extend(
 		},
 
 		/**
-		 * @method setStroke
-		 * @param {Boolean} s
-		 * @param {Boolean} mustRecomputeDimension (default : true)
-		 */
-		setStroke : function(s, mustRecomputeDimension) {
-			this._stroke = s;
-			this.invalidate();
-			if (mustRecomputeDimension !== false) {
-				this.computeRealDimension();
-			}
-		},
-
-		/**
 		 * @method setText
 		 * @param {String} t the new text
 		 * @param {Boolean} mustRecomputeDimension (default : true)
@@ -265,27 +332,6 @@ var CGSGNodeText = CGSGNode.extend(
 			}
 		},
 
-		/**
-		 * @method setSize
-		 * @param {Number} s the new size (an integer)
-		 * @param {Boolean} mustRecomputeDimension (default : true)
-		 */
-		setSize : function(s, mustRecomputeDimension) {
-			this._size = s;
-			this.invalidate();
-			if (mustRecomputeDimension !== false) {
-				this.computeRealDimension();
-			}
-		},
-
-		/**
-		 * @method setTextAlign
-		 * @param {String} a A String (Possible values : "left", "right", "center")
-		 */
-		setTextAlign : function(a) {
-			this._textAlign = a;
-			this.invalidate();
-		},
 
 		/**
 		 * @method setTextBaseline
@@ -313,18 +359,6 @@ var CGSGNodeText = CGSGNode.extend(
 			}
 		},
 
-		/**
-		 * @method setTypo
-		 * @param {String} t "Arial" by default
-		 * @param {Boolean} mustRecomputeDimension (default : true)
-		 */
-		setTypo : function(t, mustRecomputeDimension) {
-			this._typo = t;
-			this.invalidate();
-			if (mustRecomputeDimension !== false) {
-				this.computeRealDimension();
-			}
-		},
 
 		/**
 		 * @method setMaxWidth
@@ -356,6 +390,41 @@ var CGSGNodeText = CGSGNode.extend(
 		},
 
 		/**
+		 * @method setSize
+		 * @param {Number} s the new size (an integer)
+		 * @param {Boolean} mustRecomputeDimension (default : true)
+		 */
+		setSize: function (s, mustRecomputeDimension) {
+			this._size = s;
+			this.invalidate();
+			if (mustRecomputeDimension !== false) {
+				this.computeRealDimension();
+			}
+		},
+
+		/**
+		 * @method setTypo
+		 * @param {String} t "Arial" by default
+		 * @param {Boolean} mustRecomputeDimension (default : true)
+		 */
+		setTypo: function (t, mustRecomputeDimension) {
+			this._typo = t;
+			this.invalidate();
+			if (mustRecomputeDimension !== false) {
+				this.computeRealDimension();
+			}
+		},
+
+		/**
+		 * @method setTextAlign
+		 * @param {String} a A String (Possible values : "left", "right", "center")
+		 */
+		setTextAlign: function (a) {
+			this._textAlign = a;
+			this.invalidate();
+		},
+
+		/**
 		 * compute the real dimension of the text
 		 * @method computeRealDimension
 		 */
@@ -382,6 +451,8 @@ var CGSGNodeText = CGSGNode.extend(
 		 * */
 		render : function(context) {
 			context.fillStyle = this.color;
+			context.strokeStyle = this._strokeColor;
+			context.lineWidth = this._strokeWidth || this.lineWidth;
 
 			this._doRender(context, false);
 		},
@@ -394,10 +465,12 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @private
 		 */
 		_doRender : function(context, isGhostmode) {
-			context.font =
-			this._style + (this._style != null && this._style.length > 0 ? ' ' : '') + this._size + "pt " + this._typo;
+			context.font = this._fullfont;
+			//this._style + (this._style != null && this._style.length > 0 ? ' ' : '') + this._size + "pt " + this._typo;
+
 			context.textAlign = this._textAlign;
 			context.textBaseline = this._textBaseline;
+
 			var s = 0, textW = 0, posX = 0, posY = 0;
 			if (this.crossed) {
 				context.save();
@@ -466,6 +539,12 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @private
 		 */
 		_drawText : function(text, x, y, context, isGhostmode, width) {
+			if (cgsgExist(this._transform)) {
+				if (this._transform === "capitalize") { console.log(text); text = text.capitalize(); console.log(text);}
+				if (this._transform === "lowercase") text = text.toLowerCase();
+				if (this._transform === "uppercase") text = text.toUpperCase();
+			}
+
 			if (isGhostmode) {
 				this._drawSquare(x, y, width, context);
 				return;
@@ -475,12 +554,12 @@ var CGSGNodeText = CGSGNode.extend(
 			//this._drawSquare(x, y, width, context);
 			//context.fillStyle = this.color;
 
-			if (this._stroke) {
+			if (cgsgExist(this._strokeWidth) && this._strokeWidth > 0) {
 				context.strokeText(text, x, y);
 			}
-			else {
+
+			if (cgsgExist(this.color) && this.globalAlpha > 0)
 				context.fillText(text, x, y);
-			}
 
 			var mt = context.measureText(text);
 			if (mt.width > this.metrics.width) {
@@ -680,7 +759,7 @@ var CGSGNodeText = CGSGNode.extend(
 			node.setSize(this._size, false);
 			node.setTextAlign(this._textAlign, false);
 			node.setTextBaseline(this._textBaseline, false);
-			node.setStroke(this._stroke, false);
+			node.setStroke(this._strokeWidth, false);
 			node.setTypo(this._typo, false);
 			node.setMaxWidth(this._maxWidth, false);
 			node.setLineHeight(this._lineHeight, false);

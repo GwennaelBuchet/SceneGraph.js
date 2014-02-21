@@ -39,3 +39,78 @@ Overed CGSGNode attributes
     border-radius: 2px;
     opacity: 1.0;
 }
+
+/*************************************************************************************
+Specific attributes for CGSGNodeButton
+**************************************************************************************/
+.cgsgnode-button {
+    background: -webkit-linear-gradient(#9c9c9c, #575757); /* For Safari */
+    background: -o-linear-gradient(#9c9c9c, #575757); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#9c9c9c, #575757); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#9c9c9c, #575757); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #FFFFFF;
+}
+
+.cgsgnode-button-over {
+    background: -webkit-linear-gradient(#5F5F5F, #4B4B4B); /* For Safari */
+    background: -o-linear-gradient(#5F5F5F, #4B4B4B); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#5F5F5F, #4B4B4B); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#5F5F5F, #4B4B4B); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 4px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 13px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #FFFFFF;
+}
+
+.cgsgnode-button-deactivated {
+    background: -webkit-linear-gradient(#D8D8D8, #B5B5B5); /* For Safari */
+    background: -o-linear-gradient(#D8D8D8, #B5B5B5); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#D8D8D8, #B5B5B5); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#D8D8D8, #B5B5B5); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #FFF;
+}
+
+.cgsgnode-button-selected {
+    background: -webkit-linear-gradient(#4B4B4B, #494949); /* For Safari */
+    background: -o-linear-gradient(#4B4B4B, #494949); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#4B4B4B, #494949); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#4B4B4B, #494949); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+
+    text-align: center;
+    font-size: 12px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #FFF;
+}

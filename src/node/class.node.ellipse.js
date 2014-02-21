@@ -46,29 +46,6 @@ var CGSGNodeEllipse = CGSGNode.extend(
             this.resizeTo(width, height);
 
             /**
-             * Color  to fill the ellipse
-             * @property color
-             * @default "#444444"
-             * @type {String}
-             */
-            this.color = "#444444";
-            /**
-             * Color to stroke the ellipse
-             * @property lineColor
-             * @default "#222222"
-             * @type {String}
-             */
-            this.lineColor = "#222222";
-            /**
-             * Width of the line that stroke the ellipse.
-             * Let 0 if you don't want to stroke the ellipse.
-             * @property lineWidth
-             * @default 0
-             * @type {Number}
-             */
-            this.lineWidth = 0;
-
-            /**
              * @property classType
              * @readonly
              * @type {String}
@@ -86,7 +63,6 @@ var CGSGNodeEllipse = CGSGNode.extend(
          * */
         render : function (context) {
             var centerX = this.dimension.width / 2;
-            var centerY = this.dimension.height / 2;
 
             context.beginPath();
 
@@ -102,7 +78,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
                 0, 0,
                 centerX, 0);
 
-            context.fillStyle = this.color;
+            context.fillStyle = this.bkgcolor;
             context.fill();
             if (this.lineWidth > 0) {
                 context.lineWidth = this.lineWidth;
@@ -112,6 +88,19 @@ var CGSGNodeEllipse = CGSGNode.extend(
 
             context.closePath();
         },
+
+		/**
+		 * Reload theme (colors, ...) from loaded CSS file
+		 * @method invalidateTheme
+		 * @override
+		 */
+		invalidateTheme : function() {
+			//This node uses only attributes defined in CGSGNode class: color, lineColor, lineWidth.
+			//So no need to reload them again
+
+			//call parent's method
+			this._super();
+		},
 
         /**
          * @method copy
