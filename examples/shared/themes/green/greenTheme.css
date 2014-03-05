@@ -53,34 +53,16 @@ Overed CGSGNode attributes
 Specific attributes for CGSGNodeText
 **************************************************************************************/
 
-.h1 {
+.cgsg-h1 {
     color: #458442;
 
     text-align: left;
     font-size: 20px;
     font-family: Arial, sans-serif;
     text-transform: uppercase;
-    -webkit-text-stroke: 2px #1e3b1d;
-    text-stroke: 2px #1e3b1d;
-
-    /*
-    var style = CGSG.cssManager.getAttr(this._cls, "font-style");
-    var variant = CGSG.cssManager.getAttr(this._cls, "font-variant");
-    var weight = CGSG.cssManager.getAttr(this._cls, "font-weight");
-    var size = CGSG.cssManager.getAttr(this._cls, "font-size");
-    var family = CGSG.cssManager.getAttr(this._cls, "font-family");
-    var height = CGSG.cssManager.getAttr(this._cls, "line-height");
-    var align = CGSG.cssManager.getAttr(this._cls, "text-align");
-    var transform = CGSG.cssManager.getAttr(this._cls, "text-transform");
-    var strokeWidth = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-width");
-    if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttr(this._cls, "text-stroke-width");
-    var strokeColor = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-color");
-    if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttr(this._cls, "text-stroke-color");
-    var clr = CGSG.cssManager.getAttr(this._cls, "color");
-    */
 }
 
-.h2 {
+.cgsg-h2 {
     color: #478b46;
     text-align: left;
     font-size: 16px;
@@ -88,16 +70,16 @@ Specific attributes for CGSGNodeText
     text-transform: capitalize;
 }
 
-.h3 {
+.cgsg-h3 {
     color: #59a255;
 
     text-align: left;
     font-size: 12px;
-    font-weight : bolder;
+    font-weight: bolder;
     font-family: Arial, sans-serif;
 }
 
-.h4 {
+.cgsg-h4 {
     color: #59a255;
 
     text-align: left;
@@ -107,7 +89,7 @@ Specific attributes for CGSGNodeText
     font-variant: diagonal-fractions;
 }
 
-.h5 {
+.cgsg-h5 {
     color: #59a255;
 
     text-align: left;
@@ -116,7 +98,7 @@ Specific attributes for CGSGNodeText
     font-family: "Times New Roman", Georgia, Serif;
 }
 
-.h6 {
+.cgsg-h6 {
     color: #59a255;
 
     text-align: left;
@@ -125,7 +107,7 @@ Specific attributes for CGSGNodeText
     font-family: "Times New Roman", Georgia, Serif;
 }
 
-.p {
+.cgsg-p {
     color: #253826;
     text-align: left;
     font-size: 12px;
@@ -135,7 +117,7 @@ Specific attributes for CGSGNodeText
 /*************************************************************************************
 Specific attributes for CGSGNodeButton
 **************************************************************************************/
-.cgsgnode-button {
+.cgsg-button {
     background: -webkit-linear-gradient(#bffcc7, #82e884); /* For Safari */
     background: -o-linear-gradient(#bffcc7, #82e884); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#bffcc7, #82e884); /* For Firefox 3.6 to 15 */
@@ -146,14 +128,16 @@ Specific attributes for CGSGNodeButton
     border: 0 #959595;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-text {
     text-align: center;
     font-size: 12px;
     font-family: Arial, sans-serif;
     color: #2d9a3d;
 }
 
-.cgsgnode-button-over {
+.cgsg-button-over {
     background: -webkit-linear-gradient(#80e482, #76d772); /* For Safari */
     background: -o-linear-gradient(#80e482, #76d772); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#80e482, #76d772); /* For Firefox 3.6 to 15 */
@@ -164,14 +148,16 @@ Specific attributes for CGSGNodeButton
     border: 0 #76d772;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-over-text {
     text-align: center;
     font-size: 13px;
     font-family: Arial, sans-serif;
     color: #59a255;
 }
 
-.cgsgnode-button-deactivated {
+.cgsg-button-deactivated {
     background: -webkit-linear-gradient(#d2fdcd, #c2e6b9); /* For Safari */
     background: -o-linear-gradient(#d2fdcd, #c2e6b9); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#d2fdcd, #c2e6b9); /* For Firefox 3.6 to 15 */
@@ -189,7 +175,15 @@ Specific attributes for CGSGNodeButton
     color: #6fca6d;
 }
 
-.cgsgnode-button-selected {
+.cgsg-button-deactivated-text {
+    text-align: center;
+    font-size: 12px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #6fca6d;
+    opacity: 0.6;
+}
+
+.cgsg-button-selected {
     background: -webkit-linear-gradient(#80e482, #76d772); /* For Safari */
     background: -o-linear-gradient(#80e482, #76d772); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#80e482, #76d772); /* For Firefox 3.6 to 15 */
@@ -200,7 +194,9 @@ Specific attributes for CGSGNodeButton
     border: 0 #76d772;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-selected-text {
     text-align: center;
     font-size: 13px;
     font-family: "Times New Roman", Georgia, Serif;

@@ -52,7 +52,7 @@ Overed CGSGNode attributes
 /*************************************************************************************
 Specific attributes for CGSGNodeButton
 **************************************************************************************/
-.cgsgnode-button {
+.cgsg-button {
     background: -webkit-linear-gradient(#d8e8fb, #a9b7d3); /* For Safari */
     background: -o-linear-gradient(#d8e8fb, #a9b7d3); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#d8e8fb, #a9b7d3); /* For Firefox 3.6 to 15 */
@@ -70,7 +70,7 @@ Specific attributes for CGSGNodeButton
     color: #FFFFFF;
 }
 
-.cgsgnode-button-over {
+.cgsg-button-over {
     background: -webkit-linear-gradient(#acbad7, #8d8eaa); /* For Safari */
     background: -o-linear-gradient(#acbad7, #8d8eaa); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#acbad7, #8d8eaa); /* For Firefox 3.6 to 15 */
@@ -88,7 +88,7 @@ Specific attributes for CGSGNodeButton
     color: #d8e8fb;
 }
 
-.cgsgnode-button-deactivated {
+.cgsg-button-deactivated {
     background: -webkit-linear-gradient(#c2cedd, #aeb5c6); /* For Safari */
     background: -o-linear-gradient(#c2cedd, #aeb5c6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#c2cedd, #aeb5c6); /* For Firefox 3.6 to 15 */
@@ -106,7 +106,7 @@ Specific attributes for CGSGNodeButton
     color: #7c8590;
 }
 
-.cgsgnode-button-selected {
+.cgsg-button-selected {
     background: -webkit-linear-gradient(#acbad7, #8d8eaa); /* For Safari */
     background: -o-linear-gradient(#acbad7, #8d8eaa); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#acbad7, #8d8eaa); /* For Firefox 3.6 to 15 */

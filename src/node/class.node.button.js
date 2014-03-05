@@ -30,16 +30,13 @@ var CGSGNodeButtonProps = CGSGObject.extend(
 			this.lastColor = "";
 			this.shadowColor = "";
 			this.radius = 0;
-			this.fontSize = 12;
-			this.textAlign = "center";
-			this.textColor = "";
-			this.fontFamily = "";
+
 			this.lineWidth = 0;
 			this.lineColor = "";
 			this.paddingV = 10;
 			this.paddingH = 10;
 
-			this.text = "";
+			this.txtNode = new CGSGNodeText(0, 0, "");
 			this.slice = null;
 			/**
 			 * Computed dimensions of the button in the 3 modes.
@@ -158,10 +155,14 @@ var CGSGNodeButton = CGSGNode.extend(
 		initialize : function(x, y, text) {
 			this._super(x, y);
 
-			this._clsNormal = "cgsgnode-button";
-			this._clsOver = "cgsgnode-button-over";
-			this._clsDeactivated = "cgsgnode-button-deactivated";
-			this._clsSelected = "cgsgnode-button-selected";
+			this._clsNormal = "cgsg-button";
+			this._clsOver = "cgsg-button-over";
+			this._clsDeactivated = "cgsg-button-deactivated";
+			this._clsSelected = "cgsg-button-selected";
+			this._clsNormalTxt = "cgsg-button-text";
+			this._clsOverTxt = "cgsg-button-over-text";
+			this._clsDeactivatedTxt = "cgsg-button-deactivated-text";
+			this._clsSelectedTxt = "cgsg-button-selected-text";
 
 			/**
 			 * A properties group for each mode.
@@ -171,20 +172,15 @@ var CGSGNodeButton = CGSGNode.extend(
 			 * @private
 			 */
 			this._props = [
-				new CGSGNodeButtonProps(),
-				new CGSGNodeButtonProps(),
-				new CGSGNodeButtonProps(),
+				//new CGSGNodeButtonProps(),
+				//new CGSGNodeButtonProps(),
+				//new CGSGNodeButtonProps(),
 				new CGSGNodeButtonProps()
 			];
-
-			/**
-			 * Text Node encapsulating the text rendering
-			 * @property _textsNode
-			 * @type {CGSGNodeText}
-			 */
-			this.textNode = new CGSGNodeText(0, 0, "");
-			this.textNode.setTextAlign("center", false);
-			this.textNode.setTextBaseline("middle", false);
+			this._props[0].txtNode.setClass(this._clsNormalTxt);
+			//this._props[1].txtNode.setClass(this._clsOverTxt);
+			//this._props[2].txtNode.setClass(this._clsDeactivatedTxt);
+			//this._props[3].txtNode.setClass(this._clsSelectedTxt);
 
 			this.setTexts(text);
 
@@ -301,8 +297,8 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @return {Array}
 		 */
 		getTexts : function() {
-			var t = [CGSGButtonMode.NORMAL.props.text, CGSGButtonMode.OVER.props.text,
-					 CGSGButtonMode.DEACTIVATED.props.text, CGSGButtonMode.SELECTED.props.text];
+			var t = [CGSGButtonMode.NORMAL.props.txtNode._text, CGSGButtonMode.OVER.props.txtNode._text,
+					 CGSGButtonMode.DEACTIVATED.props.txtNode._text, CGSGButtonMode.SELECTED.props.txtNode._text];
 
 			return t;
 		},
@@ -320,11 +316,23 @@ var CGSGNodeButton = CGSGNode.extend(
 				valuess = [v, v, v, v];
 			}
 
-			this._props[CGSGButtonMode.NORMAL.id].text = valuess[0];
-			this._props[CGSGButtonMode.OVER.id].text = valuess[1];
-			this._props[CGSGButtonMode.DEACTIVATED.id].text = valuess[2];
-			this._props[CGSGButtonMode.SELECTED.id].text = valuess[3];
+			this._props[CGSGButtonMode.NORMAL.id].txtNode.setText(valuess[0], true);
+			//this._props[CGSGButtonMode.OVER.id].txtNode.setText(valuess[1], true);
+			//this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.setText(valuess[2], true);
+			//this._props[CGSGButtonMode.SELECTED.id].txtNode.setText(valuess[3], true);
+
 			this._needRedraw = true;
+			this._mustRecomputeSize = true;
+		},
+
+		/**
+		 * @method setTextClass
+		 * @param mode {CGSGButtonMode}
+		 * @param cls {String} CSS class name
+		 */
+		setTextClass:function(mode, cls) {
+			this._props[mode.id].txtNode.setClass(cls);
+			this.invalidate();
 		},
 
 		/**
@@ -360,25 +368,30 @@ var CGSGNodeButton = CGSGNode.extend(
 				this._mustRecomputeSize = true;
 				this._needRedraw = true;
 
+				this._props[CGSGButtonMode.NORMAL.id].txtNode.invalidateTheme();
+				//this._props[CGSGButtonMode.OVER.id].txtNode.invalidateTheme();
+				//this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.invalidateTheme();
+				//this._props[CGSGButtonMode.SELECTED.id].txtNode.invalidateTheme();
+
 				//Use of "this._cls" class name which define the current CSS class used by this object.
-				this._loadAttrs(this._clsNormal, CGSGButtonMode.NORMAL);
-				this._loadAttrs(this._clsOver, CGSGButtonMode.OVER);
-				this._loadAttrs(this._clsDeactivated, CGSGButtonMode.DEACTIVATED);
-				this._loadAttrs(this._clsSelected, CGSGButtonMode.SELECTED);
+				this._loadAttrs(CGSGButtonMode.NORMAL, this._clsNormal);
+				//this._loadAttrs(CGSGButtonMode.OVER, this._clsOver);
+				//this._loadAttrs(CGSGButtonMode.DEACTIVATED, this._clsDeactivated);
+				//this._loadAttrs(CGSGButtonMode.SELECTED, this._clsSelected);
 
 				this._initShapes();
 			}
 		},
 
 		/**
-		 *
-		 * @param cls
+		 * @method _loadAttrs
 		 * @param mode
+		 * @param cls
 		 * @private
 		 */
-		_loadAttrs : function(cls, mode) {
+		_loadAttrs : function(mode, cls) {
 			var id = mode.id;
-			var props = this._props[id];
+			var prop = this._props[id];
 
 			var fillStyle = CGSG.cssManager.getAttr(cls, "background");
 			var lineWidth = CGSG.cssManager.getAttr(cls, "border-width");
@@ -386,10 +399,6 @@ var CGSGNodeButton = CGSGNode.extend(
 			var paddingV = CGSG.cssManager.getAttr(cls, "padding-top");
 			var paddingH = CGSG.cssManager.getAttr(cls, "padding-left");
 			var radius = CGSG.cssManager.getAttr(cls, "border-radius");
-			var textAlign = CGSG.cssManager.getAttr(cls, "text-align");
-			var fontSize = CGSG.cssManager.getAttr(cls, "font-size");
-			var fontFamily = CGSG.cssManager.getAttr(cls, "font-family");
-			var textColor = CGSG.cssManager.getAttr(cls, "color");
 
 			//Avoid to override previous value if no one is defined now. So check existence of new one first.
 			if (cgsgExist(fillStyle)) {
@@ -399,40 +408,28 @@ var CGSGNodeButton = CGSGNode.extend(
 				var srgb2 = fillStyle.substring(fillStyle.lastIndexOf("rgb"), fillStyle.lastIndexOf(")"));
 				var rgb1 = CGSGColor.fromString(srgb1);
 				var rgb2 = CGSGColor.fromString(srgb2);
-				props.firstColor = CGSGColor.rgb2hex(rgb1.r, rgb1.g, rgb1.b);
-				props.lastColor = CGSGColor.rgb2hex(rgb2.r, rgb2.g, rgb2.b);
+				prop.firstColor = CGSGColor.rgb2hex(rgb1.r, rgb1.g, rgb1.b);
+				prop.lastColor = CGSGColor.rgb2hex(rgb2.r, rgb2.g, rgb2.b);
 			}
 
 			if (cgsgExist(lineWidth))
-				props.lineWidth = CGSG.cssManager.getNumber(lineWidth);
+				prop.lineWidth = CGSG.cssManager.getNumber(lineWidth);
 			if (cgsgExist(lineColor))
-				props.lineColor = lineColor;
+				prop.lineColor = lineColor;
 
 			if (cgsgExist(radius))
-				props.radius = CGSG.cssManager.getNumber(radius);
-
-			if (cgsgExist(fontSize))
-				props.fontSize = CGSG.cssManager.getNumber(fontSize);
-
-			if (cgsgExist(textAlign))
-				props.textAlign = textAlign;
-
-			if (cgsgExist(textColor))
-				props.textColor = textColor;
-
-			if (cgsgExist(fontFamily))
-				props.fontFamily = fontFamily;
+				prop.radius = CGSG.cssManager.getNumber(radius);
 
 			if (cgsgExist(lineWidth))
-				props.lineWidth = CGSG.cssManager.getNumber(lineWidth);
+				prop.lineWidth = CGSG.cssManager.getNumber(lineWidth);
 
 			if (cgsgExist(lineColor))
-				props.lineColor = lineColor;
+				prop.lineColor = lineColor;
 
 			if (cgsgExist(paddingV))
-				props.paddingV = CGSG.cssManager.getNumber(paddingV);
+				prop.paddingV = CGSG.cssManager.getNumber(paddingV);
 			if (cgsgExist(paddingH))
-				props.paddingH = CGSG.cssManager.getNumber(paddingH);
+				prop.paddingH = CGSG.cssManager.getNumber(paddingH);
 		},
 
 		/**
@@ -442,9 +439,9 @@ var CGSGNodeButton = CGSGNode.extend(
 		 */
 		_initShapes : function() {
 			this._initShape(CGSGButtonMode.NORMAL);
-			this._initShape(CGSGButtonMode.OVER);
-			this._initShape(CGSGButtonMode.DEACTIVATED);
-			this._initShape(CGSGButtonMode.SELECTED);
+			//this._initShape(CGSGButtonMode.OVER);
+			//this._initShape(CGSGButtonMode.DEACTIVATED);
+			//this._initShape(CGSGButtonMode.SELECTED);
 			this._mustRecomputeSize = false;
 			this._needRedraw = false;
 		},
@@ -457,12 +454,12 @@ var CGSGNodeButton = CGSGNode.extend(
 		 */
 		_initShape : function(mode) {
 			var id = mode.id;
-			this.textNode.setSize(this._props[id].fontSize, false);
-			this.textNode.setText(this._props[id].text, false);
-			this.textNode.setTypo(this._props[id].fontFamily || "Arial", true);
+			var prop = this._props[id];
+			var txtNode = prop.txtNode;
+			var tW = txtNode.getWidth(), tH = txtNode.getHeight();
 
 			var dPT = this._distancePictoText;
-			if (this._props[id].text === "") {
+			if (prop.text === "") {
 				dPT = 0;
 			}
 
@@ -471,8 +468,8 @@ var CGSGNodeButton = CGSGNode.extend(
 			var hImg = 0;
 			if (this._picto.isLoaded) {
 				if (this._slices.length > 0) {
-					this._picto.setSlice(this._props[id].slice.position.x, this._props[id].slice.position.y,
-										 this._props[id].slice.dimension.width, this._props[id].slice.dimension.height,
+					this._picto.setSlice(prop.slice.position.x, prop.slice.position.y,
+										 prop.slice.dimension.width, prop.slice.dimension.height,
 										 true);
 				}
 
@@ -485,27 +482,27 @@ var CGSGNodeButton = CGSGNode.extend(
 
 			if (this._mustRecomputeSize) {
 				if (this._fixedSize) {
-					this.dimension.resizeTo(this._props[id].dimension.width, this._props[id].dimension.height);
+					this.dimension.resizeTo(prop.dimension.width, prop.dimension.height);
 					this._isDimensionChanged = true;
 				}
 				else {
 					this.dimension.resizeTo(
-						(2 * this._props[id].paddingH) + decalPictoX +
-						this.textNode.getWidth() * Math.abs(this._pictoPosition.decalX) +
-						this._pictoPosition.computeWidth(this.textNode.getWidth(), wImg),
-						(2 * this._props[id].paddingV) + decalPictoY +
-						this.textNode.getHeight() * Math.abs(this._pictoPosition.decalY) +
-						this._pictoPosition.computeHeight(this.textNode.getHeight(), hImg));
+						(2 * prop.paddingH) + decalPictoX +
+						tW * Math.abs(this._pictoPosition.decalX) +
+						this._pictoPosition.computeWidth(tW, wImg),
+						(2 * prop.paddingV) + decalPictoY +
+						tH * Math.abs(this._pictoPosition.decalY) +
+						this._pictoPosition.computeHeight(tH, hImg));
 
-					this._props[id].dimension = this.dimension.copy();
+					prop.dimension = this.dimension.copy();
 					this._isDimensionChanged = true;
 
 					//this.setFixedSize(this.dimension);
 				}
 			}
 
-			this._tmpCanvases[id].width = this.dimension.width + 2 * this._props[id].radius;
-			this._tmpCanvases[id].height = this.dimension.height + 2 * this._props[id].radius;
+			this._tmpCanvases[id].width = this.dimension.width + 2 * prop.radius;
+			this._tmpCanvases[id].height = this.dimension.height + 2 * prop.radius;
 			var tmpContext = this._tmpCanvases[id].getContext('2d');
 
 			cgsgClearContext(tmpContext);
@@ -513,7 +510,7 @@ var CGSGNodeButton = CGSGNode.extend(
 			//render the panel
 			tmpContext.save();
 			{
-				var r = this._props[id].radius;
+				var r = prop.radius;
 				tmpContext.translate(-r, -r);
 				tmpContext.beginPath();
 
@@ -542,12 +539,12 @@ var CGSGNodeButton = CGSGNode.extend(
 				tmpContext.closePath();
 
 				var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
-				gradient.addColorStop(0, this._props[id].firstColor);
-				gradient.addColorStop(1, this._props[id].lastColor);
+				gradient.addColorStop(0, prop.firstColor);
+				gradient.addColorStop(1, prop.lastColor);
 				tmpContext.fillStyle = gradient;
 
 				if (cgsgExist(this._props[id].shadowColor)) {
-					tmpContext.shadowColor = this._props[id].shadowColor;
+					tmpContext.shadowColor = prop.shadowColor;
 					tmpContext.shadowBlur = 10;
 					tmpContext.shadowOffsetX = 0;
 					tmpContext.shadowOffsetY = 0;
@@ -555,43 +552,43 @@ var CGSGNodeButton = CGSGNode.extend(
 
 				tmpContext.fill();
 
-				if (cgsgExist(this._props[id].lineColor) && this._props[id].lineColor > 0) {
-					tmpContext.strokeStyle = this._props[id].lineColor;
-					tmpContext.lineWidth = this._props[id].lineWidth;
+				if (cgsgExist(this._props[id].lineColor) && prop.lineColor > 0) {
+					tmpContext.strokeStyle = prop.lineColor;
+					tmpContext.lineWidth = prop.lineWidth;
 					tmpContext.stroke();
 				}
 			}
 			tmpContext.restore();
 
-			this.textNode.color = this._props[id].textColor;
+			txtNode.color = prop.textColor;
 
-			var w = this.textNode.getWidth();
-			var h = this.textNode.getHeight() - this.textNode._size;
+			var w = tW;
+			var h = tH - txtNode._size;
 
 			var textX = (-this._pictoPosition.decalX * decalPictoX + this.getWidth() - w) / 2;
 			var textY = (-this._pictoPosition.decalY * decalPictoY + this.getHeight() - h) / 2;
-			//(this.getHeight() - (this.textNode.getHeight() - this.textNode._size)) / 2;
+			//(this.getHeight() - (txtNode.getHeight() - txtNode._size)) / 2;
 
 			if (this._picto.isLoaded) {
 				var ctX = w / 2;
-				var ctY = h / 2;
+				//var ctY = h / 2;
 
 				this._picto.translateTo(
 					textX + ctX + this._pictoPosition.decalX * (ctX + dPT + (1 - this._pictoPosition.dt) * wImg) -
 					this._pictoPosition.dy * wImg / 2,
 					//textY + (h - hImg) / 2
 					(1 - this._pictoPosition.dy) * (textY + (h - hImg) / 2)
-						+ this._pictoPosition.dy * (textY - this.textNode._size / 2
+						+ this._pictoPosition.dy * (textY - txtNode._size / 2
 														- this._pictoPosition.dt * (dPT + hImg) +
-													(1 - this._pictoPosition.dt) * (this.textNode.getHeight() + dPT))
-					//+ this._pictoPosition.dy * (textY - this.textNode._size / 2 - ( this._pictoPosition.dt) * this.textNode.getHeight())
+													(1 - this._pictoPosition.dt) * (tH + dPT))
+					//+ this._pictoPosition.dy * (textY - txtNode._size / 2 - ( this._pictoPosition.dt) * txtNode.getHeight())
 				);
 
 				this._picto.doRender(tmpContext);
 			}
 
-			this.textNode.translateTo(textX, textY, false);
-			this.textNode.doRender(tmpContext);
+			txtNode.translateTo(textX, textY, false);
+			txtNode.doRender(tmpContext);
 		},
 
 		/**

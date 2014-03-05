@@ -61,8 +61,10 @@ var CGMain = CGSGView.extend(
 			var root = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(root, null);
 
-			var txt = new CGSGNodeText(10, 10, "This sample demonstrates how easy it is to switch between themes");
-			txt.setClass("h4");
+			/*var txt = new CGSGNodeText(10, 10, "This sample demonstrates how easy it is to switch between themes");
+			txt.setClass("cgsg-h1");
+			txt.isDraggable = true;
+			txt.isResizable = true;
 			root.addChild(txt);
 
 			//No set of specific class for that circle, so it will use default colors from the current theme imported from index.html
@@ -77,14 +79,14 @@ var CGMain = CGSGView.extend(
 			var square = new CGSGNodeSquare(440, 50, 60, 60);
 			square.isDraggable = true;
 			square.isResizable = true;
-			root.addChild(square);
+			root.addChild(square);*/
 
-			var btn = new CGSGNodeButton(280, 130, "Deactivated");
-			btn.setMode(CGSGButtonMode.DEACTIVATED);
+			var btn = new CGSGNodeButton(270, 130, "Deactivated");
+			//btn.setMode(CGSGButtonMode.DEACTIVATED);
 			btn.isDraggable = true;
 			btn.isResizable = true;
 			root.addChild(btn);
-
+/*
 			//add lines
 			var points = [
 				new CGSGPosition(270, 160),
@@ -100,6 +102,28 @@ var CGMain = CGSGView.extend(
 			line.isDraggable = true;
 			line.isResizable = true;
 			root.addChild(line);
+
+			var t1 = new CGSGNodeText(270, 230, "Text H1");
+			t1.setClass("cgsg-h1");
+			root.addChild(t1);
+			var t2 = new CGSGNodeText(270, 260, "Text H2");
+			t2.setClass("cgsg-h2");
+			root.addChild(t2);
+			var t3 = new CGSGNodeText(270, 290, "Text H3");
+			t3.setClass("cgsg-h3");
+			root.addChild(t3);
+			var t4 = new CGSGNodeText(270, 320, "Text H4");
+			t4.setClass("cgsg-h4");
+			root.addChild(t4);
+			var t5 = new CGSGNodeText(400, 230, "Text H5");
+			t5.setClass("cgsg-h5");
+			root.addChild(t5);
+			var t6 = new CGSGNodeText(400, 260, "Text H6");
+			t6.setClass("cgsg-h6");
+			root.addChild(t6);
+			var tp = new CGSGNodeText(400, 290, "Text Paragraph");
+			tp.setClass("cgsg-p");
+			root.addChild(tp);
 
 
 			var buttonPink = new CGSGNodeButton(10, 60, "switch to Pink theme", true);
@@ -131,6 +155,7 @@ var CGMain = CGSGView.extend(
 			};
 
 			this.currentTheme = "../../shared/themes/green/greenTheme.css";
+			*/
 		},
 
 		/**
