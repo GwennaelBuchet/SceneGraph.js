@@ -37,300 +37,289 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGNodeImage = CGSGNode.extend(
-    {
-        initialize: function (x, y, urlImage) {
-            this._super(x, y);
+	{
+		initialize : function(x, y, urlImage) {
+			this._super(x, y);
 
-            /**
-             * @property classType
-             * @type {String}
-             */
-            this.classType = "CGSGNodeImage";
+			/**
+			 * @property classType
+			 * @type {String}
+			 */
+			this.classType = "CGSGNodeImage";
 
-            /**
-             * the selected effect to be applied
-             * @property effect
-             * @default null
-             * @type {CGSGEffect}
-             */
-            this.effect = null;
-            /**
-             * URL of the image
-             * @property _urlImage
-             * @type {String}
-             * @private
-             */
-            this._urlImage = urlImage;
+			/**
+			 * the selected effect to be applied
+			 * @property effect
+			 * @default null
+			 * @type {CGSGEffect}
+			 */
+			this.effect = null;
+			/**
+			 * URL of the image
+			 * @property _urlImage
+			 * @type {String}
+			 * @private
+			 */
+			this._urlImage = urlImage;
 
-            /**
-             * @property isProportionalResize
-             * @default true
-             * @type {Boolean}
-             */
-            this.isProportionalResize = true;
-            /**
-             * the image object itself
-             * @property _img
-             * @type {Image}
-             * @private
-             */
-            this._img = new Image();
-            /**
-             * the region on the image to render
-             * @property slice
-             * @type {CGSGRegion}
-             */
-            this.slice = new CGSGRegion(0, 0, 0, 0);
+			/**
+			 * @property isProportionalResize
+			 * @default true
+			 * @type {Boolean}
+			 */
+			this.isProportionalResize = true;
+			/**
+			 * the image object itself
+			 * @property _img
+			 * @type {Image}
+			 * @private
+			 */
+			this._img = new Image();
+			/**
+			 * the region on the image to render
+			 * @property slice
+			 * @type {CGSGRegion}
+			 */
+			this.slice = new CGSGRegion(0, 0, 0, 0);
 
-            /**
-             * @property _isLoaded
-             * @type {Boolean}
-             * @private
-             */
-            this.isLoaded = false;
+			/**
+			 * @property _isLoaded
+			 * @type {Boolean}
+			 * @private
+			 */
+			this.isLoaded = false;
 
-            /**
-             * Event Fired when the image is finally loaded
-             * @property onLoadEnd
-             * @default null
-             * @type {Function} {node:this}
-             */
-            this.onLoadEnd = null;
-            /**
-             * Event Fired when the image failed to load
-             * @property onLoadError
-             * @default null
-             * @type {Function} {node:this}
-             */
-            this.onLoadError = null;
-            /**
-             * Event Fired when the image loading is aborted
-             * @property onLoadAbort
-             * @default null
-             * @type {Function} {node:this}
-             */
-            this.onLoadAbort = null;
+			/**
+			 * Event Fired when the image is finally loaded
+			 * @property onLoadEnd
+			 * @default null
+			 * @type {Function} {node:this}
+			 */
+			this.onLoadEnd = null;
+			/**
+			 * Event Fired when the image failed to load
+			 * @property onLoadError
+			 * @default null
+			 * @type {Function} {node:this}
+			 */
+			this.onLoadError = null;
+			/**
+			 * Event Fired when the image loading is aborted
+			 * @property onLoadAbort
+			 * @default null
+			 * @type {Function} {node:this}
+			 */
+			this.onLoadAbort = null;
 
-            ///// INITIALIZATION //////
-            //finally load the image
-            if (cgsgExist(this._urlImage) && this._urlImage != "") {
-                this.setURL(urlImage);
-            }
-        },
+			///// INITIALIZATION //////
+			//finally load the image
+			if (cgsgExist(this._urlImage) && this._urlImage != "") {
+				this.setURL(urlImage);
+			}
+		},
 
-        /**
-         * used to call delegate method when the image is finally loaded
-         * @private
-         * @method _createDelegate
-         * @param objectContext
-         * @param delegateMethod
-         * @return {Function}
-         */
-        _createDelegate: function (objectContext, delegateMethod) {
-            return function () {
-                return delegateMethod.call(objectContext);
-            }
-        },
+		/**
+		 * used to call delegate method when the image is finally loaded
+		 * @private
+		 * @method _createDelegate
+		 * @param objectContext
+		 * @param delegateMethod
+		 * @return {Function}
+		 */
+		_createDelegate : function(objectContext, delegateMethod) {
+			return function() {
+				return delegateMethod.call(objectContext);
+			}
+		},
 
-        /**
-         * fired when the image is loaded.
-         * Check the dimension of the image and fired the onLoadEnd event
-         * @private
-         * @method _onImageLoaded
-         * @param event {Event}
-         */
-        _onImageLoaded: function (event) {
-            this.checkDimension();
-            this.isLoaded = true;
+		/**
+		 * fired when the image is loaded.
+		 * Check the dimension of the image and fired the onLoadEnd event
+		 * @private
+		 * @method _onImageLoaded
+		 * @param event {Event}
+		 */
+		_onImageLoaded : function(event) {
+			this.checkDimension();
+			this.isLoaded = true;
 
-            if (this.onLoadEnd !== null) {
-                this.onLoadEnd({node: this, event: event});
-            }
-            this.invalidate();
-        },
+			cgsgImgManager.set(this._urlImage, this.img);
 
-        /**
-         * To be overrided when the image failed to load
-         * @method _onImageError
-         * @protected
-         * @param event {Event}
-         */
-        _onImageError: function (event) {
-            if (this.onLoadError !== null) {
-                this.onLoadError({node: this, event: event});
-            }
-        },
-        /**
-         * To be overrided when the image loading is aborted
-         * @method _onImageAbort
-         * @protected
-         * @param event {Event}
-         */
-        _onImageAbort: function (event) {
-            if (this.onLoadAbort !== null) {
-                this.onLoadAbort({node: this, event: event});
-            }
-        },
+			if (this.onLoadEnd !== null) {
+				this.onLoadEnd({node : this, event : event});
+			}
+			this.invalidate();
+		},
 
-        /**
-         * Check the true dimension of the image and fill the this.dimension property with it,
-         * only if dimension is not already defined in the constructor
-         * @method checkDimension
-         */
-        checkDimension: function () {
-            if (!this._isDimensionChanged) {
-                //if no width or height are specified in the constructor
-                if (this.dimension.width <= 0 && this.dimension.height <= 0) {
-                    this.dimension.width = this._img.width;
-                    this.dimension.height = this._img.height;
-                }
-            }
+		/**
+		 * To be overrided when the image failed to load
+		 * @method _onImageError
+		 * @protected
+		 * @param event {Event}
+		 */
+		_onImageError : function(event) {
+			if (this.onLoadError !== null) {
+				this.onLoadError({node : this, event : event});
+			}
+		},
 
-            //if no slice was specified, adjust it with the full image
-            if (this.slice.dimension.width <= 0 || this.slice.dimension.height <= 0) {
-                this.slice.dimension.width = this._img.width;
-                this.slice.dimension.height = this._img.height;
-            }
-        },
+		/**
+		 * To be overrided when the image loading is aborted
+		 * @method _onImageAbort
+		 * @protected
+		 * @param event {Event}
+		 */
+		_onImageAbort : function(event) {
+			if (this.onLoadAbort !== null) {
+				this.onLoadAbort({node : this, event : event});
+			}
+		},
 
-        /**
-         * Set the slice into the image
-         * @method setSlice
-         * @param {Number} x
-         * @param {Number} y
-         * @param {Number} w
-         * @param {Number} h
-         * @param {Boolean} updateDimension If true, the dimension will be set with the dimension of the slice
-         */
-        setSlice: function (x, y, w, h, updateDimension) {
-            this.slice.position.x = x;
-            this.slice.position.y = y;
-            this.slice.dimension.width = w;
-            this.slice.dimension.height = h;
+		/**
+		 * Check the true dimension of the image and fill the this.dimension property with it,
+		 * only if dimension is not already defined in the constructor
+		 * @method checkDimension
+		 */
+		checkDimension : function() {
+			if (!this._isDimensionChanged) {
+				//if no width or height are specified in the constructor
+				if (this.dimension.width <= 0 && this.dimension.height <= 0) {
+					this.dimension.width = this._img.width;
+					this.dimension.height = this._img.height;
+				}
+			}
 
-            if (updateDimension) {
-                this.resizeTo(w, h);
-            }
+			//if no slice was specified, adjust it with the full image
+			if (this.slice.dimension.width <= 0 || this.slice.dimension.height <= 0) {
+				this.slice.dimension.width = this._img.width;
+				this.slice.dimension.height = this._img.height;
+			}
+		},
 
-            this.invalidate();
-        },
+		/**
+		 * Set the slice into the image
+		 * @method setSlice
+		 * @param {Number} x
+		 * @param {Number} y
+		 * @param {Number} w
+		 * @param {Number} h
+		 * @param {Boolean} updateDimension If true, the dimension will be set with the dimension of the slice
+		 */
+		setSlice : function(x, y, w, h, updateDimension) {
+			this.slice.position.x = x;
+			this.slice.position.y = y;
+			this.slice.dimension.width = w;
+			this.slice.dimension.height = h;
 
-        /**
-         * @public
-         * @method setImage
-         * @param {Image} newImage new Image object. Must be already loaded before
-         */
-        setImage: function (newImage) {
-            this._img = newImage;
-            if (cgsgExist(this._img)) {
-                this._urlImage = this._img.src;
-                this.isLoaded = true;
-                this.checkDimension();
-                this.invalidate();
-            }
-        },
+			if (updateDimension) {
+				this.resizeTo(w, h);
+			}
 
-        /**
-         * Set a new URL for the image of the node
-         * @method setURL
-         * @param {String} url
-         */
-        setURL: function (url) {
-            this._urlImage = url;
+			this.invalidate();
+		},
 
-            delete(this._img);
-            this.isLoaded = false;
-            this._img = new Image();
+		/**
+		 * @public
+		 * @method setImage
+		 * @param {Image} newImage new Image object. Must be already loaded before
+		 */
+		setImage : function(newImage) {
+			this._img = newImage;
+			if (cgsgExist(this._img)) {
+				this._urlImage = this._img.src;
+				this.isLoaded = true;
+				this.checkDimension();
+				this.invalidate();
+			}
+		},
 
-            this._img.onload = this._createDelegate(this, this._onImageLoaded);
-            this._img.onerror = this._createDelegate(this, this._onImageError);
-            this._img.onabort = this._createDelegate(this, this._onImageAbort);
-            this._img.src = this._urlImage;
-        },
+		/**
+		 * Set a new URL for the image of the node
+		 * @method setURL
+		 * @param {String} url
+		 */
+		setURL : function(url) {
+			this._urlImage = url;
 
-        /**
-         * return the Javascript image encapsulated in this node
-         * @method getImage
-         * @return {Image}
-         */
-        getImage : function() {
-            return this._img;
-        },
+			//first, check if the image was not already downloaded elsewhere in the application
+			this._img = cgsgImgManager.get(url);
+			if (!cgsgExist(this._img)) {
+				delete(this._img);
+				this.isLoaded = false;
+				this._img = new Image();
 
-        /**
-         * Must be defined to allow the scene graph to render the image nodes
-         * @protected
-         * @method render
-         * @param {CanvasRenderingContext2D} context the context to render on
-         * */
-        render: function (context) {
-            if (this.isLoaded && this._img.src != "" && !this.slice.isEmpty()) {
-                context.drawImage(
-                    this._img, // image
-                    this.slice.position.x, this.slice.position.y, // start position on the image
-                    this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
-                    0, 0,
-                    // position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
-                    this.getWidth(), this.getHeight()                // dimension on the screen
-                );
-            }
-        },
+				this._img.onload = this._createDelegate(this, this._onImageLoaded);
+				this._img.onerror = this._createDelegate(this, this._onImageError);
+				this._img.onabort = this._createDelegate(this, this._onImageAbort);
+				this._img.src = this._urlImage;
+			}
+		},
 
-        /**
-         * @public
-         * @method setEffect
-         * @param {CGSGEffect} effect
-         */
-        setEffect: function (effect) {
-            this.effect = effect;
-        },
+		/**
+		 * return the Javascript image encapsulated in this node
+		 * @method getImage
+		 * @return {Image}
+		 */
+		getImage : function() {
+			return this._img;
+		},
 
-        /**
-         * Increase/decrease current dimension with adding values. It is used when the user resize
-         * the image with the handle boxes
-         * @public
-         * @method resizeWith
-         * @param {Number} width
-         * @param {Number} height
-         * */
-        /*resizeWith:function (width, height) {
-         this._super(width, height);
-         this.invalidate();
-         },*/
+		/**
+		 * Must be defined to allow the scene graph to render the image nodes
+		 * @protected
+		 * @method render
+		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * */
+		render : function(context) {
+			if (this.isLoaded && this._img.src != "" && !this.slice.isEmpty()) {
+				context.drawImage(
+					this._img, // image
+					this.slice.position.x, this.slice.position.y, // start position on the image
+					this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
+					0, 0,
+					// position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
+					this.getWidth(), this.getHeight()                // dimension on the screen
+				);
+			}
+		},
 
-        /**
-         * @public
-         * @method copy
-         * @return {CGSGNodeImage} a copy of this node
-         */
-        copy: function (node) {
-            if (!cgsgExist(node)) {
-                node = new CGSGNodeImage(this.position.x, this.position.y, null);
-            }
-            //call the super method
-            node = this._super(node);
+		/**
+		 * @public
+		 * @method setEffect
+		 * @param {CGSGEffect} effect
+		 */
+		setEffect : function(effect) {
+			this.effect = effect;
+		},
 
-            node._urlImage = this._urlImage;
+		/**
+		 * @public
+		 * @method copy
+		 * @return {CGSGNodeImage} a copy of this node
+		 */
+		copy : function(node) {
+			if (!cgsgExist(node)) {
+				node = new CGSGNodeImage(this.position.x, this.position.y, null);
+			}
+			//call the super method
+			node = this._super(node);
 
-            node.effect = this.effect;
-            node.isProportionalResize = this.isProportionalResize;
-            node._isLoaded = this.isLoaded;
+			node._urlImage = this._urlImage;
 
-            //the image object itself
-            node.setImage(this._img);
+			node.effect = this.effect;
+			node.isProportionalResize = this.isProportionalResize;
+			node._isLoaded = this.isLoaded;
 
-            node.setSlice(this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
-                this.slice.dimension.height, true);
-            node.resizeTo(this.dimension.width, this.dimension.height);
+			//the image object itself
+			node.setImage(this._img);
 
-            node.onLoadEnd = this.onLoadEnd;
-            /*if (this.urlImage !== undefined && this.urlImage !== null && this.urlImage != "") {
-             node.img.onload = node.createDelegate(node, node._onImageLoaded, node.context);
-             //this.img.onload = this._onImageLoaded(context);
-             node.img.src = node.urlImage;
-             }*/
+			node.setSlice(this.slice.position.x, this.slice.position.y, this.slice.dimension.width,
+						  this.slice.dimension.height, true);
+			node.resizeTo(this.dimension.width, this.dimension.height);
 
-            return node;
-        }
-    }
+			node.onLoadEnd = this.onLoadEnd;
+
+			return node;
+		}
+	}
 );

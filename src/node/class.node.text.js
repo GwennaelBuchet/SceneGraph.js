@@ -207,7 +207,7 @@ var CGSGNodeText = CGSGNode.extend(
 			 */
 			this.classType = "CGSGNodeText";
 
-			this._cls = "cgsg-p";
+			this.setClass("cgsg-p");
 
 			this.setText(text, mustRecomputeDimension !== false);
 			this.resizeTo(this.getWidth(), this.getHeight());
@@ -221,18 +221,18 @@ var CGSGNodeText = CGSGNode.extend(
 		invalidateTheme : function() {
 			this._super();
 
-			var style = CGSG.cssManager.getAttr(this._cls, "font-style");
-			var variant = CGSG.cssManager.getAttr(this._cls, "font-variant");
-			var weight = CGSG.cssManager.getAttr(this._cls, "font-weight");
-			var size = CGSG.cssManager.getAttr(this._cls, "font-size");
-			var family = CGSG.cssManager.getAttr(this._cls, "font-family");
-			var height = CGSG.cssManager.getAttr(this._cls, "line-height");
-			var align = CGSG.cssManager.getAttr(this._cls, "text-align");
-			var transform = CGSG.cssManager.getAttr(this._cls, "text-transform");
-			var strokeWidth = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-width");
-			if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttr(this._cls, "text-stroke-width");
-			var strokeColor = CGSG.cssManager.getAttr(this._cls, "-webkit-text-stroke-color");
-			if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttr(this._cls, "text-stroke-color");
+			var style = CGSG.cssManager.getAttrInArray(this._cls, "font-style");
+			var variant = CGSG.cssManager.getAttrInArray(this._cls, "font-variant");
+			var weight = CGSG.cssManager.getAttrInArray(this._cls, "font-weight");
+			var size = CGSG.cssManager.getAttrInArray(this._cls, "font-size");
+			var family = CGSG.cssManager.getAttrInArray(this._cls, "font-family");
+			var height = CGSG.cssManager.getAttrInArray(this._cls, "line-height");
+			var align = CGSG.cssManager.getAttrInArray(this._cls, "text-align");
+			var transform = CGSG.cssManager.getAttrInArray(this._cls, "text-transform");
+			var strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, "-webkit-text-stroke-width");
+			if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-width");
+			var strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "-webkit-text-stroke-color");
+			if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-color");
 
 			if (cgsgExist(style))
 				this._style = style;

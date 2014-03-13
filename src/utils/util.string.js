@@ -25,6 +25,17 @@
 
 
 /**
+ * Return same String without string in parameter
+ * @method String.prototype.without
+ * @param t {String}
+ * @return {String}
+ */
+String.prototype.without = function(t) {
+	var r = this.replace(t,"");
+	return r;
+};
+
+/**
  * Return same String by replacing space, dot and minus by the following letter uppercased
  * @method String.prototype.collapse
  * @return {String}

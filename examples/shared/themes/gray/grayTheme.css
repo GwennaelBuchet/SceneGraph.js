@@ -54,10 +54,12 @@ Specific attributes for CGSGNodeButton
     border: 0 #4B4B4B;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-text {
     text-align: center;
-    font-size: 12px;
-    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     color: #FFFFFF;
 }
 
@@ -68,15 +70,17 @@ Specific attributes for CGSGNodeButton
     background: linear-gradient(#5F5F5F, #4B4B4B); /* Standard syntax */
 
     padding-top: 12px;
-    padding-left: 4px;
+    padding-left: 12px;
     border: 0 #4B4B4B;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-over-text {
     text-align: center;
-    font-size: 13px;
-    font-family: "Times New Roman", Georgia, Serif;
-    color: #FFFFFF;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: #FFF;
 }
 
 .cgsg-button-deactivated {
@@ -90,10 +94,12 @@ Specific attributes for CGSGNodeButton
     border: 0 #4B4B4B;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-deactivated-text {
     text-align: center;
-    font-size: 12px;
-    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     color: #FFF;
 }
 
@@ -108,9 +114,26 @@ Specific attributes for CGSGNodeButton
     border: 0 #4B4B4B;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-selected-text {
     text-align: center;
-    font-size: 12px;
-    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     color: #FFF;
+}
+
+/**
+At the time I wrote this CSS integration, "icon" attribute was not supported by current modern browsers.
+So I had to use "list-style-image" attribute.
+*/
+.cgsg-button-icon-alert {
+    list-style-image: url("../../img/alert.png");
+
+}
+.cgsg-button-icon-error {
+    list-style-image: url("../../img/error.png");
+}
+.cgsg-button-icon-ok {
+    list-style-image: url("../../img/ok.png");
 }

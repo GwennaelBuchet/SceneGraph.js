@@ -61,7 +61,7 @@ var CGMain = CGSGView.extend(
 			var root = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(root, null);
 
-			/*var txt = new CGSGNodeText(10, 10, "This sample demonstrates how easy it is to switch between themes");
+			var txt = new CGSGNodeText(10, 10, "This sample demonstrates how easy it is to switch between themes");
 			txt.setClass("cgsg-h1");
 			txt.isDraggable = true;
 			txt.isResizable = true;
@@ -79,22 +79,29 @@ var CGMain = CGSGView.extend(
 			var square = new CGSGNodeSquare(440, 50, 60, 60);
 			square.isDraggable = true;
 			square.isResizable = true;
-			root.addChild(square);*/
+			root.addChild(square);
 
-			var btn = new CGSGNodeButton(270, 130, "Deactivated");
-			//btn.setMode(CGSGButtonMode.DEACTIVATED);
-			btn.isDraggable = true;
-			btn.isResizable = true;
-			root.addChild(btn);
-/*
+			var btnDeactivated = new CGSGNodeButton(270, 130, "Deactivated");
+			btnDeactivated.setMode(CGSGButtonMode.DEACTIVATED);
+			btnDeactivated.isDraggable = true;
+			btnDeactivated.isResizable = true;
+			root.addChild(btnDeactivated);
+
+			var buttonPictoLeft = new CGSGNodeButton(440, 130, "Picto Alert");
+			buttonPictoLeft.isDraggable = true;
+			buttonPictoLeft.isResizable = true;
+			buttonPictoLeft.setPictoPosition(CGSGPositionMode.LEFT);
+			buttonPictoLeft.addClass("cgsg-button-icon-alert");
+			root.addChild(buttonPictoLeft, null);
+
 			//add lines
 			var points = [
-				new CGSGPosition(270, 160),
-				new CGSGPosition(310, 200),
-				new CGSGPosition(350, 160),
-				new CGSGPosition(390, 200),
-				new CGSGPosition(430, 160),
-				new CGSGPosition(470, 200)
+				new CGSGPosition(270, 180),
+				new CGSGPosition(310, 220),
+				new CGSGPosition(350, 180),
+				new CGSGPosition(390, 220),
+				new CGSGPosition(430, 180),
+				new CGSGPosition(470, 220)
 			];
 
 			var line = new CGSGNodeLine(points);
@@ -125,7 +132,6 @@ var CGMain = CGSGView.extend(
 			tp.setClass("cgsg-p");
 			root.addChild(tp);
 
-
 			var buttonPink = new CGSGNodeButton(10, 60, "switch to Pink theme", true);
 			buttonPink.setFixedSize(new CGSGDimension(240, 30));
 			root.addChild(buttonPink);
@@ -154,8 +160,8 @@ var CGMain = CGSGView.extend(
 				bindSwitchTheme("../../shared/themes/gray/grayTheme.css");
 			};
 
-			this.currentTheme = "../../shared/themes/green/greenTheme.css";
-			*/
+			this.currentTheme = "../../shared/themes/gray/grayTheme.css";
+
 		},
 
 		/**

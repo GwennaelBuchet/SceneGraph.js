@@ -168,11 +168,6 @@ Specific attributes for CGSGNodeButton
     border: 0 #82df7e;
     border-radius: 8px;
     opacity: 1.0;
-
-    text-align: center;
-    font-size: 12px;
-    font-family: "Times New Roman", Georgia, Serif;
-    color: #6fca6d;
 }
 
 .cgsg-button-deactivated-text {
@@ -201,4 +196,19 @@ Specific attributes for CGSGNodeButton
     font-size: 13px;
     font-family: "Times New Roman", Georgia, Serif;
     color: #59a255;
+}
+
+/**
+At the time I wrote this CSS integration, "icon" attribute was not supported by current modern browsers.
+So I had to use "list-style-image" attribute.
+*/
+.cgsg-button-icon-alert {
+    list-style-image: url("../../img/alert.png");
+
+}
+.cgsg-button-icon-error {
+    list-style-image: url("../../img/error.png");
+}
+.cgsg-button-icon-ok {
+    list-style-image: url("../../img/ok.png");
 }

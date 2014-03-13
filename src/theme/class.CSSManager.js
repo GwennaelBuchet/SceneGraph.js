@@ -101,6 +101,26 @@ var CGSGCSSManager = CGSGObject.extend(
 		},
 
 		/**
+		 * Return the value for the latest attribute of the classes passed as parameters
+		 * @method getAttrInArray
+		 * @param clss {Array} list of CSS classes
+		 * @param attr {String} name of the CSS attribute
+		 * @return {string} value for the CSS attribute
+		 */
+		getAttrInArray : function(clss, attr) {
+			var i, cls, r, len = clss.length;
+			for (i = len-1 ; i >= 0 ; --i) {
+				cls = clss[i];
+
+				r = this.getAttr(cls, attr);
+				if (cgsgExist(r))
+					return r;
+			}
+
+			return null;
+		},
+
+		/**
 		 * @method getCls
 		 * @param cls {String} Name of the CSS class
 		 * @return {Array} Array of attributes
@@ -108,6 +128,26 @@ var CGSGCSSManager = CGSGObject.extend(
 		getCls : function(cls) {
 			cls = cls.addFirstDot();
 			return this._classes.getValue(cls);
+		},
+
+		/**
+		 * Extract the number from an attribute's value.
+		 * For example getNumber("8px"); will return 8.
+		 * @method getNumber
+		 * @param attr {String}
+		 * @return {Number}
+		 */
+		getURL : function(attr) {
+			if (!cgsgExist(attr) || attr.length == 0)
+				return null;
+
+			//remove first "url("
+			var url = attr.without("url(");
+
+			//remove latest right parenthesis ")"
+			url = url.without(")");
+
+			return url;
 		},
 
 		/**

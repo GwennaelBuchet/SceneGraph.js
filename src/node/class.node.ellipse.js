@@ -89,18 +89,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
             context.closePath();
         },
 
-		/**
-		 * Reload theme (colors, ...) from loaded CSS file
-		 * @method invalidateTheme
-		 * @override
-		 */
-		invalidateTheme : function() {
-			//This node uses only attributes defined in CGSGNode class: color, lineColor, lineWidth.
-			//So no need to reload them again
 
-			//call parent's method
-			this._super();
-		},
 
         /**
          * @method copy

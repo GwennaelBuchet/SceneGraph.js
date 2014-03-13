@@ -69,6 +69,13 @@ Specific attributes for CGSGNodeButton
     color: #FFF;
 }
 
+.cgsg-button-text {
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color: #d72e82;
+}
+
 .cgsg-button-over {
     background: -webkit-linear-gradient(#ff92b2, #e5718d); /* For Safari */
     background: -o-linear-gradient(#ff92b2, #e5718d); /* For Opera 11.1 to 12.0 */
@@ -87,6 +94,13 @@ Specific attributes for CGSGNodeButton
     color: #FFF;
 }
 
+.cgsg-button-over-text {
+    text-align: center;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    color: #c12f6e;
+}
+
 .cgsg-button-deactivated {
     background: -webkit-linear-gradient(#ffdfe3, #f3c1ce); /* For Safari */
     background: -o-linear-gradient(#ffdfe3, #f3c1ce); /* For Opera 11.1 to 12.0 */
@@ -98,11 +112,14 @@ Specific attributes for CGSGNodeButton
     border: 0 #cb5373;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-deactivated-text {
     text-align: center;
     font-size: 12px;
-    font-family: Arial, "Lucida Grande", sans-serif;
+    font-family: "Times New Roman", Georgia, Serif;
     color: #d08aa3;
+    opacity: 0.6;
 }
 
 .cgsg-button-selected {
@@ -116,9 +133,27 @@ Specific attributes for CGSGNodeButton
     border: 0 #4B4B4B;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+
+.cgsg-button-selected-text {
     text-align: center;
-    font-size: 12px;
-    font-family: Arial;
-    color: #FFF;
+    font-size: 13px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #fff;
+}
+
+/**
+At the time I wrote this CSS integration, "icon" attribute was not supported by current modern browsers.
+So I had to use "list-style-image" attribute.
+*/
+.cgsg-button-icon-alert {
+    list-style-image: url("../../img/alert.png");
+
+}
+.cgsg-button-icon-error {
+    list-style-image: url("../../img/error.png");
+}
+.cgsg-button-icon-ok {
+    list-style-image: url("../../img/ok.png");
 }

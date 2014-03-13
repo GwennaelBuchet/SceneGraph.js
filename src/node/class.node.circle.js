@@ -66,19 +66,6 @@ var CGSGNodeCircle = CGSGNode.extend(
 		},
 
 		/**
-		 * Reload theme (colors, ...) from loaded CSS file
-		 * @method invalidateTheme
-		 * @override
-		 */
-		invalidateTheme : function() {
-			//This node uses only attributes defined in CGSGNode class: color, lineColor, lineWidth.
-			//So no need to reload them again
-
-			//call parent's method
-			this._super();
-		},
-
-		/**
 		 * @method _resize
 		 * @private
 		 */

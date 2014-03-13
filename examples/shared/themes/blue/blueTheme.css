@@ -63,9 +63,11 @@ Specific attributes for CGSGNodeButton
     border: 0 #8b8b8b;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-text {
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     font-family: Arial, sans-serif;
     color: #FFFFFF;
 }
@@ -81,10 +83,12 @@ Specific attributes for CGSGNodeButton
     border: 0 #d8e8fb;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-over-text {
     text-align: center;
-    font-size: 13px;
-    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     color: #d8e8fb;
 }
 
@@ -99,10 +103,12 @@ Specific attributes for CGSGNodeButton
     border: 0 #8a8ba6;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-deactivated-text {
     text-align: center;
-    font-size: 12px;
-    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     color: #7c8590;
 }
 
@@ -117,9 +123,26 @@ Specific attributes for CGSGNodeButton
     border: 0 #8c8ea9;
     border-radius: 8px;
     opacity: 1.0;
+}
 
+.cgsg-button-selected-text {
     text-align: center;
-    font-size: 13px;
-    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     color: #78788f;
+}
+
+/**
+At the time I wrote this CSS integration, "icon" attribute was not supported by current modern browsers.
+So I had to use "list-style-image" attribute.
+*/
+.cgsg-button-icon-alert {
+    list-style-image: url("../../img/alert.png");
+
+}
+.cgsg-button-icon-error {
+    list-style-image: url("../../img/error.png");
+}
+.cgsg-button-icon-ok {
+    list-style-image: url("../../img/ok.png");
 }

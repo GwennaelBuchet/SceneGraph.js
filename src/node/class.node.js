@@ -625,7 +625,7 @@ var CGSGNode = CGSGObject.extend(
 				 */
 				this.lineWidth = 0;
 
-				this._cls = null;
+				this._cls = [];
 				this._clsBBox = null;
 				this.setClass(CGSG_DEFAULT_THEME_NODE_CLS);
 				this.setClassBBox(CGSG_DEFAULT_THEME_BBOX_CLS);
@@ -753,11 +753,11 @@ var CGSGNode = CGSGObject.extend(
 			 */
 			invalidateTheme : function() {
 
-				//Use of "this._cls" class name which define the current CSS class used by this object.
-				var fillStyle = CGSG.cssManager.getAttr(this._cls, "background-color");
-				var color = CGSG.cssManager.getAttr(this._cls, "color");
-				var lineWidth = CGSG.cssManager.getAttr(this._cls, "border-width");
-				var strokeStyle = CGSG.cssManager.getAttr(this._cls, "border-color");
+				//Use of "this._cls" class names which define the current CSS classes used by this object.
+				var fillStyle = CGSG.cssManager.getAttrInArray(this._cls, "background-color");
+				var color = CGSG.cssManager.getAttrInArray(this._cls, "color");
+				var lineWidth = CGSG.cssManager.getAttrInArray(this._cls, "border-width");
+				var strokeStyle = CGSG.cssManager.getAttrInArray(this._cls, "border-color");
 
 				var rgb;
 
@@ -779,7 +779,7 @@ var CGSGNode = CGSGObject.extend(
 
 
 				if (cgsgExist(this._cls)) {
-					var globalAlpha = CGSG.cssManager.getFloat(CGSG.cssManager.getAttr(this._cls, "opacity"));
+					var globalAlpha = CGSG.cssManager.getFloat(CGSG.cssManager.getAttrInArray(this._cls, "opacity"));
 					//avoid to override previous value if no one was defined
 					if (cgsgExist(globalAlpha))
 						this.globalAlpha = globalAlpha;
@@ -811,8 +811,29 @@ var CGSGNode = CGSGObject.extend(
 			 * @param {String} cls
 			 */
 			setClass : function(cls) {
-				this._cls = cls;
+				this._cls = [];
+				this._cls.push(cls);
+				this.invalidateTheme();
+			},
 
+			/**
+			 * Add CSS class for this node (not for bounding box, use 'setClassBBox' instead).
+			 * CSS class must define attributes used by this node.
+			 * @method addClass
+			 * @param {String} cls
+			 */
+			addClass : function(cls) {
+				this._cls.push(cls);
+				this.invalidateTheme();
+			},
+
+			/**
+			 * remove CSS class for this node (not for bounding box, use 'setClassBBox' instead).
+			 * @method removeClass
+			 * @param {String} cls
+			 */
+			removeClass: function(cls) {
+				this._cls = this._cls.without(cls);
 				this.invalidateTheme();
 			},
 

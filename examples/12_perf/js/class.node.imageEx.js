@@ -37,73 +37,81 @@
  * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
  */
 var CGSGNodeImageEx = CGSGNode.extend(
-    {
-        initialize: function (x, y) {
-            this._super(x, y, 0, 0);
+	{
+		initialize : function(x, y) {
+			this._super(x, y, 0, 0);
 
-            /**
-             * @property classType
-             * @type {String}
-             */
-            this.classType = "CGSGNodeImageEx";
-
-
-            /**
-             * the image object itself
-             * @property _img
-             * @type {Image}
-             * @private
-             */
-            this._img = new Image();
+			/**
+			 * @property classType
+			 * @type {String}
+			 */
+			this.classType = "CGSGNodeImageEx";
 
 
-            /**
-             * @property _isLoaded
-             * @type {Boolean}
-             * @private
-             */
-            this.isLoaded = false;
-
-            this._tmpCanvas = null;
-        },
+			/**
+			 * the image object itself
+			 * @property _img
+			 * @type {Image}
+			 * @private
+			 */
+			this._img = new Image();
 
 
-        /**
-         * @public
-         * @method setImage
-         * @param {Image} newImage new Image object. Must be already loaded before
-         */
-        setImage: function (newImage) {
-            this._img = newImage;
-            if (cgsgExist(this._img)) {
-                this.isLoaded = true;
-                if (!cgsgExist(this._tmpCanvas)) {
-                    this._tmpCanvas = document.createElement('canvas');
-                    this._tmpContext = this._tmpCanvas.getContext('2d');
-                }
-                this.resizeTo(newImage.width, newImage.height);
-                this._tmpCanvas.width = newImage.width;
-                this._tmpCanvas.height = newImage.height;
-                this._tmpContext.drawImage(this._img, 0, 0);
-                this._tmpCanvas.style.position = "absolute";
-                //document.body.appendChild(this._tmpCanvas);
-            }
-        },
+			/**
+			 * @property _isLoaded
+			 * @type {Boolean}
+			 * @private
+			 */
+			this.isLoaded = false;
+
+			this._tmpCanvas = null;
+		},
 
 
-        /**
-         * Must be defined to allow the scene graph to render the image nodes
-         * @protected
-         * @method render
-         * @param {CanvasRenderingContext2D} context the context to render on
-         * */
-        render: function (context) {
-            /*this._tmpCanvas.style.left = this.position.x + "px";
-            this._tmpCanvas.style.top = this.position.y + "px";
-            this._tmpCanvas.style.width = this.getWidth() + "px";
-            this._tmpCanvas.style.height = this.getHeight() + "px";*/
-            context.drawImage(this._img, 0, 0);
-        }
+		/**
+		 * @public
+		 * @method setImage
+		 * @param {Image} newImage new Image object. Must be already loaded before
+		 */
+		setImage : function(newImage) {
+			this._img = newImage;
+			if (cgsgExist(this._img)) {
+				this.isLoaded = true;
+				if (!cgsgExist(this._tmpCanvas)) {
+					this._tmpCanvas = document.createElement('canvas');
+					this._tmpContext = this._tmpCanvas.getContext('2d');
+				}
+				this.resizeTo(newImage.width, newImage.height);
+				this._tmpCanvas.width = newImage.width;
+				this._tmpCanvas.height = newImage.height;
+				this._tmpContext.drawImage(this._img, 0, 0);
+				this._tmpCanvas.style.position = "absolute";
+				//document.body.appendChild(this._tmpCanvas);
+			}
+		},
 
-    }
+		/**
+		 * @method getImage
+		 * @return {Image}
+		 */
+		getImage : function() {
+			return this._img;
+		},
+
+
+		/**
+		 * Must be defined to allow the scene graph to render the image nodes
+		 * @protected
+		 * @method render
+		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * */
+		render : function(context) {
+			/*this._tmpCanvas.style.left = this.position.x + "px";
+			 this._tmpCanvas.style.top = this.position.y + "px";
+			 this._tmpCanvas.style.width = this.getWidth() + "px";
+			 this._tmpCanvas.style.height = this.getHeight() + "px";*/
+			context.drawImage(this._img, 0, 0);
+		}
+
+	}
 );
