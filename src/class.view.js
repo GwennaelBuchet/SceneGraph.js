@@ -186,14 +186,14 @@ var CGSGView = CGSGObject.extend(
 
 			/**
 			 * Current positions of the mouse or touch (Array of CGSGPosition)
-			 * @property _mousePosition
+			 * @property _mousePos
 			 * @type {Array}
 			 * @private
 			 */
-			this._mousePosition = [];
+			this._mousePos = [];
 			this._mouseOldPosition = [];
-			this._dragSelectStartMousePosition = [];
-			this._dragSelectEndMousePosition = [];
+			this._dragStartPos = [];
+			this._dragEndPos = [];
 			this._isDrag = false;
 			this._isResizeDrag = false;
 			this._isDragSelect = false;
@@ -202,7 +202,7 @@ var CGSGView = CGSGObject.extend(
 			this._mouseUpCount = 0; // counter used to identify dbl click action
 			this._timeoutDblClick = null;
 			this._isPressing = false;
-			this._frameRatio = 0;
+			//this._frameRatio = 0;
 
 			/**
 			 * @property _listCursors List of the names for the cursor when overring a handlebox
@@ -229,46 +229,46 @@ var CGSGView = CGSGObject.extend(
 
 			//use an external variable to define the scope of the processes
 			var scope = this;
-			CGSG.canvas.onmouseout = function(event) {
-				scope.onMouseOutHandler(event);
+			CGSG.canvas.onmouseout = function(e) {
+				scope.onMouseOutHandler(e);
 			};
 
-			CGSG.canvas.onmousedown = function(event) {
-				scope.onMouseDown(event);
+			CGSG.canvas.onmousedown = function(e) {
+				scope.onMouseDown(e);
 			};
-			CGSG.canvas.onmouseup = function(event) {
-				scope.onMouseUp(event);
+			CGSG.canvas.onmouseup = function(e) {
+				scope.onMouseUp(e);
 			};
-			CGSG.canvas.ondblclick = function(event) {
-				scope.onMouseDblClick(event);
+			CGSG.canvas.ondblclick = function(e) {
+				scope.onMouseDblClick(e);
 			};
-			CGSG.canvas.onmousemove = function(event) {
-				scope.onMouseMove(event);
+			CGSG.canvas.onmousemove = function(e) {
+				scope.onMouseMove(e);
 			};
-			document.onkeydown = function(event) {
-				scope.onKeyDownHandler(event);
+			document.onkeydown = function(e) {
+				scope.onKeyDownHandler(e);
 			};
-			document.onkeyup = function(event) {
-				scope.onKeyUpHandler(event);
+			document.onkeyup = function(e) {
+				scope.onKeyUpHandler(e);
 			};
-			CGSG.canvas.addEventListener('touchstart', function(event) {
-				scope.onTouchStart(event);
+			CGSG.canvas.addEventListener('touchstart', function(e) {
+				scope.onTouchStart(e);
 			}, false);
-			CGSG.canvas.addEventListener('touchmove', function(event) {
-				scope.onTouchMove(event);
+			CGSG.canvas.addEventListener('touchmove', function(e) {
+				scope.onTouchMove(e);
 			}, false);
-			CGSG.canvas.addEventListener('touchend', function(event) {
-				scope.onTouchEnd(event);
+			CGSG.canvas.addEventListener('touchend', function(e) {
+				scope.onTouchEnd(e);
 			}, false);
 
-			CGSG.canvas.addEventListener('MSPointerDown', function(event) {
-				scope.onTouchStart(event);
+			CGSG.canvas.addEventListener('MSPointerDown', function(e) {
+				scope.onTouchStart(e);
 			}, false);
-			CGSG.canvas.addEventListener("MSPointerMove", function(event) {
-				scope.onTouchMove(event);
+			CGSG.canvas.addEventListener("MSPointerMove", function(e) {
+				scope.onTouchMove(e);
 			}, false);
-			CGSG.canvas.addEventListener('MSPointerUp', function(event) {
-				scope.onTouchEnd(event);
+			CGSG.canvas.addEventListener('MSPointerUp', function(e) {
+				scope.onTouchEnd(e);
 			}, false);
 
 			this._lastUpdate = new Date().getTime();
@@ -367,12 +367,12 @@ var CGSGView = CGSGObject.extend(
 		 * Does not really change the dimension of the rendering canvas container,
 		 *  but is used by the different computations
 		 * @method setCanvasDimension
-		 * @param {CGSGDimension} newDimension
+		 * @param d{CGSGDimension} newDimension
 		 * */
-		setCanvasDimension : function(newDimension) {
-			CGSG.canvas.width = newDimension.width;
-			CGSG.canvas.height = newDimension.height;
-			CGSG.sceneGraph.setCanvasDimension(newDimension);
+		setCanvasDimension : function(d) {
+			CGSG.canvas.width = d.width;
+			CGSG.canvas.height = d.height;
+			CGSG.sceneGraph.setCanvasDimension(d);
 
 			//Experimental
 			/*this._dblCanvas.width = newDimension.x;
@@ -425,10 +425,10 @@ var CGSGView = CGSGObject.extend(
 				CGSG.sceneGraph.render();
 
 				//render the drag selection box directly onto the scene graph on top of everything else
-				if (this._dragSelectStartMousePosition.length > 0 && this._dragSelectEndMousePosition.length > 0) {
+				if (this._dragStartPos.length > 0 && this._dragEndPos.length > 0) {
 
-					var p1 = this._dragSelectStartMousePosition[0];
-					var p2 = this._dragSelectEndMousePosition[0];
+					var p1 = this._dragStartPos[0];
+					var p2 = this._dragEndPos[0];
 
 					var dx = p2.x - p1.x, dy = p2.y - p1.y;
 
@@ -577,11 +577,11 @@ var CGSGView = CGSGObject.extend(
 		 * You can compute the ratio like this: x = canvas.width/reference.width ; y = canvas.height/reference.height
 		 * @public
 		 * @method setDisplayRatio
-		 * @param {CGSGScale} newRatio a CGSGScale value
+		 * @param ratio {CGSGScale} a CGSGScale value
 		 */
-		setDisplayRatio : function(newRatio) {
+		setDisplayRatio : function(ratio) {
 			//noinspection JSUndeclaredVariable
-			CGSG.displayRatio = newRatio;
+			CGSG.displayRatio = ratio;
 			CGSG.sceneGraph.initializeGhost(CGSG.canvas.width / CGSG.displayRatio.x,
 											CGSG.canvas.height / CGSG.displayRatio.y);
 		},
@@ -589,9 +589,9 @@ var CGSGView = CGSGObject.extend(
 		/**
 		 * Detects when the mouse leaves the canvas.
 		 * @method onMouseOutHandler
-		 * @param event {MouseEvent} the event
+		 * @param e {MouseEvent} the event
 		 */
-		onMouseOutHandler : function(event) {
+		onMouseOutHandler : function(e) {
 			this._isPressing = false;
 		},
 
@@ -599,53 +599,54 @@ var CGSGView = CGSGObject.extend(
 		 * click mouse Event handler function
 		 * @protected
 		 * @method onMouseDown
-		 * @param {MouseEvent} event
+		 * @param e {MouseEvent} event
 		 */
-		onMouseDown : function(event) {
-			this.onTouchStart(event);
+		onMouseDown : function(e) {
+			this.onTouchStart(e);
 		},
 
 		/**
 		 * touch down Event handler function
 		 * @protected
 		 * @method onTouchStart
-		 * @param {Event} event
+		 * @param e {Event} event
 		 */
-		onTouchStart : function(event) {
+		onTouchStart : function(e) {
 			this._isPressing = true;
-			if (cgsgExist(this._mousePosition)) {
-				this._mouseOldPosition = this._mousePosition.copy();
+			if (cgsgExist(this._mousePos)) {
+				this._mouseOldPosition = this._mousePos.copy();
 			}
 
-			this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
-			this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], null);
+			this._mousePos = cgsgGetCursorPositions(e, CGSG.canvas);
+			this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePos[0], null);
 			if (cgsgExist(this._selectedNode)) {
 				if (this._selectedNode.onClickStart) {
 					CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_CLICK_START,
 											   new CGSGEvent(this,
-															 {nativeEvent : event, position : this._mousePosition}));
+															 {nativeEvent : e, position : this._mousePos}));
 				}
 
-				this._mouseOldPosition = this._mousePosition.copy();
+				this._mouseOldPosition = this._mousePos.copy();
 			}
 
-			this._updateSelection(event);
+			this._updateSelection(e);
 		},
 
 		/**
 		 * Updates the current selection according to the given event.
 		 *
 		 * @method _updateSelection
-		 * @param {Event} event the event
+		 * @param e {Event} the event
 		 * @private
 		 */
-		_updateSelection : function(event) {
+		_updateSelection : function(e) {
 			//if a node is under the cursor, select it if it is (clickable || resizable || draggable)
-			var selectable = cgsgExist(this._selectedNode) &&
+			//s = selectable
+			var s = cgsgExist(this._selectedNode) &&
 							 (this._selectedNode.isClickable || this._selectedNode.isDraggable ||
 							  this._selectedNode.isResizable);
 
-			if (selectable) {
+			if (s) {
 				if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
 					//if multiselection is activated
 					if (this.allowMultiSelect && this._keyDownedCtrl) {
@@ -665,7 +666,7 @@ var CGSGView = CGSGObject.extend(
 						}
 					}
 
-					this._isDrag = !this._detectResizeMode(this._mousePosition[0]);
+					this._isDrag = !this._detectResizeMode(this._mousePos[0]);
 
 					//ask for redraw
 					this.invalidateTransformation();
@@ -677,18 +678,18 @@ var CGSGView = CGSGObject.extend(
 			}
 
 			// Check if we can start drag selection
-			var canStartDragSelection = this._canStartDragSelection(event);
+			var canStartDragSelection = this._canStartDragSelection(e);
 
 			// if the _canStartDragSelection has not been sub classed : apply this rule :
 			// if no nodes were hit (that were clickable,resizeable or draggable) lets start a drag selection if we are allowed
 			if (!cgsgExist(canStartDragSelection)) {
-				canStartDragSelection = !selectable;
+				canStartDragSelection = !s;
 			}
 
 			if (this.allowMultiSelect && canStartDragSelection) {
 				this._isDragSelect = true;
-				this._dragSelectStartMousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
-				this._dragSelectEndMousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
+				this._dragStartPos = cgsgGetCursorPositions(e, CGSG.canvas);
+				this._dragEndPos = cgsgGetCursorPositions(e, CGSG.canvas);
 				this.deselectAll(null);
 			}
 		},
@@ -699,10 +700,10 @@ var CGSGView = CGSGObject.extend(
 		 *
 		 * @method _canStartDragSelection
 		 * @protected
-		 * @param {Event} event the event
+		 * @param e {Event} the event
 		 * @return {Boolean} true if drag selection could starts, false otherwise
 		 */
-		_canStartDragSelection : function(event) {
+		_canStartDragSelection : function(e) {
 			// tells the caller to use default behaviour by returning nothing (undefined)
 		},
 
@@ -713,14 +714,14 @@ var CGSGView = CGSGObject.extend(
 		 * @param event {CGSGEvent} the event to dispatch
 		 * @private
 		 */
-		_dispatchClick : function(event) {
-			//execute the action bound with the click event
+		_dispatchClick : function(e) {
+			//execute the action bound with the click e
 			if (cgsgExist(this._selectedNode) && this._selectedNode.isClickable) {
 				if (!this._isDblClick && cgsgExist(this._selectedNode.onClick)) {
-					event.data.node = this._selectedNode;
-					event.data.positions = this._mousePosition.copy();
-					CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_CLICK, event);
-					//this._selectedNode.onClick({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+					e.data.node = this._selectedNode;
+					e.data.positions = this._mousePos.copy();
+					CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_CLICK, e);
+					//this._selectedNode.onClick({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 				}
 				//deselect all node except the new _selectedNode
 				if (this._selectedNode.isDraggable === false && this._selectedNode.isResizable === false) {
@@ -734,44 +735,44 @@ var CGSGView = CGSGObject.extend(
 		 *
 		 * @private
 		 * @method _clickOnScene
-		 * @param {CGSGEvent} event wrapper of MouseEvent or TouchEvent
-		 * @param {Boolean} mustPickNode
+		 * @param e {CGSGEvent} wrapper of MouseEvent or TouchEvent
+		 * @param {Boolean} pickNode
 		 */
-		_clickOnScene : function(event, mustPickNode) {
-			this._mousePosition = cgsgGetCursorPositions(event.data.nativeEvent, CGSG.canvas);
+		_clickOnScene : function(e, pickNode) {
+			this._mousePos = cgsgGetCursorPositions(e.data.nativeEvent, CGSG.canvas);
 
 			if (this.onSceneClickStart !== null) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_START, event);
-				//this.onSceneClickStart({positions: this._mousePosition.copy(), event: event});
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_START, e);
+				//this.onSceneClickStart({positions: this._mousePos.copy(), e: e});
 			}
 
 			//try to pick up the nodes under the cursor
-			if (mustPickNode) {
-				this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], function(node) {
+			if (pickNode) {
+				this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePos[0], function(node) {
 					return (node.isTraversable === true && (node.isClickable === true || node.isDraggable === true
 						|| node.isResizable === true));
 				});
 			}
 
-			//this._updateSelection(event);
-			this._dispatchClick(event);
+			//this._updateSelection(e);
+			this._dispatchClick(e);
 
 			if (this.onSceneClickEnd !== null) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_END, event);
-				//this.onSceneClickEnd({positions: this._mousePosition.copy(), event: event});
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_END, e);
+				//this.onSceneClickEnd({positions: this._mousePos.copy(), e: e});
 			}
 
-			//this._mouseOldPosition = this._mousePosition.copy();
+			//this._mouseOldPosition = this._mousePos.copy();
 		},
 
 		/**
 		 * mouse move Event handler function
 		 * @protected
 		 * @method onMouseMove
-		 * @param {MouseEvent} event
+		 * @param e {MouseEvent} event
 		 */
-		onMouseMove : function(event) {
-			this._moveOnScene(event);
+		onMouseMove : function(e) {
+			this._moveOnScene(e);
 		},
 
 		/**
@@ -780,12 +781,12 @@ var CGSGView = CGSGObject.extend(
 		 * @method onTouchMove
 		 * @param {Event} event
 		 */
-		onTouchMove : function(event) {
-			if (event.preventManipulation)
-				event.preventManipulation();
-			event.preventDefault();
-			event.stopPropagation();
-			this._moveOnScene(event);
+		onTouchMove : function(e) {
+			if (e.preventManipulation)
+				e.preventManipulation();
+			e.preventDefault();
+			e.stopPropagation();
+			this._moveOnScene(e);
 		},
 
 		/**
@@ -793,18 +794,15 @@ var CGSGView = CGSGObject.extend(
 		 * @method _moveOnScene
 		 * @param {Event} event MouseEvent or TouchEvent
 		 */
-		_moveOnScene : function(event) {
-			var mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
-			var currentPosition = mousePosition[0];
-
-			var i, nodeOffsetX, nodeOffsetY;
-			this._mousePosition = mousePosition;
-			var selectedNode = this._selectedNode;
+		_moveOnScene : function(e) {
+			var i, offX, offY;
+			this._mousePos = cgsgGetCursorPositions(e, CGSG.canvas);
+			var selN = this._selectedNode;
 			this._selectedNode = null;
 
 			if (this._isPressing && this._isDrag) {
 				if (CGSG.selectedNodes.length > 0) {
-					var mp = this._mousePosition[0];
+					var mp = this._mousePos[0];
 					var mop = this._mouseOldPosition[0];
 					this._offsetX = mp.x - mop.x;
 					this._offsetY = mp.y - mop.y;
@@ -814,33 +812,33 @@ var CGSGView = CGSGObject.extend(
 						if (this._selectedNode !== null && this._selectedNode.isDraggable) {
 							this._selectedNode.isMoving = true;
 							//TODO : appliquer aussi l'opposée de la rotation
-							nodeOffsetX = this._offsetX /
-										  (this._selectedNode._absoluteScale.x / this._selectedNode.scale.x);
-							nodeOffsetY = this._offsetY /
-										  (this._selectedNode._absoluteScale.y / this._selectedNode.scale.y);
+							offX = this._offsetX /
+										  (this._selectedNode._absSca.x / this._selectedNode.scale.x);
+							offY = this._offsetY /
+										  (this._selectedNode._absSca.y / this._selectedNode.scale.y);
 							//check for the region constraint
 							if (this._selectedNode.regionConstraint !== null) {
 								var reg = this._selectedNode.getRegion().copy();
-								reg.position.x += nodeOffsetX;
-								reg.position.y += nodeOffsetY;
+								reg.position.x += offX;
+								reg.position.y += offY;
 								if (!cgsgRegionIsInRegion(reg, this._selectedNode.regionConstraint, 0)) {
 									canMove = false;
 								}
 							}
 
 							if (canMove) {
-								this._selectedNode.translateWith(nodeOffsetX, nodeOffsetY);
+								this._selectedNode.translateWith(offX, offY);
 								if (this._selectedNode.onDrag !== null) {
 									var evt = new CGSGEvent(this,
-															{node : this._selectedNode, positions : this._mousePosition.copy(), nativeEvent : event});
+															{node : this._selectedNode, positions : this._mousePos.copy(), nativeEvent : e});
 									CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_DRAG, evt);
-									//this._selectedNode.onDrag({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+									//this._selectedNode.onDrag({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 								}
 							}
 						}
 					}
 
-					this._mouseOldPosition = this._mousePosition.copy();
+					this._mouseOldPosition = this._mousePos.copy();
 
 					// something is changing position so we better invalidateTransformation the canvas!
 					this.invalidateTransformation();
@@ -848,7 +846,7 @@ var CGSGView = CGSGObject.extend(
 			}
 			else if (this._isPressing && this._isResizeDrag) {
 				if (CGSG.selectedNodes.length > 0) {
-					var mp = this._mousePosition[0];
+					var mp = this._mousePos[0];
 					var mop = this._mouseOldPosition[0];
 					this._offsetX = mp.x - mop.x;
 					this._offsetY = mp.y - mop.y;
@@ -860,17 +858,17 @@ var CGSGView = CGSGObject.extend(
 						if (this._selectedNode.isResizable) {
 							this._selectedNode.isResizing = true;
 							//TODO : appliquer aussi l'opposée de la rotation
-							nodeOffsetX = this._offsetX / this._selectedNode._absoluteScale.x;
-							nodeOffsetY = this._offsetY / this._selectedNode._absoluteScale.y;
+							offX = this._offsetX / this._selectedNode._absSca.x;
+							offY = this._offsetY / this._selectedNode._absSca.y;
 
-							var delta = Math.max(nodeOffsetX, nodeOffsetY);
+							var delta = Math.max(offX, offY);
 							if (delta == 0) {
-								delta = Math.min(nodeOffsetX, nodeOffsetY);
+								delta = Math.min(offX, offY);
 							}
 							var realDimX = this._selectedNode.dimension.width *
-										   this._selectedNode._absoluteScale.x;
+										   this._selectedNode._absSca.x;
 							var realDimY = this._selectedNode.dimension.height *
-										   this._selectedNode._absoluteScale.y;
+										   this._selectedNode._absSca.y;
 							var d = {dW : 0, dH : 0};
 							// 0  1  2
 							// 3     4
@@ -878,92 +876,92 @@ var CGSGView = CGSGObject.extend(
 							switch (this._resizingDirection) {
 								case 0:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
 																 realDimY,
 																 -1, -1);
 										this._selectedNode.translateWith(-d.dW, -d.dH, false);
 										this._selectedNode.resizeWith(d.dW, d.dH, false);
 									}
 									else {
-										this._selectedNode.translateWith(nodeOffsetX * this._selectedNode.scale.x,
-																		 nodeOffsetY * this._selectedNode.scale.y,
+										this._selectedNode.translateWith(offX * this._selectedNode.scale.x,
+																		 offY * this._selectedNode.scale.y,
 																		 false);
-										this._selectedNode.resizeWith(-nodeOffsetX, -nodeOffsetY, false);
+										this._selectedNode.resizeWith(-offX, -offY, false);
 									}
 									break;
 								case 1:
-									this._selectedNode.translateWith(0, nodeOffsetY * this._selectedNode.scale.y,
+									this._selectedNode.translateWith(0, offY * this._selectedNode.scale.y,
 																	 false);
-									this._selectedNode.resizeWith(0, -nodeOffsetY, false);
+									this._selectedNode.resizeWith(0, -offY, false);
 									break;
 								case 2:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
 																 realDimY,
 																 1, -1);
 										this._selectedNode.translateWith(0, -d.dH, false);
 										this._selectedNode.resizeWith(d.dW, d.dH, false);
 									}
 									else {
-										this._selectedNode.translateWith(0, nodeOffsetY * this._selectedNode.scale.y,
+										this._selectedNode.translateWith(0, offY * this._selectedNode.scale.y,
 																		 false);
-										this._selectedNode.resizeWith(nodeOffsetX, -nodeOffsetY, false);
+										this._selectedNode.resizeWith(offX, -offY, false);
 									}
 									break;
 								case 3:
-									this._selectedNode.translateWith(nodeOffsetX * this._selectedNode.scale.x, 0,
+									this._selectedNode.translateWith(offX * this._selectedNode.scale.x, 0,
 																	 false);
-									this._selectedNode.resizeWith(-nodeOffsetX, 0, false);
+									this._selectedNode.resizeWith(-offX, 0, false);
 									break;
 								case 4:
-									this._selectedNode.resizeWith(nodeOffsetX, 0, false);
+									this._selectedNode.resizeWith(offX, 0, false);
 									break;
 								case 5:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
 																 realDimY,
 																 1, -1);
 										this._selectedNode.translateWith(d.dW, 0, false);
 										this._selectedNode.resizeWith(-d.dW, -d.dH, false);
 									}
 									else {
-										this._selectedNode.translateWith(nodeOffsetX * this._selectedNode.scale.x, 0,
+										this._selectedNode.translateWith(offX * this._selectedNode.scale.x, 0,
 																		 false);
-										this._selectedNode.resizeWith(-nodeOffsetX, nodeOffsetY, false);
+										this._selectedNode.resizeWith(-offX, offY, false);
 									}
 									break;
 								case 6:
-									this._selectedNode.resizeWith(0, nodeOffsetY, false);
+									this._selectedNode.resizeWith(0, offY, false);
 									break;
 								case 7:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, nodeOffsetX, nodeOffsetY, realDimX,
+										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
 																 realDimY,
 																 1, 1);
 										this._selectedNode.resizeWith(d.dW, d.dH, false);
 									}
 									else {
-										this._selectedNode.resizeWith(nodeOffsetX, nodeOffsetY, false);
+										this._selectedNode.resizeWith(offX, offY, false);
 									}
 									break;
 							}
 							this._selectedNode.computeAbsoluteMatrix(false);
 							if (this._selectedNode.onResize !== null) {
 								var evt = new CGSGEvent(this,
-														{node : this._selectedNode, positions : this._mousePosition.copy(), event : event});
+														{node : this._selectedNode, positions : this._mousePos.copy(), e : e});
 								CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_RESIZE, evt);
-								//this._selectedNode.onResize({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+								//this._selectedNode.onResize({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 							}
 						}
 					}).bind(this));
 				}
-				this._mouseOldPosition = this._mousePosition.copy();
+				this._mouseOldPosition = this._mousePos.copy();
 
 				this.invalidateTransformation();
 			}
 			// if there's a selection, see if we grabbed one of the resize handles
 			else if (CGSG.selectedNodes.length > 0/* && this._isResizeDrag == false*/) {
-				if (this._detectResizeMode(this._mousePosition[0])) {
+				if (this._detectResizeMode(this._mousePos[0])) {
 					return;
 				}
 				else {
@@ -978,7 +976,7 @@ var CGSGView = CGSGObject.extend(
 			}
 			//if we are drag selecting
 			else if (this._isDragSelect) {
-				this._dragSelectEndMousePosition = this._mousePosition.copy();
+				this._dragEndPos = this._mousePos.copy();
 
 				//ask to redraw for the selection box
 				this.invalidateTransformation();
@@ -989,31 +987,31 @@ var CGSGView = CGSGObject.extend(
 				var n = null;
 				//first test the mouse over the current _nodeMouseOver. If it's ok, no need to traverse other
 				if (cgsgExist(this._nodeMouseOver)) {
-					n = this._nodeMouseOver.pickNode(this._mousePosition[0], null, CGSG.ghostContext, false, null);
+					n = this._nodeMouseOver.pickNode(this._mousePos[0], null, CGSG.ghostContext, false, null);
 
 					if (n === null) {
 						this._nodeMouseOver.isMouseOver = false;
 						if (cgsgExist(this._nodeMouseOver.onMouseOut)) {
 							var evt = new CGSGEvent(this,
-													{node : this._nodeMouseOver, positions : this._mousePosition.copy(), event : event});
+													{node : this._nodeMouseOver, positions : this._mousePos.copy(), e : e});
 							CGSG.eventManager.dispatch(this._nodeMouseOver, cgsgEventTypes.ON_MOUSE_OUT, evt);
-							//this._nodeMouseOver.onMouseOut({node: this._nodeMouseOver, positions: this._mousePosition.copy(), event: event});
+							//this._nodeMouseOver.onMouseOut({node: this._nodeMouseOver, positions: this._mousePos.copy(), e: e});
 						}
 						this._nodeMouseOver = null;
 					}
 					else if (n === this._nodeMouseOver) {
 						if (cgsgExist(this._nodeMouseOver.onMouseOver)) {
 							var evt = new CGSGEvent(this,
-													{node : this._nodeMouseOver, positions : this._mousePosition.copy(), event : event});
+													{node : this._nodeMouseOver, positions : this._mousePos.copy(), e : e});
 							CGSG.eventManager.dispatch(this._nodeMouseOver, cgsgEventTypes.ON_MOUSE_OVER, evt);
-							//this._nodeMouseOver.onMouseOver({node: this._nodeMouseOver, positions: this._mousePosition.copy(), event: event});
+							//this._nodeMouseOver.onMouseOver({node: this._nodeMouseOver, positions: this._mousePos.copy(), e: e});
 						}
 					}
 				}
 
 				//if the previous node under the mouse is no more under the mouse, test the other nodes
 				if (n === null) {
-					if ((n = CGSG.sceneGraph.pickNode(this._mousePosition[0], function(node) {
+					if ((n = CGSG.sceneGraph.pickNode(this._mousePos[0], function(node) {
 						return (node.onMouseEnter !== null || node.onMouseOver !== null)
 					})) !== null) {
 						n.isMouseOver = true;
@@ -1021,15 +1019,15 @@ var CGSGView = CGSGObject.extend(
 						this._nodeMouseOver.isMouseOver = true;
 						if (cgsgExist(this._nodeMouseOver.onMouseEnter)) {
 							var evt = new CGSGEvent(this,
-													{node : this._nodeMouseOver, positions : this._mousePosition.copy(), event : event});
+													{node : this._nodeMouseOver, positions : this._mousePos.copy(), e : e});
 							CGSG.eventManager.dispatch(this._nodeMouseOver, cgsgEventTypes.ON_MOUSE_ENTER, evt);
-							//this._nodeMouseOver.onMouseEnter({node: this._nodeMouseOver, positions: this._mousePosition.copy(), event: event})
+							//this._nodeMouseOver.onMouseEnter({node: this._nodeMouseOver, positions: this._mousePos.copy(), e: e})
 						}
 					}
 				}
 			}
 
-			this._selectedNode = selectedNode;
+			this._selectedNode = selN;
 		},
 
 		/**
@@ -1040,8 +1038,8 @@ var CGSGView = CGSGObject.extend(
 		 * @return {Boolean} true if we resize, false otherwise
 		 * @private
 		 */
-		_detectResizeMode : function(mousePosition) {
-			var selectedNode = this._selectedNode;
+		_detectResizeMode : function(pos) {
+			var sel = this._selectedNode;
 
 			cgsgIterateReverse(CGSG.selectedNodes, (function(i, node) {
 				this._selectedNode = node;
@@ -1049,8 +1047,8 @@ var CGSGView = CGSGObject.extend(
 					for (var h = 0 ; h < 8 ; h++) {
 						if (node.isProportionalResizeOnly && (h == 1 || h == 3 || h == 4 || h == 6))
 							continue;
-						var selectionHandle = this._selectedNode.resizeHandles[h];
-						this._isResizeDrag = selectionHandle.checkIfSelected(mousePosition, CGSG.resizeHandleThreshold);
+						var selectionHandle = this._selectedNode.handles[h];
+						this._isResizeDrag = selectionHandle.checkIfSelected(pos, CGSG.resizeHandleThreshold);
 
 						// resize handles will always be rectangles
 						if (this._isResizeDrag) {
@@ -1071,34 +1069,34 @@ var CGSGView = CGSGObject.extend(
 				}
 			}).bind(this));
 
-			this._selectedNode = selectedNode;
+			this._selectedNode = sel;
 			return this._isResizeDrag;
 		},
 
 		/**
 		 * @method _getDeltaOnMove
-		 * @param delta
-		 * @param nodeOffsetX
-		 * @param nodeOffsetY
-		 * @param w
-		 * @param h
-		 * @param signeX
-		 * @param signeY
+		 * @param delta {Number}
+		 * @param offX {Number} nodeOffsetX
+		 * @param offY {Number} nodeOffsetY
+		 * @param w {Number}
+		 * @param h {Number}
+		 * @param signeX {Number}
+		 * @param signeY {Number}
 		 * @return {Object}
 		 * @private
 		 */
-		_getDeltaOnMove : function(delta, nodeOffsetX, nodeOffsetY, w, h, signeX, signeY) {
-			var dW = nodeOffsetX, dH = nodeOffsetY;
-			var ratio = 1.0;
-			if (delta == nodeOffsetX) {
-				ratio = (w + signeX * delta) / w;
+		_getDeltaOnMove : function(delta, offX, offY, w, h, signeX, signeY) {
+			var dW = offX, dH = offY;
+			var r = 1.0;
+			if (delta == offX) {
+				r = (w + signeX * delta) / w;
 				dW = signeX * delta;
-				dH = (ratio - 1.0) * h;
+				dH = (r - 1.0) * h;
 			}
 			else {
-				ratio = (h + signeY * delta) / h;
+				r = (h + signeY * delta) / h;
 				dH = signeY * delta;
-				dW = (ratio - 1.0) * w;
+				dW = (r - 1.0) * w;
 			}
 
 			return {dW : dW, dH : dH};
@@ -1110,8 +1108,8 @@ var CGSGView = CGSGObject.extend(
 		 * @method onMouseUp
 		 * @param {MouseEvent} event
 		 */
-		onMouseUp : function(event) {
-			this.onTouchEnd(event);
+		onMouseUp : function(e) {
+			this.onTouchEnd(e);
 		},
 
 		/**
@@ -1120,11 +1118,11 @@ var CGSGView = CGSGObject.extend(
 		 * @method onTouchEnd
 		 * @param {Event} event
 		 */
-		onTouchEnd : function(event) {
-			if (event.preventManipulation)
-				event.preventManipulation();
-			event.preventDefault();
-			event.stopPropagation();
+		onTouchEnd : function(e) {
+			if (e.preventManipulation)
+				e.preventManipulation();
+			e.preventDefault();
+			e.stopPropagation();
 
 			this._isPressing = false;
 			this._mouseUpCount++;
@@ -1135,18 +1133,18 @@ var CGSGView = CGSGObject.extend(
 				//if the timer exists, then it's a dbl touch
 				if (this._mouseUpCount > 1) {
 					clearTimeout(this._timeoutDblClick);
-					this._upAndDblClick(event);
+					this._upAndDblClick(e);
 				}
 				else {
 					this._timeoutDblClick = setTimeout((function() {
-						this._upAndClick(event);
+						this._upAndClick(e);
 					}).bind(this), this.dblTouchDelay);
 				}
 			}
 			else {
-				// not a touch on a node with the onDblClick event defined,
+				// not a touch on a node with the onDblClick e defined,
 				// so it's a single touch, just call the _clickOnScene method usually
-				this._upAndClick(event);
+				this._upAndClick(e);
 			}
 		},
 
@@ -1157,11 +1155,11 @@ var CGSGView = CGSGObject.extend(
 		 * @param {Event} event the event
 		 * @private
 		 */
-		_upAndClick : function(event) {
+		_upAndClick : function(e) {
 			this._mouseUpCount = 0;
-			var eventData = this._upOnScene(event);
-			eventData.nativeEvent = event;
-			this._clickOnScene(new CGSGEvent(this, eventData), false);
+			var ed = this._upOnScene(e);
+			ed.nativeEvent = e;
+			this._clickOnScene(new CGSGEvent(this, ed), false);
 		},
 
 		/**
@@ -1171,10 +1169,10 @@ var CGSGView = CGSGObject.extend(
 		 * @param {Event} event the event
 		 * @private
 		 */
-		_upAndDblClick : function(event) {
+		_upAndDblClick : function(e) {
 			this._mouseUpCount = 0;
-			var eventData = this._upOnScene(event);
-			eventData.nativeEvent = event;
+			var eventData = this._upOnScene(e);
+			eventData.nativeEvent = e;
 			this._dblClickOnScene(new CGSGEvent(this, eventData), false);
 		},
 
@@ -1184,15 +1182,15 @@ var CGSGView = CGSGObject.extend(
 		 * @return {Object} a structure indicating is the node has been moved or resize
 		 * @private
 		 */
-		_upOnScene : function(event) {
-			var selectedNode = this._selectedNode;
+		_upOnScene : function(e) {
+			var sel = this._selectedNode;
 			var i = 0;
 			var retval = {};
-			retval.nativeEvent = event;
+			retval.nativeEvent = e;
 
-			var exist = cgsgExist(selectedNode);
-			retval.hasMoved = exist && selectedNode.isMoving;
-			retval.hasResize = exist && selectedNode.isResizing;
+			var exist = cgsgExist(sel);
+			retval.hasMoved = exist && sel.isMoving;
+			retval.hasResize = exist && sel.isResizing;
 
 			//if current action was to drag nodes
 			if (this._isDrag) {
@@ -1207,9 +1205,9 @@ var CGSGView = CGSGObject.extend(
 
 						if (this._selectedNode.onDragEnd !== null) {
 							var evt = new CGSGEvent(this,
-													{node : this._selectedNode, positions : this._mousePosition.copy(), nativeEvent : event});
+													{node : this._selectedNode, positions : this._mousePos.copy(), nativeEvent : e});
 							CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_DRAG_END, evt);
-							//    this._selectedNode.onDragEnd({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+							//    this._selectedNode.onDragEnd({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 						}
 					}
 					//}
@@ -1231,9 +1229,9 @@ var CGSGView = CGSGObject.extend(
 
 						if (this._selectedNode.onResizeEnd !== null) {
 							var evt = new CGSGEvent(this,
-													{node : this._selectedNode, positions : this._mousePosition.copy(), nativeEvent : event});
+													{node : this._selectedNode, positions : this._mousePos.copy(), nativeEvent : e});
 							CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_RESIZE_END, evt);
-							//this._selectedNode.onResizeEnd({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+							//this._selectedNode.onResizeEnd({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 						}
 					}
 					//}
@@ -1245,8 +1243,8 @@ var CGSGView = CGSGObject.extend(
 			else if (this._isDragSelect) {
 				this._isDragSelect = false;
 				this._doDragSelect();
-				this._dragSelectStartMousePosition = [];
-				this._dragSelectEndMousePosition = [];
+				this._dragStartPos = [];
+				this._dragEndPos = [];
 
 				//request a re-render for the drag select rect to be killed with
 				this.invalidateTransformation();
@@ -1257,14 +1255,14 @@ var CGSGView = CGSGObject.extend(
 				this._selectedNode = CGSG.selectedNodes[CGSG.selectedNodes.length - 1];
 				if (cgsgExist(this._selectedNode) && this._selectedNode.onMouseUp !== null) {
 					var evt = new CGSGEvent(this,
-											{node : this._selectedNode, positions : this._mousePosition.copy(), event : event});
+											{node : this._selectedNode, positions : this._mousePos.copy(), e : e});
 					CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_MOUSE_UP, evt);
-					//this._selectedNode.onMouseUp({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+					//this._selectedNode.onMouseUp({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 				}
 			}
 
 			this._resizingDirection = -1;
-			this._selectedNode = selectedNode;
+			this._selectedNode = sel;
 			return retval;
 		},
 
@@ -1275,8 +1273,8 @@ var CGSGView = CGSGObject.extend(
 		 */
 		_doDragSelect   : function() {
 
-			var p1 = this._dragSelectStartMousePosition[0];
-			var p2 = this._dragSelectEndMousePosition[0];
+			var p1 = this._dragStartPos[0];
+			var p2 = this._dragEndPos[0];
 
 			var dx = p2.x - p1.x, dy = p2.y - p1.y;
 
@@ -1320,30 +1318,30 @@ var CGSGView = CGSGObject.extend(
 		 * @return {CGSGNode} the node that was double-clicked
 		 * @private
 		 */
-		_dblClickOnScene : function(event, mustPickNode) {
-			//this._updateSelection(event);
+		_dblClickOnScene : function(e, mustPickNode) {
+			//this._updateSelection(e);
 
 			if (this.onSceneDblClickStart !== null) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_DBL_CLICK_START, event);
-				//this.onSceneDblClickStart(event);
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_DBL_CLICK_START, e);
+				//this.onSceneDblClickStart(e);
 			}
 
 			if (mustPickNode) {
-				//this._mousePosition = cgsgGetCursorPositions(event, CGSG.canvas);
-				this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePosition[0], function(node) {
+				//this._mousePos = cgsgGetCursorPositions(e, CGSG.canvas);
+				this._selectedNode = CGSG.sceneGraph.pickNode(this._mousePos[0], function(node) {
 					return true;
 				});
 			}
 
 			if (cgsgExist(this._selectedNode) && this._selectedNode.onDblClick !== null) {
-				event.data.node = this._selectedNode;
-				event.data.positions = this._mousePosition.copy();
-				CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_DBL_CLICK, event);
-				//this._selectedNode.onDblClick({node: this._selectedNode, positions: this._mousePosition.copy(), event: event});
+				e.data.node = this._selectedNode;
+				e.data.positions = this._mousePos.copy();
+				CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_DBL_CLICK, e);
+				//this._selectedNode.onDblClick({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
 			}
 			else if (this.onSceneDblClickEnd !== null) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_DBL_CLICK_END, event);
-				//this.onSceneDblClickEnd({positions: this._mousePosition.copy(), event: event});
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_DBL_CLICK_END, e);
+				//this.onSceneDblClickEnd({positions: this._mousePos.copy(), e: e});
 			}
 			return this._selectedNode;
 		},
@@ -1354,8 +1352,8 @@ var CGSGView = CGSGObject.extend(
 		 * @param {KeyboardEvent} event
 		 * @return {Number}
 		 */
-		onKeyDownHandler : function(event) {
-			var keynum = (window.event) ? event.keyCode : event.which;
+		onKeyDownHandler : function(e) {
+			var keynum = (window.e) ? e.keyCode : e.which;
 
 			switch (keynum) {
 				case 17:
@@ -1372,8 +1370,8 @@ var CGSGView = CGSGObject.extend(
 		 * @param {KeyboardEvent} event
 		 * @return {Number}
 		 */
-		onKeyUpHandler : function(event) {
-			var keynum = (window.event) ? event.keyCode : event.which;
+		onKeyUpHandler : function(e) {
+			var keynum = (window.e) ? e.keyCode : e.which;
 
 			switch (keynum) {
 				case 17:

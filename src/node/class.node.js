@@ -981,9 +981,9 @@ var CGSGNode = CGSGObject.extend(
 			 * Render the selection box and handle boxes around the bounding box of this node when selected
 			 * @protected
 			 * @method renderBoundingBox
-			 * @param {CanvasRenderingContext2D} context the context into render the node
+			 * @param c {CanvasRenderingContext2D} context the context into render the node
 			 * */
-			renderBoundingBox : function(ctx) {
+			renderBoundingBox : function(c) {
 				//this.computeAbsoluteMatrix(true);
 
 				var w = this.getWidth(), h = this.getHeight();
@@ -1351,13 +1351,13 @@ var CGSGNode = CGSGObject.extend(
 				if (region.dimension.width == 0 && region.dimension.height == 0)
 					return selectedNodes;
 
-				/*var childAbsoluteScale = null;
+				var childAbsoluteScale = null;
 				 if (cgsgExist(absoluteScale)) {
 				 childAbsoluteScale = absoluteScale.multiply(this.scale);
 				 }
 				 else {
 				 childAbsoluteScale = this.getAbsoluteScale(false);
-				 }*/
+				 }
 
 				if (this.isTraversable && (/*this.isClickable ||*/ this.isResizable || this.isDraggable)) {
 					if (!cgsgExist(condition) || condition(this) === true) {
@@ -1381,7 +1381,7 @@ var CGSGNode = CGSGObject.extend(
 						}
 					}
 
-					//childAbsoluteScale = null;
+					childAbsoluteScale = null;
 				}
 
 				return selectedNodes;

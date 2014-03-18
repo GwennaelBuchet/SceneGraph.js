@@ -88,12 +88,12 @@ var CGSGSceneGraph = CGSGObject.extend(
 		 * Initialize the ghost rendering, used by the PickNode function
 		 * @private
 		 * @method initializeGhost
-		 * @param {Number} width The width for the canvas. Must be the same as the rendering canvas
-		 * @param {Number} height The height for the canvas. Must be the same as the rendering canvas
+		 * @param w {Number} width The width for the canvas. Must be the same as the rendering canvas
+		 * @param h {Number} height The height for the canvas. Must be the same as the rendering canvas
 		 * */
-		initializeGhost : function(width, height) {
-			this.ghostCanvas.height = height;
-			this.ghostCanvas.width = width;
+		initializeGhost : function(w, h) {
+			this.ghostCanvas.height = h;
+			this.ghostCanvas.width = w;
 			//noinspection JSUndeclaredVariable
 			CGSG.ghostContext = this.ghostCanvas.getContext('2d');
 		},
@@ -122,39 +122,40 @@ var CGSGSceneGraph = CGSGObject.extend(
 				//set the new values for all the animated nodes
 				if (CGSG.animationManager.listTimelines.length > 0) {
 					node = null;
-					var value, timeline;
+					//tl = timeline
+					var value, tl;
 					for (i = CGSG.animationManager.listTimelines.length - 1 ; i >= 0 ; --i) {
-						timeline = CGSG.animationManager.listTimelines[i];
-						node = timeline.parentNode;
+						tl = CGSG.animationManager.listTimelines[i];
+						node = tl.parentNode;
 
 						if (node.isVisible) {
-							value = timeline.getValue(CGSG.currentFrame);
+							value = tl.getValue(CGSG.currentFrame);
 							if (value !== undefined) {
-								node.evalSet(timeline.attribute, value);
-								if (timeline.onAnimate !== null) {
-									CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATE,
+								node.evalSet(tl.attribute, value);
+								if (tl.onAnimate !== null) {
+									CGSG.eventManager.dispatch(tl, cgsgEventTypes.ON_ANIMATE,
 															   new CGSGEvent(this,
-																			 {node : node, attribute : timeline.attribute, value : value}));
+																			 {node : node, attribute : tl.attribute, value : value}));
 								}
 							}
 
-							//fire event if this is the first animation key for this timeline
-							key = timeline.getFirstKey();
+							//fire event if this is the first animation key for this tl
+							key = tl.getFirstKey();
 							if (key !== null && key.frame == CGSG.currentFrame &&
-								timeline.onAnimationStart !== null) {
+								tl.onAnimationStart !== null) {
 								evt = new CGSGEvent(this, {node : node});
 								evt.node = node;
-								CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_START, evt);
+								CGSG.eventManager.dispatch(tl, cgsgEventTypes.ON_ANIMATION_START, evt);
 							}
 
-							//fire event if this is the last animation key for this timeline
-							key = timeline.getLastKey();
+							//fire event if this is the last animation key for this tl
+							key = tl.getLastKey();
 							if (key !== null && key.frame == CGSG.currentFrame) {
-								timeline.removeAll();
-								if (timeline.onAnimationEnd !== null) {
+								tl.removeAll();
+								if (tl.onAnimationEnd !== null) {
 									evt = new CGSGEvent(this, {node : node});
 									evt.node = node;
-									CGSG.eventManager.dispatch(timeline, cgsgEventTypes.ON_ANIMATION_END, evt);
+									CGSG.eventManager.dispatch(tl, cgsgEventTypes.ON_ANIMATION_END, evt);
 								}
 							}
 						}
@@ -200,7 +201,7 @@ var CGSGSceneGraph = CGSGObject.extend(
 						else {
 							this.context.rotate(node.rotation.angle);
 						}
-						this.context.scale(node._absoluteScale.x, node._absoluteScale.y);
+						this.context.scale(node._absSca.x, node._absSca.y);
 
 						node.renderBoundingBox(this.context);
 						this.context.restore();

@@ -96,12 +96,12 @@ var CGSGHandleBox = CGSGObject.extend(
                 context.fillStyle = this.fillColor;
                 context.strokeRect(this._position.x,
                     this._position.y,
-                    this.size / this._parentNode._absoluteScale.x,
-                    this.size / this._parentNode._absoluteScale.y);
+                    this.size / this._parentNode._absSca.x,
+                    this.size / this._parentNode._absSca.y);
                 context.fillRect(this._position.x,
                     this._position.y,
-                    this.size / this._parentNode._absoluteScale.x,
-                    this.size / this._parentNode._absoluteScale.y);
+                    this.size / this._parentNode._absSca.x,
+                    this.size / this._parentNode._absSca.y);
             }
         },
 
@@ -114,16 +114,16 @@ var CGSGHandleBox = CGSGObject.extend(
          */
         checkIfSelected: function (mousePosition, threshold) {
             return (mousePosition.x >=
-                this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) -
+                this._parentNode._absPos.x + (this._position.x * this._parentNode._absSca.x) -
                     threshold &&
                 mousePosition.x <=
-                    this._parentNode._absolutePosition.x + (this._position.x * this._parentNode._absoluteScale.x) +
+                    this._parentNode._absPos.x + (this._position.x * this._parentNode._absSca.x) +
                         this.size + threshold &&
                 mousePosition.y >=
-                    this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) -
+                    this._parentNode._absPos.y + (this._position.y * this._parentNode._absSca.y) -
                         threshold &&
                 mousePosition.y <=
-                    this._parentNode._absolutePosition.y + (this._position.y * this._parentNode._absoluteScale.y) +
+                    this._parentNode._absPos.y + (this._position.y * this._parentNode._absSca.y) +
                         this.size + threshold);
         },
 
