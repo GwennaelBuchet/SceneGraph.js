@@ -144,7 +144,7 @@ Specific attributes for CGSGNodeButton
     background: linear-gradient(#80e482, #76d772); /* Standard syntax */
 
     padding-top: 12px;
-    padding-left: 6px;
+    padding-left: 10px;
     border: 0 #76d772;
     border-radius: 8px;
     opacity: 1.0;

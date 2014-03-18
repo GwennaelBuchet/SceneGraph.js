@@ -50,6 +50,71 @@ Overed CGSGNode attributes
 
 
 /*************************************************************************************
+Specific attributes for CGSGNodeText
+**************************************************************************************/
+
+.cgsg-h1 {
+    color: #3f4058;
+
+    text-align: left;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.cgsg-h2 {
+    color: #505170;
+    text-align: left;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-transform: capitalize;
+}
+
+.cgsg-h3 {
+    color: #5c5d80;
+
+    text-align: left;
+    font-size: 12px;
+    font-weight: bolder;
+    font-family: Arial, sans-serif;
+}
+
+.cgsg-h4 {
+    color: #5c5d80;
+
+    text-align: left;
+    font-size: 10pt;
+    font-style: italic;
+    font-family: Arial sans-serif;
+    font-variant: diagonal-fractions;
+}
+
+.cgsg-h5 {
+    color: #5c5d80;
+
+    text-align: left;
+    font-size: 10px;
+    font-style: italic;
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+.cgsg-h6 {
+    color: #5c5d80;
+
+    text-align: left;
+    font-size: 10px;
+    font-style: italic;
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+.cgsg-p {
+    color: #2c2c3f;
+    text-align: left;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+/*************************************************************************************
 Specific attributes for CGSGNodeButton
 **************************************************************************************/
 .cgsg-button {

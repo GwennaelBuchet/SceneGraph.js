@@ -143,9 +143,10 @@ var CGSGNodeImage = CGSGNode.extend(
 			this.checkDimension();
 			this.isLoaded = true;
 
-			cgsgImgManager.set(this._urlImage, this.img);
+			if (cgsgExist(event))
+				cgsgImgManager.set(this._urlImage, this.img);
 
-			if (this.onLoadEnd !== null) {
+			if (cgsgExist(this.onLoadEnd)) {
 				this.onLoadEnd({node : this, event : event});
 			}
 			this.invalidate();
@@ -221,14 +222,16 @@ var CGSGNodeImage = CGSGNode.extend(
 		/**
 		 * @public
 		 * @method setImage
-		 * @param {Image} newImage new Image object. Must be already loaded before
+		 * @param img {Image} new Image object. Must be already loaded before
 		 */
-		setImage : function(newImage) {
-			this._img = newImage;
+		setImage : function(img) {
+			this._img = img;
 			if (cgsgExist(this._img)) {
-				this._urlImage = this._img.src;
-				this.isLoaded = true;
-				this.checkDimension();
+				this._setUrl(this._img.src);
+			}
+			else {
+				this._urlImage = null;
+				this.isLoaded = false;
 				this.invalidate();
 			}
 		},
@@ -243,7 +246,10 @@ var CGSGNodeImage = CGSGNode.extend(
 
 			//first, check if the image was not already downloaded elsewhere in the application
 			this._img = cgsgImgManager.get(url);
-			if (!cgsgExist(this._img)) {
+			if (cgsgExist(this._img)) {
+				this._onImageLoaded(null);
+			}
+			else {
 				delete(this._img);
 				this.isLoaded = false;
 				this._img = new Image();
@@ -253,6 +259,13 @@ var CGSGNodeImage = CGSGNode.extend(
 				this._img.onabort = this._createDelegate(this, this._onImageAbort);
 				this._img.src = this._urlImage;
 			}
+		},
+
+		_setUrl : function(url) {
+			this._urlImage = url;
+			this.isLoaded = true;
+			this.checkDimension();
+			this.invalidate();
 		},
 
 		/**

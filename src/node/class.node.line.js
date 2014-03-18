@@ -102,7 +102,7 @@ var CGSGNodeLine = CGSGNode.extend(
 			var center = this.getCenter();
 
 			if (this.getWidth() > 0 && this.getHeight() > 0) {
-				for (i = 0; i < this._numPoints; i++) {
+				for (var i = 0; i < this._numPoints; i++) {
 					this._points[i].x = (scaleX * (this._points[i].x - center.x)) + center.x;
 					this._points[i].y = (scaleY * (this._points[i].y - center.y)) + center.y;
 				}

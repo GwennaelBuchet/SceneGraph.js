@@ -161,7 +161,6 @@ var CGMain = CGSGView.extend(
 			};
 
 			this.currentTheme = "../../shared/themes/gray/grayTheme.css";
-
 		},
 
 		/**

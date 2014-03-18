@@ -79,6 +79,7 @@ Any failure to comply with the above shall automatically terminate the license a
                                 <include>utils/class.region.js</include>
                                 <include>constants.js</include>
                                 <include>utils/class.traverser.js</include>
+                                <include>utils/class.imgManager.js</include>
 
                                 <include>event/class.event.js</include>
                                 <include>event/class.eventmanager.js</include>

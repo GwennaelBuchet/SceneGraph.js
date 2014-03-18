@@ -832,7 +832,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @method removeClass
 			 * @param {String} cls
 			 */
-			removeClass: function(cls) {
+			removeClass : function(cls) {
 				this._cls = this._cls.without(cls);
 				this.invalidateTheme();
 			},
