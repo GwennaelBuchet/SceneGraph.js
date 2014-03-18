@@ -70,11 +70,11 @@ var CGSGNode = CGSGObject.extend(
 				 *  0  1  2
 				 *  3     4
 				 *  5  6  7
-				 * @property resizeHandles
+				 * @property handles
 				 * @readonly
 				 * @type {Array}
 				 */
-				this.resizeHandles = [];
+				this.handles = [];
 
 				/**
 				 * Level of transparency of the node.
@@ -206,7 +206,7 @@ var CGSGNode = CGSGObject.extend(
 				 * @property selectionHandleSize
 				 * @type {Number}
 				 */
-				this.selectionHandleSize = null;
+				this.handleSize = null;
 				/**
 				 * Color for the handle boxes around this node when selected
 				 * @property selectionHandleColor
@@ -257,7 +257,7 @@ var CGSGNode = CGSGObject.extend(
 				this._isPrecomputed = false;
 				//fake canvas to pre-render static display
 				this._tmpCanvas = null;
-				this._tmpContext = null;
+				this._tmpCtx = null;
 
 				/**
 				 * @property shadowOffsetX
@@ -297,11 +297,11 @@ var CGSGNode = CGSGObject.extend(
 				 * Absolute position of this nodes on the canvas container. Generated value. Don't modify it manually
 				 * Never use it to move the node, use translateBy/translateWith/translateTo instead
 				 * @readonly
-				 * @property _absolutePosition
+				 * @property _absPos
 				 * @private
 				 * @type {CGSGPosition}
 				 */
-				this._absolutePosition = new CGSGPosition(0, 0);
+				this._absPos = new CGSGPosition(0, 0);
 				/**
 				 * Dimension of this nodes on the canvas container
 				 * Never use it to resize the node, use resizeBy/resizeWith/resizeTo instead
@@ -324,11 +324,11 @@ var CGSGNode = CGSGObject.extend(
 				 * Absolute scale of this nodes on the canvas container. Generated value. Don't modify it manually
 				 * Never use it to scale the node, use scaleBy/scaleWith/scaleTo instead
 				 * @readonly
-				 * @property _absoluteScale
+				 * @property _absSca
 				 * @private
 				 * @type {CGSGScale}
 				 */
-				this._absoluteScale = new CGSGScale(1, 1);
+				this._absSca = new CGSGScale(1, 1);
 				/**
 				 * Relative rotation of this nodes on the canvas container, relatively to the rotation of its parent node.
 				 * Never use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo instead
@@ -343,10 +343,10 @@ var CGSGNode = CGSGObject.extend(
 				 * Never use it to rotate or resize the node, use rotateBy/rotateWith/rotateTo instead
 				 * @readonly
 				 * @private
-				 * @property _absoluteRotation
+				 * @property _absRot
 				 * @type {CGSGRotation}
 				 */
-				this._absoluteRotation = new CGSGRotation(0);
+				this._absRot = new CGSGRotation(0);
 
 				/**
 				 * @property _isDrag
@@ -644,9 +644,9 @@ var CGSGNode = CGSGObject.extend(
 
 				// initialize the selection handleBoxes
 				for (var i = 0 ; i < 8 ; i++) {
-					var handleBox = new CGSGHandleBox(this, this.selectionHandleSize, this.selectionHandleColor,
+					var handleBox = new CGSGHandleBox(this, this.handleSize, this.selectionHandleColor,
 													  this.selectionLineColor, this.selectionLineWidth, 0, 0);
-					this.resizeHandles.push(handleBox);
+					this.handles.push(handleBox);
 				}
 
 				this.computeAbsoluteMatrix(true);
@@ -654,26 +654,30 @@ var CGSGNode = CGSGObject.extend(
 
 			/**
 			 * @method moveLocalZIndex
-			 * @param {Number} step
+			 * @param s {Number} step
 			 */
-			moveLocalZIndex : function(step) {
-				var index = this.getLocalZIndex();
+			moveLocalZIndex : function(s) {
+				var i = this.getLocalZIndex();
 
-				if (!isNaN(index)) {
-					this.setLocalZIndex(this.getLocalZIndex() + step);
+				if (!isNaN(i)) {
+					this.setLocalZIndex(this.getLocalZIndex() + s);
 				}
 			},
 
-			setLocalZIndex : function(index) {
+			/**
+			 * @method setLocalZIndex
+			 * @param i {Number} index
+			 */
+			setLocalZIndex : function(i) {
 				if (cgsgExist(this._parentNode)) {
-					index = Math.max(0, Math.min(CGSGMath.fixedPoint(index), this._parentNode.children.length - 1));
+					i = Math.max(0, Math.min(CGSGMath.fixedPoint(i), this._parentNode.children.length - 1));
 
 					var n = this.getLocalZIndex();
 					var p = this._parentNode;
 
-					if (index != n) {
+					if (i != n) {
 						p.detachChild(this);
-						p.addChildAt(this, index);
+						p.addChildAt(this, i);
 					}
 				}
 			},
@@ -715,23 +719,23 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Wipes the canvas context
 			 * @method _clearContext
-			 * @param context
-			 * @param canvasWidth
-			 * @param canvasHeight
+			 * @param c {?} context
+			 * @param w {Number} canvasWidth
+			 * @param h {Number} canvasHeight
 			 * @private
 			 */
-			_clearContext : function(context, canvasWidth, canvasHeight) {
-				context.clearRect(0, 0, canvasWidth, canvasHeight);
+			_clearContext : function(c, w, h) {
+				c.clearRect(0, 0, w, h);
 			},
 
 			/**
 			 * Use this method to make the node precomputed or not.
 			 * If it's precomputed, it won't be redraw every frame, but only when the "invalidate" method is called.
 			 * @method setPrecomputed
-			 * @param {Boolean} isPrecomputed
+			 * @param p {Boolean} isPrecomputed
 			 */
-			setPrecomputed : function(isPrecomputed) {
-				this._isPrecomputed = isPrecomputed;
+			setPrecomputed : function(p) {
+				this._isPrecomputed = p;
 				this.invalidate();
 			},
 
@@ -754,53 +758,51 @@ var CGSGNode = CGSGObject.extend(
 			invalidateTheme : function() {
 
 				//Use of "this._cls" class names which define the current CSS classes used by this object.
-				var fillStyle = CGSG.cssManager.getAttrInArray(this._cls, "background-color");
-				var color = CGSG.cssManager.getAttrInArray(this._cls, "color");
-				var lineWidth = CGSG.cssManager.getAttrInArray(this._cls, "border-width");
-				var strokeStyle = CGSG.cssManager.getAttrInArray(this._cls, "border-color");
+				var fs = CGSG.cssManager.getAttrInArray(this._cls, "background-color");
+				var cl = CGSG.cssManager.getAttrInArray(this._cls, "color");
+				var lw = CGSG.cssManager.getAttrInArray(this._cls, "border-width");
+				var ss = CGSG.cssManager.getAttrInArray(this._cls, "border-color");
 
 				var rgb;
 
 				//Avoid to override previous value if no one is defined now. So check existence of new one first.
-				if (cgsgExist(color)) {
+				if (cgsgExist(cl)) {
 					//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
-					rgb = CGSGColor.fromString(color);
+					rgb = CGSGColor.fromString(cl);
 					this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
 				}
-				if (cgsgExist(fillStyle)) {
+				if (cgsgExist(fs)) {
 					//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
-					rgb = CGSGColor.fromString(fillStyle);
+					rgb = CGSGColor.fromString(fs);
 					this.bkgcolor = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
 				}
-				if (cgsgExist(lineWidth))
-					this.lineWidth = CGSG.cssManager.getNumber(lineWidth);
-				if (cgsgExist(strokeStyle))
-					this.lineColor = strokeStyle;
+				if (cgsgExist(lw))
+					this.lineWidth = CGSG.cssManager.getNumber(lw);
+				if (cgsgExist(ss))
+					this.lineColor = ss;
 
 
 				if (cgsgExist(this._cls)) {
-					var globalAlpha = CGSG.cssManager.getFloat(CGSG.cssManager.getAttrInArray(this._cls, "opacity"));
+					var a = CGSG.cssManager.getFloat(CGSG.cssManager.getAttrInArray(this._cls, "opacity"));
 					//avoid to override previous value if no one was defined
-					if (cgsgExist(globalAlpha))
-						this.globalAlpha = globalAlpha;
+					if (cgsgExist(a))
+						this.globalAlpha = a;
 				}
 
 				if (cgsgExist(this._clsBBox)) {
-					var selectionColor = CGSG.cssManager.getAttr(this._clsBBox, "background-color");
-					var selectionWidth = CGSG.cssManager.getNumber(CGSG.cssManager.getAttr(this._clsBBox,
-																						   "border-width"));
-					var selectionLineColor = CGSG.cssManager.getAttr(this._clsBBox, "outline-color");
-					var selectionLineWidth = CGSG.cssManager.getNumber(CGSG.cssManager.getAttr(this._clsBBox,
-																							   "outline-width"));
+					var sc = CGSG.cssManager.getAttr(this._clsBBox, "background-color");
+					var sw = CGSG.cssManager.getNumber(CGSG.cssManager.getAttr(this._clsBBox, "border-width"));
+					var slc = CGSG.cssManager.getAttr(this._clsBBox, "outline-color");
+					var slw = CGSG.cssManager.getNumber(CGSG.cssManager.getAttr(this._clsBBox, "outline-width"));
 
-					if (cgsgExist(selectionColor))
-						this.selectionHandleColor = selectionColor;
-					if (cgsgExist(selectionWidth))
-						this.selectionHandleSize = selectionWidth;
-					if (cgsgExist(selectionLineColor))
-						this.selectionLineColor = selectionLineColor;
-					if (cgsgExist(selectionLineWidth))
-						this.selectionLineWidth = selectionLineWidth;
+					if (cgsgExist(sc))
+						this.selectionHandleColor = sc;
+					if (cgsgExist(sw))
+						this.handleSize = sw;
+					if (cgsgExist(slc))
+						this.selectionLineColor = slc;
+					if (cgsgExist(slw))
+						this.selectionLineWidth = slw;
 				}
 			},
 
@@ -850,15 +852,15 @@ var CGSGNode = CGSGObject.extend(
 
 			/**
 			 * @method _applyShadow
-			 * @param ctx
+			 * @param c {CanvasRenderingContext2D}
 			 * @private
 			 */
-			_applyShadow : function(ctx) {
+			_applyShadow : function(c) {
 				if (this.shadowOffsetX !== 0 || this.shadowOffsetY !== 0) {
-					ctx.shadowOffsetX = this.shadowOffsetX;
-					ctx.shadowOffsetY = this.shadowOffsetY;
-					ctx.shadowBlur = this.shadowBlur;
-					ctx.shadowColor = this.shadowColor;
+					c.shadowOffsetX = this.shadowOffsetX;
+					c.shadowOffsetY = this.shadowOffsetY;
+					c.shadowBlur = this.shadowBlur;
+					c.shadowColor = this.shadowColor;
 				}
 			},
 
@@ -869,49 +871,30 @@ var CGSGNode = CGSGObject.extend(
 			_preCompute : function() {
 				if (!cgsgExist(this._tmpCanvas)) {
 					this._tmpCanvas = document.createElement('canvas');
-					this._tmpContext = this._tmpCanvas.getContext('2d');
+					this._tmpCtx = this._tmpCanvas.getContext('2d');
 				}
 				this._tmpCanvas.width = CGSG.canvas.width;
 				this._tmpCanvas.height = CGSG.canvas.height;
-				cgsgClearContext(this._tmpContext);
+				cgsgClearContext(this._tmpCtx);
 
-				this._applyShadow(this._tmpContext);
-				this.render(this._tmpContext);
+				this._applyShadow(this._tmpCtx);
+				this.render(this._tmpCtx);
 			},
 
 			/**
 			 * internal method of the framework that encapsulate all the work aroud the rendering method
 			 * @method doRender
-			 * @param {CanvasRenderingContext2D} context
-			 * @param {Boolean} isThemeInvalidated
+			 * @param c {CanvasRenderingContext2D} context
+			 * @param t {Boolean} isThemeInvalidated
 			 */
-			doRender : function(context, isThemeInvalidated) {
-				/*var start = new CGSGEvent(this, {context : context});
-
-				 if (node.onBeginRender) {
-				 CGSG.eventManager.dispatch(node, cgsgEventTypes.ON_BEGIN_RENDER, start);
-				 }
-
-				 // Render if context exists
-				 if (cgsgExist(start.data.context)) {
-				 node.render(start.data.context, CGSG.currentFrame);
-				 }
-
-				 var end = new CGSGEvent(this, {context : start.data.context});
-
-				 if (node.onFinishRender) {
-				 CGSG.eventManager.dispatch(node, cgsgEventTypes.ON_FINISH_RENDER, end);
-				 }
-
-				 return end.data.context;*/
-
-				if (isThemeInvalidated) {
+			doRender : function(c, t) {
+				if (t) {
 					this.invalidateTheme();
 				}
 
-				var ctx = context;
+				var ctx = c;
 
-				var startEvt = new CGSGEvent(this, {context : context});
+				var startEvt = new CGSGEvent(this, {context : c});
 
 				if (cgsgExist(this.onBeforeRender)) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_BEFORE_RENDER, startEvt);
@@ -941,12 +924,12 @@ var CGSGNode = CGSGObject.extend(
 				var endEvt = new CGSGEvent(this, {context : ctx});
 
 				//restore state
-				this.afterRender(endEvt.data.context, isThemeInvalidated);
+				this.afterRender(endEvt.data.context, t);
 
 				if (cgsgExist(this.onAfterRender)) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_AFTER_RENDER, endEvt);
 					ctx = endEvt.data.context;
-					//this.onAfterRender({context: context});
+					//this.onAfterRender({context: c});
 				}
 
 			},
@@ -962,24 +945,24 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * internal method of the framework that encapsulate all the work around the ghost rendering method
 			 * @method doRenderGhost
-			 * @param {CanvasRenderingContext2D} ghostContext
+			 * @param ghostCtx {CanvasRenderingContext2D} ghost Context
 			 */
-			doRenderGhost : function(ghostContext) {
+			doRenderGhost : function(ghostCtx) {
 				//save current state
-				this.beforeRenderGhost(ghostContext);
+				this.beforeRenderGhost(ghostCtx);
 
 				if (this.globalAlpha > 0) {
 					if (this._isPrecomputed) {
 						//render the pre-rendered canvas
-						ghostContext.drawImage(this._tmpCanvas, 0, 0);
+						ghostCtx.drawImage(this._tmpCanvas, 0, 0);
 					}
 					else {
-						this.renderGhost(ghostContext);
+						this.renderGhost(ghostCtx);
 					}
 				}
 
 				//restore state
-				this.afterRenderGhost(ghostContext);
+				this.afterRenderGhost(ghostCtx);
 			},
 
 			/**
@@ -988,10 +971,10 @@ var CGSGNode = CGSGObject.extend(
 			 * This will be used by the SceneGraph to know if the mouse cursor is over this nodes.
 			 *
 			 * @method renderGhost
-			 * @param ghostContext The context for the ghost rendering
+			 * @param ghostCtx {CanvasRenderingContext2D} The context for the ghost rendering
 			 */
-			renderGhost : function(ghostContext) {
-				this.render(ghostContext);
+			renderGhost : function(ghostCtx) {
+				this.render(ghostCtx);
 			},
 
 			/**
@@ -1000,75 +983,75 @@ var CGSGNode = CGSGObject.extend(
 			 * @method renderBoundingBox
 			 * @param {CanvasRenderingContext2D} context the context into render the node
 			 * */
-			renderBoundingBox : function(context) {
+			renderBoundingBox : function(ctx) {
 				//this.computeAbsoluteMatrix(true);
 
 				var w = this.getWidth(), h = this.getHeight();
 
-				context.strokeStyle = this.selectionLineColor;
+				c.strokeStyle = this.selectionLineColor;
 
-				context.lineWidth = this.selectionLineWidth / this._absoluteScale.y;
-				context.beginPath();
+				c.lineWidth = this.selectionLineWidth / this._absSca.y;
+				c.beginPath();
 				//top line
-				context.moveTo(0, 0);
-				context.lineTo(w, 0);
+				c.moveTo(0, 0);
+				c.lineTo(w, 0);
 				//bottom line
-				context.moveTo(0, h);
-				context.lineTo(w, h);
-				context.stroke();
-				context.closePath();
+				c.moveTo(0, h);
+				c.lineTo(w, h);
+				c.stroke();
+				c.closePath();
 
-				context.lineWidth = this.selectionLineWidth / this._absoluteScale.x;
-				context.beginPath();
+				c.lineWidth = this.selectionLineWidth / this._absSca.x;
+				c.beginPath();
 				//left line
-				context.moveTo(0, 0);
-				context.lineTo(0, h);
+				c.moveTo(0, 0);
+				c.lineTo(0, h);
 				//right line
-				context.moveTo(w, 0);
-				context.lineTo(w, h);
-				context.stroke();
-				context.closePath();
+				c.moveTo(w, 0);
+				c.lineTo(w, h);
+				c.stroke();
+				c.closePath();
 
 				//draw the resize handles
 				if (this.isResizable) {
 					// draw the handle boxes
-					var halfX = this.selectionHandleSize / (2 * this._absoluteScale.x);
-					var halfY = this.selectionHandleSize / (2 * this._absoluteScale.y);
+					var hx = this.handleSize / (2 * this._absSca.x);
+					var hy = this.handleSize / (2 * this._absSca.y);
 
 					// 0  1  2
 					// 3     4
 					// 5  6  7
 
 					// top left, middle, right
-					this.resizeHandles[0].translateTo(-halfX, -halfY);
-					this.resizeHandles[1].translateTo(w / 2 - halfX, -halfY);
-					this.resizeHandles[2].translateTo(w - halfX, -halfY);
+					this.handles[0].translateTo(-hx, -hy);
+					this.handles[1].translateTo(w / 2 - hx, -hy);
+					this.handles[2].translateTo(w - hx, -hy);
 
 					// middle left
-					this.resizeHandles[3].translateTo(-halfX, h / 2 - halfY);
+					this.handles[3].translateTo(-hx, h / 2 - hy);
 
 					// middle right
-					this.resizeHandles[4].translateTo(w - halfX, h / 2 - halfY);
+					this.handles[4].translateTo(w - hx, h / 2 - hy);
 
 					// bottom left, middle, right
-					this.resizeHandles[6].translateTo(w / 2 - halfX, h - halfY);
-					this.resizeHandles[5].translateTo(-halfX, h - halfY);
-					this.resizeHandles[7].translateTo(w - halfX, h - halfY);
+					this.handles[6].translateTo(w / 2 - hx, h - hy);
+					this.handles[5].translateTo(-hx, h - hy);
+					this.handles[7].translateTo(w - hx, h - hy);
 
 					if (this.isProportionalResizeOnly) {
-						this.resizeHandles[1].isVisible = false;
-						this.resizeHandles[3].isVisible = false;
-						this.resizeHandles[4].isVisible = false;
-						this.resizeHandles[6].isVisible = false;
+						this.handles[1].isVisible = false;
+						this.handles[3].isVisible = false;
+						this.handles[4].isVisible = false;
+						this.handles[6].isVisible = false;
 					}
 
 					var i;
 					for (i = 0 ; i < 8 ; i++) {
-						this.resizeHandles[i].size = this.selectionHandleSize;
-						this.resizeHandles[i].fillColor = this.selectionHandleColor;
-						this.resizeHandles[i].strokeColor = this.selectionLineColor;
-						this.resizeHandles[i].lineWidth = this.selectionLineWidth;
-						this.resizeHandles[i].render(context);
+						this.handles[i].size = this.handleSize;
+						this.handles[i].fillColor = this.selectionHandleColor;
+						this.handles[i].strokeColor = this.selectionLineColor;
+						this.handles[i].lineWidth = this.selectionLineWidth;
+						this.handles[i].render(c);
 					}
 				}
 			},
@@ -1077,31 +1060,31 @@ var CGSGNode = CGSGObject.extend(
 			 * Must be called before to start the rendering of the nodes
 			 * @protected
 			 * @method beforeRender
-			 * @param {CanvasRenderingContext2D} context the context into render the nodes
+			 * @param c {CanvasRenderingContext2D} context the context into render the nodes
 			 * */
-			beforeRender : function(context) {
-				//first save the current context state
-				context.save();
+			beforeRender : function(c) {
+				//first save the current c state
+				c.save();
 
-				//move the context to the nodes's relative position
-				context.translate(this.position.x, this.position.y);
-				context.scale(this.scale.x, this.scale.y);
+				//move the c to the nodes's relative position
+				c.translate(this.position.x, this.position.y);
+				c.scale(this.scale.x, this.scale.y);
 
-				// translate context to center of canvas
+				// translate c to center of canvas
 				if (cgsgExist(this.rotationCenter)) {
-					context.translate(this.dimension.width * this.rotationCenter.x,
-									  this.dimension.height * this.rotationCenter.y);
-					context.rotate(this.rotation.angle);
-					context.translate(-this.dimension.width * this.rotationCenter.x,
-									  -this.dimension.height * this.rotationCenter.y);
+					c.translate(this.dimension.width * this.rotationCenter.x,
+								this.dimension.height * this.rotationCenter.y);
+					c.rotate(this.rotation.angle);
+					c.translate(-this.dimension.width * this.rotationCenter.x,
+								-this.dimension.height * this.rotationCenter.y);
 				}
 				else {
-					context.rotate(this.rotation.angle);
+					c.rotate(this.rotation.angle);
 				}
 
 				if (this.onBeforeRenderEnd) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.BEFORE_RENDER_END,
-											   new CGSGEvent(this, {context : context}));
+											   new CGSGEvent(this, {c : c}));
 				}
 			},
 
@@ -1109,13 +1092,13 @@ var CGSGNode = CGSGObject.extend(
 			 * Must be called after a render
 			 * @protected
 			 * @method afterRender
-			 * @param context {CanvasRenderingContext2D} The context into render the nodes
-			 * @param isThemeInvalidated {Boolean} true if you need to reload theme for children of this node
+			 * @param c {CanvasRenderingContext2D} The context into render the nodes
+			 * @param t {Boolean} isThemeInvalidated true if you need to reload theme for children of this node
 			 * */
-			afterRender : function(context, isThemeInvalidated) {
+			afterRender : function(c, t) {
 				if (cgsgExist(this.onAfterRenderStart)) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.AFTER_RENDER_START,
-											   new CGSGEvent(this, {context : context}));
+											   new CGSGEvent(this, {context : c}));
 				}
 
 				//render all children
@@ -1124,51 +1107,51 @@ var CGSGNode = CGSGObject.extend(
 					for (var i = 0, len = this.children.length ; i < len ; ++i) {
 						var childNode = this.children[i];
 						if (childNode.isVisible) {
-							childNode.doRender(context, isThemeInvalidated);
+							childNode.doRender(c, t);
 						}
 					}
 				}
 
 				//restore the context state
-				context.restore();
+				c.restore();
 			},
 
 			/**
 			 * Must be called before begin to render the nodes in GHOST mode
 			 * @protected
 			 * @method beforeRenderGhost
-			 * @param {CanvasRenderingContext2D} context the context into render the nodes
+			 * @param c {CanvasRenderingContext2D} context the context into render the nodes
 			 */
-			beforeRenderGhost : function(context) {
+			beforeRenderGhost : function(c) {
 				//first save the current context state
-				context.save();
+				c.save();
 				//move the context to the nodes's relative position
-				context.translate(this._absolutePosition.x, this._absolutePosition.y);
-				context.rotate(this._absoluteRotation.angle);
-				context.scale(this._absoluteScale.x, this._absoluteScale.y);
+				c.translate(this._absPos.x, this._absPos.y);
+				c.rotate(this._absRot.angle);
+				c.scale(this._absSca.x, this._absSca.y);
 			},
 
 			/**
 			 * Must be called before begin to render
 			 * @protected
 			 * @method afterRenderGhost
-			 * @param {CanvasRenderingContext2D} context the context into render the nodes
+			 * @param c {CanvasRenderingContext2D} context the context into render the nodes
 			 * */
-			afterRenderGhost : function(context) {
+			afterRenderGhost : function(c) {
 				//restore the context state
-				context.restore();
+				c.restore();
 			},
 
 			/**
 			 * Mark this nodes as selected
 			 * @method setSelected
-			 * @param {Boolean} isSelected
+			 * @param s {Boolean} is Selected
 			 * */
-			setSelected : function(isSelected) {
-				this.isSelected = isSelected;
+			setSelected : function(s) {
+				this.isSelected = s;
 				this._isDrag = true;
 
-				if (isSelected && this.onSelect !== null) {
+				if (s && this.onSelect !== null) {
 					//this.onSelect({node: this});
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SELECT, new CGSGEvent(this, {node : this}));
 				}
@@ -1215,35 +1198,35 @@ var CGSGNode = CGSGObject.extend(
 			 * This default function used the ghost rendering method
 			 * @protected
 			 * @method detectSelection
-			 * @param {CGSGPosition} mousePosition A CGSGPosition object
-			 * @param {CanvasRenderingContext2D} ghostContext
-			 * @param {CGSGScale} absoluteScale
+			 * @param pos {CGSGPosition} mousePosition A CGSGPosition object
+			 * @param c {CanvasRenderingContext2D} ghost Context
+			 * @param s {CGSGScale} absoluteScale
 			 */
-			detectSelection : function(mousePosition, ghostContext, absoluteScale) {
+			detectSelection : function(pos, c, s) {
 				if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
-					if (mousePosition.x >= this._absolutePosition.x - this.detectSelectionThreshold
+					if (pos.x >= this._absPos.x - this.detectSelectionThreshold
 							&&
-						mousePosition.x <
-						this._absolutePosition.x + this.detectSelectionThreshold + this.getWidth() * absoluteScale.x
-							&& mousePosition.y >= this._absolutePosition.y - this.detectSelectionThreshold
+						pos.x <
+						this._absPos.x + this.detectSelectionThreshold + this.getWidth() * s.x
+							&& pos.y >= this._absPos.y - this.detectSelectionThreshold
 						&&
-						mousePosition.y <
-						this._absolutePosition.y + this.detectSelectionThreshold + this.getHeight() * absoluteScale.y
+						pos.y <
+						this._absPos.y + this.detectSelectionThreshold + this.getHeight() * s.y
 						) {
 						return this;
 					}
 				}
 				else /*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*/ {
 					// draw shape onto ghost context
-					this.doRenderGhost(ghostContext);
+					this.doRenderGhost(c);
 
 					// get image data at the mouse x,y pixel
-					var imageData = ghostContext.getImageData(mousePosition.x, mousePosition.y, 1, 1);
+					var id = c.getImageData(pos.x, pos.y, 1, 1);
 
-					cgsgClearContext(ghostContext);
+					cgsgClearContext(c);
 
 					// if the mouse pixel exists, select this nodes
-					if (imageData.data[0] != 0 || imageData.data[1] != 0 || imageData.data[2] != 0) {
+					if (id.data[0] != 0 || id.data[1] != 0 || id.data[2] != 0) {
 						return this;
 					}
 				}
@@ -1257,35 +1240,32 @@ var CGSGNode = CGSGObject.extend(
 			 * This default function used the ghost rendering method
 			 * @protected
 			 * @method detectSelectionInRegion
-			 * @param {CGSGRegion} region The region to check
-			 * @param {CanvasRenderingContext2D} ghostContext
-			 * @param {CGSGScale} absoluteScale
+			 * @param rg {CGSGRegion} region The region to check
+			 * @param c {CanvasRenderingContext2D} ghostContext
 			 */
-			detectSelectionInRegion : function(region, ghostContext, absoluteScale) {
+			detectSelectionInRegion : function(rg, c) {
 
 				if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 
 					var us = this.getAbsoluteRegion();
 					//select this node only if it is totally inside the region
-					if (cgsgRegionIsInRegion(us, region, 0)) {
+					if (cgsgRegionIsInRegion(us, rg, 0)) {
 						return this;
 					}
 
 				}
 				else /*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*/ {
 					// draw shape onto ghost context
-					this.renderGhost(ghostContext);
+					this.renderGhost(c);
 
 					// get image data at the mouse x,y pixel
-					var imageData = ghostContext.getImageData(region.position.x, region.position.y,
-															  region.dimension.width,
-															  region.dimension.height);
+					var id = c.getImageData(rg.position.x, rg.position.y, rg.dimension.width, rg.dimension.height);
 
-					cgsgClearContext(ghostContext);
+					cgsgClearContext(c);
 
 					// if the a pixel exists in the region then, select this node
-					for (var i = 0, len = imageData.data.length ; i < len ; i += 4) {
-						if (imageData.data[i] != 0 || imageData.data[i + 1] != 0 || imageData.data[i + 2] != 0) {
+					for (var i = 0, len = id.data.length ; i < len ; i += 4) {
+						if (id.data[i] != 0 || id.data[i + 1] != 0 || id.data[i + 2] != 0) {
 							return this;
 						}
 					}
@@ -1298,18 +1278,18 @@ var CGSGNode = CGSGObject.extend(
 			 * Check if this nodes is under the cursor position.
 			 * @public
 			 * @method pickNode
-			 * @param {CGSGPosition} mousePosition position of the mouse on the canvas
-			 * @param {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
-			 * @param {CanvasRenderingContext2D} ghostContext a copy of the canvas context
+			 * @param pos {CGSGPosition} mousePosition position of the mouse on the canvas
+			 * @param absSca {CGSGScale} absoluteScale a CGSGScale absolute relativeScale of all parents
+			 * @param c {CanvasRenderingContext2D} ghostContext a copy of the canvas context
 			 * @param {Boolean} recursively if false, don't traverse the children of this nodes
 			 * @param {Function} condition Condition to be picked
 			 * ie: "color=='yellow'" or "classType=='CGSGNodeImage' && this.globalAlpha>0.5"
 			 */
-			pickNode : function(mousePosition, absoluteScale, ghostContext, recursively, condition) {
+			pickNode : function(pos, absSca, c, recursively, condition) {
 				var selectedNode = null;
 				var childAbsoluteScale = null;
-				if (cgsgExist(absoluteScale)) {
-					childAbsoluteScale = absoluteScale.multiply(this.scale);
+				if (cgsgExist(absSca)) {
+					childAbsoluteScale = absSca.multiply(this.scale);
 				}
 				else {
 					childAbsoluteScale = this.getAbsoluteScale(false);
@@ -1322,16 +1302,16 @@ var CGSGNode = CGSGObject.extend(
 						// First of all, try to to see if resize handler has been picked
 						if (this.isSelected && this.isResizable) {
 							for (var h = 0 ; h < 8 ; h++) {
-								var selectionHandle = this.resizeHandles[h];
+								var selectionHandle = this.handles[h];
 
-								if (selectionHandle.checkIfSelected(mousePosition, CGSG.resizeHandleThreshold)) {
+								if (selectionHandle.checkIfSelected(pos, CGSG.resizeHandleThreshold)) {
 									return this;
 								}
 							}
 						}
 
 						selectedNode =
-						this.detectSelection(mousePosition, ghostContext, childAbsoluteScale);
+						this.detectSelection(pos, c, childAbsoluteScale);
 					}
 				}
 
@@ -1339,8 +1319,8 @@ var CGSGNode = CGSGObject.extend(
 				if (this.isTraversable && recursively && !this.isALeaf()) {
 					for (var i = this.children.length - 1 ; i >= 0 ; --i) {
 						var childNode = this.children[i];
-						var selectedChild = childNode.pickNode(mousePosition,
-															   childAbsoluteScale, ghostContext,
+						var selectedChild = childNode.pickNode(pos,
+															   childAbsoluteScale, c,
 															   recursively, condition);
 						if (cgsgExist(selectedChild)) {
 							selectedNode = selectedChild;
@@ -1371,18 +1351,18 @@ var CGSGNode = CGSGObject.extend(
 				if (region.dimension.width == 0 && region.dimension.height == 0)
 					return selectedNodes;
 
-				var childAbsoluteScale = null;
-				if (cgsgExist(absoluteScale)) {
-					childAbsoluteScale = absoluteScale.multiply(this.scale);
-				}
-				else {
-					childAbsoluteScale = this.getAbsoluteScale(false);
-				}
+				/*var childAbsoluteScale = null;
+				 if (cgsgExist(absoluteScale)) {
+				 childAbsoluteScale = absoluteScale.multiply(this.scale);
+				 }
+				 else {
+				 childAbsoluteScale = this.getAbsoluteScale(false);
+				 }*/
 
 				if (this.isTraversable && (/*this.isClickable ||*/ this.isResizable || this.isDraggable)) {
 					if (!cgsgExist(condition) || condition(this) === true) {
 						this.computeAbsoluteMatrix(false);
-						var selected = this.detectSelectionInRegion(region, ghostContext, childAbsoluteScale);
+						var selected = this.detectSelectionInRegion(region, ghostContext);
 						if (cgsgExist(selected)) {
 							selectedNodes.push(selected);
 						}
@@ -1401,7 +1381,7 @@ var CGSGNode = CGSGObject.extend(
 						}
 					}
 
-					childAbsoluteScale = null;
+					//childAbsoluteScale = null;
 				}
 
 				return selectedNodes;
@@ -1420,14 +1400,14 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Replace current relative position by this new one
 			 * @method translateTo
-			 * @param {Number} newRelativeX
-			 * @param {Number} newRelativeY
+			 * @param {Number} x
+			 * @param {Number} y
 			 * @param {Boolean} computeAbsoluteValue (default: true)
 			 */
-			translateTo : function(newRelativeX, newRelativeY, computeAbsoluteValue) {
-				this.position.translateTo(newRelativeX, newRelativeY);
+			translateTo : function(x, y, computeAbsoluteValue) {
+				this.position.translateTo(x, y);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absolutePosition = this.getAbsolutePosition(true);
+					this._absPos = this.getAbsolutePosition(true);
 				}
 
 				if (cgsgExist(this.onTranslate)) {
@@ -1445,7 +1425,7 @@ var CGSGNode = CGSGObject.extend(
 			translateWith : function(x, y, computeAbsoluteValue) {
 				this.position.translateWith(x, y);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absolutePosition = this.getAbsolutePosition(true);
+					this._absPos = this.getAbsolutePosition(true);
 				}
 
 				if (cgsgExist(this.onTranslate)) {
@@ -1463,7 +1443,7 @@ var CGSGNode = CGSGObject.extend(
 			translateBy : function(x, y, computeAbsoluteValue) {
 				this.position.translateBy(x, y);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absolutePosition = this.getAbsolutePosition(true);
+					this._absPos = this.getAbsolutePosition(true);
 				}
 
 				if (cgsgExist(this.onTranslate)) {
@@ -1474,41 +1454,37 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Replace current dimension by these new ones
 			 * @method resizeTo
-			 * @param {Number} newWidth
-			 * @param {Number} newHeight
+			 * @param {Number} w
+			 * @param {Number} h
 			 * */
-			resizeTo : function(newWidth, newHeight) {
-				this.dimension.resizeTo(newWidth, newHeight);
-				this._isDimensionChanged = true;
-				this.invalidate();
-				if (cgsgExist(this.onResize)) {
-					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node : this}));
-				}
+			resizeTo : function(w, h) {
+				this.dimension.resizeTo(w, h);
+				this._endResize();
 			},
 
 			/**
 			 * Multiply current dimension by these new ones
 			 * @method resizeTBy
-			 * @param {Number} widthFactor
-			 * @param {Number} heightFactor
+			 * @param {Number} wf
+			 * @param {Number} hf
 			 * */
-			resizeBy : function(widthFactor, heightFactor) {
-				this.dimension.resizeBy(widthFactor, heightFactor);
-				this._isDimensionChanged = true;
-				this.invalidate();
-				if (cgsgExist(this.onResize)) {
-					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node : this}));
-				}
+			resizeBy : function(wf, hf) {
+				this.dimension.resizeBy(wf, hf);
+				this._endResize();
 			},
 
 			/**
 			 * Increase/decrease current dimension with adding values
 			 * @method resizeWith
-			 * @param {Number} width
-			 * @param {Number} height
+			 * @param {Number} w
+			 * @param {Number} h
 			 * */
-			resizeWith : function(width, height) {
-				this.dimension.resizeWith(width, height);
+			resizeWith : function(w, h) {
+				this.dimension.resizeWith(w, h);
+				this._endResize();
+			},
+
+			_endResize : function() {
 				this._isDimensionChanged = true;
 				this.invalidate();
 				if (cgsgExist(this.onResize)) {
@@ -1519,15 +1495,15 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Replace current relative relativeScale by this new one
 			 * @method scaleTo
-			 * @param {Number} scaleX
-			 * @param {Number} scaleY
+			 * @param {Number} sx
+			 * @param {Number} sy
 			 * @param {Boolean} computeAbsoluteValue (default: true)
 			 * */
-			scaleTo : function(scaleX, scaleY, computeAbsoluteValue) {
-				this.scale.x = scaleX;
-				this.scale.y = scaleY;
+			scaleTo : function(sx, sy, computeAbsoluteValue) {
+				this.scale.x = sx;
+				this.scale.y = sy;
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absoluteScale = this.getAbsoluteScale(true);
+					this._absSca = this.getAbsoluteScale(true);
 				}
 
 				if (cgsgExist(this.onScale)) {
@@ -1538,15 +1514,15 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Multiply this relativeScale factor by the current relative relativeScale
 			 * @method scaleBy
-			 * @param {Number} scaleFactorX
-			 * @param {Number} scaleFactorY
+			 * @param {Number} sfx
+			 * @param {Number} sfy
 			 * @param {Boolean} computeAbsoluteValue (default: true)
 			 * */
-			scaleBy : function(scaleFactorX, scaleFactorY, computeAbsoluteValue) {
-				this.scale.x *= scaleFactorX;
-				this.scale.y *= scaleFactorY;
+			scaleBy : function(sfx, sfy, computeAbsoluteValue) {
+				this.scale.x *= sfx;
+				this.scale.y *= sfy;
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absoluteScale = this.getAbsoluteScale(true);
+					this._absSca = this.getAbsoluteScale(true);
 				}
 
 				if (cgsgExist(this.onScale)) {
@@ -1565,7 +1541,7 @@ var CGSGNode = CGSGObject.extend(
 				this.scale.x += x;
 				this.scale.y += y;
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absoluteScale = this.getAbsoluteScale(true);
+					this._absSca = this.getAbsoluteScale(true);
 				}
 
 				if (cgsgExist(this.onScale)) {
@@ -1576,14 +1552,14 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Replace current relative relativeRotation by this new oneScale
 			 * @method rotateTo
-			 * @param {Number} newAngle
+			 * @param {Number} a
 			 * @param {Boolean} computeAbsoluteValue (default: true)
 			 *
 			 * */
-			rotateTo : function(newAngle, computeAbsoluteValue) {
-				this.rotation.rotateTo(newAngle);
+			rotateTo : function(a, computeAbsoluteValue) {
+				this.rotation.rotateTo(a);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absoluteRotation = this.getAbsoluteRotation(true);
+					this._absRot = this.getAbsoluteRotation(true);
 				}
 
 				if (cgsgExist(this.onRotate)) {
@@ -1594,13 +1570,13 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Multiply this relativeScale factor by the current relative relativeScale
 			 * @method rotateBy
-			 * @param {Number} rotateFactor
+			 * @param {Number} af
 			 * @param {Boolean} computeAbsoluteValue (default: true)
 			 * */
-			rotateBy : function(rotateFactor, computeAbsoluteValue) {
-				this.rotation.rotateBy(rotateFactor);
+			rotateBy : function(af, computeAbsoluteValue) {
+				this.rotation.rotateBy(af);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absoluteRotation = this.getAbsoluteRotation(true);
+					this._absRot = this.getAbsoluteRotation(true);
 				}
 
 				if (cgsgExist(this.onRotate)) {
@@ -1611,13 +1587,13 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Add this angle to the current relative relativeRotation
 			 * @method rotateWith
-			 * @param {Number} angle
+			 * @param {Number} a
 			 * @param {Boolean} computeAbsoluteValue (default: true)
 			 * */
-			rotateWith : function(angle, computeAbsoluteValue) {
-				this.rotation.rotateWith(angle);
+			rotateWith : function(a, computeAbsoluteValue) {
+				this.rotation.rotateWith(a);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absoluteRotation = this.getAbsoluteRotation(true);
+					this._absRot = this.getAbsoluteRotation(true);
 				}
 
 				if (cgsgExist(this.onRotate)) {
@@ -1642,19 +1618,19 @@ var CGSGNode = CGSGObject.extend(
 			 * If the index is too large, the nodes will be inserted at the end of the list
 			 * @method addChildAt
 			 * @param {CGSGNode} newNode the nodes to insert as a child
-			 * @param {Number} index the position of the new child in the list
+			 * @param index {Number} index the position of the new child in the list
 			 * */
-			addChildAt : function(newNode, index) {
-				if (index > this.children.length) {
-					index = this.children.length;
+			addChildAt : function(newNode, i) {
+				if (i > this.children.length) {
+					i = this.children.length;
 				}
 
-				for (var i = this.children.length ; i >= index ; --i) {
-					this.children[i] = this.children[i - 1];
+				for (var j = this.children.length ; j >= i ; --j) {
+					this.children[j] = this.children[j - 1];
 				}
 
 				newNode._parentNode = this;
-				this.children[index] = newNode;
+				this.children[i] = newNode;
 
 				if (cgsgExist(this.onChildAdd)) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_CHILD_ADD, new CGSGEvent(this, {node : this}));
@@ -1712,11 +1688,11 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Detach the nodes in index 'index' without delete it. So it's not a child anymore
 			 * @method detachChildAt
-			 * @param {Number} index
+			 * @param i {Number} index
 			 */
-			detachChildAt : function(index) {
-				if (index >= 0 && index < this.children.length) {
-					this.detachChild(this.children[index]);
+			detachChildAt : function(i) {
+				if (i >= 0 && i < this.children.length) {
+					this.detachChild(this.children[i]);
 				}
 			},
 
@@ -1737,90 +1713,90 @@ var CGSGNode = CGSGObject.extend(
 			 * Execute/Eval the script passed in parameter in "this" scope.
 			 * Used to set new value to an attribute of a node
 			 * @method evalSet
-			 * @param {String} attribute The attribute to be changed
-			 * @param {*} value The new value for the attribute
+			 * @param a {String} attribute The attribute to be changed
+			 * @param v {*} value The new value for the attribute
 			 *
 			 * @example node.evalSet("position.y", 12);
 			 */
-			evalSet : function(attribute, value) {
+			evalSet : function(a, v) {
 				//check for common properties to optimize performances
-				if (attribute == "position.x") {
-					this.translateTo(value, this.position.y, this.needToKeepAbsoluteMatrix);
+				if (a == "position.x") {
+					this.translateTo(v, this.position.y, this.needToKeepAbsoluteMatrix);
 				}
-				else if (attribute == "position.y") {
-					this.translateTo(this.position.x, value, this.needToKeepAbsoluteMatrix);
+				else if (a == "position.y") {
+					this.translateTo(this.position.x, v, this.needToKeepAbsoluteMatrix);
 				}
-				else if (attribute == "dimension.width") {
-					this.resizeTo(value, this.dimension.height);
+				else if (a == "dimension.width") {
+					this.resizeTo(v, this.dimension.height);
 				}
-				else if (attribute == "dimension.height") {
-					this.resizeTo(this.dimension.width, value);
+				else if (a == "dimension.height") {
+					this.resizeTo(this.dimension.width, v);
 				}
-				else if (attribute == "scale.x") {
-					this.scaleTo(value, this.scale.y, this.needToKeepAbsoluteMatrix);
+				else if (a == "scale.x") {
+					this.scaleTo(v, this.scale.y, this.needToKeepAbsoluteMatrix);
 				}
-				else if (attribute == "scale.y") {
-					this.scaleTo(this.scale.x, value, this.needToKeepAbsoluteMatrix);
+				else if (a == "scale.y") {
+					this.scaleTo(this.scale.x, v, this.needToKeepAbsoluteMatrix);
 				}
-				else if (attribute == "rotation" || attribute == "rotation.angle") {
-					this.rotateTo(value, this.needToKeepAbsoluteMatrix);
+				else if (a == "rotation" || a == "rotation.angle") {
+					this.rotateTo(v, this.needToKeepAbsoluteMatrix);
 				}
-				else if (attribute == "globalAlpha" || attribute == "opacity") {
-					this.globalAlpha = value;
+				else if (a == "globalAlpha" || a == "opacity") {
+					this.globalAlpha = v;
 					this.invalidate();
 				}
-				else if (attribute == "isVisible") {
-					this.isVisible = value;
+				else if (a == "isVisible") {
+					this.isVisible = v;
 				}
-				else if (attribute == "rotationCenter.x") {
-					this.rotationCenter.x = value;
+				else if (a == "rotationCenter.x") {
+					this.rotationCenter.x = v;
 				}
-				else if (attribute == "rotationCenter.y") {
-					this.rotationCenter.y = value;
+				else if (a == "rotationCenter.y") {
+					this.rotationCenter.y = v;
 				}
-				else if (attribute == "color.r") {
+				else if (a == "color.r") {
 					var rgb = CGSGColor.hex2rgb(this.color);
-					this.color = CGSGColor.rgb2hex(value, rgb.g, rgb.b);
+					this.color = CGSGColor.rgb2hex(v, rgb.g, rgb.b);
 					this.invalidate();
 				}
-				else if (attribute == "color.g") {
+				else if (a == "color.g") {
 					var rgb = CGSGColor.hex2rgb(this.color);
-					this.color = CGSGColor.rgb2hex(rgb.r, value, rgb.b);
+					this.color = CGSGColor.rgb2hex(rgb.r, v, rgb.b);
 					this.invalidate();
 				}
-				else if (attribute == "color.b") {
+				else if (a == "color.b") {
 					var rgb = CGSGColor.hex2rgb(this.color);
-					this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, value);
+					this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, v);
 					this.invalidate();
 				}
-				else if (attribute == "fillStyle.r") {
-					this.fillStyle.r = value;
+				else if (a == "fillStyle.r") {
+					this.fillStyle.r = v;
 					this.invalidate();
 				}
-				else if (attribute == "fillStyle.g") {
-					this.fillStyle.g = value;
+				else if (a == "fillStyle.g") {
+					this.fillStyle.g = v;
 					this.invalidate();
 				}
-				else if (attribute == "fillStyle.b") {
-					this.fillStyle.b = value;
+				else if (a == "fillStyle.b") {
+					this.fillStyle.b = v;
 					this.invalidate();
 				}
 
 				//generic property
 				else {
-					eval("this." + attribute + "=" + value);
+					eval("this." + a + "=" + v);
 					this.invalidate();
 				}
 
 				/*if (this.needToKeepAbsoluteMatrix) {
-				 if (attribute.indexOf("position") == 0) {
-				 this._absolutePosition = this.getAbsolutePosition(true);
+				 if (a.indexOf("position") == 0) {
+				 this._absPos = this.getAbsolutePosition(true);
 				 }
-				 else if (attribute.indexOf("rotation") == 0) {
-				 this._absoluteRotation = this.getAbsoluteRotation(true);
+				 else if (a.indexOf("rotation") == 0) {
+				 this._absRot = this.getAbsoluteRotation(true);
 				 }
-				 else if (attribute.indexOf("scale") == 0) {
-				 this._absoluteScale = this.getAbsoluteScale(true);
+				 else if (a.indexOf("scale") == 0) {
+				 this._absSca = this.getAbsoluteScale(true);
 				 }
 				 }*/
 			},
@@ -1856,7 +1832,7 @@ var CGSGNode = CGSGObject.extend(
 				if (recursive !== false) {
 					for (var c = 0 ; c < this.children.length ; c++) {
 						if (cgsgExist(this.children[c])) {
-							this.children[c]._absolutePosition = this.children[c].getAbsolutePosition(recursive);
+							this.children[c]._absPos = this.children[c].getAbsolutePosition(recursive);
 						}
 					}
 				}
@@ -1881,7 +1857,7 @@ var CGSGNode = CGSGObject.extend(
 				if (recursive !== false) {
 					for (var c = 0 ; c < this.children.length ; c++) {
 						if (cgsgExist(this.children[c])) {
-							this.children[c]._absoluteScale = this.children[c].getAbsoluteScale(recursive);
+							this.children[c]._absSca = this.children[c].getAbsoluteScale(recursive);
 						}
 					}
 				}
@@ -1905,7 +1881,7 @@ var CGSGNode = CGSGObject.extend(
 				if (recursive !== false) {
 					for (var c = 0 ; c < this.children.length ; c++) {
 						if (cgsgExist(this.children[c])) {
-							this.children[c]._absoluteRotation = this.children[c].getAbsoluteRotation(recursive);
+							this.children[c]._absRot = this.children[c].getAbsoluteRotation(recursive);
 						}
 					}
 				}
@@ -1920,9 +1896,9 @@ var CGSGNode = CGSGObject.extend(
 			 * @param {Boolean} recursive if !== false, compute recursively
 			 * */
 			computeAbsoluteMatrix : function(recursive) {
-				this._absolutePosition = this.getAbsolutePosition(false);
-				this._absoluteScale = this.getAbsoluteScale(false);
-				this._absoluteRotation = this.getAbsoluteRotation(false);
+				this._absPos = this.getAbsolutePosition(false);
+				this._absSca = this.getAbsoluteScale(false);
+				this._absRot = this.getAbsoluteRotation(false);
 
 				if (recursive !== false) {
 					//for (var c = 0; c < this.children.length; c++) {
@@ -1942,12 +1918,12 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getMinAbsoluteLeft : function() {
-				var retval = this._absolutePosition.x;
+				var retval = this._absPos.x;
 
 				if (this.children.length > 0) {
 					cgsgIterate(this.children.length, (function(i, child) {
-						if (retval < child._absolutePosition.x) {
-							retval = child._absolutePosition.x;
+						if (retval < child._absPos.x) {
+							retval = child._absPos.x;
 						}
 					}).bind(this));
 				}
@@ -1962,11 +1938,11 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getMaxAbsoluteRight : function() {
-				var retval = this._absolutePosition.x + (this.getWidth() * this._absoluteScale.x);
+				var retval = this._absPos.x + (this.getWidth() * this._absSca.x);
 
 				if (this.children.length > 0) {
 					cgsgIterate(this.children.length, (function(i, child) {
-						var absRight = this._absolutePosition.x + (this.getWidth() * this._absoluteScale.x);
+						var absRight = this._absPos.x + (this.getWidth() * this._absSca.x);
 						if (retval < absRight) {
 							retval = absRight;
 						}
@@ -1983,12 +1959,12 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getMinAbsoluteTop : function() {
-				var retval = this._absolutePosition.y;
+				var retval = this._absPos.y;
 
 				if (this.children.length > 0) {
 					cgsgIterate(this.children.length, (function(i, child) {
-						if (retval < child._absolutePosition.y) {
-							retval = child._absolutePosition.y;
+						if (retval < child._absPos.y) {
+							retval = child._absPos.y;
 						}
 					}).bind(this));
 				}
@@ -2003,11 +1979,11 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getMaxAbsoluteBottom : function() {
-				var retval = this._absolutePosition.y + (this.getHeight() * this._absoluteScale.y);
+				var retval = this._absPos.y + (this.getHeight() * this._absSca.y);
 
 				if (this.children.length > 0) {
 					cgsgIterate(this.children.length, (function(i, child) {
-						var absRight = this._absolutePosition.y + (this.getHeight() * this._absoluteScale.y);
+						var absRight = this._absPos.y + (this.getHeight() * this._absSca.y);
 						if (retval < absRight) {
 							retval = absRight;
 						}
@@ -2022,7 +1998,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getAbsoluteLeft      : function() {
-				return this._absolutePosition.x;
+				return this._absPos.x;
 			},
 
 			/**
@@ -2030,7 +2006,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getAbsoluteRight : function() {
-				return this._absolutePosition.x + this.getAbsoluteWidth();
+				return this._absPos.x + this.getAbsoluteWidth();
 			},
 
 			/**
@@ -2038,7 +2014,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getAbsoluteTop : function() {
-				return this._absolutePosition.y;
+				return this._absPos.y;
 			},
 
 			/**
@@ -2046,7 +2022,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getAbsoluteBottom : function() {
-				return this._absolutePosition.y + this.getAbsoluteHeight();
+				return this._absPos.y + this.getAbsoluteHeight();
 			},
 
 			/**
@@ -2054,7 +2030,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getAbsoluteWidth : function() {
-				return this.getWidth() * this._absoluteScale.x;
+				return this.getWidth() * this._absSca.x;
 			},
 
 			/**
@@ -2062,7 +2038,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {Number}
 			 */
 			getAbsoluteHeight : function() {
-				return this.getHeight() * this._absoluteScale.y;
+				return this.getHeight() * this._absSca.y;
 			},
 
 			/**
@@ -2220,7 +2196,7 @@ var CGSGNode = CGSGObject.extend(
 
 				node.selectionLineColor = this.selectionLineColor;
 				node.selectionLineWidth = this.selectionLineWidth;
-				node.selectionHandleSize = this.selectionHandleSize;
+				node.selectionHandleSize = this.handleSize;
 				node.selectionHandleColor = this.selectionHandleColor;
 				node._id = this._id;
 				node.translateTo(this.position.x, this.position.y);
