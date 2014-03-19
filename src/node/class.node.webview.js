@@ -269,10 +269,10 @@ var CGSGNodeWebview = CGSGNodeDomElement.extend(
                     8 + this.dimension.height - this.threshold * 2);
 
                 if (cgsgExist(this._htmlElement)) {
-                    this._htmlElement.style.left = (this.getAbsoluteLeft() + this.threshold) + "px";
-                    this._htmlElement.style.top = (this.getAbsoluteTop() + this.threshold) + "px";
-                    this._htmlElement.style.width = (this.getAbsoluteWidth() - this.threshold * 2) + "px";
-                    this._htmlElement.style.height = (this.getAbsoluteHeight() - this.threshold * 2) + "px";
+                    this._htmlElement.style.left = (this.getAbsLeft() + this.threshold) + "px";
+                    this._htmlElement.style.top = (this.getAbsTop() + this.threshold) + "px";
+                    this._htmlElement.style.width = (this.getAbsWidth() - this.threshold * 2) + "px";
+                    this._htmlElement.style.height = (this.getAbsHeight() - this.threshold * 2) + "px";
                 }
             }
             else {

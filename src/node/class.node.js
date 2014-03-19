@@ -203,16 +203,16 @@ var CGSGNode = CGSGObject.extend(
 				this.selectionLineWidth = null;
 				/**
 				 * Color for the handle boxes around this node when selected
-				 * @property selectionHandleSize
+				 * @property handleSize
 				 * @type {Number}
 				 */
 				this.handleSize = null;
 				/**
 				 * Color for the handle boxes around this node when selected
-				 * @property selectionHandleColor
+				 * @property handleColor
 				 * @type {String}
 				 */
-				this.selectionHandleColor = null;
+				this.handleColor = null;
 
 				/**
 				 * Updated by the scene itself. Don't update it manually.
@@ -644,7 +644,7 @@ var CGSGNode = CGSGObject.extend(
 
 				// initialize the selection handleBoxes
 				for (var i = 0 ; i < 8 ; i++) {
-					var handleBox = new CGSGHandleBox(this, this.handleSize, this.selectionHandleColor,
+					var handleBox = new CGSGHandleBox(this, this.handleSize, this.handleColor,
 													  this.selectionLineColor, this.selectionLineWidth, 0, 0);
 					this.handles.push(handleBox);
 				}
@@ -710,8 +710,8 @@ var CGSGNode = CGSGObject.extend(
 			 * @return {CGSGRegion}
 			 */
 			getAbsoluteRegion : function() {
-				return new CGSGRegion(this.getAbsoluteLeft(), this.getAbsoluteTop(), this.getAbsoluteWidth(),
-									  this.getAbsoluteHeight());
+				return new CGSGRegion(this.getAbsLeft(), this.getAbsTop(), this.getAbsWidth(),
+									  this.getAbsHeight());
 			},
 
 			//// RENDERING MANIPULATION //////
@@ -796,7 +796,7 @@ var CGSGNode = CGSGObject.extend(
 					var slw = CGSG.cssManager.getNumber(CGSG.cssManager.getAttr(this._clsBBox, "outline-width"));
 
 					if (cgsgExist(sc))
-						this.selectionHandleColor = sc;
+						this.handleColor = sc;
 					if (cgsgExist(sw))
 						this.handleSize = sw;
 					if (cgsgExist(slc))
@@ -1048,7 +1048,7 @@ var CGSGNode = CGSGObject.extend(
 					var i;
 					for (i = 0 ; i < 8 ; i++) {
 						this.handles[i].size = this.handleSize;
-						this.handles[i].fillColor = this.selectionHandleColor;
+						this.handles[i].fillColor = this.handleColor;
 						this.handles[i].strokeColor = this.selectionLineColor;
 						this.handles[i].lineWidth = this.selectionLineWidth;
 						this.handles[i].render(c);
@@ -1259,14 +1259,16 @@ var CGSGNode = CGSGObject.extend(
 					this.renderGhost(c);
 
 					// get image data at the mouse x,y pixel
-					var id = c.getImageData(rg.position.x, rg.position.y, rg.dimension.width, rg.dimension.height);
+					if (!rg.isEmpty()) {
+						var id = c.getImageData(rg.position.x, rg.position.y, rg.dimension.width, rg.dimension.height);
 
-					cgsgClearContext(c);
+						cgsgClearContext(c);
 
-					// if the a pixel exists in the region then, select this node
-					for (var i = 0, len = id.data.length ; i < len ; i += 4) {
-						if (id.data[i] != 0 || id.data[i + 1] != 0 || id.data[i + 2] != 0) {
-							return this;
+						// if the a pixel exists in the region then, select this node
+						for (var i = 0, len = id.data.length ; i < len ; i += 4) {
+							if (id.data[i] != 0 || id.data[i + 1] != 0 || id.data[i + 2] != 0) {
+								return this;
+							}
 						}
 					}
 				}
@@ -1352,12 +1354,12 @@ var CGSGNode = CGSGObject.extend(
 					return selectedNodes;
 
 				var childAbsoluteScale = null;
-				 if (cgsgExist(absoluteScale)) {
-				 childAbsoluteScale = absoluteScale.multiply(this.scale);
-				 }
-				 else {
-				 childAbsoluteScale = this.getAbsoluteScale(false);
-				 }
+				if (cgsgExist(absoluteScale)) {
+					childAbsoluteScale = absoluteScale.multiply(this.scale);
+				}
+				else {
+					childAbsoluteScale = this.getAbsoluteScale(false);
+				}
 
 				if (this.isTraversable && (/*this.isClickable ||*/ this.isResizable || this.isDraggable)) {
 					if (!cgsgExist(condition) || condition(this) === true) {
@@ -1975,7 +1977,7 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * Returns the bottom border's position with the highest value between this node and its children.
 			 *
-			 * @method getAbsoluteBottom
+			 * @method getAbsBottom
 			 * @return {Number}
 			 */
 			getMaxAbsoluteBottom : function() {
@@ -1994,50 +1996,50 @@ var CGSGNode = CGSGObject.extend(
 			},
 			/**
 			 *
-			 * @method getAbsoluteLeft
+			 * @method getAbsLeft
 			 * @return {Number}
 			 */
-			getAbsoluteLeft      : function() {
+			getAbsLeft           : function() {
 				return this._absPos.x;
 			},
 
 			/**
-			 * @method getAbsoluteRight
+			 * @method getAbsRight
 			 * @return {Number}
 			 */
-			getAbsoluteRight : function() {
-				return this._absPos.x + this.getAbsoluteWidth();
+			getAbsRight : function() {
+				return this._absPos.x + this.getAbsWidth();
 			},
 
 			/**
-			 * @method getAbsoluteTop
+			 * @method getAbsTop
 			 * @return {Number}
 			 */
-			getAbsoluteTop : function() {
+			getAbsTop : function() {
 				return this._absPos.y;
 			},
 
 			/**
-			 * @method getAbsoluteBottom
+			 * @method getAbsBottom
 			 * @return {Number}
 			 */
-			getAbsoluteBottom : function() {
-				return this._absPos.y + this.getAbsoluteHeight();
+			getAbsBottom : function() {
+				return this._absPos.y + this.getAbsHeight();
 			},
 
 			/**
-			 * @method getAbsoluteWidth
+			 * @method getAbsWidth
 			 * @return {Number}
 			 */
-			getAbsoluteWidth : function() {
+			getAbsWidth : function() {
 				return this.getWidth() * this._absSca.x;
 			},
 
 			/**
-			 * @method getAbsoluteHeight
+			 * @method getAbsHeight
 			 * @return {Number}
 			 */
-			getAbsoluteHeight : function() {
+			getAbsHeight : function() {
 				return this.getHeight() * this._absSca.y;
 			},
 
@@ -2136,10 +2138,10 @@ var CGSGNode = CGSGObject.extend(
 			 }
 
 			 //compute vectors
-			 var topVector = this.getAbsoluteTop();
-			 var bottomVector = this.getAbsoluteBottom();
-			 var leftVector = this.getAbsoluteLeft();
-			 var rightVector = this.getAbsoluteRight();
+			 var topVector = this.getAbsTop();
+			 var bottomVector = this.getAbsBottom();
+			 var leftVector = this.getAbsLeft();
+			 var rightVector = this.getAbsRight();
 
 			 //line = a point and a normalized CGSGVector2D (ie : [0, 1] or [1, 0])
 			 var listOfLines = [];
@@ -2196,8 +2198,8 @@ var CGSGNode = CGSGObject.extend(
 
 				node.selectionLineColor = this.selectionLineColor;
 				node.selectionLineWidth = this.selectionLineWidth;
-				node.selectionHandleSize = this.handleSize;
-				node.selectionHandleColor = this.selectionHandleColor;
+				node.handleSize = this.handleSize;
+				node.handleColor = this.handleColor;
 				node._id = this._id;
 				node.translateTo(this.position.x, this.position.y);
 				node.resizeTo(this.dimension.width, this.dimension.height);

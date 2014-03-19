@@ -42,24 +42,24 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
         /**
          * Indicate if two nodes are colliding
          * @method isColliding
-         * @param currentNode
-         * @param testedNode
-         * @param threshold
+         * @param cn {CGSGNode} currentNode
+         * @param tn {CGSGNode} testedNode
+         * @param t {Number} threshold
          * @return {boolean} true if nodes are colliding
          */
-        isColliding: function (currentNode, testedNode, threshold) {
+        isColliding: function (cn, tn, t) {
             // get deltas to run through minimum pixels (only union of both nodes)
-            var deltaX = testedNode.getAbsoluteLeft() - currentNode.getAbsoluteLeft();
-            var deltaY = testedNode.getAbsoluteTop() - currentNode.getAbsoluteTop();
+            var deltaX = tn.getAbsLeft() - cn.getAbsLeft();
+            var deltaY = tn.getAbsTop() - cn.getAbsTop();
 
             // with delta, calculate the start and end (length) of x and y
             var lengthX = (deltaX >= 0) ?
-                Math.min(currentNode.getAbsoluteWidth() - deltaX, testedNode.getAbsoluteWidth()) :
-                Math.min(testedNode.getAbsoluteWidth() + deltaX, currentNode.getAbsoluteWidth());
+                Math.min(cn.getAbsWidth() - deltaX, tn.getAbsWidth()) :
+                Math.min(tn.getAbsWidth() + deltaX, cn.getAbsWidth());
 
             var lengthY = (deltaY >= 0) ?
-                Math.min(currentNode.getAbsoluteHeight() - deltaY, testedNode.getAbsoluteHeight()) :
-                Math.min(testedNode.getAbsoluteHeight() + deltaY, currentNode.getAbsoluteHeight());
+                Math.min(cn.getAbsHeight() - deltaY, tn.getAbsHeight()) :
+                Math.min(tn.getAbsHeight() + deltaY, cn.getAbsHeight());
 
             if ((lengthX <= 0) || (lengthY <= 0)) {
                 return false;
@@ -70,34 +70,34 @@ var CGSGCollisionGhostOnDemandTester = CGSGObject.extend(
 
             // draw 1st
             var tmpCanvas = document.createElement('canvas');
-            tmpCanvas.width = currentNode.getAbsoluteWidth();
-            tmpCanvas.height = currentNode.getAbsoluteHeight();
+            tmpCanvas.width = cn.getAbsWidth();
+            tmpCanvas.height = cn.getAbsHeight();
             var ctx = tmpCanvas.getContext("2d");
-            //ctx.scale(currentNode.getAbsoluteScale().x, currentNode.getAbsoluteScale().y);
-            ctx.scale(currentNode._absoluteScale.x, currentNode._absoluteScale.y);
+            //ctx.scale(cn.getAbsoluteScale().x, cn.getAbsoluteScale().y);
+            ctx.scale(cn._absSca.x, cn._absSca.y);
 
             // draw 1st at 0x0; (backup position, render, restore position)
-            var backupPosition = currentNode.position;
-            currentNode.position = new CGSGPosition(0, 0);
-            currentNode.render(ctx);
-            currentNode.position = backupPosition;
+            var backupPosition = cn.position;
+            cn.position = new CGSGPosition(0, 0);
+            cn.render(ctx);
+            cn.position = backupPosition;
 
             // draw node : canvas
             var tmpCanvas2 = document.createElement('canvas');
-            tmpCanvas2.width = testedNode.getAbsoluteWidth();
-            tmpCanvas2.height = testedNode.getAbsoluteHeight();
+            tmpCanvas2.width = tn.getAbsWidth();
+            tmpCanvas2.height = tn.getAbsHeight();
             var ctx2 = tmpCanvas2.getContext("2d");
 
             // draw node  (backup position, render, restore position)
-            backupPosition = testedNode.position;
-            testedNode.position = new CGSGPosition(0, 0);
-            testedNode.render(ctx2);
-            testedNode.position = backupPosition;
+            backupPosition = tn.position;
+            tn.position = new CGSGPosition(0, 0);
+            tn.render(ctx2);
+            tn.position = backupPosition;
 
             // compute both with mask at deltas
             ctx.globalCompositeOperation = "destination-in";
-            //ctx.drawImage(tmpCanvas2, deltaX / currentNode.getAbsoluteScale().x, deltaY / currentNode.getAbsoluteScale().y);
-            ctx.drawImage(tmpCanvas2, deltaX / currentNode._absoluteScale.x, deltaY / currentNode._absoluteScale.y);
+            //ctx.drawImage(tmpCanvas2, deltaX / cn.getAbsoluteScale().x, deltaY / cn.getAbsoluteScale().y);
+            ctx.drawImage(tmpCanvas2, deltaX / cn._absSca.x, deltaY / cn._absSca.y);
 
             // WARN : security exception with chrome when calling .html directly (no apache server)
             var canvasData = ctx.getImageData(startX, startY, lengthX, lengthY);

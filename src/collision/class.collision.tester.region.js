@@ -51,20 +51,20 @@ var CGSGCollisionRegionTester = CGSGObject.extend(
             if (threshold === null) {
                 threshold = 0;
             }
-            var curNodeLeft = currentNode.getAbsoluteLeft();
-            var curNodeRight = currentNode.getAbsoluteRight();
-            var curNodeBottom = currentNode.getAbsoluteBottom();
-            var testedNodeLeft = testedNode.getAbsoluteLeft();
-            var testedNodeRight = testedNode.getAbsoluteRight();
-            var testedNodeBottom = testedNode.getAbsoluteBottom();
+            var curNodeLeft = currentNode.getAbsLeft();
+            var curNodeRight = currentNode.getAbsRight();
+            var curNodeBottom = currentNode.getAbsBottom();
+            var testedNodeLeft = testedNode.getAbsLeft();
+            var testedNodeRight = testedNode.getAbsRight();
+            var testedNodeBottom = testedNode.getAbsBottom();
 
             if ((curNodeLeft <= testedNodeRight + threshold &&
                 curNodeRight >= testedNodeLeft - threshold) ||
                 (curNodeRight >= testedNodeLeft - threshold &&
                     curNodeLeft <= testedNodeRight + threshold)) {
 
-                if (currentNode.getAbsoluteTop() <= testedNodeBottom + threshold &&
-                    curNodeBottom >= testedNode.getAbsoluteTop() - threshold) {
+                if (currentNode.getAbsTop() <= testedNodeBottom + threshold &&
+                    curNodeBottom >= testedNode.getAbsTop() - threshold) {
                     return true;
                 }
             }

@@ -683,76 +683,76 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method renderBoundingBox
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 */
-		renderBoundingBox : function(context) {
+		renderBoundingBox : function(c) {
 			var decalX = 0;
 			var decalY = this._computeDecalY();
 
-			//this._absolutePosition = this.getAbsolutePosition(false);
-			//this._absoluteScale = this.getAbsoluteScale(false);
+			//this._absPos = this.getAbsolutePosition(false);
+			//this._absSca = this.getAbsoluteScale(false);
 
 			var height = this.getHeight();
 			var width = this.getWidth();
 
-			context.strokeStyle = this.selectionLineColor;
+			c.strokeStyle = this.selectionLineColor;
 
-			context.lineWidth = this.selectionLineWidth / this._absoluteScale.y;
-			context.beginPath();
+			c.lineWidth = this.selectionLineWidth / this._absSca.y;
+			c.beginPath();
 			//top line
-			context.moveTo(decalX, decalY);
-			context.lineTo(width, decalY);
+			c.moveTo(decalX, decalY);
+			c.lineTo(width, decalY);
 			//bottom line
-			context.moveTo(decalX, decalY + height);
-			context.lineTo(width, decalY + height);
-			context.stroke();
-			context.closePath();
+			c.moveTo(decalX, decalY + height);
+			c.lineTo(width, decalY + height);
+			c.stroke();
+			c.closePath();
 
-			context.lineWidth = this.selectionLineWidth / this._absoluteScale.x;
-			context.beginPath();
+			c.lineWidth = this.selectionLineWidth / this._absSca.x;
+			c.beginPath();
 			//left line
-			context.moveTo(decalX, decalY);
-			context.lineTo(decalX, decalY + height);
+			c.moveTo(decalX, decalY);
+			c.lineTo(decalX, decalY + height);
 			//right line
-			context.moveTo(decalX + width, decalY);
-			context.lineTo(decalX + width, decalY + height);
-			context.stroke();
-			context.closePath();
+			c.moveTo(decalX + width, decalY);
+			c.lineTo(decalX + width, decalY + height);
+			c.stroke();
+			c.closePath();
 
 			//draw the resize handles
 			if (this.isResizable) {
 				// draw the handle boxes
-				var halfX = this.selectionHandleSize / (2 * this._absoluteScale.x);
-				var halfY = this.selectionHandleSize / (2 * this._absoluteScale.y);
+				var halfX = this.handleSize / (2 * this._absSca.x);
+				var halfY = this.handleSize / (2 * this._absSca.y);
 
 				// 0  1  2
 				// 3     4
 				// 5  6  7
 
 				// top left, middle, right
-				this.resizeHandles[0].translateTo(-halfX, -halfY + decalY);
-				this.resizeHandles[1].translateTo(width / 2 - halfX, -halfY + decalY);
-				this.resizeHandles[2].translateTo(width - halfX, -halfY + decalY);
+				this.handles[0].translateTo(-halfX, -halfY + decalY);
+				this.handles[1].translateTo(width / 2 - halfX, -halfY + decalY);
+				this.handles[2].translateTo(width - halfX, -halfY + decalY);
 
 				// middle left
-				this.resizeHandles[3].translateTo(-halfX, height / 2 - halfY + decalY);
+				this.handles[3].translateTo(-halfX, height / 2 - halfY + decalY);
 
 				// middle right
-				this.resizeHandles[4].translateTo(width - halfX,
+				this.handles[4].translateTo(width - halfX,
 												  height / 2 - halfY + decalY);
 
 				// bottom left, middle, right
-				this.resizeHandles[6].translateTo(width / 2 - halfX,
+				this.handles[6].translateTo(width / 2 - halfX,
 												  height - halfY + decalY);
-				this.resizeHandles[5].translateTo(-halfX, height - halfY + decalY);
-				this.resizeHandles[7].translateTo(width - halfX,
+				this.handles[5].translateTo(-halfX, height - halfY + decalY);
+				this.handles[7].translateTo(width - halfX,
 												  height - halfY + decalY);
 
 
 				for (var i = 0 ; i < 8 ; i++) {
-					this.resizeHandles[i].size = this.selectionHandleSize;
-					this.resizeHandles[i].fillColor = this.selectionHandleColor;
-					this.resizeHandles[i].strokeColor = this.selectionLineColor;
-					this.resizeHandles[i].lineWidth = this.selectionLineWidth;
-					this.resizeHandles[i].render(context);
+					this.handles[i].size = this.handleSize;
+					this.handles[i].fillColor = this.handleColor;
+					this.handles[i].strokeColor = this.selectionLineColor;
+					this.handles[i].lineWidth = this.selectionLineWidth;
+					this.handles[i].render(c);
 				}
 			}
 		},
