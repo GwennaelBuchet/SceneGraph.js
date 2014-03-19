@@ -72,20 +72,6 @@ var CGSGNodeWebview = CGSGNodeDomElement.extend(
              * @type {Number}
              */
             this.threshold = 20;
-            /**
-             * Color of the area around the webview in LIVE mode
-             * @property color
-             * @default "lightGray"
-             * @type {String}
-             */
-            this.color = "lightGray";
-            /**
-             * Color of line around the webview in LIVE mode
-             * @property color
-             * @default "Gray"
-             * @type {String}
-             */
-            this.lineColor = "Gray";
 
             /**
              * @property classType

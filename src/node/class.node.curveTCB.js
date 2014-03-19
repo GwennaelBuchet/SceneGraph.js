@@ -42,29 +42,6 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
 
             this.resizeTo(300, 300);
 
-            /**
-             * Color  to fill the square
-             * @property color
-             * @default "#444444"
-             * @type {String}
-             */
-            this.color = "#444444";
-            /**
-             * Color to stroke the square
-             * @property lineColor
-             * @default "#222222"
-             * @type {String}
-             */
-            this.lineColor = "#222222";
-            /**
-             * Width of the line that stroke the square.
-             * Let 0 if you don't want to stroke the square.
-             * @property lineWidth
-             * @default 0
-             * @type {Number}
-             */
-            this.lineWidth = 2;
-
             this._interpolator = new CGSGInterpolatorTCB();
             this._keys = [];
             this._nbKeys = 0;
