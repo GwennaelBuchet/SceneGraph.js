@@ -1,16 +1,10 @@
-/**
-A custom theme must declare the same CSS classes as the default theme ("gray.css") with all properties.
-Obviouly, change values :)
-
-*/
-
 .cgsg {
     background-color: #ffffff;
 }
 
 .cgsg-selectionBox {
-    background-color: #f47473;
-    border: 6px #f47473;
+    background-color: #666666;
+    border: 6px #494949;
     opacity: 0.4;
 }
 
@@ -19,10 +13,10 @@ Bounding box around the node when it's selected
 */
 .cgsgnode-bbox {
     /* lines */
-    outline: #f06b67 2px;
+    outline: #3e3e3e 2px;
 
     /* handles */
-    background-color: #ffabba;
+    background-color: #707080;
     border-width: 6px;
 }
 
@@ -30,11 +24,10 @@ Bounding box around the node when it's selected
 Regular CGSGNode attributes
 */
 .cgsgnode {
-    background-color: #fededf;
-    border: 3px solid #ffa7bf;
+    background-color: #494949;
+    border: 2px solid #333;
     border-radius: 2px;
-    opacity: 1;
-    color: #d72e82;
+    opacity: 1.0;
 }
 
 /*
@@ -47,13 +40,12 @@ Overed CGSGNode attributes
     opacity: 1.0;
 }
 
-
 /*************************************************************************************
 Specific attributes for CGSGNodeText
 **************************************************************************************/
 
 .cgsg-h1 {
-    color: #7f1b4d;
+    color: #212121;
 
     text-align: left;
     font-size: 20px;
@@ -62,7 +54,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h2 {
-    color: #7f1b4d;
+    color: #212121;
     text-align: left;
     font-size: 16px;
     font-family: Arial, sans-serif;
@@ -70,7 +62,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h3 {
-    color: #95205a;
+    color: #303030;
 
     text-align: left;
     font-size: 12px;
@@ -79,7 +71,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h4 {
-    color: #d72e82;
+    color: #303030;
 
     text-align: left;
     font-size: 10pt;
@@ -89,7 +81,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h5 {
-    color: #d72e82;
+    color: #303030;
 
     text-align: left;
     font-size: 10px;
@@ -98,7 +90,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h6 {
-    color: #d72e82;
+    color: #303030;
 
     text-align: left;
     font-size: 10px;
@@ -107,40 +99,50 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-p {
-    color: #4b0f2f;
+    color: #222222;
     text-align: left;
     font-size: 12px;
     font-family: Arial, sans-serif;
+}
+
+.cgsg-left {
+    text-align: left;
+}
+.cgsg-center {
+    text-align: center;
+}
+.cgsg-right {
+    text-align: right;
 }
 
 /*************************************************************************************
 Specific attributes for CGSGNodeButton
 **************************************************************************************/
 .cgsg-button {
-    background: -webkit-linear-gradient(#fededf, #ffa4bb); /* For Safari */
-    background: -o-linear-gradient(#fededf, #ffa4bb); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#fededf, #ffa4bb); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#fededf, #ffa4bb); /* Standard syntax */
+    background: -webkit-linear-gradient(#9c9c9c, #575757); /* For Safari */
+    background: -o-linear-gradient(#9c9c9c, #575757); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#9c9c9c, #575757); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#9c9c9c, #575757); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
-    border: 0 #d72e82;
+    border: 0 #4B4B4B;
     border-radius: 8px;
     opacity: 1.0;
 }
 
 .cgsg-button-text {
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     font-family: Arial, sans-serif;
-    color: #d72e82;
+    color: #FFFFFF;
 }
 
 .cgsg-button-over {
-    background: -webkit-linear-gradient(#ff92b2, #e5718d); /* For Safari */
-    background: -o-linear-gradient(#ff92b2, #e5718d); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#ff92b2, #e5718d); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#ff92b2, #e5718d); /* Standard syntax */
+    background: -webkit-linear-gradient(#5F5F5F, #4B4B4B); /* For Safari */
+    background: -o-linear-gradient(#5F5F5F, #4B4B4B); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#5F5F5F, #4B4B4B); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#5F5F5F, #4B4B4B); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
@@ -151,37 +153,16 @@ Specific attributes for CGSGNodeButton
 
 .cgsg-button-over-text {
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     font-family: Arial, sans-serif;
-    color: #fff;
+    color: #FFF;
 }
 
 .cgsg-button-deactivated {
-    background: -webkit-linear-gradient(#ffdfe3, #f3c1ce); /* For Safari */
-    background: -o-linear-gradient(#ffdfe3, #f3c1ce); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#ffdfe3, #f3c1ce); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#ffdfe3, #f3c1ce); /* Standard syntax */
-
-    padding-top: 12px;
-    padding-left: 10px;
-    border: 0 #cb5373;
-    border-radius: 8px;
-    opacity: 1.0;
-}
-
-.cgsg-button-deactivated-text {
-    text-align: center;
-    font-size: 12px;
-    font-family: "Times New Roman", Georgia, Serif;
-    color: #d08aa3;
-    opacity: 0.6;
-}
-
-.cgsg-button-selected {
-    background: -webkit-linear-gradient(#ff92b2, #e5718d); /* For Safari */
-    background: -o-linear-gradient(#ff92b2, #e5718d); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#ff92b2, #e5718d); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#ff92b2, #e5718d); /* Standard syntax */
+    background: -webkit-linear-gradient(#D8D8D8, #B5B5B5); /* For Safari */
+    background: -o-linear-gradient(#D8D8D8, #B5B5B5); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#D8D8D8, #B5B5B5); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#D8D8D8, #B5B5B5); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
@@ -190,12 +171,31 @@ Specific attributes for CGSGNodeButton
     opacity: 1.0;
 }
 
+.cgsg-button-deactivated-text {
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: #FFF;
+}
+
+.cgsg-button-selected {
+    background: -webkit-linear-gradient(#4B4B4B, #494949); /* For Safari */
+    background: -o-linear-gradient(#4B4B4B, #494949); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#4B4B4B, #494949); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#4B4B4B, #494949); /* Standard syntax */
+
+    padding-top: 12px;
+    padding-left: 10px;
+    border: 0 #4B4B4B;
+    border-radius: 8px;
+    opacity: 1.0;
+}
 
 .cgsg-button-selected-text {
     text-align: center;
-    font-size: 13px;
-    font-family: "Times New Roman", Georgia, Serif;
-    color: #fff;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: #FFF;
 }
 
 /**

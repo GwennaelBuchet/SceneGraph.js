@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,19 +10,19 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  *
  * Purpose :
@@ -47,10 +47,6 @@ var CGMain = CGSGView.extend(
 			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
-
-			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
-			// to load all components in cache
-			this.invalidateTheme();
 		},
 
 		/**
@@ -112,24 +108,38 @@ var CGMain = CGSGView.extend(
 
 			var t1 = new CGSGNodeText(270, 230, "Text H1");
 			t1.setClass("cgsg-h1");
+			t1.isDraggable = true;
+			t1.isResizable = true;
 			root.addChild(t1);
 			var t2 = new CGSGNodeText(270, 260, "Text H2");
 			t2.setClass("cgsg-h2");
+			t2.isDraggable = true;
+			t2.isResizable = true;
 			root.addChild(t2);
 			var t3 = new CGSGNodeText(270, 290, "Text H3");
 			t3.setClass("cgsg-h3");
+			t3.isDraggable = true;
+			t3.isResizable = true;
 			root.addChild(t3);
 			var t4 = new CGSGNodeText(270, 320, "Text H4");
 			t4.setClass("cgsg-h4");
+			t4.isDraggable = true;
+			t4.isResizable = true;
 			root.addChild(t4);
 			var t5 = new CGSGNodeText(400, 230, "Text H5");
 			t5.setClass("cgsg-h5");
+			t5.isDraggable = true;
+			t5.isResizable = true;
 			root.addChild(t5);
 			var t6 = new CGSGNodeText(400, 260, "Text H6");
 			t6.setClass("cgsg-h6");
+			t6.isDraggable = true;
+			t6.isResizable = true;
 			root.addChild(t6);
 			var tp = new CGSGNodeText(400, 290, "Text Paragraph");
 			tp.setClass("cgsg-p");
+			tp.isDraggable = true;
+			tp.isResizable = true;
 			root.addChild(tp);
 
 			var buttonPink = new CGSGNodeButton(10, 60, "switch to Pink theme", true);
@@ -148,19 +158,19 @@ var CGMain = CGSGView.extend(
 			var bindSwitchTheme = this.switchTheme.bind(this);
 
 			buttonPink.onClick = function() {
-				bindSwitchTheme("../../shared/themes/pink/pinkTheme.css");
+				bindSwitchTheme("../../../min/css/themes/pink/pinkTheme.css");
 			};
 			buttonGreen.onClick = function() {
-				bindSwitchTheme("../../shared/themes/green/greenTheme.css");
+				bindSwitchTheme("../../../min/css/themes/green/greenTheme.css");
 			};
 			buttonBlue.onClick = function() {
-				bindSwitchTheme("../../shared/themes/blue/blueTheme.css");
+				bindSwitchTheme("../../../min/css/themes/blue/blueTheme.css");
 			};
 			buttonGray.onClick = function() {
-				bindSwitchTheme("../../shared/themes/gray/grayTheme.css");
+				bindSwitchTheme("../../../min/css/themes/gray/grayTheme.css");
 			};
 
-			this.currentTheme = "../../shared/themes/gray/grayTheme.css";
+			this.currentTheme = "../../../min/css/themes/gray/grayTheme.css";
 		},
 
 		/**

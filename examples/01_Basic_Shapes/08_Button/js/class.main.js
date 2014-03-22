@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,19 +10,19 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  *
  * Purpose :
@@ -74,22 +74,20 @@ var CGMain = CGSGView.extend(
 
                 var buttonLittle = new CGSGNodeButton(250, 70, "Tiny");
                 buttonLittle.name = "Tiny Button";
+				buttonLittle.setClass("tiny");
+				buttonLittle.setTextClass("tiny");
                 buttonLittle.onClick = bindClickHandler;
-                buttonLittle.setVerticalPadding(2);
-                buttonLittle.setHorizontalPadding(4);
-                //3 radius : normal, over, deactivated
-                buttonLittle.setRadiuses([5, 5, 5]);
-                //3 sizes : normal, over, deactivated
-                buttonLittle.setTextSizes([8, 8, 8]);
                 rootNode.addChild(buttonLittle, null);
 
 
                 var buttonCustom = new CGSGNodeButton(310, 50, "Custom\nbutton");
-                //3 colors : normal, over, deactivated
-                buttonCustom.setFirstColors(["#FFADAD", "#D89393", "#F9DBDB"]);
-                buttonCustom.setLastColors(["#FF8E8E", "#D37676", "#D8BEBE"]);
-                buttonCustom.setTextColors(["green", "#8EA7FF", "gray"]);
-                buttonCustom.setRadiuses([0, 20, 10]);
+				buttonCustom.setTextClassAll(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+				buttonCustom.setClassAll(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+				//this will also work:
+                /*buttonCustom.setClassFor("custom-normal", CGSGButtonMode.NORMAL);
+                buttonCustom.setClassFor("custom-over", CGSGButtonMode.OVER);
+                buttonCustom.setClassFor("custom-deactivated", CGSGButtonMode.DEACTIVATED);
+                buttonCustom.setClassFor("custom-selected", CGSGButtonMode.SELECTED);*/
                 rootNode.addChild(buttonCustom, null);
                 buttonCustom.name = "Custom Button";
                 buttonCustom.onClick = bindClickHandler;
@@ -125,15 +123,28 @@ var CGMain = CGSGView.extend(
                 this.img = new Image();
                 this.img.onload = this.onImageLoaded.bind(this);
                 this.img.src = "images/board.png";
-                this.buttonSpritesheet = new CGSGNodeButton(150, 240, "Pictos in \nspritesheet");
+                this.buttonSpritesheet = new CGSGNodeButton(50, 240, "Pictos in \nspritesheet");
                 this.buttonSpritesheet.setSlices([
                     new CGSGRegion(0, 0, 32, 32),
                     new CGSGRegion(32, 0, 32, 32),
-                    new CGSGRegion(64, 0, 32, 32)]);
+                    new CGSGRegion(64, 0, 32, 32),
+					new CGSGRegion(64, 0, 32, 32)]);
                 this.buttonSpritesheet.isDraggable = true;
                 rootNode.addChild(this.buttonSpritesheet, null);
                 this.buttonSpritesheet.name = "Spritesheet Button";
                 this.buttonSpritesheet.onClick = bindClickHandler;
+
+				this.buttonSpritesheetCSS = new CGSGNodeButton(250, 240, "Pictos in \nspritesheet via CSS");
+				this.buttonSpritesheetCSS.setSlices([
+													 new CGSGRegion(0, 0, 32, 32),
+													 new CGSGRegion(32, 0, 32, 32),
+													 new CGSGRegion(64, 0, 32, 32),
+													 new CGSGRegion(64, 0, 32, 32)]);
+				this.buttonSpritesheetCSS.addClass("spritesheet");
+				this.buttonSpritesheetCSS.isDraggable = true;
+				rootNode.addChild(this.buttonSpritesheetCSS, null);
+				this.buttonSpritesheetCSS.name = "Spritesheet CSS Button";
+				this.buttonSpritesheetCSS.onClick = bindClickHandler;
 
                 //just a title text
                 this.txtNode = new CGSGNodeText(10, 10, "Button examples.");
@@ -146,6 +157,8 @@ var CGMain = CGSGView.extend(
 
             onImageLoaded: function () {
                 this.buttonSpritesheet.setImage(this.img);
+				this.buttonSpritesheet.forceRedraw();
+				this.buttonSpritesheet.invalidate();
             }
         }
     )

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -67,7 +67,7 @@ var CGSGNodeButtonProps = CGSGObject.extend(
  * List the modes for a button : NORMAL, OVER, DEACTIVATED, SELECTED.
  * @class CGSGButtonMode
  * @type {Object}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @example
  *      myTextNode.setMode(CGSGButtonMode.DEACTIVATED);
  */
@@ -160,7 +160,7 @@ var CGSGPositionMode = {
  * @param {Number} y Relative position on Y
  * @param {String} text
  * @type {CGSGNodeButton}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeButton = CGSGNode.extend(
 	{
@@ -290,16 +290,33 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @param cls {String}
 		 */
 		setClass : function(cls) {
-			this._props[CGSGButtonMode.NORMAL.id].cls = [];
+			this._clearAllCls();
 			this._props[CGSGButtonMode.NORMAL.id].cls.push(cls);
-			this._props[CGSGButtonMode.OVER.id].cls = [];
 			this._props[CGSGButtonMode.OVER.id].cls.push(cls);
-			this._props[CGSGButtonMode.DEACTIVATED.id].cls = [];
 			this._props[CGSGButtonMode.DEACTIVATED.id].cls.push(cls);
-			this._props[CGSGButtonMode.SELECTED.id].cls = [];
 			this._props[CGSGButtonMode.SELECTED.id].cls.push(cls);
 
 			this.invalidateTheme();
+		},
+
+		/**
+		 * @method setClassAll
+		 * @param clss {Array} Array of CSS class name
+		 */
+		setClassAll : function(clss) {
+			this._clearAllCls();
+			this._props[CGSGButtonMode.NORMAL.id].cls.push(clss[0]);
+			this._props[CGSGButtonMode.OVER.id].cls.push(clss[1]);
+			this._props[CGSGButtonMode.DEACTIVATED.id].cls.push(clss[2]);
+			this._props[CGSGButtonMode.SELECTED.id].cls.push(clss[3]);
+			this.invalidate();
+		},
+
+		_clearAllCls : function() {
+			this._props[CGSGButtonMode.NORMAL.id].cls = [];
+			this._props[CGSGButtonMode.OVER.id].cls = [];
+			this._props[CGSGButtonMode.DEACTIVATED.id].cls = [];
+			this._props[CGSGButtonMode.SELECTED.id].cls = [];
 		},
 
 		/**
@@ -495,10 +512,34 @@ var CGSGNodeButton = CGSGNode.extend(
 
 		/**
 		 * @method setTextClass
+		 * @param cls {String} CSS class name
+		 */
+		setTextClass : function(cls) {
+			this._props[CGSGButtonMode.NORMAL.id].txtNode.setClass(cls);
+			this._props[CGSGButtonMode.OVER.id].txtNode.setClass(cls);
+			this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.setClass(cls);
+			this._props[CGSGButtonMode.SELECTED.id].txtNode.setClass(cls);
+			this.invalidate();
+		},
+
+		/**
+		 * @method setTextClassAll
+		 * @param clss {Array} Array of CSS class name
+		 */
+		setTextClassAll : function(clss) {
+			this._props[CGSGButtonMode.NORMAL.id].txtNode.setClass(clss[0]);
+			this._props[CGSGButtonMode.OVER.id].txtNode.setClass(clss[1]);
+			this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.setClass(clss[2]);
+			this._props[CGSGButtonMode.SELECTED.id].txtNode.setClass(clss[3]);
+			this.invalidate();
+		},
+
+		/**
+		 * @method setTextClassFor
 		 * @param mode {CGSGButtonMode}
 		 * @param cls {String} CSS class name
 		 */
-		setTextClass : function(mode, cls) {
+		setTextClassFor : function(cls, mode) {
 			this._props[mode.id].txtNode.setClass(cls);
 			this.invalidate();
 		},
@@ -515,6 +556,31 @@ var CGSGNodeButton = CGSGNode.extend(
 
 			this._fixedSize = cgsgExist(dim);
 			this.forceRedraw();
+		},
+
+		/**
+		 * Set the slices in the image for the 3 modes
+		 * @method setSlices
+		 * @param slices {Array} array of region for all 4 modes
+		 */
+		setSlices : function(slices) {
+			this._props[CGSGButtonMode.NORMAL.id].slice = slices[0];
+			this._props[CGSGButtonMode.OVER.id].slice = slices[1];
+			this._props[CGSGButtonMode.DEACTIVATED.id].slice = slices[2];
+			this._props[CGSGButtonMode.SELECTED.id].slice = slices[3];
+			this.forceRedraw();
+		},
+
+		/**
+		 * @method setSliceFor
+		 * @param slice {CGSGRegion}
+		 * @param mode {CGSGButtonMode}
+		 */
+		setSliceFor : function(slice, mode) {
+			this._props[mode.id].slice = slice;
+			this._props[mode.id]._invalSize = true;
+
+			this._initShape(mode);
 		},
 
 		/**

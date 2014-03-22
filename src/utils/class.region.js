@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  * */
@@ -32,7 +32,7 @@
  * @constructor
  * @param {Number} x X value
  * @param {Number} y Y value
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGPosition}
  */
 var CGSGPosition = CGSGVector2D.extend(
@@ -115,7 +115,7 @@ var CGSGPosition = CGSGVector2D.extend(
  * @constructor
  * @param {Number} x X value
  * @param {Number} y Y value
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGScale}
  */
 var CGSGScale = CGSGPosition.extend(
@@ -132,7 +132,7 @@ var CGSGScale = CGSGPosition.extend(
  * @extends Object
  * @constructor
  * @param {Number} angle Angle value
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGRotation}
  */
 var CGSGRotation = CGSGObject.extend(
@@ -220,7 +220,7 @@ var CGSGRotation = CGSGObject.extend(
  * @constructor
  * @param {Number} width
  * @param {Number} height
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGDimension}
  */
 var CGSGDimension = CGSGVector2D.extend(
@@ -317,7 +317,7 @@ var CGSGDimension = CGSGVector2D.extend(
  * @param {Number} y Position on Y
  * @param {Number} width Dimension on Width
  * @param {Number} height Dimension on Height
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGRegion}
  */
 var CGSGRegion = CGSGObject.extend(

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,19 +10,19 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  *
  * Purpose :
@@ -66,65 +66,62 @@ var CGMain = CGSGView.extend(
         },
 
         create1LineText: function () {
-            var textNode = new CGSGNodeText(10, 10, "Simple line");
-            textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
-            textNode.setSize(26);
-            textNode.setTypo("Arial");
-            textNode.isDraggable = true;
+            var t1 = new CGSGNodeText(10, 10, "Simple line (H1)");
+			t1.pickNodeMethod = CGSGPickNodeMethod.REGION;
+			t1.setClass("cgsg-h1");
+			t1.isDraggable = true;
 
             //add the textNode as child of the root
-            this.rootNode.addChild(textNode);
+            this.rootNode.addChild(t1);
         },
 
         createCrossedLineText: function () {
-            var textNode = new CGSGNodeText(200, 50, "Crossed line");
-            textNode.pickNodeMethod = CGSGPickNodeMethod.REGION;
-            textNode.setSize(13);
-            textNode.setTypo("Arial");
-            textNode.isDraggable = true;
-            textNode.crossed = true;
+            var t2 = new CGSGNodeText(200, 50, "Crossed line (H3)");
+			t2.pickNodeMethod = CGSGPickNodeMethod.REGION;
+			t2.setClass("cgsg-h3");
+			t2.isDraggable = true;
+			t2.crossed = true;
 
             //add the textNode as child of the root
-            this.rootNode.addChild(textNode);
+            this.rootNode.addChild(t2);
         },
 
         createMaxWidthText: function () {
             var maxWidth = 180;
 
-            var textNode = new CGSGNodeText(10, 100, "Simple centered and long text with a max of :" + maxWidth +
-                " px to be on a multiline...");
-            textNode.setSize(14);
-            textNode.setTypo("Arial");
-            textNode.isDraggable = true;
-            textNode.isResizable = true;
+            var t3 = new CGSGNodeText(10, 100, "Simple centered and long text with a max of :" + maxWidth +
+                " px to be on a multiline... (H3)");
+			t3.setClass("cgsg-h3");
+			t3.addClass("cgsg-center");
+			t3.isDraggable = true;
+			t3.isResizable = true;
 
-            textNode.setWrapMode(CGSGWrapMode.WORD);
-            textNode.setTextAlign("center");
-            textNode.setMaxWidth(maxWidth);
-            textNode.setLineHeight(18);
+			t3.setWrapMode(CGSGWrapMode.WORD);
+            //t3.setTextAlign("center");
+			t3.setMaxWidth(maxWidth);
+            //t3.setLineHeight(18);
 
-            textNode.onResize = function (event) {
+			t3.onResize = function (event) {
                 event.data.node.setMaxWidth(event.data.node.dimension.width);
             }
 
-            textNode.setPrecomputed(true);
+			t3.setPrecomputed(true);
 
             //add the textNode as child of the root
-            this.rootNode.addChild(textNode);
+            this.rootNode.addChild(t3);
         },
 
         createCarriageReturnText: function () {
-            var textNode = new CGSGNodeText(10, 200, "Simple blue text with a carriage return and a tabulation :\njust\there");
-            textNode.setSize(14);
-            textNode.setTypo("Times New Roman");
-            textNode.isDraggable = true;
-            textNode.name = "Carriage Return Text";
+            var t4 = new CGSGNodeText(10, 200, "Simple blue text with a carriage return and a tabulation :\njust\there (h2)");
+			t4.setClass("cgsg-h2");
+			t4.isDraggable = true;
+			t4.name = "Carriage Return Text";
 
-            textNode.color = "blue";
-            textNode.setPrecomputed(true);
+			t4.color = "blue";
+			t4.setPrecomputed(true);
 
             //add the textNode as child of the root
-            this.rootNode.addChild(textNode);
+            this.rootNode.addChild(t4);
         },
 
         createScaledText: function () {

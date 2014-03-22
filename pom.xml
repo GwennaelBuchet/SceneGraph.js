@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+Copyright (c) 2014 Gwennael Buchet
 
 License/Terms of Use
 
@@ -28,10 +28,10 @@ Any failure to comply with the above shall automatically terminate the license a
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.capgemini</groupId>
-    <artifactId>cgscenegraph</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
-    <name>cgSceneGraph</name>
+    <groupId>com.codeartex</groupId>
+    <artifactId>scenegraph</artifactId>
+    <version>2.0.0</version>
+    <name>sceneGraph</name>
 
     <!--
     Usage to prepare a SNAPSHOT or RELEASE version :

@@ -74,13 +74,13 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
 			var borderRadius = this.handleWidth / 10;
 
 			c.lineWidth = 2;
-			c.strokeStyle = CGSGColor.darkenHex(this.color, 0.7);
+			c.strokeStyle = CGSGColor.darkenHex(this.bkgcolor, 0.7);
 
 			var gradient = c.createLinearGradient(this.handleWidth, 0,
 												  this.handleWidth,
 												  this.handleWidth);
 			gradient.addColorStop(0.3, this.color);
-			gradient.addColorStop(1, CGSGColor.darkenHex(this.color, 0.7));
+			gradient.addColorStop(1, CGSGColor.darkenHex(this.bkgcolor, 0.7));
 
 			c.fillStyle = gradient;
 			c.beginPath();

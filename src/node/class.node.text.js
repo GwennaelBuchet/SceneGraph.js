@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -27,7 +27,7 @@
  * List the methods to wrap the text. Used by {CGSGNodeText} Node.
  * @class CGSGWrapMode
  * @type {Object}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @example
  *      myTextNode.setWrapMode(CGSGWrapMode.WORD, true);
  */
@@ -57,7 +57,7 @@ var CGSGWrapMode = {
  * @param {Number} y Relative position on Y
  * @param {String} text Text to display
  * @type {CGSGNodeText}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeText = CGSGNode.extend(
 	{
@@ -80,12 +80,12 @@ var CGSGNodeText = CGSGNode.extend(
 			this._size;
 			/**
 			 * Possible values : "left", "right", "center"
-			 * @property _textAlign
+			 * @property _align
 			 * @default "left"
 			 * @type {String}
 			 * @private
 			 */
-			this._textAlign;
+			this._align;
 			/**
 			 * Possible values : "top", "hanging", "middle", "alphabetic", "ideographic", "bottom"
 			 * @property _textBaseline
@@ -250,7 +250,7 @@ var CGSGNodeText = CGSGNode.extend(
 			if (cgsgExist(height))
 				this._lineHeight = height;
 			if (cgsgExist(align))
-				this._textAlign = align;
+				this._align = align;
 			if (cgsgExist(transform))
 				this._transform = transform;
 			if (cgsgExist(strokeWidth))
@@ -429,7 +429,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} a A String (Possible values : "left", "right", "center")
 		 */
 		setTextAlign : function(a) {
-			this._textAlign = a;
+			this._align = a;
 			this.invalidate();
 		},
 
@@ -477,7 +477,7 @@ var CGSGNodeText = CGSGNode.extend(
 			context.font = this._fullfont;
 			//this._style + (this._style != null && this._style.length > 0 ? ' ' : '') + this._size + "pt " + this._typo;
 
-			context.textAlign = this._textAlign;
+			context.textAlign = this._align;
 			context.textBaseline = this._textBaseline;
 
 			var s = 0, textW = 0, posX = 0, posY = 0;
@@ -617,13 +617,13 @@ var CGSGNodeText = CGSGNode.extend(
 		 */
 		_computeDecalX : function(width) {
 			var decalX = 0;
-			if (this._textAlign == "start" || this._textAlign == "left") {
+			if (this._align == "start" || this._align == "left") {
 				decalX = 0.0;
 			}
-			else if (this._textAlign == "center") {
+			else if (this._align == "center") {
 				decalX = width / 2.0;
 			}
-			else if (this._textAlign == "end" || this._textAlign == "right") {
+			else if (this._align == "end" || this._align == "right") {
 				decalX = width;
 			}
 
@@ -768,7 +768,7 @@ var CGSGNodeText = CGSGNode.extend(
 
 			node.color = this.color;
 			node.setSize(this._size, false);
-			node.setTextAlign(this._textAlign, false);
+			node.setTextAlign(this._align, false);
 			node.setTextBaseline(this._textBaseline, false);
 			node.setStroke(this._strokeWidth, false);
 			node.setTypo(this._typo, false);

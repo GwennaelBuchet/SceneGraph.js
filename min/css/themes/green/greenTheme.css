@@ -6,11 +6,13 @@ Obviouly, change values :)
 
 .cgsg {
     background-color: #ffffff;
+    /* text color */
+    color: #59a255;
 }
 
 .cgsg-selectionBox {
-    background-color: #a6aece;
-    border: 6px #9090a5;
+    background-color: #8ef58b;
+    border: 6px #70be72;
     opacity: 0.4;
 }
 
@@ -19,10 +21,10 @@ Bounding box around the node when it's selected
 */
 .cgsgnode-bbox {
     /* lines */
-    outline: #8688a2 2px;
+    outline: #73d270 2px;
 
     /* handles */
-    background-color: #afc0d5;
+    background-color: #81dd82;
     border-width: 6px;
 }
 
@@ -30,31 +32,29 @@ Bounding box around the node when it's selected
 Regular CGSGNode attributes
 */
 .cgsgnode {
-    background-color: #d8e8fb;
-    border: 3px solid #aab8d4;
+    background-color: #bffcc7;
+    border: 3px solid #80e583;
     border-radius: 2px;
     opacity: 1;
-
-    color: #5c5d80;
+    color: #59a255;
 }
 
 /*
 Overed CGSGNode attributes
 */
 .cgsgnode-over {
-    background-color: #949494;
-    border: 2px solid #808080;
+    background-color: #666;
+    border: 2px solid #444;
     border-radius: 2px;
     opacity: 1.0;
 }
-
 
 /*************************************************************************************
 Specific attributes for CGSGNodeText
 **************************************************************************************/
 
 .cgsg-h1 {
-    color: #3f4058;
+    color: #458442;
 
     text-align: left;
     font-size: 20px;
@@ -63,7 +63,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h2 {
-    color: #505170;
+    color: #478b46;
     text-align: left;
     font-size: 16px;
     font-family: Arial, sans-serif;
@@ -71,7 +71,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h3 {
-    color: #5c5d80;
+    color: #59a255;
 
     text-align: left;
     font-size: 12px;
@@ -80,7 +80,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h4 {
-    color: #5c5d80;
+    color: #59a255;
 
     text-align: left;
     font-size: 10pt;
@@ -90,7 +90,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h5 {
-    color: #5c5d80;
+    color: #59a255;
 
     text-align: left;
     font-size: 10px;
@@ -99,7 +99,7 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-h6 {
-    color: #5c5d80;
+    color: #59a255;
 
     text-align: left;
     font-size: 10px;
@@ -108,93 +108,104 @@ Specific attributes for CGSGNodeText
 }
 
 .cgsg-p {
-    color: #2c2c3f;
+    color: #253826;
     text-align: left;
     font-size: 12px;
     font-family: Arial, sans-serif;
+}
+
+.cgsg-left {
+    text-align: left;
+}
+.cgsg-center {
+    text-align: center;
+}
+.cgsg-right {
+    text-align: right;
 }
 
 /*************************************************************************************
 Specific attributes for CGSGNodeButton
 **************************************************************************************/
 .cgsg-button {
-    background: -webkit-linear-gradient(#d8e8fb, #a9b7d3); /* For Safari */
-    background: -o-linear-gradient(#d8e8fb, #a9b7d3); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#d8e8fb, #a9b7d3); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#d8e8fb, #a9b7d3); /* Standard syntax */
+    background: -webkit-linear-gradient(#bffcc7, #82e884); /* For Safari */
+    background: -o-linear-gradient(#bffcc7, #82e884); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#bffcc7, #82e884); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#bffcc7, #82e884); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
-    border: 0 #8b8b8b;
+    border: 0 #959595;
     border-radius: 8px;
     opacity: 1.0;
 }
 
 .cgsg-button-text {
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     font-family: Arial, sans-serif;
-    color: #FFFFFF;
+    color: #2d9a3d;
 }
 
 .cgsg-button-over {
-    background: -webkit-linear-gradient(#acbad7, #8d8eaa); /* For Safari */
-    background: -o-linear-gradient(#acbad7, #8d8eaa); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#acbad7, #8d8eaa); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#acbad7, #8d8eaa); /* Standard syntax */
+    background: -webkit-linear-gradient(#80e482, #76d772); /* For Safari */
+    background: -o-linear-gradient(#80e482, #76d772); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#80e482, #76d772); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#80e482, #76d772); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
-    border: 0 #d8e8fb;
+    border: 0 #76d772;
     border-radius: 8px;
     opacity: 1.0;
 }
 
 .cgsg-button-over-text {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     font-family: Arial, sans-serif;
-    color: #d8e8fb;
+    color: #59a255;
 }
 
 .cgsg-button-deactivated {
-    background: -webkit-linear-gradient(#c2cedd, #aeb5c6); /* For Safari */
-    background: -o-linear-gradient(#c2cedd, #aeb5c6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#c2cedd, #aeb5c6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#c2cedd, #aeb5c6); /* Standard syntax */
+    background: -webkit-linear-gradient(#d2fdcd, #c2e6b9); /* For Safari */
+    background: -o-linear-gradient(#d2fdcd, #c2e6b9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#d2fdcd, #c2e6b9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#d2fdcd, #c2e6b9); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
-    border: 0 #8a8ba6;
+    border: 0 #82df7e;
     border-radius: 8px;
     opacity: 1.0;
 }
 
 .cgsg-button-deactivated-text {
     text-align: center;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    color: #7c8590;
+    font-size: 12px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #6fca6d;
+    opacity: 0.6;
 }
 
 .cgsg-button-selected {
-    background: -webkit-linear-gradient(#acbad7, #8d8eaa); /* For Safari */
-    background: -o-linear-gradient(#acbad7, #8d8eaa); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#acbad7, #8d8eaa); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#acbad7, #8d8eaa); /* Standard syntax */
+    background: -webkit-linear-gradient(#80e482, #76d772); /* For Safari */
+    background: -o-linear-gradient(#80e482, #76d772); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#80e482, #76d772); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#80e482, #76d772); /* Standard syntax */
 
     padding-top: 12px;
     padding-left: 10px;
-    border: 0 #8c8ea9;
+    border: 0 #76d772;
     border-radius: 8px;
     opacity: 1.0;
 }
 
 .cgsg-button-selected-text {
     text-align: center;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    color: #78788f;
+    font-size: 13px;
+    font-family: "Times New Roman", Georgia, Serif;
+    color: #59a255;
 }
 
 /**
