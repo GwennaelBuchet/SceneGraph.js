@@ -80,9 +80,11 @@ var CGMain = CGSGView.extend(
 			var square = new CGSGNodeSquare(attributes.x, attributes.y, attributes.w, attributes.w);
 			square.isDraggable = true;
 			square.isResizable = true;
+			//override CSS attributes
 			square.globalAlpha = 0.5;
-			square.color = attributes.color;
+			square.bkgcolor = attributes.color;
 			square.lineWidth = 2;
+
 			square.name = attributes.name;
 
 			if (attributes.hasEvent === false) {

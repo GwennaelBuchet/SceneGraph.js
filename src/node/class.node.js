@@ -150,7 +150,7 @@ var CGSGNode = CGSGObject.extend(
 				/**
 				 * can be fulfilled by the developer to put in whatever he needs
 				 * @property userData
-				 * @default null
+				 * @default {} Empty object
 				 * @type {*}
 				 */
 				this.userData = {};
@@ -595,26 +595,20 @@ var CGSGNode = CGSGObject.extend(
 				this.detectSelectionThreshold = CGSG.globalDetectSelectionThreshold;
 
 				/**
-				 * Color to fill the text of the node. Will be overrided with CSS content.
-				 * CGSGNode extensions should (but not mandatory) use this attribute
-				 * @property color
-				 * @type {String}
-				 */
-				this.color = null;
-				/**
 				 * Color to fill the background of the node. Will be overrided with CSS content.
 				 * CGSGNode extensions should (but not mandatory) use this attribute
 				 * @property bkgcolor
 				 * @type {String}
 				 */
 				this.bkgcolor = null;
+
 				/**
 				 * Color to stroke the node. Will be overrided with CSS content
 				 * CGSGNode extensions should (but not mandatory) use this attribute as the stroke color for their node
 				 * @property lineColor
 				 * @type {String}
 				 */
-				this.lineColor = "#222222";
+				this.lineColor = null;
 				/**
 				 * Width of the line that stroke the node. Will be overrided with CSS content.
 				 * CGSGNode extensions should (but not mandatory) use this attribute as the strokeWidth for their node
@@ -627,8 +621,8 @@ var CGSGNode = CGSGObject.extend(
 
 				this._cls = [];
 				this._clsBBox = null;
-				this.setClass(CGSG_DEFAULT_THEME_NODE_CLS);
-				this.setClassBBox(CGSG_DEFAULT_THEME_BBOX_CLS);
+				this.setClass("cgsgnode");
+				this.setClassBBox("cgsgnode-bbox");
 
 				//initialize the position and dimension
 				this.translateTo(x, y, true);
@@ -759,18 +753,13 @@ var CGSGNode = CGSGObject.extend(
 
 				//Use of "this._cls" class names which define the current CSS classes used by this object.
 				var fs = CGSG.cssManager.getAttrInArray(this._cls, "background-color");
-				var cl = CGSG.cssManager.getAttrInArray(this._cls, "color");
 				var lw = CGSG.cssManager.getAttrInArray(this._cls, "border-width");
 				var ss = CGSG.cssManager.getAttrInArray(this._cls, "border-color");
+				var a = CGSG.cssManager.getFloat(CGSG.cssManager.getAttrInArray(this._cls, "opacity"));
 
 				var rgb;
 
-				//Avoid to override previous value if no one is defined now. So check existence of new one first.
-				if (cgsgExist(cl)) {
-					//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
-					rgb = CGSGColor.fromString(cl);
-					this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
-				}
+
 				if (cgsgExist(fs)) {
 					//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
 					rgb = CGSGColor.fromString(fs);
@@ -781,12 +770,9 @@ var CGSGNode = CGSGObject.extend(
 				if (cgsgExist(ss))
 					this.lineColor = ss;
 
-				if (cgsgExist(this._cls)) {
-					var a = CGSG.cssManager.getFloat(CGSG.cssManager.getAttrInArray(this._cls, "opacity"));
-					//avoid to override previous value if no one was defined
-					if (cgsgExist(a))
-						this.globalAlpha = a;
-				}
+				//avoid to override previous value if no one was defined
+				if (cgsgExist(a))
+					this.globalAlpha = a;
 
 				if (cgsgExist(this._clsBBox)) {
 					var sc = CGSG.cssManager.getAttr(this._clsBBox, "background-color");
@@ -1720,6 +1706,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @example node.evalSet("position.y", 12);
 			 */
 			evalSet : function(a, v) {
+				var rgb;
 				//check for common properties to optimize performances
 				if (a == "position.x") {
 					this.translateTo(v, this.position.y, this.needToKeepAbsoluteMatrix);
@@ -1755,19 +1742,19 @@ var CGSGNode = CGSGObject.extend(
 				else if (a == "rotationCenter.y") {
 					this.rotationCenter.y = v;
 				}
-				else if (a == "color.r") {
-					var rgb = CGSGColor.hex2rgb(this.color);
-					this.color = CGSGColor.rgb2hex(v, rgb.g, rgb.b);
+				else if (a == "bkgcolor.r") {
+					rgb = CGSGColor.hex2rgb(this.bkgcolor);
+					this.bkgcolor = CGSGColor.rgb2hex(v, rgb.g, rgb.b);
 					this.invalidate();
 				}
-				else if (a == "color.g") {
-					var rgb = CGSGColor.hex2rgb(this.color);
-					this.color = CGSGColor.rgb2hex(rgb.r, v, rgb.b);
+				else if (a == "bkgcolor.g") {
+					rgb = CGSGColor.hex2rgb(this.bkgcolor);
+					this.bkgcolor = CGSGColor.rgb2hex(rgb.r, v, rgb.b);
 					this.invalidate();
 				}
 				else if (a == "color.b") {
-					var rgb = CGSGColor.hex2rgb(this.color);
-					this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, v);
+					rgb = CGSGColor.hex2rgb(this.bkgcolor);
+					this.bkgcolor = CGSGColor.rgb2hex(rgb.r, rgb.g, v);
 					this.invalidate();
 				}
 				else if (a == "fillStyle.r") {
@@ -2170,6 +2157,9 @@ var CGSGNode = CGSGObject.extend(
 				node.classType = this.classType;
 				node.name = this.name;
 				node.globalAlpha = this.globalAlpha;
+				node.bkgcolor = this.bkgcolor;
+				node.lineColor = this.lineColor;
+				node.lineWidth = this.lineWidth;
 				node.isVisible = this.isVisible;
 				node.isProportionalResize = this.isProportionalResize;
 				node.pickNodeMethod = this.pickNodeMethod;
@@ -2183,9 +2173,7 @@ var CGSGNode = CGSGObject.extend(
 				}
 
 				//can be fulfilled by the developer to put in whatever he needs
-				if (this.userdata !== null) {
-					node.userdata = this.userdata.copy();
-				}
+				node.userData = this.userData;
 
 				//selection attributes
 				//if true, this nodes is clickable and so will be checked by the pickNode function

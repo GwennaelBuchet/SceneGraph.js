@@ -35,14 +35,14 @@
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  */
 var CGSGCollisionMethod = {
-    /**
-     * @property GHOSTONDEMAND
-     */
-    GHOSTONDEMAND: "ghostOnDemand",
+	/**
+	 * @property GHOSTONDEMAND
+	 */
+	GHOSTONDEMAND : "ghostOnDemand",
 
-    /**
-     * @property REGION
-     */
-    REGION: "region"
+	/**
+	 * @property REGION
+	 */
+	REGION : "region"
 };
 

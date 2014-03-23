@@ -9,6 +9,16 @@
 }
 
 /*
+Regular CGSGNode attributes
+*/
+.cgsgnode {
+    background-color: #757575;
+    border: 2px solid #333;
+    border-radius: 2px;
+    opacity: 1.0;
+}
+
+/*
 Bounding box around the node when it's selected
 */
 .cgsgnode-bbox {
@@ -18,26 +28,6 @@ Bounding box around the node when it's selected
     /* handles */
     background-color: #707080;
     border-width: 6px;
-}
-
-/*
-Regular CGSGNode attributes
-*/
-.cgsgnode {
-    background-color: #494949;
-    border: 2px solid #333;
-    border-radius: 2px;
-    opacity: 1.0;
-}
-
-/*
-Overed CGSGNode attributes
-*/
-.cgsgnode-over {
-    background-color: #666;
-    border: 2px solid #444;
-    border-radius: 2px;
-    opacity: 1.0;
 }
 
 /*************************************************************************************

@@ -36,125 +36,129 @@
  */
 
 var CGSGMaskClip = CGSGMask.extend(
-    {
-        initialize: function (clipRegion) {
-            this._super();
-            this._maskRegion = clipRegion;
+	{
+		initialize : function(clipRegion) {
+			this._super();
+			this._maskRegion = clipRegion;
 
-            this._saveContext = null;
+			this._saveContext = null;
 
-            this.canvas = document.createElement('canvas');
-            this.canvas.width = 10;
-            this.canvas.height = 10;
-            this._renderContext = this.canvas.getContext('2d');
-            this.autoRefresh = true;
-            this.refreshOnNextFrame = false;
-        },
+			this.canvas = document.createElement('canvas');
+			this.canvas.width = 10;
+			this.canvas.height = 10;
+			this._renderContext = this.canvas.getContext('2d');
+			this.autoRefresh = true;
+			this.refreshOnNextFrame = false;
+		},
 
-        /**
-         * Prepare the rendering of the node by saving the given context and returning a temporary context where the
-         * node and its children should rendered.
-         *
-         * @method prepare
-         * @param node {CGSGNode} the node
-         * @param context {CanvasRenderingContext2D} the context where the region will be clipped
-         * @return {CanvasRenderingContext2D} the context to use
-         */
-        prepare : function (node, context) {
-            this._saveContext = context;
-            this.canDrawImage = true;
+		/**
+		 * Prepare the rendering of the node by saving the given context and returning a temporary context where the
+		 * node and its children should rendered.
+		 *
+		 * @method prepare
+		 * @param node {CGSGNode} the node
+		 * @param context {CanvasRenderingContext2D} the context where the region will be clipped
+		 * @return {CanvasRenderingContext2D} the context to use
+		 */
+		prepare : function(node, context) {
+			this._saveContext = context;
+			this.canDrawImage = true;
 
-            if (this.autoRefresh || this.refreshOnNextFrame) {
-                this._renderContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                this.refreshOnNextFrame = false;
+			if (this.autoRefresh || this.refreshOnNextFrame) {
+				this._renderContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+				this.refreshOnNextFrame = false;
 
-                // Get mask region
-                var pMask = this._maskRegion.position;
-                var dMask = this._maskRegion.dimension;
-                var x = pMask.x;
-                var y = pMask.y;
+				// Get mask region
+				var pMask = this._maskRegion.position;
+				var dMask = this._maskRegion.dimension;
+				var x = pMask.x;
+				var y = pMask.y;
 
-                // Get node region according to its scale and mask constraints
-                var nodePos = node.position;
-                var nodeDimension = node.dimension;
-                var nodeWidth = nodeDimension.width - x;
-                var nodeHeight = nodeDimension.height - y;
+				// Get node region according to its scale and mask constraints
+				var nodePos = node.position;
+				var nodeDimension = node.dimension;
+				var nodeWidth = nodeDimension.width - x;
+				var nodeHeight = nodeDimension.height - y;
 
-                // Decide if the mask or the node region should be applied
-                var w = dMask.width;
-                var h = dMask.height;
+				// Decide if the mask or the node region should be applied
+				var w = dMask.width;
+				var h = dMask.height;
 
-                if (w > nodeWidth) {
-                    w = nodeWidth <= 0 ? 0 : nodeWidth;
-                }
+				if (w > nodeWidth) {
+					w = nodeWidth <= 0 ? 0 : nodeWidth;
+				}
 
-                if (h > nodeHeight) {
-                    h = nodeHeight <= 0 ? 0 : nodeHeight;
-                }
+				if (h > nodeHeight) {
+					h = nodeHeight <= 0 ? 0 : nodeHeight;
+				}
 
-                // Get image data only if necessary...
-                if (w > 0 && h > 0) {
-                    var rX = nodePos.x + x;
-                    var rY = nodePos.y + y;
+				// Get image data only if necessary...
+				if (w > 0 && h > 0) {
+					var rX = nodePos.x + x;
+					var rY = nodePos.y + y;
 
-                    // Define slices according to the part of the node out of the window
-                    var sX, sY, sW, sH;
+					// Define slices according to the part of the node out of the window
+					var sX, sY, sW, sH;
 
-                    if (rX < 0) {
-                        sX = 0;
-                        sW = w + rX;
-                    } else {
-                        sX = node.position.x + x;
-                        sW = w;
-                    }
+					if (rX < 0) {
+						sX = 0;
+						sW = w + rX;
+					}
+					else {
+						sX = node.position.x + x;
+						sW = w;
+					}
 
-                    if (rY < 0) {
-                        sY = 0;
-                        sH = h + rY;
-                    } else {
-                        sY = node.position.y + y;
-                        sH = h;
-                    }
+					if (rY < 0) {
+						sY = 0;
+						sH = h + rY;
+					}
+					else {
+						sY = node.position.y + y;
+						sH = h;
+					}
 
-                    // Experimental, reduce definition in memory to work on non-retina IPad (< 4)
-                    //sH *= 0.5;
-                    //sY *= 0.5;
-                    //node.scaleTo(0.5, 0.5, true);
+					// Experimental, reduce definition in memory to work on non-retina IPad (< 4)
+					//sH *= 0.5;
+					//sY *= 0.5;
+					//node.scaleTo(0.5, 0.5, true);
 
-                    this.canvas.width = (sX + sW + 1);
-                    this.canvas.height = (sY + sH + 1);
-                    this.sliceX = sX;
-                    this.sliceY = sY;
-                    this.sliceWidth = sW;
-                    this.sliceHeight = sH;
-                } else {
-                    this.canDrawImage = false;
-                }
+					this.canvas.width = (sX + sW + 1);
+					this.canvas.height = (sY + sH + 1);
+					this.sliceX = sX;
+					this.sliceY = sY;
+					this.sliceWidth = sW;
+					this.sliceHeight = sH;
+				}
+				else {
+					this.canDrawImage = false;
+				}
 
-                this._renderContext.save();
-                return this._renderContext;
-            }
+				this._renderContext.save();
+				return this._renderContext;
+			}
 
-            return null;
-        },
+			return null;
+		},
 
-        /**
-         * Finalize this mask by adding to the saved context the image data corresponding to the mask region.
-         *
-         * @method finalize
-         * @param node {CGSGNode} the node
-         * @param context {CanvasRenderingContext2D} the context returned by prepare()
-         * @return {CanvasRenderingContext2D} the context that was used to invoke prepare()
-         */
-        finalize : function (node, context) {
+		/**
+		 * Finalize this mask by adding to the saved context the image data corresponding to the mask region.
+		 *
+		 * @method finalize
+		 * @param node {CGSGNode} the node
+		 * @param context {CanvasRenderingContext2D} the context returned by prepare()
+		 * @return {CanvasRenderingContext2D} the context that was used to invoke prepare()
+		 */
+		finalize : function(node, context) {
 
-            if (this.canDrawImage) {
-                //node.scaleTo(1, 1, true);
-                this._saveContext.drawImage(this.canvas, this.sliceX, this.sliceY, this.sliceWidth, this.sliceHeight, this.sliceX, this.sliceY, this.sliceWidth /* 2*/, this.sliceHeight /* 2*/);
-                this._renderContext.restore();
-            }
+			if (this.canDrawImage) {
+				//node.scaleTo(1, 1, true);
+				this._saveContext.drawImage(this.canvas, this.sliceX, this.sliceY, this.sliceWidth, this.sliceHeight,
+											this.sliceX, this.sliceY, this.sliceWidth /* 2*/, this.sliceHeight /* 2*/);
+				this._renderContext.restore();
+			}
 
-            return this._saveContext;
-        }
-    }
+			return this._saveContext;
+		}
+	}
 );

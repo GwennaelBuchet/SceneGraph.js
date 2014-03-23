@@ -43,8 +43,7 @@ var CGMain = CGSGView.extend(
 			this.startPlaying();
 
             //add an handler on the window resize event
-            var bindInitializeCanvas = this.initializeCanvas.bind(this);
-            window.onresize = bindInitializeCanvas;
+            window.onresize = this.initializeCanvas.bind(this);
 		},
 
 		initializeCanvas : function () {
@@ -75,7 +74,8 @@ var CGMain = CGSGView.extend(
             var targetRatio = 1600 / 1200;
 
 
-			var displayRatio = new CGSGScale(CGSG.canvas.width / 1600, CGSG.canvas.height / 1200);
+			//var displayRatio = new CGSGScale(CGSG.canvas.width / 1600, CGSG.canvas.height / 1200);
+			var displayRatio = new CGSGScale(sw, sh);
 			this.setDisplayRatio(displayRatio);
 		},
 
@@ -93,7 +93,7 @@ var CGMain = CGSGView.extend(
                 "In other size, the scene will be automatically resized to allow all rezolutions to see the entiere scene.\n\n" +
                 "Resize your screen to see the changes.");
             background.addChild(text);
-            text.setLineHeight(25);
+            text.setClass("cgsg-h1");
 
 
 			var squareNode = new CGSGNodeSquare(60, 140, 200, 200);

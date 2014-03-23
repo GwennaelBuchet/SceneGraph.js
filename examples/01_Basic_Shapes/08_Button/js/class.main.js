@@ -81,8 +81,8 @@ var CGMain = CGSGView.extend(
 
 
                 var buttonCustom = new CGSGNodeButton(310, 50, "Custom\nbutton");
-				buttonCustom.setTextClassAll(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
-				buttonCustom.setClassAll(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+				buttonCustom.setTextClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+				buttonCustom.setClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
 				//this will also work:
                 /*buttonCustom.setClassFor("custom-normal", CGSGButtonMode.NORMAL);
                 buttonCustom.setClassFor("custom-over", CGSGButtonMode.OVER);

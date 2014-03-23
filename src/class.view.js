@@ -647,8 +647,8 @@ var CGSGView = CGSGObject.extend(
 			//if a node is under the cursor, select it if it is (clickable || resizable || draggable)
 			//s = selectable
 			var s = cgsgExist(this._selectedNode) &&
-							 (this._selectedNode.isClickable || this._selectedNode.isDraggable ||
-							  this._selectedNode.isResizable);
+					(this._selectedNode.isClickable || this._selectedNode.isDraggable ||
+					 this._selectedNode.isResizable);
 
 			if (s) {
 				if (this._selectedNode.isDraggable || this._selectedNode.isResizable) {
@@ -817,9 +817,9 @@ var CGSGView = CGSGObject.extend(
 							this._selectedNode.isMoving = true;
 							//TODO : appliquer aussi l'opposée de la rotation
 							offX = this._offsetX /
-										  (this._selectedNode._absSca.x / this._selectedNode.scale.x);
+								   (this._selectedNode._absSca.x / this._selectedNode.scale.x);
 							offY = this._offsetY /
-										  (this._selectedNode._absSca.y / this._selectedNode.scale.y);
+								   (this._selectedNode._absSca.y / this._selectedNode.scale.y);
 							//check for the region constraint
 							if (this._selectedNode.regionConstraint !== null) {
 								var reg = this._selectedNode.getRegion().copy();

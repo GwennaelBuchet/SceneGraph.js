@@ -34,7 +34,7 @@
  */
 var CGSGEffectInvertColors = CGSGEffect.extend(
 	{
-		initialize : function () {
+		initialize : function() {
 			this._super();
 		},
 
@@ -45,12 +45,12 @@ var CGSGEffectInvertColors = CGSGEffect.extend(
 		 *  @param {Number} width width for the image to be modified
 		 *  @param {Number} height height for the image to be modified
 		 */
-		render : function (context, width, height) {
+		render : function(context, width, height) {
 			try {
 				var imageData = context.getImageData(0, 0, width, height);
 				var data = imageData.data;
 
-				for (var i = 0; i < data.length; i += 4) {
+				for (var i = 0 ; i < data.length ; i += 4) {
 					data[i] = 255 - data[i]; // red
 					data[i + 1] = 255 - data[i + 1]; // green
 					data[i + 2] = 255 - data[i + 2]; // blue

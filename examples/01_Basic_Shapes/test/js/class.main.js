@@ -129,12 +129,12 @@ var CGMain = CGSGView.extend(
 		},
 
 		_updateDimensionBox : function() {
-			var dim = this.s2.getCenter();
+			var c = this.s2.getCenter();
 
 			//only set changed values
-			this.points[0].y = dim.y;
-			this.points[1] = new CGSGPosition(dim.x, dim.y);
-			this.points[2].x = dim.x;
+			this.points[0].y = c.y;
+			this.points[1] = new CGSGPosition(c.x, c.y);
+			this.points[2].x = c.x;
 
 			this.dimensionBox.setPoints(this.points);
 		}

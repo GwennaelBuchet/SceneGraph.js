@@ -69,7 +69,7 @@ var CGMain = CGSGView.extend(
 			this.circle2.isResizable = true;
 			root.addChild(this.circle2);
 
-			var button = new CGSGNodeButton(10, 10, "switch Theme attribute", true);
+			var button = new CGSGNodeButton(10, 10, "Set CSS \"background-color\" attribute to green", true);
 			root.addChild(button);
 
 			button.onClick = this.switchCls.bind(this);

@@ -27,7 +27,6 @@
  */
 
 
-
 /**
  * @module
  * @class CGSGInterpolator
@@ -36,21 +35,24 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGInterpolator = CGSGObject.extend(
-    {
-        initialize: function () {},
+	{
+		initialize : function() {
+		},
 
-        /**
-         * @method computeInterpolations
-         * @param keys {Array} Array of all the animation keys
-         * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
-         * @return {Array} Array of {x, y} object corresponding to all the points in the curve
-         */
-        compute: function (keys, steps) {},
+		/**
+		 * @method computeInterpolations
+		 * @param keys {Array} Array of all the animation keys
+		 * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
+		 * @return {Array} Array of {x, y} object corresponding to all the points in the curve
+		 */
+		compute : function(keys, steps) {
+		},
 
-        /**
-         * return the length between the keys, by peer
-         * @method getLengths
-         */
-        getLengths:function() {}
-    }
+		/**
+		 * return the length between the keys, by peer
+		 * @method getLengths
+		 */
+		getLengths : function() {
+		}
+	}
 );

@@ -58,10 +58,6 @@ var CGMain = CGSGView.extend(
 			var ellipse = new CGSGNodeEllipse(20, 20, 80, 150);
 			ellipse.isDraggable = true;
 			ellipse.isResizable = true;
-			ellipse.globalAlpha = 0.8;
-			ellipse.color = "lightgray";
-			ellipse.lineWidth = 2;
-			ellipse.lineColor = "gray";
 
 			CGSG.sceneGraph.addNode(ellipse, null);
 		}

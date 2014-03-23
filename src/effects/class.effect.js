@@ -34,7 +34,7 @@
  */
 var CGSGEffect = CGSGObject.extend(
 	{
-		initialize : function () {
+		initialize : function() {
 		},
 
 		/**
@@ -44,7 +44,7 @@ var CGSGEffect = CGSGObject.extend(
 		 *  @param {Number} width width for the image to be modified
 		 *  @param {Number} height height for the image to be modified
 		 */
-		render : function (context, width, height) {
+		render : function(context, width, height) {
 		}
 	}
 );

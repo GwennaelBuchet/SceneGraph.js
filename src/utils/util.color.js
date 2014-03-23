@@ -86,18 +86,18 @@ var CGSGColor = {
 	 * @param rgb {String}
 	 * @return {*}
 	 * @example
-	 * 	CGSGColor.fromString("rgb(121, 333, 444)"); returns {r:121, b:333, c:444};
+	 *    CGSGColor.fromString("rgb(121, 333, 444)"); returns {r:121, b:333, c:444};
 	 */
-	fromString: function(rgb) {
+	fromString : function(rgb) {
 		var p1 = rgb.indexOf('(') + 1;
 		var p2 = rgb.lastIndexOf(')');
 
 		var cl = rgb.substring(p1, p2);
 		var cls = cl.split(",");
 		return {
-			r:parseInt(cls[0]),
-			g:parseInt(cls[1]),
-			b:parseInt(cls[2])
+			r : parseInt(cls[0]),
+			g : parseInt(cls[1]),
+			b : parseInt(cls[2])
 		}
 	},
 

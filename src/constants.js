@@ -105,19 +105,3 @@ var CGSG_DEFAULT_MAX_FRAMERATE = NaN;
  * @type {Number}
  */
 var CGSG_DEFAULT_DBLTOUCH_DELAY = 250;
-
-/**
- * Default CSS class for CGSGNode
- * @property CGSG_DEFAULT_THEME_NODE_CLS
- * @default "cgsgnode"
- * @type {string}
- */
-var CGSG_DEFAULT_THEME_NODE_CLS = "cgsgnode";
-
-/**
- * Default CSS class for Bounding box
- * @property CGSG_DEFAULT_THEME_BBOX_CLS
- * @default "cgsgnode-bbox"
- * @type {string}
- */
-var CGSG_DEFAULT_THEME_BBOX_CLS = "cgsgnode-bbox";

@@ -68,12 +68,25 @@ var CGMain = CGSGView.extend(
 		},
 
 		/**
+		 * Called by the particles system to initialize a particle (not called to re-initialize it)
+		 * @returns {CGSGNode}
+		 */
+		createParticle : function() {
+			if (Math.random() > 0.8)
+				return new CGSGNodeCircle(0, 0, 2 + CGSGMath.fixedPoint(10 * Math.random()));
+			else {
+				var s = 2 + CGSGMath.fixedPoint(3 * Math.random());
+				return new CGSGNodeSquare(0, 0, s, s);
+			}
+		},
+
+		/**
 		 * create an emitter simulating fire (well, not really a simulation, just a simple example)
 		 */
 		createFireEmitter : function() {
 			//first create and add an emitter to the particle system
 			var emitter = this.particlesSystem.addEmitter(
-                new CGSGNodeSquare(0, 0, 3, 3)
+				this.createParticle.bind(this)
 				, new CGSGRegion(100, 200, 25, 8) 	//emission area
 				, 200                               //nbParticlesMax
 				, new CGSGVector2D(0.0, 1.0)        //initial velocity of a particle
@@ -91,18 +104,18 @@ var CGMain = CGSGView.extend(
 				var colors = ["#FFF9AA", "#FFDB61", "#FBC22D", "#E98523", "#E65D0C", "#E3681B", "#D43B11", "#D23910",
 							  "#C51E0C"];
                 data.node.globalAlpha = 1.0;
-                data.node.color = colors[Math.floor(Math.random() * colors.length)];
-                data.node.lineColor = data.node.color;
-                data.userdata = {ttl : 50 + Math.random() * 40};
+                data.node.bkgcolor = colors[Math.floor(Math.random() * colors.length)];
+                data.node.lineColor = data.node.bkgcolor;
+                data.userData = {ttl : 50 + Math.random() * 40};
                 data.checkCTL = function(particle) {
-					return particle.age <= particle.userdata.ttl;
+					return particle.age <= particle.userData.ttl;
 				};
 
 				//event.particle.node.scaleTo(1.0, 1.0);
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
                 data.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
 
-                data.initColor = CGSGColor.hex2rgb(data.node.color);
+                data.initColor = CGSGColor.hex2rgb(data.node.bkgcolor);
 			};
 
 			//remove the gravity of this emitter.
@@ -112,14 +125,14 @@ var CGMain = CGSGView.extend(
 			//add an update handler, fired each time a particle position was updated by the emitter
             emitter.onUpdateParticleEnd = function (event) {
                 data = event.data.particle;
-				var a = 1.0 - (data.age / data.userdata.ttl);
+				var a = 1.0 - (data.age / data.userData.ttl);
                 data.node.globalAlpha = Math.max(a, 0);
-				var rgb = CGSGColor.hex2rgb(data.node.color);
+				var rgb = CGSGColor.hex2rgb(data.node.bkgcolor);
 				rgb.r = data.initColor.r * a;
 				rgb.g = data.initColor.g * a;
 				rgb.b = data.initColor.b * a;
-                data.node.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
-                data.node.lineColor = data.node.color;
+                data.node.bkgcolor = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+                data.node.lineColor = data.node.bkgcolor;
 				//particle.node.rotateWith(emitter.speed * Math.random() / 10.0);
 			};
 

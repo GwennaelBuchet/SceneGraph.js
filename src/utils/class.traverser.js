@@ -33,7 +33,7 @@
  */
 var CGSGTraverser = CGSGObject.extend(
 	{
-		initialize : function () {
+		initialize : function() {
 			/**
 			 * Last results provided by the last check
 			 * @property lastResults
@@ -62,7 +62,7 @@ var CGSGTraverser = CGSGObject.extend(
 					...
 				}
 		 */
-		traverse : function (rootNode, condition, excludedNodes) {
+		traverse : function(rootNode, condition, excludedNodes) {
 			this.lastResults.clear();
 
 			if (cgsgExist(condition)) {
@@ -79,7 +79,7 @@ var CGSGTraverser = CGSGObject.extend(
 		 * @param {Function} condition
 		 * @param {Array} excludedNodes
 		 */
-		_check : function (rootNode, condition, excludedNodes) {
+		_check : function(rootNode, condition, excludedNodes) {
 			if (rootNode.isTraversable === true) {
 				var exclusionExist = cgsgExist(excludedNodes) && excludedNodes.length > 0;
 
@@ -87,7 +87,7 @@ var CGSGTraverser = CGSGObject.extend(
 					this.lastResults.push(rootNode);
 				}
 
-				for (var i = rootNode.children.length - 1; i >= 0; --i) {
+				for (var i = rootNode.children.length - 1 ; i >= 0 ; --i) {
 					var childNode = rootNode.children[i];
 					this._check(childNode, condition, excludedNodes);
 				}

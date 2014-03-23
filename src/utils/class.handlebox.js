@@ -39,103 +39,103 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGHandleBox = CGSGObject.extend(
-    {
-        initialize: function (parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
-            /**
-             * @property fillColor
-             * @type {String}
-             */
-            this.fillColor = fillColor;
+	{
+		initialize : function(parentNode, size, fillColor, strokeColor, lineWidth, x, y) {
+			/**
+			 * @property fillColor
+			 * @type {String}
+			 */
+			this.fillColor = fillColor;
 
-            /**
-             * @property strokeColor
-             * @type {String}
-             */
-            this.strokeColor = strokeColor;
+			/**
+			 * @property strokeColor
+			 * @type {String}
+			 */
+			this.strokeColor = strokeColor;
 
-            /**
-             * @property lineWidth
-             * @type {Number}
-             */
-            this.lineWidth = lineWidth;
+			/**
+			 * @property lineWidth
+			 * @type {Number}
+			 */
+			this.lineWidth = lineWidth;
 
-            /**
-             * @property size
-             * @type {Number}
-             */
-            this.size = size;
+			/**
+			 * @property size
+			 * @type {Number}
+			 */
+			this.size = size;
 
-            /**
-             * @property isVisible
-             * @type {boolean}
-             */
-            this.isVisible = true;
+			/**
+			 * @property isVisible
+			 * @type {boolean}
+			 */
+			this.isVisible = true;
 
-            /**
-             * @property _parentNode
-             * @type {CGSGNode}
-             * @private
-             */
-            this._parentNode = parentNode;
-            /**
-             * @property _position
-             * @type {CGSGPosition}
-             * @private
-             */
-            this._position = new CGSGPosition(x, y);
-        },
+			/**
+			 * @property _parentNode
+			 * @type {CGSGNode}
+			 * @private
+			 */
+			this._parentNode = parentNode;
+			/**
+			 * @property _position
+			 * @type {CGSGPosition}
+			 * @private
+			 */
+			this._position = new CGSGPosition(x, y);
+		},
 
-        /**
-         * @method render
-         * @param {CanvasRenderingContext2D} context the context into render the handle box
-         */
-        render: function (context) {
-            if (this.isVisible) {
-                context.lineWidth = this.lineWidth;
-                context.strokeStyle = this.strokeColor;
-                context.fillStyle = this.fillColor;
-                context.strokeRect(this._position.x,
-                    this._position.y,
-                    this.size / this._parentNode._absSca.x,
-                    this.size / this._parentNode._absSca.y);
-                context.fillRect(this._position.x,
-                    this._position.y,
-                    this.size / this._parentNode._absSca.x,
-                    this.size / this._parentNode._absSca.y);
-            }
-        },
+		/**
+		 * @method render
+		 * @param {CanvasRenderingContext2D} context the context into render the handle box
+		 */
+		render : function(context) {
+			if (this.isVisible) {
+				context.lineWidth = this.lineWidth;
+				context.strokeStyle = this.strokeColor;
+				context.fillStyle = this.fillColor;
+				context.strokeRect(this._position.x,
+								   this._position.y,
+								   this.size / this._parentNode._absSca.x,
+								   this.size / this._parentNode._absSca.y);
+				context.fillRect(this._position.x,
+								 this._position.y,
+								 this.size / this._parentNode._absSca.x,
+								 this.size / this._parentNode._absSca.y);
+			}
+		},
 
-        /**
-         * Return true if this handleBox is under the coordinate of the mouse.
-         * @method checkIfSelected
-         * @param {CGSGPosition} mousePosition
-         * @param {Number} threshold Threshold of detection around the box
-         * @return {Boolean}
-         */
-        checkIfSelected: function (mousePosition, threshold) {
-            return (mousePosition.x >=
-                this._parentNode._absPos.x + (this._position.x * this._parentNode._absSca.x) -
-                    threshold &&
-                mousePosition.x <=
-                    this._parentNode._absPos.x + (this._position.x * this._parentNode._absSca.x) +
-                        this.size + threshold &&
-                mousePosition.y >=
-                    this._parentNode._absPos.y + (this._position.y * this._parentNode._absSca.y) -
-                        threshold &&
-                mousePosition.y <=
-                    this._parentNode._absPos.y + (this._position.y * this._parentNode._absSca.y) +
-                        this.size + threshold);
-        },
+		/**
+		 * Return true if this handleBox is under the coordinate of the mouse.
+		 * @method checkIfSelected
+		 * @param {CGSGPosition} mousePosition
+		 * @param {Number} threshold Threshold of detection around the box
+		 * @return {Boolean}
+		 */
+		checkIfSelected : function(mousePosition, threshold) {
+			return (mousePosition.x >=
+					this._parentNode._absPos.x + (this._position.x * this._parentNode._absSca.x) -
+					threshold &&
+					mousePosition.x <=
+					this._parentNode._absPos.x + (this._position.x * this._parentNode._absSca.x) +
+					this.size + threshold &&
+					mousePosition.y >=
+					this._parentNode._absPos.y + (this._position.y * this._parentNode._absSca.y) -
+					threshold &&
+					mousePosition.y <=
+					this._parentNode._absPos.y + (this._position.y * this._parentNode._absSca.y) +
+					this.size + threshold);
+		},
 
-        /**
-         * @method translateTo
-         * @param {Number} newRelativeX
-         * @param {Number} newRelativeY
-         */
-        translateTo: function (newRelativeX, newRelativeY) {
-            this._position.x = newRelativeX;
-            this._position.y = newRelativeY;
-        }
-    }
+		/**
+		 * @method translateTo
+		 * @param {Number} newRelativeX
+		 * @param {Number} newRelativeY
+		 */
+		translateTo : function(newRelativeX, newRelativeY) {
+			this._position.x = newRelativeX;
+			this._position.y = newRelativeY;
+		}
+	}
 );
 	

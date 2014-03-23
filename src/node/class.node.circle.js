@@ -107,12 +107,7 @@ var CGSGNodeCircle = CGSGNode.extend(
 		copy : function() {
 			var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
 			//call the super method
-			node = this._super(node);
-
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
+			return this._super(node);
 		}
 	}
 );

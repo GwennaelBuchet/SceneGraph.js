@@ -63,13 +63,6 @@ var CGSGCSSManager = CGSGObject.extend(
 			this.onLoadAbort = null;
 
 			/**
-			 * @property _cssFile
-			 * @type {null}
-			 * @private
-			 */
-			this._cssFile = null;
-
-			/**
 			 * All css classes loaded for the current HTML document.
 			 * [selectorText {String}, style {CSSStyleDeclaration}]
 			 * @property _classes
@@ -109,7 +102,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 */
 		getAttrInArray : function(clss, attr) {
 			var i, cls, r, len = clss.length;
-			for (i = len-1 ; i >= 0 ; --i) {
+			for (i = len - 1 ; i >= 0 ; --i) {
 				cls = clss[i];
 
 				r = this.getAttr(cls, attr);
@@ -234,8 +227,7 @@ var CGSGCSSManager = CGSGObject.extend(
 
 		/**
 		 * @method unloadCSSFile
-		 * @param filename
-		 * @param filetype
+		 * @param filename {String}
 		 */
 		unloadCSSFile : function(filename) {
 			var href = "href";

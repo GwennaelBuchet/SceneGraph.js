@@ -60,14 +60,6 @@ var CGSGSceneGraph = CGSGObject.extend(
 			 */
 			this._nextNodeID = 1;
 
-			/**
-			 * If true, on next rendering loop "invalidateTheme" of each node will be called
-			 * @property _themeInvalidated
-			 * @type {boolean}
-			 * @private
-			 */
-			this._themeInvalidated = false;
-
 			///// INITIALIZATION //////
 
 			/**
@@ -103,7 +95,22 @@ var CGSGSceneGraph = CGSGObject.extend(
 		 * @method invalidateTheme
 		 */
 		invalidateTheme : function() {
-			this._themeInvalidated = true;
+			this._invalidateThemeRecursive(this.root);
+		},
+
+		/**
+		 * @method _invalidateThemeRecursive
+		 * @param n
+		 * @private
+		 */
+		_invalidateThemeRecursive : function(n) {
+			if (cgsgExist(n)) {
+				n.invalidateTheme();
+
+				for (var i = 0, len = n.children.length ; i < len ; ++i) {
+					this._invalidateThemeRecursive(n.children[i]);
+				}
+			}
 		},
 
 		/**
@@ -117,13 +124,12 @@ var CGSGSceneGraph = CGSGObject.extend(
 
 			if (cgsgExist(this.root)) {
 				var node = null;
-				var i = 0, evt;
+				var i, evt;
 				var key = null;
 				//set the new values for all the animated nodes
 				if (CGSG.animationManager.listTimelines.length > 0) {
 					node = null;
-					//tl = timeline
-					var value, tl;
+					var value, tl; //tl : timeline
 					for (i = CGSG.animationManager.listTimelines.length - 1 ; i >= 0 ; --i) {
 						tl = CGSG.animationManager.listTimelines[i];
 						node = tl.parentNode;
@@ -155,6 +161,7 @@ var CGSGSceneGraph = CGSGObject.extend(
 								if (tl.onAnimationEnd !== null) {
 									evt = new CGSGEvent(this, {node : node});
 									evt.node = node;
+									evt.attribute = tl.attribute;
 									CGSG.eventManager.dispatch(tl, cgsgEventTypes.ON_ANIMATION_END, evt);
 								}
 							}
@@ -166,12 +173,9 @@ var CGSGSceneGraph = CGSGObject.extend(
 				this.context.save();
 				this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
 				if (this.root.isVisible) {
-					this.root.doRender(this.context, this._themeInvalidated);
+					this.root.doRender(this.context);
 				}
 				this.context.restore();
-
-				//theme should have been invalidated through this rendering loop
-				this._themeInvalidated = false;
 			}
 
 			//draw the selection markers around the selected nodes

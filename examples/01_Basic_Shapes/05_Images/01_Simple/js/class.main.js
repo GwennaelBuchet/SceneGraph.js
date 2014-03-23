@@ -65,7 +65,7 @@ var CGMain = CGSGView.extend(
             this.imgNode = new CGSGNodeImage(
                 60,     //x
                 60,     //y
-                "images/hello.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
+                "images/hello.png");      //URL. Warning : the web page should be on a web server (apache, ...)
 
             //this.imgNode.resizeTo(120, 100);
             //this.imgNode.setSlice(30, 30, 80, 200, true);
@@ -80,6 +80,7 @@ var CGMain = CGSGView.extend(
 	        this.currentImg = 0;
 	        this.buttonNode = new CGSGNodeButton(10, 10, "Switch source");
 	        this.buttonNode.onClick = this.switchSrc.bind(this);
+
 	        //add the textNode as child of the root
 	        rootNode.addChild(this.buttonNode);
         },

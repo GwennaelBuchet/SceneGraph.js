@@ -242,17 +242,21 @@ var CGSGNodeButton = CGSGNode.extend(
 			this.setTexts(text);
 
 			var that = this;
-			this.onMouseOver = function(event) {
+			this.onMouseOver = function(e) {
 				if (that.getMode() == CGSGButtonMode.NORMAL) {
 					that.setMode(CGSGButtonMode.OVER);
 				}
 			};
 
-			this.onMouseOut = function(event) {
+			this.onMouseOut = function(e) {
 				if (that.getMode() == CGSGButtonMode.OVER) {
 					that.setMode(CGSGButtonMode.NORMAL);
 				}
 			};
+
+			/*CGSG.eventManager.bindHandler(this, cgsgEventTypes.ON_FREE, (function(e) {
+				this.setMode(CGSGButtonMode.SELECTED);
+			}).bind(this));*/
 
 			this._isInitialized = true;
 		},
@@ -279,7 +283,7 @@ var CGSGNodeButton = CGSGNode.extend(
 
 			this._props[mode.id]._invalSize = false;
 			this._needRedraw = false;
-			this._loadAttrs(mode, cls);
+			this._loadAttrs(mode);
 			this._initShape(mode);
 		},
 
@@ -300,16 +304,16 @@ var CGSGNodeButton = CGSGNode.extend(
 		},
 
 		/**
-		 * @method setClassAll
+		 * @method setClasses
 		 * @param clss {Array} Array of CSS class name
 		 */
-		setClassAll : function(clss) {
+		setClasses : function(clss) {
 			this._clearAllCls();
 			this._props[CGSGButtonMode.NORMAL.id].cls.push(clss[0]);
 			this._props[CGSGButtonMode.OVER.id].cls.push(clss[1]);
 			this._props[CGSGButtonMode.DEACTIVATED.id].cls.push(clss[2]);
 			this._props[CGSGButtonMode.SELECTED.id].cls.push(clss[3]);
-			this.invalidate();
+			this.invalidateTheme();
 		},
 
 		_clearAllCls : function() {
@@ -331,7 +335,7 @@ var CGSGNodeButton = CGSGNode.extend(
 
 			this._props[mode.id]._invalSize = false;
 			this._needRedraw = false;
-			this._loadAttrs(mode, cls);
+			this._loadAttrs(mode);
 			this._initShape(mode);
 		},
 
@@ -352,6 +356,22 @@ var CGSGNodeButton = CGSGNode.extend(
 		},
 
 		/**
+		 * Add CSS class for this node for all 4 modes (not for bounding box, use 'setClassBBox' instead).
+		 * CSS class must define attributes used by this node.
+		 * @method addClasses
+		 * @override
+		 * @param {Array} clss
+		 */
+		addClasses : function(clss) {
+			this._props[CGSGButtonMode.NORMAL.id].cls.push(clss[0]);
+			this._props[CGSGButtonMode.OVER.id].cls.push(clss[1]);
+			this._props[CGSGButtonMode.DEACTIVATED.id].cls.push(clss[2]);
+			this._props[CGSGButtonMode.SELECTED.id].cls.push(clss[3]);
+
+			this.invalidateTheme();
+		},
+
+		/**
 		 * remove CSS class for this node and for this mode only (not for bounding box, use 'setClassBBox' instead).
 		 * @method removeClassFor
 		 * @param {String} cls
@@ -360,7 +380,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		removeClassFor : function(cls, mode) {
 			this._props[mode.id].cls = this._props[mode.id].cls.without(cls);
 			this.forceRedraw();
-			this._loadAttrs(mode, cls);
+			this._loadAttrs(mode);
 			this._initShape(mode);
 		},
 
@@ -372,8 +392,7 @@ var CGSGNodeButton = CGSGNode.extend(
 		removeClass : function(cls) {
 			this._props[CGSGButtonMode.NORMAL.id].cls = this._props[CGSGButtonMode.NORMAL.id].without(cls);
 			this._props[CGSGButtonMode.OVER.id].cls = this._props[CGSGButtonMode.OVER.id].without(cls);
-			this._props[CGSGButtonMode.DEACTIVATED.id].cls =
-			this._props[CGSGButtonMode.DEACTIVATED.id].without(cls);
+			this._props[CGSGButtonMode.DEACTIVATED.id].cls = this._props[CGSGButtonMode.DEACTIVATED.id].without(cls);
 			this._props[CGSGButtonMode.SELECTED.id].cls = this._props[CGSGButtonMode.SELECTED.id].without(cls);
 
 			this.invalidateTheme();
@@ -469,10 +488,8 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * @return {Array}
 		 */
 		getTexts : function() {
-			var t = [CGSGButtonMode.NORMAL.props.txtNode._text, CGSGButtonMode.OVER.props.txtNode._text,
-					 CGSGButtonMode.DEACTIVATED.props.txtNode._text, CGSGButtonMode.SELECTED.props.txtNode._text];
-
-			return t;
+			return [CGSGButtonMode.NORMAL.props.txtNode._text, CGSGButtonMode.OVER.props.txtNode._text,
+					CGSGButtonMode.DEACTIVATED.props.txtNode._text, CGSGButtonMode.SELECTED.props.txtNode._text];
 		},
 
 		/**
@@ -523,10 +540,10 @@ var CGSGNodeButton = CGSGNode.extend(
 		},
 
 		/**
-		 * @method setTextClassAll
+		 * @method setTextClasses
 		 * @param clss {Array} Array of CSS class name
 		 */
-		setTextClassAll : function(clss) {
+		setTextClasses : function(clss) {
 			this._props[CGSGButtonMode.NORMAL.id].txtNode.setClass(clss[0]);
 			this._props[CGSGButtonMode.OVER.id].txtNode.setClass(clss[1]);
 			this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.setClass(clss[2]);
@@ -597,10 +614,10 @@ var CGSGNodeButton = CGSGNode.extend(
 			this._props[CGSGButtonMode.SELECTED.id].txtNode.invalidateTheme();
 
 			//Use of "this._cls" class name which define the current CSS class used by this object.
-			this._loadAttrs(CGSGButtonMode.NORMAL, this._props[CGSGButtonMode.NORMAL.id].cls);
-			this._loadAttrs(CGSGButtonMode.OVER, this._props[CGSGButtonMode.OVER.id].cls);
-			this._loadAttrs(CGSGButtonMode.DEACTIVATED, this._props[CGSGButtonMode.DEACTIVATED.id].cls);
-			this._loadAttrs(CGSGButtonMode.SELECTED, this._props[CGSGButtonMode.SELECTED.id].cls);
+			this._loadAttrs(CGSGButtonMode.NORMAL);
+			this._loadAttrs(CGSGButtonMode.OVER);
+			this._loadAttrs(CGSGButtonMode.DEACTIVATED);
+			this._loadAttrs(CGSGButtonMode.SELECTED);
 
 			this.invalidate();
 		},
@@ -613,11 +630,11 @@ var CGSGNodeButton = CGSGNode.extend(
 
 		/**
 		 * @method _loadAttrs
-		 * @param mode
-		 * @param cls
+		 * @param mode {CGSGButtonMode}
 		 * @private
 		 */
-		_loadAttrs : function(mode, cls) {
+		_loadAttrs : function(mode) {
+			var cls = this._props[mode.id].cls;
 			var id = mode.id;
 			var prop = this._props[id];
 
@@ -643,8 +660,6 @@ var CGSGNodeButton = CGSGNode.extend(
 				prop.lastColor = CGSGColor.rgb2hex(rgb2.r, rgb2.g, rgb2.b);
 			}
 
-			if (cgsgExist(lineWidth))
-				prop.lineWidth = CGSG.cssManager.getNumber(lineWidth);
 			if (cgsgExist(lineColor))
 				prop.lineColor = lineColor;
 
@@ -871,7 +886,7 @@ var CGSGNodeButton = CGSGNode.extend(
 			//call the super method
 			node = this._super(node);
 
-			node.color = this.color;
+			node.bkgcolor = this.bkgcolor;
 			node.lineColor = this.lineColor;
 			node.lineWidth = this.lineWidth;
 			return node;

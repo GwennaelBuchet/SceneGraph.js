@@ -221,6 +221,7 @@ var CGSGNodeText = CGSGNode.extend(
 		invalidateTheme : function() {
 			this._super();
 
+			var cl = CGSG.cssManager.getAttrInArray(this._cls, "color");
 			var style = CGSG.cssManager.getAttrInArray(this._cls, "font-style");
 			var variant = CGSG.cssManager.getAttrInArray(this._cls, "font-variant");
 			var weight = CGSG.cssManager.getAttrInArray(this._cls, "font-weight");
@@ -234,6 +235,11 @@ var CGSGNodeText = CGSGNode.extend(
 			var strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "-webkit-text-stroke-color");
 			if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-color");
 
+			if (cgsgExist(cl)) {
+				//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
+				var rgb = CGSGColor.fromString(cl);
+				this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+			}
 			if (cgsgExist(style))
 				this._style = style;
 			if (cgsgExist(variant))
@@ -408,7 +414,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method setWeight
 		 * @param w
 		 */
-		setWeight:function(w) {
+		setWeight : function(w) {
 			this._weight = w;
 			this._invalidateFont();
 			this.invalidate();
@@ -418,7 +424,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method setVariant
 		 * @param v
 		 */
-		setVariant:function(v) {
+		setVariant : function(v) {
 			this._variant = v;
 			this._invalidateFont();
 			this.invalidate();
@@ -459,7 +465,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function(context) {
-			context.fillStyle = this.color;
+			context.fillStyle = this.color || this.bkgcolor;
 			context.strokeStyle = this._strokeColor;
 			context.lineWidth = this._strokeWidth || this.lineWidth;
 
@@ -569,7 +575,7 @@ var CGSGNodeText = CGSGNode.extend(
 				context.strokeText(text, x, y);
 			}
 
-			if (cgsgExist(this.color) && this.globalAlpha > 0)
+			if (cgsgExist(this.bkgcolor) && this.globalAlpha > 0)
 				context.fillText(text, x, y);
 
 			var mt = context.measureText(text);
@@ -737,14 +743,14 @@ var CGSGNodeText = CGSGNode.extend(
 
 				// middle right
 				this.handles[4].translateTo(width - halfX,
-												  height / 2 - halfY + decalY);
+											height / 2 - halfY + decalY);
 
 				// bottom left, middle, right
 				this.handles[6].translateTo(width / 2 - halfX,
-												  height - halfY + decalY);
+											height - halfY + decalY);
 				this.handles[5].translateTo(-halfX, height - halfY + decalY);
 				this.handles[7].translateTo(width - halfX,
-												  height - halfY + decalY);
+											height - halfY + decalY);
 
 
 				for (var i = 0 ; i < 8 ; i++) {
@@ -766,7 +772,6 @@ var CGSGNodeText = CGSGNode.extend(
 			//call the super method
 			node = this._super(node);
 
-			node.color = this.color;
 			node.setSize(this._size, false);
 			node.setTextAlign(this._align, false);
 			node.setTextBaseline(this._textBaseline, false);

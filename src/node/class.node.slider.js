@@ -15,7 +15,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
 		initialize : function(handleWidth) {
 			this._super(0, 0);
 			this.resizeTo(handleWidth, handleWidth);
-			//this.color = "#CCCCCC";
+			//this.bkgcolor = "#CCCCCC";
 			this.rotationCenter = new CGSGPosition(0.5, 0.5);
 			this.handleWidth = handleWidth;
 			this.isDraggable = true;
@@ -79,7 +79,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
 			var gradient = c.createLinearGradient(this.handleWidth, 0,
 												  this.handleWidth,
 												  this.handleWidth);
-			gradient.addColorStop(0.3, this.color);
+			gradient.addColorStop(0.3, this.bkgcolor);
 			gradient.addColorStop(1, CGSGColor.darkenHex(this.bkgcolor, 0.7));
 
 			c.fillStyle = gradient;

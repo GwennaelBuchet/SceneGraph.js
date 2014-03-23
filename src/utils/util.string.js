@@ -31,7 +31,7 @@
  * @return {String}
  */
 String.prototype.without = function(t) {
-	var r = this.replace(t,"");
+	var r = this.replace(t, "");
 	return r;
 };
 

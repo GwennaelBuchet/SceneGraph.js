@@ -128,7 +128,7 @@ var StateHome = CGSGObject.extend(
 				event.particle.node.resizeTo(5 + Math.random() * 5, 5 + Math.random() * 5);
 
 				//add some custom info to the particles
-				event.particle.userdata = {
+				event.particle.userData = {
 					amplitude: 18 + Math.random() * 10,
 					period   : 0.005 + Math.random() * 0.02
 				};
@@ -137,8 +137,8 @@ var StateHome = CGSGObject.extend(
 			//add an update handler, fired each time a particle position was updated by the this.snowEmitter
 			this.snowEmitter.onUpdateParticleEnd = function (particle) {
 				//apply a sinusoidal movement on X
-				particle.node.translateWith(Math.sin(particle.age * particle.userdata.period)
-												* particle.userdata.amplitude, 0);
+				particle.node.translateWith(Math.sin(particle.age * particle.userData.period)
+												* particle.userData.amplitude, 0);
 			};
 
 			//finally, add the particle system into the scenegraph

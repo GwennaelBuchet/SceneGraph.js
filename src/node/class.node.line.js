@@ -11,7 +11,7 @@
  */
 var CGSGNodeLine = CGSGNode.extend(
 	{
-		initialize: function (pts) {
+		initialize : function(pts) {
 
 			this._pts = pts.copy();
 			this._nbPts = this._pts.length;
@@ -24,7 +24,7 @@ var CGSGNodeLine = CGSGNode.extend(
 
 			this._super(this._minX, this._minY, this._maxX - this._minX, this._maxY - this._minY);
 
-			this.resizeTo(this._maxX-this._minX, this._maxY-this._minY);
+			this.resizeTo(this._maxX - this._minX, this._maxY - this._minY);
 
 			this.pickNodeMethod = CGSGPickNodeMethod.REGION;
 
@@ -42,13 +42,13 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} c the context into render the node
 		 * */
-		render: function (c) {
+		render : function(c) {
 			c.beginPath();
-			c.globalAlpha = this.globalAlpha;
+			//c.globalAlpha = this.globalAlpha;
 
 			c.moveTo(this._pts[0].x - this._minX, this._pts[0].y - this._minY);
 
-			for (var i = 1; i < this._nbPts; i++) {
+			for (var i = 1 ; i < this._nbPts ; i++) {
 				c.lineTo(this._pts[i].x - this._minX, this._pts[i].y - this._minY);
 			}
 
@@ -65,7 +65,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @param {Number} w
 		 * @param {Number} h
 		 * */
-		resizeTo: function (w, h) {
+		resizeTo : function(w, h) {
 			this.dimension.resizeTo(w, h);
 
 			this._computeResizedPoints();
@@ -77,7 +77,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @param wf {Number} width Factor
 		 * @param hf {Number} height Factor
 		 * */
-		resizeBy: function (wf, hf) {
+		resizeBy : function(wf, hf) {
 			this.dimension.resizeBy(wf, hf);
 
 			this._computeResizedPoints();
@@ -89,7 +89,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @param w {Number} width
 		 * @param h {Number} height
 		 * */
-		resizeWith: function (w, h) {
+		resizeWith : function(w, h) {
 			this.dimension.resizeWith(w, h);
 
 			this._computeResizedPoints();
@@ -99,13 +99,13 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @method _computeResizedPoints
 		 * @private
 		 */
-		_computeResizedPoints: function () {
+		_computeResizedPoints : function() {
 			var sx = this.getWidth() / (this._maxX - this._minX);
 			var sy = this.getHeight() / (this._maxY - this._minY);
 			var c = this.getCenter();
 
 			if (this.getWidth() > 0 && this.getHeight() > 0) {
-				for (var i = 0; i < this._nbPts; i++) {
+				for (var i = 0 ; i < this._nbPts ; i++) {
 					this._pts[i].x = (sx * (this._pts[i].x - c.x)) + c.x;
 					this._pts[i].y = (sy * (this._pts[i].y - c.y)) + c.y;
 				}
@@ -118,7 +118,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method getCenter
 		 */
-		getCenter: function () {
+		getCenter : function() {
 			return new CGSGPosition((this._maxX - this._minX) / 2, (this._maxY - this._minY) / 2);
 		},
 
@@ -127,10 +127,10 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method getMaxX
 		 */
-		getMaxX: function () {
+		getMaxX : function() {
 			var x = this._pts[0].copy().x, t;
 
-			for (var i = 1; i < this._nbPts; i++) {
+			for (var i = 1 ; i < this._nbPts ; i++) {
 				t = this._pts[i].copy().x;
 				if (x <= t) {
 					x = t;
@@ -145,10 +145,10 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method getMinX
 		 */
-		getMinX: function () {
+		getMinX : function() {
 			var x = this._pts[0].copy().x, t = 0;
 
-			for (var i = 1; i < this._nbPts; i++) {
+			for (var i = 1 ; i < this._nbPts ; i++) {
 				t = this._pts[i].copy().x;
 
 				if (x >= t) {
@@ -164,10 +164,10 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method getMaxY
 		 */
-		getMaxY: function () {
+		getMaxY : function() {
 			var y = this._pts[0].copy().y, t = 0;
 
-			for (var i = 1; i < this._nbPts; i++) {
+			for (var i = 1 ; i < this._nbPts ; i++) {
 				t = this._pts[i].copy().y;
 
 				if (y <= t) {
@@ -183,10 +183,10 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method getMinY
 		 */
-		getMinY: function () {
+		getMinY : function() {
 			var y = this._pts[0].copy().y, t = 0;
 
-			for (var i = 1; i < this._nbPts; i++) {
+			for (var i = 1 ; i < this._nbPts ; i++) {
 				t = this._pts[i].copy().y;
 
 				if (y >= t) {
@@ -201,7 +201,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * Update the min and max x/y values
 		 * @method updateMinMax
 		 */
-		updateMinMax: function () {
+		updateMinMax : function() {
 			this._maxY = this.getMaxY();
 			this._minY = this.getMinY();
 			this._maxX = this.getMaxX();
@@ -213,11 +213,20 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method setPoints
 		 */
-		setPoints: function (points) {
+		setPoints : function(points) {
 			this._pts = points.copy();
 			this._nbPts = this._pts.length;
 			this.updateMinMax();
 			this.dimension.resizeTo(this._maxX - this._minX, this._maxY - this._minY);
+
+			this.translateTo(this._minX, this._minY);
+
+			/*for (var i = 0 ; i < this._nbPts ; i++) {
+				var p = this._pts[i];
+
+				p.x -= this._minX;
+				p.y -= this._minY;
+			}*/
 		},
 
 		/**
@@ -225,7 +234,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @public
 		 * @method getPoints
 		 */
-		getPoints: function () {
+		getPoints : function() {
 			return this._pts.copy();
 		},
 
@@ -235,7 +244,7 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @method getPoint
 		 * @param i {Number} index
 		 */
-		getPoint: function (i) {
+		getPoint : function(i) {
 			if (i < this._nbPts && i >= 0) {
 				return this._pts.slice(i, i + 1).copy();
 			}
@@ -246,15 +255,10 @@ var CGSGNodeLine = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeLine} a copy of this node
 		 */
-		copy: function () {
+		copy : function() {
 			var node = new CGSGNodeLine(this._pts);
 			//call the super method
-			node = this._super(node);
-
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
+			return this._super(node);
 		}
 
 	}

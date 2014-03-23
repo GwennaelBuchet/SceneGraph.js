@@ -58,7 +58,7 @@ var CGMain = CGSGView.extend(
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//create the particle system instance
-			this.particlesSystem = new CGSGParticleSystem(0, 100); //x, y
+			this.particlesSystem = new CGSGParticleSystem(0, 0); //x, y
 
 			//load images that will be used for particles
 			this.img = new Image();
@@ -85,23 +85,22 @@ var CGMain = CGSGView.extend(
 
 			//create the new emitter
 			var emitter = this.particlesSystem.addEmitter(
-				imgNode //node as a particle
-				, new CGSGRegion(300, 200, 8, 8)//emission area
-				, 100                           //nbParticlesMax
-				, new CGSGVector2D(0.0, 1.0)    //initial velocity of a particle
+				imgNode.copy.bind(imgNode) //node as a particle
+				, new CGSGRegion(50, -20, 400, 5)//emission area
+				, 200                           //nbParticlesMax
+				, new CGSGVector2D(0.0, -1.0)    //initial velocity of a particle
 				, Math.PI / 4.0                 //angle area to rotate the direction vector
 				, 5.0                           //speed
 				, 1.0                           //random pour le speed
-				, 10                            //outflow
+				, 1                            //outflow
 			);
 
             var data;
 			emitter.onInitParticle = function(event) {
                 data = event.data.particle;
 				data.node.globalAlpha = 1.0;
-                data.userdata = {ttl : 280 + Math.random() * 240};
                 data.checkCTL = function(particle) {
-					return particle.age <= particle.userdata.ttl;
+					return particle.position.y <= CGSG.canvas.height;
 				};
 			};
 
@@ -111,7 +110,7 @@ var CGMain = CGSGView.extend(
 
 			emitter.onUpdateParticleEnd = function(event) {
                 data = event.data.particle;
-                data.node.globalAlpha = 1.0 - (data.age / data.userdata.ttl);
+                //data.node.globalAlpha = 1.0 - (data.age / data.userData.ttl);
 			};
 
 			//launch the emitters

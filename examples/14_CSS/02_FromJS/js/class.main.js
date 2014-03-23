@@ -75,11 +75,11 @@ var CGMain = CGSGView.extend(
 			/**********************
 			 Load CSS file here
 			 **********************/
-			//first add an event fired when file will be effectively loaded.
-			CGSG.cssManager.onLoadEnd = this.onCSSLoaded.bind(this);
-
 			//if another CSS file was previoulsy loaded, you may unload it to free memory and avoid confusion risks
 			//CGSG.cssManager.unloadCSSFile("../shared/themes/otherTheme/previous.css");
+
+			//first add an event fired when file will be effectively loaded.
+			CGSG.cssManager.onLoadEnd = this.onCSSLoaded.bind(this);
 
 			//then load the file. URL is relative to the html file
 			CGSG.cssManager.loadCSSFile("../../../min/css/themes/gray/grayTheme.css");

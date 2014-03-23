@@ -81,43 +81,43 @@ var CGMain = CGSGView.extend(
                     that.textNode.setText("Event : click on scene");
             };
 
-            squareMediumPurple.onClick = function (event) {
-                that.textNode.setText("Event : click on square MediumPurple");
-			};
+			CGSG.eventManager.bindHandler(squareMediumPurple, cgsgEventTypes.ON_CLICK, (function(event) {
+				that.textNode.setText("Event : click on square MediumPurple");
+			}).bind(this));
 
-            squareSlateGray.onMouseOver = function (event) {
+			CGSG.eventManager.bindHandler(squareSlateGray, cgsgEventTypes.ON_MOUSE_OVER, (function (event) {
                 that.textNode.setText("Event : over on square SlateGray");
-			};
-            squareSlateGray.onMouseOut = function (event) {
+			}).bind(this));
+			CGSG.eventManager.bindHandler(squareSlateGray, cgsgEventTypes.ON_MOUSE_OUT, (function (event) {
                 that.textNode.setText("Event : out of square SlateGray");
-            };
+            }).bind(this));
 
-            squareGreenYellow.onDblClick = function (event) {
+			CGSG.eventManager.bindHandler(squareGreenYellow, cgsgEventTypes.ON_DBL_CLICK, (function (event) {
                 that.textNode.setText("Event : dblclick on square GreenYellow");
-            };
+            }).bind(this));
 			squareGreenYellow.isDraggable = false;
 			squareGreenYellow.isResizable = false;
 
-            squareDeepSkyBlue.onDrag = function (event) {
+			CGSG.eventManager.bindHandler(squareDeepSkyBlue, cgsgEventTypes.ON_DRAG, (function (event) {
                 that.textNode.setText("Event : drag square DeepSkyBlue");
-            };
-            squareDeepSkyBlue.onDragEnd = function (event) {
+            }).bind(this));
+			CGSG.eventManager.bindHandler(squareDeepSkyBlue, cgsgEventTypes.ON_DRAG_END, (function (event) {
                 that.textNode.setText("Event : drag end square DeepSkyBlue");
-            };
+            }).bind(this));
 
-            squareHotPink.onResize = function (event) {
+			CGSG.eventManager.bindHandler(squareHotPink, cgsgEventTypes.ON_RESIZE, (function (event) {
                 that.textNode.setText("Event : resize square HotPink");
-            };
-            squareHotPink.onResizeEnd = function (event) {
+            }).bind(this));
+			CGSG.eventManager.bindHandler(squareHotPink, cgsgEventTypes.ON_RESIZE_END, (function (event) {
                 that.textNode.setText("Event : resize end square HotPink");
-            };
+            }).bind(this));
 
-            squareOrange.onSelect = function (event) {
+			CGSG.eventManager.bindHandler(squareOrange, cgsgEventTypes.ON_SELECT, (function (event) {
                 that.textNode.setText("Event : select square Orange");
-            };
-            squareOrange.onDeselect = function (event) {
+            }).bind(this));
+			CGSG.eventManager.bindHandler(squareOrange, cgsgEventTypes.ON_DESELECT, (function (event) {
                 that.textNode.setText("Event : deselect square Orange");
-            };
+            }).bind(this));
 
             var bindTestCollide = this.testCollide.bind(this);
             this.squareBisque.onDrag = bindTestCollide;

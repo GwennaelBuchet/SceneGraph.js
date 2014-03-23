@@ -37,7 +37,7 @@
  */
 var CGSGImgManager = CGSGObject.extend(
 	{
-		initialize:function () {
+		initialize : function() {
 			/**
 			 * @property _mapURL
 			 * @type {CGSGMap} [URL; Image]
@@ -50,7 +50,7 @@ var CGSGImgManager = CGSGObject.extend(
 		 * @param url {String}
 		 * @return {Image} or null if doesn't exist yet
 		 */
-		get:function(url) {
+		get : function(url) {
 			return this._mapURL.getValue(url);
 		},
 
@@ -59,7 +59,7 @@ var CGSGImgManager = CGSGObject.extend(
 		 * @param url {String}
 		 * @param img {Image}
 		 */
-		set:function(url, img) {
+		set : function(url, img) {
 			this._mapURL.addOrReplace(url, img);
 		}
 

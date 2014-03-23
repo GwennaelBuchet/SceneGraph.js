@@ -160,7 +160,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * */
 		render : function(context) {
 			//draw this zone
-			context.fillStyle = this.color;
+			context.fillStyle = this.bkgcolor;
 			context.strokeStyle = this.lineColor;
 			context.lineWidth = this.lineWidth;
 
@@ -192,9 +192,6 @@ var CGSGNodeLogger = CGSGNode.extend(
 			node.isResizable = this.isResizable;
 			node.isDraggable = this.isDraggable;
 
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
 			node.globalAlpha = this.globalAlpha;
 
 			for (var i = 0 ; i < this._attributes.length ; i++) {

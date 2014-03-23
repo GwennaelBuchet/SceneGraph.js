@@ -38,17 +38,6 @@ Regular CGSGNode attributes
     color: #5c5d80;
 }
 
-/*
-Overed CGSGNode attributes
-*/
-.cgsgnode-over {
-    background-color: #949494;
-    border: 2px solid #808080;
-    border-radius: 2px;
-    opacity: 1.0;
-}
-
-
 /*************************************************************************************
 Specific attributes for CGSGNodeText
 **************************************************************************************/

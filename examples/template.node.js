@@ -39,7 +39,9 @@ var CGSGNodeTemplate = CGSGNode.extend(
 	{
 		initialize : function(x, y, width, height /*, other parameters here */) {
 			//call the constructor of CGSGNode
-			this._super(x, y, width, height);
+			this._super(x, y);
+
+			this.resizeTo(width, height);
 
 			/**
 			 * Define the class type.
@@ -73,9 +75,6 @@ var CGSGNodeTemplate = CGSGNode.extend(
 			//call the super method
 			node = this._super(node);
 
-			//node.color = this.color;
-			//node.lineColor = this.lineColor;
-			//node.lineWidth = this.lineWidth;
 			return node;
 		}
 	}

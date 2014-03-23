@@ -49,7 +49,7 @@ var CGSGMath = {
 	 * @param {Number} angle
 	 * @return {Number} The radian value
 	 */
-	deg2rad : function (angle) {
+	deg2rad : function(angle) {
 		return (angle / 180.0) * Math.PI;
 	},
 
@@ -60,7 +60,7 @@ var CGSGMath = {
 	 * @param {Number} angle
 	 * @return {Number} The degree value
 	 */
-	rad2deg : function (angle) {
+	rad2deg : function(angle) {
 		return angle * 57.29577951308232;
 	},
 
@@ -71,7 +71,7 @@ var CGSGMath = {
 	 * @param {Number} n
 	 * @return {Number} The integer value
 	 */
-	fixedPoint : function (n) {
+	fixedPoint : function(n) {
 		return (0.5 + n) << 0;
 	},
 
@@ -84,7 +84,7 @@ var CGSGMath = {
 	 * @param {Number} weight Percentage to apply to the first value
 	 * @return {Number} The interpolated value
 	 */
-	lerp : function (from, to, weight) {
+	lerp : function(from, to, weight) {
 		return from + (to - from) * weight;
 	}
 };

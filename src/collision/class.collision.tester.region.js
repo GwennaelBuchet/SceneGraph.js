@@ -34,42 +34,42 @@
  * @author Vincent Vanghelle (vincent.vanghelle@capgemini.com)
  */
 var CGSGCollisionRegionTester = CGSGObject.extend(
-    {
-        initialize: function () {
-            this.classType = "CGSGCollisionRegionTester";
-        },
+	{
+		initialize : function() {
+			this.classType = "CGSGCollisionRegionTester";
+		},
 
-        /**
-         * Indicate if two nodes are colliding
-         * @method isColliding
-         * @param currentNode
-         * @param testedNode
-         * @param threshold
-         * @return {boolean} true if nodes are colliding
-         */
-        isColliding: function (currentNode, testedNode, threshold) {
-            if (threshold === null) {
-                threshold = 0;
-            }
-            var curNodeLeft = currentNode.getAbsLeft();
-            var curNodeRight = currentNode.getAbsRight();
-            var curNodeBottom = currentNode.getAbsBottom();
-            var testedNodeLeft = testedNode.getAbsLeft();
-            var testedNodeRight = testedNode.getAbsRight();
-            var testedNodeBottom = testedNode.getAbsBottom();
+		/**
+		 * Indicate if two nodes are colliding
+		 * @method isColliding
+		 * @param currentNode
+		 * @param testedNode
+		 * @param threshold
+		 * @return {boolean} true if nodes are colliding
+		 */
+		isColliding : function(currentNode, testedNode, threshold) {
+			if (threshold === null) {
+				threshold = 0;
+			}
+			var curNodeLeft = currentNode.getAbsLeft();
+			var curNodeRight = currentNode.getAbsRight();
+			var curNodeBottom = currentNode.getAbsBottom();
+			var testedNodeLeft = testedNode.getAbsLeft();
+			var testedNodeRight = testedNode.getAbsRight();
+			var testedNodeBottom = testedNode.getAbsBottom();
 
-            if ((curNodeLeft <= testedNodeRight + threshold &&
-                curNodeRight >= testedNodeLeft - threshold) ||
-                (curNodeRight >= testedNodeLeft - threshold &&
-                    curNodeLeft <= testedNodeRight + threshold)) {
+			if ((curNodeLeft <= testedNodeRight + threshold &&
+				 curNodeRight >= testedNodeLeft - threshold) ||
+				(curNodeRight >= testedNodeLeft - threshold &&
+				 curNodeLeft <= testedNodeRight + threshold)) {
 
-                if (currentNode.getAbsTop() <= testedNodeBottom + threshold &&
-                    curNodeBottom >= testedNode.getAbsTop() - threshold) {
-                    return true;
-                }
-            }
+				if (currentNode.getAbsTop() <= testedNodeBottom + threshold &&
+					curNodeBottom >= testedNode.getAbsTop() - threshold) {
+					return true;
+				}
+			}
 
-            return false;
-        }
-    }
+			return false;
+		}
+	}
 );

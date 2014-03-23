@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  * */
 
-"use strict";
-
 /**
  * Represents an entry of the internal table of the {CGSGEventManager} which keeps in memory all bound events.
  *
@@ -39,7 +37,7 @@
 
 var CGSGBindEntry = CGSGObject.extend(
 	{
-		initialize: function (observable, attributeName, isAdditional) {
+		initialize : function(observable, attributeName, isAdditional) {
 			this._observable = observable;
 			this._attributeName = attributeName;
 			this._isAdditional = isAdditional;
@@ -58,184 +56,188 @@ var CGSGBindEntry = CGSGObject.extend(
  */
 
 var CGSGEventManager = CGSGObject.extend(
-    {
-        initialize: function () {
-            this._handlerPropertyPrefix = "cgsgEventManager_" + new Date().getTime() + "_";
-	        this._table = new CGSGMap();
-        },
+	{
+		initialize : function() {
+			this._handlerPropertyPrefix = "cgsgEventManager_" + new Date().getTime() + "_";
+			this._table = new CGSGMap();
+		},
 
-	    /**
-	     * Replaces the handler associated to the given key by the new specified handler.
-	     *
-         * @method replaceHandler
-	     * @param key {CGSGBindEntry} the key
-	     * @param handler {Function} the new handler
-	     */
-	    replaceHandler : function(key, handler) {
+		/**
+		 * Replaces the handler associated to the given key by the new specified handler.
+		 *
+		 * @method replaceHandler
+		 * @param key {CGSGBindEntry} the key
+		 * @param handler {Function} the new handler
+		 */
+		replaceHandler : function(key, handler) {
 			var obs = key._observable;
 
-		    // Direct access
-		    if (!key._isAdditional) {
+			// Direct access
+			if (!key._isAdditional) {
 				obs[key._attributeName] = handler;
-		    } else {
-			    // Search through the array
-			    var old = this._table.getValue(key);
-			    var idx = obs[key._attributeName].indexOf(old);
+			}
+			else {
+				// Search through the array
+				var old = this._table.getValue(key);
+				var idx = obs[key._attributeName].indexOf(old);
 
-			    if (idx !== -1) {
-				    obs[key._attributeName][idx] = handler;
-			    }
-		    }
+				if (idx !== -1) {
+					obs[key._attributeName][idx] = handler;
+				}
+			}
 
-		    this._table.addOrReplace(key, handler)
-	    },
+			this._table.addOrReplace(key, handler)
+		},
 
-        /**
-         * Binds an handler function for an event which can occurs on a given observable object.
-         *
-         * @method bindHandler
-         * @param observable {Object} the observable object
-         * @param eventName {String} The event's name
-         * @param handler {Function} the handler
-         * @return {CGSGBindEntry} the ID of the binding
-         */
-        bindHandler : function(observable, eventName, handler) {
-	        var additional = cgsgExist(observable[eventName]);
+		/**
+		 * Binds an handler function for an event which can occurs on a given observable object.
+		 *
+		 * @method bindHandler
+		 * @param observable {Object} the observable object
+		 * @param eventName {String} The event's name
+		 * @param handler {Function} the handler
+		 * @return {CGSGBindEntry} the ID of the binding
+		 */
+		bindHandler : function(observable, eventName, handler) {
+			//check if the same event was already bound via a simple command (ex: "this.xxx.onClick = function() {...}")
+			var additional = cgsgExist(observable[eventName]);
 			var attributeName;
 
-            // Bind member named with eventName first and then additional handlers are stored to an array
-            if (additional) {
-                attributeName = this._getHandlerPropertyName(eventName);
+			// Bind member named with eventName first and then additional handlers are stored to an array
+			if (additional) {
+				attributeName = this._getHandlerPropertyName(eventName);
 
-                // Array does not already exist
-                if (!cgsgExist(observable[attributeName])) {
-                    observable[attributeName] = [handler];
-                } else {
-                    observable[attributeName].push(handler);
-                }
-            } else {
-	            attributeName = eventName;
-                observable[eventName] = handler;
-            }
+				// Array does not already exist
+				if (!cgsgExist(observable[attributeName])) {
+					observable[attributeName] = [handler];
+				}
+				else {
+					observable[attributeName].push(handler);
+				}
+			}
+			else {
+				attributeName = eventName;
+				observable[eventName] = handler;
+			}
 
-	        var entry = new CGSGBindEntry(observable, attributeName, additional);
-	        this._table.addOrReplace(entry, handler);
-	        return entry;
-        },
+			var entry = new CGSGBindEntry(observable, attributeName, additional);
+			this._table.addOrReplace(entry, handler);
+			return entry;
+		},
 
 
-
-        /**
-         * Notifies an event to all handlers bound to the given event on the given observable object. For performance
-         * reasons, this method must not be called if no handler is bound to the observable. Consequently, for instance,
-         * if you have an event 'onClick' that you want to dispatch, wrap the call in an if statement like this
-         * (otherwise the execution will fail) :
-         * if (this.onClick) {
+		/**
+		 * Notifies an event to all handlers bound to the given event on the given observable object. For performance
+		 * reasons, this method must not be called if no handler is bound to the observable. Consequently, for instance,
+		 * if you have an event 'onClick' that you want to dispatch, wrap the call in an if statement like this
+		 * (otherwise the execution will fail) :
+		 * if (this.onClick) {
          *     CGSG.eventManager.dispatch(...);
          * }
-         *
-         * @method dispatch
-         * @param observable {Object} the observable object
-         * @param eventName {String} The event's name
-         * @param event {CGSGEvent} the event to notify
-         */
-        dispatch : function(observable, eventName, event) {
-            // Member with event name must exist
-            event.observable = observable;
-            event.type = eventName;
+		 *
+		 * @method dispatch
+		 * @param observable {Object} the observable object
+		 * @param eventName {String} The event's name
+		 * @param event {CGSGEvent} the event to notify
+		 */
+		dispatch : function(observable, eventName, event) {
+			// Member with event name must exist
+			event.observable = observable;
+			event.type = eventName;
 
-	        if (!cgsgExist(observable[eventName])) {
-		        console.log(eventName);
-	        }
+			if (!cgsgExist(observable[eventName])) {
+				console.log(eventName);
+			}
 
-            observable[eventName](event);
+			observable[eventName](event);
 
-            // Continue only if propagation is enabled
-            if (event.propagate) {
-                var handlerProperty = this._getHandlerPropertyName(eventName);
-                var handler = observable[handlerProperty];
+			// Continue only if propagation is enabled
+			if (event.propagate) {
+				var handlerProperty = this._getHandlerPropertyName(eventName);
+				var handler = observable[handlerProperty];
 
-                // Additional handlers should be notified too
-                if (cgsgExist(handler)) {
-                    cgsgIterate(handler, function(i, handler) {
-                        handler(event);
+				// Additional handlers should be notified too
+				if (cgsgExist(handler)) {
+					cgsgIterate(handler, function(i, handler) {
+						handler(event);
 
-                        // Loop will be broken if propagate flag has been set to false by the handler
-                        return event.propagate;
-                    });
-                }
-            }
-        },
+						// Loop will be broken if propagate flag has been set to false by the handler
+						return event.propagate;
+					});
+				}
+			}
+		},
 
-        /**
-         * Unbind an handler registered for an event on an object.
-         *
-         * @method unbindHandler
-         * @param observable {Object} the observable object
-         * @param eventName {String} The event's name
-         * @param handler {Function} the handler
-         */
-        unbindHandler : function(observable, eventName, handler) {
-            var i, len, entry;
+		/**
+		 * Unbind an handler registered for an event on an object.
+		 *
+		 * @method unbindHandler
+		 * @param observable {Object} the observable object
+		 * @param eventName {String} The event's name
+		 * @param handler {Function} the handler
+		 */
+		unbindHandler : function(observable, eventName, handler) {
+			var i, len, entry;
 
-            // Handler to remove is the one corresponding to the attribute named with the eventName
-            if (observable[eventName] === handler) {
-                observable[eventName] = null;
-            } else {
-                // Look for the handler
-                var handlerProperty = this._getHandlerPropertyName(eventName);
+			// Handler to remove is the one corresponding to the attribute named with the eventName
+			if (observable[eventName] === handler) {
+				observable[eventName] = null;
+			}
+			else {
+				// Look for the handler
+				var handlerProperty = this._getHandlerPropertyName(eventName);
 
-                i = observable[handlerProperty].indexOf(handler);
+				i = observable[handlerProperty].indexOf(handler);
 
-                if (i !== -1) {
-                    observable[handlerProperty].slice(i, 1);
-                }
-            }
+				if (i !== -1) {
+					observable[handlerProperty].slice(i, 1);
+				}
+			}
 
-            // Purge table
-            for (i = 0, len = this._table.getLength(); i < len; i++) {
-                entry = this._table.getAt(i);
+			// Purge table
+			for (i = 0, len = this._table.getLength() ; i < len ; i++) {
+				entry = this._table.getAt(i);
 
-                if (entry.value === handler) {
-                    this._table.remove(entry.key);
-                    break;
-                }
-            }
-        },
+				if (entry.value === handler) {
+					this._table.remove(entry.key);
+					break;
+				}
+			}
+		},
 
-        /**
-         * Unbinds all handlers registered for an event on a given object.
-         *
-         * @method unbindAll
-         * @param observable {Object} the observable object
-         * @param eventName {String} The event's name
-         */
-        unbindAll : function(observable, eventName) {
-            // Attribute named with eventName is deleted
-            observable[eventName] = null;
+		/**
+		 * Unbinds all handlers registered for an event on a given object.
+		 *
+		 * @method unbindAll
+		 * @param observable {Object} the observable object
+		 * @param eventName {String} The event's name
+		 */
+		unbindAll : function(observable, eventName) {
+			// Attribute named with eventName is deleted
+			observable[eventName] = null;
 
-            var handlerProperty = this._getHandlerPropertyName(eventName);
+			var handlerProperty = this._getHandlerPropertyName(eventName);
 
-            // Then delete additional handlers if they exist
-            if (cgsgExist(observable[handlerProperty])) {
-                var handlerProperty = this._getHandlerPropertyName(eventName);
+			// Then delete additional handlers if they exist
+			if (cgsgExist(observable[handlerProperty])) {
+				//handlerProperty = this._getHandlerPropertyName(eventName);
 
-                if (cgsgExist(observable[handlerProperty])) {
-                    observable[handlerProperty].splice(0, observable[handlerProperty].length - 1);
-                }
-            }
-        },
+				//if (cgsgExist(observable[handlerProperty])) {
+					observable[handlerProperty].splice(0, observable[handlerProperty].length - 1);
+				//}
+			}
+		},
 
-        /**
-         * Returns the name of a property to create on an object to store additional handlers.
-         *
-         * @method  _getHandlerPropertyName
-         * @param eventName String the event name
-         * @return {String} the attribute name
-         * @private
-         */
-        _getHandlerPropertyName : function(eventName) {
-            return this._handlerPropertyPrefix + eventName;
-        }
-    }
+		/**
+		 * Returns the name of a property to create on an object to store additional handlers.
+		 *
+		 * @method  _getHandlerPropertyName
+		 * @param eventName String the event name
+		 * @return {String} the attribute name
+		 * @private
+		 */
+		_getHandlerPropertyName : function(eventName) {
+			return this._handlerPropertyPrefix + eventName;
+		}
+	}
 );

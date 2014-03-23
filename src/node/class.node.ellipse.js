@@ -40,71 +40,114 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeEllipse = CGSGNode.extend(
-    {
-        initialize : function (x, y, width, height) {
-            this._super(x, y)
-            this.resizeTo(width, height);
+	{
+		initialize : function(x, y, width, height) {
+			this._super(x, y);
+			this.resizeTo(width, height);
 
-            /**
-             * @property classType
-             * @readonly
-             * @type {String}
-             */
-            this.classType = "CGSGNodeEllipse";
+			this._f = 1.16666666;
+			this._mf = 1 - this._f;
+			this._w = 0;
+			this.mw = 0;
 
-            this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
-        },
+			this._computeWmW();
 
-        /**
-         * Custom rendering
-         * @method render
-         * @protected
-         * @param {CanvasRenderingContext2D} context the context into render the node
-         * */
-        render : function (context) {
-            var centerX = this.dimension.width / 2;
+			/**
+			 * @property classType
+			 * @readonly
+			 * @type {String}
+			 */
+			this.classType = "CGSGNodeEllipse";
 
-            context.beginPath();
+			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
+		},
 
-            context.moveTo(centerX, 0);
+		/**
+		 * Custom rendering
+		 * @method render
+		 * @protected
+		 * @param {CanvasRenderingContext2D} context the context into render the node
+		 * */
+		render : function(context) {
+			var centerX = this.dimension.width / 2;
 
-            context.bezierCurveTo(
-                this.dimension.width, 0,
-                this.dimension.width, this.dimension.height,
-                centerX, this.dimension.height);
+			context.beginPath();
 
-            context.bezierCurveTo(
-                0, this.dimension.height,
-                0, 0,
-                centerX, 0);
-
-            context.fillStyle = this.bkgcolor;
-            context.fill();
-            if (this.lineWidth > 0) {
-                context.lineWidth = this.lineWidth;
-                context.strokeStyle = this.lineColor;
-                context.stroke();
-            }
-
-            context.closePath();
-        },
+			context.moveTo(centerX, 0);
 
 
+			context.bezierCurveTo(
+				this._w, 0,
+				this._w, this.dimension.height,
+				centerX, this.dimension.height);
 
-        /**
-         * @method copy
-         * @return {CGSGNodeEllipse} a copy of this node
-         */
-        copy : function () {
-            var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
-                this.dimension.height);
-            //call the super method
-            node = this._super(node);
+			context.bezierCurveTo(
+				this._mw, this.dimension.height,
+				this._mw, 0,
+				centerX, 0);
 
-            node.color = this.color;
-            node.lineColor = this.lineColor;
-            node.lineWidth = this.lineWidth;
-            return node;
-        }
-    }
+			context.fillStyle = this.bkgcolor;
+			context.fill();
+			if (this.lineWidth > 0) {
+				context.lineWidth = this.lineWidth;
+				context.strokeStyle = this.lineColor;
+				context.stroke();
+			}
+
+			context.closePath();
+		},
+
+		_computeWmW : function() {
+			this._w = this.dimension.width * this._f;
+			this._mw = this.dimension.width * this._mf;
+		},
+
+		/**
+		 * Replace current dimension by these new ones and compute new Points
+		 * @method resizeTo
+		 * @param {Number} w
+		 * @param {Number} h
+		 * */
+		resizeTo : function(w, h) {
+			this._super(w, h);
+
+			this._computeWmW();
+		},
+
+		/**
+		 * Multiply current dimension by these new ones
+		 * @method resizeTBy
+		 * @param wf {Number} width Factor
+		 * @param hf {Number} height Factor
+		 * */
+		resizeBy : function(wf, hf) {
+			this._super(wf, hf);
+
+			this._computeWmW();
+		},
+
+		/**
+		 * Increase/decrease current dimension with adding values
+		 * @method resizeWith
+		 * @param w {Number} width
+		 * @param h {Number} height
+		 * */
+		resizeWith : function(w, h) {
+			this._super(w, h);
+
+			this._computeWmW();
+		},
+
+
+		/**
+		 * @method copy
+		 * @return {CGSGNodeEllipse} a copy of this node
+		 */
+		copy : function() {
+			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
+										   this.dimension.height);
+			//call the super method
+			return this._super(node);
+		}
+	}
 );

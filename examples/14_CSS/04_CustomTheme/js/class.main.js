@@ -70,6 +70,8 @@ var CGMain = CGSGView.extend(
 			root.addChild(circle);
 
 			var ellipse = new CGSGNodeEllipse(340, 55, 90, 50);
+			ellipse.isDraggable = true;
+			ellipse.isResizable = true;
 			root.addChild(ellipse);
 
 			var square = new CGSGNodeSquare(440, 50, 60, 60);

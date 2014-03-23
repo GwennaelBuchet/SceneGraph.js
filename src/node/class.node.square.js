@@ -38,54 +38,49 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeSquare = CGSGNode.extend(
-    {
-        initialize:function (x, y, width, height) {
-            this._super(x, y);
+	{
+		initialize : function(x, y, width, height) {
+			this._super(x, y);
 
-            this.resizeTo(width, height);
+			this.resizeTo(width, height);
 
-            /**
-             * @property classType
-             * @readonly
-             * @type {String}
-             */
-            this.classType = "CGSGNodeSquare";
-        },
+			/**
+			 * @property classType
+			 * @readonly
+			 * @type {String}
+			 */
+			this.classType = "CGSGNodeSquare";
+		},
 
-        /**
-         * Custom rendering
-         * @method render
-         * @protected
-         * @param {CanvasRenderingContext2D} context the context into render the node
-         * */
-        render:function (context) {
-            //draw this zone
-            context.fillStyle = this.bkgcolor;
+		/**
+		 * Custom rendering
+		 * @method render
+		 * @protected
+		 * @param {CanvasRenderingContext2D} context the context into render the node
+		 * */
+		render : function(context) {
+			//draw this zone
+			context.fillStyle = this.bkgcolor;
 
-            //we draw the rect at (0,0) because we have already translated the context to the correct position
-            context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+			//we draw the rect at (0,0) because we have already translated the context to the correct position
+			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
 
-            if (this.lineWidth > 0) {
-                context.strokeStyle = this.lineColor;
-                context.lineWidth = this.lineWidth;
-                context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
-            }
-        },
+			if (this.lineWidth > 0) {
+				context.strokeStyle = this.lineColor;
+				context.lineWidth = this.lineWidth;
+				context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+			}
+		},
 
-        /**
-         * @method copy
-         * @return {CGSGNodeSquare} a copy of this node
-         */
-        copy:function () {
-            var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
-                this.dimension.height);
-            //call the super method
-            node = this._super(node);
-
-            node.color = this.color;
-            node.lineColor = this.lineColor;
-            node.lineWidth = this.lineWidth;
-            return node;
-        }
-    }
+		/**
+		 * @method copy
+		 * @return {CGSGNodeSquare} a copy of this node
+		 */
+		copy : function() {
+			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
+										  this.dimension.height);
+			//call the super method
+			return this._super(node);
+		}
+	}
 );

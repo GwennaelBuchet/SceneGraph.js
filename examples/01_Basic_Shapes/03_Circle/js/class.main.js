@@ -58,10 +58,9 @@ var CGMain = CGSGView.extend(
 			var circle = new CGSGNodeCircle(60, 60, 30);
 			circle.isDraggable = true;
 			circle.isResizable = true;
+
+			//override "opacity" CSS attribute from "cgsgnode" cls
 			circle.globalAlpha = 0.8;
-			circle.color = "lightgray";
-			circle.lineWidth = 1;
-			circle.lineColor = "gray";
 
 			CGSG.sceneGraph.addNode(circle, null);
 		}
