@@ -44,7 +44,7 @@ var CGMain = CGSGView.extend(
 		},
 
 		initializeCanvas : function() {
-			var dim = new CGSGDimension(600, 480);
+			var dim = cgsgGetRealViewportDimension();//new CGSGDimension(600, 480);
 			this.setCanvasDimension(dim);
 		},
 
@@ -61,10 +61,21 @@ var CGMain = CGSGView.extend(
 			this.particlesSystem = new CGSGParticleSystem(0, 0); //x, y
 
 			//load images that will be used for particles
-			this.img = new Image();
-			var bindOnImageLoaded = this.onImageLoaded.bind(this);
-			this.img.onload = bindOnImageLoaded;
-			this.img.src = "images/pingoo.png";
+			this.imgs = [];
+			this._loadCounter = 0;
+
+			this.imgs[0] = new Image();
+			this.imgs[0].onload = this.onImageLoaded.bind(this);
+			this.imgs[0].src = "images/flocon1.png";
+
+			this.imgs[1] = new Image();
+			this.imgs[1].onload = this.onImageLoaded.bind(this);
+			this.imgs[1].src = "images/flocon2.png";
+
+			this.imgs[2] = new Image();
+			this.imgs[2].onload = this.onImageLoaded.bind(this);
+			this.imgs[2].src = "images/flocon3.png";
+
 
 			//finally, add the particle system into the scenegraph
 			this.rootNode.addChild(this.particlesSystem);
@@ -75,31 +86,46 @@ var CGMain = CGSGView.extend(
 		 * Set the image object (img) to our image nodes
 		 */
 		onImageLoaded : function() {
-			//create an emitter, "simulating a fountain", and add it to the particle system
-			this.createFountainEmitter();
+			this._loadCounter++;
+			if (this._loadCounter == 3) {
+				//create an emitter, "simulating a fountain", and add it to the particle system
+				this.createFountainEmitter();
+			}
+		},
+
+		/**
+		 * Called by the particles system to initialize a particle (not called to re-initialize it)
+		 * @returns {CGSGNode}
+		 */
+		createParticle : function() {
+			var imgNode = new CGSGNodeImage(0, 0, null);
+
+			imgNode.setImage(this.imgs[CGSGMath.fixedPoint(Math.random() * 2)]);
+			return imgNode;
 		},
 
 		createFountainEmitter : function() {
-			var imgNode = new CGSGNodeImage(0, 0, null);
-			imgNode.setImage(this.img);
+			//var imgNode = new CGSGNodeImage(0, 0, null);
+			//imgNode.setImage(this.img);
 
 			//create the new emitter
 			var emitter = this.particlesSystem.addEmitter(
-				imgNode.copy.bind(imgNode) //node as a particle
-				, new CGSGRegion(50, -20, 400, 5)//emission area
+				//imgNode.copy.bind(imgNode) //node as a particle
+				this.createParticle.bind(this)
+				, new CGSGRegion(0, -20, CGSG.canvas.width, 5)//emission area
 				, 200                           //nbParticlesMax
 				, new CGSGVector2D(0.0, -1.0)    //initial velocity of a particle
 				, Math.PI / 4.0                 //angle area to rotate the direction vector
 				, 5.0                           //speed
 				, 1.0                           //random pour le speed
-				, 1                            //outflow
+				, 20                            //outflow
 			);
 
-            var data;
+			var data;
 			emitter.onInitParticle = function(event) {
-                data = event.data.particle;
+				data = event.data.particle;
 				data.node.globalAlpha = 1.0;
-                data.checkCTL = function(particle) {
+				data.checkCTL = function(particle) {
 					return particle.position.y <= CGSG.canvas.height;
 				};
 			};
@@ -109,8 +135,9 @@ var CGMain = CGSGView.extend(
 			emitter.addForce(new CGSGVector2D(0, -8), null); //force vector, ttl
 
 			emitter.onUpdateParticleEnd = function(event) {
-                data = event.data.particle;
-                //data.node.globalAlpha = 1.0 - (data.age / data.userData.ttl);
+				data = event.data.particle;
+				data.node.rotateWith(-0.02 + CGSGMath.fixedPoint(Math.random() * 0.06));
+				//data.node.globalAlpha = 1.0 - (data.age / data.userData.ttl);
 			};
 
 			//launch the emitters
