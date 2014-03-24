@@ -44,8 +44,9 @@ var CGMain = CGSGView.extend(
 		},
 
 		initializeCanvas : function() {
-			var dim = new CGSGDimension(600, 480);
-			this.setCanvasDimension(dim);
+			//var dim = new CGSGDimension(600, 480);
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
 		},
 
 		/**
@@ -108,7 +109,7 @@ var CGMain = CGSGView.extend(
 				data.node.lineColor = "C8E3FF";
 				var s = 2 + CGSGMath.fixedPoint(10 * Math.random());
 				data.node.resizeTo(s, s);
-				data.userData = {ttl : 280 + Math.random() * 240};
+				data.userData = {ttl : 480 + Math.random() * 240};
 				data.checkCTL = function(particle) {
 					return particle.age <= particle.userData.ttl;
 				};
@@ -120,7 +121,7 @@ var CGMain = CGSGView.extend(
 			//fired each frame for each particle, just after its position was updated by the system
 			emitter.onUpdateParticleEnd = function(event) {
 				data = event.data.particle;
-				data.node.globalAlpha = 1.0 - (data.age / data.userData.ttl);
+				data.node.globalAlpha = 1.0 - (data.age / 1.4/data.userData.ttl);
 			};
 
 			//add a force vector representing the wind on the mouse click

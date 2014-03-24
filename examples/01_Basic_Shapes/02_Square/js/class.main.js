@@ -44,9 +44,6 @@ var CGMain = CGSGView.extend(
 			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
-			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
-			// to load all components in cache
-			this.invalidateTheme();
 		},
 
 		/**
