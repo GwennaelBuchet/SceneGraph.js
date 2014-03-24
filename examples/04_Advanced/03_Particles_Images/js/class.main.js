@@ -57,6 +57,10 @@ var CGMain = CGSGView.extend(
 			this.rootNode = new CGSGNode(0, 0);
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
+			//first add a background
+			var skyNode = new SkyNode();
+			this.rootNode.addChild(skyNode);
+
 			//create the particle system instance
 			this.particlesSystem = new CGSGParticleSystem(0, 0); //x, y
 
@@ -124,7 +128,7 @@ var CGMain = CGSGView.extend(
 			var data;
 			emitter.onInitParticle = function(event) {
 				data = event.data.particle;
-				data.node.globalAlpha = 1.0;
+				data.node.globalAlpha = 0.3 + Math.random()*0.7;
 				data.checkCTL = function(particle) {
 					return particle.position.y <= CGSG.canvas.height;
 				};
