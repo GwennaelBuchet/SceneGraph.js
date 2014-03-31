@@ -129,7 +129,14 @@ var CGSGView = CGSGObject.extend(
 			this.dragSelectAlpha = CGSG_DEFAULT_DRAG_SELECT_ALPHA;
 
 			//noinspection JSUndeclaredVariable
-			CGSG.sceneGraph = new CGSGSceneGraph(CGSG.canvas, CGSG.context);
+			this.dblBuffer = true;
+			if (this.dblBuffer) {
+				this._updateDblBuffer();
+				CGSG.sceneGraph = new CGSGSceneGraph(CGSG.canvas, this._cacheCtx);
+			}
+			else {
+				CGSG.sceneGraph = new CGSGSceneGraph(CGSG.canvas, CGSG.context);
+			}
 
 			/*
 			 * If true, framework will take care of multi-touch : NOT EFFECTIVE YET
@@ -367,6 +374,20 @@ var CGSGView = CGSGObject.extend(
 		},
 
 		/**
+		 * @method _updateDblBuffer
+		 * @private
+		 */
+		_updateDblBuffer : function() {
+			if (!cgsgExist(this._cacheCanvas)) {
+				this._cacheCanvas = document.createElement('canvas');
+				this._cacheCtx = this._cacheCanvas.getContext('2d');
+			}
+			this._cacheCanvas.width = CGSG.canvas.width;
+			this._cacheCanvas.height = CGSG.canvas.height;
+			cgsgClearContext(this._cacheCtx);
+		},
+
+		/**
 		 * Change the dimension of the canvas.
 		 * Does not really change the dimension of the rendering canvas container,
 		 *  but is used by the different computations
@@ -377,6 +398,7 @@ var CGSGView = CGSGObject.extend(
 			CGSG.canvas.width = d.width;
 			CGSG.canvas.height = d.height;
 			CGSG.sceneGraph.setCanvasDimension(d);
+			this._updateDblBuffer();
 
 			//Experimental
 			/*this._dblCanvas.width = newDimension.x;
@@ -424,6 +446,11 @@ var CGSGView = CGSGObject.extend(
 					var evt = new CGSGEvent(this, null);
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RENDER_START, evt);
 					//this.onRenderStart();
+				}
+
+				if (this.dblBuffer) {
+					cgsgClearContext(CGSG.context);
+					CGSG.context.drawImage(this._cacheCanvas, 0, 0);
 				}
 
 				CGSG.sceneGraph.render();
@@ -500,6 +527,7 @@ var CGSGView = CGSGObject.extend(
 
 		/**
 		 * Inform the SceneGraph that all nodes must be updated with the current theme
+		 * @method invalidateTheme
 		 */
 		invalidateTheme : function() {
 			CGSG.cssManager.invalidateCache();
@@ -691,9 +719,10 @@ var CGSGView = CGSGObject.extend(
 			}
 
 			if (this.allowMultiSelect && canStartDragSelection) {
+				var p = cgsgGetCursorPositions(e, CGSG.canvas);
 				this._isDragSelect = true;
-				this._dragStartPos = cgsgGetCursorPositions(e, CGSG.canvas);
-				this._dragEndPos = cgsgGetCursorPositions(e, CGSG.canvas);
+				this._dragStartPos = p;
+				this._dragEndPos = p;
 				this.deselectAll(null);
 			}
 		},
@@ -796,7 +825,7 @@ var CGSGView = CGSGObject.extend(
 		/**
 		 * @private
 		 * @method _moveOnScene
-		 * @param {Event} event MouseEvent or TouchEvent
+		 * @param e {Event} MouseEvent or TouchEvent
 		 */
 		_moveOnScene : function(e) {
 			var i, offX, offY;

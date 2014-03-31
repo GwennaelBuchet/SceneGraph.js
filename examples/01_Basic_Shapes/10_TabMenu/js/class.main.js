@@ -59,8 +59,6 @@ var CGMain = CGSGView.extend(
             rootNode.lineWidth = 1;
             CGSG.sceneGraph.addNode(rootNode, null);
 
-            var that = this;
-
             this.tabMenu = new CGSGNodeTabMenu(0, 0, 200);
             rootNode.addChild(this.tabMenu);
 
@@ -100,8 +98,7 @@ var CGMain = CGSGView.extend(
 			root.addChild(this.cpWitness);
 
 			//A second color picker with a custom size
-			var colorPicker2 = new CGSGNodeColorPicker(30, 20);
-			colorPicker2.resizeTo(160, 260);
+			var colorPicker2 = new CGSGNodeColorPicker(30, 20, 160, 260);
 			root.addChild(colorPicker2);
 
 			var that = this;
@@ -125,7 +122,7 @@ var CGMain = CGSGView.extend(
 		 * @param {Object} event
 		 */
 		selectColor:function (event) {
-			this.cpWitness.color = CGSGColor.rgb2hex(event.r, event.g, event.b);
+			this.cpWitness.bkgcolors = [CGSGColor.rgb2hex(event.r, event.g, event.b)];
 		}
 
     }

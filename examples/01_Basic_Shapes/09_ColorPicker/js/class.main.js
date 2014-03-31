@@ -64,7 +64,7 @@ var CGMain = CGSGView.extend(
 			rootNode.addChild(parent);
 
             //the color picker itself, in the default size
-            var colorPicker = new CGSGNodeColorPicker(20, 20);
+            var colorPicker = new CGSGNodeColorPicker(20, 20, 200, 200);
             parent.addChild(colorPicker);
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
             colorPicker.onOverColor = function (event) {
@@ -74,12 +74,10 @@ var CGMain = CGSGView.extend(
                 that.selectColor(event);
             };
 			colorPicker.translateWith(-100, 10);
-			colorPicker.resizeTo(200, 200);
 
 
             //A second color picker with a custom size
-            var colorPicker2 = new CGSGNodeColorPicker(300, 20);
-            colorPicker2.resizeTo(60, 60);
+            var colorPicker2 = new CGSGNodeColorPicker(300, 20, 60, 60);
             rootNode.addChild(colorPicker2);
 
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
@@ -91,8 +89,7 @@ var CGMain = CGSGView.extend(
             };
 
             //A third color picker with a custom size
-            var colorPicker3 = new CGSGNodeColorPicker(300, 100);
-            colorPicker3.resizeTo(320, 100);
+            var colorPicker3 = new CGSGNodeColorPicker(300, 100, 320, 100);
             rootNode.addChild(colorPicker3);
             colorPicker3.isDraggable = true;
 
@@ -123,7 +120,7 @@ var CGMain = CGSGView.extend(
          * @param {Object} event
          */
         selectColor:function (event) {
-            this.cpWitness.bkgcolor = CGSGColor.rgb2hex(event.r, event.g, event.b);
+            this.cpWitness.bkgcolors = [CGSGColor.rgb2hex(event.r, event.g, event.b)];
             this.txtNode.setText("[" + event.r + "," + event.g + "," + event.b + "]", false);
         }
 

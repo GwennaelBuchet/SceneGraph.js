@@ -23,9 +23,6 @@
  *  These Terms of Use are subject to French law.
  */
 
-var CGSG_COLORPICKER_WIDTH = 256;
-var CGSG_COLORPICKER_HEIGHT = 384;
-
 /**
  * A color Picker
  * @class CGSGNodeColorPicker
@@ -36,9 +33,9 @@ var CGSG_COLORPICKER_HEIGHT = 384;
  */
 var CGSGNodeColorPicker = CGSGNode.extend(
 	{
-		initialize : function(x, y) {
+		initialize : function(x, y, w, h) {
 			this._super(x, y);
-			this.resizeTo(CGSG_COLORPICKER_WIDTH, CGSG_COLORPICKER_HEIGHT);
+			this.resizeTo(w, h);
 
 			/**
 			 * @property _imgData
@@ -210,7 +207,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
 
 			x = 0;
 			y = 0;
-			if (!this._isPrecomputed) {
+			if (!this._isCached) {
 				x = this._absPos.x;
 				y = this._absPos.y;
 			}

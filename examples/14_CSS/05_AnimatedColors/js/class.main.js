@@ -80,7 +80,7 @@ var CGMain = CGSGView.extend(
 		 */
 		animate : function() {
 			CGSG.animationManager.animate(this.circle2, "lineWidth", 100, 1, 10, 0);
-			CGSG.animationManager.animate(this.circle2, "bkgcolor.r", 100, 1, 250, 0);
+			CGSG.animationManager.animate(this.circle2, "bkgcolors[0].r", 100, 1, 250, 0);
 		}
 	}
 );

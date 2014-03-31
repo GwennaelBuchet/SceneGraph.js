@@ -24,9 +24,9 @@
  */
 
 //number of horizontal squares
-var NB_HORIZONTAL_SLIDE = 60;
+var NB_HORIZONTAL_SLIDE = 70;
 //number of vertical squares
-var NB_VERTICAL_SLIDE = 60;
+var NB_VERTICAL_SLIDE = 70;
 //total width of the generated wall of squares
 var TOTAL_WIDTH = 200;
 //width of a square
@@ -51,6 +51,7 @@ var CGMain = CGSGView.extend(
 
         initializeCanvas:function () {
             this.viewDimension = cgsgGetRealViewportDimension();
+			this.viewDimension.height -= 80;
             this.setCanvasDimension(this.viewDimension);
         },
 
@@ -60,7 +61,7 @@ var CGMain = CGSGView.extend(
 
             this.listSquares = [];
 
-            this.buttonRelease = new CGSGNodeButton(10, 10, "Release them all ("+ (NB_HORIZONTAL_SLIDE * NB_VERTICAL_SLIDE) + " texels) !");
+            this.buttonRelease = new CGSGNodeButton(10, 10, "Release them all ("+ (NB_HORIZONTAL_SLIDE * NB_VERTICAL_SLIDE) + " nodes) !");
             this.rootNode.addChild(this.buttonRelease);
             this.buttonRelease.setMode(CGSGButtonMode.DEACTIVATED);
             this.buttonRelease.onClick = this.explode.bind(this);
@@ -140,16 +141,18 @@ var CGMain = CGSGView.extend(
                         //create square
                         sq = new CGSGNodeSquare(startX + x * SQ_WIDTH, startY + y * SQ_HEIGHT, SQ_WIDTH, SQ_HEIGHT);
                         //get color in hex format
-                        sq.color = CGSGColor.rgb2hex(
+                        sq.bkgcolors = [CGSGColor.rgb2hex(
                             imageData.data[currentPixel + 0],
                             imageData.data[currentPixel + 1],
                             imageData.data[currentPixel + 2]
-                        );
+                        )];
                         sq.globalAlpha = imageData.data[currentPixel + 3] / 255;
+						sq.lineWidth = 0;
                         //optimize performance
                         sq.needToKeepAbsoluteMatrix = false;
                         sq.isTraversable = false;
                         sq.isClickable = false;
+						//sq.setPrecomputed(true);
 
                         this.listSquares.push({sq:sq, x:x, y:y});
 

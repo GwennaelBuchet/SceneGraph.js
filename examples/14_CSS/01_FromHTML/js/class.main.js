@@ -70,11 +70,6 @@ var CGMain = CGSGView.extend(
 			circle2.isDraggable = true;
 			circle2.isResizable = true;
 			rootNode.addChild(circle2, null);
-
-			//If we invalidate the cache of cssManager after creation of an element, so wee need to invalidate
-			// the cache for that node, eith by calling myNode.invalidateTheme() or by invalidating theme for
-			// all the nodes:
-			//this.invalidateTheme();
 		}
 	}
 );

@@ -16,7 +16,7 @@
     background: -moz-linear-gradient(#FFADAD, #FF8E8E); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#FFADAD, #FF8E8E); /* Standard syntax */
 
-    border-radius:0px;
+    border-radius:0;
     color: green;
 }
 .custom-over {

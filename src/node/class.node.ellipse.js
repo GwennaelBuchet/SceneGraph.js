@@ -48,7 +48,7 @@ var CGSGNodeEllipse = CGSGNode.extend(
 			this._f = 1.16666666;
 			this._mf = 1 - this._f;
 			this._w = 0;
-			this.mw = 0;
+			this._mw = 0;
 
 			this._computeWmW();
 
@@ -66,35 +66,31 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * Custom rendering
 		 * @method render
 		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
+		 * @param c {CanvasRenderingContext2D} the context into render the node
 		 * */
-		render : function(context) {
+		render : function(c) {
 			var centerX = this.dimension.width / 2;
 
-			context.beginPath();
+			c.beginPath();
 
-			context.moveTo(centerX, 0);
+			c.moveTo(centerX, 0);
 
-
-			context.bezierCurveTo(
+			c.bezierCurveTo(
 				this._w, 0,
 				this._w, this.dimension.height,
 				centerX, this.dimension.height);
 
-			context.bezierCurveTo(
+			c.bezierCurveTo(
 				this._mw, this.dimension.height,
 				this._mw, 0,
 				centerX, 0);
 
-			context.fillStyle = this.bkgcolor;
-			context.fill();
+			c.fill();
 			if (this.lineWidth > 0) {
-				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.lineColor;
-				context.stroke();
+				c.stroke();
 			}
 
-			context.closePath();
+			c.closePath();
 		},
 
 		_computeWmW : function() {

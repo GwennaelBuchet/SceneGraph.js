@@ -222,11 +222,11 @@ var CGSGNodeLine = CGSGNode.extend(
 			this.translateTo(this._minX, this._minY);
 
 			/*for (var i = 0 ; i < this._nbPts ; i++) {
-				var p = this._pts[i];
+			 var p = this._pts[i];
 
-				p.x -= this._minX;
-				p.y -= this._minY;
-			}*/
+			 p.x -= this._minX;
+			 p.y -= this._minY;
+			 }*/
 		},
 
 		/**

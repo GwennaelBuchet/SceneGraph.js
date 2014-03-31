@@ -60,7 +60,7 @@ var CGMain = CGSGView.extend(
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			this.textNode = new CGSGNodeText(10, 10, "Click on the scene to add a temporary wind effect.");
-			this.textNode.setSize(14);
+			this.textNode.setClass("cgsg-h1");
 			this.rootNode.addChild(this.textNode);
 
 			//create the particle system instance
@@ -91,7 +91,7 @@ var CGMain = CGSGView.extend(
 			var emitter = this.particlesSystem.addEmitter(
 				this.createParticle.bind(this)
 				, new CGSGRegion(300, 200, 8, 8) //emission area
-				, 200                                   //nbParticlesMax
+				, 800                                   //nbParticlesMax
 				, new CGSGVector2D(0.0, 1)            //initial velocity of a particle
 				, Math.PI / 4.0                         //angle area to rotate the direction vector
 				, 5.0       //speed
@@ -105,7 +105,7 @@ var CGMain = CGSGView.extend(
 			emitter.onInitParticle = function(event) {
 				data = event.data.particle;
 				data.node.globalAlpha = 1.0;
-				data.node.bkgcolor = "#B5D2FF";
+				data.node.bkgcolors[0] = "#B5D2FF";
 				data.node.lineColor = "C8E3FF";
 				var s = 2 + CGSGMath.fixedPoint(10 * Math.random());
 				data.node.resizeTo(s, s);

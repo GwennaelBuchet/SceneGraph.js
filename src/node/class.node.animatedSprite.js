@@ -314,19 +314,19 @@ var CGSGNodeSprite = CGSGNode.extend(
 		/**
 		 * Must be defined to allow the scene graph to render the image nodes
 		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context to render on
+		 * @param c {CanvasRenderingContext2D} The context to render on
 		 * @method render
 		 * */
-		render : function(context) {
+		render : function(c) {
 			if (this._isLoaded && this._img.src != "") {
 
 				//compute the current slice of the current sprite
 				if (cgsgExist(this.currentAnimation)) {
-					context.globalAlpha = this.globalAlpha;
+					c.globalAlpha = this.globalAlpha;
 
 					var slice = this.currentAnimation.slices[Math.floor(this._currentFrame)];
 
-					context.drawImage(
+					c.drawImage(
 						this._img, // image
 						slice.x,
 						slice.y, // start position on the image
@@ -338,6 +338,14 @@ var CGSGNodeSprite = CGSGNode.extend(
 						this.dimension.width,
 						this.dimension.height
 					);
+
+					if (this.lineWidth > 0) {
+						//Next lines are already managed by CGSGNode.
+						//I let it here just to provide an example
+						//context.lineWidth = this.lineWidth;
+						//context.strokeStyle = this.lineColor;
+						c.stroke();
+					}
 
 					//go to next frame
 					if (this._isPlaying) {

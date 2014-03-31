@@ -223,7 +223,7 @@ var CGSGEventManager = CGSGObject.extend(
 				//handlerProperty = this._getHandlerPropertyName(eventName);
 
 				//if (cgsgExist(observable[handlerProperty])) {
-					observable[handlerProperty].splice(0, observable[handlerProperty].length - 1);
+				observable[handlerProperty].splice(0, observable[handlerProperty].length - 1);
 				//}
 			}
 		},

@@ -72,7 +72,7 @@ var CGMain = CGSGView.extend(
 			this.circle2.isResizable = true;
 			root.addChild(this.circle2);
 
-			var button = new CGSGNodeButton(10, 60, "switch style of 2nd circle", true);
+			var button = new CGSGNodeButton(10, 60, "switch style of 2nd circle");
 			root.addChild(button);
 
 			button.onClick = this.switchCls.bind(this);

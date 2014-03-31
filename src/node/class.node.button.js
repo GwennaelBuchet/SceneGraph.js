@@ -37,15 +37,22 @@ var CGSGNodeButtonProps = CGSGObject.extend(
 			this.paddingV = 10;
 			this.paddingH = 10;
 
+			/**
+			 * @property txtNode
+			 * @type {CGSGNodeText}
+			 */
 			this.txtNode = new CGSGNodeText(0, 0, "");
 			/**
 			 * Slice in the image for the icon
+			 * @property slice
 			 * @type {CGSGRegion}
+			 * @default null
 			 */
 			this.slice = null;
 			/**
 			 * @property icon
 			 * @type {CGSGNodeImage}
+			 * @default null
 			 */
 			this.icon = null;
 			/**
@@ -255,8 +262,8 @@ var CGSGNodeButton = CGSGNode.extend(
 			};
 
 			/*CGSG.eventManager.bindHandler(this, cgsgEventTypes.ON_FREE, (function(e) {
-				this.setMode(CGSGButtonMode.SELECTED);
-			}).bind(this));*/
+			 this.setMode(CGSGButtonMode.SELECTED);
+			 }).bind(this));*/
 
 			this._isInitialized = true;
 		},
@@ -290,7 +297,6 @@ var CGSGNodeButton = CGSGNode.extend(
 		/**
 		 * Set the same CSS class for all 4 modes
 		 * @method setClass
-		 * @override
 		 * @param cls {String}
 		 */
 		setClass : function(cls) {
@@ -343,7 +349,6 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * Add CSS class for this node for all 4 modes (not for bounding box, use 'setClassBBox' instead).
 		 * CSS class must define attributes used by this node.
 		 * @method addClass
-		 * @override
 		 * @param {String} cls
 		 */
 		addClass : function(cls) {
@@ -359,7 +364,6 @@ var CGSGNodeButton = CGSGNode.extend(
 		 * Add CSS class for this node for all 4 modes (not for bounding box, use 'setClassBBox' instead).
 		 * CSS class must define attributes used by this node.
 		 * @method addClasses
-		 * @override
 		 * @param {Array} clss
 		 */
 		addClasses : function(clss) {
@@ -603,7 +607,6 @@ var CGSGNodeButton = CGSGNode.extend(
 		/**
 		 * Reload theme (colors, ...) from loaded CSS file
 		 * @method invalidateTheme
-		 * @override
 		 */
 		invalidateTheme : function() {
 			this._super();
@@ -748,12 +751,12 @@ var CGSGNodeButton = CGSGNode.extend(
 				}
 				else {
 					this.dimension.resizeTo(
-						(2 * prop.paddingH) + decalPictoX +
-						tW * Math.abs(this._pictoPosition.decalX) +
-						this._pictoPosition.computeWidth(tW, wImg),
-						(2 * prop.paddingV) + decalPictoY +
-						tH * Math.abs(this._pictoPosition.decalY) +
-						this._pictoPosition.computeHeight(tH, hImg));
+							(2 * prop.paddingH) + decalPictoX +
+							tW * Math.abs(this._pictoPosition.decalX) +
+							this._pictoPosition.computeWidth(tW, wImg),
+							(2 * prop.paddingV) + decalPictoY +
+							tH * Math.abs(this._pictoPosition.decalY) +
+							this._pictoPosition.computeHeight(tH, hImg));
 				}
 				prop._invalSize = false;
 				this._isDimensionChanged = true;
@@ -773,7 +776,7 @@ var CGSGNodeButton = CGSGNode.extend(
 				tmpContext.translate(-r, -r);
 				tmpContext.beginPath();
 
-				tmpContext.moveTo(r, r);
+				tmpContext.moveTo(2 * r, r);
 				tmpContext.lineTo(r + this.dimension.width - r, r);
 				tmpContext.quadraticCurveTo(r + this.dimension.width,
 											r,
@@ -797,10 +800,19 @@ var CGSGNodeButton = CGSGNode.extend(
 											r);
 				tmpContext.closePath();
 
-				var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
+				/*var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
 				gradient.addColorStop(0, prop.firstColor);
 				gradient.addColorStop(1, prop.lastColor);
-				tmpContext.fillStyle = gradient;
+				tmpContext.fillStyle = gradient;*/
+				if (!cgsgExist(prop.lastColor)) {
+					tmpContext.fillStyle = prop.firstColor;
+				}
+				else {
+					var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
+					gradient.addColorStop(0, prop.firstColor);
+					gradient.addColorStop(1, prop.lastColor);
+					tmpContext.fillStyle = gradient;
+				}
 
 				if (cgsgExist(prop.shadowColor)) {
 					tmpContext.shadowColor = prop.shadowColor;
@@ -826,12 +838,12 @@ var CGSGNodeButton = CGSGNode.extend(
 				var ctX = tW / 2;
 
 				prop.icon.translateTo(
-					textX + ctX + this._pictoPosition.decalX * (ctX + dPT + (1 - this._pictoPosition.dt) * wImg) -
-					this._pictoPosition.dy * wImg / 2,
-					(1 - this._pictoPosition.dy) * (textY + (tH - hImg) / 2)
-						+ this._pictoPosition.dy * (textY - txtNode._size / 2
-														- this._pictoPosition.dt * (dPT + hImg) +
-													(1 - this._pictoPosition.dt) * (tH + dPT))
+						textX + ctX + this._pictoPosition.decalX * (ctX + dPT + (1 - this._pictoPosition.dt) * wImg) -
+						this._pictoPosition.dy * wImg / 2,
+						(1 - this._pictoPosition.dy) * (textY + (tH - hImg) / 2)
+							+ this._pictoPosition.dy * (textY - txtNode._size / 2
+															- this._pictoPosition.dt * (dPT + hImg) +
+														(1 - this._pictoPosition.dt) * (tH + dPT))
 				);
 
 				prop.icon.doRender(tmpContext);
@@ -886,7 +898,7 @@ var CGSGNodeButton = CGSGNode.extend(
 			//call the super method
 			node = this._super(node);
 
-			node.bkgcolor = this.bkgcolor;
+			node.bkgcolors = this.bkgcolors;
 			node.lineColor = this.lineColor;
 			node.lineWidth = this.lineWidth;
 			return node;

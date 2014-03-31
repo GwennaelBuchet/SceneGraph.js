@@ -287,11 +287,15 @@ var CGSGNodeImage = CGSGNode.extend(
 			if (this.isLoaded && this._img.src != "" && !this.slice.isEmpty()) {
 				context.drawImage(
 					this._img, // image
-					this.slice.position.x, this.slice.position.y, // start position on the image
-					this.slice.dimension.width, this.slice.dimension.height, // dimension on the image
-					0, 0,
+					this.slice.position.x,
+					this.slice.position.y, // start position on the image
+					this.slice.dimension.width,
+					this.slice.dimension.height, // dimension on the image
+					0,
+					0,
 					// position on the screen. let it to [0,0] because the 'beforeRender' function will translate the image
-					this.getWidth(), this.getHeight()                // dimension on the screen
+					this.getWidth(),
+					this.getHeight()                // dimension on the screen
 				);
 			}
 		},

@@ -73,7 +73,7 @@ var CGMain = CGSGView.extend(
 
 			//condition to use while traverse the graph
 			var condition = function(node) {
-				return node.bkgcolor == "yellow";
+				return node.bkgcolors[0] == "yellow";
 			};
 
 			var traverser = new CGSGTraverser();
@@ -104,7 +104,7 @@ var CGMain = CGSGView.extend(
 			var color = colors[Math.floor(Math.random() * colors.length)];
 
 			var squareNode = new CGSGNodeSquare(x, y, w, h);
-			squareNode.bkgcolor = color;
+			squareNode.bkgcolors[0] = color;
 			squareNode.isResizable = true;
 			squareNode.isDraggable = true;
 

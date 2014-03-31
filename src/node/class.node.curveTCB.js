@@ -77,11 +77,17 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
 
 			var s = new CGSGNodeSquare(x - 2, y - 2, 4, 4);
 			s.isDraggable = true;
-			s.onDrag = this.compute.bind(this);
-			s.color = "#4488AF";
+			s.userData = k;
+			s.onDrag = this._moveKey.bind(this);
 			this.addChild(s);
 
 			return k;
+		},
+
+		_moveKey:function(event) {
+			event.data.node.userData.value.x = event.data.positions[0].x;
+			event.data.node.userData.value.y = event.data.positions[0].y;
+			this.compute();
 		},
 
 		compute : function() {
@@ -98,10 +104,8 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
 		 * */
 		render : function(context) {
 			if (this._nbValues > 0) {
-				context.fillStyle = this.bkgcolor;
 
 				context.beginPath();
-				context.globalAlpha = this.globalAlpha;
 
 				context.moveTo(this._values[0].x, this._values[0].y);
 
@@ -110,8 +114,6 @@ var CGSGNodeCurveTCB = CGSGNode.extend(
 				}
 
 				if (this.lineWidth > 0) {
-					context.lineWidth = this.lineWidth;
-					context.strokeStyle = this.lineColor;
 					context.stroke();
 				}
 			}

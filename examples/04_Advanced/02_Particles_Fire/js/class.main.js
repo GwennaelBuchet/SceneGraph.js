@@ -88,7 +88,7 @@ var CGMain = CGSGView.extend(
 			var emitter = this.particlesSystem.addEmitter(
 				this.createParticle.bind(this)
 				, new CGSGRegion(100, 200, 25, 8) 	//emission area
-				, 200                               //nbParticlesMax
+				, 300                               //nbParticlesMax
 				, new CGSGVector2D(0.0, 1.0)        //initial velocity of a particle
 				, Math.PI / 8.0                     //angle area to rotate the direction vector
 				, 2.5  								//speed of animation (1.0 = normal and slow speed)
@@ -104,8 +104,8 @@ var CGMain = CGSGView.extend(
 				var colors = ["#FFF9AA", "#FFDB61", "#FBC22D", "#E98523", "#E65D0C", "#E3681B", "#D43B11", "#D23910",
 							  "#C51E0C"];
                 data.node.globalAlpha = 1.0;
-                data.node.bkgcolor = colors[Math.floor(Math.random() * colors.length)];
-                data.node.lineColor = data.node.bkgcolor;
+                data.node.bkgcolors[0] = colors[Math.floor(Math.random() * colors.length)];
+                data.node.lineColor = data.node.bkgcolors[0];
                 data.userData = {ttl : 50 + Math.random() * 40};
                 data.checkCTL = function(particle) {
 					return particle.age <= particle.userData.ttl;
@@ -115,7 +115,7 @@ var CGMain = CGSGView.extend(
 				//event.particle.node.scaleBy(0.8 + Math.random()/1.6, 0.8 + Math.random()/1.6);
                 data.node.resizeTo(3 + Math.random()*3, 3 + Math.random()*3);
 
-                data.initColor = CGSGColor.hex2rgb(data.node.bkgcolor);
+                data.initColor = CGSGColor.hex2rgb(data.node.bkgcolors[0]);
 			};
 
 			//remove the gravity of this emitter.
@@ -127,12 +127,12 @@ var CGMain = CGSGView.extend(
                 data = event.data.particle;
 				var a = 1.0 - (data.age / data.userData.ttl);
                 data.node.globalAlpha = Math.max(a, 0);
-				var rgb = CGSGColor.hex2rgb(data.node.bkgcolor);
+				var rgb = CGSGColor.hex2rgb(data.node.bkgcolors[0]);
 				rgb.r = data.initColor.r * a;
 				rgb.g = data.initColor.g * a;
 				rgb.b = data.initColor.b * a;
-                data.node.bkgcolor = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
-                data.node.lineColor = data.node.bkgcolor;
+                data.node.bkgcolors[0] = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+                data.node.lineColor = data.node.bkgcolors[0];
 				//particle.node.rotateWith(emitter.speed * Math.random() / 10.0);
 			};
 

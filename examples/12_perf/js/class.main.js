@@ -44,7 +44,7 @@ var CGMain = CGSGView.extend(
 
         createScene: function () {
             this.rootNode = new CGSGNodeSquare(0, 0, CGSG.canvas.width, CGSG.canvas.height);
-            this.rootNode.color = "#000000";
+            this.rootNode.bkgcolors = ["#222"];
             this.rootNode.isTraversable = false;
             CGSG.sceneGraph.addNode(this.rootNode, null);
 
@@ -53,19 +53,22 @@ var CGMain = CGSGView.extend(
             maxy = CGSG.canvas.height - delta;
 
             // Blob
-            this.blobSrc = new Image();
+           /* this.blobSrc = new Image();
 
             // Load
-            this.blobSrc.src = 'http://www.as-flash.com/ne_brisi/canvas/blob.png';
+            this.blobSrc.src = 'images/blob.png';
             this.blobSrc.name = 'blob';
-            this.blobSrc.onload = this.onLoaded.bind(this);
+            this.blobSrc.onload = this.onLoaded.bind(this);*/
+			this.onLoaded();
 
         },
 
         onLoaded: function () {
             for (var i = 0; i < total; i++) {
-                blobs[i] = new CGSGNodeImageEx(0, 0);
-                blobs[i].setImage(this.blobSrc);
+                //blobs[i] = new CGSGNodeImageEx(0, 0);
+                blobs[i] = new CGSGNodeImage(0, 0);
+                //blobs[i].setImage(this.blobSrc);
+                blobs[i].setURL('images/blob.png');
                 //blobs[i] = new CGSGNodeSquare(0, 0, 10, 10);
                 //blobs[i].setPrecomputed(true);
                 blobs[i].isTraversable = false;
@@ -85,22 +88,22 @@ var CGMain = CGSGView.extend(
 
             var title = new CGSGNodeText(10, 20, "HTML5 Canvas, cgSceneGraph, " + total + " particles");
             title.setSize(12, true);
-            title.color = "#ffffff";
+			title.bkgcolors = ["#ffffff"];
             title.isTraversable = false;
             this.rootNode.addChild(title);
-            title.setPrecomputed(true);
+            //title.setPrecomputed(true);
 
             msg = new CGSGNodeText(10, 40, "FPS: ");
             msg.setSize(12, true);
-            msg.color = "#ffffff";
+            msg.bkgcolors = ["#ffffff"];
             msg.isTraversable = false;
             this.rootNode.addChild(msg);
-            msg.setPrecomputed(true);
+            //msg.setPrecomputed(true);
 
             // TICKER
             CGSG.maxFramerate = myfps;
 
-            this.onRenderEnd = this.tick.bind(this);
+            this.onRenderStart = this.tick.bind(this);
 
             // Bind FPS
             CGSG.eventManager.bindHandler(this, cgsgEventTypes.ON_SCENE_AVERAGE_FPS_CHANGED, this.updateFrameRate);

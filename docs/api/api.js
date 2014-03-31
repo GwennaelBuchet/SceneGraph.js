@@ -2,10 +2,12 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "CGSG",
+        "CGSGAccordion",
         "CGSGAnimationManager",
         "CGSGAnimationMethod",
         "CGSGBindEntry",
         "CGSGButtonMode",
+        "CGSGCSSManager",
         "CGSGCollisionGhostOnDemandTester",
         "CGSGCollisionManager",
         "CGSGCollisionMethod",
@@ -16,6 +18,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGEvent",
         "CGSGEventManager",
         "CGSGHandleBox",
+        "CGSGImgManager",
         "CGSGInterpolator",
         "CGSGInterpolatorLinear",
         "CGSGInterpolatorTCB",
@@ -30,8 +33,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGNodeCircle",
         "CGSGNodeColorPicker",
         "CGSGNodeCurveTCB",
+        "CGSGNodeDomElement",
         "CGSGNodeEllipse",
         "CGSGNodeImage",
+        "CGSGNodeLine",
         "CGSGNodeSlider",
         "CGSGNodeSliderHandle",
         "CGSGNodeSprite",
@@ -48,6 +53,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGRotation",
         "CGSGScale",
         "CGSGSceneGraph",
+        "CGSGSection",
         "CGSGTimeline",
         "CGSGTraverser",
         "CGSGVector2D",
@@ -57,7 +63,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "GLOBAL_CONSTANTS",
         "GLOBAL_METHODS",
         "GLOBAL_PROPERTIES",
-        "UTIL_ARRAY"
+        "UTIL_ARRAY",
+        "WUICCGSGNodeImageFactory"
     ],
     "modules": [
         "Animation",

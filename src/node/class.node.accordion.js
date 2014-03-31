@@ -86,7 +86,7 @@ var CGSGAccordion = CGSGNode.extend(
 		 * @param {CGSGNode} section
 		 */
 		selectSection : function(section) {
-			var open = section.isOpen == true ? false : true;
+			var open = section.isOpen != true;
 			this.deselectAll();
 
 			if (open) {
@@ -167,14 +167,14 @@ var CGSGSection = CGSGNode.extend(
 		 */
 		setTitle : function(title) {
 
-			var title = new CGSGNodeText(0, 0, title);
-			title.setSize(12);
-			title.color = "white";
-			title.isClickable = false;
+			var titleNode = new CGSGNodeText(0, 0, title);
+			titleNode.setSize(12);
+			titleNode.color = "white";
+			titleNode.isClickable = false;
 
-			this.title = title;
-			this.title.translateTo(this.getHeight(), ( this.getHeight() - this.title.getHeight() ) / 2)
-			this.addChildAt(title, 0);
+			this.titleNode = title;
+			this.titleNode.translateTo(this.getHeight(), ( this.getHeight() - this.titleNode.getHeight() ) / 2)
+			this.addChildAt(titleNode, 0);
 		},
 
 

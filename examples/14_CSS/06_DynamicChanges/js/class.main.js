@@ -85,7 +85,7 @@ var CGMain = CGSGView.extend(
 			cls["background-color"] = "#22FF77";
 
 			//then invalidate scene to reset them for every node
-			this.invalidateTheme();
+			CGSG.sceneGraph.invalidateTheme();
 		}
 	}
 );

@@ -59,16 +59,16 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 			this.addChild(this._tabsContainer);
 
 			var sep1 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius + 1, w, this._buttonRadius);
-			sep1.bkgcolor = "white";
+			sep1.bkgcolors[0] = "white";
 			sep1.lineWidth = 0;
 			this.addChild(sep1);
 			var sep2 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
-			sep2.bkgcolor = "#A0A0A0";
+			sep2.bkgcolors[0] = "#A0A0A0";
 			sep2.lineWidth = 0;
 			this.addChild(sep2);
 
 			this.hideUnderline = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
-			this.hideUnderline.bkgcolor = "white";
+			this.hideUnderline.bkgcolors[0] = "white";
 			this.hideUnderline.lineWidth = 0;
 			this.addChild(this.hideUnderline);
 

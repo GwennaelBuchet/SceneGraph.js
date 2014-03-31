@@ -72,7 +72,7 @@ var CGMain = CGSGView.extend(
             this.blueSquare.isDraggable = true;
             this.blueSquare.isResizable = true;
             this.blueSquare.globalAlpha = 0.8;
-            this.blueSquare.bkgcolor = "#2332AF";
+            this.blueSquare.bkgcolors[0] = "#2332AF";
             rootSquare.addChild(this.blueSquare);
 
             this.replaceBlueSquare();

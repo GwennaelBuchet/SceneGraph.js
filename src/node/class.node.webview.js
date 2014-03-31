@@ -241,9 +241,9 @@ var CGSGNodeWebview = CGSGNodeDomElement.extend(
 		 * */
 		render : function(context) {
 			if (this._mode === CGSGWEBVIEWMODE.LIVE) {
-				context.fillStyle = this.bkgcolor;
-				context.strokeStyle = this.lineColor;
-				context.lineWidth = this.lineWidth;
+				//context.fillStyle = this.bkgcolors[0];
+				//context.strokeStyle = this.lineColor;
+				//context.lineWidth = this.lineWidth;
 
 				//we draw the rect at (0,0) because we have already translated the context to the correct position
 				context.fillRect(0, 0, this.dimension.width, this.dimension.height);
@@ -265,7 +265,7 @@ var CGSGNodeWebview = CGSGNodeDomElement.extend(
 				this._previewContainer.resizeTo(this.getWidth(), this.getHeight());
 
 				//draw this zone
-				context.fillStyle = this.bkgcolor;
+				//context.fillStyle = this.bkgcolors[0];
 
 				//we draw the rect at (0,0) because we have already translated the context to the correct position
 				context.fillRect(0, 0, this.getWidth(), this.getHeight());

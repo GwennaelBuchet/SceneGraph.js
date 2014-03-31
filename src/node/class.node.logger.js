@@ -160,9 +160,9 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * */
 		render : function(context) {
 			//draw this zone
-			context.fillStyle = this.bkgcolor;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
+			//context.fillStyle = this.bkgcolor;
+			//context.strokeStyle = this.lineColor;
+			//context.lineWidth = this.lineWidth;
 
 			var rectWidth = 200;
 			var rectHeight = 100;

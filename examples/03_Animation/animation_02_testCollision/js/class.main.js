@@ -69,21 +69,21 @@ var CGMain = CGSGView.extend(
 
 			//the blue square
 			this.blueSquareNode = new CGSGNodeSquare(220, 80, 260, 160);
-			this.blueSquareNode.bkgcolor = "blue";
+			this.blueSquareNode.bkgcolors[0] = "blue";
 			this.blueSquareNode.isResizable = true;
 			this.blueSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.blueSquareNode);
 
 			//the red square
 			this.redSquareNode = new CGSGNodeSquare(0, 60, 100, 100);
-			this.redSquareNode.bkgcolor = "red";
+			this.redSquareNode.bkgcolors[0] = "red";
 			this.redSquareNode.isResizable = true;
 			this.redSquareNode.isDraggable = true;
 			this.rootNode.addChild(this.redSquareNode);
 
             //the green square
             this.greenSquareNode = new CGSGNodeSquare(100, 60, 100, 100);
-            this.greenSquareNode.bkgcolor = "green";
+            this.greenSquareNode.bkgcolors[0] = "green";
             this.greenSquareNode.isResizable = true;
             this.greenSquareNode.isDraggable = true;
             this.redSquareNode.addChild(this.greenSquareNode);

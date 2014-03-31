@@ -29,17 +29,54 @@ cgSceneGraph Framework.
 TODO LIST:
 =====================================================================
 
-- Evolution. Filter class
+- Evolution. Gradient as colors on basic nodes (square, circle, ellipse, ...)
+- Evolution. Image as color on basic nodes (square, circle, ellipse, ...)
+- Evolution. Multi layers
+- Evolution. Grid system for drawing (http://mainroach.blogspot.in/2013/02/fast-html5-canvas-cached-canvas-tiles.html)
+- Evolution. New caching system :
+    * new Cache manager: (1 big tmp canvas for several objects and only few big canvases in memory)
+    * context.clip() to redraw only specific region
+    * use of PNG instead of in memory canvas
+    * use of double buffering
+- Evolution. Matrix integration
+- Correction. Handle manipulation under another node
+- Evolution. Filter class base on imageData of dblBuffer
+
+function increaseTransparency(imagedata, steps) {
+    var alpha,
+     currentAlpha,
+     step,
+     length = imagedata.data.length;
+    for (var i=3; i < length; i+=4) { // For every alpha component
+         alpha = imagedataOffscreen.data[i];
+        if (alpha > 0) {
+          currentAlpha = imagedata.data[i];
+          step = Math.ceil(alpha/steps);
+            if (currentAlpha + step <= alpha) { // Not at original alpha yet
+                 imagedata.data[i] += step; // Increase transparency
+            }
+            else {
+                imagedata.data[i] = alpha; // End: original transparency
+            }
+        }
+    }
+}
+
+
+- Evolution. New TCB curve node
+- Evolution. Split into core and official nodes
+- Evolution. New website for v2 :)
+- Example. Box2DWeb integration
+- Evolution. Image masking (loop on imageData of the Masking image to check if there is a pixel on dblBuffer)
+
+- Evolution. Image as a mask
+- Evolution. New animation engine
 - Evolution. Particle system : add attractor and repulsor (already exists, but no coded :))
 - Evolution. Particle system : add a getter to the rotation of a particle
-- Evolution. CGSGNodeLink
-- Example. Map
-- Example. Pingoo
 - Example. FallDown
+
 - Evolution. CGSGNodeText : Add In-live text edition
 - Evolution. CGSGNodeText : width can be edited (so, maxwidth = dimension.width). By default, width = metrics.width
-- Evolution. Use of CSS to define the visual properties (sizes, colors, ...)
-
 
 
 =====================================================================

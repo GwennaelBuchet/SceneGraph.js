@@ -27,8 +27,14 @@
  */
 
 /**
+ * A CGSGCSSManager represent a basic circle
  *
- * @type {*}
+ * @class CGSGCSSManager
+ * @module Util
+ * @extends CGSGObject
+ * @constructor
+ * @type {CGSGCSSManager}
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGCSSManager = CGSGObject.extend(
 	{
@@ -187,7 +193,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		},
 
 		/**
-		 * Read content of all CSS files loaded and
+		 * Read content of all CSS files loaded and update its map
 		 * @method invalidateCache
 		 *
 		 */

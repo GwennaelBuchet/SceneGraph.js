@@ -78,6 +78,7 @@ var CGSGNodeDomElement = CGSGNode.extend(
 
 		/**
 		 * Updates the styles of the wrapped DOM element to change its position and size inside the scene.
+		 * @method updateCssRegion
 		 */
 		updateCssRegion : function() {
 			if (cgsgExist(this._htmlElement)) {
@@ -93,14 +94,11 @@ var CGSGNodeDomElement = CGSGNode.extend(
 		 * @method render
 		 * Custom rendering
 		 * */
-		render : function(context) {
-			context.fillStyle = this.bkgcolor;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
-
+		render : function(c) {
 			//we draw the rect at (0,0) because we have already translated the context to the correct position
-			context.fillRect(0, 0, this.getWidth(), this.getHeight());
-			context.strokeRect(0, 0, this.getWidth(), this.getHeight());
+			c.fillRect(0, 0, this.getWidth(), this.getHeight());
+			if (this.lineWidth > 0)
+				c.strokeRect(0, 0, this.getWidth(), this.getHeight());
 
 			this.updateCssRegion();
 		},

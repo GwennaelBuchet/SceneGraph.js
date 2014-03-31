@@ -254,10 +254,10 @@ var CGSGNode = CGSGObject.extend(
 				 */
 				this._parentNode = null;
 
-				this._isPrecomputed = false;
+				this._isCached = false;
 				//fake canvas to pre-render static display
-				this._tmpCanvas = null;
-				this._tmpCtx = null;
+				this._cacheCanvas = null;
+				this._cacheCtx = null;
 
 				/**
 				 * @property shadowOffsetX
@@ -595,16 +595,20 @@ var CGSGNode = CGSGObject.extend(
 				this.detectSelectionThreshold = CGSG.globalDetectSelectionThreshold;
 
 				/**
-				 * Color to fill the background of the node. Will be overrided with CSS content.
+				 * Array of colors to fill the background of the node. Will be overrided with CSS content.
 				 * CGSGNode extensions should (but not mandatory) use this attribute
-				 * @property bkgcolor
-				 * @type {String}
+				 *
+				 * CSS managed.
+				 * @property bkgcolors
+				 * @type {Array}
 				 */
-				this.bkgcolor = null;
+				this.bkgcolors = [];
 
 				/**
 				 * Color to stroke the node. Will be overrided with CSS content
 				 * CGSGNode extensions should (but not mandatory) use this attribute as the stroke color for their node
+				 *
+				 * CSS managed.
 				 * @property lineColor
 				 * @type {String}
 				 */
@@ -613,11 +617,24 @@ var CGSGNode = CGSGObject.extend(
 				 * Width of the line that stroke the node. Will be overrided with CSS content.
 				 * CGSGNode extensions should (but not mandatory) use this attribute as the strokeWidth for their node
 				 * Let 0 if you don't want to stroke the node.
+				 *
+				 * CSS managed.
 				 * @property lineWidth
 				 * @default 0
 				 * @type {Number}
 				 */
 				this.lineWidth = 0;
+
+				/**
+				 * Corner radius. Used by only few official nodes and maybe by some community's nodes.
+				 *
+				 * CSS managed.
+				 *
+				 * @property borderRadius
+				 * @type {number}
+				 * @default 0
+				 */
+				this.borderRadius = 0;
 
 				this._cls = [];
 				this._clsBBox = null;
@@ -729,7 +746,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @param p {Boolean} isPrecomputed
 			 */
 			setPrecomputed : function(p) {
-				this._isPrecomputed = p;
+				this._isCached = p;
 				this.invalidate();
 			},
 
@@ -738,7 +755,7 @@ var CGSGNode = CGSGObject.extend(
 			 * @method invalidate
 			 */
 			invalidate : function() {
-				if (this._isPrecomputed) {
+				if (this._isCached) {
 					this._preCompute();
 				}
 			},
@@ -752,18 +769,34 @@ var CGSGNode = CGSGObject.extend(
 			invalidateTheme : function() {
 
 				//Use of "this._cls" class names which define the current CSS classes used by this object.
-				var fs = CGSG.cssManager.getAttrInArray(this._cls, "background-color");
+				var fs = CGSG.cssManager.getAttrInArray(this._cls, "background");//"background-color");
 				var lw = CGSG.cssManager.getAttrInArray(this._cls, "border-width");
 				var ss = CGSG.cssManager.getAttrInArray(this._cls, "border-color");
 				var a = CGSG.cssManager.getFloat(CGSG.cssManager.getAttrInArray(this._cls, "opacity"));
+				var r = CGSG.cssManager.getNumber(CGSG.cssManager.getAttrInArray(this._cls, "border-radius"));
+
+				if (cgsgExist(r))
+					this.borderRadius = r;
 
 				var rgb;
-
 
 				if (cgsgExist(fs)) {
 					//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
 					rgb = CGSGColor.fromString(fs);
-					this.bkgcolor = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+					if (cgsgExist(rgb.r) && cgsgExist(rgb.g) && cgsgExist(rgb.b)) {
+						this.bkgcolors[0] = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
+					}
+					else {
+						//value is given as "linear-gradient(rgb(150, 150, 150), rgb(127, 127, 127))".
+						// Let's convert it to 2 hex.
+						var srgb1 = fs.substring(fs.indexOf("rgb"), fs.indexOf(")") + 1);
+						var srgb2 = fs.substring(fs.lastIndexOf("rgb"), fs.lastIndexOf(")"));
+						var rgb1 = CGSGColor.fromString(srgb1);
+						var rgb2 = CGSGColor.fromString(srgb2);
+						this.bkgcolors[0] = CGSGColor.rgb2hex(rgb1.r, rgb1.g, rgb1.b);
+						this.bkgcolors[1] = CGSGColor.rgb2hex(rgb2.r, rgb2.g, rgb2.b);
+					}
+
 				}
 				if (cgsgExist(lw))
 					this.lineWidth = CGSG.cssManager.getNumber(lw);
@@ -854,16 +887,16 @@ var CGSGNode = CGSGObject.extend(
 			 * @private
 			 */
 			_preCompute : function() {
-				if (!cgsgExist(this._tmpCanvas)) {
-					this._tmpCanvas = document.createElement('canvas');
-					this._tmpCtx = this._tmpCanvas.getContext('2d');
+				if (!cgsgExist(this._cacheCanvas)) {
+					this._cacheCanvas = document.createElement('canvas');
+					this._cacheCtx = this._cacheCanvas.getContext('2d');
 				}
-				this._tmpCanvas.width = CGSG.canvas.width;
-				this._tmpCanvas.height = CGSG.canvas.height;
-				cgsgClearContext(this._tmpCtx);
+				this._cacheCanvas.width = this.getWidth() + this.shadowOffsetX; //CGSG.canvas.width;
+				this._cacheCanvas.height = this.getHeight() + this.shadowOffsetY; //CGSG.canvas.height;
+				cgsgClearContext(this._cacheCtx);
 
-				this._applyShadow(this._tmpCtx);
-				this.render(this._tmpCtx);
+				this._applyShadow(this._cacheCtx);
+				this.render(this._cacheCtx);
 			},
 
 			/**
@@ -893,11 +926,26 @@ var CGSGNode = CGSGObject.extend(
 				if (this.globalAlpha > 0) {
 					ctx.globalAlpha = this.globalAlpha;
 
-					if (this._isPrecomputed) {
+					if (this._isCached) {
 						//render the pre-rendered canvas
-						ctx.drawImage(this._tmpCanvas, 0, 0);
+						ctx.drawImage(this._cacheCanvas, 0, 0);
 					}
 					else {
+						if (!cgsgExist(this.bkgcolors[1])) {
+							ctx.fillStyle = this.bkgcolors[0];
+						}
+						else {
+							var gradient = ctx.createLinearGradient(0, 0, 0, this.dimension.height);
+							for (var i = 0, len = this.bkgcolors.length ; i < len ; i++)
+								gradient.addColorStop(i, this.bkgcolors[i]);
+							ctx.fillStyle = gradient;
+						}
+
+						if (this.lineWidth > 0) {
+							ctx.strokeStyle = this.lineColor;
+							ctx.lineWidth = this.lineWidth;
+						}
+
 						this._applyShadow(ctx);
 						this.render(ctx);
 					}
@@ -930,24 +978,31 @@ var CGSGNode = CGSGObject.extend(
 			/**
 			 * internal method of the framework that encapsulate all the work around the ghost rendering method
 			 * @method doRenderGhost
-			 * @param ghostCtx {CanvasRenderingContext2D} ghost Context
+			 * @param c {CanvasRenderingContext2D} ghost Context
 			 */
-			doRenderGhost : function(ghostCtx) {
+			doRenderGhost : function(c) {
 				//save current state
-				this.beforeRenderGhost(ghostCtx);
+				this.beforeRenderGhost(c);
 
 				if (this.globalAlpha > 0) {
-					if (this._isPrecomputed) {
+					if (this._isCached) {
 						//render the pre-rendered canvas
-						ghostCtx.drawImage(this._tmpCanvas, 0, 0);
+						c.drawImage(this._cacheCanvas, 0, 0);
 					}
 					else {
-						this.renderGhost(ghostCtx);
+						c.fillStyle = this.bkgcolors[0];
+
+						if (this.lineWidth > 0) {
+							c.strokeStyle = this.lineColor;
+							c.lineWidth = this.lineWidth;
+						}
+
+						this.renderGhost(c);
 					}
 				}
 
 				//restore state
-				this.afterRenderGhost(ghostCtx);
+				this.afterRenderGhost(c);
 			},
 
 			/**
@@ -1202,6 +1257,9 @@ var CGSGNode = CGSGObject.extend(
 					}
 				}
 				else /*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*/ {
+
+					//todo: is this node is in cache, so check if there is a painted pixel at x,y from getImageData()
+
 					// draw shape onto ghost context
 					this.doRenderGhost(c);
 
@@ -1230,33 +1288,38 @@ var CGSGNode = CGSGObject.extend(
 			 */
 			detectSelectionInRegion : function(rg, c) {
 
-				if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
+				//if (this.pickNodeMethod == CGSGPickNodeMethod.REGION) {
 
-					var us = this.getAbsoluteRegion();
-					//select this node only if it is totally inside the region
-					if (cgsgRegionIsInRegion(us, rg, 0)) {
-						return this;
-					}
-
+				var us = this.getAbsoluteRegion();
+				//select this node only if it is totally inside the region
+				if (cgsgRegionIsInRegion(us, rg, 0)) {
+					return this;
 				}
-				else /*if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST)*/ {
-					// draw shape onto ghost context
-					this.renderGhost(c);
 
-					// get image data at the mouse x,y pixel
-					if (!rg.isEmpty()) {
-						var id = c.getImageData(rg.position.x, rg.position.y, rg.dimension.width, rg.dimension.height);
+				/*}
+				 else { //if (this.pickNodeMethod == CGSGPickNodeMethod.GHOST) {
+				 // draw shape onto ghost context
+				 this.doRenderGhost(c);
 
-						cgsgClearContext(c);
+				 // get image data at the mouse x,y pixel
+				 if (!rg.isEmpty()) {
+				 var id = c.getImageData(rg.position.x, rg.position.y, rg.dimension.width, rg.dimension.height);
 
-						// if the a pixel exists in the region then, select this node
-						for (var i = 0, len = id.data.length ; i < len ; i += 4) {
-							if (id.data[i] != 0 || id.data[i + 1] != 0 || id.data[i + 2] != 0) {
-								return this;
-							}
-						}
-					}
-				}
+				 cgsgClearContext(c);
+
+				 var len = id.data.length;
+				 var count = 0;
+				 // if the a pixel exists in the region then, select this node
+				 for (var i = 0 ; i < len ; i += 4) {
+				 if (id.data[i] != 0 || id.data[i + 1] != 0 || id.data[i + 2] != 0) {
+				 count += 4;
+				 //return this;
+				 }
+				 }
+				 if (count >= len)
+				 return this;
+				 }
+				 }*/
 
 				return null;
 			},
@@ -1335,7 +1398,8 @@ var CGSGNode = CGSGObject.extend(
 			pickNodes : function(region, absoluteScale, ghostContext, recursively, condition) {
 				var selectedNodes = [];
 
-				if (region.dimension.width == 0 && region.dimension.height == 0)
+				//if (region.dimension.width == 0 && region.dimension.height == 0)
+				if (region.isEmpty())
 					return selectedNodes;
 
 				var childAbsoluteScale = null;
@@ -1742,19 +1806,19 @@ var CGSGNode = CGSGObject.extend(
 				else if (a == "rotationCenter.y") {
 					this.rotationCenter.y = v;
 				}
-				else if (a == "bkgcolor.r") {
-					rgb = CGSGColor.hex2rgb(this.bkgcolor);
-					this.bkgcolor = CGSGColor.rgb2hex(v, rgb.g, rgb.b);
+				else if (a == "bkgcolors[0].r") {
+					rgb = CGSGColor.hex2rgb(this.bkgcolors[0]);
+					this.bkgcolors[0] = CGSGColor.rgb2hex(v, rgb.g, rgb.b);
 					this.invalidate();
 				}
-				else if (a == "bkgcolor.g") {
-					rgb = CGSGColor.hex2rgb(this.bkgcolor);
-					this.bkgcolor = CGSGColor.rgb2hex(rgb.r, v, rgb.b);
+				else if (a == "bkgcolors[0].g") {
+					rgb = CGSGColor.hex2rgb(this.bkgcolors[0]);
+					this.bkgcolors[0] = CGSGColor.rgb2hex(rgb.r, v, rgb.b);
 					this.invalidate();
 				}
-				else if (a == "color.b") {
-					rgb = CGSGColor.hex2rgb(this.bkgcolor);
-					this.bkgcolor = CGSGColor.rgb2hex(rgb.r, rgb.g, v);
+				else if (a == "bkgcolors[0].b") {
+					rgb = CGSGColor.hex2rgb(this.bkgcolors[0]);
+					this.bkgcolors[0] = CGSGColor.rgb2hex(rgb.r, rgb.g, v);
 					this.invalidate();
 				}
 				else if (a == "fillStyle.r") {
@@ -2157,7 +2221,7 @@ var CGSGNode = CGSGObject.extend(
 				node.classType = this.classType;
 				node.name = this.name;
 				node.globalAlpha = this.globalAlpha;
-				node.bkgcolor = this.bkgcolor;
+				node.bkgcolors = this.bkgcolors;
 				node.lineColor = this.lineColor;
 				node.lineWidth = this.lineWidth;
 				node.isVisible = this.isVisible;

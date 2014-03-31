@@ -32,7 +32,7 @@ Regular CGSGNode attributes
 .cgsgnode {
     background-color: #fededf;
     border: 3px solid #ffa7bf;
-    border-radius: 2px;
+    border-radius: 0;
     opacity: 1;
     color: #d72e82;
 }
@@ -48,6 +48,7 @@ Specific attributes for CGSGNodeText
     font-size: 20px;
     font-family: Arial, sans-serif;
     text-transform: uppercase;
+    border: 0;
 }
 
 .cgsg-h2 {
@@ -56,6 +57,7 @@ Specific attributes for CGSGNodeText
     font-size: 16px;
     font-family: Arial, sans-serif;
     text-transform: capitalize;
+    border: 0;
 }
 
 .cgsg-h3 {
@@ -65,6 +67,7 @@ Specific attributes for CGSGNodeText
     font-size: 12px;
     font-weight: bolder;
     font-family: Arial, sans-serif;
+    border: 0;
 }
 
 .cgsg-h4 {
@@ -75,6 +78,7 @@ Specific attributes for CGSGNodeText
     font-style: italic;
     font-family: Arial sans-serif;
     font-variant: diagonal-fractions;
+    border: 0;
 }
 
 .cgsg-h5 {
@@ -84,6 +88,7 @@ Specific attributes for CGSGNodeText
     font-size: 10px;
     font-style: italic;
     font-family: "Times New Roman", Georgia, Serif;
+    border: 0;
 }
 
 .cgsg-h6 {
@@ -93,6 +98,7 @@ Specific attributes for CGSGNodeText
     font-size: 10px;
     font-style: italic;
     font-family: "Times New Roman", Georgia, Serif;
+    border: 0;
 }
 
 .cgsg-p {
@@ -100,6 +106,7 @@ Specific attributes for CGSGNodeText
     text-align: left;
     font-size: 12px;
     font-family: Arial, sans-serif;
+    border: 0;
 }
 
 .cgsg-left {

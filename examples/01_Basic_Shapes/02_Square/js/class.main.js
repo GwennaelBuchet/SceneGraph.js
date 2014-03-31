@@ -59,19 +59,40 @@ var CGMain = CGSGView.extend(
             CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//X, Y, WIDTH, HEIGHT
-			var square = new CGSGNodeSquare(20, 20, 150, 150);
+			var square = new CGSGNodeSquare(20, 80, 150, 150);
 			square.isDraggable = true;
 			square.isResizable = true;
             this.rootNode.addChild(square);
 
-            var s2 = new CGSGNodeSquare(20, 20, 50, 50);
-			s2.bkgcolor = "#af3421";
-            s2.detectSelectionThreshold = 0; // specific threshold for this node
-            s2.isDraggable = true;
-            s2.isResizable = true;
-            square.addChild(s2);
+            this.roundSquare = new CGSGNodeSquare(200, 80, 200, 100);
+			this.roundSquare.radius = 10;
+			this.roundSquare.bkgcolors = ["#af3421"];
+			//this.roundSquare.detectSelectionThreshold = 0; // specific detection threshold for this node
+			this.roundSquare.isDraggable = true;
+			this.roundSquare.isResizable = true;
+			this.rootNode.addChild(this.roundSquare);
 
-			s2.invalidate();
+
+
+			//add a slider to control radius for 2nd square
+			var txt = new CGSGNodeText(10, 10, "Radius of gray rectangle: " + square.radius);
+			txt.setClass("cgsg-h2");
+			this.rootNode.addChild(txt);
+
+			var sliderListener = (function(event) {
+				var s = event.observable.getParentSlider();
+				square.radius = s.value;
+				txt.setText("Radius of gray rectangle: " + square.radius);
+			}).bind(this);
+
+			var slider = new CGSGNodeSlider(20, 40, 400, 10);
+			this.rootNode.addChild(slider);
+			slider.setValue(square.radius);
+			slider.setMin(0);
+			slider.setMax(150);
+			CGSG.eventManager.bindHandler(slider.getHandle(), cgsgEventTypes.ON_DRAG, sliderListener);
+
+
 		}
 	}
 );

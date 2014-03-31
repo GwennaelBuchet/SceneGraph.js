@@ -87,21 +87,26 @@ var CGMain = CGSGView.extend(
 			this.pingoo.addAnimation("left", 6, 4, 476, 69, 34, 34, 4);
 			this.pingoo.addAnimation("right", 6, 4, 476, 102, 34, 34, 4);
 			this.pingoo.play("front", null);
+			this.pingoo.stop();
 
 			this.rootNode.addChild(this.pingoo);
 
 			this.currentAnimation = 0;
 
 			//add a text node ("click me") with a onClick event
-			this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
+			this.buttonNode = new CGSGNodeButton(10, 20, "Turn Pingoo");
 			this.buttonNode.onClick = this.switchAnimation.bind(this);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.buttonNode);
+
+			var txt = new CGSGNodeText(10, 70, "Use Keyboard arrows to move Pingoo");
+			this.rootNode.addChild(txt);
 		},
 
 		switchAnimation : function() {
 			this.currentAnimation = (this.currentAnimation + 1) % this.listAnimations.length;
 			this.pingoo.play(this.listAnimations[this.currentAnimation], null);
+			this.pingoo.stop();
 		},
 
 		/**
@@ -149,12 +154,14 @@ var CGMain = CGSGView.extend(
 				if (!this._handlerExists) {
 					CGSG.eventManager.bindHandler(this.tlY, cgsgEventTypes.ON_ANIMATION_END, (function(event) {
 						this._isMoving = false;
-						console.log("tlY");
+						this.pingoo.reset();
+						this.pingoo.stop();
 					}).bind(this));
 
 					CGSG.eventManager.bindHandler(this.tlX, cgsgEventTypes.ON_ANIMATION_END, (function(event) {
 						this._isMoving = false;
-						console.log("tlX");
+						this.pingoo.reset();
+						this.pingoo.stop();
 					}).bind(this));
 
 					this._handlerExists = true;

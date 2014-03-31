@@ -82,7 +82,7 @@ var CGMain = CGSGView.extend(
 			square.isResizable = true;
 			//override CSS attributes
 			square.globalAlpha = 0.5;
-			square.bkgcolor = attributes.color;
+			square.bkgcolors = [attributes.color];
 			square.lineWidth = 2;
 
 			square.name = attributes.name;

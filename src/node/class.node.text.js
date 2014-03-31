@@ -95,13 +95,6 @@ var CGSGNodeText = CGSGNode.extend(
 			 */
 			this._textBaseline = "top";
 			/**
-			 * @property _strokeWidth
-			 * @type {Number}
-			 * @private
-			 */
-			this._strokeWidth;
-
-			/**
 			 * @property _strokeColor
 			 * @type {String}
 			 * @private
@@ -216,7 +209,6 @@ var CGSGNodeText = CGSGNode.extend(
 		/**
 		 * Reload theme (colors, ...) from loaded CSS file
 		 * @method invalidateTheme
-		 * @override
 		 */
 		invalidateTheme : function() {
 			this._super();
@@ -260,9 +252,9 @@ var CGSGNodeText = CGSGNode.extend(
 			if (cgsgExist(transform))
 				this._transform = transform;
 			if (cgsgExist(strokeWidth))
-				this._strokeWidth = strokeWidth;
+				this.lineWidth = strokeWidth;
 			if (cgsgExist(strokeColor))
-				this._strokeColor = strokeColor;
+				this.lineColor = strokeColor;
 
 			this._invalidateFont();
 		},
@@ -465,9 +457,9 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
 		render : function(context) {
-			context.fillStyle = this.color || this.bkgcolor;
-			context.strokeStyle = this._strokeColor;
-			context.lineWidth = this._strokeWidth || this.lineWidth;
+			context.fillStyle = this.color || this.bkgcolors[0];
+			//context.strokeStyle = this.lineColor;
+			//context.lineWidth = this.lineWidth;
 
 			this._doRender(context, false);
 		},
@@ -571,11 +563,11 @@ var CGSGNodeText = CGSGNode.extend(
 			//this._drawSquare(x, y, width, context);
 			//context.fillStyle = this.color;
 
-			if (cgsgExist(this._strokeWidth) && this._strokeWidth > 0) {
+			if (cgsgExist(this.lineWidth) && this.lineWidth > 0) {
 				context.strokeText(text, x, y);
 			}
 
-			if (cgsgExist(this.bkgcolor) && this.globalAlpha > 0)
+			if (cgsgExist(this.bkgcolors[0]) && this.globalAlpha > 0)
 				context.fillText(text, x, y);
 
 			var mt = context.measureText(text);
@@ -775,7 +767,7 @@ var CGSGNodeText = CGSGNode.extend(
 			node.setSize(this._size, false);
 			node.setTextAlign(this._align, false);
 			node.setTextBaseline(this._textBaseline, false);
-			node.setStroke(this._strokeWidth, false);
+			node.setStroke(this.lineWidth, false);
 			node.setTypo(this._typo, false);
 			node.setMaxWidth(this._maxWidth, false);
 			node.setLineHeight(this._lineHeight, false);

@@ -42,6 +42,17 @@ var CGSGNodeCircle = CGSGNode.extend(
 	{
 		initialize : function(centerX, centerY, radius) {
 
+			/**
+			 * @property classType
+			 * @readonly
+			 * @type {String}
+			 */
+			this.classType = "CGSGNodeCircle";
+
+			/**
+			 * @property radius
+			 * @type {Number}
+			 */
 			this.radius = radius;
 			this._center = new CGSGPosition(centerX, centerY);
 
@@ -53,15 +64,20 @@ var CGSGNodeCircle = CGSGNode.extend(
 			this.translateTo(centerX - radius, centerY - radius);
 		},
 
-		render : function(context) {
-			context.beginPath();
-			context.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
-			context.fillStyle = this.bkgcolor;
-			context.fill();
+		render : function(c) {
+			c.beginPath();
+			c.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
+			//Next line is already managed by CGSGNode.
+			//I let it here just to provide an example
+			//context.fillStyle = this.bkgcolors[0];
+			c.fill();
+
 			if (this.lineWidth > 0) {
-				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.lineColor;
-				context.stroke();
+				//Next lines are already managed by CGSGNode.
+				//I let it here just to provide an example
+				//context.lineWidth = this.lineWidth;
+				//context.strokeStyle = this.lineColor;
+				c.stroke();
 			}
 		},
 

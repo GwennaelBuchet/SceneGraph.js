@@ -163,7 +163,7 @@ var CGMain = CGSGView.extend(
 			var square = new CGSGNodeSquare(x, y, 100, 100);
 			square.isDraggable = true;
             square.isResizable = true;
-            square.bkgcolor = color;
+            square.bkgcolors = [color];
             square.name = color;
 
             square.isCollisionManaged = true;
@@ -171,7 +171,7 @@ var CGMain = CGSGView.extend(
             //add a text to the square node
 			var textNode = new CGSGNodeText(5, 5, color + "\n" + text);
 			textNode.setSize(10);
-			textNode.bkcolor = "red";
+			textNode.bkgcolors = ["red"];
             textNode.isClickable = false;
             square.addChild(textNode);
 
