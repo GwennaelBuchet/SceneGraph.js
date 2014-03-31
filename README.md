@@ -1,7 +1,7 @@
-cgSceneGraph
+SceneGraph.js
 ============
 
-The cgSceneGraph is a powerful and very easy-to-use Scene Graph framework written in JavaScript for the &lt;canvas&gt; tag in HTML5
+SceneGraph.js (formerly "cgSceneGraph") is a powerful and very easy-to-use Scene Graph framework written in JavaScript for the &lt;canvas&gt; tag in HTML5
 It's full oriented object to ease the development of your applications and games.
 
 Since the start of the project, it has been designed to be used on professional application as well as for game development.
@@ -15,14 +15,13 @@ Of course, a lot of powerful extensions are already provided with the framework:
 - animated sprite node
 - text node
 - button node
-- webview node
+- Dom integration node (webview, HTML tags, ...)
 - colorpicker node
-- tab menu node
 - particle system node
-- square, circle, ellipse, nodes
+- square, circle, ellipse, lines
 - ...
 
-Please, feel free to share your own extensions or to publish a link to your projects using the cgSceneGraph :)
+Please, feel free to share your own extensions or to publish a link to your projects using the SceneGraph.js :)
 
 Features
 ========
@@ -44,7 +43,7 @@ Features
 * Display ratio to render the same content on different screen sizes
 * Powerful particle system
 * Color manipulation
-* More than 20 events for nodes, scene and animations
+* More than 30 events for nodes, scene and animations
 * Easily extension of CGSGNode and framework
 * Use of RequestAnimationFrame to correctly synchronize the rendering pass with the browser
 * Lots of useful functions
@@ -69,9 +68,9 @@ For a lot of excellent reasons :) :
 
 LICENSE
 =======
-The cgSceneGraph is under a slightly modified MIT license, described as below :
+The SceneGraph.js is under a slightly modified MIT license, described as below :
 
-Copyright (c) 2013  Capgemini Technology Services (hereinafter “Capgemini”)
+Copyright (c) 2012-2014 Gwennaël Buchet
 
 License/Terms of Use
 
@@ -79,10 +78,10 @@ Permission is hereby granted, free of charge and for the term of intellectual pr
 
 •  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these Terms of Use causing significant harm to Capgemini.
+Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these Terms of Use causing significant harm to Gwennaël Buchet.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote the use or other dealings in this Software without prior written authorization from Capgemini.
+Except as contained in this notice, the name of Gwennaël Buchet shall not be used in advertising or otherwise to promote the use or other dealings in this Software without prior written authorization from Gwennaël Buchet.
 
 These Terms of Use are subject to French law.
