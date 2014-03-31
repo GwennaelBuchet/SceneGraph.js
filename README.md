@@ -55,7 +55,7 @@ Each project includes a link to the framework in the 'min' folder, in its index.
 So be sure to also download it, or to change the link url.
 
 
-Why to offer the cgSceneGraph as an open source project ?
+Why to offer the SceneGraph.js as an open source project ?
 =========================================================
 For a lot of excellent reasons :) :
 * we think innovation has to be shared to be really useful
