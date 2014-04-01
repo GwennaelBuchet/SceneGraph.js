@@ -1,0 +1,10 @@
+html {
+    background: #fff;
+    margin: 0 0 0 -1px;
+    padding: 0;
+    overflow-Y: scroll;
+}
+
+canvas {
+    border: #000000 solid 1px;
+}
