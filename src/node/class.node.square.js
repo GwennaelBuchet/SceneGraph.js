@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -31,39 +31,18 @@
  * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
  * @type {CGSGNodeSquare}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeSquare = CGSGNode.extend(
 	{
-		initialize: function (x, y, width, height) {
-			this._super(x, y, width, height);
+		initialize : function(x, y, width, height) {
+			this._super(x, y);
 
-			/**
-			 * Color  to fill the square
-			 * @property color
-			 * @default "#444444"
-			 * @type {String}
-			 */
-			this.color = "#444444";
-			/**
-			 * Color to stroke the square
-			 * @property lineColor
-			 * @default "#222222"
-			 * @type {String}
-			 */
-			this.lineColor = "#222222";
-			/**
-			 * Width of the line that stroke the square.
-			 * Let 0 if you don't want to stroke the square.
-			 * @property lineWidth
-			 * @default 0
-			 * @type {Number}
-			 */
-			this.lineWidth = 0;
+			this.resizeTo(width, height);
 
 			/**
 			 * @property classType
@@ -77,43 +56,66 @@ var CGSGNodeSquare = CGSGNode.extend(
 		 * Custom rendering
 		 * @method render
 		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
+		 * @param c {CanvasRenderingContext2D} the context into render the node
 		 * */
-		render: function (context) {
-			//save current state
-			this.beforeRender(context);
+		render : function(c) {
+			//Next lines are already managed by CGSGNode.
+			//I let it here just to provide an example
 
-			context.globalAlpha = this.globalAlpha;
 			//draw this zone
-			context.fillStyle = this.color;
+			//c.fillStyle = this.bkgcolors[0];
 
-			//we draw the rect at (0,0) because we have already translated the context to the correct position
-			context.fillRect(0, 0, this.dimension.width, this.dimension.height);
+			//if (this.lineWidth > 0) {
+			//	c.strokeStyle = this.lineColor;
+			//	c.lineWidth = this.lineWidth;
+			//}
 
-			if (this.lineWidth > 0) {
-				context.strokeStyle = this.lineColor;
-				context.lineWidth = this.lineWidth;
-				context.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+			//we draw the rect at (0,0) because we have already translated the c to the correct position
+			if (!cgsgExist(this.radius) || this.radius <= 0) {
+				c.fillRect(0, 0, this.dimension.width, this.dimension.height);
+				if (this.lineWidth > 0) {
+					c.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+				}
 			}
+			else {
+				c.save();
+				var r = this.radius;
+				var w = this.dimension.width;
+				var h = this.dimension.height;
+				var rw = r + w;
+				var rh = r + h;
 
-			//restore state
-			this.afterRender(context);
+				c.translate(-r, -r);
+
+				c.beginPath();
+				c.moveTo(2 * r, r);
+				c.lineTo(w, r);
+				c.quadraticCurveTo(rw, r, rw, r + r);
+				c.lineTo(rw, h);
+				c.quadraticCurveTo(rw, rh, w, rh);
+				c.lineTo(r + r, rh);
+				c.quadraticCurveTo(r, rh, r, h);
+				c.lineTo(r, r + r);
+				c.quadraticCurveTo(r, r, r + r, r);
+				c.closePath();
+
+				c.fill();
+				if (this.lineWidth > 0)
+					c.stroke();
+
+				c.restore();
+			}
 		},
 
 		/**
 		 * @method copy
 		 * @return {CGSGNodeSquare} a copy of this node
 		 */
-		copy: function () {
+		copy : function() {
 			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
 										  this.dimension.height);
 			//call the super method
-			node = this._super(node);
-
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
+			return this._super(node);
 		}
 	}
 );

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,25 +10,25 @@
  *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  *
  * Purpose :
  * Animated sprite example
  * */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function (canvas) {
 
@@ -55,8 +55,8 @@ var CGMain = CGSGScene.extend(
 
 			//create a first root node.
 			//that's not mandatory, we could use the first sphere as the root node
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			this.rootNode = new CGSGNode(0, 0);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//then create 2 sprites with the same image : a turning sphere
 			//in a second time we will actually load the image and set it to the animated sprites
@@ -68,21 +68,21 @@ var CGMain = CGSGScene.extend(
              * @param image url
              * @param context
              */
-            this.pingoo = new CGSGNodeSprite(60, 60, null, this.context);
+            this.pingoo = new CGSGNodeSprite(60, 60, null);
             this.pingoo.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
             this.pingoo.play("front", null);
             this.rootNode.addChild(this.pingoo);
 
-            this.numbers = new CGSGNodeSprite(60, 120, null, this.context);
+            this.numbers = new CGSGNodeSprite(60, 120, null);
             this.numbers.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.numbers.addAnimation("count", 20, 8, 476, 136, 34, 34, 4);
             this.numbers.play("count", null);
             this.rootNode.addChild(this.numbers);
 
-            this.water = new CGSGNodeSprite(60, 180, null, this.context);
+            this.water = new CGSGNodeSprite(60, 180, null);
             this.water.isDraggable = true;
             //name, speed, frames, sliceX, sliceY, width, height, framesPerLine
             this.water.addAnimation("wave", 2, 32, 476, 204, 34, 34, 4);

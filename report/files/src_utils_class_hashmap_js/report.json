@@ -1,7 +1,7 @@
 {
   "info": {
-    "file": "src\\utils\\class.hashmap.js",
-    "fileShort": "src\\utils\\class.hashmap.js",
+    "file": "src\\utils\\class.map.js",
+    "fileShort": "src\\utils\\class.map.js",
     "fileSafe": "src_utils_class_hashmap_js",
     "link": "files/src_utils_class_hashmap_js/index.html"
   },
@@ -382,7 +382,7 @@
       }
     ],
     "maintainability": 128.67799141548804,
-    "module": "src\\utils\\class.hashmap.js"
+    "module": "src\\utils\\class.map.js"
   },
   "jshint": {
     "messages": []

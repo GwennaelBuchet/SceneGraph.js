@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -33,39 +33,24 @@
  * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
  * @type {CGSGNodeEllipse}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeEllipse = CGSGNode.extend(
 	{
-		initialize: function (x, y, width, height) {
-			this._super(x, y, width, height);
+		initialize : function(x, y, width, height) {
+			this._super(x, y);
+			this.resizeTo(width, height);
 
-			/**
-			 * Color  to fill the ellipse
-			 * @property color
-			 * @default "#444444"
-			 * @type {String}
-			 */
-			this.color = "#444444";
-			/**
-			 * Color to stroke the ellipse
-			 * @property lineColor
-			 * @default "#222222"
-			 * @type {String}
-			 */
-			this.lineColor = "#222222";
-			/**
-			 * Width of the line that stroke the ellipse.
-			 * Let 0 if you don't want to stroke the ellipse.
-			 * @property lineWidth
-			 * @default 0
-			 * @type {Number}
-			 */
-			this.lineWidth = 0;
+			this._f = 1.16666666;
+			this._mf = 1 - this._f;
+			this._w = 0;
+			this._mw = 0;
+
+			this._computeWmW();
 
 			/**
 			 * @property classType
@@ -81,100 +66,84 @@ var CGSGNodeEllipse = CGSGNode.extend(
 		 * Custom rendering
 		 * @method render
 		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
+		 * @param c {CanvasRenderingContext2D} the context into render the node
 		 * */
-		render: function (context) {
-			//save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
-
+		render : function(c) {
 			var centerX = this.dimension.width / 2;
-			var centerY = this.dimension.height / 2;
 
-			context.beginPath();
+			c.beginPath();
 
-			context.moveTo(centerX, 0);
+			c.moveTo(centerX, 0);
 
-			context.bezierCurveTo(
-				this.dimension.width, 0,
-				this.dimension.width, this.dimension.height,
+			c.bezierCurveTo(
+				this._w, 0,
+				this._w, this.dimension.height,
 				centerX, this.dimension.height);
 
-			context.bezierCurveTo(
-				0, this.dimension.height,
-				0, 0,
+			c.bezierCurveTo(
+				this._mw, this.dimension.height,
+				this._mw, 0,
 				centerX, 0);
 
-			context.fillStyle = this.color;
-			context.fill();
+			c.fill();
 			if (this.lineWidth > 0) {
-				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.lineColor;
-				context.stroke();
+				c.stroke();
 			}
 
-			context.closePath();
+			c.closePath();
+		},
 
-			//restore state
-			this.afterRender(context);
+		_computeWmW : function() {
+			this._w = this.dimension.width * this._f;
+			this._mw = this.dimension.width * this._mf;
 		},
 
 		/**
-		 * @method renderGhost
-		 * @param {CanvasRenderingContext2D} ghostContext the context into render the node
-		 */
-		renderGhost: function (ghostContext) {
-			//save current state
-			this.beforeRenderGhost(ghostContext);
+		 * Replace current dimension by these new ones and compute new Points
+		 * @method resizeTo
+		 * @param {Number} w
+		 * @param {Number} h
+		 * */
+		resizeTo : function(w, h) {
+			this._super(w, h);
 
-			if (this.globalAlpha > 0) {
-				var centerX = this.dimension.width / 2;
-				var centerY = this.dimension.height / 2;
-
-				ghostContext.beginPath();
-
-				ghostContext.moveTo(centerX, 0);
-
-				ghostContext.bezierCurveTo(
-					this.dimension.width, 0,
-					this.dimension.width, this.dimension.height,
-					centerX, this.dimension.height);
-
-				ghostContext.bezierCurveTo(
-					0, this.dimension.height,
-					0, 0,
-					centerX, 0);
-
-				ghostContext.fillStyle = this.color;
-				ghostContext.fill();
-				if (this.lineWidth > 0) {
-					ghostContext.lineWidth = this.lineWidth;
-					ghostContext.strokeStyle = this.lineColor;
-					ghostContext.stroke();
-				}
-
-				ghostContext.closePath();
-			}
-
-			//restore state
-			this.afterRenderGhost(ghostContext);
+			this._computeWmW();
 		},
+
+		/**
+		 * Multiply current dimension by these new ones
+		 * @method resizeTBy
+		 * @param wf {Number} width Factor
+		 * @param hf {Number} height Factor
+		 * */
+		resizeBy : function(wf, hf) {
+			this._super(wf, hf);
+
+			this._computeWmW();
+		},
+
+		/**
+		 * Increase/decrease current dimension with adding values
+		 * @method resizeWith
+		 * @param w {Number} width
+		 * @param h {Number} height
+		 * */
+		resizeWith : function(w, h) {
+			this._super(w, h);
+
+			this._computeWmW();
+		},
+
 
 		/**
 		 * @method copy
 		 * @return {CGSGNodeEllipse} a copy of this node
 		 */
-		copy: function () {
+		copy : function() {
 			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
 										   this.dimension.height);
 			//call the super method
-			node = this._super(node);
-
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
-			return node;
+			return this._super(node);
 		}
 	}
 );

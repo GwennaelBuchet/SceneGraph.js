@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -37,9 +37,10 @@ var CGSGTABHEIGHT = 35;
  */
 var CGSGNodeTabMenu = CGSGNode.extend(
 	{
-		initialize: function (x, y, w) {
+		initialize : function(x, y, w) {
 			//call the constructor of CGSGNode
-			this._super(x, y, w, CGSGTABHEIGHT);
+			this._super(x, y);
+			this.resizeTo(w, CGSGTABHEIGHT);
 
 			/**
 			 * Define the class type.
@@ -51,26 +52,28 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 
 			this._buttonRadius = 4;
 
-			this._tabsContainer = new CGSGNode(0, 0, w, 0);
+			this._tabsContainer = new CGSGNode(0, 0);
+			this._tabsContainer.resizeTo(w, 0);
 			this._tabsContainer.color = "#A0A0A0";
 			this._tabsContainer.lineWidth = 0;
 			this.addChild(this._tabsContainer);
 
 			var sep1 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius + 1, w, this._buttonRadius);
-			sep1.color = "white";
+			sep1.bkgcolors[0] = "white";
 			sep1.lineWidth = 0;
 			this.addChild(sep1);
 			var sep2 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
-			sep2.color = "#A0A0A0";
+			sep2.bkgcolors[0] = "#A0A0A0";
 			sep2.lineWidth = 0;
 			this.addChild(sep2);
 
 			this.hideUnderline = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
-			this.hideUnderline.color = "white";
+			this.hideUnderline.bkgcolors[0] = "white";
 			this.hideUnderline.lineWidth = 0;
 			this.addChild(this.hideUnderline);
 
-			this._tabsBaseline = new CGSGNode(0, CGSGTABHEIGHT - this._buttonRadius + 1, w, 0);
+			this._tabsBaseline = new CGSGNode(0, CGSGTABHEIGHT - this._buttonRadius + 1);
+			this._tabsBaseline.resizeTo(w, 0);
 			this.addChild(this._tabsBaseline);
 
 			/**
@@ -97,26 +100,29 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 		 * @param {CGSGNode} view the root node for the view to show when is that is activated
 		 * @return {Object} The new created tab
 		 */
-		addTab: function (text, view) {
-			var pX = this.tabs.length;
-
+		addTab : function(text, view) {
 			var button = new CGSGNodeButton(0, 0, text);
-			button.setHorizontalPadding(10);
-			button.setVerticalPadding(8);
-			button.setTextSizes([10, 10, 10]);
-			button.setFirstColors(["#EAEAEA", "white", "white"]);
-			button.setLastColors(["#EAEAEA", "white", "white"]);
-			button.setTextColors(["#999999", "#000000", "#000000"]);
-			button._lineWidth = 1;
-			button._strokeColor = "#A0A0A0";
-			button.setRadiuses([this._buttonRadius, this._buttonRadius, this._buttonRadius]);
-			button._initShapes();
+			//button.setHorizontalPadding(10);
+			//button.setVerticalPadding(8);
+			//button.setTextSizes([10, 10, 10]);
+			//button.setFirstColors(["#EAEAEA", "white", "white"]);
+			//button.setLastColors(["#EAEAEA", "white", "white"]);
+			//button.setTextColors(["#999999", "#000000", "#000000"]);
 
-			var tab = {button: button, view: view};
+			button.setTextClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+			button.setClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+
+
+			//button.lineWidth = 1;
+			//button.strokeColor = "#A0A0A0";
+			//button.setRadiuses([this._buttonRadius, this._buttonRadius, this._buttonRadius]);
+			//button._initShapes();
+
+			var tab = {button : button, view : view};
 			this.tabs.push(tab);
 
 			var that = this;
-			button.onClick = function (event) {
+			button.onClick = function(event) {
 				that.selectTab(tab);
 			};
 
@@ -124,9 +130,8 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 
 			this._recomputeButtonsWidth();
 
-			if (!cgsgExist(this._selectedTab)) {
+			if (!cgsgExist(this._selectedTab))
 				this.selectTab(tab);
-			}
 
 			return tab;
 		},
@@ -137,7 +142,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 		 * @param {Object} tab
 		 * @return {Object} the selected tab
 		 */
-		selectTab: function (tab) {
+		selectTab : function(tab) {
 			if (cgsgExist(this._selectedTab)) {
 				if (cgsgExist(this._selectedTab.view)) {
 					this._selectedTab.view.isVisible = true;
@@ -148,7 +153,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 			this._tabsBaseline.addChild(tab.view);
 			this._selectedTab = tab;
 
-			for (var i = 0; i < this.tabs.length; i++) {
+			for (var i = 0 ; i < this.tabs.length ; i++) {
 				this.tabs[i].view.isVisible = false;
 				this.tabs[i].view.isTraversable = false;
 				this.tabs[i].button.setMode(CGSGButtonMode.NORMAL);
@@ -163,7 +168,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 			this.hideUnderline.resizeTo(tab.button.getWidth(), 1);
 
 			if (cgsgExist(this.onTabChanged)) {
-				this.onTabChanged({tab: tab});
+				this.onTabChanged({tab : tab});
 			}
 
 			return tab;
@@ -174,7 +179,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 		 * @param {Number} index
 		 * @return {Object} the selected tab
 		 */
-		selectTabByIndex: function (index) {
+		selectTabByIndex : function(index) {
 			return this.selectTab(this.tabs[index]);
 		},
 
@@ -183,11 +188,11 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 		 * @method _recomputeButtonsWidth
 		 * @private
 		 */
-		_recomputeButtonsWidth: function () {
+		_recomputeButtonsWidth : function() {
 			var totalWidth = 0;
 			var i;
 			var bw = 0; //biggest width
-			for (i = 0; i < this.tabs.length; i++) {
+			for (i = 0 ; i < this.tabs.length ; i++) {
 				var w = this.tabs[i].button.getWidth();
 				totalWidth += w;
 				bw = Math.max(bw, w);
@@ -199,13 +204,13 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 				//common width
 				var cw = this.getWidth() / this.tabs.length;
 
-				for (i = 0; i < this.tabs.length; i++) {
+				for (i = 0 ; i < this.tabs.length ; i++) {
 					this.tabs[i].button.setFixedSize(new CGSGDimension(cw, CGSGTABHEIGHT));
 					this.tabs[i].button.translateTo(i * cw, 0);
 				}
 			}
 			else {
-				for (i = 0; i < this.tabs.length; i++) {
+				for (i = 0 ; i < this.tabs.length ; i++) {
 					this.tabs[i].button.setFixedSize(new CGSGDimension(bw, CGSGTABHEIGHT));
 					this.tabs[i].button.translateTo(i * bw, 0);
 				}

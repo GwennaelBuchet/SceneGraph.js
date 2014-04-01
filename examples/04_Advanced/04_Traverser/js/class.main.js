@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,26 +10,26 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  *
  * Purpose :
  * traverser example
  * */
 
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
 		initialize : function(canvas) {
 
@@ -56,16 +56,16 @@ var CGMain = CGSGScene.extend(
 		createScene : function() {
 
 			//create and add a root node to the scene, with arbitrary dimension
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			this.rootNode = new CGSGNode(0, 0);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			//create and add random children
-			for (var i = 0; i < 50; i++) {
+			for (var i = 0; i < 100; i++) {
 				var squareNode = this.createRandomSquare(0, 0);
 				this.rootNode.addChild(squareNode);
 
 				//create and add children for this node too
-				for (var c = 0; c < 10; c++) {
+				for (var c = 0; c < 20; c++) {
 					var child = this.createRandomSquare(squareNode.position.x, squareNode.position.y);
 					squareNode.addChild(child);
 				}
@@ -73,18 +73,20 @@ var CGMain = CGSGScene.extend(
 
 			//condition to use while traverse the graph
 			var condition = function(node) {
-				return node.color == "yellow";
+				return node.bkgcolors[0] == "yellow";
 			};
 
 			var traverser = new CGSGTraverser();
+            var before = new Date().getTime();
 			var listSquares = traverser.traverse(this.rootNode, condition, null);
+            var delay = (new Date().getTime() - before);
 			for (var s = 0; s < listSquares.length; s++) {
-				this.sceneGraph.selectNode(listSquares[s]);
+				CGSG.sceneGraph.selectNode(listSquares[s]);
 			}
 
 			this.textNode = new CGSGNodeText(20, 10,
 			                                 "Number of nodes found by the Traverser with the condition \"color == 'yellow'\" = "
-				                                 + listSquares.length + " / 500");
+				                                 + listSquares.length + " / 2000 (total time: " + delay + " ms.)");
 			this.textNode.setSize(14);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.textNode);
@@ -92,17 +94,17 @@ var CGMain = CGSGScene.extend(
 		},
 
 		createRandomSquare : function(parentX, parentY) {
-			var w = 20 + Math.random() * 40;
-			var h = 20 + Math.random() * 40;
+			var w = 15 + Math.random() * 40;
+			var h = 15 + Math.random() * 40;
 
-			var x = 100 + Math.random() * (cgsgCanvas.width - 200) - w - parentX;
-			var y = 100 + Math.random() * (cgsgCanvas.height - 200) - h - parentY;
+			var x = 50 + Math.random() * (CGSG.canvas.width - 100) - w - parentX;
+			var y = 100 + Math.random() * (CGSG.canvas.height - 100) - h - parentY;
 
 			var colors = ["red", "green", "blue", "yellow", "#34A8BE", "magenta", "gray"];
 			var color = colors[Math.floor(Math.random() * colors.length)];
 
 			var squareNode = new CGSGNodeSquare(x, y, w, h);
-			squareNode.color = color;
+			squareNode.bkgcolors[0] = color;
 			squareNode.isResizable = true;
 			squareNode.isDraggable = true;
 

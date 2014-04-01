@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -29,16 +29,19 @@
  * @class GLOBAL_METHODS
  * @module Util
  * @static
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 
 /**
  * @method cgsgExist
- * @param object {Object}
- * @return {boolean} true if the parameter !== null && !== undefined
+ * @param o {Object}
+ * @return {boolean} true if the parameter !== null && !== undefined && (!isNaN(o) && isFinite(o))
  */
-function cgsgExist(object) {
-	return (object !== null && object !== undefined);
+function cgsgExist(o) {
+	if (typeof o === 'number')
+		return !isNaN(o) && isFinite(o);
+
+	return (o !== null && o !== undefined);
 }
 
 /**
@@ -105,45 +108,10 @@ function cgsgDetectCurrentExplorer() {
 	cgsgCurrentExplorer.webworker = typeof(Worker) !== "undefined";
 }
 
-/*
- * Load asynchronously an external page and return the content (or null)
- *
- * @method cgsgLoadExternalDoc
- * @async
- * @beta
- * @param url {String} Page to load
- * @param successCallback {function} an function handler to call on success. The function must take the content ({String} as parameter)
- * @param errorCallback {function} an function handler to call on error
- */
-/*function cgsgLoadExternalDoc (url, successCallback, errorCallback) {
- var xhr;
- if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
- xhr = new XMLHttpRequest();
- }
- else {// code for IE6, IE5
- try {
- xhr = new ActiveXObject("Msxml2.XMLHTTP");
- }
- catch (e) {
- xhr = new ActiveXObject("Microsoft.XMLHTTP");
- }
- }
- xhr.onreadystatechange = function () {
- if (xhr.readyState == 4 && xhr.status == 200) {
- successCallback(xhr.responseText);
- }
- else {
- errorCallback(xhr.responseText);
- }
- };
- xhr.open("GET", url, true);
- xhr.send();
- }*/
-
-cgsgStylePaddingLeft = 0;
-cgsgStylePaddingTop = 0;
-cgsgStyleBorderLeft = 0;
-cgsgStyleBorderTop = 0;
+var cgsgStylePaddingLeft = 0;
+var cgsgStylePaddingTop = 0;
+var cgsgStyleBorderLeft = 0;
+var cgsgStyleBorderTop = 0;
 
 /**
  * @method cgsgGetRealViewportDimension
@@ -164,8 +132,8 @@ function cgsgGetRealViewportDimension() {
  */
 function cgsgGetDisplayedViewportDimension() {
 	var realDim = cgsgGetRealViewportDimension();
-	return new CGSGDimension(Math.round(realDim.width / cgsgDisplayRatio.x),
-							 Math.round(realDim.height / cgsgDisplayRatio.y));
+	return new CGSGDimension(Math.round(realDim.width / CGSG.displayRatio.x),
+							 Math.round(realDim.height / CGSG.displayRatio.y));
 }
 
 /**
@@ -226,16 +194,16 @@ function cgsgGetCursorPositions(event, canvas) {
 	//if multi-touch, get all the positions
 	if (event.targetTouches) { // or changedTouches
 		var touchPoints = (typeof event.targetTouches !== 'undefined') ? event.targetTouches : [event];
-		for (var i = 0; i < touchPoints.length; i++) {
+		for (var i = 0 ; i < touchPoints.length ; i++) {
 			touch = touchPoints[i];
 
-			positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
-											(touch.pageY - offsetY) / cgsgDisplayRatio.y));
+			positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
+											(touch.pageY - offsetY) / CGSG.displayRatio.y));
 		}
 	}
 	else {
-		positions.push(new CGSGPosition((touch.pageX - offsetX) / cgsgDisplayRatio.x,
-										(touch.pageY - offsetY) / cgsgDisplayRatio.y));
+		positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
+										(touch.pageY - offsetY) / CGSG.displayRatio.y));
 	}
 
 	return positions;
@@ -243,20 +211,58 @@ function cgsgGetCursorPositions(event, canvas) {
 
 /**
  * Wipes the canvas context
- * @private
  * @method cgsgClearContext
  * @param {CanvasRenderingContext2D} context context to render on
  * */
 function cgsgClearContext(context) {
 	context.setTransform(1, 0, 0, 1, 0, 0);
 	// Will always clear the right space
-	context.clearRect(0, 0, cgsgCanvas.width, cgsgCanvas.height);
+	context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 }
 
 /**
+ * Iterates the given array and, at each iteration, calls the given callback function. The loop stops if the callback
+ * function returns false.
+ *
+ * Optimized loop is used here and should be prefer to other approaches, especially on old browser versions and IE.
+ *
+ * @method cgsgIterate
+ * @param array {Array} the array
+ * @param callback {Function} the callback
+ */
+function cgsgIterate(array, callback) {
+	var i = 0, len = array.length;
+
+	for (; i < len && callback(i, array[i++]) !== false ;) {
+	}
+}
+
+/**
+ * Iterates the given array from the end to the beginning of the array. The loop stops if the callback function returns
+ * false.
+ *
+ * Prefer to use this method for the same reasons than cgsgIterate.
+ *
+ * @method cgsgIterateReverse
+ * @param array {Array} the array
+ * @param callback {Function} the callback
+ */
+function cgsgIterateReverse(array, callback) {
+	var i = array.length - 1;
+
+	for (; i >= 0 && callback(i, array[i--]) !== false ;) {
+	}
+}
+
+/**
+ * Free the given object and notify listeners with appropriate event.
+ *
  * @method cgsgFree
  * @param {*} object
  */
 function cgsgFree(object) {
+	if (cgsgExist(object.onFreeEvent)) {
+		CGSG.eventManager.dispatch(object, cgsgEventTypes.ON_FREE, new CGSGEvent(this, null));
+	}
 	object = null;
 }

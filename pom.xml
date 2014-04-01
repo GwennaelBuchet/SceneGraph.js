@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+Copyright (c) 2014 Gwennael Buchet
 
 License/Terms of Use
 
@@ -28,10 +28,10 @@ Any failure to comply with the above shall automatically terminate the license a
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.capgemini</groupId>
-    <artifactId>cgscenegraph</artifactId>
-    <version>1.4.2</version>
-    <name>cgSceneGraph</name>
+    <groupId>com.codeartex</groupId>
+    <artifactId>scenegraph</artifactId>
+    <version>2.0.0</version>
+    <name>sceneGraph</name>
 
     <!--
     Usage to prepare a SNAPSHOT or RELEASE version :
@@ -71,43 +71,63 @@ Any failure to comply with the above shall automatically terminate the license a
 
                             <includes>
                                 <include>utils/util.array.js</include>
+                                <include>utils/util.string.js</include>
                                 <include>utils/class.class.js</include>
-                                <include>utils/class.hashmap.js</include>
+                                <include>utils/class.map.js</include>
                                 <include>utils/util.color.js</include>
                                 <include>utils/math/class.vector2D.js</include>
                                 <include>utils/class.region.js</include>
                                 <include>constants.js</include>
                                 <include>utils/class.traverser.js</include>
+                                <include>utils/class.imgManager.js</include>
 
-                                <include>node/collision/enum.collision.method.js</include>
-                                <include>node/collision/class.collision.tester.region.js</include>
-                                <include>node/collision/class.collision.tester.ghost.ondemand.js</include>
-                                <include>/node/collision/class.collision.tester.factory.js</include>
-                                <include>/node/collision/class.collision.manager.js</include>
+                                <include>event/class.event.js</include>
+                                <include>event/class.eventmanager.js</include>
+
+                                <include>theme/class.CSSManager.js</include>
+
+                                <include>animation/class.keyframe.js</include>
+                                <include>interpolator/class.interpolator.js</include>
+                                <include>interpolator/class.interpolator.linear.js</include>
+                                <include>interpolator/class.interpolator.TCB.js</include>
+                                <include>animation/class.anim.timeline.js</include>
+                                <include>animation/class.animmanager.js</include>
+
+                                <include>collision/enum.collision.method.js</include>
+                                <include>collision/class.collision.tester.region.js</include>
+                                <include>collision/class.collision.tester.ghost.ondemand.js</include>
+                                <include>collision/class.collision.tester.factory.js</include>
+                                <include>collision/class.collision.manager.js</include>
 
                                 <include>globals.js</include>
                                 <include>utils/util.global.js</include>
                                 <include>utils/util.color.js</include>
+
+                                <include>mask/class.mask.js</include>
+                                <include>mask/class.mask.clip.js</include>
+
                                 <include>utils/math/math.js</include>
                                 <include>utils/class.handlebox.js</include>
-                                <include>animation/class.anim.key.js</include>
-                                <include>animation/class.anim.timeline.js</include>
                                 <include>node/class.node.js</include>
 
+                                <include>node/class.node.dom.js</include>
+                                <include>node/class.node.line.js</include>
+                                <include>node/class.node.curveTCB.js</include>
                                 <include>node/class.node.colorPicker.js</include>
                                 <include>node/class.node.tabMenu.js</include>
                                 <include>node/class.node.text.js</include>
                                 <include>node/class.node.webview.js</include>
                                 <include>node/class.node.square.js</include>
+                                <include>node/class.node.slider.js</include>
                                 <include>node/class.node.circle.js</include>
                                 <include>node/class.node.ellipse.js</include>
                                 <include>node/class.node.image.js</include>
                                 <include>node/class.node.animatedSprite.js</include>
                                 <include>node/class.node.button.js</include>
-                                <include>animation/class.particles.js</include>
+                                <include>node/class.particles.js</include>
 
                                 <include>class.scenegraph.js</include>
-                                <include>class.scene.js</include>
+                                <include>class.view.js</include>
                             </includes>
                         </aggregation>
                     </aggregations>

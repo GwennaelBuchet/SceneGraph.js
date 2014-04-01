@@ -1,6 +1,6 @@
 
 var canvasScene = document.getElementById("scene");
-var game = new CGSGScene(canvasScene);
+var game = new CGSGView(canvasScene);
 
 //create a scene
 createScene();
@@ -39,14 +39,14 @@ function createScene() {
  * @param {CGSGNode} circle
  */
 function resetCircle(circle) {
-    circle.translateTo(Math.random() * cgsgCanvas.width, Math.random() * cgsgCanvas.height);
+    circle.translateTo(Math.random() * CGSG.canvas.width, Math.random() * CGSG.canvas.height);
 
     //animate size and alpha
     var r = 20 + Math.random() * 30;
     var delay = 10 + Math.random() * 40;
-    game.sceneGraph.animate(circle, "globalAlpha", delay, 1, 0, "linear", 0, true);
-    game.sceneGraph.animate(circle, "scale.x", delay, 1.0, r, "linear", 0, true);
-    game.sceneGraph.animate(circle, "scale.y", delay, 1.0, r, "linear", 0, true);
+    game.sceneGraph.animate(circle, "globalAlpha", delay, 1, 0, 0, true);
+    game.sceneGraph.animate(circle, "scale.x", delay, 1.0, r, 0, true);
+    game.sceneGraph.animate(circle, "scale.y", delay, 1.0, r, 0, true);
 
     //at the end of the animation, reset this node
     game.sceneGraph.getTimeline(circle, "globalAlpha").onAnimationEnd = function (event) {

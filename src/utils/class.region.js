@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  * */
@@ -32,13 +32,24 @@
  * @constructor
  * @param {Number} x X value
  * @param {Number} y Y value
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGPosition}
  */
 var CGSGPosition = CGSGVector2D.extend(
 	{
-		initialize: function (x, y) {
+		initialize : function(x, y) {
 			this._super(x, y);
+		},
+
+		/**
+		 * Indicates if this position meaningfully equals to the given position.
+		 * @public
+		 * @method equalsTo
+		 * @param position {CGSGPosition} the position to compare to this position
+		 * @return {Boolean} true if given position exists and has same coordinates as this position, false otherwise
+		 */
+		equalsTo : function(position) {
+			return cgsgExist(position) && position.x === this.x && position.y === this.y;
 		},
 
 		/**
@@ -47,7 +58,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @method copy
 		 * @return {CGSGPosition}
 		 */
-		copy: function () {
+		copy : function() {
 			return new CGSGPosition(this.x, this.y);
 		},
 
@@ -57,7 +68,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @param {Number} newX
 		 * @param {Number} newY
 		 */
-		translateTo: function (newX, newY) {
+		translateTo : function(newX, newY) {
 			this.x = newX;
 			this.y = newY;
 		},
@@ -69,7 +80,7 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @param {Number} x
 		 * @param {Number} y
 		 */
-		translateWith: function (x, y) {
+		translateWith : function(x, y) {
 			this.x += x;
 			this.y += y;
 		},
@@ -81,9 +92,18 @@ var CGSGPosition = CGSGVector2D.extend(
 		 * @param {Number} x
 		 * @param {Number} y
 		 */
-		translateBy: function (x, y) {
+		translateBy : function(x, y) {
 			this.x *= x;
 			this.y *= y;
+		},
+
+		/**
+		 * Return true if x<0 || y<0
+		 * @method isNegative
+		 * @return {boolean}
+		 */
+		isNegative : function() {
+			return (this.x < 0 || this.y < 0);
 		}
 	}
 );
@@ -95,12 +115,12 @@ var CGSGPosition = CGSGVector2D.extend(
  * @constructor
  * @param {Number} x X value
  * @param {Number} y Y value
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGScale}
  */
 var CGSGScale = CGSGPosition.extend(
 	{
-		initialize: function (x, y) {
+		initialize : function(x, y) {
 			this._super(x, y);
 		}
 	}
@@ -112,12 +132,12 @@ var CGSGScale = CGSGPosition.extend(
  * @extends Object
  * @constructor
  * @param {Number} angle Angle value
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGRotation}
  */
 var CGSGRotation = CGSGObject.extend(
 	{
-		initialize: function (angle) {
+		initialize : function(angle) {
 			this.angle = angle;
 		},
 
@@ -127,7 +147,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method copy
 		 * @return {CGSGRotation}
 		 */
-		copy: function () {
+		copy : function() {
 			return new CGSGRotation(this.angle);
 		},
 
@@ -137,7 +157,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method rotateTo
 		 * @param {Number} newAngle
 		 */
-		rotateTo: function (newAngle) {
+		rotateTo : function(newAngle) {
 			this.angle = newAngle;
 		},
 
@@ -147,8 +167,8 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method rotateBy
 		 * @param {Number} rotateFactor
 		 */
-		rotateBy: function (rotateFactor) {
-			this.multiply(rotateFactor);
+		rotateBy : function(rotateFactor) {
+			this.multiplyEquals(rotateFactor);
 		},
 
 		/**
@@ -157,8 +177,8 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method rotateWith
 		 * @param {Number} angle
 		 */
-		rotateWith: function (angle) {
-			this.add(angle);
+		rotateWith : function(angle) {
+			this.addEquals(angle);
 		},
 
 		/**
@@ -167,17 +187,17 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method add
 		 * @param {Number} angle
 		 */
-		add: function (angle) {
+		addEquals : function(angle) {
 			this.angle += angle;
 		},
 
 		/**
-		 * Substract this angle to the current one
+		 * Subtract this angle to the current one
 		 * @public
 		 * @method substract
 		 * @param {Number} angle
 		 */
-		substract: function (angle) {
+		subtractEquals : function(angle) {
 			this.angle -= angle;
 		},
 
@@ -187,7 +207,7 @@ var CGSGRotation = CGSGObject.extend(
 		 * @method multiply
 		 * @param {Number} angle
 		 */
-		multiply: function (angle) {
+		multiplyEquals : function(angle) {
 			this.angle *= angle;
 		}
 	}
@@ -200,12 +220,12 @@ var CGSGRotation = CGSGObject.extend(
  * @constructor
  * @param {Number} width
  * @param {Number} height
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGDimension}
  */
 var CGSGDimension = CGSGVector2D.extend(
 	{
-		initialize: function (width, height) {
+		initialize : function(width, height) {
 
 			this._super(width, height);
 
@@ -228,7 +248,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @method copy
 		 * @return {CGSGDimension}
 		 */
-		copy: function () {
+		copy : function() {
 			return new CGSGDimension(this.width, this.height);
 		},
 
@@ -238,7 +258,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} newWidth
 		 * @param {Number} newHeight
 		 * */
-		resizeTo: function (newWidth, newHeight) {
+		resizeTo : function(newWidth, newHeight) {
 			if (newWidth >= 0) {
 				this.width = newWidth;
 			}
@@ -253,7 +273,7 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} widthFactor
 		 * @param {Number} heightFactor
 		 * */
-		resizeBy: function (widthFactor, heightFactor) {
+		resizeBy : function(widthFactor, heightFactor) {
 			if (widthFactor >= 0) {
 				this.width *= widthFactor;
 			}
@@ -268,13 +288,22 @@ var CGSGDimension = CGSGVector2D.extend(
 		 * @param {Number} width
 		 * @param {Number} height
 		 * */
-		resizeWith: function (width, height) {
+		resizeWith : function(width, height) {
 			if (this.width + width >= 0) {
 				this.width += width;
 			}
 			if (this.height + height >= 0) {
 				this.height += height;
 			}
+		},
+
+		/**
+		 * Return true if no pixels are inside the dimension
+		 * @method isEmpty
+		 * @return {boolean}
+		 */
+		isEmpty : function() {
+			return (this.width <= 0 || this.height <= 0);
 		}
 	}
 );
@@ -288,12 +317,12 @@ var CGSGDimension = CGSGVector2D.extend(
  * @param {Number} y Position on Y
  * @param {Number} width Dimension on Width
  * @param {Number} height Dimension on Height
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @type {CGSGRegion}
  */
 var CGSGRegion = CGSGObject.extend(
 	{
-		initialize: function (x, y, width, height) {
+		initialize : function(x, y, width, height) {
 			/**
 			 * @property position
 			 * @type {CGSGPosition}
@@ -310,7 +339,7 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method copy
 		 * @return {CGSGRegion}
 		 */
-		copy: function () {
+		copy : function() {
 			return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
 		},
 
@@ -318,18 +347,36 @@ var CGSGRegion = CGSGObject.extend(
 		 * @method add
 		 * @param region {CGSGRegion}
 		 */
-		add: function (region) {
+		addEquals : function(region) {
 			this.position.translateWith(region.position.x, region.position.y);
 			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
 		},
 
 		/**
-		 * @method substract
+		 * @method subtract
 		 * @param {CGSGRegion} region
 		 */
-		substract: function (region) {
+		subtractEquals : function(region) {
 			this.position.translateWith(-region.position.x, -region.position.y);
 			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
+		},
+
+		/**
+		 * Return true if no pixels are inside the region
+		 * @method isEmpty
+		 * @return {boolean}
+		 */
+		isEmpty : function() {
+			return this.dimension.isEmpty();
+		},
+
+		/**
+		 * Return true if dimension is Empty or position is negative
+		 * @method isNegative
+		 * @return {boolean}
+		 */
+		isNegative : function() {
+			return (this.isEmpty() || this.position.isNegative());
 		}
 	}
 );

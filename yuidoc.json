@@ -1,9 +1,9 @@
 {
-    "name": "cgSceneGraph",
+    "name": "sceneGraph.js",
     "description": "HTML5 Scene Graph Framework",
-    "version": "1.4.2",
+    "version": "2.0.0",
     "url": "http://gwennaelbuchet.github.com/cgSceneGraph/",
-	"themedir" : "D:/PROJETS/Cellule_Innovation/R_D/cgSceneGraph/medias/theme_yuidoc/cgsg/theme.json",
+	"themedir" : "D:/RD/sceneGraph.js/medias/theme_yuidoc/cgsg/theme.json",
     "options": {
         "linkNatives": "true",        
         "attributesEmit": "true",

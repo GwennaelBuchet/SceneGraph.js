@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -12,7 +12,7 @@
  *   of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
@@ -20,8 +20,8 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -32,7 +32,7 @@
  * @main Math
  * @static
  * @class CGSGMath
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGMath = {
 	/**
@@ -40,7 +40,7 @@ var CGSGMath = {
 	 * @static
 	 * @property PI2
 	 */
-	PI2: 6.28318530718, //Math.PI * 2.0,
+	PI2 : 6.28318530718, //Math.PI * 2.0,
 
 	/**
 	 * Convert degree to radian
@@ -49,7 +49,7 @@ var CGSGMath = {
 	 * @param {Number} angle
 	 * @return {Number} The radian value
 	 */
-	deg2rad: function (angle) {
+	deg2rad : function(angle) {
 		return (angle / 180.0) * Math.PI;
 	},
 
@@ -60,7 +60,7 @@ var CGSGMath = {
 	 * @param {Number} angle
 	 * @return {Number} The degree value
 	 */
-	rad2deg: function (angle) {
+	rad2deg : function(angle) {
 		return angle * 57.29577951308232;
 	},
 
@@ -71,7 +71,7 @@ var CGSGMath = {
 	 * @param {Number} n
 	 * @return {Number} The integer value
 	 */
-	fixedPoint: function (n) {
+	fixedPoint : function(n) {
 		return (0.5 + n) << 0;
 	},
 
@@ -84,7 +84,7 @@ var CGSGMath = {
 	 * @param {Number} weight Percentage to apply to the first value
 	 * @return {Number} The interpolated value
 	 */
-	lerp: function (from, to, weight) {
+	lerp : function(from, to, weight) {
 		return from + (to - from) * weight;
 	}
 };

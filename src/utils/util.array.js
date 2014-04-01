@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -31,7 +31,7 @@
  * @class UTIL_ARRAY
  * @module Util
  * @static
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 
 /**
@@ -48,8 +48,8 @@ function cgsgIsArray(value) {
  * @method Array.prototype.without
  * @param item
  */
-Array.prototype.without = function (item) {
-	for (var i = 0; i < this.length; i++) {
+Array.prototype.without = function(item) {
+	for (var i = 0 ; i < this.length ; i++) {
 		if (this[i] == item) {
 			this.splice(i, 1);
 			//break;
@@ -58,11 +58,28 @@ Array.prototype.without = function (item) {
 };
 
 /**
- * Empties the array
+ * Remove the item at the end of this array
+ * @method Array.prototype.pop
+ */
+Array.prototype.pop = function() {
+	this.splice(this.length - 1, 1);
+};
+
+/**
+ * Empty the array
  * @method Array.prototype.clear
  */
-Array.prototype.clear = function () {
+Array.prototype.clear = function() {
 	this.length = 0;
+};
+
+/**
+ * Check if the array is empty
+ * @method Array.prototype.isEmpty
+ * @return {Boolean} true if the array is empty
+ */
+Array.prototype.isEmpty = function() {
+	return this.length === 0;
 };
 
 /**
@@ -71,7 +88,7 @@ Array.prototype.clear = function () {
  * @method Array.prototype.clone
  * @return {Array}
  */
-Array.prototype.clone = function () {
+Array.prototype.clone = function() {
 	return this.slice(0);
 };
 
@@ -81,9 +98,9 @@ Array.prototype.clone = function () {
  * @method Array.prototype.copy
  * @return {Array}
  */
-Array.prototype.copy = function () {
+Array.prototype.copy = function() {
 	var a = [];
-	for (var i = 0; i < this.length; i++) {
+	for (var i = 0 ; i < this.length ; i++) {
 		if (this[i].copy) {
 			a.push(this[i].copy());
 		}
@@ -101,8 +118,8 @@ Array.prototype.copy = function () {
  * @param item
  * @return {Boolean}
  */
-Array.prototype.contains = function (item) {
-	for (var i = 0; i < this.length; i++) {
+Array.prototype.contains = function(item) {
+	for (var i = 0 ; i < this.length ; i++) {
 		if (this[i] == item) {
 			return true;
 		}
@@ -115,10 +132,10 @@ Array.prototype.contains = function (item) {
  *  @method Array.prototype.unique
  *  @return {Array}
  */
-Array.prototype.unique = function () {
+Array.prototype.unique = function() {
 	var tmp = [], i;
 	this.sort();
-	for (i = 0; i < this.length; i++) {
+	for (i = 0 ; i < this.length ; i++) {
 		if (this[i] !== this[i + 1]) {
 			tmp[tmp.length] = this[i];
 		}
@@ -132,9 +149,9 @@ Array.prototype.unique = function () {
  * @method Array.prototype.sum
  * @return {Number}
  */
-Array.prototype.sum = function () {
+Array.prototype.sum = function() {
 	var sum = 0;
-	for (var i = 0; i < this.length; i++) {
+	for (var i = 0 ; i < this.length ; i++) {
 		sum += parseInt(this[i]);
 	}
 
@@ -146,7 +163,7 @@ Array.prototype.sum = function () {
  * @method Array.prototype.average
  * @return {Number}
  */
-Array.prototype.average = function () {
+Array.prototype.average = function() {
 	return this.sum() / this.length;
 };
 

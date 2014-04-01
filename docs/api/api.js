@@ -1,8 +1,13 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "CGSGAnimationKey",
+        "CGSG",
+        "CGSGAccordion",
+        "CGSGAnimationManager",
+        "CGSGAnimationMethod",
+        "CGSGBindEntry",
         "CGSGButtonMode",
+        "CGSGCSSManager",
         "CGSGCollisionGhostOnDemandTester",
         "CGSGCollisionManager",
         "CGSGCollisionMethod",
@@ -10,15 +15,30 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGCollisionTesterFactory",
         "CGSGColor",
         "CGSGDimension",
+        "CGSGEvent",
+        "CGSGEventManager",
         "CGSGHandleBox",
-        "CGSGHashmap",
+        "CGSGImgManager",
+        "CGSGInterpolator",
+        "CGSGInterpolatorLinear",
+        "CGSGInterpolatorTCB",
+        "CGSGKeyFrame",
+        "CGSGMap",
+        "CGSGMask",
+        "CGSGMaskCache",
+        "CGSGMaskClip",
         "CGSGMath",
         "CGSGNode",
         "CGSGNodeButton",
         "CGSGNodeCircle",
         "CGSGNodeColorPicker",
+        "CGSGNodeCurveTCB",
+        "CGSGNodeDomElement",
         "CGSGNodeEllipse",
         "CGSGNodeImage",
+        "CGSGNodeLine",
+        "CGSGNodeSlider",
+        "CGSGNodeSliderHandle",
         "CGSGNodeSprite",
         "CGSGNodeSquare",
         "CGSGNodeTabMenu",
@@ -32,17 +52,19 @@ YUI.add("yuidoc-meta", function(Y) {
         "CGSGRegion",
         "CGSGRotation",
         "CGSGScale",
-        "CGSGScene",
         "CGSGSceneGraph",
+        "CGSGSection",
         "CGSGTimeline",
         "CGSGTraverser",
         "CGSGVector2D",
+        "CGSGView",
         "CGSGWEBVIEWMODE",
         "CGSGWrapMode",
         "GLOBAL_CONSTANTS",
         "GLOBAL_METHODS",
         "GLOBAL_PROPERTIES",
-        "UTIL_ARRAY"
+        "UTIL_ARRAY",
+        "WUICCGSGNodeImageFactory"
     ],
     "modules": [
         "Animation",
@@ -56,7 +78,8 @@ YUI.add("yuidoc-meta", function(Y) {
     "allModules": [
         {
             "displayName": "Animation",
-            "name": "Animation"
+            "name": "Animation",
+            "description": "Linear intepolation"
         },
         {
             "displayName": "Collision",

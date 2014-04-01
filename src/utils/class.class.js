@@ -21,16 +21,16 @@
  *
  * From documentation by John Resig (http://ejohn.org/)
  */
-(function () {
-	var initializing = false, fnTest = /xyz/.test(function () {
+(function() {
+	var initializing = false, fnTest = /xyz/.test(function() {
 		xyz;
 	}) ? /\b_super\b/ : /.*/;
 	// The base CGSGObject implementation (does nothing)
-	this.CGSGObject = function () {
+	this.CGSGObject = function() {
 	};
 
 	// Create a new CGSGObject that inherits from this class
-	CGSGObject.extend = function (prop) {
+	CGSGObject.extend = function(prop) {
 		var _super = this.prototype;
 
 		// Instantiate a base class (but only create the instance,
@@ -45,8 +45,8 @@
 			//noinspection JSUnfilteredForInLoop
 			prototype[name] = typeof prop[name] == "function" &&
 							  typeof _super[name] == "function" && fnTest.test(prop[name]) ?
-							  (function (name, fn) {
-								  return function () {
+							  (function(name, fn) {
+								  return function() {
 									  var tmp = this._super;
 
 									  // Add a new ._super() method that is the same method

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,22 +10,22 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  * */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
     {
         initialize:function (canvas) {
 
@@ -53,17 +53,18 @@ var CGMain = CGSGScene.extend(
         createScene:function () {
 
             //create a root node to the graph, with arbitrary position and size
-            var rootNode = new CGSGNode(0, 0, 0, 0);
-            this.sceneGraph.addNode(rootNode, null);
+            var rootNode = new CGSGNode(0, 0);
+            CGSG.sceneGraph.addNode(rootNode, null);
 
 			rootNode.translateTo(230, 50);
 
             var that = this;
 
-			var parent = new CGSGNode(10, 10, 1, 1);
+			var parent = new CGSGNode(10, 10);
 			rootNode.addChild(parent);
+
             //the color picker itself, in the default size
-            var colorPicker = new CGSGNodeColorPicker(20, 20);
+            var colorPicker = new CGSGNodeColorPicker(20, 20, 200, 200);
             parent.addChild(colorPicker);
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
             colorPicker.onOverColor = function (event) {
@@ -72,13 +73,11 @@ var CGMain = CGSGScene.extend(
             colorPicker.onClickColor = function (event) {
                 that.selectColor(event);
             };
-			colorPicker.translateWith(0, 10);
-			colorPicker.resizeTo(200, 200);
+			colorPicker.translateWith(-100, 10);
 
 
             //A second color picker with a custom size
-            var colorPicker2 = new CGSGNodeColorPicker(300, 20);
-            colorPicker2.resizeTo(60, 60);
+            var colorPicker2 = new CGSGNodeColorPicker(300, 20, 60, 60);
             rootNode.addChild(colorPicker2);
 
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
@@ -90,11 +89,9 @@ var CGMain = CGSGScene.extend(
             };
 
             //A third color picker with a custom size
-            var colorPicker3 = new CGSGNodeColorPicker(300, 100);
-            colorPicker3.resizeTo(320, 100);
+            var colorPicker3 = new CGSGNodeColorPicker(300, 100, 320, 100);
             rootNode.addChild(colorPicker3);
             colorPicker3.isDraggable = true;
-            colorPicker3.isResizable = true;
 
             //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
             colorPicker3.onOverColor = function (event) {
@@ -123,7 +120,7 @@ var CGMain = CGSGScene.extend(
          * @param {Object} event
          */
         selectColor:function (event) {
-            this.cpWitness.color = CGSGColor.rgb2hex(event.r, event.g, event.b);
+            this.cpWitness.bkgcolors = [CGSGColor.rgb2hex(event.r, event.g, event.b)];
             this.txtNode.setText("[" + event.r + "," + event.g + "," + event.b + "]", false);
         }
 

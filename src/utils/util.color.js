@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -29,7 +29,7 @@
  * @class CGSGColor
  * @module Util
  * @static
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGColor = {
 	/**
@@ -41,7 +41,7 @@ var CGSGColor = {
 	 * @param {String} b blue value. from 0 to 255.
 	 * @return {String} an hexadecimal value for the color, starting with a sharp (#)
 	 */
-	rgb2hex: function (r, g, b) {
+	rgb2hex : function(r, g, b) {
 		return "#" + this._toHex(r) + this._toHex(g) + this._toHex(b);
 	},
 
@@ -52,15 +52,15 @@ var CGSGColor = {
 	 * @param {String} hex an hexadecimal code, with or without the starting sharp (#)
 	 * @return {Object} an object encapsulating r, g and b values (from 0 to 255)
 	 */
-	hex2rgb: function (hex) {
+	hex2rgb : function(hex) {
 		hex = this._withoutSharp(hex);
 		return {
-			r: parseInt(hex.substring(0, 2), 16),
-			g: parseInt(hex.substring(2, 4), 16),
-			b: parseInt(hex.substring(4, 6), 16)};
+			r : parseInt(hex.substring(0, 2), 16),
+			g : parseInt(hex.substring(2, 4), 16),
+			b : parseInt(hex.substring(4, 6), 16)};
 	},
 
-	_withoutSharp: function (hex) {
+	_withoutSharp : function(hex) {
 		return (hex.charAt(0) == "#") ? hex.substring(1, hex.length) : hex;
 	},
 
@@ -70,7 +70,7 @@ var CGSGColor = {
 	 * @return {String} Example "A6"
 	 * @private
 	 */
-	_toHex: function (n) {
+	_toHex : function(n) {
 		var m = parseInt(n, 10);
 		if (isNaN(m)) {
 			return "00";
@@ -78,6 +78,27 @@ var CGSGColor = {
 		m = Math.max(0, Math.min(m, 255));
 		return "0123456789ABCDEF".charAt((m - m % 16) / 16)
 			+ "0123456789ABCDEF".charAt(m % 16);
+	},
+
+	/**
+	 * Convert a String to an {r,g, b} object.
+	 * @method fromString
+	 * @param rgb {String}
+	 * @return {*}
+	 * @example
+	 *    CGSGColor.fromString("rgb(121, 333, 444)"); returns {r:121, b:333, c:444};
+	 */
+	fromString : function(rgb) {
+		var p1 = rgb.indexOf('(') + 1;
+		var p2 = rgb.lastIndexOf(')');
+
+		var cl = rgb.substring(p1, p2);
+		var cls = cl.split(",");
+		return {
+			r : parseInt(cls[0]),
+			g : parseInt(cls[1]),
+			b : parseInt(cls[2])
+		}
 	},
 
 	/**
@@ -89,7 +110,7 @@ var CGSGColor = {
 	 * @param {Number} weight
 	 * @return {String} a heh value for the interpolated color
 	 */
-	lerp: function (colorFrom, colorTo, weight) {
+	lerp : function(colorFrom, colorTo, weight) {
 		var rgbColorFrom = this.hex2rgb(colorFrom);
 		var rgbColorTo = this.hex2rgb(colorTo);
 
@@ -108,7 +129,7 @@ var CGSGColor = {
 	 * @param {Number} factor If >0 : lighten. If <0 : darken
 	 * @return {String}
 	 */
-	darkenHex: function (hex, factor) {
+	darkenHex : function(hex, factor) {
 		var rgb = this.hex2rgb(hex);
 
 		rgb.r = this.multiplyComponent(rgb.r, factor);
@@ -127,15 +148,15 @@ var CGSGColor = {
 	 * @param {Number} factor If >0 : lighten. If <0 : darken
 	 * @return {Object} An {r, g, b} object
 	 */
-	darkenRGB: function (r, g, b, factor) {
+	darkenRGB : function(r, g, b, factor) {
 		return {
-			r: this.multiplyComponent(r, factor),
-			g: this.multiplyComponent(g, factor),
-			b: this.multiplyComponent(b, factor)
+			r : this.multiplyComponent(r, factor),
+			g : this.multiplyComponent(g, factor),
+			b : this.multiplyComponent(b, factor)
 		};
 	},
 
-	litRGB: function (r, g, b, factor) {
+	litRGB : function(r, g, b, factor) {
 		var hsl = this.rgb2hsl(r, g, b);
 
 		hsl.l *= factor;
@@ -149,7 +170,7 @@ var CGSGColor = {
 	 * @param {Number} factor
 	 * @return {Number} The multiplied value, between 0 and 255
 	 */
-	multiplyComponent: function (c, factor) {
+	multiplyComponent : function(c, factor) {
 		return Math.max(Math.min(255, c * factor), 0);
 	},
 
@@ -162,7 +183,7 @@ var CGSGColor = {
 	 * @param {Number} b
 	 * @return {Object} An {h, s, v} object
 	 */
-	rgb2hsv: function (r, g, b) {
+	rgb2hsv : function(r, g, b) {
 		var min, max;
 
 		//normalize the 3 components
@@ -175,7 +196,7 @@ var CGSGColor = {
 		//min == max ? so the 3 values are the same, we got a gray color.
 		//just return the lightness
 		if (max == min) {
-			return {h: 0, s: 0, v: min};
+			return {h : 0, s : 0, v : min};
 		}
 
 		var d = (r == min) ? g - b : ((b == min) ? r - g : b - r);
@@ -183,9 +204,9 @@ var CGSGColor = {
 
 		var dM = max - min;
 		return {
-			h: 60 * (h - d / dM),
-			s: dM / max,
-			v: max
+			h : 60 * (h - d / dM),
+			s : dM / max,
+			v : max
 		};
 	},
 
@@ -198,7 +219,7 @@ var CGSGColor = {
 	 * @param {Number} b
 	 * @return {Object}
 	 */
-	rgb2hsl: function (r, g, b) {
+	rgb2hsl : function(r, g, b) {
 		r /= 255, g /= 255, b /= 255;
 		var max = Math.max(r, g, b), min = Math.min(r, g, b);
 		var h, s, l = (max + min) / 2;
@@ -223,7 +244,7 @@ var CGSGColor = {
 			h /= 6;
 		}
 
-		return {h: h, s: s, l: l};
+		return {h : h, s : s, l : l};
 	},
 
 	/**
@@ -235,41 +256,41 @@ var CGSGColor = {
 	 * @param {Number} l the lightness
 	 * @return {Object} A {r, g, b} object
 	 */
-	hsl2rgb: function (h, s, l) {
+	hsl2rgb : function(h, s, l) {
 		var r, g, b;
 
 		if (s == 0) {
 			r = g = b = l;
 		}
 		else {
-			function hue2rgb(p, q, t) {
-				if (t < 0) {
-					t += 1;
-				}
-				if (t > 1) {
-					t -= 1;
-				}
-				if (t < 1 / 6) {
-					return p + (q - p) * 6 * t;
-				}
-				if (t < 1 / 2) {
-					return q;
-				}
-				if (t < 2 / 3) {
-					return p + (q - p) * (2 / 3 - t) * 6;
-				}
-				return p;
-			}
+
 
 			var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
 			var p = 2 * l - q;
-			r = hue2rgb(p, q, h + 1 / 3);
-			g = hue2rgb(p, q, h);
-			b = hue2rgb(p, q, h - 1 / 3);
+			r = this.hue2rgb(p, q, h + 1 / 3);
+			g = this.hue2rgb(p, q, h);
+			b = this.hue2rgb(p, q, h - 1 / 3);
 		}
 
-		return {r: r * 255, g: g * 255, b: b * 255};
+		return {r : r * 255, g : g * 255, b : b * 255};
 	},
+
+	/**
+	 * @method hue2rgb
+	 * @param p
+	 * @param q
+	 * @param t
+	 * @return {*}
+	 */
+	hue2rgb : function(p, q, t) {
+		if (t < 0) t += 1;
+		if (t > 1) t -= 1;
+		if (t < 1 / 6) return p + (q - p) * 6 * t;
+		if (t < 1 / 2) return q;
+		if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+		return p;
+	},
+
 
 	/**
 	 * HSV to RGB converter.
@@ -280,7 +301,7 @@ var CGSGColor = {
 	 * @param {Number} v the value
 	 * @return {Object} A {r, g, b} object
 	 */
-	hsv2rgb: function (h, s, v) {
+	hsv2rgb : function(h, s, v) {
 		var r, g, b;
 
 		var i = Math.floor(h * 6);
@@ -310,7 +331,7 @@ var CGSGColor = {
 				break;
 		}
 
-		return {r: r * 255, g: g * 255, b: b * 255};
+		return {r : r * 255, g : g * 255, b : b * 255};
 	}
 
 };

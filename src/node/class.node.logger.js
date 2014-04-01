@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,15 +10,15 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  */
@@ -31,29 +31,24 @@
  * @extends CGSGNode
  * @constructor
  * @param {Number} x Relative position on X
- * @param {Number} y Relative position on X
+ * @param {Number} y Relative position on Y
  * @param {Number} width Relative dimension
  * @param {Number} height Relative Dimension
  * @type {CGSGNodeLogger}
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeLogger = CGSGNode.extend(
 	{
-		initialize: function (x, y) {
-			this._super(x, y, 100, 100);
+		initialize : function(x, y) {
+			this._super(x, y);
+
+			this.resizeTo(100, 100);
 
 			///// @public //////
 			this.isTraversable = false;
 			this.isResizable = false;
 			this.isDraggable = true;
 
-			/**
-			 * background color of the panel
-			 * @property color
-			 * @default "#444444"
-			 * @type {String}
-			 */
-			this.color = "#444444";
 			/**
 			 * Radius of the corners of the panel
 			 * @property cornerRadius
@@ -120,7 +115,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @method _createPanel
 		 * @private
 		 */
-		_createPanel: function () {
+		_createPanel : function() {
 
 		},
 
@@ -131,10 +126,10 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @param {String} name
 		 * @param {String} value
 		 */
-		set: function (name, value) {
+		set : function(name, value) {
 			//if the attribute already exists,just update the value
 			var attr = null;
-			for (var a = 0; a < this._attributes[a]; a++) {
+			for (var a = 0 ; a < this._attributes[a] ; a++) {
 				if (name === this._attributes[a].name) {
 					attr = this._attributes[a];
 					attr.value = value;
@@ -151,7 +146,7 @@ var CGSGNodeLogger = CGSGNode.extend(
 				tnn.color = this.textColor;
 				tnv.setSize(this.textSize);
 				tnv.color = this.textColor;
-				attr = {name: name, value: value, nodeName: tnn, nodeValue: tnv};
+				attr = {name : name, value : value, nodeName : tnn, nodeValue : tnv};
 				this._attributes.push(attr);
 			}
 
@@ -163,15 +158,11 @@ var CGSGNodeLogger = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render: function (context) {
-			//save current state
-			this.beforeRender(context);
-
-			context.globalAlpha = this.globalAlpha;
+		render : function(context) {
 			//draw this zone
-			context.fillStyle = this.color;
-			context.strokeStyle = this.lineColor;
-			context.lineWidth = this.lineWidth;
+			//context.fillStyle = this.bkgcolor;
+			//context.strokeStyle = this.lineColor;
+			//context.lineWidth = this.lineWidth;
 
 			var rectWidth = 200;
 			var rectHeight = 100;
@@ -186,16 +177,13 @@ var CGSGNodeLogger = CGSGNode.extend(
 			context.lineTo(rectX + rectWidth, rectY + rectHeight);
 			context.fill();
 			context.stroke();
-
-			//restore state
-			this.afterRender(context);
 		},
 
 		/**
 		 * @method copy
 		 * @return {CGSGNodeLogger} a copy of this node
 		 */
-		copy: function () {
+		copy : function() {
 			var node = new CGSGNodeLogger(this.position.x, this.position.y);
 			//call the super method
 			node = this._super(node);
@@ -204,12 +192,9 @@ var CGSGNodeLogger = CGSGNode.extend(
 			node.isResizable = this.isResizable;
 			node.isDraggable = this.isDraggable;
 
-			node.color = this.color;
-			node.lineColor = this.lineColor;
-			node.lineWidth = this.lineWidth;
 			node.globalAlpha = this.globalAlpha;
 
-			for (var i = 0; i < this._attributes.length; i++) {
+			for (var i = 0 ; i < this._attributes.length ; i++) {
 				node.setAttribute(this._attributes[i].name, this._attributes[i].value);
 			}
 
