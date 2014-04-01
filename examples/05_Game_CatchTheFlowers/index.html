@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport"
+          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+    <script type="text/javascript" src="../../min/cgscenegraph_1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="js/globals.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.live.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.sun.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.stars.js"></script>
+    <script type="text/javascript" src="js/node.sky.js"></script>
+    <script type="text/javascript" src="js/node.floor.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.Button.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.flower.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.cloud.js"></script>
+    <script type="text/javascript" src="js/sprites/sprite.bee.js"></script>
+    <script type="text/javascript" src="js/node.livePanel.js"></script>
+    <script type="text/javascript" src="js/node.scorePanel.js"></script>
+    <script type="text/javascript" src="js/states/state.about.js"></script>
+    <script type="text/javascript" src="js/states/state.home.js"></script>
+    <script type="text/javascript" src="js/states/state.loading.js"></script>
+    <script type="text/javascript" src="js/states/state.game.run.js"></script>
+    <script type="text/javascript" src="js/class.main.js"></script>
+
+</head>
+
+<body style="margin:0px">
+
+<canvas id="scene" width="480" height="320">
+    Your browser does not support the canvas element.
+</canvas>
+
+
+<script type="text/javascript">
+    var canvasScene = document.getElementById("scene");
+    var game = new CGMain(canvasScene);
+</script>
+</body>
+</html>
