@@ -38,7 +38,7 @@
  */
 var CGSGCSSManager = CGSGObject.extend(
 	{
-		initialize : function() {
+		initialize: function () {
 			/**
 			 * @property _isLoaded
 			 * @type {Boolean}
@@ -86,14 +86,15 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String} Name of the attribute
 		 * @return {string}
 		 */
-		getAttr : function(cls, attr) {
+		getAttr: function (cls, attr) {
 			cls = cls.addFirstDot();
 			var style = this._classes.getValue(cls);
 
 			if (cgsgExist(style)) {
 				var s = style[attr.collapse()];
-				if (cgsgExist(s) && s.length > 0)
+				if (cgsgExist(s) && s.length > 0) {
 					return s;
+				}
 			}
 
 			return null;
@@ -106,14 +107,15 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String} name of the CSS attribute
 		 * @return {string} value for the CSS attribute
 		 */
-		getAttrInArray : function(clss, attr) {
+		getAttrInArray: function (clss, attr) {
 			var i, cls, r, len = clss.length;
-			for (i = len - 1 ; i >= 0 ; --i) {
+			for (i = len - 1; i >= 0; --i) {
 				cls = clss[i];
 
 				r = this.getAttr(cls, attr);
-				if (cgsgExist(r))
+				if (cgsgExist(r)) {
 					return r;
+				}
 			}
 
 			return null;
@@ -124,7 +126,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param cls {String} Name of the CSS class
 		 * @return {Array} Array of attributes
 		 */
-		getCls : function(cls) {
+		getCls: function (cls) {
 			cls = cls.addFirstDot();
 			return this._classes.getValue(cls);
 		},
@@ -136,9 +138,10 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String}
 		 * @return {Number}
 		 */
-		getURL : function(attr) {
-			if (!cgsgExist(attr) || attr.length == 0)
+		getURL: function (attr) {
+			if (!cgsgExist(attr) || attr.length == 0) {
 				return null;
+			}
 
 			//remove first "url("
 			var url = attr.without("url(");
@@ -156,9 +159,10 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String}
 		 * @return {Number}
 		 */
-		getNumber : function(attr) {
-			if (!cgsgExist(attr) || attr.length == 0)
+		getNumber: function (attr) {
+			if (!cgsgExist(attr) || attr.length == 0) {
 				return NaN;
+			}
 
 			attr = this._cleanAttr(attr);
 
@@ -172,16 +176,17 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String}
 		 * @return {Float}
 		 */
-		getFloat : function(attr) {
-			if (!cgsgExist(attr) || attr.length == 0)
+		getFloat: function (attr) {
+			if (!cgsgExist(attr) || attr.length == 0) {
 				return null;
+			}
 
 			attr = this._cleanAttr(attr);
 
 			return parseFloat(attr);
 		},
 
-		_cleanAttr : function(attr) {
+		_cleanAttr: function (attr) {
 			//remove "px", "pt", ...
 			var reg = /px|pt/gi;
 			attr = attr.replace(reg, "");
@@ -197,13 +202,18 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @method invalidateCache
 		 *
 		 */
-		invalidateCache : function() {
+		invalidateCache: function () {
 			var len, x, nbStyles = document.styleSheets.length;
 			//read all documents
-			for (var s = 0 ; s < nbStyles ; s++) {
+			for (var s = 0; s < nbStyles; s++) {
 				var classes = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
-				for (x = 0, len = classes.length ; x < len ; x++) {
-					this._classes.addOrReplace(classes[x].selectorText, classes[x].style);
+				if (cgsgExist(classes)) {
+					for (x = 0, len = classes.length; x < len; x++) {
+						this._classes.addOrReplace(classes[x].selectorText, classes[x].style);
+					}
+				}
+				else {
+					console.log("No CSS file found. Be sure application is running under a web server and CSS file is correctly loaded.");
 				}
 			}
 		},
@@ -213,7 +223,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @method loadCSSFile
 		 * @param url {String}
 		 */
-		loadCSSFile : function(url) {
+		loadCSSFile: function (url) {
 			this.isLoaded = false;
 			this._url = url;
 
@@ -235,14 +245,15 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @method unloadCSSFile
 		 * @param filename {String}
 		 */
-		unloadCSSFile : function(filename) {
+		unloadCSSFile: function (filename) {
 			var href = "href";
 
 			var cssFiles = document.getElementsByTagName("link");
-			for (var i = cssFiles.length ; i >= 0 ; i--) {
+			for (var i = cssFiles.length; i >= 0; i--) {
 				if (cssFiles[i] && cssFiles[i].getAttribute(href) != null &&
-					cssFiles[i].getAttribute(href).indexOf(filename) != -1)
+				    cssFiles[i].getAttribute(href).indexOf(filename) != -1) {
 					cssFiles[i].parentNode.removeChild(cssFiles[i]);
+				}
 			}
 		},
 
@@ -254,8 +265,8 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param delegateMethod
 		 * @return {Function}
 		 */
-		_createDelegate : function(objectContext, delegateMethod) {
-			return function() {
+		_createDelegate: function (objectContext, delegateMethod) {
+			return function () {
 				return delegateMethod.call(objectContext);
 			}
 		},
@@ -266,12 +277,12 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @method _onFileLoaded
 		 * @param event {Event}
 		 */
-		_onFileLoaded : function(event) {
+		_onFileLoaded: function (event) {
 			this.invalidateCache();
 			this.isLoaded = true;
 
 			if (this.onLoadEnd !== null) {
-				this.onLoadEnd({event : event});
+				this.onLoadEnd({event: event});
 			}
 		},
 
@@ -281,9 +292,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @protected
 		 * @param event {Event}
 		 */
-		_onFileError : function(event) {
+		_onFileError: function (event) {
 			if (this.onLoadError !== null) {
-				this.onLoadError({event : event});
+				this.onLoadError({event: event});
 			}
 		},
 		/**
@@ -292,9 +303,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @protected
 		 * @param event {Event}
 		 */
-		_onFileAbort : function(event) {
+		_onFileAbort: function (event) {
 			if (this.onLoadAbort !== null) {
-				this.onLoadAbort({event : event});
+				this.onLoadAbort({event: event});
 			}
 		}
 
