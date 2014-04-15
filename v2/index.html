@@ -3,54 +3,73 @@
 <html class="ie ie9"> <![endif]--><!--[if gt IE 9]><!-->
 <html> <!--<![endif]-->
 <head>
-	<meta charset="utf-8"/>
-	<title>SceneGraph.js</title>
-	<meta name="keywords" content="HTML5,canvas,animation,framework"/>
-	<meta name="description" content=""/>
-	<meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
+    <meta charset="utf-8"/>
+    <title>SceneGraph.js</title>
+    <meta name="keywords" content="HTML5,canvas,animation,framework"/>
+    <meta name="description" content=""/>
+    <meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
 
-	<!-- mobile settings -->
-	<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
 
-	<link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
-	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
 
-	<link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
 
-	<!-- WEB FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css" />
 
-	<!-- CORE CSS -->
-	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/css/superslides.css" rel="stylesheet" type="text/css"/>
+    <!-- CORE CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/superslides.css" rel="stylesheet" type="text/css" />
 
-	<!-- REVOLUTION SLIDER -->
-	<link href="assets/plugins/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
+    <!-- REVOLUTION SLIDER -->
+    <link href="assets/plugins/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
 
-	<!-- THEME CSS -->
-	<link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
-	<link href="assets/css/color_scheme/darkblue.css" rel="stylesheet" type="text/css"/>
-	<!-- orange: default style -->
-	<!--link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css"/-->
-	<link id="css_dark_skin" href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
-	<!-- DARK SKIN -->
+    <!-- THEME CSS -->
+    <link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/color_scheme/orange.css" rel="stylesheet" type="text/css" /><!-- orange: default style -->
+    <!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
-	<script src="js/app.js"></script>
+    <!-- styleswitcher - demo only -->
+    <link href="assets/css/color_scheme/orange.css" rel="alternate stylesheet" type="text/css" title="orange" />
+    <link href="assets/css/color_scheme/red.css" rel="alternate stylesheet" type="text/css" title="red" />
+    <link href="assets/css/color_scheme/pink.css" rel="alternate stylesheet" type="text/css" title="pink" />
+    <link href="assets/css/color_scheme/yellow.css" rel="alternate stylesheet" type="text/css" title="yellow" />
+    <link href="assets/css/color_scheme/darkgreen.css" rel="alternate stylesheet" type="text/css" title="darkgreen" />
+    <link href="assets/css/color_scheme/green.css" rel="alternate stylesheet" type="text/css" title="green" />
+    <link href="assets/css/color_scheme/darkblue.css" rel="alternate stylesheet" type="text/css" title="darkblue" />
+    <link href="assets/css/color_scheme/blue.css" rel="alternate stylesheet" type="text/css" title="blue" />
+    <link href="assets/css/color_scheme/brown.css" rel="alternate stylesheet" type="text/css" title="brown" />
+    <link href="assets/css/color_scheme/lightgrey.css" rel="alternate stylesheet" type="text/css" title="lightgrey" />
+    <!-- /styleswitcher - demo only -->
 
-	<!-- Morenizr -->
-	<script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+
+
+    <!-- STYLESWITCHER - REMOVE ON PRODUCTION/DEVELOPMENT -->
+    <link href="assets/plugins/styleswitcher/styleswitcher.css" rel="stylesheet" type="text/css" />
+
+    <!-- Morenizr -->
+    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="js/lazyload.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Morenizr -->
+    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
 </head>
 <body ng-app="cgsgApp">
 <!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
@@ -63,238 +82,252 @@
 <div id="wrapper">
 
 <section class="container text-center styleBackground">
-	<p>
-		<br/>
-		<br/>
-		<br/>
-	</p>
+    <p>
+        <br/>
+        <br/>
+    </p>
 
-	<h1 class="text-center">
-		<strong>SceneGraph.js</strong>
-	</h1>
+    <h1 class="text-center">
+        <strong>SceneGraph.js</strong>
+    </h1>
 
 
-	<p class="lead">Powerful, cross-platform and very easy-to-use HTML5 canvas JavaScript framework (with tons of
-	                features :))</p>
+    <p class="lead">Powerful, cross-platform and very easy-to-use HTML5 canvas JavaScript framework (with tons of
+        features :))</p>
 
-	<p>
-		<a href="#" class="btn btn-primary btn-lg"><i class="fa fa-external-link"></i>Download v2.0.0</a>
-		<a href="#" class="btn btn-default">API</a>
-		<a href="#" class="btn btn-default">Examples</a>
-	</p>
+    <p>
+        <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-external-link"></i>Download v2.0.0</a>
+    </p>
 
-	<p><br/><br/><br/></p>
+    <p>
+        <a href="#" class="btn btn-default">API</a>
+        <a href="#" class="btn btn-default">Examples</a>
+    </p>
+
+    <p><br/><br/></p>
 </section>
 
 
 <div class="container">
-	<hr class="half-margins"/>
-	<!-- hr line -->
+    <hr class="half-margins"/>
+    <!-- hr line -->
 </div>
 
 <!-- CAROUSEL -->
 <section class="container">
-	<div class="row">
+    <div class="row">
 
-		<div class="col-md-6">
-			<h2>Richness, performance and simplicity</h2>
+        <div class="col-md-6">
+            <h2>Richness, performance and simplicity</h2>
 
-			<p>Full Animation engine, high Performance, Collision detection, Caching, node Manipulation, Event handling,
-			   Customization, and many more... . </p>
+            <p>Full Animation engine, high Performance, Collision detection, Caching, node Manipulation, Event handling,
+                Customization, and many more... . </p>
 
-			<p>Since the start of the project, it has been designed to be used on professional application as well as
-			   for game development.</p>
+            <p>Since the start of the project, it has been designed to be used on professional application as well as
+                for game development.</p>
 
-			<p>A lot of very cool and useful features is coming: masking, caching, CSS-like styles, new animation
-			   engine, ... Stay tuned :)</p>
-			<!-- divider -->
-			<div class="divider styleColor">
-				<i class="fa fa-leaf"></i><br/>
-				<h4>Some known customers:</h4>
-			</div>
+            <p>A lot of very cool and useful features is coming: masking, caching, CSS-like styles, new animation
+                engine, ... Stay tuned :)</p>
 
-			<!-- carousel -->
-			<div class="owl-carousel"
-			     data-plugin-options='{"items": 3, "singleItem": false, "pagination": false, "autoPlay": true}'>
-				<div>
-					<img class="img-responsive" src="assets/images/demo/brands/carrefour copie.png" alt="">
-				</div>
-				<div>
-					<img class="img-responsive" src="assets/images/demo/brands/leroy copie.png" alt="">
-				</div>
-				<div>
-					<img class="img-responsive" src="assets/images/demo/brands/fiba copie.png" alt="">
-				</div>
-				<div>
-					<img class="img-responsive" src="assets/images/demo/brands/capgemini copie.png" alt="">
-				</div>
-				<div>
-					<img class="img-responsive" src="assets/images/demo/brands/eplan.png" alt="">
-				</div>
-			</div>
 
-		</div>
+        </div>
 
-		<div class="col-md-6">
-			<div class="visible-md visible-lg owl-carousel controlls-over"
-			     data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
-				<div>
-					<img alt="" class="img-responsive" src="assets/images/demo/test_2.jpg">
-				</div>
-				<div>
-					<img alt="" class="img-responsive" src="assets/images/demo/test_1.jpg">
-				</div>
-			</div>
-		</div>
+        <div class="col-md-6">
+            <div class="visible-md visible-lg owl-carousel controlls-over"
+                 data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/catchFlowers.png">
+                </div>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/configurator.png">
+                </div>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/marxzel.png">
+                </div>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/circles.png">
+                </div>
+            </div>
+        </div>
 
-	</div>
+        <!-- divider -->
+        <div class="divider styleColor">
+            <i class="fa fa-leaf"></i><br/>
+            <h4>Some known customers:</h4>
+        </div>
+
+        <!-- carousel -->
+        <div class="owl-carousel"
+             data-plugin-options='{"items": 3, "singleItem": false, "pagination": false, "autoPlay": true}'>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/carrefour.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/leroy.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/fiba.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/capgemini.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/eplan.png" alt="">
+            </div>
+        </div>
+
+    </div>
 </section>
 <!-- /CAROUSEL -->
 
 <div class="container">
-	<hr class="half-margins"/>
-	<!-- hr line -->
+    <hr class="half-margins"/>
+    <!-- hr line -->
 </div>
 
 
 <!-- FEATURED BOXES 3 -->
 <section class="container">
-	<div class="row">
-		<div class="col-md-3">
-			<div class="featured-box nobg border-only">
-				<div class="box-content">
-					<i class="fa fa-github-square"></i>
-					<h4>Open Source</h4>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only">
+                <div class="box-content">
+                    <i class="fa fa-github-square"></i>
+                    <h4>Open Source</h4>
 
-					<p>We are proud of our work, and are convinced it can help everyone on their projects, so we decided
-					   to share it as an open-source project.</p>
+                    <p>We are proud of our work, and are convinced it can help everyone on their projects, so we decided
+                        to share it as an open-source project.</p>
 
-					<p>We hope it can help you :)</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="featured-box nobg border-only left-separator">
-				<i class="fa fa-book"></i>
-				<h4>Well Documented</h4>
+                    <p>We hope it can help you :)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only left-separator">
+                <i class="fa fa-book"></i>
+                <h4>Well Documented</h4>
 
-				<p>A lot of examples, tutorials and full API documentation.</p>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="featured-box nobg border-only left-separator">
-				<i class="fa fa-trophy"></i>
-				<h4>For Your Business</h4>
+                <p>30+ examples, tutorials and full API documentation.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only left-separator">
+                <i class="fa fa-trophy"></i>
+                <h4>For Your Business</h4>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="featured-box nobg border-only left-separator">
-				<i class="fa fa-cogs"></i>
-				<h4>Highly Extendable</h4>
+                <p>Already used on professional application as well as games, SceneGraph.js is designed to be multi
+                    applications and cross platforms.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only left-separator">
+                <i class="fa fa-cogs"></i>
+                <h4>Highly Extensible</h4>
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			</div>
-		</div>
-	</div>
+                <p>You're not constraint to what the framework can do at its current version.</p>
+
+                <p> Its plugins based system allow you to create your own node very quickly.</p>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- /FEATURED BOXES 3 -->
 
 
 <!-- PORTFOLIO -->
 <section id="portfolio" class="special-row margin-footer">
-	<div class="container">
+    <div class="container">
 
-		<h2>Recent <strong>Work</strong></h2>
+        <h2>Recent <strong>Demos</strong></h2>
 
-		<!-- loader -->
-		<span class="js_loader"><i class="fa fa-asterisk fa-spin"></i>LOADING</span>
+        <!-- loader -->
+        <span class="js_loader"><i class="fa fa-asterisk fa-spin"></i>LOADING</span>
 
 
-		<div class="row">
+        <div class="row">
 
-			<ul class="sort-destination isotope" data-sort-id="isotope-list">
+            <ul class="sort-destination isotope" data-sort-id="isotope-list">
 
-				<li class="isotope-item col-sm-6 col-md-4 development"><!-- item -->
-					<div class="item-box">
-						<figure>
-							<a class="item-hover lightbox"
-							   href="assets/images/demo/portfolio/scouter.jpg"
-							   data-plugin-options='{"type":"image"}'>
-								<span class="overlay color2"></span>
+                <li class="isotope-item col-sm-6 col-md-4 development"><!-- item -->
+                    <div class="item-box">
+                        <figure>
+                            <a class="item-hover lightbox"
+                               href="assets/images/demo/portfolio/scouter.jpg"
+                               data-plugin-options='{"type":"image"}'>
+                                <span class="overlay color2"></span>
 											<span class="inner">
 												<span class="block fa fa-plus fsize20"></span>
 												<strong>VIEW</strong> IMAGE
 											</span>
-							</a>
-							<img class="img-responsive"
-							     src="assets/images/demo/portfolio/scouter-600x403.jpg"
-							     width="260"
-							     height="260"
-							     alt="">
-						</figure>
-						<div class="item-box-desc">
-							<h4>Image</h4>
-							<small class="styleColor">29 June, 2014</small>
-						</div>
-					</div>
-				</li>
+                            </a>
+                            <img class="img-responsive"
+                                 src="assets/images/demo/portfolio/scouter-600x403.jpg"
+                                 width="260"
+                                 height="260"
+                                 alt="">
+                        </figure>
+                        <div class="item-box-desc">
+                            <h4>Image</h4>
+                            <small class="styleColor">29 June, 2014</small>
+                        </div>
+                    </div>
+                </li>
 
-				<li class="isotope-item col-sm-6 col-md-4 photography"><!-- item 2 -->
-					<div class="item-box">
-						<figure>
-							<a class="item-hover lightbox"
-							   href="http://www.youtube.com/watch?v=W7Las-MJnJo"
-							   data-plugin-options='{"type":"iframe"}'>
-								<span class="overlay color2"></span>
+                <li class="isotope-item col-sm-6 col-md-4 photography"><!-- item 2 -->
+                    <div class="item-box">
+                        <figure>
+                            <a class="item-hover lightbox"
+                               href="http://www.youtube.com/watch?v=W7Las-MJnJo"
+                               data-plugin-options='{"type":"iframe"}'>
+                                <span class="overlay color2"></span>
 											<span class="inner">
 												<span class="block fa fa-plus fsize20"></span>
 												<strong>VIEW</strong> VIDEO
 											</span>
-							</a>
-							<img class="img-responsive"
-							     src="assets/images/demo/portfolio/black-kitty-600x403.jpg"
-							     width="260"
-							     height="260"
-							     alt="">
-						</figure>
-						<div class="item-box-desc">
-							<h4>Video</h4>
-							<small class="styleColor">29 June, 2014</small>
-						</div>
-					</div>
-				</li>
+                            </a>
+                            <img class="img-responsive"
+                                 src="assets/images/demo/portfolio/black-kitty-600x403.jpg"
+                                 width="260"
+                                 height="260"
+                                 alt="">
+                        </figure>
+                        <div class="item-box-desc">
+                            <h4>Video</h4>
+                            <small class="styleColor">29 June, 2014</small>
+                        </div>
+                    </div>
+                </li>
 
-				<li class="isotope-item col-sm-6 col-md-4 design"><!-- item 3 -->
-					<div class="item-box">
-						<figure>
-							<a class="item-hover" href="portfolio-single-full-slider.html">
-								<span class="overlay color2"></span>
+                <li class="isotope-item col-sm-6 col-md-4 design"><!-- item 3 -->
+                    <div class="item-box">
+                        <figure>
+                            <a class="item-hover" href="portfolio-single-full-slider.html">
+                                <span class="overlay color2"></span>
 											<span class="inner">
 												<span class="block fa fa-plus fsize20"></span>
 												<strong>PROJECT</strong> DETAIL
 											</span>
-							</a>
-							<img class="img-responsive"
-							     src="assets/images/demo/portfolio/merchant2-600x403.jpg"
-							     width="260"
-							     height="260"
-							     alt="">
-						</figure>
-						<div class="item-box-desc">
-							<h4>Detailed Project</h4>
-							<small class="styleColor">29 June, 2014</small>
-						</div>
-					</div>
-				</li>
+                            </a>
+                            <img class="img-responsive"
+                                 src="assets/images/demo/portfolio/merchant2-600x403.jpg"
+                                 width="260"
+                                 height="260"
+                                 alt="">
+                        </figure>
+                        <div class="item-box-desc">
+                            <h4>Detailed Project</h4>
+                            <small class="styleColor">29 June, 2014</small>
+                        </div>
+                    </div>
+                </li>
 
-			</ul>
+            </ul>
 
-		</div>
+        </div>
 
-	</div>
+    </div>
 </section>
+
 <!-- /PORTFOLIO -->
 
 <!-- WRAPPER -->
