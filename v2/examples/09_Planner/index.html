@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport"
+          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
+
+    <script type="text/javascript" src="../../js/cgscenegraph_1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="js/planner_1.0.0.min.js"></script>
+
+</head>
+
+<body>
+<!--<div id="fps"></div>-->
+<canvas id="scene" width="80" height="50">
+    Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+    var canvasScene = document.getElementById("scene");
+    var main = new CGMain(canvasScene);
+    //main.showFPS(document.getElementById("fps"));
+</script>
+</body>
+</html>
