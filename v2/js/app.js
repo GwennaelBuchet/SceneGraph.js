@@ -1,1 +1,1 @@
-var app = angular.module('cgsgApp',['ngLoadScript']);
+var app = angular.module('cgsgApp',[/*'ngLoadScript'*/]);

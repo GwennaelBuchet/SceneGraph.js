@@ -57,78 +57,101 @@
 <!-- /TOP NAV -->
 
 <!-- WRAPPER -->
-<div id="wrapper">
+<div id="wrapper" ng-controller="exampleCtrl">
 
+<!-- PAGE TITLE -->
+<header id="page-title">
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="container">
+    <div class="container">
+        <h1>Examples</h1>
 
-        <h2><strong>Explore</strong> Examples</h2>
-
-        <p class="lead">These samples aim to teach how easy is to use features of the framework.<br/>
-            They don't aim to provide very complex applications that are difficult to understand.
-
-        <p>
-            All these samples, and more, are downloadable in the <a
-                href="https://github.com/GwennaelBuchet/cgSceneGraph"
-                title="Fork me on GitHub"
-                target="_blank">GitHub page</a>
-        </p>
-        </p>
-
-        <ul class="nav nav-pills isotope-filter isotope-filter" data-sort-id="isotope-list" data-option-key="filter">
-            <li data-option-value="*" class="active"><a href="#">Show All</a></li>
-            <li data-option-value=".official"><a href="#">All Officials</a></li>
-            <li data-option-value=".basic"><a href="#">Basic nodes</a></li>
-            <li data-option-value=".event"><a href="#">Events</a></li>
-            <li data-option-value=".anim"><a href="#">Animation</a></li>
-            <li data-option-value=".advanced"><a href="#">Advanced</a></li>
-            <li data-option-value=".community"><a href="#">Community examples</a></li>
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="examples.html">Examples</a></li>
+            <li class="active">{{example.name}}</li>
         </ul>
+    </div>
+</header>
+
+<section id="portfolio" class="container">
+
+<h2><strong>{{example.name}}</strong> example</h2>
 
 
-        <div class="row" id="examples" ng-controller="examplesCtrl">
+<p class="lead">
+    {{example.details}}
+</p>
+<small class="font300 fsize13 block project_quick_info">
+    <span><i class="fa fa-beer styleSecondColor"></i> {{example.type}}</span>
+    &bull;
+</small>
 
-            <ul class="sort-destination isotope" data-sort-id="isotope-list">
+<div class="text-center">
+    <a href="#" class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i> Live Preview</a>
+</div>
 
-                <li ng-repeat="example in examples" class="isotope-item col-sm-6 col-md-3 {{example.type}}">
-                    <div class="item-box">
-                        <figure>
-                            <a class="item-hover lightbox" href="example.html?e={{example.name}}">
-                                <span class="overlay color2"></span>
-                                <span class="inner">
-                                    <span class="block fa fa-plus fsize20"></span>
-                                    <strong>VIEW</strong> DEMO
-                                </span>
-                            </a>
-                            <img class="img-responsive" src="examples/{{example.link}}/screenshot.png" width="260"
-                                 height="260" alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>{{example.name}}</h4>
-                            <small class="styleColor">{{example.comment}}</small>
-                        </div>
-                    </div>
-                </li>
 
-            </ul>
+<div class="divider"><!-- divider -->
+    <i class="fa fa-star"></i>
+</div>
 
+
+<!-- BORN TO BE A WINNER -->
+<article class="row">
+    <div class="col-md-6">
+        <canvas id="scene" width="480" height="320">
+            Your browser does not support the canvas element.
+        </canvas>
+    </div>
+    <div class="col-md-6">
+        <h3><strong>Source</strong> Code</h3>
+        <iframe src="examples/{{example.link}}/js/class.main.js" />
+
+    </div>
+</article>
+<!-- /BORN TO BE A WINNER -->
+
+    <script type="text/javascript" src="examples/{{example.link}}/js/class.main.js"></script>
+
+<div class="divider"><!-- divider -->
+    <i class="fa fa-star"></i>
+</div>
+
+<!-- RELATED -->
+<h2><strong>Related</strong> Examples</h2>
+<div class="row" id="examples" ng-controller="examplesCtrl">
+
+    <div class="col-md-3" ng-repeat="example in examples | filter:{type:example.type}">
+        <div class="item-box">
+            <figure>
+                <a class="item-hover lightbox" href="example.html?e={{example.link}}" data-plugin-options='{"type":"iframe"}'>
+                    <span class="overlay color2"></span>
+									<span class="inner">
+										<span class="block fa fa-plus fsize20"></span>
+										<strong>VIEW</strong> DEMO
+									</span>
+                </a>
+                <img class="img-responsive" src="examples/{{example.link}}/screenshot.png" width="260" height="260" alt="">
+            </figure>
+            <div class="item-box-desc">
+                <h4>{{example.name}}</h4>
+                <small class="styleColor">{{example.comment}}</small>
+            </div>
         </div>
-        <!-- /.masonry-container -->
+    </div>
 
-        <!-- CALLOUT -->
-        <div class="bs-callout text-center nomargin-bottom">
-            <h3>Want to share an example on this page? <a href="mailto:gwennael.buchet@gmail.com"
-                                                          class="btn btn-primary btn-lg">Yes, let's
-                work together!</a></h3>
-        </div>
-        <!-- /CALLOUT -->
+ </div>
+<!-- /RELATED -->
 
 
-    </section>
 
-    <!-- /PORTFOLIO -->
+<!-- CALLOUT -->
+<div class="bs-callout text-center nomargin-bottom">
+    <h3>Do you like what you see? <a href="contact-us.html" target="_blank" class="btn btn-primary btn-lg">Yes, let's work together!</a></h3>
+</div>
+<!-- /CALLOUT -->
 
+</section>
 
 </div>
 <!-- /WRAPPER -->
