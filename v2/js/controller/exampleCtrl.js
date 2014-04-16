@@ -9,9 +9,9 @@
 
 }]);*/
 
-app.controller('exampleCtrl', ['$scope', '$http', '$location', 'ExamplesSrv', function($scope, $http, $location, examplesSrv) {
-	var searchObject = $location.search();
-	console.log(searchObject);
+app.controller('exampleCtrl', ['$scope', '$http', '$locationProvider', 'ExamplesSrv', function($scope, $http, $locationProvider, examplesSrv) {
+	var searchObject = $locationProvider.search();
+	console.log(searchObject['e']);
 	examplesSrv.load($scope, $http, loadExample);
 
 	function loadExample() {
