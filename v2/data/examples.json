@@ -4,7 +4,8 @@
 		"details" : "....",
 		"comment" : "...",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/01_Text_01_Simple"
+		"link"    : "01_Basic_Shapes/01_Text_01_Simple",
+		"version" : "2.0.0"
 	},
 	{
 		"name"    : "Square",

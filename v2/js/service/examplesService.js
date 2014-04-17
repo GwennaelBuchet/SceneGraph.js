@@ -23,5 +23,11 @@ app.service('ExamplesSrv', /*['$scope', '$http',*/ function() {
 					return this.examples[i];
 				}
 			}
+		},
+
+		this.getURLParameter = function(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) ||
+									   [,
+										   ""])[1].replace(/\+/g, '%20')) || null
 		}
 }/*]*/);

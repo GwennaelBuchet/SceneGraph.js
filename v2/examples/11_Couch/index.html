@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport"
+          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script type="text/javascript" src="js/ext/prototype.js"></script>
+</head>
+
+<body style="margin:0; overflow: hidden">
+
+<div id="center">
+    <div>
+        <img src="images/Maquette-header.png" alt="img_header"/>
+    </div>
+
+    <div>
+        <canvas id="scene" width="980" height="473">
+            Your browser does not support the canvas element.
+        </canvas>
+    </div>
+
+    <div>
+        <img src="images/Maquette-footer.png" alt="img_footer"/>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+
+
+    window.onload = function () {
+        var canvasScene = document.getElementById("scene");
+        var game = new App(canvasScene);
+    }
+</script>
+
+
+<!--script type="text/javascript" src="../../min/scenegraph_2.0.0.min.js"></script-->
+<script type="text/javascript" src="js/ext/cgscenegraph_2.0.0-SNAPSHOT.min.js"></script>
+
+<script type="text/javascript" src="js/couch_1.min.js"></script>
+</body>
+</html>

@@ -1,22 +1,36 @@
-/*app.controller('exampleCtrl', ['$scope', '$http', '$location', 'ExamplesSrv', function($scope, $http, $location, examplesSrv) {
-	var searchObject = $location.search();
+app.controller(
+	'exampleCtrl',
+	['$scope',
+	 '$http',
+	 '$location',
+	 'ExamplesSrv',
+	 'require',
+	 function($scope, $http, $location, examplesSrv, require) {
 
-	examplesSrv.load($scope, $http, loadExample);
+		 var target = examplesSrv.getURLParameter("e");
+		 $scope.require = require;
 
-	function loadExample() {
-		$scope.example = examplesSrv.find(searchObject.e);
-	}
+		 examplesSrv.load($scope, $http, loadExample);
 
-}]);*/
+		 function loadExample() {
+			 $scope.example = examplesSrv.find(target);
 
-app.controller('exampleCtrl', ['$scope', '$http', '$locationProvider', 'ExamplesSrv', function($scope, $http, $locationProvider, examplesSrv) {
-	var searchObject = $locationProvider.search();
-	console.log(searchObject['e']);
-	examplesSrv.load($scope, $http, loadExample);
+			 //dynamic loading of JS file for example
+			 var file = "examples/" + $scope.example.link + "/js/class.main.js";
+			 loadScript(file);
+		 }
 
-	function loadExample() {
-		//$scope.example = $scope.examples[0];
-		$scope.example = examplesSrv.find(searchObject.e);
-	}
-
-}]);
+		 // Load the remote JS file.
+		 function loadScript(file) {
+			 $scope.require(
+				 [ file ],
+				 function() {
+					 //todo: intialize scene
+					 var canvasScene = document.getElementById("scene");
+					 new CGMain(canvasScene);
+				 }
+			 );
+		 }
+	 }
+	]
+);
