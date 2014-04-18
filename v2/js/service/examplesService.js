@@ -17,9 +17,9 @@ app.service('ExamplesSrv', /*['$scope', '$http',*/ function() {
 		)
 	},
 
-		this.find = function(name) {
+		this.find = function(code) {
 			for (var i in this.examples) {
-				if (this.examples[i].name === name) {
+				if (this.examples[i].code === code) {
 					return this.examples[i];
 				}
 			}

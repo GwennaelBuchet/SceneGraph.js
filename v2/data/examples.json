@@ -1,5 +1,6 @@
 [
 	{
+		"code"    : "text",
 		"name"    : "Text node",
 		"details" : "....",
 		"comment" : "...",
@@ -8,13 +9,15 @@
 		"version" : "2.0.0"
 	},
 	{
-		"name"    : "Square",
+		"code"    : "square",
+		"name"    : "Square Node",
 		"details" : "....",
 		"comment" : "...",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/02_Square"
 	},
 	{
+		"code"    : "circle",
 		"name"    : "Circle node",
 		"details" : "....",
 		"comment" : "...",
@@ -22,6 +25,7 @@
 		"link"    : "01_Basic_Shapes/03_Circle"
 	},
 	{
+		"code"    : "ellipse",
 		"name"    : "Ellipse node",
 		"details" : "....",
 		"comment" : "...",
@@ -29,6 +33,7 @@
 		"link"    : "01_Basic_Shapes/04_Ellipse"
 	},
 	{
+		"code"    : "image",
 		"name"    : "Image node",
 		"details" : "....",
 		"comment" : "...",
@@ -36,6 +41,7 @@
 		"link"    : "01_Basic_Shapes/05_Images/01_Simple"
 	},
 	{
+		"code"    : "tiles",
 		"name"    : "Image tiles",
 		"details" : "....",
 		"comment" : "...",
@@ -43,6 +49,7 @@
 		"link"    : "01_Basic_Shapes/05_Images/02_Tiles"
 	},
 	{
+		"code"    : "sprites",
 		"name"    : "Animated Sprites",
 		"details" : "....",
 		"comment" : "...",
@@ -50,6 +57,7 @@
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple"
 	},
 	{
+		"code"    : "multisprites",
 		"name"    : "Multi Sprites",
 		"details" : "....",
 		"comment" : "...",
@@ -57,6 +65,7 @@
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image"
 	},
 	{
+		"code"    : "character",
 		"name"    : "Animated player",
 		"details" : "....",
 		"comment" : "...",
@@ -64,6 +73,7 @@
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
 	},
 	{
+		"code"    : "webview",
 		"name"    : "Web View",
 		"details" : "....",
 		"comment" : "...",
@@ -71,13 +81,15 @@
 		"link"    : "01_Basic_Shapes/07_WebView"
 	},
 	{
-		"name"    : "Button",
+		"code"    : "button",
+		"name"    : "Button Node",
 		"details" : "....",
 		"comment" : "...",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/08_Button"
 	},
 	{
+		"code"    : "colorpicker",
 		"name"    : "Color Picker",
 		"details" : "....",
 		"comment" : "...",
@@ -85,6 +97,7 @@
 		"link"    : "01_Basic_Shapes/09_ColorPicker"
 	},
 	{
+		"code"    : "tab",
 		"name"    : "Tab Menu",
 		"details" : "....",
 		"comment" : "...",
@@ -93,6 +106,7 @@
 	},
 
 	{
+		"code"    : "touch",
 		"name"    : "Mouse & touch",
 		"details" : "....",
 		"comment" : "...",
@@ -100,6 +114,7 @@
 		"link"    : "02_Events/01_mouse&touch"
 	},
 	{
+		"code"    : "over",
 		"name"    : "Mouse over",
 		"details" : "....",
 		"comment" : "...",
@@ -107,6 +122,7 @@
 		"link"    : "02_Events/02_mouseover"
 	},
 	{
+		"code"    : "stress",
 		"name"    : "Stress test",
 		"details" : "....",
 		"comment" : "...",
@@ -115,6 +131,7 @@
 	},
 
 	{
+		"code"    : "srt",
 		"name"    : "S.R.T.",
 		"details" : "....",
 		"comment" : "...",
@@ -122,13 +139,15 @@
 		"link"    : "03_Animation/animation_01_SRT"
 	},
 	{
-		"name"    : "Collision",
+		"code"    : "collision",
+		"name"    : "Collision detection",
 		"details" : "....",
 		"comment" : "...",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_02_testCollision"
 	},
 	{
+		"code"    : "multipleanims",
 		"name"    : "Multiple anim.",
 		"details" : "....",
 		"comment" : "...",
@@ -136,6 +155,7 @@
 		"link"    : "03_Animation/animation_03_Multiple"
 	},
 	{
+		"code"    : "precomputedanims",
 		"name"    : "Stored animation",
 		"details" : "....",
 		"comment" : "...",
@@ -143,6 +163,7 @@
 		"link"    : "03_Animation/animation_04_Precompute"
 	},
 	{
+		"code"    : "circles",
 		"name"    : "Animated circles",
 		"details" : "....",
 		"comment" : "...",
@@ -151,6 +172,7 @@
 	},
 
 	{
+		"code"    : "fountain",
 		"name"    : "Fountain",
 		"details" : "....",
 		"comment" : "...",
@@ -158,6 +180,7 @@
 		"link"    : "04_Advanced/01_Particles_Fountain"
 	},
 	{
+		"code"    : "fire",
 		"name"    : "Particles fire",
 		"details" : "....",
 		"comment" : "...",
@@ -165,6 +188,7 @@
 		"link"    : "04_Advanced/02_Particles_Fire"
 	},
 	{
+		"code"    : "particlesimage",
 		"name"    : "Particles image",
 		"details" : "....",
 		"comment" : "...",
@@ -172,6 +196,7 @@
 		"link"    : "04_Advanced/03_Particles_Images"
 	},
 	{
+		"code"    : "traverser",
 		"name"    : "Traverser",
 		"details" : "....",
 		"comment" : "...",
@@ -179,6 +204,7 @@
 		"link"    : "04_Advanced/04_Traverser"
 	},
 	{
+		"code"    : "displayratio",
 		"name"    : "Display ratio",
 		"details" : "....",
 		"comment" : "...",
