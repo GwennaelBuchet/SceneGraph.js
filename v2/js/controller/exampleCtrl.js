@@ -9,6 +9,8 @@ app.controller(
 
 		 var target = examplesSrv.getURLParameter("e");
 		 $scope.require = require;
+		 $scope.jsfile = "";
+		 $scope.indexfile = "";
 
 		 examplesSrv.load($scope, $http, loadExample);
 		 var canvasElt = null;
@@ -19,8 +21,9 @@ app.controller(
 			 $scope.example = examplesSrv.find(target);
 
 			 //dynamic loading of JS file for example
-			 var file = "examples/" + $scope.example.link + "/js/class.main.js";
-			 loadScript(file);
+			 $scope.jsfile = "examples/" + $scope.example.link + "/js/class.main.js";
+			 $scope.indexfile = "examples/" + $scope.example.link + "/index.html";
+			 loadScript($scope.jsfile);
 		 }
 
 		 // Load the remote JS file.

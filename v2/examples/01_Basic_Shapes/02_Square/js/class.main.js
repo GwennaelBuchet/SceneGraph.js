@@ -42,8 +42,8 @@ var CGMain = CGSGView.extend(
 
 		initializeCanvas : function () {
 			//resize the canvas to fulfill the viewport
-			//this.viewDimension = cgsgGetRealViewportDimension();
-			//this.setCanvasDimension(this.viewDimension);
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
 		},
 
 		/**

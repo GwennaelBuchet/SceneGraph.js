@@ -82,7 +82,7 @@ var CGMain = CGSGView.extend(
 			CGSG.cssManager.onLoadEnd = this.onCSSLoaded.bind(this);
 
 			//then load the file. URL is relative to the html file
-			CGSG.cssManager.loadCSSFile("../../../min/css/themes/gray/grayTheme.css");
+			CGSG.cssManager.loadCSSFile("../../../js/sg/css/themes/gray/grayTheme.css");
 		},
 
 		onCSSLoaded : function() {

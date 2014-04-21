@@ -160,19 +160,19 @@ var CGMain = CGSGView.extend(
 			var bindSwitchTheme = this.switchTheme.bind(this);
 
 			buttonPink.onClick = function() {
-				bindSwitchTheme("../../../min/css/themes/pink/pinkTheme.css");
+				bindSwitchTheme("../../../js/sg/css/themes/pink/pinkTheme.css");
 			};
 			buttonGreen.onClick = function() {
-				bindSwitchTheme("../../../min/css/themes/green/greenTheme.css");
+				bindSwitchTheme("../../../js/sg/css/themes/green/greenTheme.css");
 			};
 			buttonBlue.onClick = function() {
-				bindSwitchTheme("../../../min/css/themes/blue/blueTheme.css");
+				bindSwitchTheme("../../../js/sg/css/themes/blue/blueTheme.css");
 			};
 			buttonGray.onClick = function() {
-				bindSwitchTheme("../../../min/css/themes/gray/grayTheme.css");
+				bindSwitchTheme("../../../js/sg/css/themes/gray/grayTheme.css");
 			};
 
-			this.currentTheme = "../../../min/css/themes/gray/grayTheme.css";
+			this.currentTheme = "../../../js/sg/css/themes/gray/grayTheme.css";
 		},
 
 		/**

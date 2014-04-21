@@ -2,8 +2,8 @@
 	{
 		"code"    : "text",
 		"name"    : "Text node",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Text node uses CSS to be customized. Several CSS classes already defines: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' and 'p'.",
+		"comment" : "Powerful text node. Use CSS.",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/01_Text_01_Simple",
 		"version" : "2.0.0"
@@ -11,96 +11,112 @@
 	{
 		"code"    : "square",
 		"name"    : "Square Node",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Basic Square node example.",
+		"comment" : "Basic (round) Square node example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/02_Square"
 	},
 	{
 		"code"    : "circle",
 		"name"    : "Circle node",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Basic Circle node example.",
+		"comment" : "Basic Circle node example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/03_Circle"
 	},
 	{
 		"code"    : "ellipse",
 		"name"    : "Ellipse node",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Basic Ellipse node example",
+		"comment" : "Basic ELlipse Node example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/04_Ellipse"
 	},
 	{
 		"code"    : "image",
 		"name"    : "Image node",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Basic Image Example",
+		"comment" : "Basic Image example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/05_Images/01_Simple"
 	},
 	{
 		"code"    : "tiles",
 		"name"    : "Image tiles",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Tiles example",
+		"comment" : "Tiles example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/05_Images/02_Tiles"
 	},
 	{
 		"code"    : "sprites",
 		"name"    : "Animated Sprites",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Animated sprites example",
+		"comment" : "Animated sprites example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple"
 	},
 	{
 		"code"    : "multisprites",
 		"name"    : "Multi Sprites",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Multi sprites examples (from same picture)",
+		"comment" : "Multi sprites examples (from same picture)",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image"
 	},
 	{
 		"code"    : "character",
 		"name"    : "Animated player",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Complete animated character example",
+		"comment" : "Complete animated character example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
 	},
 	{
-		"code"    : "webview",
-		"name"    : "Web View",
-		"details" : "....",
-		"comment" : "...",
+		"code"    : "dom_input",
+		"name"    : "HTML input",
+		"details" : "DOM node can be used to instanciate any kind of HTML tag as a CGSGNode.",
+		"comment" : "Use of DOM node to create text input.",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/07_WebView"
+		"link"    : "01_Basic_Shapes/07_DOM/01_InputText"
+	},
+	{
+		"code"    : "dom_webview",
+		"name"    : "HTML Web View",
+		"details" : "DOM node can be used to instanciate any kind of HTML tag as a CGSGNode.",
+		"comment" : "Use of DOM node to create web view",
+		"type"    : "basic official",
+		"link"    : "01_Basic_Shapes/07_DOM/02_WebView"
 	},
 	{
 		"code"    : "button",
 		"name"    : "Button Node",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Customizable Button node",
+		"comment" : "Customizable Button node",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/08_Button"
 	},
 	{
 		"code"    : "colorpicker",
 		"name"    : "Color Picker",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Computed color picker (not based on pre-computed picture) to be very accurate and smooth, whatever its size.s",
+		"comment" : "Computed Color Picker",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/09_ColorPicker"
 	},
 	{
 		"code"    : "tab",
 		"name"    : "Tab Menu",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "",
+		"comment" : "",
+		"type"    : "basic official",
+		"link"    : "01_Basic_Shapes/10_TabMenu"
+	},
+	{
+		"code"    : "slider",
+		"name"    : "Slider Node",
+		"details" : "",
+		"comment" : "",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/10_TabMenu"
 	},
@@ -108,24 +124,24 @@
 	{
 		"code"    : "touch",
 		"name"    : "Mouse & touch",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Mouse & Touch example",
+		"comment" : "Mouse & Touch example",
 		"type"    : "event official",
 		"link"    : "02_Events/01_mouse&touch"
 	},
 	{
 		"code"    : "over",
 		"name"    : "Mouse over",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Simple Mouse-over example",
+		"comment" : "Simple mouse-over example",
 		"type"    : "event official",
 		"link"    : "02_Events/02_mouseover"
 	},
 	{
 		"code"    : "stress",
 		"name"    : "Stress test",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Stress test. SceneGraph.js is powerful :)",
+		"comment" : "Stress test.",
 		"type"    : "event official",
 		"link"    : "02_Events/03_StressTest"
 	},
@@ -133,40 +149,40 @@
 	{
 		"code"    : "srt",
 		"name"    : "S.R.T.",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Simple Scale-Rotation-Translation animation",
+		"comment" : "SImple SRT animation",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_01_SRT"
 	},
 	{
 		"code"    : "collision",
 		"name"    : "Collision detection",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Collision detection while animating",
+		"comment" : "Animation and Collision",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_02_testCollision"
 	},
 	{
 		"code"    : "multipleanims",
 		"name"    : "Multiple anim.",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Sequenced animation",
+		"comment" : "Sequenced animation",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_03_Multiple"
 	},
 	{
 		"code"    : "precomputedanims",
 		"name"    : "Stored animation",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Precomputed animation: compute animation once and play it on several nodes",
+		"comment" : "Precomputed animation",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_04_Precompute"
 	},
 	{
 		"code"    : "circles",
 		"name"    : "Animated circles",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "A simple animated circles example",
+		"comment" : "A simple animated circles example",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_05_Circles"
 	},
@@ -174,40 +190,40 @@
 	{
 		"code"    : "fountain",
 		"name"    : "Fountain",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Use of particles system of SceneGraph.js to easily simulate a fountain",
+		"comment" : "Use of integrated Particles system to simulate a fountain",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/01_Particles_Fountain"
 	},
 	{
 		"code"    : "fire",
 		"name"    : "Particles fire",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Use of integrated Particles system to easily simulate a fountain",
+		"comment" : "Use of integrated Particles system to simulate a fire",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/02_Particles_Fire"
 	},
 	{
 		"code"    : "particlesimage",
-		"name"    : "Particles image",
-		"details" : "....",
-		"comment" : "...",
+		"name"    : "Snow (particles)",
+		"details" : "Use of integrated Particles system to simulate falling snow.",
+		"comment" : "Particles system using Images to simulate snow",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/03_Particles_Images"
 	},
 	{
 		"code"    : "traverser",
 		"name"    : "Traverser",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "A Traverser is a helper class which traverse all (or a branch of) the graph to retrieve list of specific nodes (based on custom condition)",
+		"comment" : "Traverser example",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/04_Traverser"
 	},
 	{
 		"code"    : "displayratio",
 		"name"    : "Display ratio",
-		"details" : "....",
-		"comment" : "...",
+		"details" : "Display ratio example. Resize window to see how it works.",
+		"comment" : "Display ratio",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/05_DisplayRatio"
 	}
