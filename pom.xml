@@ -30,7 +30,7 @@ Any failure to comply with the above shall automatically terminate the license a
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.codeartex</groupId>
     <artifactId>scenegraph</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0-snapshot</version>
     <name>sceneGraph</name>
 
     <!--
