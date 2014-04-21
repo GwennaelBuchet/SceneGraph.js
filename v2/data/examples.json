@@ -60,7 +60,7 @@
 		"code"    : "multisprites",
 		"name"    : "Multi Sprites",
 		"details" : "Multi sprites examples (from same picture)",
-		"comment" : "Multi sprites examples (from same picture)",
+		"comment" : "Multi sprites examples",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image"
 	},
@@ -71,14 +71,6 @@
 		"comment" : "Complete animated character example",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
-	},
-	{
-		"code"    : "dom_input",
-		"name"    : "HTML input",
-		"details" : "DOM node can be used to instanciate any kind of HTML tag as a CGSGNode.",
-		"comment" : "Use of DOM node to create text input.",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/07_DOM/01_InputText"
 	},
 	{
 		"code"    : "dom_webview",
@@ -108,7 +100,7 @@
 		"code"    : "tab",
 		"name"    : "Tab Menu",
 		"details" : "",
-		"comment" : "",
+		"comment" : ".",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/10_TabMenu"
 	},
@@ -116,26 +108,18 @@
 		"code"    : "slider",
 		"name"    : "Slider Node",
 		"details" : "",
-		"comment" : "",
+		"comment" : ".",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/10_TabMenu"
+		"link"    : "01_Basic_Shapes/11_Slider"
 	},
 
 	{
 		"code"    : "touch",
 		"name"    : "Mouse & touch",
 		"details" : "Mouse & Touch example",
-		"comment" : "Mouse & Touch example",
+		"comment" : "EventManager example",
 		"type"    : "event official",
-		"link"    : "02_Events/01_mouse&touch"
-	},
-	{
-		"code"    : "over",
-		"name"    : "Mouse over",
-		"details" : "Simple Mouse-over example",
-		"comment" : "Simple mouse-over example",
-		"type"    : "event official",
-		"link"    : "02_Events/02_mouseover"
+		"link"    : "02_Events/02_eventManager"
 	},
 	{
 		"code"    : "stress",
@@ -143,14 +127,14 @@
 		"details" : "Stress test. SceneGraph.js is powerful :)",
 		"comment" : "Stress test.",
 		"type"    : "event official",
-		"link"    : "02_Events/03_StressTest"
+		"link"    : "02_Events/04_StressTest"
 	},
 
 	{
 		"code"    : "srt",
 		"name"    : "S.R.T.",
 		"details" : "Simple Scale-Rotation-Translation animation",
-		"comment" : "SImple SRT animation",
+		"comment" : "Simple SRT animation",
 		"type"    : "anim official",
 		"link"    : "03_Animation/animation_01_SRT"
 	},
