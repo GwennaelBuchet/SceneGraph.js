@@ -213,7 +213,8 @@ var CGSGCSSManager = CGSGObject.extend(
 					}
 				}
 				else {
-					console.log("No CSS file found. Be sure application is running under a web server and CSS file is correctly loaded.");
+					console.log("WARNING: '" + document.styleSheets[s].href +
+					            "' file without class. Be sure application is running under a web server and CSS file is correctly loaded.");
 				}
 			}
 		},
