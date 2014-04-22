@@ -73,12 +73,12 @@
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
 	},
 	{
-		"code"    : "dom_webview",
-		"name"    : "HTML Web View",
+		"code"    : "dom_input",
+		"name"    : "HTML Input",
 		"details" : "DOM node can be used to instanciate any kind of HTML tag as a CGSGNode.",
-		"comment" : "Use of DOM node to create web view",
+		"comment" : "Use of DOM node to get textfield",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/07_DOM/02_WebView"
+		"link"    : "01_Basic_Shapes/07_DOM/01_InputText"
 	},
 	{
 		"code"    : "button",
@@ -86,7 +86,8 @@
 		"details" : "Customizable Button node",
 		"comment" : "Customizable Button node",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/08_Button"
+		"link"    : "01_Basic_Shapes/08_Button",
+		"files"   : "css/style.css"
 	},
 	{
 		"code"    : "colorpicker",

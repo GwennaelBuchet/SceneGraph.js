@@ -23,17 +23,21 @@ app.controller(
 			 //dynamic loading of JS file for example
 			 $scope.jsfile = "examples/" + $scope.example.link + "/js/class.main.js";
 			 $scope.indexfile = "examples/" + $scope.example.link + "/index.html";
-			 loadScript($scope.jsfile);
+			 var a = [];
+			 //todo: au lieu de charer via requiresj, charger via JS standard
+			 if ($scope.example.files != "")
+				 a.push($scope.example.files);
+			 a.push($scope.jsfile);
+			 loadScript(a);
 		 }
 
 		 // Load the remote JS file.
-		 function loadScript(file) {
+		 function loadScript(files) {
 			 $scope.require(
-				 [ file ],
+				 files/*[ file ]*/,
 				 function() {
 					 canvasElt = document.getElementById('divScene');
 
-					 //todo: intialize scene
 					 var canvasScene = document.getElementById("scene");
 					 sample = new CGMain(canvasScene);
 
