@@ -94,35 +94,35 @@ var CGMain = CGSGView.extend(
 
                 var buttonPictoTop = new CGSGNodeButton(10, 140, "Picto @ TOP");
                 buttonPictoTop.setPictoPosition(CGSGPositionMode.TOP);
-                buttonPictoTop.setImageURL("images/alert.png");
+                buttonPictoTop.setImageURL("/cgsg/v2/examples/shared/images/alert.png");
                 rootNode.addChild(buttonPictoTop, null);
                 buttonPictoTop.name = "picto top Button";
                 buttonPictoTop.onClick = bindClickHandler;
 
                 var buttonPictoLeft = new CGSGNodeButton(140, 120, "Picto @ LEFT");
                 buttonPictoLeft.setPictoPosition(CGSGPositionMode.LEFT);
-                buttonPictoLeft.setImageURL("images/error.png");
+                buttonPictoLeft.setImageURL("/cgsg/v2/examples/shared/images/error.png");
                 rootNode.addChild(buttonPictoLeft, null);
                 buttonPictoLeft.name = "picto left Button";
                 buttonPictoLeft.onClick = bindClickHandler;
 
                 var buttonPictoRight = new CGSGNodeButton(137, 180, "Picto @ RIGHT");
                 buttonPictoRight.setPictoPosition(CGSGPositionMode.RIGHT);
-                buttonPictoRight.setImageURL("images/error.png");
+                buttonPictoRight.setImageURL("/cgsg/v2/examples/shared/images/error.png");
                 rootNode.addChild(buttonPictoRight, null);
                 buttonPictoRight.name = "picto right Button";
                 buttonPictoRight.onClick = bindClickHandler;
 
                 var buttonPictoBottom = new CGSGNodeButton(325, 140, "Picto @ BOTTOM");
                 buttonPictoBottom.setPictoPosition(CGSGPositionMode.BOTTOM);
-                buttonPictoBottom.setImageURL("images/alert.png");
+                buttonPictoBottom.setImageURL("/cgsg/v2/examples/shared/images/alert.png");
                 rootNode.addChild(buttonPictoBottom, null);
                 buttonPictoBottom.name = "picto bottom Button";
                 buttonPictoBottom.onClick = bindClickHandler;
 
                 this.img = new Image();
                 this.img.onload = this.onImageLoaded.bind(this);
-                this.img.src = "images/board.png";
+                this.img.src = "/cgsg/v2/examples/shared/images/exclamation.png";
                 this.buttonSpritesheet = new CGSGNodeButton(50, 240, "Pictos in \nspritesheet");
                 this.buttonSpritesheet.setSlices([
                     new CGSGRegion(0, 0, 32, 32),

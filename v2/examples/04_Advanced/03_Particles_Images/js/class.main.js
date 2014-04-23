@@ -70,15 +70,15 @@ var CGMain = CGSGView.extend(
 
 			this.imgs[0] = new Image();
 			this.imgs[0].onload = this.onImageLoaded.bind(this);
-			this.imgs[0].src = "images/flocon1.png";
+			this.imgs[0].src = "/cgsg/v2/examples/shared/images/flocon1.png";
 
 			this.imgs[1] = new Image();
 			this.imgs[1].onload = this.onImageLoaded.bind(this);
-			this.imgs[1].src = "images/flocon2.png";
+			this.imgs[1].src = "/cgsg/v2/examples/shared/images/flocon2.png";
 
 			this.imgs[2] = new Image();
 			this.imgs[2].onload = this.onImageLoaded.bind(this);
-			this.imgs[2].src = "images/flocon3.png";
+			this.imgs[2].src = "/cgsg/v2/examples/shared/images/flocon3.png";
 
 
 			//finally, add the particle system into the scenegraph

@@ -73,21 +73,14 @@
 		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
 	},
 	{
-		"code"    : "dom_input",
-		"name"    : "HTML Input",
-		"details" : "DOM node can be used to instanciate any kind of HTML tag as a CGSGNode.",
-		"comment" : "Use of DOM node to get textfield",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/07_DOM/01_InputText"
-	},
-	{
-		"code"    : "button",
-		"name"    : "Button Node",
-		"details" : "Customizable Button node",
-		"comment" : "Customizable Button node",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/08_Button",
-		"files"   : "css/style.css"
+		"code"     : "button",
+		"name"     : "Button Node",
+		"details"  : "Customizable Button node",
+		"comment"  : "Customizable Button node",
+		"type"     : "basic official",
+		"link"     : "01_Basic_Shapes/08_Button",
+		"addedCSS" : "examples/shared/css/style.css",
+		"addedJS"  : ""
 	},
 	{
 		"code"    : "colorpicker",
@@ -96,14 +89,6 @@
 		"comment" : "Computed Color Picker",
 		"type"    : "basic official",
 		"link"    : "01_Basic_Shapes/09_ColorPicker"
-	},
-	{
-		"code"    : "tab",
-		"name"    : "Tab Menu",
-		"details" : "",
-		"comment" : ".",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/10_TabMenu"
 	},
 	{
 		"code"    : "slider",
@@ -131,14 +116,6 @@
 		"link"    : "02_Events/04_StressTest"
 	},
 
-	{
-		"code"    : "srt",
-		"name"    : "S.R.T.",
-		"details" : "Simple Scale-Rotation-Translation animation",
-		"comment" : "Simple SRT animation",
-		"type"    : "anim official",
-		"link"    : "03_Animation/animation_01_SRT"
-	},
 	{
 		"code"    : "collision",
 		"name"    : "Collision detection",
@@ -176,7 +153,7 @@
 		"code"    : "fountain",
 		"name"    : "Fountain",
 		"details" : "Use of particles system of SceneGraph.js to easily simulate a fountain",
-		"comment" : "Use of integrated Particles system to simulate a fountain",
+		"comment" : "Fountain with Particle System node",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/01_Particles_Fountain"
 	},
@@ -184,7 +161,7 @@
 		"code"    : "fire",
 		"name"    : "Particles fire",
 		"details" : "Use of integrated Particles system to easily simulate a fountain",
-		"comment" : "Use of integrated Particles system to simulate a fire",
+		"comment" : "Fire with Particle System node",
 		"type"    : "advanced official",
 		"link"    : "04_Advanced/02_Particles_Fire"
 	},
@@ -192,9 +169,10 @@
 		"code"    : "particlesimage",
 		"name"    : "Snow (particles)",
 		"details" : "Use of integrated Particles system to simulate falling snow.",
-		"comment" : "Particles system using Images to simulate snow",
+		"comment" : "Snow with images & Particle System",
 		"type"    : "advanced official",
-		"link"    : "04_Advanced/03_Particles_Images"
+		"link"    : "04_Advanced/03_Particles_Images",
+		"addedJS" : "node.sky.js"
 	},
 	{
 		"code"    : "traverser",

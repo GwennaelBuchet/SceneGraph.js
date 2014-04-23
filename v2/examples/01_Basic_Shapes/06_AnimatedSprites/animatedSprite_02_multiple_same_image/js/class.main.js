@@ -94,7 +94,7 @@ var CGMain = CGSGView.extend(
 			//The affectation to the sprite will be done in the loaded handler function
 			this.spriteSheet = new Image();
 			this.spriteSheet.onload = this.onImageLoaded();
-			this.spriteSheet.src = "images/board.png";
+			this.spriteSheet.src = "/cgsg/v2/examples/shared/images/board.png";
 		},
 
 		/**

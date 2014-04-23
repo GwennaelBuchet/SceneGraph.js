@@ -91,7 +91,7 @@ var CGMain = CGSGView.extend(
 			var emitter = this.particlesSystem.addEmitter(
 				this.createParticle.bind(this)
 				, new CGSGRegion(300, 200, 8, 8) //emission area
-				, 800                                   //nbParticlesMax
+				, 150                                   //nbParticlesMax
 				, new CGSGVector2D(0.0, 1)            //initial velocity of a particle
 				, Math.PI / 4.0                         //angle area to rotate the direction vector
 				, 5.0       //speed

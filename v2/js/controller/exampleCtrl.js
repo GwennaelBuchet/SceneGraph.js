@@ -23,12 +23,31 @@ app.controller(
 			 //dynamic loading of JS file for example
 			 $scope.jsfile = "examples/" + $scope.example.link + "/js/class.main.js";
 			 $scope.indexfile = "examples/" + $scope.example.link + "/index.html";
-			 var a = [];
-			 //todo: au lieu de charer via requiresj, charger via JS standard
-			 if ($scope.example.files != "")
-				 a.push($scope.example.files);
-			 a.push($scope.jsfile);
-			 loadScript(a);
+
+			 if ($scope.example.addedCSS != "") {
+				 loadCSSFile($scope.example.addedCSS);
+			 }
+			 else {
+				 var a = [];
+				 if ($scope.example.addedJS != "")
+					 a.push("examples/" + $scope.example.link + "/js/" + $scope.example.addedJS);
+
+				 a.push($scope.jsfile);
+				 loadScript(a);
+			 }
+		 }
+
+		 function loadCSSFile(url) {
+			 var headID = document.getElementsByTagName("head")[0];
+			 var cssNode = document.createElement('link');
+
+			 cssNode.onload = _createDelegate(this, _onFileLoaded);
+
+			 cssNode.type = 'text/css';
+			 cssNode.rel = 'stylesheet';
+			 cssNode.media = 'screen';
+			 cssNode.href = url;
+			 headID.appendChild(cssNode);
 		 }
 
 		 // Load the remote JS file.
@@ -67,6 +86,35 @@ app.controller(
 				 var displayRatio = new CGSGScale(sw, sh);
 				 sample.setDisplayRatio(displayRatio);
 			 }
+		 }
+
+		 /**
+		  * used to call delegate method when the css file is finally loaded
+		  * @private
+		  * @method _createDelegate
+		  * @param objectContext
+		  * @param delegateMethod
+		  * @return {Function}
+		  */
+		 function _createDelegate(objectContext, delegateMethod) {
+			 return function () {
+				 return delegateMethod.call(objectContext);
+			 }
+		 }
+
+		 /**
+		  * fired when the css file is loaded.
+		  * @private
+		  * @method _onFileLoaded
+		  * @param event {Event}
+		  */
+		 function _onFileLoaded(event) {
+			 var a = [];
+			 if ($scope.example.addedJS != "")
+				 a.push("examples/" + $scope.example.link + "/js/" + $scope.example.addedJS);
+
+			 a.push($scope.jsfile);
+			 loadScript(a);
 		 }
 	 }
 	]

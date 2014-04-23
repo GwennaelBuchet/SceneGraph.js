@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
 
             this.img = new Image();
             this.img.onload = this.onImageLoaded.bind(this);
-            this.img.src = "images/board.png";
+            this.img.src = "/cgsg/v2/examples/shared/images/board.png";
         },
 
         onImageLoaded:function () {
