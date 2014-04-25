@@ -75,14 +75,14 @@ var CGMain = CGSGView.extend(
 
 
 			//add a slider to control radius for 2nd square
-			var txt = new CGSGNodeText(10, 10, "Radius of gray rectangle: " + square.radius);
+			var txt = new CGSGNodeText(10, 10, "Radius of gray rectangle: " + (square.radius || "0"));
 			txt.setClass("cgsg-h2");
 			this.rootNode.addChild(txt);
 
 			var sliderListener = (function(event) {
 				var s = event.observable.getParentSlider();
 				square.radius = s.value;
-				txt.setText("Radius of gray rectangle: " + square.radius);
+				txt.setText("Radius of gray rectangle: " + (square.radius || "0"));
 			}).bind(this);
 
 			var slider = new CGSGNodeSlider(20, 40, 400, 10);

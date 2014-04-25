@@ -26,15 +26,6 @@
     <!-- CORE CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/superslides.css" rel="stylesheet" type="text/css"/>
-
-    <!-- REVOLUTION SLIDER -->
-    <link href="assets/plugins/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 
     <!-- THEME CSS -->
     <link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
@@ -49,66 +40,7 @@
     <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
 
     <link id="theme" rel="stylesheet" type="text/css" href="js/sg/css/themes/gray/grayTheme.css" title="theme"/>
-    <script type="text/javascript" src="js/sg/scenegraph_2.1.0-snapshot.min.js"></script>
-
-    <!--script type="text/javascript" src="src/utils/util.array.js"></script>
-    <script type="text/javascript" src="src/utils/util.string.js"></script>
-    <script type="text/javascript" src="src/utils/class.class.js"></script>
-    <script type="text/javascript" src="src/utils/class.map.js"></script>
-    <script type="text/javascript" src="src/utils/util.color.js"></script>
-    <script type="text/javascript" src="src/utils/math/class.vector2D.js"></script>
-    <script type="text/javascript" src="src/utils/class.region.js"></script>
-    <script type="text/javascript" src="src/constants.js"></script>
-    <script type="text/javascript" src="src/utils/class.traverser.js"></script>
-    <script type="text/javascript" src="src/utils/class.imgManager.js"></script>
-
-    <script type="text/javascript" src="src/event/class.event.js"></script>
-    <script type="text/javascript" src="src/event/class.eventmanager.js"></script>
-
-    <script type="text/javascript" src="src/theme/class.CSSManager.js"></script>
-
-    <script type="text/javascript" src="src/animation/class.keyframe.js"></script>
-    <script type="text/javascript" src="src/interpolator/class.interpolator.js"></script>
-    <script type="text/javascript" src="src/interpolator/class.interpolator.linear.js"></script>
-    <script type="text/javascript" src="src/interpolator/class.interpolator.TCB.js"></script>
-    <script type="text/javascript" src="src/animation/class.anim.timeline.js"></script>
-    <script type="text/javascript" src="src/animation/class.animmanager.js"></script>
-
-    <script type="text/javascript" src="src/collision/enum.collision.method.js"></script>
-    <script type="text/javascript" src="src/collision/class.collision.tester.region.js"></script>
-    <script type="text/javascript" src="src/collision/class.collision.tester.ghost.ondemand.js"></script>
-    <script type="text/javascript" src="src/collision/class.collision.tester.factory.js"></script>
-    <script type="text/javascript" src="src/collision/class.collision.manager.js"></script>
-
-    <script type="text/javascript" src="src/globals.js"></script>
-    <script type="text/javascript" src="src/utils/util.global.js"></script>
-    <script type="text/javascript" src="src/utils/util.color.js"></script>
-
-    <script type="text/javascript" src="src/mask/class.mask.js"></script>
-    <script type="text/javascript" src="src/mask/class.mask.clip.js"></script>
-
-    <script type="text/javascript" src="src/utils/math/math.js"></script>
-    <script type="text/javascript" src="src/utils/class.handlebox.js"></script>
-    <script type="text/javascript" src="src/node/class.node.js"></script>
-
-    <script type="text/javascript" src="src/node/class.node.dom.js"></script>
-    <script type="text/javascript" src="src/node/class.node.line.js"></script>
-    <script type="text/javascript" src="src/node/class.node.curveTCB.js"></script>
-    <script type="text/javascript" src="src/node/class.node.colorPicker.js"></script>
-    <script type="text/javascript" src="src/node/class.node.tabMenu.js"></script>
-    <script type="text/javascript" src="src/node/class.node.text.js"></script>
-    <script type="text/javascript" src="src/node/class.node.webview.js"></script>
-    <script type="text/javascript" src="src/node/class.node.square.js"></script>
-    <script type="text/javascript" src="src/node/class.node.slider.js"></script>
-    <script type="text/javascript" src="src/node/class.node.circle.js"></script>
-    <script type="text/javascript" src="src/node/class.node.ellipse.js"></script>
-    <script type="text/javascript" src="src/node/class.node.image.js"></script>
-    <script type="text/javascript" src="src/node/class.node.animatedSprite.js"></script>
-    <script type="text/javascript" src="src/node/class.node.button.js"></script>
-    <script type="text/javascript" src="src/node/class.particles.js"></script>
-
-    <script type="text/javascript" src="src/class.scenegraph.js"></script>
-    <script type="text/javascript" src="src/class.view.js"></script-->
+    <!--script type="text/javascript" src="js/sg/scenegraph_2.1.0-snapshot.min.js"></script-->
 
 </head>
 <body ng-app="cgsgApp">
@@ -139,37 +71,31 @@
 
         <h2><strong>{{example.name}}</strong> example</h2>
 
-
         <p class="lead">
             {{example.details}}
+
+            <small class="font300 fsize13 block project_quick_info">
+                <span><i class="fa fa-beer styleSecondColor"></i> {{example.type}}</span>
+            </small>
         </p>
-        <small class="font300 fsize13 block project_quick_info">
-            <span><i class="fa fa-beer styleSecondColor"></i> {{example.type}}</span>
-        </small>
 
         <div class="text-center">
-            <a href="{{indexfile}}" target="_blank" class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i>Open in a new window</a>
-	        <a href="{{jsfile}}" class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i>View source</a>
+            <a href="{{indexfile}}" target="_blank" class="btn btn-primary btn-lg btn-margin-top"><i
+                    class="fa fa-external-link"></i>Open in a new window</a>
+            <a href="{{jsfile}}" class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i>View
+                source</a>
         </div>
-
 
         <div class="divider">
             <i class="fa fa-star"></i><br/>
-	        <p>Using responsive mode:</p>
         </div>
 
-
         <article class="row">
-            <div class="col-md-12" id="divScene">
+            <div class="col-md-12 text-center" id="divScene">
                 <canvas id="scene" width="1170" height="480">
                     Your browser does not support the canvas element.
                 </canvas>
             </div>
-            <!--div class="col-md-6">
-                <h3><strong>Source</strong> Code</h3>
-                <iframe src="examples/{{example.link}}/js/class.main.js" />
-
-            </div-->
         </article>
 
 
@@ -205,7 +131,6 @@
 
 <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 <script type="text/javascript" src="assets/plugins/stellar/jquery.stellar.min.js"></script>
 <script type="text/javascript" src="assets/plugins/knob/js/jquery.knob.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery.backstretch.min.js"></script>

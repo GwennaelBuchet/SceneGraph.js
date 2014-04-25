@@ -1,11 +1,96 @@
 [
 	{
+		"code"    : "planner",
+		"name"    : "Planner",
+		"details" : "",
+		"comment" : "Destroy a picture",
+		"type"    : "advanced official",
+		"folder"    : "09_Planner",
+		"version" : "cgscenegraph_1.4.2.min.js",
+		"mainjs"  : "planner_1.0.0.min.js",
+		"width": 1100,
+		"height": 1024
+	},
+	{
+		"code"    : "pixelator",
+		"name"    : "Pixelator",
+		"details" : "",
+		"comment" : "Destroy a picture",
+		"type"    : "advanced official",
+		"folder"    : "08_pixelator"
+	},
+	{
+		"code"    : "circles",
+		"name"    : "Animated circles",
+		"details" : "A simple animated circles example",
+		"comment" : "A simple animated circles example",
+		"type"    : "anim official",
+		"folder"    : "03_Animation/animation_05_Circles"
+	},
+	{
+		"code"    : "fountain",
+		"name"    : "Fountain",
+		"details" : "Use of particles system of SceneGraph.js to easily simulate a fountain",
+		"comment" : "Fountain with Particle System node",
+		"type"    : "advanced official",
+		"folder"    : "04_Advanced/01_Particles_Fountain"
+	},
+	{
+		"code"    : "fire",
+		"name"    : "Particles fire",
+		"details" : "Use of integrated Particles system to easily simulate a fountain",
+		"comment" : "Fire with Particle System node",
+		"type"    : "advanced official",
+		"folder"    : "04_Advanced/02_Particles_Fire"
+	},
+	{
+		"code"    : "particlesimage",
+		"name"    : "Snow (particles)",
+		"details" : "Use of integrated Particles system to simulate falling snow.",
+		"comment" : "Snow with images & Particle System",
+		"type"    : "advanced official",
+		"folder"    : "04_Advanced/03_Particles_Images",
+		"addedJS" : "node.sky.js"
+	},
+	{
+		"code"    : "tiles",
+		"name"    : "Image tiles",
+		"details" : "Tiles example",
+		"comment" : "Tiles example",
+		"type"    : "basic official",
+		"folder"    : "01_Basic_Shapes/05_Images/02_Tiles"
+	},
+	{
+		"code"    : "sprites",
+		"name"    : "Animated Sprites",
+		"details" : "Animated sprites example",
+		"comment" : "Animated sprites example",
+		"type"    : "basic official",
+		"folder"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple"
+	},
+	{
+		"code"    : "multisprites",
+		"name"    : "Multi Sprites",
+		"details" : "Multi sprites examples (from same picture)",
+		"comment" : "Multi sprites examples",
+		"type"    : "basic official",
+		"folder"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image"
+	},
+	{
+		"code"    : "character",
+		"name"    : "Animated player",
+		"details" : "Complete animated character example",
+		"comment" : "Complete animated character example",
+		"type"    : "basic official",
+		"folder"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
+	},
+	{
 		"code"    : "text",
 		"name"    : "Text node",
 		"details" : "Text node uses CSS to be customized. Several CSS classes already defines: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' and 'p'.",
 		"comment" : "Powerful text node. Use CSS.",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/01_Text_01_Simple",
+		"folder"    : "01_Basic_Shapes/01_Text_01_Simple",
 		"version" : "2.0.0"
 	},
 	{
@@ -14,7 +99,7 @@
 		"details" : "Basic Square node example.",
 		"comment" : "Basic (round) Square node example",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/02_Square"
+		"folder"    : "01_Basic_Shapes/02_Square"
 	},
 	{
 		"code"    : "circle",
@@ -22,7 +107,7 @@
 		"details" : "Basic Circle node example.",
 		"comment" : "Basic Circle node example",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/03_Circle"
+		"folder"    : "01_Basic_Shapes/03_Circle"
 	},
 	{
 		"code"    : "ellipse",
@@ -30,7 +115,7 @@
 		"details" : "Basic Ellipse node example",
 		"comment" : "Basic ELlipse Node example",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/04_Ellipse"
+		"folder"    : "01_Basic_Shapes/04_Ellipse"
 	},
 	{
 		"code"    : "image",
@@ -38,47 +123,16 @@
 		"details" : "Basic Image Example",
 		"comment" : "Basic Image example",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/05_Images/01_Simple"
+		"folder"    : "01_Basic_Shapes/05_Images/01_Simple"
 	},
-	{
-		"code"    : "tiles",
-		"name"    : "Image tiles",
-		"details" : "Tiles example",
-		"comment" : "Tiles example",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/05_Images/02_Tiles"
-	},
-	{
-		"code"    : "sprites",
-		"name"    : "Animated Sprites",
-		"details" : "Animated sprites example",
-		"comment" : "Animated sprites example",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple"
-	},
-	{
-		"code"    : "multisprites",
-		"name"    : "Multi Sprites",
-		"details" : "Multi sprites examples (from same picture)",
-		"comment" : "Multi sprites examples",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image"
-	},
-	{
-		"code"    : "character",
-		"name"    : "Animated player",
-		"details" : "Complete animated character example",
-		"comment" : "Complete animated character example",
-		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character"
-	},
+
 	{
 		"code"     : "button",
 		"name"     : "Button Node",
 		"details"  : "Customizable Button node",
 		"comment"  : "Customizable Button node",
 		"type"     : "basic official",
-		"link"     : "01_Basic_Shapes/08_Button",
+		"folder"     : "01_Basic_Shapes/08_Button",
 		"addedCSS" : "examples/shared/css/style.css",
 		"addedJS"  : ""
 	},
@@ -88,7 +142,7 @@
 		"details" : "Computed color picker (not based on pre-computed picture) to be very accurate and smooth, whatever its size.s",
 		"comment" : "Computed Color Picker",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/09_ColorPicker"
+		"folder"    : "01_Basic_Shapes/09_ColorPicker"
 	},
 	{
 		"code"    : "slider",
@@ -96,7 +150,7 @@
 		"details" : "",
 		"comment" : ".",
 		"type"    : "basic official",
-		"link"    : "01_Basic_Shapes/11_Slider"
+		"folder"    : "01_Basic_Shapes/11_Slider"
 	},
 
 	{
@@ -105,7 +159,7 @@
 		"details" : "Mouse & Touch example",
 		"comment" : "EventManager example",
 		"type"    : "event official",
-		"link"    : "02_Events/02_eventManager"
+		"folder"    : "02_Events/02_eventManager"
 	},
 	{
 		"code"    : "stress",
@@ -113,7 +167,7 @@
 		"details" : "Stress test. SceneGraph.js is powerful :)",
 		"comment" : "Stress test.",
 		"type"    : "event official",
-		"link"    : "02_Events/04_StressTest"
+		"folder"    : "02_Events/04_StressTest"
 	},
 
 	{
@@ -122,7 +176,7 @@
 		"details" : "Collision detection while animating",
 		"comment" : "Animation and Collision",
 		"type"    : "anim official",
-		"link"    : "03_Animation/animation_02_testCollision"
+		"folder"    : "03_Animation/animation_02_testCollision"
 	},
 	{
 		"code"    : "multipleanims",
@@ -130,7 +184,7 @@
 		"details" : "Sequenced animation",
 		"comment" : "Sequenced animation",
 		"type"    : "anim official",
-		"link"    : "03_Animation/animation_03_Multiple"
+		"folder"    : "03_Animation/animation_03_Multiple"
 	},
 	{
 		"code"    : "precomputedanims",
@@ -138,49 +192,16 @@
 		"details" : "Precomputed animation: compute animation once and play it on several nodes",
 		"comment" : "Precomputed animation",
 		"type"    : "anim official",
-		"link"    : "03_Animation/animation_04_Precompute"
-	},
-	{
-		"code"    : "circles",
-		"name"    : "Animated circles",
-		"details" : "A simple animated circles example",
-		"comment" : "A simple animated circles example",
-		"type"    : "anim official",
-		"link"    : "03_Animation/animation_05_Circles"
+		"folder"    : "03_Animation/animation_04_Precompute"
 	},
 
-	{
-		"code"    : "fountain",
-		"name"    : "Fountain",
-		"details" : "Use of particles system of SceneGraph.js to easily simulate a fountain",
-		"comment" : "Fountain with Particle System node",
-		"type"    : "advanced official",
-		"link"    : "04_Advanced/01_Particles_Fountain"
-	},
-	{
-		"code"    : "fire",
-		"name"    : "Particles fire",
-		"details" : "Use of integrated Particles system to easily simulate a fountain",
-		"comment" : "Fire with Particle System node",
-		"type"    : "advanced official",
-		"link"    : "04_Advanced/02_Particles_Fire"
-	},
-	{
-		"code"    : "particlesimage",
-		"name"    : "Snow (particles)",
-		"details" : "Use of integrated Particles system to simulate falling snow.",
-		"comment" : "Snow with images & Particle System",
-		"type"    : "advanced official",
-		"link"    : "04_Advanced/03_Particles_Images",
-		"addedJS" : "node.sky.js"
-	},
 	{
 		"code"    : "traverser",
 		"name"    : "Traverser",
 		"details" : "A Traverser is a helper class which traverse all (or a branch of) the graph to retrieve list of specific nodes (based on custom condition)",
 		"comment" : "Traverser example",
 		"type"    : "advanced official",
-		"link"    : "04_Advanced/04_Traverser"
+		"folder"    : "04_Advanced/04_Traverser"
 	},
 	{
 		"code"    : "displayratio",
@@ -188,6 +209,6 @@
 		"details" : "Display ratio example. Resize window to see how it works.",
 		"comment" : "Display ratio",
 		"type"    : "advanced official",
-		"link"    : "04_Advanced/05_DisplayRatio"
+		"folder"    : "04_Advanced/05_DisplayRatio"
 	}
 ]

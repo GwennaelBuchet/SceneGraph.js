@@ -114,8 +114,8 @@ p {
 	display: block;
 	-webkit-margin-before: 1em;
 	-webkit-margin-after: 1em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
 }
 
 a, a:focus, a:hover, a:active {
@@ -123,7 +123,9 @@ a, a:focus, a:hover, a:active {
   cursor:pointer;
 }
 
-
+canvas {
+    border: solid 2px #999;
+}
 
 
 /**	02. Placeholder
@@ -164,7 +166,7 @@ a, a:focus, a:hover, a:active {
 	.animate_from_bottom {
 		opacity: 0;
 		bottom: -50px;
-		padding-left: 0px;
+		padding-left: 0;
 		position: relative;
 	}
 
@@ -172,7 +174,7 @@ a, a:focus, a:hover, a:active {
 	.animate_from_left {
 		opacity: 0;
 		left: -80px;
-		padding-right: 0px;
+		padding-right: 0;
 		position: relative;
 	}
 
@@ -180,16 +182,16 @@ a, a:focus, a:hover, a:active {
 	.animate_from_right {
 		opacity: 0;
 		right: -80px;
-		padding-left: 0px;
+		padding-left: 0;
 		position: relative;
 	}
 
 	
 	.animate_fade_in {
 		opacity: 0;
-		right: 0px;
+		right: 0;
 		position: relative;
-		padding-left: 0px;		
+		padding-left: 0;		
 	}
 
 
@@ -441,7 +443,8 @@ ul.star-rated,
 ul.list-style-none {
 	clear:both;
 	display:inline-block;
-	margin:; padding:0;
+	margin:0;
+    padding:0;
 	list-style:none;
 }
 
@@ -1093,7 +1096,7 @@ article hr {
 
 .divider {
 	border: 0;
-	margin: 60px 0;
+	margin: 30px 0;
 	height: 4px;
 	border-top: #ddd 1px solid;
 	border-bottom: #ddd 1px solid;

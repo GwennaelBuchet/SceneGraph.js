@@ -26,103 +26,90 @@
  * @date 10/08/2012
  * */
 var CGMain = CGSGView.extend(
-    {
-        initialize:function (canvas) {
+	{
+		initialize : function(canvas) {
 
-            this._super(canvas);
+			this._super(canvas);
 
-            ////// INITIALIZATION /////////
+			////// INITIALIZATION /////////
 
-            this.initializeCanvas();
+			this.initializeCanvas();
 
-            this.createScene();
+			this.createScene();
 
-            this.startPlaying();
-        },
+			this.startPlaying();
+		},
 
-        initializeCanvas:function () {
-            //resize the canvas to fulfill the viewport
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
-        },
+		initializeCanvas : function() {
+			//resize the canvas to fulfill the viewport
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
+		},
 
-        /**
-         *
-         *
-         */
-        createScene:function () {
+		/**
+		 *
+		 *
+		 */
+		createScene : function() {
 
-            //create a root node to the graph, with arbitrary position and size
-            var rootNode = new CGSGNode(0, 0);
-            CGSG.sceneGraph.addNode(rootNode, null);
+			//create a root node to the graph, with arbitrary position and size
+			this.rootNode = new CGSGNodeSquare(0, 0);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
+			this.rootNode.resizeTo(CGSG.canvas.width, CGSG.canvas.height);
 
-			rootNode.translateTo(230, 50);
+			var that = this;
 
-            var that = this;
+			//the color picker itself, in the default size
+			var colorPicker = new CGSGNodeColorPicker(30, 30, 200, 200);
+			this.rootNode.addChild(colorPicker);
+			//add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
+			colorPicker.onOverColor = function(event) {
+				that.selectColor(event);
+			};
+			colorPicker.onClickColor = function(event) {
+				that.selectColor(event);
+			};
 
-			var parent = new CGSGNode(10, 10);
-			rootNode.addChild(parent);
+			//A second color picker with a custom size
+			var colorPicker2 = new CGSGNodeColorPicker(300, 20, 60, 60);
+			this.rootNode.addChild(colorPicker2);
 
-            //the color picker itself, in the default size
-            var colorPicker = new CGSGNodeColorPicker(20, 20, 200, 200);
-            parent.addChild(colorPicker);
-            //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
-            colorPicker.onOverColor = function (event) {
-                that.selectColor(event);
-            };
-            colorPicker.onClickColor = function (event) {
-                that.selectColor(event);
-            };
-			colorPicker.translateWith(-100, 10);
+			//add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
+			colorPicker2.onOverColor = function(event) {
+				that.selectColor(event);
+			};
+			colorPicker2.onClickColor = function(event) {
+				that.selectColor(event);
+			};
 
+			//A third color picker with a custom size
+			var colorPicker3 = new CGSGNodeColorPicker(300, 100, 320, 100);
+			this.rootNode.addChild(colorPicker3);
+			colorPicker3.isDraggable = true;
 
-            //A second color picker with a custom size
-            var colorPicker2 = new CGSGNodeColorPicker(300, 20, 60, 60);
-            rootNode.addChild(colorPicker2);
+			//add events. Do not use "onMouseOver" or "onClick" events to get selected color. Use the ones below.
+			colorPicker3.onOverColor = function(event) {
+				that.selectColor(event);
+			};
+			colorPicker3.onClickColor = function(event) {
+				that.selectColor(event);
+			};
 
-            //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
-            colorPicker2.onOverColor = function (event) {
-                that.selectColor(event);
-            };
-            colorPicker2.onClickColor = function (event) {
-                that.selectColor(event);
-            };
+			//A text node to display the color RGB value
+			this.txtNode = new CGSGNodeText(10, 10, "");
+			this.txtNode.setClass("cgsg-h2");
+			this.rootNode.addChild(this.txtNode);
+		},
 
-            //A third color picker with a custom size
-            var colorPicker3 = new CGSGNodeColorPicker(300, 100, 320, 100);
-            rootNode.addChild(colorPicker3);
-            colorPicker3.isDraggable = true;
+		/**
+		 * The "onOverColor" and "onClickColor" methods of the CGSGNodeColorPicker return a {r, g, b} object
+		 * @method selectColor
+		 * @param {Object} event
+		 */
+		selectColor : function(event) {
+			this.txtNode.setText("RGB = [" + event.r + "," + event.g + "," + event.b + "]", false);
+			this.rootNode.bkgcolors = [CGSGColor.rgb2hex(event.r, event.g, event.b)];
+		}
 
-            //add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
-            colorPicker3.onOverColor = function (event) {
-                that.selectColor(event);
-            };
-            colorPicker3.onClickColor = function (event) {
-                that.selectColor(event);
-            };
-
-
-            //A square that will receive the color selected in the colorPicker
-            this.cpWitness = new CGSGNodeSquare(320, 291, 40, 40);
-            this.cpWitness.lineColor = "gray";
-            this.cpWitness.lineWidth = 2;
-            rootNode.addChild(this.cpWitness);
-
-            //A text node to display the color RGB value
-            this.txtNode = new CGSGNodeText(320, 271, "");
-            this.txtNode.setSize(12);
-            rootNode.addChild(this.txtNode);
-        },
-
-        /**
-         * The "onOverColor" and "onClickColor" methods of the CGSGNodeColorPicker return a {r, g, b} object
-         * @method selectColor
-         * @param {Object} event
-         */
-        selectColor:function (event) {
-            this.cpWitness.bkgcolors = [CGSGColor.rgb2hex(event.r, event.g, event.b)];
-            this.txtNode.setText("[" + event.r + "," + event.g + "," + event.b + "]", false);
-        }
-
-    }
+	}
 );

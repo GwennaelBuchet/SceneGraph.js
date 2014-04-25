@@ -76,7 +76,7 @@ var CGMain = CGSGView.extend(
             //load the image to
             this.img = new Image();
             this.img.onload = this.onImageLoaded.bind(this);
-            this.img.src = "images/bear.png";
+            this.img.src = "/cgsg/v2/examples/shared/images/bear.png";
         },
 
         explode:function () {

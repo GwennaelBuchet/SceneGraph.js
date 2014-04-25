@@ -63,6 +63,7 @@ var CGMain = CGSGView.extend(
 			for (var i = 0 ; i < 130 ; i++) {
 				var circle = new CGSGNodeCircle(0, 0, 1);
 				circle.isTraversable = false;
+				circle.lineWidth = 0;
 				circle.bkgcolors = [CGSGColor.rgb2hex(Math.random() * 255, Math.random() * 255, Math.random() * 255)];
 				rootNode.addChild(circle);
 
@@ -77,7 +78,9 @@ var CGMain = CGSGView.extend(
 		 * @param {CGSGNode} circle
 		 */
 		resetCircle : function(circle) {
-			circle.translateTo(Math.random() * CGSG.canvas.width, Math.random() * CGSG.canvas.height);
+			var x = Math.random() * CGSG.canvas.width;
+			var y = Math.random() * CGSG.canvas.height;
+			circle.translateTo(x, y);
 
 			//animate size and alpha
 			var r = 20 + Math.random() * 30;
@@ -85,6 +88,8 @@ var CGMain = CGSGView.extend(
 			var timeline = CGSG.animationManager.animate(circle, "globalAlpha", delay, 1, 0, 0);
 			CGSG.animationManager.animate(circle, "scale.x", delay, 1.0, r, 0);
 			CGSG.animationManager.animate(circle, "scale.y", delay, 1.0, r, 0);
+			CGSG.animationManager.animate(circle, "position.x", delay, x, x - r, 0);
+			CGSG.animationManager.animate(circle, "position.y", delay, y, y - r, 0);
 
 			//at the end of the animation, reset this node
 			var that = this;

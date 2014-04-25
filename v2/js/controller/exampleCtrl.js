@@ -13,28 +13,44 @@ app.controller(
 		 $scope.indexfile = "";
 
 		 examplesSrv.load($scope, $http, loadExample);
-		 var canvasElt = null;
-		 var sample = null;
+		 var divParent = null;
+		 var main = null;
 		 var _currentDim = null;
 
 		 function loadExample() {
 			 $scope.example = examplesSrv.find(target);
 
 			 //dynamic loading of JS file for example
-			 $scope.jsfile = "examples/" + $scope.example.link + "/js/class.main.js";
-			 $scope.indexfile = "examples/" + $scope.example.link + "/index.html";
+			 $scope.jsfile = "examples/" + $scope.example.folder + "/js/" + ($scope.example.mainjs || "class.main.js");
+			 $scope.indexfile = "examples/" + $scope.example.folder + "/index.html";
+			 $scope.version = "js/sg/" + ($scope.example.version || "scenegraph_2.1.0-snapshot.min.js");
 
-			 if ($scope.example.addedCSS != "") {
+			 $scope.exwidth = $scope.example.width || 1170;
+			 $scope.exheight = $scope.example.height || 480;
+			 $scope.ratio = $scope.exwidth / $scope.exheight;
+
+			 if ($scope.example.addedCSS !== undefined) {
 				 loadCSSFile($scope.example.addedCSS);
 			 }
 			 else {
-				 var a = [];
-				 if ($scope.example.addedJS != "")
-					 a.push("examples/" + $scope.example.link + "/js/" + $scope.example.addedJS);
-
-				 a.push($scope.jsfile);
-				 loadScript(a);
+				 loadFwk($scope.version);
 			 }
+		 }
+
+		 function loadFwk(version) {
+			 $scope.require(
+				 [ version ],
+				 loadJSFiles
+			 );
+		 }
+
+		 function loadJSFiles() {
+			 var a = [];
+			 if ($scope.example.addedJS !== undefined)
+				 a.push("examples/" + $scope.example.folder + "/js/" + $scope.example.addedJS);
+
+			 a.push($scope.jsfile);
+			 loadScripts(a);
 		 }
 
 		 function loadCSSFile(url) {
@@ -51,40 +67,52 @@ app.controller(
 		 }
 
 		 // Load the remote JS file.
-		 function loadScript(files) {
+		 function loadScripts(files) {
 			 $scope.require(
 				 files/*[ file ]*/,
 				 function() {
-					 canvasElt = document.getElementById('divScene');
+					 divParent = document.getElementById('divScene');
 
 					 var canvasScene = document.getElementById("scene");
-					 sample = new CGMain(canvasScene);
-
-					 initCanvas();
+					 main = new CGMain(canvasScene);
 
 					 //add an handler on the window resize event
-					 window.onresize = resizeCanvas;
+					 //window.onresize = resizeCanvas;
+
+					 initCanvas();
 				 }
 			 );
 		 }
 
 		 function initCanvas() {
-			 _currentDim = new CGSGDimension(canvasElt.offsetWidth, canvasElt.offsetHeight);
-			 sample.setCanvasDimension(_currentDim);
+			 divParent.height =
+			 ($scope.example.height !== undefined) ?
+			 $scope.example.height :
+			 Math.max($scope.exheight, divParent.offsetWidth / $scope.ratio);
+
+			 divParent.width = ($scope.example.width !== undefined) ? $scope.example.width : divParent.offsetWidth;
+
+			 _currentDim = new CGSGDimension(divParent.width, divParent.height);
+
+			 main.setCanvasDimension(_currentDim);
 		 }
 
 		 function resizeCanvas() {
-			 _currentDim = new CGSGDimension(canvasElt.offsetWidth, canvasElt.offsetHeight);
-			 if (_currentDim.width < 1170) {
-				 _currentDim.height = _currentDim.width / 2.4375;
+			 divParent.height = divParent.offsetWidth / $scope.ratio;
 
-				 sample.setCanvasDimension(_currentDim);
+			 _currentDim = new CGSGDimension(divParent.offsetWidth, divParent.height);
 
-				 var sw = _currentDim.width / 1024;
-				 var sh = _currentDim.height / 480;
+			 main.setCanvasDimension(_currentDim);
+
+			 if (_currentDim.width < $scope.exwidth) {
+				 var sw = _currentDim.width / $scope.exwidth;
+				 var sh = _currentDim.height / $scope.exheight;
 
 				 var displayRatio = new CGSGScale(sw, sh);
-				 sample.setDisplayRatio(displayRatio);
+				 main.setDisplayRatio(displayRatio);
+			 }
+			 else {
+				 main.setDisplayRatio(new CGSGScale(1, 1));
 			 }
 		 }
 
@@ -97,7 +125,7 @@ app.controller(
 		  * @return {Function}
 		  */
 		 function _createDelegate(objectContext, delegateMethod) {
-			 return function () {
+			 return function() {
 				 return delegateMethod.call(objectContext);
 			 }
 		 }
@@ -109,12 +137,7 @@ app.controller(
 		  * @param event {Event}
 		  */
 		 function _onFileLoaded(event) {
-			 var a = [];
-			 if ($scope.example.addedJS != "")
-				 a.push("examples/" + $scope.example.link + "/js/" + $scope.example.addedJS);
-
-			 a.push($scope.jsfile);
-			 loadScript(a);
+			 loadFwk($scope.version);
 		 }
 	 }
 	]
