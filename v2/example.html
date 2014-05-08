@@ -3,44 +3,44 @@
 <html class="ie ie9"> <![endif]--><!--[if gt IE 9]><!-->
 <html> <!--<![endif]-->
 <head>
-    <meta charset="utf-8"/>
-    <title>SceneGraph.js</title>
-    <meta name="keywords" content="HTML5,canvas,animation,framework"/>
-    <meta name="description" content=""/>
-    <meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
+	<meta charset="utf-8"/>
+	<title>SceneGraph.js</title>
+	<meta name="keywords" content="HTML5,canvas,animation,framework"/>
+	<meta name="description" content=""/>
+	<meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
 
-    <!-- mobile settings -->
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+	<!-- mobile settings -->
+	<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
 
-    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+	<link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
 
-    <link rel="icon" type="image/png" href="favicon.png"/>
+	<link rel="icon" type="image/png" href="favicon.png"/>
 
-    <!-- WEB FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
+	<!-- WEB FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
 
-    <!-- CORE CSS -->
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+	<!-- CORE CSS -->
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
 
-    <!-- THEME CSS -->
-    <link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css"/>
-    <!-- orange: default style -->
-    <!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />-->
-    <!-- DARK SKIN -->
+	<!-- THEME CSS -->
+	<link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css"/>
+	<!-- orange: default style -->
+	<!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />-->
+	<!-- DARK SKIN -->
 
-    <!-- modernizr -->
-    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+	<!-- modernizr -->
+	<script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
 
-    <link id="theme" rel="stylesheet" type="text/css" href="js/sg/css/themes/gray/grayTheme.css" title="theme"/>
-    <!--script type="text/javascript" src="js/sg/scenegraph_2.1.0-snapshot.min.js"></script-->
+	<link id="theme" rel="stylesheet" type="text/css" href="js/sg/css/themes/gray/grayTheme.css" title="theme"/>
+	<!--script type="text/javascript" src="js/sg/scenegraph_2.1.0-snapshot.min.js"></script-->
 
 </head>
 <body ng-app="cgsgApp">
@@ -53,64 +53,59 @@
 <!-- WRAPPER -->
 <div id="wrapper" ng-controller="exampleCtrl">
 
-    <header id="page-title">
+	<header id="page-title">
 
-        <div class="container">
-            <a href="examples.html"><h1>Examples</h1></a>
+		<div class="container">
+			<a href="examples.html"><h1>Examples</h1></a>
 
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="examples.html">Examples</a></li>
-                <li class="active">{{example.name}}</li>
-            </ul>
-        </div>
-    </header>
-
-
-    <section id="portfolio" class="container">
-
-        <h2><strong>{{example.name}}</strong> example</h2>
-
-        <p class="lead">
-            {{example.details}}
-
-            <small class="font300 fsize13 block project_quick_info">
-                <span><i class="fa fa-beer styleSecondColor"></i> {{example.type}}</span>
-            </small>
-        </p>
-
-        <div class="text-center">
-            <a href="{{indexfile}}" target="_blank" class="btn btn-primary btn-lg btn-margin-top"><i
-                    class="fa fa-external-link"></i>Open in a new window</a>
-            <a href="{{jsfile}}" class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i>View
-                source</a>
-        </div>
-
-        <div class="divider">
-            <i class="fa fa-star"></i><br/>
-        </div>
-
-        <article class="row">
-            <div class="col-md-12 text-center" id="divScene">
-                <canvas id="scene" width="1170" height="480">
-                    Your browser does not support the canvas element.
-                </canvas>
-            </div>
-        </article>
+			<ul class="breadcrumb">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="examples.html">Examples</a></li>
+				<li class="active">{{example.name}}</li>
+			</ul>
+		</div>
+	</header>
 
 
-        <div class="divider">
-            <i class="fa fa-star"></i>
-        </div>
+	<section id="portfolio" class="container">
 
-        <!-- CALLOUT -->
-        <div class="bs-callout text-center nomargin-bottom">
-            <h3>Want to share your examples? <a href="contact-us.html" target="_blank" class="btn btn-primary btn-lg">Yes,
-                let's work together!</a></h3>
-        </div>
-        <!-- /CALLOUT -->
+		<div class="row">
+			<h2 class="col-md-6"><strong>{{example.name}}</strong> example</h2>
+			<div class="col-md-6 text-right"><span class="bg-info"><i class="fa fa-file styleSecondColor"></i> using <strong>{{version}}</strong></span></div>
+		</div>
+		<p class="lead" id="details">
 
-    </section>
+			<small class="font300 fsize13 block project_quick_info">
+				<i class="fa fa-pencil-square-o styleSecondColor"></i> {{example.type}}
+			</small>
+		</p>
+
+		<div class="divider">
+			<i class="fa fa-star"></i><br/>
+		</div>
+
+		<div class="text-center" id="divScene">
+			<canvas id="scene" width="1170" height="480">
+				Your browser does not support the canvas element.
+			</canvas>
+		</div>
+
+
+		<div class="divider">
+			<i class="fa fa-star"></i>
+		</div>
+
+		<!-- CALLOUT -->
+		<div class="bs-callout text-center nomargin-bottom">
+			<a href="{{indexfile}}"
+			   target="_blank"
+			   class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i>Open in a new window</a>
+			<a href="{{jsfile}}" class="btn btn-primary btn-lg btn-margin-top"><i class="fa fa-external-link"></i>View
+			                                                                                                      source</a>
+		</div>
+		<!-- /CALLOUT -->
+
+	</section>
 
 </div>
 <!-- /WRAPPER -->

@@ -36,7 +36,7 @@ var CGMain = CGSGView.extend(
 
 			////// INITIALIZATION /////////
 
-			this.initializeCanvas();
+			//this.initializeCanvas();
 
 			this.textNode = null;
 			this.squareNode = null;

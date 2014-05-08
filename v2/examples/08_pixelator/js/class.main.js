@@ -43,7 +43,7 @@ var CGMain = CGSGView.extend(
         initialize:function (canvas) {
             this._super(canvas);
 
-            this.initializeCanvas();
+            //this.initializeCanvas();
             this.createScene();
 
             this.startPlaying();

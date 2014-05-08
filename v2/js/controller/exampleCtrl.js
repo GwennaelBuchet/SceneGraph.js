@@ -1,3 +1,5 @@
+var main = null;
+
 app.controller(
 	'exampleCtrl',
 	['$scope',
@@ -5,7 +7,7 @@ app.controller(
 	 '$location',
 	 'ExamplesSrv',
 	 'require',
-	 function($scope, $http, $location, examplesSrv, require) {
+	 function ($scope, $http, $location, examplesSrv, require) {
 
 		 var target = examplesSrv.getURLParameter("e");
 		 $scope.require = require;
@@ -14,7 +16,8 @@ app.controller(
 
 		 examplesSrv.load($scope, $http, loadExample);
 		 var divParent = null;
-		 var main = null;
+		 var canvasScene = null;
+
 		 var _currentDim = null;
 
 		 function loadExample() {
@@ -24,6 +27,9 @@ app.controller(
 			 $scope.jsfile = "examples/" + $scope.example.folder + "/js/" + ($scope.example.mainjs || "class.main.js");
 			 $scope.indexfile = "examples/" + $scope.example.folder + "/index.html";
 			 $scope.version = "js/sg/" + ($scope.example.version || "scenegraph_2.1.0-snapshot.min.js");
+
+			 var $details = $("#details");
+			 $details.append($.parseHTML($scope.example.details));
 
 			 $scope.exwidth = $scope.example.width || 1170;
 			 $scope.exheight = $scope.example.height || 480;
@@ -46,8 +52,11 @@ app.controller(
 
 		 function loadJSFiles() {
 			 var a = [];
-			 if ($scope.example.addedJS !== undefined)
-				 a.push("examples/" + $scope.example.folder + "/js/" + $scope.example.addedJS);
+			 if ($scope.example.addedJS !== undefined) {
+				 for (var s = 0, len = $scope.example.addedJS.length; s < len; s++) {
+					 a.push("examples/" + $scope.example.folder + "/js/" + $scope.example.addedJS[s]);
+				 }
+			 }
 
 			 a.push($scope.jsfile);
 			 loadScripts(a);
@@ -70,31 +79,48 @@ app.controller(
 		 function loadScripts(files) {
 			 $scope.require(
 				 files/*[ file ]*/,
-				 function() {
+				 function () {
 					 divParent = document.getElementById('divScene');
+					 canvasScene = document.getElementById("scene");
 
-					 var canvasScene = document.getElementById("scene");
+					 if ($scope.example.height !== undefined || $scope.example.width !== undefined) {
+						 setCanvasSize();
+					 }
+
+					 //start the sample
 					 main = new CGMain(canvasScene);
+					 //main.setCanvasDimension(new CGSGDimension(divParent.width, divParent.height));
 
-					 //add an handler on the window resize event
-					 //window.onresize = resizeCanvas;
-
-					 initCanvas();
+					 //CGSG.cssManager.dontUseCSSFile("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800");
+					 //CGSG.cssManager.dontUseCSSFile("assets/plugins/bootstrap/css/bootstrap.min.css");
+					 //CGSG.cssManager.dontUseCSSFile("assets/css/font-awesome.css");
+					 //CGSG.cssManager.dontUseCSSFile("assets/css/essentials.css");
+					 //CGSG.cssManager.dontUseCSSFile("assets/css/layout.css");
+					 //CGSG.cssManager.dontUseCSSFile("assets/css/layout-responsive.css");
+					 //CGSG.cssManager.dontUseCSSFile("assets/css/color_scheme/green.css");
 				 }
 			 );
 		 }
 
-		 function initCanvas() {
-			 divParent.height =
-			 ($scope.example.height !== undefined) ?
-			 $scope.example.height :
+		 function setCanvasSize() {
+			 var w, h;
+			 //h = $scope.exheight; //$scope.example.height !== undefined) ? $scope.example.height : $scope.exheight;
+			 h =
+			 ($scope.example.height !== undefined) ? $scope.example.height :
 			 Math.max($scope.exheight, divParent.offsetWidth / $scope.ratio);
 
-			 divParent.width = ($scope.example.width !== undefined) ? $scope.example.width : divParent.offsetWidth;
+			 //w = $scope.exwidth;
+			 w = ($scope.example.width !== undefined) ? $scope.example.width : divParent.offsetWidth;
 
-			 _currentDim = new CGSGDimension(divParent.width, divParent.height);
+			 divParent.style.height = h + 'px';
+			 divParent.style.width = w + 'px';
+			 divParent.height = h;
+			 divParent.width = w;
 
-			 main.setCanvasDimension(_currentDim);
+			 canvasScene.style.height = h + 'px';
+			 canvasScene.style.width = w + 'px';
+			 canvasScene.height = h;
+			 canvasScene.width = w;
 		 }
 
 		 function resizeCanvas() {
@@ -125,7 +151,7 @@ app.controller(
 		  * @return {Function}
 		  */
 		 function _createDelegate(objectContext, delegateMethod) {
-			 return function() {
+			 return function () {
 				 return delegateMethod.call(objectContext);
 			 }
 		 }

@@ -85,7 +85,7 @@ var CGMain = CGSGScene.extend(
 			this.spriteSheet = new Image();
 			var that = this;
 			this.spriteSheet.onload = that.onItemsImageLoaded();
-			this.spriteSheet.src = "js/img/bee.png";
+			this.spriteSheet.src = "/cgsg/v2/examples/shared/images/bee.png";
 		},
 
 		/**

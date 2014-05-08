@@ -125,6 +125,13 @@ a, a:focus, a:hover, a:active {
 
 canvas {
     border: solid 2px #999;
+
+}
+
+#divScene {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 
@@ -565,7 +572,7 @@ ul.list-icon.circle li:before {
 	position:relative;
 	overflow:hidden;
 	background:#ddd;
-	margin:60px 0;
+	margin:0px 0;
 	padding:36px 0;
 
 	-webkit-border-radius: 6px;

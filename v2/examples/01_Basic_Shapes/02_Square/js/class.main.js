@@ -35,15 +35,15 @@ var CGMain = CGSGView.extend(
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
-			this.initializeCanvas();
+			//this.initializeCanvas();
 			this.createScene();
 			this.startPlaying();
 		},
 
 		initializeCanvas : function () {
 			//resize the canvas to fulfill the viewport
-			this.viewDimension = cgsgGetRealViewportDimension();
-			this.setCanvasDimension(this.viewDimension);
+			//this.viewDimension = cgsgGetRealViewportDimension();
+			//this.setCanvasDimension(this.viewDimension);
 		},
 
 		/**

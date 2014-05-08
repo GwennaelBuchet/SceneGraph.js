@@ -2,7 +2,7 @@ var CGMain = CGSGView.extend({
 
 	initialize : function(canvas) {
 		this._super(canvas);
-		this.initializeCanvas();
+		//this.initializeCanvas();
 		this.createScene();
 		this.startPlaying();
 	},
@@ -61,19 +61,19 @@ var CGMain = CGSGView.extend({
         CGSG.eventManager.bindHandler(master.getHandle(), cgsgEventTypes.ON_DRAG, masterSlideSlaveListener);
         CGSG.eventManager.bindHandler(master.getHandle(), cgsgEventTypes.ON_DRAG, masterValueLabelMasterSlideListener);
 
-        var red = new CGSGNodeSlider(50, 400, 300, 10);
+        var red = new CGSGNodeSlider(50, 350, 300, 10);
         root.addChild(red);
         red.setMin(0);
         red.setMax(255);
         red.setValue(0);
 
-        var green = new CGSGNodeSlider(50, 450, 300, 10);
+        var green = new CGSGNodeSlider(50, 400, 300, 10);
         root.addChild(green);
         green.setMin(0);
         green.setMax(255);
         green.setValue(0);
 
-        var blue = new CGSGNodeSlider(50, 500, 300, 10);
+        var blue = new CGSGNodeSlider(50, 450, 300, 10);
         root.addChild(blue);
         blue.setMin(0);
         blue.setMax(255);
