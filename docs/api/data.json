@@ -10225,7 +10225,19 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 82,
+            "line": 80,
+            "description": "List of CSS files to be ignored",
+            "itemtype": "property",
+            "name": "_blacklist",
+            "type": "{Array}",
+            "access": "private",
+            "tagname": "",
+            "class": "CGSGCSSManager",
+            "module": "Util"
+        },
+        {
+            "file": "src\\theme\\class.CSSManager.js",
+            "line": 90,
             "description": "Return the value for the attribute of the class passed as parameters",
             "itemtype": "method",
             "name": "getAttr",
@@ -10250,7 +10262,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 102,
+            "line": 111,
             "description": "Return the value for the latest attribute of the classes passed as parameters",
             "itemtype": "method",
             "name": "getAttrInArray",
@@ -10275,7 +10287,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 122,
+            "line": 132,
             "itemtype": "method",
             "name": "getCls",
             "params": [
@@ -10294,7 +10306,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 132,
+            "line": 142,
             "description": "Extract the number from an attribute's value.\nFor example getNumber(\"8px\"); will return 8.",
             "itemtype": "method",
             "name": "getNumber",
@@ -10314,7 +10326,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 152,
+            "line": 163,
             "description": "Extract the number from an attribute's value.\nFor example getNumber(\"8px\"); will return 8.",
             "itemtype": "method",
             "name": "getNumber",
@@ -10334,7 +10346,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 168,
+            "line": 180,
             "description": "Extract the number from an attribute's value.\nFor example getFloat(\"0.6px\"); will return 0.6.",
             "itemtype": "method",
             "name": "getFloat",
@@ -10354,8 +10366,8 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 195,
-            "description": "Read content of all CSS files loaded and update its map",
+            "line": 208,
+            "description": "Read content of all CSS files loaded and update its cache",
             "itemtype": "method",
             "name": "invalidateCache",
             "class": "CGSGCSSManager",
@@ -10363,8 +10375,8 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 211,
-            "description": "Load cs file and",
+            "line": 235,
+            "description": "Store CSS attributes form the file in memory",
             "itemtype": "method",
             "name": "loadCSSFile",
             "params": [
@@ -10379,7 +10391,8 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 234,
+            "line": 258,
+            "description": "Unload CSS file from current HTML page.\nCache need to be invalidated after by calling {invalidateCache} method",
             "itemtype": "method",
             "name": "unloadCSSFile",
             "params": [
@@ -10394,7 +10407,23 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 249,
+            "line": 276,
+            "description": "Blacklist this file.\nCache need to be invalidated after by calling {invalidateCache} method",
+            "itemtype": "method",
+            "name": "ignoreCSSFile",
+            "params": [
+                {
+                    "name": "href",
+                    "description": "Must be full href path and filename",
+                    "type": "String"
+                }
+            ],
+            "class": "CGSGCSSManager",
+            "module": "Util"
+        },
+        {
+            "file": "src\\theme\\class.CSSManager.js",
+            "line": 286,
             "description": "used to call delegate method when the css file is finally loaded",
             "access": "private",
             "tagname": "",
@@ -10419,7 +10448,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 263,
+            "line": 300,
             "description": "fired when the css file is loaded.",
             "access": "private",
             "tagname": "",
@@ -10437,7 +10466,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 278,
+            "line": 315,
             "description": "To be overrided when the css file failed to load",
             "itemtype": "method",
             "name": "_onFileError",
@@ -10455,7 +10484,7 @@
         },
         {
             "file": "src\\theme\\class.CSSManager.js",
-            "line": 289,
+            "line": 326,
             "description": "To be overrided when the css file loading is aborted",
             "itemtype": "method",
             "name": "_onFileAbort",

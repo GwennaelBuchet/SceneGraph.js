@@ -305,6 +305,14 @@ var CGSGCSSManager = CGSGObject.extend(
 			 */
 			this._classes = new CGSGMap();
 
+			/**
+			 * List of CSS files to be ignored
+			 * @property _blacklist
+			 * @type {Array}
+			 * @private
+			 */
+			this._blacklist = [];
+
 		},
 
 		/**
@@ -320,8 +328,9 @@ var CGSGCSSManager = CGSGObject.extend(
 
 			if (cgsgExist(style)) {
 				var s = style[attr.collapse()];
-				if (cgsgExist(s) &amp;&amp; s.length &gt; 0)
+				if (cgsgExist(s) &amp;&amp; s.length &gt; 0) {
 					return s;
+				}
 			}
 
 			return null;
@@ -340,8 +349,9 @@ var CGSGCSSManager = CGSGObject.extend(
 				cls = clss[i];
 
 				r = this.getAttr(cls, attr);
-				if (cgsgExist(r))
+				if (cgsgExist(r)) {
 					return r;
+				}
 			}
 
 			return null;
@@ -365,8 +375,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @return {Number}
 		 */
 		getURL : function(attr) {
-			if (!cgsgExist(attr) || attr.length == 0)
+			if (!cgsgExist(attr) || attr.length == 0) {
 				return null;
+			}
 
 			//remove first &quot;url(&quot;
 			var url = attr.without(&quot;url(&quot;);
@@ -385,8 +396,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @return {Number}
 		 */
 		getNumber : function(attr) {
-			if (!cgsgExist(attr) || attr.length == 0)
+			if (!cgsgExist(attr) || attr.length == 0) {
 				return NaN;
+			}
 
 			attr = this._cleanAttr(attr);
 
@@ -401,8 +413,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @return {Float}
 		 */
 		getFloat : function(attr) {
-			if (!cgsgExist(attr) || attr.length == 0)
+			if (!cgsgExist(attr) || attr.length == 0) {
 				return null;
+			}
 
 			attr = this._cleanAttr(attr);
 
@@ -421,23 +434,34 @@ var CGSGCSSManager = CGSGObject.extend(
 		},
 
 		/**
-		 * Read content of all CSS files loaded and update its map
+		 * Read content of all CSS files loaded and update its cache
 		 * @method invalidateCache
 		 *
 		 */
 		invalidateCache : function() {
+			this._classes.removeAll();
 			var len, x, nbStyles = document.styleSheets.length;
 			//read all documents
 			for (var s = 0 ; s &lt; nbStyles ; s++) {
-				var classes = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
-				for (x = 0, len = classes.length ; x &lt; len ; x++) {
-					this._classes.addOrReplace(classes[x].selectorText, classes[x].style);
+				//ignore blacklisted files
+				if (!this._blacklist.contains(document.styleSheets[s].href)) {
+					var classes = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
+					if (cgsgExist(classes)) {
+						for (x = 0, len = classes.length ; x &lt; len ; x++) {
+							this._classes.addOrReplace(classes[x].selectorText, classes[x].style);
+						}
+					}
+					else {
+						console.log(&quot;WARNING: &#x27;&quot; +
+									document.styleSheets[s].href +
+									&quot;&#x27; file without class. Be sure application is running under a web server and CSS file is correctly loaded.&quot;);
+					}
 				}
 			}
 		},
 
 		/**
-		 * Load cs file and
+		 * Store CSS attributes form the file in memory
 		 * @method loadCSSFile
 		 * @param url {String}
 		 */
@@ -460,6 +484,8 @@ var CGSGCSSManager = CGSGObject.extend(
 		},
 
 		/**
+		 * Unload CSS file from current HTML page.
+		 * Cache need to be invalidated after by calling {invalidateCache} method
 		 * @method unloadCSSFile
 		 * @param filename {String}
 		 */
@@ -469,9 +495,20 @@ var CGSGCSSManager = CGSGObject.extend(
 			var cssFiles = document.getElementsByTagName(&quot;link&quot;);
 			for (var i = cssFiles.length ; i &gt;= 0 ; i--) {
 				if (cssFiles[i] &amp;&amp; cssFiles[i].getAttribute(href) != null &amp;&amp;
-					cssFiles[i].getAttribute(href).indexOf(filename) != -1)
+					cssFiles[i].getAttribute(href).indexOf(filename) != -1) {
 					cssFiles[i].parentNode.removeChild(cssFiles[i]);
+				}
 			}
+		},
+
+		/**
+		 * Blacklist this file.
+		 * Cache need to be invalidated after by calling {invalidateCache} method
+		 * @method ignoreCSSFile
+		 * @param href {String} Must be full href path and filename
+		 */
+		ignoreCSSFile : function(href) {
+			this._blacklist.push(href);
 		},
 
 		/**

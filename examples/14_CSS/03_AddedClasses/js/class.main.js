@@ -84,6 +84,7 @@ var CGMain = CGSGView.extend(
 		 * Switch the CSS class for this.circle2 only
 		 */
 		switchCls : function() {
+
 			//".cgsgnode" is a CSS class defined in "theme/gray.css" and is the default class for CGSGNode
 			//".blueCircle" is a CSS class defined in "style.css" which is our specific CSS for this example
 			this.cls = ["cgsgnode", "blueCircle"];

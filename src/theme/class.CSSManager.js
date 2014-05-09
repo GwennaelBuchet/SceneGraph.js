@@ -38,7 +38,7 @@
  */
 var CGSGCSSManager = CGSGObject.extend(
 	{
-		initialize: function () {
+		initialize : function() {
 			/**
 			 * @property _isLoaded
 			 * @type {Boolean}
@@ -77,6 +77,14 @@ var CGSGCSSManager = CGSGObject.extend(
 			 */
 			this._classes = new CGSGMap();
 
+			/**
+			 * List of CSS files to be ignored
+			 * @property _blacklist
+			 * @type {Array}
+			 * @private
+			 */
+			this._blacklist = [];
+
 		},
 
 		/**
@@ -86,7 +94,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String} Name of the attribute
 		 * @return {string}
 		 */
-		getAttr: function (cls, attr) {
+		getAttr : function(cls, attr) {
 			cls = cls.addFirstDot();
 			var style = this._classes.getValue(cls);
 
@@ -107,9 +115,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String} name of the CSS attribute
 		 * @return {string} value for the CSS attribute
 		 */
-		getAttrInArray: function (clss, attr) {
+		getAttrInArray : function(clss, attr) {
 			var i, cls, r, len = clss.length;
-			for (i = len - 1; i >= 0; --i) {
+			for (i = len - 1 ; i >= 0 ; --i) {
 				cls = clss[i];
 
 				r = this.getAttr(cls, attr);
@@ -126,7 +134,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param cls {String} Name of the CSS class
 		 * @return {Array} Array of attributes
 		 */
-		getCls: function (cls) {
+		getCls : function(cls) {
 			cls = cls.addFirstDot();
 			return this._classes.getValue(cls);
 		},
@@ -138,7 +146,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String}
 		 * @return {Number}
 		 */
-		getURL: function (attr) {
+		getURL : function(attr) {
 			if (!cgsgExist(attr) || attr.length == 0) {
 				return null;
 			}
@@ -159,7 +167,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String}
 		 * @return {Number}
 		 */
-		getNumber: function (attr) {
+		getNumber : function(attr) {
 			if (!cgsgExist(attr) || attr.length == 0) {
 				return NaN;
 			}
@@ -176,7 +184,7 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param attr {String}
 		 * @return {Float}
 		 */
-		getFloat: function (attr) {
+		getFloat : function(attr) {
 			if (!cgsgExist(attr) || attr.length == 0) {
 				return null;
 			}
@@ -186,7 +194,7 @@ var CGSGCSSManager = CGSGObject.extend(
 			return parseFloat(attr);
 		},
 
-		_cleanAttr: function (attr) {
+		_cleanAttr : function(attr) {
 			//remove "px", "pt", ...
 			var reg = /px|pt/gi;
 			attr = attr.replace(reg, "");
@@ -198,33 +206,38 @@ var CGSGCSSManager = CGSGObject.extend(
 		},
 
 		/**
-		 * Read content of all CSS files loaded and update its map
+		 * Read content of all CSS files loaded and update its cache
 		 * @method invalidateCache
 		 *
 		 */
-		invalidateCache: function () {
+		invalidateCache : function() {
+			this._classes.removeAll();
 			var len, x, nbStyles = document.styleSheets.length;
 			//read all documents
-			for (var s = 0; s < nbStyles; s++) {
-				var classes = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
-				if (cgsgExist(classes)) {
-					for (x = 0, len = classes.length; x < len; x++) {
-						this._classes.addOrReplace(classes[x].selectorText, classes[x].style);
+			for (var s = 0 ; s < nbStyles ; s++) {
+				//ignore blacklisted files
+				if (!this._blacklist.contains(document.styleSheets[s].href)) {
+					var classes = document.styleSheets[s].rules || document.styleSheets[s].cssRules;
+					if (cgsgExist(classes)) {
+						for (x = 0, len = classes.length ; x < len ; x++) {
+							this._classes.addOrReplace(classes[x].selectorText, classes[x].style);
+						}
 					}
-				}
-				else {
-					console.log("WARNING: '" + document.styleSheets[s].href +
-					            "' file without class. Be sure application is running under a web server and CSS file is correctly loaded.");
+					else {
+						console.log("WARNING: '" +
+									document.styleSheets[s].href +
+									"' file without class. Be sure application is running under a web server and CSS file is correctly loaded.");
+					}
 				}
 			}
 		},
 
 		/**
-		 * Load cs file and
+		 * Store CSS attributes form the file in memory
 		 * @method loadCSSFile
 		 * @param url {String}
 		 */
-		loadCSSFile: function (url) {
+		loadCSSFile : function(url) {
 			this.isLoaded = false;
 			this._url = url;
 
@@ -243,19 +256,31 @@ var CGSGCSSManager = CGSGObject.extend(
 		},
 
 		/**
+		 * Unload CSS file from current HTML page.
+		 * Cache need to be invalidated after by calling {invalidateCache} method
 		 * @method unloadCSSFile
 		 * @param filename {String}
 		 */
-		unloadCSSFile: function (filename) {
+		unloadCSSFile : function(filename) {
 			var href = "href";
 
 			var cssFiles = document.getElementsByTagName("link");
-			for (var i = cssFiles.length; i >= 0; i--) {
+			for (var i = cssFiles.length ; i >= 0 ; i--) {
 				if (cssFiles[i] && cssFiles[i].getAttribute(href) != null &&
-				    cssFiles[i].getAttribute(href).indexOf(filename) != -1) {
+					cssFiles[i].getAttribute(href).indexOf(filename) != -1) {
 					cssFiles[i].parentNode.removeChild(cssFiles[i]);
 				}
 			}
+		},
+
+		/**
+		 * Blacklist this file.
+		 * Cache need to be invalidated after by calling {invalidateCache} method
+		 * @method ignoreCSSFile
+		 * @param href {String} Must be full href path and filename
+		 */
+		ignoreCSSFile : function(href) {
+			this._blacklist.push(href);
 		},
 
 		/**
@@ -266,8 +291,8 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @param delegateMethod
 		 * @return {Function}
 		 */
-		_createDelegate: function (objectContext, delegateMethod) {
-			return function () {
+		_createDelegate : function(objectContext, delegateMethod) {
+			return function() {
 				return delegateMethod.call(objectContext);
 			}
 		},
@@ -278,12 +303,12 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @method _onFileLoaded
 		 * @param event {Event}
 		 */
-		_onFileLoaded: function (event) {
+		_onFileLoaded : function(event) {
 			this.invalidateCache();
 			this.isLoaded = true;
 
 			if (this.onLoadEnd !== null) {
-				this.onLoadEnd({event: event});
+				this.onLoadEnd({event : event});
 			}
 		},
 
@@ -293,9 +318,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @protected
 		 * @param event {Event}
 		 */
-		_onFileError: function (event) {
+		_onFileError : function(event) {
 			if (this.onLoadError !== null) {
-				this.onLoadError({event: event});
+				this.onLoadError({event : event});
 			}
 		},
 		/**
@@ -304,9 +329,9 @@ var CGSGCSSManager = CGSGObject.extend(
 		 * @protected
 		 * @param event {Event}
 		 */
-		_onFileAbort: function (event) {
+		_onFileAbort : function(event) {
 			if (this.onLoadAbort !== null) {
-				this.onLoadAbort({event: event});
+				this.onLoadAbort({event : event});
 			}
 		}
 
