@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -264,34 +264,34 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGImgManager = CGSGObject.extend(
-	{
-		initialize : function() {
-			/**
-			 * @property _mapURL
-			 * @type {CGSGMap} [URL; Image]
-			 */
-			this._mapURL = new CGSGMap();
-		},
+    {
+        initialize : function() {
+            /**
+             * @property _mapURL
+             * @type {CGSGMap} [URL; Image]
+             */
+            this._mapURL = new CGSGMap();
+        },
 
-		/**
-		 * @method get
-		 * @param url {String}
-		 * @return {Image} or null if doesn&#x27;t exist yet
-		 */
-		get : function(url) {
-			return this._mapURL.getValue(url);
-		},
+        /**
+         * @method get
+         * @param url {String}
+         * @return {Image} or null if doesn&#x27;t exist yet
+         */
+        get : function(url) {
+            return this._mapURL.getValue(url);
+        },
 
-		/**
-		 * @method set
-		 * @param url {String}
-		 * @param img {Image}
-		 */
-		set : function(url, img) {
-			this._mapURL.addOrReplace(url, img);
-		}
+        /**
+         * @method set
+         * @param url {String}
+         * @param img {Image}
+         */
+        set : function(url, img) {
+            this._mapURL.addOrReplace(url, img);
+        }
 
-	}
+    }
 );
 
 var cgsgImgManager = new CGSGImgManager();

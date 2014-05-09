@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -260,68 +260,68 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGTraverser = CGSGObject.extend(
-	{
-		initialize : function() {
-			/**
-			 * Last results provided by the last check
-			 * @property lastResults
-			 * @type {Array}
-			 */
-			this.lastResults = [];
-		},
+    {
+        initialize : function() {
+            /**
+             * Last results provided by the last check
+             * @property lastResults
+             * @type {Array}
+             */
+            this.lastResults = [];
+        },
 
-		/**
-		 * @public
-		 * @method traverse
-		 *
-		 * @param {CGSGNode} rootNode
-		 * @param {Function} condition. can be null
-		 * @param {Array} excludedNodes Array of CGSGNode
-		 * @return {Array} the list of nodes recursively under &#x27;rootNode&#x27;, accepting the &#x27;condition&#x27; and not in &#x27;excludedNodes&#x27;
-		 *
-		 * @example
-		 *  var condition = function(node) {
-					return node.color == &quot;yellow&quot;;
-				};
+        /**
+         * @public
+         * @method traverse
+         *
+         * @param {CGSGNode} rootNode
+         * @param {Function} condition. can be null
+         * @param {Array} excludedNodes Array of CGSGNode
+         * @return {Array} the list of nodes recursively under &#x27;rootNode&#x27;, accepting the &#x27;condition&#x27; and not in &#x27;excludedNodes&#x27;
+         *
+         * @example
+         *  var condition = function(node) {
+                    return node.color == &quot;yellow&quot;;
+                };
 
-		 var traverser = new CGSGTraverser();
-		 var listSquares = traverser.traverse(this.rootNode, condition, null);
-		 for (var s = 0; s &lt; listSquares.length; s++) {
-					...
-				}
-		 */
-		traverse : function(rootNode, condition, excludedNodes) {
-			this.lastResults.clear();
+         var traverser = new CGSGTraverser();
+         var listSquares = traverser.traverse(this.rootNode, condition, null);
+         for (var s = 0; s &lt; listSquares.length; s++) {
+                    ...
+                }
+         */
+        traverse : function(rootNode, condition, excludedNodes) {
+            this.lastResults.clear();
 
-			if (cgsgExist(condition)) {
-				this._check(rootNode, condition, excludedNodes);
-			}
+            if (cgsgExist(condition)) {
+                this._check(rootNode, condition, excludedNodes);
+            }
 
-			return this.lastResults;
-		},
+            return this.lastResults;
+        },
 
-		/**
-		 * @private
-		 * @method _check
-		 * @param {CGSGNode} rootNode
-		 * @param {Function} condition
-		 * @param {Array} excludedNodes
-		 */
-		_check : function(rootNode, condition, excludedNodes) {
-			if (rootNode.isTraversable === true) {
-				var exclusionExist = cgsgExist(excludedNodes) &amp;&amp; excludedNodes.length &gt; 0;
+        /**
+         * @private
+         * @method _check
+         * @param {CGSGNode} rootNode
+         * @param {Function} condition
+         * @param {Array} excludedNodes
+         */
+        _check : function(rootNode, condition, excludedNodes) {
+            if (rootNode.isTraversable === true) {
+                var exclusionExist = cgsgExist(excludedNodes) &amp;&amp; excludedNodes.length &gt; 0;
 
-				if (!(exclusionExist &amp;&amp; excludedNodes.contains(rootNode)) &amp;&amp; condition(rootNode) === true) {
-					this.lastResults.push(rootNode);
-				}
+                if (!(exclusionExist &amp;&amp; excludedNodes.contains(rootNode)) &amp;&amp; condition(rootNode) === true) {
+                    this.lastResults.push(rootNode);
+                }
 
-				for (var i = rootNode.children.length - 1 ; i &gt;= 0 ; --i) {
-					var childNode = rootNode.children[i];
-					this._check(childNode, condition, excludedNodes);
-				}
-			}
-		}
-	}
+                for (var i = rootNode.children.length - 1 ; i &gt;= 0 ; --i) {
+                    var childNode = rootNode.children[i];
+                    this._check(childNode, condition, excludedNodes);
+                }
+            }
+        }
+    }
 );
     </pre>
 </div>

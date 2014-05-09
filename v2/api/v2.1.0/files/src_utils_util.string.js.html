@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -259,8 +259,8 @@
  * @return {String}
  */
 String.prototype.without = function(t) {
-	var r = this.replace(t, &quot;&quot;);
-	return r;
+    var r = this.replace(t, &quot;&quot;);
+    return r;
 };
 
 /**
@@ -269,13 +269,13 @@ String.prototype.without = function(t) {
  * @return {String}
  */
 String.prototype.collapse = function() {
-	var w = this.split(&quot;-&quot;);
-	var s = w[0];
-	for (var i = 1, l = w.length ; i &lt; l ; i++) {
-		s += w[i].capitalize();
-	}
+    var w = this.split(&quot;-&quot;);
+    var s = w[0];
+    for (var i = 1, l = w.length ; i &lt; l ; i++) {
+        s += w[i].capitalize();
+    }
 
-	return s;
+    return s;
 };
 
 /**
@@ -284,10 +284,10 @@ String.prototype.collapse = function() {
  * @return {String} A String with the first &#x27;.&#x27;
  */
 String.prototype.addFirstDot = function() {
-	if (this.indexOf(&quot;.&quot;) !== 0)
-		return &quot;.&quot; + this;
+    if (this.indexOf(&quot;.&quot;) !== 0)
+        return &quot;.&quot; + this;
 
-	return this;
+    return this;
 };
 
 /**
@@ -297,9 +297,9 @@ String.prototype.addFirstDot = function() {
  * @return {string}
  */
 String.prototype.capitalize = function(lower) {
-	return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
-		return a.toUpperCase();
-	});
+    return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
+        return a.toUpperCase();
+    });
 };
 
 

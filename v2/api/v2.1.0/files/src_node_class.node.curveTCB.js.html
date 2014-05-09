@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -264,108 +264,108 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeCurveTCB = CGSGNode.extend(
-	{
-		initialize : function(x, y) {
-			this._super(x, y);
+    {
+        initialize : function(x, y) {
+            this._super(x, y);
 
-			this.resizeTo(300, 300);
+            this.resizeTo(300, 300);
 
-			this._interpolator = new CGSGInterpolatorTCB();
-			this._keys = [];
-			this._nbKeys = 0;
-			this._values = [];
-			this._nbValues = 0;
-			this._steps = [];
+            this._interpolator = new CGSGInterpolatorTCB();
+            this._keys = [];
+            this._nbKeys = 0;
+            this._values = [];
+            this._nbValues = 0;
+            this._steps = [];
 
-			/**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 */
-			this.classType = &quot;CGSGNodeCurveTCB&quot;;
-		},
+            /**
+             * @property classType
+             * @readonly
+             * @type {String}
+             */
+            this.classType = &quot;CGSGNodeCurveTCB&quot;;
+        },
 
-		/**
-		 * @method addKey
-		 * @param x
-		 * @param y
-		 * @param t
-		 * @param c
-		 * @param b
-		 * @return {CGSGKeyFrame}
-		 */
-		addKey : function(x, y, t, c, b) {
-			var k = new CGSGKeyFrame(this._nbKeys, {x : x, y : y});
-			k.userData = {t : t, c : c, b : b};
-			this._keys.push(k);
-			this._nbKeys++;
+        /**
+         * @method addKey
+         * @param x
+         * @param y
+         * @param t
+         * @param c
+         * @param b
+         * @return {CGSGKeyFrame}
+         */
+        addKey : function(x, y, t, c, b) {
+            var k = new CGSGKeyFrame(this._nbKeys, {x : x, y : y});
+            k.userData = {t : t, c : c, b : b};
+            this._keys.push(k);
+            this._nbKeys++;
 
-			if (this._nbKeys &gt; 1)
-				this._steps.push(20);
+            if (this._nbKeys &gt; 1)
+                this._steps.push(20);
 
-			var s = new CGSGNodeSquare(x - 2, y - 2, 4, 4);
-			s.isDraggable = true;
-			s.userData = k;
-			s.onDrag = this._moveKey.bind(this);
-			this.addChild(s);
+            var s = new CGSGNodeSquare(x - 2, y - 2, 4, 4);
+            s.isDraggable = true;
+            s.userData = k;
+            s.onDrag = this._moveKey.bind(this);
+            this.addChild(s);
 
-			return k;
-		},
+            return k;
+        },
 
-		_moveKey:function(event) {
-			event.data.node.userData.value.x = event.data.positions[0].x;
-			event.data.node.userData.value.y = event.data.positions[0].y;
-			this.compute();
-		},
+        _moveKey:function(event) {
+            event.data.node.userData.value.x = event.data.positions[0].x;
+            event.data.node.userData.value.y = event.data.positions[0].y;
+            this.compute();
+        },
 
-		compute : function() {
-			var v = this._interpolator.compute(this._keys, this._steps);
-			this._values = v.copy();
-			this._nbValues = this._values.length;
-		},
+        compute : function() {
+            var v = this._interpolator.compute(this._keys, this._steps);
+            this._values = v.copy();
+            this._nbValues = this._values.length;
+        },
 
-		/**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @param {CanvasRenderingContext2D} context the context into render the node
-		 * */
-		render : function(context) {
-			if (this._nbValues &gt; 0) {
+        /**
+         * Custom rendering
+         * @method render
+         * @protected
+         * @param {CanvasRenderingContext2D} context the context into render the node
+         * */
+        render : function(context) {
+            if (this._nbValues &gt; 0) {
 
-				context.beginPath();
+                context.beginPath();
 
-				context.moveTo(this._values[0].x, this._values[0].y);
+                context.moveTo(this._values[0].x, this._values[0].y);
 
-				for (var i = 1 ; i &lt; this._nbValues ; i++) {
-					context.lineTo(this._values[i].x, this._values[i].y);
-				}
+                for (var i = 1 ; i &lt; this._nbValues ; i++) {
+                    context.lineTo(this._values[i].x, this._values[i].y);
+                }
 
-				if (this.lineWidth &gt; 0) {
-					context.stroke();
-				}
-			}
-		},
+                if (this.lineWidth &gt; 0) {
+                    context.stroke();
+                }
+            }
+        },
 
-		/**
-		 * @method copy
-		 * @return {CGSGNodeCurveTCB} a copy of this node
-		 */
-		copy : function() {
-			var node = new CGSGNodeCurveTCB(this.position.x, this.position.y);
-			//call the super method
-			node = this._super(node);
+        /**
+         * @method copy
+         * @return {CGSGNodeCurveTCB} a copy of this node
+         */
+        copy : function() {
+            var node = new CGSGNodeCurveTCB(this.position.x, this.position.y);
+            //call the super method
+            node = this._super(node);
 
-			var k;
-			for (var i = 0 ; i &lt; this._nbKeys ; i++) {
-				k = this._keys[i];
-				node.addKey(k.value.x, k.value.y, k.userData.t, k.userData.c, k.userData.b);
-			}
-			node.compute();
+            var k;
+            for (var i = 0 ; i &lt; this._nbKeys ; i++) {
+                k = this._keys[i];
+                node.addKey(k.value.x, k.value.y, k.userData.t, k.userData.c, k.userData.b);
+            }
+            node.compute();
 
-			return node;
-		}
-	}
+            return node;
+        }
+    }
 );
 
     </pre>

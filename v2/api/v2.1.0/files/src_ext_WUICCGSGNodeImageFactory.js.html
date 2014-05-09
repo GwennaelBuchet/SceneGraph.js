@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -235,56 +235,56 @@
  * @type {WUICCGSGNodeImageFactory}
  */
 var WUICCGSGNodeImageFactory = CGSGObject.extend(
-	{
+    {
 
-		initialize : function(groupId) {
-			this.wuicData = eval(&quot;WUIC_SPRITE_&quot; + groupId.toUpperCase());
-			this.imgMap = new CGSGMap();
+        initialize : function(groupId) {
+            this.wuicData = eval(&quot;WUIC_SPRITE_&quot; + groupId.toUpperCase());
+            this.imgMap = new CGSGMap();
 
-			for (var file in this.wuicData) {
-				var sprite = this.wuicData[file];
-				this.imgMap.addOrReplace(file, sprite.url);
-			}
-		},
+            for (var file in this.wuicData) {
+                var sprite = this.wuicData[file];
+                this.imgMap.addOrReplace(file, sprite.url);
+            }
+        },
 
-		/**
-		 * Create a new image from the sprite
-		 * @method create
-		 * @param name represent the name of the new image
-		 * @param data contain the attribute of this image
-		 * @return {CGSGNodeImage}
-		 */
-		create : function(name, data) {
-			var sprite = this.wuicData[name];
+        /**
+         * Create a new image from the sprite
+         * @method create
+         * @param name represent the name of the new image
+         * @param data contain the attribute of this image
+         * @return {CGSGNodeImage}
+         */
+        create : function(name, data) {
+            var sprite = this.wuicData[name];
 
-			// Create image thanks to the provided sprite
-			var img = this.buildNode(data, sprite.url);
-			img.setSlice(parseInt(sprite.x), parseInt(sprite.y),
-						 parseInt(sprite.w), parseInt(sprite.h), true);
-			img.name = name;
-			return img;
-		},
+            // Create image thanks to the provided sprite
+            var img = this.buildNode(data, sprite.url);
+            img.setSlice(parseInt(sprite.x), parseInt(sprite.y),
+                         parseInt(sprite.w), parseInt(sprite.h), true);
+            img.name = name;
+            return img;
+        },
 
-		/**
-		 * Build the CGSGNodeImage with his position
-		 * @method buildNode
-		 * @param data contain the attribute of the node
-		 * @param url
-		 * @return {CGSGNodeImage}
-		 */
-		buildNode : function(data, url) {
-			return  new CGSGNodeImage(data.x, data.y, url);
-		},
+        /**
+         * Build the CGSGNodeImage with his position
+         * @method buildNode
+         * @param data contain the attribute of the node
+         * @param url
+         * @return {CGSGNodeImage}
+         */
+        buildNode : function(data, url) {
+            return  new CGSGNodeImage(data.x, data.y, url);
+        },
 
-		/**
-		 * return a map of all the image associated with her sprite&#x27;s url.
-		 * @method getImgMap
-		 * @return {CGSGMap}
-		 */
-		getImgMap : function() {
-			return this.imgMap;
-		}
-	}
+        /**
+         * return a map of all the image associated with her sprite&#x27;s url.
+         * @method getImgMap
+         * @return {CGSGMap}
+         */
+        getImgMap : function() {
+            return this.imgMap;
+        }
+    }
 );
 
 

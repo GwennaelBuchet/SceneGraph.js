@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -268,112 +268,112 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeEllipse = CGSGNode.extend(
-	{
-		initialize : function(x, y, width, height) {
-			this._super(x, y);
-			this.resizeTo(width, height);
+    {
+        initialize : function(x, y, width, height) {
+            this._super(x, y);
+            this.resizeTo(width, height);
 
-			this._f = 1.16666666;
-			this._mf = 1 - this._f;
-			this._w = 0;
-			this._mw = 0;
+            this._f = 1.16666666;
+            this._mf = 1 - this._f;
+            this._w = 0;
+            this._mw = 0;
 
-			this._computeWmW();
+            this._computeWmW();
 
-			/**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 */
-			this.classType = &quot;CGSGNodeEllipse&quot;;
+            /**
+             * @property classType
+             * @readonly
+             * @type {String}
+             */
+            this.classType = &quot;CGSGNodeEllipse&quot;;
 
-			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
-		},
+            this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
+        },
 
-		/**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @param c {CanvasRenderingContext2D} the context into render the node
-		 * */
-		render : function(c) {
-			var centerX = this.dimension.width / 2;
+        /**
+         * Custom rendering
+         * @method render
+         * @protected
+         * @param c {CanvasRenderingContext2D} the context into render the node
+         * */
+        render : function(c) {
+            var centerX = this.dimension.width / 2;
 
-			c.beginPath();
+            c.beginPath();
 
-			c.moveTo(centerX, 0);
+            c.moveTo(centerX, 0);
 
-			c.bezierCurveTo(
-				this._w, 0,
-				this._w, this.dimension.height,
-				centerX, this.dimension.height);
+            c.bezierCurveTo(
+                this._w, 0,
+                this._w, this.dimension.height,
+                centerX, this.dimension.height);
 
-			c.bezierCurveTo(
-				this._mw, this.dimension.height,
-				this._mw, 0,
-				centerX, 0);
+            c.bezierCurveTo(
+                this._mw, this.dimension.height,
+                this._mw, 0,
+                centerX, 0);
 
-			c.fill();
-			if (this.lineWidth &gt; 0) {
-				c.stroke();
-			}
+            c.fill();
+            if (this.lineWidth &gt; 0) {
+                c.stroke();
+            }
 
-			c.closePath();
-		},
+            c.closePath();
+        },
 
-		_computeWmW : function() {
-			this._w = this.dimension.width * this._f;
-			this._mw = this.dimension.width * this._mf;
-		},
+        _computeWmW : function() {
+            this._w = this.dimension.width * this._f;
+            this._mw = this.dimension.width * this._mf;
+        },
 
-		/**
-		 * Replace current dimension by these new ones and compute new Points
-		 * @method resizeTo
-		 * @param {Number} w
-		 * @param {Number} h
-		 * */
-		resizeTo : function(w, h) {
-			this._super(w, h);
+        /**
+         * Replace current dimension by these new ones and compute new Points
+         * @method resizeTo
+         * @param {Number} w
+         * @param {Number} h
+         * */
+        resizeTo : function(w, h) {
+            this._super(w, h);
 
-			this._computeWmW();
-		},
+            this._computeWmW();
+        },
 
-		/**
-		 * Multiply current dimension by these new ones
-		 * @method resizeTBy
-		 * @param wf {Number} width Factor
-		 * @param hf {Number} height Factor
-		 * */
-		resizeBy : function(wf, hf) {
-			this._super(wf, hf);
+        /**
+         * Multiply current dimension by these new ones
+         * @method resizeTBy
+         * @param wf {Number} width Factor
+         * @param hf {Number} height Factor
+         * */
+        resizeBy : function(wf, hf) {
+            this._super(wf, hf);
 
-			this._computeWmW();
-		},
+            this._computeWmW();
+        },
 
-		/**
-		 * Increase/decrease current dimension with adding values
-		 * @method resizeWith
-		 * @param w {Number} width
-		 * @param h {Number} height
-		 * */
-		resizeWith : function(w, h) {
-			this._super(w, h);
+        /**
+         * Increase/decrease current dimension with adding values
+         * @method resizeWith
+         * @param w {Number} width
+         * @param h {Number} height
+         * */
+        resizeWith : function(w, h) {
+            this._super(w, h);
 
-			this._computeWmW();
-		},
+            this._computeWmW();
+        },
 
 
-		/**
-		 * @method copy
-		 * @return {CGSGNodeEllipse} a copy of this node
-		 */
-		copy : function() {
-			var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
-										   this.dimension.height);
-			//call the super method
-			return this._super(node);
-		}
-	}
+        /**
+         * @method copy
+         * @return {CGSGNodeEllipse} a copy of this node
+         */
+        copy : function() {
+            var node = new CGSGNodeEllipse(this.position.x, this.position.y, this.dimension.width,
+                                           this.dimension.height);
+            //call the super method
+            return this._super(node);
+        }
+    }
 );
 
     </pre>

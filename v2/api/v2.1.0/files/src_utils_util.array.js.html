@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title="sceneGraph.js"></h1>
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.1.0</em>
+            <em>API Docs for: v2.1.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -268,7 +268,7 @@
  * @return {Boolean}
  */
 function cgsgIsArray(value) {
-	return (Object.prototype.toString.call(value) === &#x27;[object Array]&#x27;);
+    return (Object.prototype.toString.call(value) === &#x27;[object Array]&#x27;);
 }
 
 /**
@@ -277,12 +277,12 @@ function cgsgIsArray(value) {
  * @param item
  */
 Array.prototype.without = function(item) {
-	for (var i = 0 ; i &lt; this.length ; i++) {
-		if (this[i] == item) {
-			this.splice(i, 1);
-			//break;
-		}
-	}
+    for (var i = 0 ; i &lt; this.length ; i++) {
+        if (this[i] == item) {
+            this.splice(i, 1);
+            //break;
+        }
+    }
 };
 
 /**
@@ -290,7 +290,7 @@ Array.prototype.without = function(item) {
  * @method Array.prototype.pop
  */
 Array.prototype.pop = function() {
-	this.splice(this.length - 1, 1);
+    this.splice(this.length - 1, 1);
 };
 
 /**
@@ -298,7 +298,7 @@ Array.prototype.pop = function() {
  * @method Array.prototype.clear
  */
 Array.prototype.clear = function() {
-	this.length = 0;
+    this.length = 0;
 };
 
 /**
@@ -307,7 +307,7 @@ Array.prototype.clear = function() {
  * @return {Boolean} true if the array is empty
  */
 Array.prototype.isEmpty = function() {
-	return this.length === 0;
+    return this.length === 0;
 };
 
 /**
@@ -317,7 +317,7 @@ Array.prototype.isEmpty = function() {
  * @return {Array}
  */
 Array.prototype.clone = function() {
-	return this.slice(0);
+    return this.slice(0);
 };
 
 /**
@@ -327,17 +327,17 @@ Array.prototype.clone = function() {
  * @return {Array}
  */
 Array.prototype.copy = function() {
-	var a = [];
-	for (var i = 0 ; i &lt; this.length ; i++) {
-		if (this[i].copy) {
-			a.push(this[i].copy());
-		}
-		else {
-			a.push(this[i]);
-		}
-	}
+    var a = [];
+    for (var i = 0 ; i &lt; this.length ; i++) {
+        if (this[i].copy) {
+            a.push(this[i].copy());
+        }
+        else {
+            a.push(this[i]);
+        }
+    }
 
-	return a;
+    return a;
 };
 
 /**
@@ -347,12 +347,12 @@ Array.prototype.copy = function() {
  * @return {Boolean}
  */
 Array.prototype.contains = function(item) {
-	for (var i = 0 ; i &lt; this.length ; i++) {
-		if (this[i] == item) {
-			return true;
-		}
-	}
-	return false;
+    for (var i = 0 ; i &lt; this.length ; i++) {
+        if (this[i] == item) {
+            return true;
+        }
+    }
+    return false;
 };
 
 /**
@@ -361,15 +361,15 @@ Array.prototype.contains = function(item) {
  *  @return {Array}
  */
 Array.prototype.unique = function() {
-	var tmp = [], i;
-	this.sort();
-	for (i = 0 ; i &lt; this.length ; i++) {
-		if (this[i] !== this[i + 1]) {
-			tmp[tmp.length] = this[i];
-		}
-	}
+    var tmp = [], i;
+    this.sort();
+    for (i = 0 ; i &lt; this.length ; i++) {
+        if (this[i] !== this[i + 1]) {
+            tmp[tmp.length] = this[i];
+        }
+    }
 
-	return tmp;
+    return tmp;
 };
 
 /**
@@ -378,12 +378,12 @@ Array.prototype.unique = function() {
  * @return {Number}
  */
 Array.prototype.sum = function() {
-	var sum = 0;
-	for (var i = 0 ; i &lt; this.length ; i++) {
-		sum += parseInt(this[i]);
-	}
+    var sum = 0;
+    for (var i = 0 ; i &lt; this.length ; i++) {
+        sum += parseInt(this[i]);
+    }
 
-	return sum;
+    return sum;
 };
 
 /**
@@ -392,7 +392,7 @@ Array.prototype.sum = function() {
  * @return {Number}
  */
 Array.prototype.average = function() {
-	return this.sum() / this.length;
+    return this.sum() / this.length;
 };
 
 
