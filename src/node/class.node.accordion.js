@@ -38,6 +38,7 @@ var CGSGAccordion = CGSGNode.extend(
 
 		/**
 		 * Add a new section on the accordion.
+		 * @method buildAndAddSection
 		 * @param {CGSGNode} title
 		 * @param {CGSGNode} core
 		 */
@@ -66,6 +67,7 @@ var CGSGAccordion = CGSGNode.extend(
 
 		/**
 		 * remove a section from the accordion.
+		 * @method removeSectionAt
 		 * @param {Number} index
 		 */
 		removeSectionAt : function(index) {
@@ -82,7 +84,8 @@ var CGSGAccordion = CGSGNode.extend(
 		},
 
 		/**
-		 * Display the core of the selected section.
+		 * Display the core of the selected
+		 * @method selectSection
 		 * @param {CGSGNode} section
 		 */
 		selectSection : function(section) {
@@ -111,6 +114,7 @@ var CGSGAccordion = CGSGNode.extend(
 
 		/**
 		 * deselect all the section.
+		 * @method deselectAll
 		 */
 		deselectAll : function() {
 
@@ -163,6 +167,7 @@ var CGSGSection = CGSGNode.extend(
 
 		/**
 		 * set the title of the section header
+		 * @method setTitle
 		 * @param {String} title
 		 */
 		setTitle : function(title) {
@@ -180,6 +185,7 @@ var CGSGSection = CGSGNode.extend(
 
 		/**
 		 * set the core of the section
+		 * @method setCore
 		 * @param {CGSGNode} core
 		 */
 		setCore : function(core) {
@@ -190,6 +196,7 @@ var CGSGSection = CGSGNode.extend(
 
 		/**
 		 * change the background color of the section
+		 * @method setBackgroundColor
 		 * @param color
 		 */
 		setBackgroundColor : function(color) {

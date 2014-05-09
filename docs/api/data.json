@@ -2,7 +2,7 @@
     "project": {
         "name": "sceneGraph.js",
         "description": "HTML5 Scene Graph Framework",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "url": "http://gwennaelbuchet.github.com/cgSceneGraph/",
         "themedir": "D:/RD/sceneGraph.js/medias/theme_yuidoc/cgsg/theme.json"
     },
@@ -1122,7 +1122,7 @@
             "module": "Node",
             "namespace": "",
             "file": "src\\node\\class.node.accordion.js",
-            "line": 136,
+            "line": 140,
             "description": "This class represents a Accordion.",
             "extends": "CGSGNode",
             "is_constructor": 1,
@@ -3756,6 +3756,8 @@
             "file": "src\\node\\class.node.accordion.js",
             "line": 39,
             "description": "Add a new section on the accordion.",
+            "itemtype": "method",
+            "name": "buildAndAddSection",
             "params": [
                 {
                     "name": "title",
@@ -3773,8 +3775,10 @@
         },
         {
             "file": "src\\node\\class.node.accordion.js",
-            "line": 67,
+            "line": 68,
             "description": "remove a section from the accordion.",
+            "itemtype": "method",
+            "name": "removeSectionAt",
             "params": [
                 {
                     "name": "index",
@@ -3787,8 +3791,10 @@
         },
         {
             "file": "src\\node\\class.node.accordion.js",
-            "line": 84,
-            "description": "Display the core of the selected section.",
+            "line": 86,
+            "description": "Display the core of the selected",
+            "itemtype": "method",
+            "name": "selectSection",
             "params": [
                 {
                     "name": "section",
@@ -3801,15 +3807,19 @@
         },
         {
             "file": "src\\node\\class.node.accordion.js",
-            "line": 112,
+            "line": 115,
             "description": "deselect all the section.",
+            "itemtype": "method",
+            "name": "deselectAll",
             "class": "CGSGAccordion",
             "module": "Node"
         },
         {
             "file": "src\\node\\class.node.accordion.js",
-            "line": 164,
+            "line": 168,
             "description": "set the title of the section header",
+            "itemtype": "method",
+            "name": "setTitle",
             "params": [
                 {
                     "name": "title",
@@ -3822,8 +3832,10 @@
         },
         {
             "file": "src\\node\\class.node.accordion.js",
-            "line": 181,
+            "line": 186,
             "description": "set the core of the section",
+            "itemtype": "method",
+            "name": "setCore",
             "params": [
                 {
                     "name": "core",
@@ -3836,8 +3848,10 @@
         },
         {
             "file": "src\\node\\class.node.accordion.js",
-            "line": 191,
+            "line": 197,
             "description": "change the background color of the section",
+            "itemtype": "method",
+            "name": "setBackgroundColor",
             "params": [
                 {
                     "name": "color",
@@ -14106,34 +14120,5 @@
             "module": "Util"
         }
     ],
-    "warnings": [
-        {
-            "message": "Missing item type\nAdd a new section on the accordion.",
-            "line": " src\\node\\class.node.accordion.js:39"
-        },
-        {
-            "message": "Missing item type\nremove a section from the accordion.",
-            "line": " src\\node\\class.node.accordion.js:67"
-        },
-        {
-            "message": "Missing item type\nDisplay the core of the selected section.",
-            "line": " src\\node\\class.node.accordion.js:84"
-        },
-        {
-            "message": "Missing item type\ndeselect all the section.",
-            "line": " src\\node\\class.node.accordion.js:112"
-        },
-        {
-            "message": "Missing item type\nset the title of the section header",
-            "line": " src\\node\\class.node.accordion.js:164"
-        },
-        {
-            "message": "Missing item type\nset the core of the section",
-            "line": " src\\node\\class.node.accordion.js:181"
-        },
-        {
-            "message": "Missing item type\nchange the background color of the section",
-            "line": " src\\node\\class.node.accordion.js:191"
-        }
-    ]
+    "warnings": []
 }

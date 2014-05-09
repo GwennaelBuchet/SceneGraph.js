@@ -1,7 +1,7 @@
 {
     "name": "sceneGraph.js",
     "description": "HTML5 Scene Graph Framework",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "url": "http://gwennaelbuchet.github.com/cgSceneGraph/",
 	"themedir" : "D:/RD/sceneGraph.js/medias/theme_yuidoc/cgsg/theme.json",
     "options": {
