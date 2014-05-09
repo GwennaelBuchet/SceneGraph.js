@@ -1,4 +1,4 @@
-<header id="topNav">
+<header id="topNav" ng-controller="MainCtrl">
     <div class="container">
 
         <!-- Mobile Menu Button -->
@@ -44,9 +44,11 @@
                         </a>
                     </li>
                     <li class="dropdown">
+                        <a href="#">
                             API
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a href="api/v2.1.0/index.html" target="_blank">V 2.1.0 (current)</a></li>
+                            <li><a href="api/{{currentversion}}/index.html" target="_blank">{{currentversion}} (current)</a></li>
                             <li class="divider"></li>
                         </ul>
                     </li>
