@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\event\class.eventmanager.js - sceneGraph.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..\..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: v2.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/CGSG.html">CGSG</a></li>
+            
+                <li><a href="../classes/CGSGAccordion.html">CGSGAccordion</a></li>
+            
+                <li><a href="../classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
+                <li><a href="../classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
+            
+                <li><a href="../classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
+                <li><a href="../classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="../classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="../classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
+            
+                <li><a href="../classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="../classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="../classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
+                <li><a href="../classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="../classes/CGSGCSSManager.html">CGSGCSSManager</a></li>
+            
+                <li><a href="../classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="../classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="../classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
+                <li><a href="../classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="../classes/CGSGImgManager.html">CGSGImgManager</a></li>
+            
+                <li><a href="../classes/CGSGInterpolator.html">CGSGInterpolator</a></li>
+            
+                <li><a href="../classes/CGSGInterpolatorLinear.html">CGSGInterpolatorLinear</a></li>
+            
+                <li><a href="../classes/CGSGInterpolatorTCB.html">CGSGInterpolatorTCB</a></li>
+            
+                <li><a href="../classes/CGSGKeyFrame.html">CGSGKeyFrame</a></li>
+            
+                <li><a href="../classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="../classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="../classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="../classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
+            
+                <li><a href="../classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="../classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="../classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="../classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="../classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="../classes/CGSGNodeCurveTCB.html">CGSGNodeCurveTCB</a></li>
+            
+                <li><a href="../classes/CGSGNodeDomElement.html">CGSGNodeDomElement</a></li>
+            
+                <li><a href="../classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="../classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="../classes/CGSGNodeLine.html">CGSGNodeLine</a></li>
+            
+                <li><a href="../classes/CGSGNodeSlider.html">CGSGNodeSlider</a></li>
+            
+                <li><a href="../classes/CGSGNodeSliderHandle.html">CGSGNodeSliderHandle</a></li>
+            
+                <li><a href="../classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="../classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="../classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
+            
+                <li><a href="../classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="../classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="../classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="../classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="../classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="../classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="../classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="../classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="../classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="../classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="../classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="../classes/CGSGSection.html">CGSGSection</a></li>
+            
+                <li><a href="../classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="../classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="../classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="../classes/CGSGView.html">CGSGView</a></li>
+            
+                <li><a href="../classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="../classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+                <li><a href="../classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
+            
+                <li><a href="../classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
+            
+                <li><a href="../classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
+            
+                <li><a href="../classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
+            
+                <li><a href="../classes/WUICCGSGNodeImageFactory.html">WUICCGSGNodeImageFactory</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Animation.html">Animation</a></li>
+            
+                <li><a href="../modules/Collision.html">Collision</a></li>
+            
+                <li><a href="../modules/Math.html">Math</a></li>
+            
+                <li><a href="../modules/Node.html">Node</a></li>
+            
+                <li><a href="../modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="../modules/Scene.html">Scene</a></li>
+            
+                <li><a href="../modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src\event\class.eventmanager.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/*
+ * Copyright (c) 2014 Gwennael Buchet
+ *
+ * License/Terms of Use
+ *
+ * Permission is hereby granted, free of charge and for the term of intellectual property rights on the Software, to any
+ * person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use, copy, modify
+ * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
+ *
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
+ *  Terms of Use causing significant harm to Gwennael Buchet.
+ *
+ *  THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
+ *
+ *  These Terms of Use are subject to French law.
+ * */
+
+/**
+ * Represents an entry of the internal table of the {CGSGEventManager} which keeps in memory all bound events.
+ *
+ * @class CGSGBindEntry
+ * @extends CGSGObject
+ * @author Guillaume Drouet (guidrouet@gmail.com)
+ * @type {CGSGBindEntry}
+ * @param observable {Object} the observable object
+ * @param attributeName {String} the observable attribute the handler is bound to
+ * @param isAdditional {Boolean} flag which indicates if the handler is stored in the additional array
+ */
+
+var CGSGBindEntry = CGSGObject.extend(
+    {
+        initialize : function(observable, attributeName, isAdditional) {
+            this._observable = observable;
+            this._attributeName = attributeName;
+            this._isAdditional = isAdditional;
+        }
+    }
+);
+
+/**
+ * This class manages the association of handler for a particular event which can occurs on a particular object.
+ * After an handler is bound to an event, it can be fire thanks to this manager too.
+ *
+ * @class CGSGEventManager
+ * @extends CGSGObject
+ * @author Guillaume Drouet (guidrouet@gmail.com)
+ * @type {CGSGEventManager}
+ */
+
+var CGSGEventManager = CGSGObject.extend(
+    {
+        initialize : function() {
+            this._handlerPropertyPrefix = &quot;cgsgEventManager_&quot; + new Date().getTime() + &quot;_&quot;;
+            this._table = new CGSGMap();
+        },
+
+        /**
+         * Replaces the handler associated to the given key by the new specified handler.
+         *
+         * @method replaceHandler
+         * @param key {CGSGBindEntry} the key
+         * @param handler {Function} the new handler
+         */
+        replaceHandler : function(key, handler) {
+            var obs = key._observable;
+
+            // Direct access
+            if (!key._isAdditional) {
+                obs[key._attributeName] = handler;
+            }
+            else {
+                // Search through the array
+                var old = this._table.getValue(key);
+                var idx = obs[key._attributeName].indexOf(old);
+
+                if (idx !== -1) {
+                    obs[key._attributeName][idx] = handler;
+                }
+            }
+
+            this._table.addOrReplace(key, handler)
+        },
+
+        /**
+         * Binds an handler function for an event which can occurs on a given observable object.
+         *
+         * @method bindHandler
+         * @param observable {Object} the observable object
+         * @param eventName {String} The event&#x27;s name
+         * @param handler {Function} the handler
+         * @return {CGSGBindEntry} the ID of the binding
+         */
+        bindHandler : function(observable, eventName, handler) {
+            //check if the same event was already bound via a simple command (ex: &quot;this.xxx.onClick = function() {...}&quot;)
+            var additional = cgsgExist(observable[eventName]);
+            var attributeName;
+
+            // Bind member named with eventName first and then additional handlers are stored to an array
+            if (additional) {
+                attributeName = this._getHandlerPropertyName(eventName);
+
+                // Array does not already exist
+                if (!cgsgExist(observable[attributeName])) {
+                    observable[attributeName] = [handler];
+                }
+                else {
+                    observable[attributeName].push(handler);
+                }
+            }
+            else {
+                attributeName = eventName;
+                observable[eventName] = handler;
+            }
+
+            var entry = new CGSGBindEntry(observable, attributeName, additional);
+            this._table.addOrReplace(entry, handler);
+            return entry;
+        },
+
+
+        /**
+         * Notifies an event to all handlers bound to the given event on the given observable object. For performance
+         * reasons, this method must not be called if no handler is bound to the observable. Consequently, for instance,
+         * if you have an event &#x27;onClick&#x27; that you want to dispatch, wrap the call in an if statement like this
+         * (otherwise the execution will fail) :
+         * if (this.onClick) {
+         *     CGSG.eventManager.dispatch(...);
+         * }
+         *
+         * @method dispatch
+         * @param observable {Object} the observable object
+         * @param eventName {String} The event&#x27;s name
+         * @param event {CGSGEvent} the event to notify
+         */
+        dispatch : function(observable, eventName, event) {
+            // Member with event name must exist
+            event.observable = observable;
+            event.type = eventName;
+
+            if (!cgsgExist(observable[eventName])) {
+                console.log(eventName);
+            }
+
+            observable[eventName](event);
+
+            // Continue only if propagation is enabled
+            if (event.propagate) {
+                var handlerProperty = this._getHandlerPropertyName(eventName);
+                var handler = observable[handlerProperty];
+
+                // Additional handlers should be notified too
+                if (cgsgExist(handler)) {
+                    cgsgIterate(handler, function(i, handler) {
+                        handler(event);
+
+                        // Loop will be broken if propagate flag has been set to false by the handler
+                        return event.propagate;
+                    });
+                }
+            }
+        },
+
+        /**
+         * Unbind an handler registered for an event on an object.
+         *
+         * @method unbindHandler
+         * @param observable {Object} the observable object
+         * @param eventName {String} The event&#x27;s name
+         * @param handler {Function} the handler
+         */
+        unbindHandler : function(observable, eventName, handler) {
+            var i, len, entry;
+
+            // Handler to remove is the one corresponding to the attribute named with the eventName
+            if (observable[eventName] === handler) {
+                observable[eventName] = null;
+            }
+            else {
+                // Look for the handler
+                var handlerProperty = this._getHandlerPropertyName(eventName);
+
+                i = observable[handlerProperty].indexOf(handler);
+
+                if (i !== -1) {
+                    observable[handlerProperty].slice(i, 1);
+                }
+            }
+
+            // Purge table
+            for (i = 0, len = this._table.getLength() ; i &lt; len ; i++) {
+                entry = this._table.getAt(i);
+
+                if (entry.value === handler) {
+                    this._table.remove(entry.key);
+                    break;
+                }
+            }
+        },
+
+        /**
+         * Unbinds all handlers registered for an event on a given object.
+         *
+         * @method unbindAll
+         * @param observable {Object} the observable object
+         * @param eventName {String} The event&#x27;s name
+         */
+        unbindAll : function(observable, eventName) {
+            // Attribute named with eventName is deleted
+            observable[eventName] = null;
+
+            var handlerProperty = this._getHandlerPropertyName(eventName);
+
+            // Then delete additional handlers if they exist
+            if (cgsgExist(observable[handlerProperty])) {
+                //handlerProperty = this._getHandlerPropertyName(eventName);
+
+                //if (cgsgExist(observable[handlerProperty])) {
+                observable[handlerProperty].splice(0, observable[handlerProperty].length - 1);
+                //}
+            }
+        },
+
+        /**
+         * Returns the name of a property to create on an object to store additional handlers.
+         *
+         * @method  _getHandlerPropertyName
+         * @param eventName String the event name
+         * @return {String} the attribute name
+         * @private
+         */
+        _getHandlerPropertyName : function(eventName) {
+            return this._handlerPropertyPrefix + eventName;
+        }
+    }
+);
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
