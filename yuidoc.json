@@ -3,14 +3,14 @@
 	"description" : "HTML5 Scene Graph Framework",
 	"version"     : "v2.1.0",
 	"url"         : "http://gwennaelbuchet.github.com/cgSceneGraph/",
-	"logo"        : "../../logo/logoCGSG_256x57.png",
+	"logo"        : "../logo/logoCGSG_256x57.png",
 	"themedir"    : "D:/RD/sceneGraph.js/medias/theme_yuidoc/cgsg/theme.json",
 	"options"     : {
 		"linkNatives"    : "true",
 		"attributesEmit" : "true",
 		"selleck"        : "false",
 		"paths"          : ["./src"],
-		"outdir"         : "./docs/api/v2.1.0",
+		"outdir"         : "./api/v2.1.0",
 		"tabtospace"     : 4
 	}
 }
