@@ -114,7 +114,7 @@
 		"details": "SceneGraph.js support CSS in its core.<br/><p>It's very easy to load CSS files at runtime and to play with CSS classes and attributes.</p>Other examples are provided with the framework to show how easy it is to manipulate CSS with SceneGraph.js.",
 		"comment": "CSS switching",
 		"type"   : "css official",
-		"folder" : "14_CSS/04_CustomTHeme"
+		"folder" : "14_CSS/04_CustomTheme"
 	},
 	{
 		"code"   : "text",
@@ -122,7 +122,7 @@
 		"details": "Text node uses CSS to be customized. <br/>Several CSS classes already defined: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' and 'p'.",
 		"comment": "Powerful text node. Use CSS.",
 		"type"   : "basic official",
-		"folder" : "01_Basic_Shapes/01_Text_01_Simple"
+		"folder" : "01_Basic_Shapes/01_Text_01_simple"
 	},
 	{
 		"code"   : "square",
