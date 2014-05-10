@@ -71,7 +71,7 @@
 	</p>
 
 	<h1 class="text-center">
-		<strong>SceneGraph.js</strong>
+		<strong>{{project.name}}</strong>
 	</h1>
 
 
@@ -80,7 +80,7 @@
 
 	<p>
 		<a data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg"><i class="fa fa-external-link"></i>Download
-		                                                                                                                {{currentversion}}</a>
+		                                                                                                                {{project.currentVersion}}</a>
 	</p>
 
 	<p>
@@ -96,15 +96,15 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Download SceneGraph.js {{currentversion}}</h4>
+				<h4 class="modal-title">Download {{project.name}} {{project.currentVersion}}</h4>
 			</div>
 			<div class="modal-body">
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label text-right" style="vertical-align:bottom">{{currentversion}} (current)</label>
+					<label class="col-sm-3 control-label text-right" style="vertical-align:bottom">{{project.currentVersion}} (current)</label>
 
 					<div class="col-sm-9">
-						<a href="https://github.com/GwennaelBuchet/cgSceneGraph/archive/v2.zip">
+						<a href="{{project.github}}/archive/v2.zip">
 							<button type="button" class="btn btn-success">Download</button>
 						</a>
 					</div>
@@ -113,7 +113,7 @@
 					<label class="col-sm-3 control-label text-right">Snapshot</label>
 
 					<div class="col-sm-9">
-						<a href="https://github.com/GwennaelBuchet/cgSceneGraph/archive/master.zip">
+						<a href="{{project.github}}/archive/master.zip">
 							<button type="button" class="btn btn-success">Download</button>
 						</a>
 					</div>
@@ -147,7 +147,7 @@
 			</div>
 			<div class="modal-footer row">
                 <span class="col-md-6 text-left">
-	                <a href="https://github.com/GwennaelBuchet/cgSceneGraph" target="_blank">
+	                <a href="{{project.github}}" target="_blank">
 		                <h5><i class="fa fa-github-square"></i> See on GitHub</h5></a>
                 </span>
 				<span class="col-md-6 text-right"><button type="button" class="btn btn-default" data-dismiss="modal">
@@ -287,106 +287,8 @@
 </section>
 <!-- /FEATURED BOXES 3 -->
 
-
-<!-- PORTFOLIO -->
-<!--section id="portfolio" class="special-row margin-footer">
-    <div class="container">
-
-        <h2>Recent <strong>Demos</strong> <a href="examples.html">(See all examples)</a></h2>
-
-
-        <span class="js_loader"><i class="fa fa-asterisk fa-spin"></i>LOADING</span>
-
-
-        <div class="row">
-
-            <ul class="sort-destination isotope" data-sort-id="isotope-list">
-
-                <li class="isotope-item col-sm-6 col-md-4 development">
-                    <div class="item-box">
-                        <figure>
-                            <a class="item-hover lightbox"
-                               href="assets/images/demo/portfolio/scouter.jpg"
-                               data-plugin-options='{"type":"image"}'>
-                                <span class="overlay color2"></span>
-											<span class="inner">
-												<span class="block fa fa-plus fsize20"></span>
-												<strong>VIEW</strong> IMAGE
-											</span>
-                            </a>
-                            <img class="img-responsive"
-                                 src="assets/images/demo/portfolio/scouter-600x403.jpg"
-                                 width="260"
-                                 height="260"
-                                 alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>Image</h4>
-                            <small class="styleColor">29 June, 2014</small>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="isotope-item col-sm-6 col-md-4 photography">
-                    <div class="item-box">
-                        <figure>
-                            <a class="item-hover lightbox"
-                               href="http://www.youtube.com/watch?v=W7Las-MJnJo"
-                               data-plugin-options='{"type":"iframe"}'>
-                                <span class="overlay color2"></span>
-											<span class="inner">
-												<span class="block fa fa-plus fsize20"></span>
-												<strong>VIEW</strong> VIDEO
-											</span>
-                            </a>
-                            <img class="img-responsive"
-                                 src="assets/images/demo/portfolio/black-kitty-600x403.jpg"
-                                 width="260"
-                                 height="260"
-                                 alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>Video</h4>
-                            <small class="styleColor">29 June, 2014</small>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="isotope-item col-sm-6 col-md-4 design">
-                    <div class="item-box">
-                        <figure>
-                            <a class="item-hover" href="portfolio-single-full-slider.html">
-                                <span class="overlay color2"></span>
-											<span class="inner">
-												<span class="block fa fa-plus fsize20"></span>
-												<strong>PROJECT</strong> DETAIL
-											</span>
-                            </a>
-                            <img class="img-responsive"
-                                 src="assets/images/demo/portfolio/merchant2-600x403.jpg"
-                                 width="260"
-                                 height="260"
-                                 alt="">
-                        </figure>
-                        <div class="item-box-desc">
-                            <h4>Detailed Project</h4>
-                            <small class="styleColor">29 June, 2014</small>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-</section-->
-
-<!-- /PORTFOLIO -->
-
 </div>
 <!-- /WRAPPER -->
-
 
 <!-- FOOTER -->
 <ng-include src="'partials/footer.html'"></ng-include>
@@ -405,7 +307,6 @@
 <script type="text/javascript" src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 <script type="text/javascript" src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 <script type="text/javascript" src="assets/plugins/stellar/jquery.stellar.min.js"></script>
-<script type="text/javascript" src="assets/plugins/knob/js/jquery.knob.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="assets/plugins/mediaelement/build/mediaelement-and-player.min.js"></script>
 
