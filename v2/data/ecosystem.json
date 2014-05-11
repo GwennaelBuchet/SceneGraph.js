@@ -1,0 +1,24 @@
+[
+	{
+		"code"   : "wait",
+		"name"   : "Wait View",
+		"comment": "",
+		"details": "",
+		"type"   : "advanced community",
+		"version": "cgscenegraph_1.4.2.min.js",
+		"mainjs" : "",
+		"width"  : 1200,
+		"height" : 800,
+		"demolink":"",
+		"sitelink":"",
+		"author":"Corentin Azelart"
+	},
+	{
+		"code"   : "displayratio",
+		"name"   : "Display ratio",
+		"details": "Display ratio example. Resize window to see how it works.",
+		"comment": "Display ratio",
+		"type"   : "advanced official",
+		"folder" : "04_Advanced/05_DisplayRatio"
+	}
+]
