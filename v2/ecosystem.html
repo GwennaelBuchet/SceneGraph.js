@@ -63,34 +63,58 @@
     <!-- PORTFOLIO -->
     <section id="portfolio" class="container">
 
-        <h2><strong>Explore</strong> Some Examples</h2>
+        <h2><strong>Ecosystem</strong></h2>
 
-        <p class="lead">These samples aim to teach how easy is to use features of the framework.<br/>
-            They don't aim to provide very complex applications that are difficult to understand.
+        <p class="lead">Extensions and demos developed by the community </p>
+        <!-- CALLOUT -->
+        <div class="bs-callout text-center nomargin-bottom" ng-controller="MainCtrl">
+            <h4>Want to share your extensions/demos on this page? <a href="mailto:{{project.contact.email}}"
+                                                                     class="btn btn-primary btn-lg">Yes, send them to
+                me!</a></h4>
+        </div>
+        <!-- /CALLOUT -->
 
-        </p>
+        <div class="divider styleColor">
+            <i class="fa fa-leaf"></i><br/>
+        </div>
 
+        <h3>Extensions</h3>
 
         <div class="row" id="extension" ng-controller="ecosystemCtrl">
 
             <ul class="sort-destination isotope" data-sort-id="isotope-list">
 
-                <li ng-repeat="example in examples" class="isotope-item col-sm-6 col-md-3 {{ext.type}}">
+                <li ng-repeat="ext in extensions" class="isotope-item col-sm-6 col-md-4 {{ext.type}}">
                     <div class="item-box">
                         <figure>
-                            <a class="item-hover lightbox" href="example.html?e={{ext.code}}">
+                            <a class="item-hover lightbox" href="{{ext.demolink}}" target="_blank">
                                 <span class="overlay color2"></span>
                                 <span class="inner">
                                     <span class="block fa fa-plus fsize20"></span>
-                                    <strong>VIEW</strong> DEMO
+                                    <strong>VIEW</strong> EXAMPLE
                                 </span>
                             </a>
-                            <img class="img-responsive" src="examples/{{ext.folder}}/screenshot.png" width="260"
+                            <img class="img-responsive" src="{{ext.folder}}/screenshot.png" width="260"
                                  height="260" alt="">
                         </figure>
                         <div class="item-box-desc">
                             <h4>{{ext.name}}</h4>
-                            <small class="styleColor">{{ext.comment}}</small>
+
+                            <small class="text-right">By <a href="{{ext.authorlink}}"
+                                                            target="_blank">{{ext.author}}</a></small>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-md-6 text-center bg-info">
+                                    <a href="{{ext.sitelink}}" target="_blank" class="styleColor"><h4>Web
+                                        Site</h4></a></div>
+                                <div class="col-md-6 text-center bg-success"
+                                     ng-if="ext.sourcelink !== undefined">
+                                    <a href="{{ext.sourcelink}}" target="_blank" class="styleColor"><h4>
+                                        Source</h4></a></div>
+
+                            </div>
+                            <!--small class="styleColor">{{ext.comment}}</small-->
                         </div>
                     </div>
                 </li>
@@ -98,16 +122,59 @@
             </ul>
 
         </div>
-        <!-- /.masonry-container -->
 
-        <!-- CALLOUT -->
-	    <div class="bs-callout text-center nomargin-bottom" ng-controller="MainCtrl">
-		    <h3>Want to share your examples on this page? <a href="mailto:{{project.contact.email}}"
-		                                                     class="btn btn-primary btn-lg">Yes, let's
-		                                                                                    work together!</a></h3>
-	    </div>
-        <!-- /CALLOUT -->
 
+        <div class="container">
+            <hr class="half-margins"/>
+            <!-- hr line -->
+        </div>
+
+        <h3>Demos</h3>
+
+        <div class="row" id="demo" ng-controller="ecosystemCtrl">
+
+            <ul class="sort-destination isotope" data-sort-id="isotope-list">
+
+                <li ng-repeat="ext in demos" class="isotope-item col-sm-6 col-md-4 {{ext.type}}">
+                    <div class="item-box">
+                        <figure>
+                            <a class="item-hover lightbox" href="{{ext.demolink}}" target="_blank">
+                                <span class="overlay color2"></span>
+                                <span class="inner">
+                                    <span class="block fa fa-plus fsize20"></span>
+                                    <strong>VIEW</strong> DEMO
+                                </span>
+                            </a>
+                            <img class="img-responsive" src="{{ext.folder}}/screenshot.png" width="260"
+                                 height="260" alt="">
+                        </figure>
+                        <div class="item-box-desc">
+                            <h4>{{ext.name}}</h4>
+
+                            <p>
+                                <small class="text-right">By <a href="{{ext.authorlink}}"
+                                                                target="_blank">{{ext.author}}</a>
+                                </small>
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6 text-center bg-success"><a href="{{ext.sourcelink}}"
+                                                                                target="_blank"
+                                                                                class="styleColor"><strong>View
+                                    Source</strong></a>
+                                </div>
+                                <div class="col-md-6 text-center bg-info"><a href="{{ext.sitelink}}" target="_blank"
+                                                                             class="styleColor"><strong>View
+                                    Site</strong></a>
+                                </div>
+                            </div>
+                            <!--small class="styleColor">{{ext.comment}}</small-->
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
 
     </section>
 

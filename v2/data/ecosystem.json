@@ -1,24 +1,74 @@
 [
 	{
-		"code"   : "wait",
-		"name"   : "Wait View",
-		"comment": "",
-		"details": "",
-		"type"   : "advanced community",
-		"version": "cgscenegraph_1.4.2.min.js",
-		"mainjs" : "",
-		"width"  : 1200,
-		"height" : 800,
-		"demolink":"",
-		"sitelink":"",
-		"author":"Corentin Azelart"
+		"name"       : "Progress Bar",
+		"comment"    : "A powerful and customizable<br/> progress bar !",
+		"type"       : "extension",
+		"version"    : "cgscenegraph_1.4.2.min.js",
+		"folder"     : "ecosystem/corentin59/progressbar/",
+		"demolink"   : "http://corentin59.github.io/ProgressBar-cgSceneGraph/index.html",
+		"sourcelink" : "https://github.com/corentin59/ProgressBar-cgSceneGraph/blob/master/js/class.progressbar.js",
+		"sitelink"   : "https://github.com/corentin59/ProgressBar-cgSceneGraph",
+		"authorlink" : "https://github.com/corentin59",
+		"author"     : "Corentin Azelart"
 	},
 	{
-		"code"   : "displayratio",
-		"name"   : "Display ratio",
-		"details": "Display ratio example. Resize window to see how it works.",
-		"comment": "Display ratio",
-		"type"   : "advanced official",
-		"folder" : "04_Advanced/05_DisplayRatio"
+		"name"       : "Accordion Menu",
+		"comment"    : "A lot of thanks for Nathan for this impressive and very useful menu accordion component !",
+		"type"       : "extension",
+		"version"    : "cgscenegraph_1.4.2.min.js",
+		"folder"     : "ecosystem/nathandm/cgsgaccordion/",
+		"demolink"   : "ecosystem/nathandm/cgsgaccordion/index.html",
+		"sourcelink" : "https://github.com/NathanDM/CGSGAccordion/blob/master/js/class.node.accordion.js",
+		"sitelink"   : "https://github.com/NathanDM/CGSGAccordion",
+		"authorlink" : "https://github.com/NathanDM",
+		"author"     : "Nathan Damie"
+	},
+	{
+		"name"       : "Scroll Bar",
+		"comment"    : "A scrollbar component !",
+		"type"       : "extension",
+		"version"    : "cgscenegraph_1.4.2.min.js",
+		"folder"     : "ecosystem/nathandm/cgsgscrollbar/",
+		"demolink"   : "ecosystem/nathandm/cgsgscrollbar/index.html",
+		"sourcelink" : "https://github.com/NathanDM/CGSGScrollPane/blob/master/js/class.node.scrollBar.js",
+		"sitelink"   : "https://github.com/NathanDM/CGSGScrollBar",
+		"authorlink" : "https://github.com/NathanDM",
+		"author"     : "Nathan Damie"
+	},
+	{
+		"name"       : "Scroll Pane",
+		"comment"    : "A scroll pane component !",
+		"type"       : "extension",
+		"version"    : "cgscenegraph_1.4.2.min.js",
+		"folder"     : "ecosystem/nathandm/cgsgscrollpane/",
+		"demolink"   : "ecosystem/nathandm/cgsgscrollpane/index.html",
+		"sourcelink" : "https://github.com/NathanDM/CGSGScrollPane/blob/master/js/class.node.scrollPane.js",
+		"sitelink"   : "https://github.com/NathanDM/CGSGScrollPane",
+		"authorlink" : "https://github.com/NathanDM",
+		"author"     : "Nathan Damie"
+	},
+	{
+		"name"       : "Circle",
+		"comment"    : "A circle component (already included in version > v2.0)",
+		"type"       : "extension",
+		"version"    : "cgscenegraph_1.4.2.min.js",
+		"folder"     : "ecosystem/ext_xymostech/circle/",
+		"demolink"   : "ecosystem/ext_xymostech/circle/index.html",
+		"sourcelink" : "https://github.com/xymostech/Ludum25/blob/master/js/circle.class.js",
+		"sitelink"   : "https://github.com/xymostech/Ludum25",
+		"authorlink" : "https://github.com/xymostech",
+		"author"     : "Xymostech (Emily Eisenberg)"
+	},
+	{
+		"name"       : "Circle",
+		"comment"    : "A circle component (already included in version > v2.0)",
+		"type"       : "extension",
+		"version"    : "cgscenegraph_1.4.2.min.js",
+		"folder"     : "ecosystem/ext_xymostech/circle/",
+		"demolink"   : "ecosystem/ext_xymostech/circle/index.html",
+		"sourcelink" : "https://github.com/xymostech/Ludum25/blob/master/js/circle.class.js",
+		"sitelink"   : "https://github.com/xymostech/Ludum25",
+		"authorlink" : "https://github.com/xymostech",
+		"author"     : "Xymostech (Emily Eisenberg)"
 	}
 ]

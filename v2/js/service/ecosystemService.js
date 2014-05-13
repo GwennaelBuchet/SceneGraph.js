@@ -1,13 +1,13 @@
 app.service('EcosystemSrv', /*['$scope', '$http',*/ function() {
 
-	this.examples = [];
+	this.allExts = [];
 
 	this.load = function(scope, http, callback) {
 		var that = this;
 		http.get("data/ecosystem.json", { cache : true })
 			.then(function(results) {
-					  that.examples = results.data;
-					  scope.examples = results.data;
+					  that.allExts = results.data;
+					  scope.allExts = results.data;
 					  if (callback)
 						  callback();
 				  }, function(results) {
@@ -18,9 +18,9 @@ app.service('EcosystemSrv', /*['$scope', '$http',*/ function() {
 	},
 
 		this.find = function(code) {
-			for (var i in this.examples) {
-				if (this.examples[i].code === code) {
-					return this.examples[i];
+			for (var i in this.allExts) {
+				if (this.allExts[i].code === code) {
+					return this.allExts[i];
 				}
 			}
 		},
