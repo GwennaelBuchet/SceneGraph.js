@@ -15,16 +15,16 @@
         <div class="navbar-collapse nav-main-collapse collapse pull-right">
             <nav class="nav-main mega-menu">
                 <ul class="nav nav-pills nav-main scroll-menu" id="topMain">
-                    <li>
+                    <li ng-class="{active: isActive('/index.html')}">
                         <a href="index.html"> Home </a>
                     </li>
 
-                    <li>
+                    <li ng-class="{active: isActive('v2/examples.html')}">
                         <a href="examples.html">
-                            <strong>Examples</strong>
+                            Examples
                         </a>
                     </li>
-                    <li class="dropdown">
+                    <li ng-class="{active: isActive('/tutorials.html')}" class="dropdown">
                         <a href="tutorials.html">
                             Tutorials
                         </a>
@@ -38,7 +38,7 @@
                             <li><a href="realestate-single.html">Real Estate - Single</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li ng-class="{active: isActive('/tutorials.html')}">
                         <a href="ecosystem.html">
                             Ecosystem
                         </a>
@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="v1/index.html">
+                        <a href="v1/index.html" target="_blank">
                             Looking for v1?
                         </a>
                     </li>
