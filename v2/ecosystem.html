@@ -84,7 +84,7 @@
 
             <ul class="sort-destination isotope" data-sort-id="isotope-list">
 
-                <li ng-repeat="ext in extensions" class="isotope-item col-sm-6 col-md-4 {{ext.type}}">
+                <li ng-repeat="ext in extensions" class="isotope-item col-sm-6 col-md-3 {{ext.type}}">
                     <div class="item-box">
                         <figure>
                             <a class="item-hover lightbox" href="{{ext.demolink}}" target="_blank">
@@ -94,22 +94,24 @@
                                     <strong>VIEW</strong> EXAMPLE
                                 </span>
                             </a>
-                            <img class="img-responsive" src="{{ext.folder}}/screenshot.png" width="260"
+                            <img class="img-responsive" src="{{ext.sshot}}" width="260"
                                  height="260" alt="">
                         </figure>
                         <div class="item-box-desc">
                             <h4>{{ext.name}}</h4>
 
-                            <small class="text-right">By <a href="{{ext.authorlink}}"
-                                                            target="_blank">{{ext.author}}</a></small>
+                            <small class="text-right">By
+                                <span ng-if="ext.authorlink !== undefined"><a href="{{ext.authorlink}}"
+                                                            target="_blank">{{ext.author}}</a></span>
+                                <span ng-if="ext.authorlink === undefined">{{ext.author}}</span>
+                            </small>
                             <br/>
 
                             <div class="row">
-                                <div class="col-md-6 text-center bg-info">
+                                <div class="col-md-6 text-center bg-info" ng-if="ext.sitelink !== undefined">
                                     <a href="{{ext.sitelink}}" target="_blank" class="styleColor"><h4>Web
                                         Site</h4></a></div>
-                                <div class="col-md-6 text-center bg-success"
-                                     ng-if="ext.sourcelink !== undefined">
+                                <div class="col-md-6 text-center bg-success" ng-if="ext.sourcelink !== undefined">
                                     <a href="{{ext.sourcelink}}" target="_blank" class="styleColor"><h4>
                                         Source</h4></a></div>
 
@@ -142,30 +144,30 @@
                                 <span class="overlay color2"></span>
                                 <span class="inner">
                                     <span class="block fa fa-plus fsize20"></span>
-                                    <strong>VIEW</strong> DEMO
+                                    <strong>VIEW</strong> EXAMPLE
                                 </span>
                             </a>
-                            <img class="img-responsive" src="{{ext.folder}}/screenshot.png" width="260"
+                            <img class="img-responsive" src="{{ext.sshot}}" width="260"
                                  height="260" alt="">
                         </figure>
                         <div class="item-box-desc">
                             <h4>{{ext.name}}</h4>
 
-                            <p>
-                                <small class="text-right">By <a href="{{ext.authorlink}}"
-                                                                target="_blank">{{ext.author}}</a>
-                                </small>
-                            </p>
+                            <small class="text-right">By
+                                <span ng-if="ext.authorlink !== undefined"><a href="{{ext.authorlink}}"
+                                                                              target="_blank">{{ext.author}}</a></span>
+                                <span ng-if="ext.authorlink === undefined">{{ext.author}}</span>
+                            </small>
+                            <br/>
+
                             <div class="row">
-                                <div class="col-md-6 text-center bg-success"><a href="{{ext.sourcelink}}"
-                                                                                target="_blank"
-                                                                                class="styleColor"><strong>View
-                                    Source</strong></a>
-                                </div>
-                                <div class="col-md-6 text-center bg-info"><a href="{{ext.sitelink}}" target="_blank"
-                                                                             class="styleColor"><strong>View
-                                    Site</strong></a>
-                                </div>
+                                <div class="col-md-6 text-center bg-info" ng-if="ext.sitelink !== undefined">
+                                    <a href="{{ext.sitelink}}" target="_blank" class="styleColor"><h4>Web
+                                        Site</h4></a></div>
+                                <div class="col-md-6 text-center bg-success" ng-if="ext.sourcelink !== undefined">
+                                    <a href="{{ext.sourcelink}}" target="_blank" class="styleColor"><h4>
+                                        Source</h4></a></div>
+
                             </div>
                             <!--small class="styleColor">{{ext.comment}}</small-->
                         </div>

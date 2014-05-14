@@ -10,11 +10,11 @@ app.controller('ecosystemCtrl', ['$scope', '$http', 'EcosystemSrv', function($sc
 		for (i = 0 ; i < len ; i++) {
 			item = $scope.allExts[i];
 			c = $.parseHTML(item.comment);
-			item.comment = c;
+			//item.comment = c;
 			if (item.type === "extension") {
 				$scope.extensions.push(item);
 			}
-			else { //if (item.type === "extension") {
+			else { //if (item.type === "demo") {
 				$scope.demos.push(item);
 			}
 		}
