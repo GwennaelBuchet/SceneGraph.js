@@ -1,20 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html><!--[if IE 8]>
+<html class="ie ie8"> <![endif]--><!--[if IE 9]>
+<html class="ie ie9"> <![endif]--><!--[if gt IE 9]><!-->
+<html> <!--<![endif]-->
 <head>
-    <title>cgSceneGraph</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="title" content="HTML5 canvas framework"/>
-    <meta name="description" content="html5 canvas framework"/>
-    <meta name="keywords"
-          content="html5 canvas animation javascript framework cgscenegraph cgSceneGraph animation game framework html 5"/>
-    <meta name="language" content="en"/>
-    <meta name="subject" content="html5 canvas javascript framework"/>
-    <meta name="robots" content="All"/>
-    <meta name="copyright" content="Capgemini industries et Distribution"/>
-    <meta name="abstract" content=" html5 canvas animation javascript framework"/>
-    <meta name="MSSmartTagsPreventParsing" content="true"/>
+    <meta charset="utf-8"/>
+    <title>SceneGraph.js</title>
+    <meta name="keywords" content="HTML5,canvas,animation,framework"/>
+    <meta name="description" content="HTML5 interactive and animation framework"/>
+    <meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
 
     <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
@@ -24,322 +20,290 @@
 
     <link rel="icon" type="image/png" href="favicon.png"/>
 
-    <meta name="viewport"
-          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
 
-    <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-    <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
+    <!-- CORE CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet" type="text/css"/>
 
-    <script src="js/cufon-yui.js" type="text/javascript"></script>
-    <script src="js/Aller.font.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        Cufon.replace('ul.oe_menu div a', {hover : true});
-        Cufon.replace('h1,h2,.oe_heading');
-    </script>
+    <!-- REVOLUTION SLIDER -->
+    <link href="assets/plugins/revolution-slider/css/settings.css" rel="stylesheet" type="text/css"/>
 
+    <!-- THEME CSS -->
+    <link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css"/>
+    <!-- orange: default style -->
+    <!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />-->
+    <!-- DARK SKIN -->
+
+
+    <!-- modernizr -->
+    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="js/app.js"></script>
 
 </head>
-<body>
+<body ng-app="cgsgApp">
+<!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
 
-<!-- top wrapper -->
-<div id="topWrapper">
-    <div id="topBanner">
-      <span class="downloadLink">
-            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/zipball/master"
-               title="Download latest version as a Zip file">
-                <img alt="Download latest version as a Zip file" src="img/dlzip.png" width="60"/>
-            </a>
-            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tarball/master"
-               title="Download latest version as a tar.gz file">
-                <img alt="Download latest version as a tar.gz file" src="img/dltar.png" width="60"/>
-            </a>
-            <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
-               title="Fork me on GitHub"
-               target="_blank"><img alt="Fork me on GitHub" src="img/blacktocat.png" width="50"/></a>
-        </span>
-    </div>
-    <!-- end topBanner -->
-</div>
-<!-- end top wrapper -->
+<!-- TOP NAV -->
+<ng-include src="'partials/header.html'"></ng-include>
+<!-- /TOP NAV -->
 
-
-<div id="topnav">
-    <div class="oe_wrapper">
-        <!--div id="oe_overlay" class="oe_overlay"></div-->
-        <ul id="oe_menu" class="oe_menu">
-            <li class="current" style="border:none">
-                <a href="index.html" shape="rect">HOME</a>
-            </li>
-            <li><a href="tutorials.html">TUTORIALS</a>
-
-                <div style="left:-112px;">
-                    <ul>
-                        <li class="oe_heading">Starter</li>
-                        <li><a href="tutorials.html">Global concepts</a></li>
-                        <li><a href="tutorials/simple_project.html">Create a simple project</a></li>
-                        <li><a href="tutorials/custom_node.html">Create your nodes</a></li>
-                        <li><a href="tutorials/srt_animations.html">SRT Animations</a></li>
-                        <li><a href="tutorials/multiselection.html">Multi-selection</a></li>
-                        <li><a href="tutorials/image_sharing.html">Sprite sheets / Image sharing</a></li>
-                        <li><a href="tutorials/spritesheets.html">SpriteSheets</a></li>
-                        <li><a href="tutorials/traverser.html">Traverse the graph</a></li>
-                    </ul>
-                    <ul>
-                        <li class="oe_heading">Events</li>
-                        <li><a href="tutorials/node_events.html">Node events</a></li>
-                        <li><a href="tutorials/scene_events.html">Scene events</a></li>
-                        <li><a href="tutorials/animation_events.html">Animation events</a></li>
-                    </ul>
-                    <ul>
-                        <li class="oe_heading"><br/>Advanced</li>
-                        <li><a href="tutorials/particles.html">Particles</a></li>
-                        <li><a href="tutorials/share_animation.html">Share animation values</a></li>
-                        <li><a href="tutorials/advanced_animation.html">Advanced animation</a></li>
-                        <li><a href="tutorials/making_game.html">Develop a game</a></li>
-                    </ul>
-                    <ul>
-                        <li class="oe_heading">Tips & Tricks</li>
-                        <li><a href="tutorials/prerendering.html">Perf: pre-rendering</a></li>
-                        <li><a href="tutorials/fullscreen.html">How-To: Fullscreen size</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="examples.html" shape="rect">EXAMPLES</a>
-            </li>
-            <li>
-                <a href="ecosystem.html" shape="rect">ECOSYSTEM</a>
-            </li>
-            <li>
-                <a href="api.html" shape="rect">API DOCS</a>
-            </li>
-            <li>
-                <a href="changelog.html" shape="rect">CHANGE-LOG</a>
-            </li>
-            <li>
-                <a href="comments.html" shape="rect">FORUMS</a>
-            </li>
-            <li>
-                <a href="about.html" shape="rect">ABOUT</a>
-            </li>
-        </ul>
-    </div>
-
-</div>
-<!-- end topnav -->
-
-
+<!-- WRAPPER -->
 <div id="wrapper">
-    <div id="bg">
-        <div id="header"></div>
-        <div id="page">
-            <!-- begin container -->
-            <div id="container">
-                <!--  content -->
-                <div id="content">
-                    <div id="center">
-                        <div class="welcomeText alignleft">
-                            <h2 class="whiteText">HTML5 CANVAS FRAMEWORK</h2>
 
-                            <p>The cgSceneGraph is a powerful, <span class="blueText">cross-platform</span> and very
-                                easy-to-use <span class="blueText">HTML5 canvas JavaScript framework</span>.<br/><br/>
+<section class="container text-center styleBackground" ng-controller="MainCtrl">
+    <p>
+        <br/>
+    </p>
 
-                                <strong class="whiteText">Full Animation engine, high Performance, Collision detection,
-                                    Caching, node Manipulation, Event handling, Customization, and many more...
-                                </strong>.
-                            </p>
+    <h1 class="text-center">
+        <strong>{{project.name}}</strong>
+    </h1>
 
-                            <p>
-                                Since the start of the project, it has been designed to be used
-                                on <span class="blueText">professional
-                                application</span> as well as for <span class="blueText">game development</span>.</p>
 
-                            <p>
+    <p class="lead">Powerful, cross-platform and very easy-to-use HTML5 canvas JavaScript framework (with tons of
+        features :))</p>
 
-                            <h2 class="aligncenter">V2 is on heavy development</h2>
+    <p>
+        <a data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg"><i class="fa fa-external-link"></i>Download
+            {{project.currentVersion}}</a>
+    </p>
 
-                            <p class="whiteText">
-                                A lot of very cool and useful features is coming: masking, caching, CSS-like styles, new animation engine, ...
+    <p>
+        <div class="featured-box nobg border-only">
+                <a href="{{project.github}}" class="btn btn-default" target="_blank">
+                    <i class="fa fa-github-square"></i>    Follow on Github</a>
+        </div>
+    </p>
 
-                                Stay tuned :)
-                            </p>
+    <p><br/></p>
+</section>
 
-                            <p>
+<div class="modal fade" id="myModal" tabindex="-1">
+    <div class="modal-dialog" ng-controller="MainCtrl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Download {{project.name}} {{project.currentVersion}}</h4>
+            </div>
+            <div class="modal-body">
 
-                            <div class="alignright">
-                                <!-- AddThis Button BEGIN -->
-                                <div class="addthis_toolbox addthis_default_style ">
-                                    <a class="addthis_button_google_plusone" g:plusone:size="small"
-                                       g:plusone:count="false"></a>
-                                    <a class="addthis_button_preferred_1"></a>
-                                    <a class="addthis_button_preferred_2"></a>
-                                    <a class="addthis_button_preferred_3"></a>
-                                    <a class="addthis_button_preferred_4"></a>
-                                    <a class="addthis_button_compact"></a>
-                                </div>
-                                <script type="text/javascript"
-                                        src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50b32ee9076e5f0b"></script>
-                                <!-- AddThis Button END -->
-                            </div>
-                            </p>
-                            <p style="clear:both"></p>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right" style="vertical-align:bottom">{{project.currentVersion}}
+                        (current)</label>
 
-                        <div class="welcomeCanvas alignright">
-                            <canvas id="scene" width="480" height="320"> Oups... Your browser does not support HTML5
-                                canvas tag ... :( <br/>Please, try again with a correct browser (Chrome, Firefox,
-                                IE9/IE10, Opera, ...)
-                            </canvas>
-                        </div>
+                    <div class="col-sm-9">
+                        <a href="{{project.github}}/archive/v2.zip">
+                            <button type="button" class="btn btn-success">Download</button>
+                        </a>
                     </div>
-
-                    <div class="clear" style="height:4px"></div>
                 </div>
-                <!-- end content -->
-            </div>
-            <!-- end container -->
-        </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">Snapshot</label>
 
-        <div id="pageFooter">
+                    <div class="col-sm-9">
+                        <a href="{{project.github}}/archive/master.zip">
+                            <button type="button" class="btn btn-success">Download</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right" for="CDN">CDN</label>
+
+                    <div class="col-sm-9">
+                        <input type="text"
+                               class="form-control"
+                               name="CDN"
+                               id="CDN"
+                               value="Coming Soon..."
+                               disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right" for="Bower">Bower</label>
+
+                    <div class="col-sm-9">
+                        <input type="text"
+                               class="form-control"
+                               name="Bower"
+                               id="Bower"
+                               value="Coming Soon..."
+                               disabled="disabled">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer row">
+                <span class="col-md-6 text-left">
+	                <a href="{{project.github}}" target="_blank">
+                        <i class="fa fa-github-square"></i><h5> See on GitHub</h5></a>
+                </span>
+				<span class="col-md-6 text-right"><button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button></span>
+            </div>
         </div>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
 </div>
-<!-- end wrapper -->
-<div class="footerShadow"></div>
+<!-- /.modal -->
 
-<div id="homepub">
-    <div id="homepubBanner">
-        <p>&nbsp;</p>
-        <a href="https://github.com/GwennaelBuchet/cgSceneGraph" title="Fork me on GitHub" target="_blank"
-           id="forkme_banner">
-            <div id="tryIt">
-                <div class="bigTitle">TRY IT NOW</div>
-            </div>
-        </a>
-
-        <span class="bigTitle">DESIGNED FOR<br/>
-        <span class="blueText">GAMES</span> AND <span class="blueText">PROFESSIONAL APPS</span></span>
-
-        <div class="clear"></div>
-        <div>&nbsp;</div>
-        <div class="separator">&nbsp;</div>
-
-        <div>&nbsp;</div>
-        <div class="homepubBlock">
-            <h2>INTERACTIVE</h2>
-            <img alt="Interactive" src="img/interactive.png"/>
-
-            <div>
-                Drag or resize a node in 1 line.<br/>
-                Add a lot of events on node, scene or animation<br/>
-                Keep trace of absolute transformation
-            </div>
-        </div>
-
-        <div class="homepubBlock">
-            <h2>ANIMATED</h2>
-            <img alt="Animated" src="img/animated.png"/>
-
-            <div>
-                SRT Animation (Scale, Rotation, Translation)<br/>
-                Animated Sprites<br/>
-                Particles system<br/>...
-            </div>
-        </div>
-
-        <div class="homepubBlock">
-            <h2>EXTENSIBLE</h2>
-            <img alt="Extensible" src="img/extensible.png"/>
-
-            <div>
-                Extend the framework by creating your own nodes.<br/>
-                Very easy to extend.
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <hr class="half-margins"/>
+    <!-- hr line -->
 </div>
 
-<div id="footerWrapper">
-    <div id="footerBanner">
-        <div class="footerBlock alignleft">
-            <h2>WHAT'S UP?</h2>
-            <hr/>
-            <h4>cgSceneGraph v1.4.2</h4>
-            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.4.2</span> is
-            released
-            :)<br/>
-            Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
-                                                             target="_blank">GitHub</a>
+<!-- CAROUSEL -->
+<section class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Richness, performance and simplicity</h2>
+
+            <p>Full Animation engine, high Performance, Collision detection, Caching, node Manipulation, Event handling,
+                Customization, and many more... . </p>
+
+            <p>Since the start of the project, it has been designed to be used on professional application as well as
+                for game development.</p>
+
+            <p>A lot of very cool and useful features already provided and always more to come... Stay tuned :)</p>
+
         </div>
 
-
-        <div class="footerBlock alignright logoCap">
-            <h2>CONTACT</h2>
-
-            <p>
-                mail to: <a href="mailto:gwennael.buchet@capgemini.com" title="gwennael.buchet@capgemini.com">gwennael.buchet@capgemini.com</a><br/>
-
-            <p/>
+        <div class="col-md-6">
+            <div class="visible-md visible-lg owl-carousel controlls-over"
+                 data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/catchFlowers.png">
+                </div>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/configurator.png">
+                </div>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/marxzel.png">
+                </div>
+                <div>
+                    <img alt="" class="img-responsive" src="assets/images/carousel/circles.png">
+                </div>
+            </div>
         </div>
 
-        <div class="clear" style="height:4px"></div>
+        <!-- divider -->
+        <div class="divider styleColor">
+            <i class="fa fa-leaf"></i><br/>
+            <h4>Some known customers:</h4>
+        </div>
+
+        <!-- carousel -->    <br/>
+
+        <div class="owl-carousel"
+             data-plugin-options='{"items": 3, "singleItem": false, "pagination": false, "autoPlay": true}'>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/carrefour.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/leroy.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/fiba.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/capgemini.png" alt="">
+            </div>
+            <div>
+                <img class="img-responsive" src="assets/images/brands/eplan.png" alt="">
+            </div>
+        </div>
+
     </div>
+</section>
+<!-- /CAROUSEL -->
+
+<div class="container">
+    <hr class="half-margins"/>
+    <!-- hr line -->
 </div>
 
-<script type="text/javascript" src="js/cgscenegraph_1.4.2.min.js"></script>
 
-<script type="text/javascript" src="js/homeDemo/globals.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.live.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.sun.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.stars.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.sky.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.floor.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.Button.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.flower.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.cloud.js"></script>
-<script type="text/javascript" src="js/homeDemo/sprites/sprite.bee.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.livePanel.js"></script>
-<script type="text/javascript" src="js/homeDemo/node.scorePanel.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.about.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.home.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.loading.js"></script>
-<script type="text/javascript" src="js/homeDemo/states/state.game.run.js"></script>
-<script type="text/javascript" src="js/homeDemo/class.main.js"></script>
+<!-- FEATURED BOXES 3 -->
+<section class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only">
+                <div class="box-content">
+                    <a href="{{project.github}}" target="_blank">
+                        <i class="fa fa-github-square"></i>
+                        <h4>Open Source</h4></a>
 
-<script type="text/javascript">
-    var canvasScene = document.getElementById("scene");
-    var game = new CGMain(canvasScene);
-</script>
+                    <p>We are proud of our work, and are convinced it can help everyone on their projects, so we decided
+                        to share it as an open-source project.</p>
 
-<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-        var $oe_menu = $('#oe_menu');
-        var $oe_menu_items = $oe_menu.children('li');
+                    <p>We hope it can help you :)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only left-separator">
+                <a href="api.html" target="_blank"><i class="fa fa-book"></i>
+                    <h4>Very Well Documented</h4></a>
 
-        $oe_menu_items.bind('mouseenter',function() {
-            var $this = $(this);
-            $this.addClass('slided selected');
-            $this.children('div').css('z-index', '9999').stop(true, true).slideDown(200, function() {
-                $oe_menu_items.not('.slided').children('div').hide();
-                $this.removeClass('slided');
-            });
-        }).bind('mouseleave', function() {
-                    var $this = $(this);
-                    $this.removeClass('selected').children('div').css('z-index', '1');
-                    $oe_menu_items.children('div').hide();
-                });
+                <p>30+ examples, lots of tutorials and full API documentation.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only left-separator">
+                <i class="fa fa-trophy"></i>
+                <h4>For Your Business</h4>
 
-        $oe_menu.bind('mouseenter',function() {
-            var $this = $(this);
-        }).bind('mouseleave', function() {
-                    var $this = $(this);
-                    $this.removeClass('hovered');
-                    $oe_menu_items.children('div').hide();
-                })
-    });
-</script>
+                <p>Already used on professional applications as well as rich games, SceneGraph.js is designed to be
+                    multi
+                    applications and cross platforms.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="featured-box nobg border-only left-separator">
+                <a href="ecosystem.html" target="_blank"><i class="fa fa-cogs"></i>
+                    <h4>Highly Extensible</h4></a>
+
+                <p>No constraint at all.</p>
+
+                <p>The plugin based system allow you to create your own extension very quickly and easily!</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /FEATURED BOXES 3 -->
+
+</div>
+<!-- /WRAPPER -->
+
+<!-- FOOTER -->
+<ng-include src="'partials/footer.html'"></ng-include>
+<!-- /FOOTER -->
+
+
+<!-- JAVASCRIPT FILES -->
+<script type="text/javascript" src="assets/plugins/jquery-2.0.3.min.js"></script>
+
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+
 
 <script type="text/javascript" src="js/googleAnalytics.js"></script>
+
 </body>
 </html>

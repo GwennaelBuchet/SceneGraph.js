@@ -16,41 +16,18 @@ body {
     font-weight: normal;
 }
 
-.ui-dialog .ui-dialog-content {
-    padding: 0;
-}
-
-.ui-widget-content {
-    border: 0;
-}
-
+.ui-dialog .ui-dialog-content { padding: 0;}
+.ui-widget-content { border:0; }
 /* remove border and background for header */
-.ui-widget-header {
-    background: none;
-    border: 0;
-}
+.ui-widget-header {background:none; border: 0;}
 
-.dimension {
-    height: 90px;
-}
-
-.colors {
-    height: 90px;
-}
-
+.dimension {height: 90px;}
+.colors {height: 90px;}
 /*.preview {height: 150px;}*/
 
-.dimension-title {
-    padding-bottom: 12px;
-}
-
-.dimension-sizeString {
-    font-size: 8px;
-}
-
-.colors-title {
-    padding-bottom: 12px;
-}
+.dimension-title {padding-bottom: 12px;}
+.dimension-sizeString {font-size: 8px;}
+.colors-title {padding-bottom: 12px;}
 
 .picto-product {
     width: 60px;

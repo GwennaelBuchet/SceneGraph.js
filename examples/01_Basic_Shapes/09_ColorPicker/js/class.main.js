@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,37 +10,37 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  * */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
-		initialize: function (canvas) {
+		initialize : function(canvas) {
 
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
 
-			this.initializeCanvas();
+			//this.initializeCanvas();
 
 			this.createScene();
 
 			this.startPlaying();
 		},
 
-		initializeCanvas: function () {
+		initializeCanvas : function() {
 			//resize the canvas to fulfill the viewport
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -50,64 +50,55 @@ var CGMain = CGSGScene.extend(
 		 *
 		 *
 		 */
-		createScene: function () {
-
-			this.isDragSelectEnabled = true;
+		createScene : function() {
 
 			//create a root node to the graph, with arbitrary position and size
-			var rootNode = new CGSGNode(0, 0, 0, 0);
-			this.sceneGraph.addNode(rootNode, null);
+			this.rootNode = new CGSGNodeSquare(0, 0);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
+			this.rootNode.resizeTo(CGSG.canvas.width, CGSG.canvas.height);
 
 			var that = this;
 
 			//the color picker itself, in the default size
-			var colorPicker = new CGSGNodeColorPicker(20, 20);
-			rootNode.addChild(colorPicker);
+			var colorPicker = new CGSGNodeColorPicker(30, 30, 200, 200);
+			this.rootNode.addChild(colorPicker);
 			//add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
-			colorPicker.onOverColor = function (event) {
+			colorPicker.onOverColor = function(event) {
 				that.selectColor(event);
 			};
-			colorPicker.onClickColor = function (event) {
+			colorPicker.onClickColor = function(event) {
 				that.selectColor(event);
 			};
 
 			//A second color picker with a custom size
-			var colorPicker2 = new CGSGNodeColorPicker(300, 20);
-			colorPicker2.resizeTo(60, 60);
-			rootNode.addChild(colorPicker2);
+			var colorPicker2 = new CGSGNodeColorPicker(300, 20, 60, 60);
+			this.rootNode.addChild(colorPicker2);
 
 			//add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
-			colorPicker2.onOverColor = function (event) {
+			colorPicker2.onOverColor = function(event) {
 				that.selectColor(event);
 			};
-			colorPicker2.onClickColor = function (event) {
+			colorPicker2.onClickColor = function(event) {
 				that.selectColor(event);
 			};
 
 			//A third color picker with a custom size
-			var colorPicker3 = new CGSGNodeColorPicker(300, 100);
-			colorPicker3.resizeTo(320, 100);
-			rootNode.addChild(colorPicker3);
+			var colorPicker3 = new CGSGNodeColorPicker(300, 100, 320, 100);
+			this.rootNode.addChild(colorPicker3);
 			colorPicker3.isDraggable = true;
 
-			//add events. Do not use "onMouseOver" or "onClik" events to get selected color. Use the ones below.
-			colorPicker3.onOverColor = function (event) {
+			//add events. Do not use "onMouseOver" or "onClick" events to get selected color. Use the ones below.
+			colorPicker3.onOverColor = function(event) {
 				that.selectColor(event);
 			};
-			colorPicker3.onClickColor = function (event) {
+			colorPicker3.onClickColor = function(event) {
 				that.selectColor(event);
 			};
-
-			//A square that will receive the color selected in the colorPicker
-			this.cpWitness = new CGSGNodeSquare(320, 291, 40, 40);
-			this.cpWitness.lineColor = "gray";
-			this.cpWitness.lineWidth = 2;
-			rootNode.addChild(this.cpWitness);
 
 			//A text node to display the color RGB value
-			this.txtNode = new CGSGNodeText(320, 271, "");
-			this.txtNode.setSize(12);
-			rootNode.addChild(this.txtNode);
+			this.txtNode = new CGSGNodeText(10, 10, "");
+			this.txtNode.setClass("cgsg-h2");
+			this.rootNode.addChild(this.txtNode);
 		},
 
 		/**
@@ -115,9 +106,9 @@ var CGMain = CGSGScene.extend(
 		 * @method selectColor
 		 * @param {Object} event
 		 */
-		selectColor: function (event) {
-			this.cpWitness.color = CGSGColor.rgb2hex(event.r, event.g, event.b);
-			this.txtNode.setText("[" + event.r + "," + event.g + "," + event.b + "]", false);
+		selectColor : function(event) {
+			this.txtNode.setText("RGB = [" + event.r + "," + event.g + "," + event.b + "]", false);
+			this.rootNode.bkgcolors = [CGSGColor.rgb2hex(event.r, event.g, event.b)];
 		}
 
 	}

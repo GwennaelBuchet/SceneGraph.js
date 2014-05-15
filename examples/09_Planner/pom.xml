@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+Copyright (c) 2014 Gwennael Buchet
 
 License/Terms of Use
 
@@ -11,19 +11,19 @@ and propagate free of charge, anywhere in the world, all or part of the Software
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- Terms of Use causing significant harm to Capgemini.
+ Terms of Use causing significant harm to Gwennael Buchet.
 
   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
   WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
   OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
   TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
-  the use or other dealings in this Software without prior written authorization from Capgemini.
+  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
 
   These Terms of Use are subject to French law.
 
- @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ @author Gwennael Buchet (gwennael.buchet@gmail.com)
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -71,41 +71,41 @@ Any failure to comply with the above shall automatically terminate the license a
 
                             <includes>
 
-                                <include>js/node/node.overlay.js</include>
-                                <include>js/node/node.load.js</include>
-                                <include>js/node/utils/node.popup.js</include>
-                                <include>js/node/node.wallCoatingSelector.js</include>
-                                <include>js/node/node.floorCoatingSelector.js</include>
-                                <include>js/node/node.config.js</include>
-                                <include>js/node/utils/class.position3d.js</include>
-                                <include>js/event/event.common.js</include>
-                                <include>js/translation/en.js</include>
-                                <include>js/node/collision/enum.collision.method.js</include>
-                                <include>js/node/collision/class.collision.tester.ghost.precompute.js</include>
-                                <include>js/node/collision/class.collision.manager.js</include>
-                                <include>js/global.js</include>
-                                <include>js/node/utils/class.node.scroll.js</include>
-                                <include>js/constraintEngine.js</include>
-                                <include>js/entity/class.variant.js</include>
-                                <include>js/entity/class.product.js</include>
-                                <include>js/entity/class.category.js</include>
-                                <include>js/entity/class.basket.js</include>
-                                <include>js/entity/class.slot.js</include>
-                                <include>js/entity/class.config.js</include>
-                                <include>js/catalog.js</include>
-                                <include>js/node/node.basket.js</include>
-                                <include>js/node/node.variantPreview.js</include>
-                                <include>js/node/node.categoryView.js</include>
-                                <include>js/node/node.categoryPanel.js</include>
-                                <include>js/node/node.detailPanel.js</include>
-                                <include>js/node/node.menu.js</include>
-                                <include>js/node/node.backgroundWall.js</include>
-                                <include>js/node/node.backgroundFloor.js</include>
-                                <include>js/node/node.zoomMenu.js</include>
-                                <include>js/node/node.fileMenu.js</include>
-                                <include>js/node/node.scene.js</include>
-                                <include>js/loadProducts.js</include>
-                                <include>js/class.main.js</include>
+                                 <include>js/node/node.overlay.js</include>
+                                 <include>js/node/node.load.js</include>
+                                 <include>js/node/utils/node.popup.js</include>
+                                 <include>js/node/node.wallCoatingSelector.js</include>
+                                 <include>js/node/node.floorCoatingSelector.js</include>
+                                 <include>js/node/node.config.js</include>
+                                 <include>js/node/utils/class.position3d.js</include>
+                                 <include>js/event/event.common.js</include>
+                                 <include>js/translation/en.js</include>
+                                 <include>js/node/collision/enum.collision.method.js</include>
+                                 <include>js/node/collision/class.collision.tester.ghost.precompute.js</include>
+                                 <include>js/node/collision/class.collision.manager.js</include>
+                                 <include>js/global.js</include>
+                                 <include>js/node/utils/class.node.scroll.js</include>
+                                 <include>js/constraintEngine.js</include>
+                                 <include>js/entity/class.variant.js</include>
+                                 <include>js/entity/class.product.js</include>
+                                 <include>js/entity/class.category.js</include>
+                                 <include>js/entity/class.basket.js</include>
+                                 <include>js/entity/class.slot.js</include>
+                                 <include>js/entity/class.config.js</include>
+                                 <include>js/catalog.js</include>
+                                 <include>js/node/node.basket.js</include>
+                                 <include>js/node/node.variantPreview.js</include>
+                                 <include>js/node/node.categoryView.js</include>
+                                 <include>js/node/node.categoryPanel.js</include>
+                                 <include>js/node/node.detailPanel.js</include>
+                                 <include>js/node/node.menu.js</include>
+                                 <include>js/node/node.backgroundWall.js</include>
+                                 <include>js/node/node.backgroundFloor.js</include>
+                                 <include>js/node/node.zoomMenu.js</include>
+                                 <include>js/node/node.fileMenu.js</include>
+                                 <include>js/node/node.scene.js</include>
+                                 <include>js/loadProducts.js</include>
+                                 <include>js/class.main.js</include>
 
                             </includes>
                         </aggregation>

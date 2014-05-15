@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012  Capgemini Technology Services (hereinafter “Capgemini”)
+ * Copyright (c) 2014 Gwennael Buchet
  *
  * License/Terms of Use
  *
@@ -10,43 +10,45 @@
  *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
- *  Terms of Use causing significant harm to Capgemini.
+ *  Terms of Use causing significant harm to Gwennael Buchet.
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
  *  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
  *  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- *  Except as contained in this notice, the name of Capgemini shall not be used in advertising or otherwise to promote
- *  the use or other dealings in this Software without prior written authorization from Capgemini.
+ *  Except as contained in this notice, the name of Gwennael Buchet shall not be used in advertising or otherwise to promote
+ *  the use or other dealings in this Software without prior written authorization from Gwennael Buchet.
  *
  *  These Terms of Use are subject to French law.
  *
- * @author Gwennael Buchet (gwennael.buchet@capgemini.com)
+ * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  * @date 10/08/2012
  *
  * Purpose :
  * animated sprite example
  * */
-var CGMain = CGSGScene.extend(
+var CGMain = CGSGView.extend(
 	{
-		initialize: function (canvas) {
+		initialize : function(canvas) {
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
 
-			this.initializeCanvas();
+			//this.initializeCanvas();
 			this.createScene();
 
 			//keyboard events handler
 			var scope = this;
+			this._isMoving = false;
+			this._handlerExists = false;
 			document.onkeydown = this.onKeyDown.bind(this);
 			document.onkeyup = this.onKeyUp.bind(this);
 
 			this.startPlaying();
 		},
 
-		initializeCanvas: function () {
+		initializeCanvas : function() {
 			//redimensionnement du canvas pour être full viewport en largeur
 			this.viewDimension = cgsgGetRealViewportDimension();
 			this.setCanvasDimension(this.viewDimension);
@@ -55,18 +57,17 @@ var CGMain = CGSGScene.extend(
 		/**
 		 * Create a complete character with several animations in the same sprite sheet (ie the same image)
 		 */
-		createScene: function () {
-			this.isDragSelectEnabled = true;
-
+		createScene : function() {
 			//create a first root node.
 			//that's not mandatory, we could use the first sphere as the root node
-			this.rootNode = new CGSGNode(0, 0, 1, 1);
-			this.sceneGraph.addNode(this.rootNode, null);
+			this.rootNode = new CGSGNode(0, 0);
+			CGSG.sceneGraph.addNode(this.rootNode, null);
+
 
 			this.imgNode = new CGSGNodeImage(
 				0, //x
 				0, //y
-				"images/board.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
+				"/cgSceneGraph/examples/shared/images/board.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 			this.rootNode.addChild(this.imgNode);
 			this.imgNode.setSlice(0, 0, 476, 635, true);
 
@@ -78,7 +79,7 @@ var CGMain = CGSGScene.extend(
 			 * @param image url
 			 * @param context
 			 */
-			this.pingoo = new CGSGNodeSprite(68, 68, "images/board.png", this.context);
+			this.pingoo = new CGSGNodeSprite(68, 102, "/cgSceneGraph/examples/shared/images/board.png");
 			this.pingoo.isDraggable = true;
 			//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
 			this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);
@@ -86,33 +87,26 @@ var CGMain = CGSGScene.extend(
 			this.pingoo.addAnimation("left", 6, 4, 476, 69, 34, 34, 4);
 			this.pingoo.addAnimation("right", 6, 4, 476, 102, 34, 34, 4);
 			this.pingoo.play("front", null);
+			this.pingoo.stop();
 
 			this.rootNode.addChild(this.pingoo);
 
 			this.currentAnimation = 0;
 
 			//add a text node ("click me") with a onClick event
-			this.buttonNode = new CGSGNodeButton(10, 20, "Switch Animation");
+			this.buttonNode = new CGSGNodeButton(10, 20, "Turn Pingoo");
 			this.buttonNode.onClick = this.switchAnimation.bind(this);
 			//add the textNode as child of the root
 			this.rootNode.addChild(this.buttonNode);
 
-			this.changeTextAnimation();
+			var txt = new CGSGNodeText(10, 70, "Use Keyboard arrows to move Pingoo");
+			this.rootNode.addChild(txt);
 		},
 
-		switchAnimation: function () {
+		switchAnimation : function() {
 			this.currentAnimation = (this.currentAnimation + 1) % this.listAnimations.length;
 			this.pingoo.play(this.listAnimations[this.currentAnimation], null);
-
-			this.changeTextAnimation();
-		},
-
-		/**
-		 * change the text of the button
-		 */
-		changeTextAnimation: function () {
-			this.buttonNode.setTexts("Switch Animation.\n(current = " + this.listAnimations[this.currentAnimation]
-										 + ")");
+			this.pingoo.stop();
 		},
 
 		/**
@@ -120,35 +114,59 @@ var CGMain = CGSGScene.extend(
 		 * @param event
 		 * @return {*}
 		 */
-		onKeyDown: function (event) {
-			var y = 0;
-			var x = 0;
+		onKeyDown : function(event) {
+			//prevent for multiple pressed on key
+			if (this._isMoving === false) {
+				var y = 0;
+				var x = 0;
 
-			var keynum = (window.event) ? event.keyCode : event.which;
+				var keynum = (window.event) ? event.keyCode : event.which;
 
-			switch (keynum) {
-				case 37: //left
-					x = -34;
-					this.pingoo.play("left", null);
-					break;
-				case 38: //up
-					this.pingoo.play("back", null);
-					y = -34;
-					break;
-				case 39: //right
-					this.pingoo.play("right", null);
-					x = 34;
-					break;
-				case 40: //down
-					this.pingoo.play("front", null);
-					y = 34;
-					break;
+				switch (keynum) {
+					case 37: //left
+						x = -34;
+						this.pingoo.play("left", null);
+						this._isMoving = true;
+						break;
+					case 38: //up
+						this.pingoo.play("back", null);
+						this._isMoving = true;
+						y = -34;
+						break;
+					case 39: //right
+						this.pingoo.play("right", null);
+						this._isMoving = true;
+						x = 34;
+						break;
+					case 40: //down
+						this.pingoo.play("front", null);
+						this._isMoving = true;
+						y = 34;
+						break;
+				}
+
+				this.tlY = CGSG.animationManager.animate(this.pingoo, "position.y", 24, this.pingoo.position.y,
+														 this.pingoo.position.y + y, 0, true);
+				this.tlX = CGSG.animationManager.animate(this.pingoo, "position.x", 24, this.pingoo.position.x,
+														 this.pingoo.position.x + x, 0, true);
+
+				//prevent to create the same handlers several times
+				if (!this._handlerExists) {
+					CGSG.eventManager.bindHandler(this.tlY, cgsgEventTypes.ON_ANIMATION_END, (function(event) {
+						this._isMoving = false;
+						this.pingoo.reset();
+						this.pingoo.stop();
+					}).bind(this));
+
+					CGSG.eventManager.bindHandler(this.tlX, cgsgEventTypes.ON_ANIMATION_END, (function(event) {
+						this._isMoving = false;
+						this.pingoo.reset();
+						this.pingoo.stop();
+					}).bind(this));
+
+					this._handlerExists = true;
+				}
 			}
-
-			this.sceneGraph.animate(this.pingoo, "position.y", 24, this.pingoo.position.y, this.pingoo.position.y + y,
-									"linear", 0, true);
-			this.sceneGraph.animate(this.pingoo, "position.x", 24, this.pingoo.position.x, this.pingoo.position.x + x,
-									"linear", 0, true);
 		},
 
 		/**
@@ -156,8 +174,8 @@ var CGMain = CGSGScene.extend(
 		 * @param event
 		 * @return {*}
 		 */
-		onKeyUp: function (event) {
-			//this.sceneGraph.animate(this.pingoo, "position.y", 16, this.pingoo.position.y, this.pingoo.position.y - 34, "linear", 0, true);
+		onKeyUp : function(event) {
+			//CGSG.animationManager.animate(this.pingoo, "position.y", 16, this.pingoo.position.y, this.pingoo.position.y - 34, 0, true);
 		}
 	}
 );

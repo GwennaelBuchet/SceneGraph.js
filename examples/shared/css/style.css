@@ -1,0 +1,48 @@
+.tiny {
+    border-radius:5px;
+    font-size: 8px;
+    padding-top: 2px;
+    padding-left: 4px;
+}
+
+.spritesheet {
+    list-style-image: url("../images/exclamation.png");
+}
+
+
+.custom-normal {
+    background: -webkit-linear-gradient(#FFADAD, #FF8E8E); /* For Safari */
+    background: -o-linear-gradient(#FFADAD, #FF8E8E); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#FFADAD, #FF8E8E); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#FFADAD, #FF8E8E); /* Standard syntax */
+
+    border-radius:0;
+    color: green;
+}
+.custom-over {
+    background: -webkit-linear-gradient(#D89393, #D37676); /* For Safari */
+    background: -o-linear-gradient(#D89393, #D37676); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#D89393, #D37676); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#D89393, #D37676); /* Standard syntax */
+
+    border-radius:20px;
+    color: #8EA7FF;
+}
+.custom-deactivated {
+    background: -webkit-linear-gradient(#F9DBDB, #D8BEBE); /* For Safari */
+    background: -o-linear-gradient(#F9DBDB, #D8BEBE); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#F9DBDB, #D8BEBE); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#F9DBDB, #D8BEBE); /* Standard syntax */
+
+    border-radius:10px;
+    color: gray;
+}
+.custom-selected {
+    background: -webkit-linear-gradient(#D89393, #D37676); /* For Safari */
+    background: -o-linear-gradient(#D89393, #D37676); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#D89393, #D37676); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#D89393, #D37676); /* Standard syntax */
+
+    border-radius:20px;
+    color: #8EA7FF;
+}

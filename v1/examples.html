@@ -1,0 +1,839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>cgSceneGraph</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="title" content="HTML5 canvas framework"/>
+    <meta name="description" content="html5 canvas framework"/>
+    <meta name="keywords" content="html5 canvas cgscenegraph cgSceneGraph framework html 5"/>
+    <meta name="language" content="en"/>
+    <meta name="subject" content="html 5 canvas framework"/>
+    <meta name="robots" content="All"/>
+    <meta name="copyright" content="Capgemini industries et Distribution"/>
+    <meta name="abstract" content=" html 5 canvas framework"/>
+    <meta name="MSSmartTagsPreventParsing" content="true"/>
+
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+    <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
+
+    <script src="js/cufon-yui.js" type="text/javascript"></script>
+    <script src="js/Aller.font.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Cufon.replace('ul.oe_menu div a', {hover: true});
+        Cufon.replace('h1,h2,.oe_heading');
+    </script>
+</head>
+<body>
+<!-- top wrapper -->
+<div id="topWrapper">
+    <div id="topBanner">
+      <span class="downloadLink">
+
+            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/zipball/master"
+               title="Download latest version as a Zip file">
+                <img src="img/dlzip.png" width="60"/>
+            </a>
+            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tarball/master"
+               title="Download latest version as a tar.gz file">
+                <img src="img/dltar.png" width="60"/>
+            </a>
+          <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+             title="Fork me on GitHub"
+             target="_blank"><img src="img/blacktocat.png" width="50"/></a>
+        </span>
+    </div>
+    <!-- end topBanner -->
+</div>
+<!-- end top wrapper -->
+
+<div id="topnav">
+    <div class="oe_wrapper">
+        <!--div id="oe_overlay" class="oe_overlay"></div-->
+        <ul id="oe_menu" class="oe_menu">
+            <li>
+                <a href="index.html" shape="rect">HOME</a>
+            </li>
+            <li><a href="tutorials.html">TUTORIALS</a>
+
+                <div style="left:-112px;">
+                    <ul>
+                        <li class="oe_heading">Starter</li>
+                        <li><a href="tutorials.html">Global concepts</a></li>
+                        <li><a href="tutorials/simple_project.html">Create a simple project</a></li>
+                        <li><a href="tutorials/custom_node.html">Create your nodes</a></li>
+                        <li><a href="tutorials/srt_animations.html">SRT Animations</a></li>
+                        <li><a href="tutorials/multiselection.html">Multi-selection</a></li>
+                        <li><a href="tutorials/image_sharing.html">Sprite sheets / Image sharing</a></li>
+                        <li><a href="tutorials/spritesheets.html">SpriteSheets</a></li>
+                        <li><a href="tutorials/traverser.html">Traverse the graph</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading">Events</li>
+                        <li><a href="tutorials/node_events.html">Node events</a></li>
+                        <li><a href="tutorials/scene_events.html">Scene events</a></li>
+                        <li><a href="tutorials/animation_events.html">Animation events</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading"><br/>Advanced</li>
+                        <li><a href="tutorials/particles.html">Particles</a></li>
+                        <li><a href="tutorials/share_animation.html">Share animation values</a></li>
+                        <li><a href="tutorials/advanced_animation.html">Advanced animation</a></li>
+                        <li><a href="tutorials/making_game.html">Develop a game</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading">Tips & Tricks</li>
+                        <li><a href="tutorials/prerendering.html">Perf: pre-rendering</a></li>
+                        <li><a href="tutorials/fullscreen.html">How-To: Fullscreen size</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="current" style="border:none">
+                <a href="examples.html" shape="rect">EXAMPLES</a>
+            </li>
+            <li>
+                <a href="ecosystem.html" shape="rect">ECOSYSTEM</a>
+            </li>
+            <li>
+                <a href="api.html" shape="rect">API DOCS</a>
+            </li>
+            <li>
+                <a href="changelog.html" shape="rect">CHANGE-LOG</a>
+            </li>
+            <li>
+                <a href="comments.html" shape="rect">FORUMS</a>
+            </li>
+            <li>
+                <a href="about.html" shape="rect">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<!-- end topnav -->
+
+
+<div id="wrapper">
+<div id="bg">
+<div id="header"></div>
+<div id="page">
+<!-- begin container -->
+<div id="container">
+<!--  content -->
+<div id="content">
+<div id="center">
+
+<p class="blueText">These samples aim to provide light demonstrations to learn how to very easy use the features of the
+    framework.<br/>
+    They don't aim to provide very complex applications that are difficult to understand.</p>
+
+<p>
+    All these samples, and more, are downloadable in the <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                                                            title="Fork me on GitHub"
+                                                            target="_blank">GitHub page</a>
+</p>
+<br/>
+
+<h2>ADVANCED</h2>
+
+
+<div class="exampleBlock">
+    <h3>2D Planner</h3>
+    <a href="examples/09_Planner/index.html" target="_blank">
+        <img src="examples/09_Planner/screenshot.png"/>
+    </a>
+
+
+    <div><a href="examples/09_Planner/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a>
+
+        <div class="exampleLink alignright">&nbsp;</div>
+    </div>
+
+    <div>
+        An example of a full 2D planner, developed in only 1 month!
+    </div>
+</div>
+
+
+<div class="exampleBlock">
+    <h3>Pixelator</h3>
+    <a href="examples/08_pixelator/index.html" target="_blank">
+        <img src="examples/08_pixelator/screenshot.png"/>
+    </a>
+
+
+    <div><a href="examples/08_pixelator/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/08_pixelator/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Detach all pixels of an image :)
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Particle Fountain</h3>
+    <a href="examples/04_Advanced/01_Particles_Fountain/index.html" target="_blank">
+        <img src="examples/04_Advanced/01_Particles_Fountain/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/04_Advanced/01_Particles_Fountain/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/01_Particles_Fountain/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simulate a fountain with particles, and apply force on the system !
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Particle Fire Simulation</h3>
+    <a href="examples/04_Advanced/02_Particles_Fire/index.html" target="_blank">
+        <img src="examples/04_Advanced/02_Particles_Fire/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/04_Advanced/02_Particles_Fire/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/02_Particles_Fire/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simulate a fire (a "toony" fire ;))
+    </div>
+</div>
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Particle images</h3>
+    <a href="examples/04_Advanced/03_Particles_Images/index.html" target="_blank">
+        <img src="examples/04_Advanced/03_Particles_Images/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/04_Advanced/03_Particles_Images/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/03_Particles_Images/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        You also can use images as particles.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Traverser</h3>
+    <a href="examples/04_Advanced/04_Traverser/index.html" target="_blank">
+        <img src="examples/04_Advanced/04_Traverser/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/04_Advanced/04_Traverser/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/04_Traverser/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A "traverser" traverse the graph and list nodes that check a specific condition.
+    </div>
+</div>
+
+
+<div class="exampleBlock">
+    <h3>Display Ratio</h3>
+    <a href="examples/04_Advanced/05_DisplayRatio/index.html" target="_blank">
+        <img src="examples/04_Advanced/05_DisplayRatio/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/04_Advanced/05_DisplayRatio/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/04_Advanced/05_DisplayRatio/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Allow responsive display in your game or application ! :)
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Collision detection</h3>
+    <a href="examples/03_Animation/animation_02_testCollision/index.html" target="_blank">
+        <img src="examples/03_Animation/animation_02_testCollision/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/03_Animation/animation_02_testCollision/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_02_testCollision/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Collision detection :)
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+<div class="exampleBlock">
+    <h3>Game: Catch'em All</h3>
+    <a href="examples/05_Game_CatchTheFlowers/index.html" target="_blank">
+        <img src="examples/05_Game_CatchTheFlowers/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/05_Game_CatchTheFlowers/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/05_Game_CatchTheFlowers/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A (almost) complete game !<br/>
+        Avoid the bees and catch all the flowers :)
+        <p>(Game developed in 1.5 day)</p>
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Article for <a href="http://sdjournal.org/" target="_blank">SDJ Magazine</a></h3>
+    <a href="examples/10_sdj/index.html" target="_blank">
+        <img src="examples/10_sdj/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/10_sdj/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/10_sdj/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A start for a game platform. <br/>
+        It's the base application for the article in the SDJ magazine (September 2013).<br />
+        <a href="examples/10_sdj/sdj_article.zip">Download the sources</a>
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Game Template</h3>
+    <img src="examples/default.png"/>
+
+    <div><a href="*" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="*" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Template used for our games.<br/> COMING SOON...
+    </div>
+</div>
+
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/>
+
+<h2>Native Extensions</h2>
+
+<div>cgSceneGraph is very extensible, you can easily create your own node with their specific rendering loop.<br/>
+    However, the framework already provides several useful Nodes.<br/><br/>
+    Here are some basic examples showing how to easily integrate them into your programs.
+</div>
+
+<div class="exampleBlock">
+    <h3>Text</h3>
+    <a href="examples/01_Basic_Shapes/01_Text_01_simple/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/01_Text_01_simple/screenshot.png"/>
+    </a>
+
+    <div>
+        <a href="examples/01_Basic_Shapes/01_Text_01_simple/index.html" target="_blank">
+            <div class="exampleLink alignleft">DEMO</div>
+        </a>
+        <a href="examples/01_Basic_Shapes/01_Text_01_simple/js/class.main.js" target="_blank">
+            <div class="exampleLink alignright">SOURCES</div>
+        </a>
+    </div>
+    <div>
+        Text manipulation and attribute sample.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Square</h3>
+    <a href="examples/01_Basic_Shapes/02_Square/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/02_Square/screenshot.png"/>
+    </a>
+
+    <div>
+        <a href="examples/01_Basic_Shapes/02_Square/index.html" target="_blank">
+            <div class="exampleLink alignleft">DEMO</div>
+        </a>
+        <a href="examples/01_Basic_Shapes/02_Square/js/class.main.js" target="_blank">
+            <div class="exampleLink alignright">SOURCES</div>
+        </a>
+    </div>
+    <div>
+        Simple Square.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Circle</h3>
+    <a href="examples/01_Basic_Shapes/03_Circle/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/03_Circle/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/03_Circle/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/03_Circle/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simple Circle.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Ellipse</h3>
+    <a href="examples/01_Basic_Shapes/04_Ellipse/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/04_Ellipse/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/04_Ellipse/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/04_Ellipse/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Simple Ellipse.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Image simple</h3>
+    <a href="examples/01_Basic_Shapes/05_Images/01_Simple/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/05_Images/01_Simple/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/05_Images/01_Simple/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/05_Images/01_Simple/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A simple image.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Image Tiles</h3>
+    <a href="examples/01_Basic_Shapes/05_Images/02_Tiles/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/05_Images/02_Tiles/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/05_Images/02_Tiles/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/05_Images/02_Tiles/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Several nodes sharing the same image source.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite simple</h3>
+    <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_01_simple/js/class.main.js"
+            target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A simple animated sprite.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite: multiple</h3>
+    <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/index.html"
+       target="_blank">
+        <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/index.html"
+            target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_02_multiple_same_image/js/class.main.js"
+            target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Multiple CGSGNodeSprite sharing the same image source.
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Animated Sprite: player</h3>
+    <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/index.html"
+       target="_blank">
+        <img src="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/index.html"
+            target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/06_AnimatedSprites/animatedSprite_03_complete_character/js/class.main.js"
+            target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A character sample : different animations in the same CGSGNodeSprite.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Web View (still beta)</h3>
+    <a href="examples/01_Basic_Shapes/07_WebView/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/07_WebView/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/07_WebView/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/07_WebView/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Embed a webview into your application !
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Buttons</h3>
+    <a href="examples/01_Basic_Shapes/08_Button/index.html" target="_blank">
+        <img src="examples/01_Basic_Shapes/08_Button/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/08_Button/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/08_Button/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Customizable buttons !
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>ColorPicker</h3>
+    <a href="examples/01_Basic_Shapes/09_ColorPicker/index.html" target="_blank">
+        <img alt="" src="examples/01_Basic_Shapes/09_ColorPicker/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/09_ColorPicker/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/09_ColorPicker/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A computed color picker (without image!).<br/>
+        So you'll always get a perfect rendering, whatever the dimension is :)
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+
+<div class="exampleBlock">
+    <h3>Tab Menu</h3>
+    <a href="examples/01_Basic_Shapes/10_TabMenu/index.html" target="_blank">
+        <img alt="" src="examples/01_Basic_Shapes/10_TabMenu/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/01_Basic_Shapes/10_TabMenu/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/01_Basic_Shapes/10_TabMenu/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A Tab menu !
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/>
+
+<h2>EVENTS</h2>
+
+<div>There are a lot of events provided by the framework for nodes, scene, animation, animated sprites, ...<br/>
+    This section presents some of these.
+</div>
+
+<div class="exampleBlock">
+    <h3>Mouse & Touch</h3>
+    <a href="examples/02_Events/01_mouse&touch/index.html" target="_blank">
+        <img src="examples/02_Events/01_mouse&touch/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/02_Events/01_mouse&touch/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/02_Events/01_mouse&touch/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        All node events in one sample.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Mouse Over</h3>
+    <a href="examples/02_Events/02_mouseover/index.html" target="_blank">
+        <img src="examples/02_Events/02_mouseover/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/02_Events/02_mouseover/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/02_Events/02_mouseover/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Just a simple example launching animation when mouse over.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Stress Test</h3>
+    <a href="examples/02_Events/03_StressTest/index.html" target="_blank">
+        <img src="examples/02_Events/03_StressTest/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/02_Events/03_StressTest/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/02_Events/03_StressTest/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A stress test on mouse over.<br/> (without any optimization in the demo :)).
+    </div>
+</div>
+
+<div class="clear" style="height:4px"></div>
+<div>&nbsp;</div>
+<hr/>
+
+<h2>ANIMATION</h2>
+
+<div>Animate a node is very easy. Almost everything is animatable : position, transparency, scale, ...
+    <p>cgSceneGraph provides a complete animation framework, with timelines and key frame.<br/>
+        Animations can be chained or launched in the same time ; keys in timeline can be modified at runtime ; animation
+        can be pre-computed <br/>and shared between several nodes ; Events are fired (onAnimationStart, onAnimationEnd)
+        ; ...
+    </p>
+
+    <p>The following examples are very simple (the most simple as I could) just to show the simplicity and the power of
+        the code.<br/>
+        So they are not visually sexy... :(</p>
+
+</div>
+
+<div class="exampleBlock">
+    <h3>S R T</h3>
+    <a href="examples/03_Animation/animation_01_SRT/index.html" target="_blank">
+        <img src="examples/03_Animation/animation_01_SRT/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/03_Animation/animation_01_SRT/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_01_SRT/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        A simple animated translation + example of animation events (start and end).<br/>Open the console to view the
+        event results.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Collision</h3>
+    <a href="examples/03_Animation/animation_02_testCollision/index.html" target="_blank">
+        <img src="examples/03_Animation/animation_02_testCollision/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/03_Animation/animation_02_testCollision/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_02_testCollision/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Test collision during animation.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Chained animations</h3>
+    <a href="examples/03_Animation/animation_03_Multiple/index.html" target="_blank">
+        <img src="examples/03_Animation/animation_03_Multiple/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/03_Animation/animation_03_Multiple/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_03_Multiple/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Chained animations on a node.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Precompute & Share</h3>
+    <a href="examples/03_Animation/animation_04_Precompute/index.html" target="_blank">
+        <img src="examples/03_Animation/animation_04_Precompute/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/03_Animation/animation_04_Precompute/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_04_Precompute/js/class.main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Precompute an animation and share it between several nodes.<br/>
+        The advantages : faster because animation is precomputed (can be useful for complex animations) and the
+        computation is achieve just once.
+    </div>
+</div>
+
+<div class="exampleBlock">
+    <h3>Circles</h3>
+    <a href="examples/03_Animation/animation_05_Circles/index.html" target="_blank">
+        <img src="examples/03_Animation/animation_05_Circles/screenshot.png"/>
+    </a>
+
+    <div><a href="examples/03_Animation/animation_05_Circles/index.html" target="_blank">
+        <div class="exampleLink alignleft">DEMO</div>
+    </a> <a href="examples/03_Animation/animation_05_Circles/js/main.js" target="_blank">
+        <div class="exampleLink alignright">SOURCES</div>
+    </a></div>
+
+    <div>
+        Precompute an animation and share it between several nodes.<br/>
+        The advantages : faster because animation is precomputed (can be useful for complex animations) and the
+        computation is achieve just once.
+    </div>
+</div>
+
+</div>
+
+<div class="clear" style="height:4px"></div>
+</div>
+<!-- end content -->
+</div>
+<!-- end container -->
+</div>
+
+<div id="pageFooter">
+</div>
+</div>
+</div>
+<!-- end wrapper -->
+<div class="footerShadow"></div>
+
+<div id="footerWrapper">
+    <div id="footerBanner">
+        <div class="footerBlock alignleft">
+            <h2>WHAT'S UP?</h2>
+            <hr/>
+            <h4>cgSceneGraph v1.4.2</h4>
+            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.4.2</span> is released
+            :)<br/>
+            Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                                                             target="_blank">GitHub</a>
+        </div>
+
+
+        <div class="footerBlock alignright logoCap">
+            <h2>CONTACT</h2>
+
+            <p>
+                mail to: <a href="mailto:gwennael.buchet@capgemini.com" title="gwennael.buchet@capgemini.com">gwennael.buchet@capgemini.com</a><br/>
+
+            <p/>
+        </div>
+
+        <div class="clear" style="height:4px"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var $oe_menu = $('#oe_menu');
+        var $oe_menu_items = $oe_menu.children('li');
+
+        $oe_menu_items.bind('mouseenter',function () {
+            var $this = $(this);
+            $this.addClass('slided selected');
+            $this.children('div').css('z-index', '9999').stop(true, true).slideDown(200, function () {
+                $oe_menu_items.not('.slided').children('div').hide();
+                $this.removeClass('slided');
+            });
+        }).bind('mouseleave', function () {
+                    var $this = $(this);
+                    $this.removeClass('selected').children('div').css('z-index', '1');
+                    $oe_menu_items.children('div').hide();
+                });
+
+        $oe_menu.bind('mouseenter',function () {
+            var $this = $(this);
+        }).bind('mouseleave', function () {
+                    var $this = $(this);
+                    $this.removeClass('hovered');
+                    $oe_menu_items.children('div').hide();
+                })
+    });
+</script>
+<script type="text/javascript" src="js/googleAnalytics.js"></script>
+</body>
+</html>

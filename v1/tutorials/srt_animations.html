@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>cgSceneGraph</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="title" content="HTML5 canvas framework"/>
+    <meta name="description" content="html5 canvas framework"/>
+    <meta name="keywords" content="html5 canvas cgscenegraph cgSceneGraph framework html 5"/>
+    <meta name="language" content="en"/>
+    <meta name="subject" content="html 5 canvas framework"/>
+    <meta name="robots" content="All"/>
+    <meta name="copyright" content="Capgemini industries et Distribution"/>
+    <meta name="abstract" content=" html 5 canvas framework"/>
+    <meta name="MSSmartTagsPreventParsing" content="true"/>
+
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144.png"/>
+
+    <link rel="icon" type="image/png" href="../favicon.png"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+    <link id="theme" rel="stylesheet" type="text/css" href="../css/style.css" title="theme"/>
+
+    <link href="../css/shCore.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+    <script src="../js/shCore.js" type="text/javascript"></script>
+    <script src="../js/shBrushJScript.js" type="text/javascript"></script>
+
+    <script src="../js/cufon-yui.js" type="text/javascript"></script>
+    <script src="../js/Aller.font.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Cufon.replace('ul.oe_menu div a', {hover: true});
+        Cufon.replace('h1,h2,.oe_heading');
+    </script>
+
+</head>
+<body>
+<!-- top wrapper -->
+<div id="topWrapper">
+    <div id="topBanner">
+      <span class="downloadLink">
+            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/zipball/master"
+               title="Download latest version as a Zip file">
+                <img src="../img/dlzip.png" width="60"/>
+            </a>
+            <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tarball/master"
+               title="Download latest version as a tar.gz file">
+                <img src="../img/dltar.png" width="60"/>
+            </a>
+             <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                title="Fork me on GitHub"
+                target="_blank"><img src="../img/blacktocat.png" width="50"/></a>
+        </span>
+    </div>
+    <!-- end topBanner -->
+</div>
+<!-- end top wrapper -->
+
+<div id="topnav">
+    <div class="oe_wrapper">
+        <!--div id="oe_overlay" class="oe_overlay"></div-->
+        <ul id="oe_menu" class="oe_menu">
+            <li>
+                <a href="../index.html" shape="rect">HOME</a>
+            </li>
+            <li class="current" style="border:none"><a href="../tutorials.html">TUTORIALS</a>
+
+                <div style="left:-112px;">
+                    <ul>
+                        <li class="oe_heading">Starter</li>
+                        <li><a href="../tutorials.html">Global concepts</a></li>
+                        <li><a href="simple_project.html">Create a simple project</a></li>
+                        <li><a href="custom_node.html">Create your nodes</a></li>
+                        <li><a href="srt_animations.html">SRT Animations</a></li>
+                        <li><a href="multiselection.html">Multi-selection</a></li>
+                        <li><a href="image_sharing.html">Sprite sheets / Image sharing</a></li>
+                        <li><a href="spritesheets.html">SpriteSheets</a></li>
+                        <li><a href="traverser.html">Traverse the graph</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading">Events</li>
+                        <li><a href="node_events.html">Node events</a></li>
+                        <li><a href="scene_events.html">Scene events</a></li>
+                        <li><a href="animation_events.html">Animation events</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading"><br/>Advanced</li>
+                        <li><a href="particles.html">Particles</a></li>
+                        <li><a href="share_animation.html">Share animation values</a></li>
+                        <li><a href="advanced_animation.html">Advanced animation</a></li>
+                        <li><a href="making_game.html">Develop a game</a></li>
+                    </ul>
+                    <ul>
+                        <li class="oe_heading">Tips & Tricks</li>
+                        <li><a href="prerendering.html">Pre-rendering</a></li>
+                        <li><a href="fullscreen.html">How-To: Fullscreen size</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="../examples.html" shape="rect">EXAMPLES</a>
+            </li>
+            <li>
+                <a href="../ecosystem.html" shape="rect">ECOSYSTEM</a>
+            </li>
+            <li>
+                <a href="../api.html" shape="rect">API DOCS</a>
+            </li>
+            <li>
+                <a href="../changelog.html" shape="rect">CHANGE-LOG</a>
+            </li>
+            <li>
+                <a href="../comments.html" shape="rect">FORUMS</a>
+            </li>
+            <li>
+                <a href="../about.html" shape="rect">ABOUT</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<!-- end topnav -->
+
+
+<div id="wrapper">
+    <div id="bg">
+        <div id="header"></div>
+        <div id="page">
+            <!-- begin container -->
+            <div id="container">
+                <!--  content -->
+                <div id="content">
+                    <div id="center">
+
+                        <h1>SRT Animation</h1>
+
+                        <p> SRT animation means <strong>S</strong>cale-<strong>R</strong>otation-<strong>T</strong>ranslation
+                            animation. In other words : how to animate the transformation of my nodes ?</p>
+
+                        <br/>
+
+                        <h2>Concept of a timeline</h2>
+
+                        <p>
+                            <span class="blueText">cgSceneGraph</span> embed a complete animation engine based on
+                            timelines and animation keys to
+                            fulfill all the needs (I hope :)).<br/><br/>
+
+                            An animation key is a couple time/value, and define on a timeline the value of a property at
+                            the given time.<br/>
+                            Each value between 2 keys will be computed by the framework, based on the chosen
+                            interpolation algorithm (« linear » is the only interpolation method available on the v1 of
+                            cgSceneGraph).
+                        </p>
+
+                        <p>
+                            Example of a timeline with 3 animation keys :
+                            <img src="../img/timeline.png" alt="timeline example" class="imgCenter"/>
+
+                        </p>
+
+                        <br/>
+                        <hr/>
+                        <h2>Animate a node</h2>
+
+                        <p>
+
+                        <div class="aligncenter">In <span class="blueText">cgSceneGraph</span> an animation is for a
+                            couple node/property. That is the "primary key" of an animation.
+                        </div>
+                        <br/>
+                        There are 2 methods to create an animation in the framework:<br/>
+                        <lu>
+                            <il>
+                                <p>
+
+                                <div class="displayCode">
+                                <pre class="brush: js;">
+                            this.sceneGraph.addAnimationKey(myNode, « property », time, value);
+                                    </pre>
+                                </div>
+                                will add animation key on the timeline for this couple myNode/property (or create a
+                                new timeline if it does not exist yet). You can so call several times this method to
+                                add several keys on your timeline.
+                                </p>
+                                <br/>
+                            </il>
+
+                            <il>
+                                <p>
+
+                                <div class="displayCode">
+                                <pre class="brush: js;">
+                            this.sceneGraph.animate(myNode, « property », 45, valueFrom, valueTo, « linear », 0, true);
+                                    </pre>
+                                </div>
+                                is an helper method that will automatically add 2 keys on a timeline and configure
+                                it.
+                                </p>
+                                <img src="../img/timeline_example.png" alt="timeline example" class="imgCenter"/>
+                            </il>
+                        </lu>
+
+                        </p>
+                        <br/>
+                        <p>
+                            Almost everything is animatable in <span class="blueText">cgSceneGraph</span>, if the
+                            property is a number. So you can not animate the position of a node in 1 call, you have to
+                            animate position.x and position.y<br/>That's logical, because may be you don't want to
+                            animate x and y the same way...<br/>  <br/>
+
+                            For examples:
+
+                        <div class="displayCode">
+                                <pre class="brush: js;">
+                                    //animate x position during 30 frames, from 0 to 200, starting in 0 frame
+                                    this.sceneGraph.animate(this.squareNode, "position.x", 30, 0, 200, "linear", 0, true);
+
+                                    //animate y position during 30 frames, from 0 to 200, starting in 0 frame
+                                    this.sceneGraph.animate(this.squareNode, "position.y", 30, 0, 200, "linear", 0, true);
+
+                                    this.sceneGraph.animate(this.squareNode, "rotation.angle", 30, 0, Math.PI, "linear", 0, true);
+
+                                    //animate opacity from 0 to 1, in 30 frames and starting in 15 frames, without precomputing values
+                                    this.sceneGraph.animate(this.squareNode, "globalAlpha", 30, 0, 1, "linear", 15, false);
+
+                                    //animate red component of the color from 0 to 255, in 100 frames and starting in 0 frame (now)
+                                    this.sceneGraph.animate(this.squareNode, "color.r", 100, 0, 1, "linear", 15, true);
+                                </pre>
+                        </div>
+                        </p>
+
+                        <br/>
+                        <hr/>
+                        <h2>Animation events</h2>
+
+                        <p>
+                            As in <span class="blueText">cgSceneGraph</span> the animation is managed by a timeline, so
+                            events related to the animation are also managed by this one.
+                            <br/>
+                            <br/>
+                            There are 3 events for an animation:
+                        <ul>
+                            <li>onAnimationStart</li>
+                            <li>onAnimate</li>
+                            <li>onAnimationEnd</li>
+                        </ul>
+                        <br/>
+
+                        To call an animation event you, so, first have to get the corresponding timeline and then
+                        register the event.<br/>
+                        This can be achieved in one line like this: <br/>
+
+                        <div class="displayCode">
+                                <pre class="brush: js;">
+                                    //assuming you have an animation on the couple squareNode/"rotation.angle"
+                                    this.sceneGraph.getTimeline(squareNode, "rotation.angle").onAnimationStart = function (event) {
+                                        console.log("animation started");
+                                    };
+
+                                </pre>
+                        </div>
+                        </p>
+                    </div>
+                    <div class="clear" style="height:4px"></div>
+                </div>
+                <!-- end content -->
+            </div>
+            <!-- end container -->
+        </div>
+
+        <div id="pageFooter">
+        </div>
+    </div>
+</div>
+<!-- end wrapper -->
+<div class="footerShadow"></div>
+
+<div id="footerWrapper">
+    <div id="footerBanner">
+        <div class="footerBlock alignleft">
+            <h2>WHAT'S UP?</h2>
+            <hr/>
+            <h4>cgSceneGraph v1.4.2</h4>
+            New Nodes, even faster, more interactions, ... <span class="blueText">cgSceneGraph v1.4.2</span> is released
+            :)<br/>
+            Please, send us your feedback and requests on <a href="https://github.com/GwennaelBuchet/cgSceneGraph"
+                                                             target="_blank">GitHub</a>
+        </div>
+
+        <div class="footerBlock alignright logoCap">
+            <h2>CONTACT</h2>
+
+            <p>
+                mail to: <a href="mailto:gwennael.buchet@capgemini.com" title="gwennael.buchet@capgemini.com">gwennael.buchet@capgemini.com</a><br/>
+
+            <p/>
+        </div>
+
+        <div class="clear" style="height:4px"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var $oe_menu = $('#oe_menu');
+        var $oe_menu_items = $oe_menu.children('li');
+
+        $oe_menu_items.bind('mouseenter',function () {
+            var $this = $(this);
+            $this.addClass('slided selected');
+            $this.children('div').css('z-index', '9999').stop(true, true).slideDown(200, function () {
+                $oe_menu_items.not('.slided').children('div').hide();
+                $this.removeClass('slided');
+            });
+        }).bind('mouseleave', function () {
+                    var $this = $(this);
+                    $this.removeClass('selected').children('div').css('z-index', '1');
+                    $oe_menu_items.children('div').hide();
+                });
+
+        $oe_menu.bind('mouseenter',function () {
+            var $this = $(this);
+        }).bind('mouseleave', function () {
+                    var $this = $(this);
+                    $this.removeClass('hovered');
+                    $oe_menu_items.children('div').hide();
+                })
+    });
+</script>
+
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+</body>
+</html>
