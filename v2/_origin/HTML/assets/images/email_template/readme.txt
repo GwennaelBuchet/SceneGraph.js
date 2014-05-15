@@ -1,1 +1,0 @@
-Use *_default.png icons for any ameila template color!
