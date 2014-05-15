@@ -24,20 +24,78 @@
                             Examples
                         </a>
                     </li>
-                    <li ng-class="{active: isActive('/tutorials.html')}" class="dropdown">
-                        <a href="tutorials.html">
-                            Tutorials
+                    <li ng-class="{active: isActive('/tutorials.html')}" class="dropdown mega-menu-item mega-menu-fullwidth">
+                        <a class="dropdown-toggle" href="tutorials.html">
+                            Tutorials <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="magazine-home.html">Magazine - Home</a></li>
-                            <li><a href="magazine-category.html">Magazine - Category</a></li>
-                            <li><a href="magazine-single.html">Magazine - Single</a></li>
-                            <li class="divider"></li>
-                            <li><a href="realestate-home.html">Real Estate - Home</a></li>
-                            <li><a href="realestate-list.html">Real Estate - List</a></li>
-                            <li><a href="realestate-single.html">Real Estate - Single</a></li>
+                            <li>
+                                <div class="mega-menu-content">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <span class="mega-menu-sub-title">Global concepts</span>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="tutorials/simple_project.html">Create a simple project</a></li>
+                                                        <li><a href="tutorials/custom_node.html">Create your nodes</a></li>
+                                                        <li><a href="tutorials/srt_animations.html">SRT Animations</a></li>
+                                                        <li><a href="tutorials/multiselection.html">Multi-selection</a></li>
+                                                        <li><a href="tutorials/image_sharing.html">Image sharing</a></li>
+                                                        <li><a href="tutorials/spritesheets.html">SpriteSheets</a></li>
+                                                        <li><a href="tutorials/traverser.html">Traverse the graph</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="tutorials/prerendering.html" target="_blank">Perf: pre-rendering</a></li>
+                                                        <li><a href="tutorials/fullscreen.html" target="_blank">How-To: Fullscreen size</a></li>
+                                                        <li><a href="tutorials/responsive.html" target="_blank">How-To: Responsive</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <span class="mega-menu-sub-title">CSS</span>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="tutorials/css.html">CSS management</a></li>
+                                                        <li><a href="tutorials/css_dynamic.html">Dynamic CSS</a></li>
+                                                        <li><a href="tutorials/css_custom.html">Create your own style</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <span class="mega-menu-sub-title">Events</span>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="tutorials/eventManager.html">Events manager</a></li>
+                                                        <li><a href="tutorials/node_events.html">Node events</a></li>
+                                                        <li><a href="tutorials/scene_events.html">Scene events</a></li>
+                                                        <li><a href="tutorials/animation_events.html">Animation events</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <span class="mega-menu-sub-title">Advanced</span>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="tutorials/particles.html" target="_blank">Particles</a></li>
+                                                        <li><a href="tutorials/share_animation.html" target="_blank">Share animation values</a></li>
+                                                        <li><a href="tutorials/advanced_animation.html">Advanced animation</a></li>
+                                                        <li><a href="tutorials/making_game.html">Making a game</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </li>
+
                     <li ng-class="{active: isActive('/tutorials.html')}">
                         <a href="ecosystem.html">
                             Ecosystem
@@ -51,6 +109,11 @@
                             <li><a href="api/{{project.currentVersion}}/index.html" target="_blank">{{project.currentVersion}} (current)</a></li>
                             <li class="divider"></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="about.html" target="_blank">
+                            About
+                        </a>
                     </li>
                     <li>
                         <a href="v1/index.html" target="_blank">
