@@ -123,9 +123,8 @@ a, a:focus, a:hover, a:active {
   cursor:pointer;
 }
 
-canvas {
+canvas.demo {
     border: solid 2px #999;
-
 }
 
 #divScene {
