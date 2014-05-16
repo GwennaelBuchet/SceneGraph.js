@@ -1086,7 +1086,7 @@ ul.isotope {
  **************************************************************** **/
 hr {
 	border:0;
-	margin:60px 0;
+	margin:20px 0;
 	border-top:#ddd 1px solid;
 	border-bottom:#fff 1px solid;
 }
@@ -1388,7 +1388,7 @@ div.toggle.active > label:before {
 /** 24. Featured Box & Featured Icons
  **************************************************************** **/
 div.featured-box {
-	padding:23px;
+	padding-top:23px;
 	background:#fff;
 	text-align:center;
 

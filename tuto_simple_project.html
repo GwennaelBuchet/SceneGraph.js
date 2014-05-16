@@ -1,0 +1,310 @@
+<!DOCTYPE html><!--[if IE 8]>
+<html class="ie ie8"> <![endif]--><!--[if IE 9]>
+<html class="ie ie9"> <![endif]--><!--[if gt IE 9]><!-->
+<html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>SceneGraph.js</title>
+    <meta name="keywords" content="HTML5,canvas,animation,framework"/>
+    <meta name="description" content="HTML5 interactive and animation framework"/>
+    <meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- CORE CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/superslides.css" rel="stylesheet" type="text/css"/>
+
+    <!-- THEME CSS -->
+    <link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/shCore.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+    <script src="js/shCore.js" type="text/javascript"></script>
+    <script src="js/shBrushXml.js" type="text/javascript"></script>
+    <script src="js/shBrushJScript.js" type="text/javascript"></script>
+
+
+    <!-- modernizr -->
+    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+<body ng-app="cgsgApp">
+<!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
+
+<!-- TOP NAV -->
+<ng-include src="'partials/header.html'"></ng-include>
+<!-- /TOP NAV -->
+
+<!-- WRAPPER -->
+<div id="wrapper">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <h1>Tutorials</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorials.html">Tutorials</a></li>
+                <li class="active">Tutorials</li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="container">
+
+
+    <h1>Create a simple project</h1>
+
+    <p>
+        cgSceneGraph is an object oriented framework and there are 2 (slightly identical) ways to develop an application
+        with the framework :
+    <ol>
+        <li>The basic one : instanciate the framework and play with the variable created</li>
+        <li>The object one : create a class that inherit from the framework, and develop your code inside</li>
+    </ol>
+    <br/>
+    I prefer the second one. It let you keep an oriented object code in all your project.
+
+    </p>
+
+    <hr/>
+
+    <h2>The basic way (I don't like it)</h2>
+
+    <p class="displayCode">
+                    <pre class="brush: js; html-script: true">
+                        &lt;html>
+                        &lt;head>
+                            &lt;meta charset="UTF-8"/>
+                            &lt;meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+                            &lt;!-- avoid moving the view with finger on touch screens -->
+                            &lt;meta name="viewport"
+                                  content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+                            &lt;!-- the framework -->
+                            &lt;script type="text/javascript" src="js/cgscenegraph_2.1.0.min.js">&lt;/script>
+                        &lt;/head>
+
+                        &lt;body>
+
+                        &lt;!-- Define the canvas -->
+                        &lt;canvas id="sceneCanvas" width="400" height="400">
+                            Your browser does not support the canvas element.
+                        &lt;/canvas>
+
+                        &lt;!-- Instanciate your main class, which inherit from CGSGScene -->
+                        &lt;script type="text/javascript">
+                            var canvasScene = document.getElementById("sceneCanvas");
+                            var game = new CGSGView(canvasScene);
+
+                            createScene();
+
+                            //start to play !
+                            game.startPlaying();
+
+                            /**
+                             * Just create a single node (a square node)
+                             */
+                            function createScene () {
+                                //create a square node : x, y, width, height
+                                var squareNode = new CGSGNodeSquare(60, 20, 200, 200);
+                                //add some nice properties
+                                squareNode.isResizable = true;
+                                squareNode.isDraggable = true;
+
+                                //add the square node as the root of the graph
+                                game.sceneGraph.addNode(squareNode, null);
+                            }
+                        &lt;/script>
+                        &lt;/body>
+                        &lt;/html>
+                	</pre>
+    </p>
+    <hr/>
+    <h2>2nd way : create your main class (the good one !)</h2>
+    Your project has to provide at least 2 files:<br/>
+    <ol>
+        <li>A HTML file to encapsulate the &lt;canvas&gt; tag <strong>:)</strong></li>
+        <li> A main javascript class
+            which inherit from CGSGView, the main entry point of the framework
+        </li>
+    </ol>
+
+    <p class="text-center">
+        <img src="assets/images/tuto/simpleproject_diagram.png" width="157" height="450"
+             alt="inheritance"/>
+    </p>
+
+    <p>
+        By inheriting from CGSGView, your main class will encapsulate all properties and methods of
+        the framework, letting your file as clean as possible.
+    </p>
+
+    <h3>The HTML file</h3>
+
+
+    <p>The HTML file has to encapsulate a
+        &lt;canvas&gt; tag, with an id, and to instanciate the JavaScript Main class:
+    </p>
+
+    <p class="displayCode">
+                    <pre class="brush: js; html-script: true">
+                        &lt;html>
+                        &lt;head>
+                            &lt;meta charset="UTF-8"/>
+                            &lt;meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+                            &lt;!-- avoid moving the view with finger on touch screens -->
+                            &lt;meta name="viewport"
+                                  content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+                            &lt;!-- the framework -->
+                            &lt;script type="text/javascript" src="js/cgscenegraph_2.1.0.min.js">&lt;/script>
+                            &lt;!-- your main class -->
+                            &lt;script type="text/javascript" src="js/mainApp.js">&lt;/script>
+
+                        &lt;/head>
+
+                        &lt;body>
+
+                        &lt;!-- Define the canvas -->
+                        &lt;canvas id="sceneCanvas" width="400" height="400">
+                            Your browser does not support the canvas element.
+                        &lt;/canvas>
+
+                        &lt;!-- Instanciate your main class, which inherit from CGSGScene -->
+                        &lt;script type="text/javascript">
+                            var canvasScene = document.getElementById("sceneCanvas");
+                            var game = new App(canvasScene);
+                        &lt;/script>
+                        &lt;/body>
+                        &lt;/html>
+                	</pre>
+    <br/>
+    </p>
+
+    <h3>The Main JavaScript class (mainApp.js)</h3>
+
+    <p class="displayCode">
+                    <pre class="brush: js">
+/*
+To create a new class that inherit from a class "Parent":
+    var MyClass = Parent.extend(
+    {
+        //constructor :
+        initialize : function(param1, param2) {
+            //each properties defined with "this." is global to the class
+            this.x = param1;
+        },
+
+        myMethod : function(x) {
+        }
+    }
+    );
+
+Then, to instanciate it:
+	var instance = new MyClass(23, 54);
+*/
+var App = CGSGView.extend(
+	{
+		// 'initialize' is the constructor. It takes here 1 parameter : a handler to the canvas HTMLElement
+		initialize : function (canvas) {
+			//call constructor of the parent : CGSGScene
+			this._super(canvas);
+
+			//Fill the graph with your nodes
+			this.createScene();
+
+			//start to play !
+            //this method is from the framework
+			this.startPlaying();
+		},
+
+		/**
+		 * Just create a single node (a square node)
+		 * @method createScene
+		 */
+		createScene : function () {
+			//create a square node : x, y, width, height
+			var squareNode = new CGSGNodeSquare(60, 20, 200, 200);
+			//add some nice properties
+			squareNode.isResizable = true;
+			squareNode.isDraggable = true;
+
+        // !!! never use squareNode.position.x = n;
+        // use squareNode.translateTo(n, m) method instead (or .translateWith(x, y) or .translateBy(x, y)
+        //
+        // In the same way, do not use node.rotation.angle = x, node.scale.x = x neither node.dimension?width=w
+        // always use the rotateBy, rotateWith, rotateTo, scaleBy, scaleWith, scaleTo, resizeWith, resizeBy, resizeTo methods.
+
+			//add the square node as the root of the graph
+			this.sceneGraph.addNode(squareNode, null);
+		}
+
+	}
+);
+                	</pre>
+    </p>
+
+    <br/>
+
+    No more to do. Easy, no ? :)<br/>
+
+    <hr/>
+    <p>
+
+        <!-- CALLOUT -->
+    <div class="bs-callout text-center nomargin-bottom" ng-controller="MainCtrl">
+        <h2>Download</h2>
+        <a href="https://github.com/GwennaelBuchet/cgSceneGraph/tree/master/examples/TEMPLATE_PROJECT" target="new">Download
+            the the source of this project on GitHub
+            (https://github.com/GwennaelBuchet/cgSceneGraph/tree/master/examples/TEMPLATE_PROJECT)</a>
+    </div>
+    <!-- /CALLOUT -->
+
+    </section>
+
+</div>
+<!-- /WRAPPER -->
+
+<!-- FOOTER -->
+<ng-include src="'partials/footer.html'"></ng-include>
+<!-- /FOOTER -->
+
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+
+
+<!-- JAVASCRIPT FILES -->
+<script type="text/javascript" src="assets/plugins/jquery-2.0.3.min.js"></script>
+
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+
+<script type="text/javascript" src="js/googleAnalytics.js"></script>
+
+</body>
+</html>
