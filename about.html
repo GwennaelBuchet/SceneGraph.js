@@ -49,7 +49,7 @@
 <!-- /TOP NAV -->
 
 <!-- WRAPPER -->
-<div id="wrapper">
+<div id="wrapper" ng-controller="MainCtrl">
 
     <!-- PAGE TITLE -->
     <header id="page-title"> <!-- style="background-image:url('assets/images/demo/parallax_bg.jpg')" -->
@@ -59,7 +59,7 @@
         -->
 
         <div class="container">
-            <h1>About SceneGraph.js</h1>
+            <h1>About {{project.name}}</h1>
 
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
@@ -69,7 +69,7 @@
     </header>
 
 
-    <section class="container" ng-controller="MainCtrl">
+    <section class="container">
 
         <p class="lead text-center">
 

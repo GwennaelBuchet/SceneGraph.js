@@ -12,7 +12,7 @@
     <!-- mobile settings -->
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
 
-    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/cgSceneGraph/fluidicon.png" title="cgSceneGraph"/>
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/{{project.name}}/fluidicon.png" title="{{project.name}}"/>
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
@@ -57,7 +57,7 @@
 <!-- /TOP NAV -->
 
 <!-- WRAPPER -->
-<div id="wrapper">
+<div id="wrapper" ng-controller="MainCtrl">
 
     <!-- PAGE TITLE -->
     <header id="page-title">
@@ -67,7 +67,7 @@
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="tutorials.html">Tutorials</a></li>
-                <li class="active">Tutorials</li>
+                <li class="active">Simple project</li>
             </ul>
         </div>
     </header>
@@ -78,7 +78,7 @@
     <h1>Create a simple project</h1>
 
     <p>
-        cgSceneGraph is an object oriented framework and there are 2 (slightly identical) ways to develop an application
+        {{project.name}} is an object oriented framework and there are 2 (slightly identical) ways to develop an application
         with the framework :
     <ol>
         <li>The basic one : instanciate the framework and play with the variable created</li>
@@ -102,6 +102,8 @@
                             &lt;!-- avoid moving the view with finger on touch screens -->
                             &lt;meta name="viewport"
                                   content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+                            &lt;link id="theme" rel="stylesheet" type="text/css" href="css/themes/gray/grayTheme.css" title="theme"/>
 
                             &lt;!-- the framework -->
                             &lt;script type="text/javascript" src="js/cgscenegraph_2.1.0.min.js">&lt;/script>
@@ -178,6 +180,8 @@
                             &lt;!-- avoid moving the view with finger on touch screens -->
                             &lt;meta name="viewport"
                                   content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+
+                            &lt;link id="theme" rel="stylesheet" type="text/css" href="css/themes/gray/grayTheme.css" title="theme"/>
 
                             &lt;!-- the framework -->
                             &lt;script type="text/javascript" src="js/cgscenegraph_2.1.0.min.js">&lt;/script>
