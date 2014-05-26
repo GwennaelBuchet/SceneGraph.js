@@ -69,11 +69,11 @@
     </header>
 
 
-    <section class="container">
+    <section class="container" ng-controller="MainCtrl">
 
         <p class="lead text-center">
 
-            <strong>cgSceneGraph</strong> (formerly <em>cgSceneGraph</em>) is a powerful, cross-platform and very
+            <strong>{{project.name}}</strong> (formerly <em>cgSceneGraph</em>) is a powerful, cross-platform and very
             easy-to-use
             Scene Graph
             framework written in JavaScript
@@ -86,7 +86,7 @@
             Since the start of the project, it has been designed to be used on professional
             application as well as for game development.<br/>
             Feel free to share your extensions or to publish a link to your projects using the
-            cgSceneGraph :)
+        {{project.name}} :)
         </p>
         </p>
 
@@ -104,7 +104,7 @@
                     <li><strong class="blueText">Object oriented</strong> development</li>
                     <li>Easy managing of <strong class="blueText">complex scenes</strong></li>
                     <li>Hierarchy of nodes, keeping a trace of their absolute transformation matrix</li>
-                    <li><strong class="blueText">Cross-platform</strong> (IE 9&10, Chrome, Firefox, Opera, iOS,
+                    <li><strong class="blueText">Cross-platform</strong> (IE >=9, Chrome, Firefox, Opera, iOS,
                         Android, ...)
                     </li>
                     <li><strong class="blueText">Mouse and touch events</strong>, seamlessly for the developer
@@ -178,7 +178,7 @@
         <hr class="half-margins"/>
         <!-- separator -->
 
-        <h2>Why SceneGraph.js</h2>
+        <h2>Why {{project.name}}</h2>
 
         <p>
             We were very excited when we discovered the &lt;canvas&gt; tag in HTML5 and all we can
@@ -228,7 +228,7 @@
                     <i class="fa fa-trophy"></i>
                     <h4>For Your Business</h4>
 
-                    <p>Already used on professional applications as well as rich games, SceneGraph.js is designed to be
+                    <p>Already used on professional applications as well as rich games, {{project.name}} is designed to be
                         multi
                         applications and cross platforms.</p>
                 </div>
