@@ -93,7 +93,7 @@ var CGMain = CGSGView.extend(
 			 * @param to End value
 			 * @param delay Integer. Delay before start the animation, in frames
 			 *
-			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0, true);
+			 * @example CGSG.animationManager.animate(imgNode, "position.x", 700, 0, 200, 0);
 			 */
 
             var timeline = CGSG.animationManager.animate(this.squareNode, "position.x", 300, 0, 300, 0);
