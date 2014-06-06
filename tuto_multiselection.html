@@ -1,0 +1,169 @@
+<!DOCTYPE html><!--[if IE 8]>
+<html class="ie ie8"> <![endif]--><!--[if IE 9]>
+<html class="ie ie9"> <![endif]--><!--[if gt IE 9]><!-->
+<html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>SceneGraph.js</title>
+    <meta name="keywords" content="HTML5,canvas,animation,framework"/>
+    <meta name="description" content="HTML5 interactive and animation framework"/>
+    <meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/{{project.name}}/fluidicon.png"
+          title="{{project.name}}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- CORE CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/superslides.css" rel="stylesheet" type="text/css"/>
+
+    <!-- THEME CSS -->
+    <link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/shCore.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+    <script src="js/shCore.js" type="text/javascript"></script>
+    <script src="js/shBrushXml.js" type="text/javascript"></script>
+    <script src="js/shBrushJScript.js" type="text/javascript"></script>
+
+
+    <!-- modernizr -->
+    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+<body ng-app="cgsgApp">
+<!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
+
+<!-- TOP NAV -->
+<ng-include src="'partials/header.html'"></ng-include>
+<!-- /TOP NAV -->
+
+<!-- WRAPPER -->
+<div id="wrapper" ng-controller="MainCtrl">
+
+    <!-- PAGE TITLE -->
+    <header id="page-title">
+        <div class="container">
+            <h1>Tutorials</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorials.html">Tutorials</a></li>
+                <li class="active">Multi-selection</li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="container">
+
+        <h1>Multi-selection Tutorial</h1>
+
+        <p>
+
+        <h2>Select an object</h2>
+
+        <p>
+            There are 3 ways to select an object with cgSceneGraph:
+        <ul>
+            <li>Programatically :
+                <div class="displayCode">
+                                <pre class="brush: js;">
+                                    CGSG.sceneGraph.selectNode(myNode);
+                                    </pre>
+                </div>
+            </li>
+
+            <li>Single click with mouse : <br/>
+                You first need to declare your node as clickable, ie as draggable or resizable:
+                <div class="displayCode">
+                                <pre class="brush: js;">
+                                   myNode.isDraggable = true;
+                                    //or
+                                    myNode.isResizable = true;
+                                    </pre>
+                </div>
+            </li>
+
+            <li>Drag selection with mouse : <br/>
+                You also first need to declare your node as clickable, ie as draggable or resizable, and
+                to activate the multi selection via mouse:
+                <div class="displayCode">
+                                <pre class="brush: js;">
+                                    this.isDragSelectEnabled = true; //this = the main class, ie CGSGScene inherited class
+
+                                   //then
+                                   myNode.isDraggable = true;
+                                    //or
+                                    myNode.isResizable = true;
+                                    </pre>
+                </div>
+            </li>
+
+        </ul>
+
+        </p>
+        </p>
+        <br/>
+        <hr/>
+        <h2>Select several objects in the same time</h2>
+
+        <p>
+            To multi-select nodes on the scene it's very easy, you just have to set the "<span class="blueText">allowMultiSelect</span>"
+            property of the CGSGScene to true :
+
+        <div class="displayCode">
+                                <pre class="brush: js;">
+                                   this.allowMultiSelect = true;
+                                    </pre>
+        </div>
+        Then you can multi-select objects by:
+        <ul>
+            <li>drawing a selection zone on the scene with the mouse cursor</li>
+            <li>or just by pressing [Ctrl] key on keyboard while clicking on selectable nodes.</li>
+        </ul>
+        </p>
+
+    </section>
+
+</div>
+<!-- /WRAPPER -->
+
+<!-- FOOTER -->
+<ng-include src="'partials/footer.html'"></ng-include>
+<!-- /FOOTER -->
+
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+
+
+<!-- JAVASCRIPT FILES -->
+<script type="text/javascript" src="assets/plugins/jquery-2.0.3.min.js"></script>
+
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+
+<script type="text/javascript" src="js/googleAnalytics.js"></script>
+
+</body>
+</html>
