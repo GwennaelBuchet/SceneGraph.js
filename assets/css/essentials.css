@@ -56,14 +56,13 @@
 .affix-bottom {
     width: inherit;
     position: absolute;
-    top: auto;
+    top: 300px;
     bottom: 500px;
 }
 
 .affix-top {
-    width: inherit;
     position: absolute;
-    top: 250px;
+    top: 100px;
     bottom: auto;
 }
 
