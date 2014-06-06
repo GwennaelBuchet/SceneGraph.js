@@ -77,7 +77,7 @@
 <div class="row">
 
 <div id="side-nav" class="col-md-3 hidden-xs hidden-sm hidden-print">
-    <ul class="nav nav-pills nav-stacked affix" data-offset-top="60" data-offset-bottom="800">
+    <ul id="ul-nav" class="nav nav-pills nav-stacked affix" data-offset-top="60" data-offset-bottom="800">
         <li class="active"><a href="#intro">Introduction</a></li>
         <li><a href="#cgsgnode">What is CGSGNode</a></li>
         <li><a href="#extend">How to extend</a></li>
@@ -326,7 +326,7 @@ var CustomNode = CGSGNode.extend(
     <h2>Full example : A "sky" node</h2>
 
     <p>
-    A sky node is a good example, I think: complete, easy to understand and easy to extend to learn by yourself :)
+        A sky node is a good example, I think: complete, easy to understand and easy to extend to learn by yourself :)
 
     <div class="displayCode">
         <pre class="brush: js;">
@@ -371,7 +371,8 @@ var CustomNode = CGSGNode.extend(
         </pre>
     </div>
     <br/>
-        I let you have a look at the code of "Catch Flowers" game on same repo on GitHub to see a more complete and powerful sky (switch between day and night, ...).
+    I let you have a look at the code of "Catch Flowers" game on same repo on GitHub to see a more complete and powerful
+    sky (switch between day and night, ...).
 
     </p>
 </div>
@@ -399,8 +400,41 @@ var CustomNode = CGSGNode.extend(
 
 <script>
     $(document).ready(function() {
-        $("body").scrollspy({target : "#side-nav", offset : 50});
+        $("body").scrollspy({target : "#side-nav"});
+
+        $("#ul-nav").affix(
+                {
+                    offset : {
+                        top : 250
+                    }
+                }
+        );
+
+
+        /*var headerHeight = $('topNav').outerHeight(true) || 100; // true value, adds margins to the total height
+         var footerHeight = $('footer').innerHeight() || 500;
+         $('#ul-nav').affix(
+         {
+         offset : {
+         top    : headerHeight,
+         bottom : footerHeight
+         }
+         }
+         ).on('affix.bs.affix', function() { // before affix
+         $(this).css(
+         {
+         'top': headerHeight,    // for fixed height
+         'width' : $(this).outerWidth()  // variable widths
+         }
+         );
+         }
+         ).on('affix-bottom.bs.affix', function() { // before affix-bottom
+         $(this).css('bottom', 'auto'); // THIS is what makes the jumping
+         }
+         );*/
     });
+
+
 </script>
 
 <script type="text/javascript" src="assets/js/scripts.js"></script>
