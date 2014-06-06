@@ -1,5 +1,17 @@
 [
 	{
+		"name"       : "Speech Bubble",
+		"comment"    : "An impressive Speech Bubble",
+		"type"       : "extension",
+		"version"    : "scenegraph_1.2.0.min.js",
+		"sshot"      : "ecosystem/rpgwanderer/speechbubble/screenshot.png",
+		"demolink"   : "http://jeremielussiez.github.io/SpeechBubble/index.html",
+		"sourcelink" : "https://github.com/JeremieLussiez/SpeechBubble/blob/master/js/game/view/nodes/SpeechBubble.node.js",
+		"sitelink"   : "https://github.com/JeremieLussiez/SpeechBubble",
+		"authorlink" : "https://github.com/JeremieLussiez",
+		"author"     : "Jérémie Lussiez"
+	},
+	{
 		"name"       : "Progress Bar",
 		"comment"    : "A powerful and customizable progress bar !",
 		"type"       : "extension",

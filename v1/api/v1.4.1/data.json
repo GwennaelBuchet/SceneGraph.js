@@ -381,7 +381,7 @@
                 }
             ],
             "type": "{CGSGAnimationKey}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "ParticleSystem": {
             "name": "ParticleSystem",
@@ -407,7 +407,7 @@
                 }
             ],
             "type": "{CGSGParticle}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "description": "A particle emitter for the cgSceneGraph Particle System"
         },
         "Collision": {
@@ -487,7 +487,7 @@
                 }
             ],
             "type": "{CGSGVector2D}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "itemtype": "main"
         },
         "Util": {
@@ -634,7 +634,7 @@
                 }
             ],
             "type": "{CGSGParticleEmitter}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGParticleSystem": {
             "name": "CGSGParticleSystem",
@@ -652,7 +652,7 @@
             "description": "A particle System object.",
             "extends": "{CGSGNode}",
             "type": "{CGSGParticleSystem}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGCollisionManager": {
             "name": "CGSGCollisionManager",
@@ -758,7 +758,7 @@
                 }
             ],
             "type": "{CGSGNodeSprite}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGButtonMode": {
             "name": "CGSGButtonMode",
@@ -774,7 +774,7 @@
             "line": 26,
             "description": "List the modes for a button : NORMAL, OVER, DEACTIVATED, SELECTED.",
             "type": "{Object}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "example": [
                 "\n     myTextNode.setWrapMode(CGSGWrapMode.WORD, true);"
             ]
@@ -822,7 +822,7 @@
                 }
             ],
             "type": "{CGSGNodeButton}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNodeCircle": {
             "name": "CGSGNodeCircle",
@@ -857,7 +857,7 @@
                 }
             ],
             "type": "{CGSGNodeCircle}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNodeColorPicker": {
             "name": "CGSGNodeColorPicker",
@@ -925,7 +925,7 @@
                 }
             ],
             "type": "{CGSGNodeEllipse}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNodeImage": {
             "name": "CGSGNodeImage",
@@ -960,7 +960,7 @@
                 }
             ],
             "type": "{CGSGNodeImage}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNode": {
             "name": "CGSGNode",
@@ -1004,7 +1004,7 @@
                 }
             ],
             "type": "{CGSGNode}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNodeSquare": {
             "name": "CGSGNodeSquare",
@@ -1044,7 +1044,7 @@
                 }
             ],
             "type": "{CGSGNodeSquare}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNodeTabMenu": {
             "name": "CGSGNodeTabMenu",
@@ -1094,7 +1094,7 @@
             "line": 26,
             "description": "List the methods to wrap the text. Used by {CGSGNodeText} Node.",
             "type": "{Object}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "example": [
                 "\n     myTextNode.setWrapMode(CGSGWrapMode.WORD, true);"
             ]
@@ -1132,7 +1132,7 @@
                 }
             ],
             "type": "{CGSGNodeText}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGWEBVIEWMODE": {
             "name": "CGSGWEBVIEWMODE",
@@ -1148,7 +1148,7 @@
             "line": 26,
             "description": "The different rendering mode",
             "type": "{Object}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGNodeWebview": {
             "name": "CGSGNodeWebview",
@@ -1279,7 +1279,7 @@
                 }
             ],
             "type": "{CGSGHandleBox}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGHashmap": {
             "name": "CGSGHashmap",
@@ -1295,7 +1295,7 @@
             "line": 26,
             "description": "A Hashmap class.",
             "is_constructor": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGPosition": {
             "name": "CGSGPosition",
@@ -1324,7 +1324,7 @@
                     "type": "Number"
                 }
             ],
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "type": "{CGSGPosition}"
         },
         "CGSGScale": {
@@ -1354,7 +1354,7 @@
                     "type": "Number"
                 }
             ],
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "type": "{CGSGScale}"
         },
         "CGSGRotation": {
@@ -1379,7 +1379,7 @@
                     "type": "Number"
                 }
             ],
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "type": "{CGSGRotation}"
         },
         "CGSGDimension": {
@@ -1409,7 +1409,7 @@
                     "type": "Number"
                 }
             ],
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "type": "{CGSGDimension}"
         },
         "CGSGRegion": {
@@ -1449,7 +1449,7 @@
                     "type": "Number"
                 }
             ],
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)",
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)",
             "type": "{CGSGRegion}"
         },
         "CGSGTraverser": {
@@ -1468,7 +1468,7 @@
             "extends": "Object",
             "is_constructor": 1,
             "type": "{CGSGTraverser}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "UTIL_ARRAY": {
             "name": "UTIL_ARRAY",
@@ -1484,7 +1484,7 @@
             "line": 28,
             "description": "Utils methods extending the Array prototype",
             "static": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGColor": {
             "name": "CGSGColor",
@@ -1500,7 +1500,7 @@
             "line": 26,
             "description": "Some utils methods extending the Array prototype",
             "static": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "GLOBAL_METHODS": {
             "name": "GLOBAL_METHODS",
@@ -1516,7 +1516,7 @@
             "line": 26,
             "description": "Global methods",
             "static": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGScene": {
             "name": "CGSGScene",
@@ -1545,7 +1545,7 @@
                 }
             ],
             "type": "{CGSGScene}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGSceneGraph": {
             "name": "CGSGSceneGraph",
@@ -1575,7 +1575,7 @@
                 }
             ],
             "type": "{CGSGSceneGraph}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "GLOBAL_CONSTANTS": {
             "name": "GLOBAL_CONSTANTS",
@@ -1591,7 +1591,7 @@
             "line": 26,
             "description": "Global constants used by the framework",
             "static": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "CGSGPickNodeMethod": {
             "name": "CGSGPickNodeMethod",
@@ -1607,7 +1607,7 @@
             "line": 26,
             "description": "List the methods to check the pick on a node",
             "type": "{Object}",
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         },
         "GLOBAL_PROPERTIES": {
             "name": "GLOBAL_PROPERTIES",
@@ -1623,7 +1623,7 @@
             "line": 44,
             "description": "Global properties of the framework",
             "static": 1,
-            "author": "Gwennael Buchet (gwennael.buchet@capgemini.com)"
+            "author": "Gwennael Buchet (gwennael.buchet@gmail.com)"
         }
     },
     "classitems": [

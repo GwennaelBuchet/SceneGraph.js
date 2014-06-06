@@ -86,7 +86,7 @@ var StateAbout = Object.extend(
 			textSceneGraph.color = "#cb23ad";
 			bck.addChild(textSceneGraph);
 
-			var textEmail = new CGSGNodeText(143, 198, "gwennael.buchet@capgemini.com");
+			var textEmail = new CGSGNodeText(143, 198, "gwennael.buchet@gmail.com");
 			textEmail.setSize(10);
 			textEmail.color = "#5a166e";
 			bck.addChild(textEmail);
