@@ -112,13 +112,15 @@ var CGMain = CGSGView.extend(
         },
 
         createCarriageReturnText: function () {
-            var t4 = new CGSGNodeText(10, 200, "Simple blue text with a carriage return and a tabulation :\njust\there (h2)");
+            var t4 = new CGSGNodeText(10, 200, "Simple blue text with a carriage return\n and a tabulation just\there (h2)");
 			t4.setClass("cgsg-h2");
 			t4.isDraggable = true;
 			t4.name = "Carriage Return Text";
 
 			t4.color = "blue";
 			t4.setPrecomputed(true);
+
+	        t4.selectionLineWidth = 0;
 
             //add the textNode as child of the root
             this.rootNode.addChild(t4);

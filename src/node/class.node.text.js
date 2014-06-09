@@ -35,15 +35,15 @@ var CGSGWrapMode = {
 	/**
 	 * @property WORD
 	 */
-	WORD     : {space : " "},
+	WORD    : {space: " "},
 	/**
 	 * @property LETTER
 	 */
-	LETTER   : {space : ""},
+	LETTER  : {space: ""},
 	/**
 	 * @property SENTENCE
 	 */
-	SENTENCE : {space : "."}
+	SENTENCE: {space: "."}
 };
 
 /**
@@ -61,7 +61,7 @@ var CGSGWrapMode = {
  */
 var CGSGNodeText = CGSGNode.extend(
 	{
-		initialize : function(x, y, text, mustRecomputeDimension) {
+		initialize: function (x, y, text, mustRecomputeDimension) {
 			this._super(x, y);
 
 			/**
@@ -184,7 +184,7 @@ var CGSGNodeText = CGSGNode.extend(
 			 * @property metrics
 			 * @type {Object}
 			 */
-			this.metrics = {width : 1};
+			this.metrics = {width: 1};
 
 			/**
 			 * number of lines in the text
@@ -210,7 +210,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * Reload theme (colors, ...) from loaded CSS file
 		 * @method invalidateTheme
 		 */
-		invalidateTheme : function() {
+		invalidateTheme: function () {
 			this._super();
 
 			var cl = CGSG.cssManager.getAttrInArray(this._cls, "color");
@@ -223,43 +223,56 @@ var CGSGNodeText = CGSGNode.extend(
 			var align = CGSG.cssManager.getAttrInArray(this._cls, "text-align");
 			var transform = CGSG.cssManager.getAttrInArray(this._cls, "text-transform");
 			var strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, "-webkit-text-stroke-width");
-			if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-width");
+			if (!cgsgExist(strokeWidth)) {
+				strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-width");
+			}
 			var strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "-webkit-text-stroke-color");
-			if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-color");
+			if (!cgsgExist(strokeColor)) {
+				strokeColor = CGSG.cssManager.getAttrInArray(this._cls, "text-stroke-color");
+			}
 
 			if (cgsgExist(cl)) {
 				//value is given as "rgb(xx, yy, zz)". Let's convert it to hex
 				var rgb = CGSGColor.fromString(cl);
 				this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
 			}
-			if (cgsgExist(style))
+			if (cgsgExist(style)) {
 				this._style = style;
-			if (cgsgExist(variant))
+			}
+			if (cgsgExist(variant)) {
 				this._variant = variant;
-			if (cgsgExist(weight))
+			}
+			if (cgsgExist(weight)) {
 				this._weight = weight;
+			}
 			if (cgsgExist(size)) {
 				this._sizeT = size;
 				this._size = CGSG.cssManager.getNumber(size);
 				this._lineHeight = this._size;
 			}
-			if (cgsgExist(family))
+			if (cgsgExist(family)) {
 				this._typo = family;
-			if (cgsgExist(height))
+			}
+			if (cgsgExist(height)) {
 				this._lineHeight = height;
-			if (cgsgExist(align))
+			}
+			if (cgsgExist(align)) {
 				this._align = align;
-			if (cgsgExist(transform))
+			}
+			if (cgsgExist(transform)) {
 				this._transform = transform;
-			if (cgsgExist(strokeWidth))
+			}
+			if (cgsgExist(strokeWidth)) {
 				this.lineWidth = strokeWidth;
-			if (cgsgExist(strokeColor))
+			}
+			if (cgsgExist(strokeColor)) {
 				this.lineColor = strokeColor;
+			}
 
 			this._invalidateFont();
 		},
 
-		_invalidateFont : function() {
+		_invalidateFont: function () {
 			var st = (cgsgExist(this._style) && this._style.length > 0) ? (this._style + ' ') : "";
 			var va = (cgsgExist(this._variant) && this._variant.length > 0) ? (this._variant + ' ') : "";
 			var we = (cgsgExist(this._weight) && this._weight.length > 0) ? (this._weight + ' ') : "";
@@ -277,7 +290,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @example
 		 *      myTextNode.setWrapMode(CGSGWrapMode.WORD, true);
 		 */
-		setWrapMode : function(mode, mustRecomputeDimension) {
+		setWrapMode: function (mode, mustRecomputeDimension) {
 			this._wrapMode = mode;
 			this.invalidate();
 			if (mustRecomputeDimension !== false) {
@@ -291,7 +304,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} tab TExt to replace tabulation (ie: 4 spaces, ...)
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setTabulationString : function(tab, mustRecomputeDimension) {
+		setTabulationString: function (tab, mustRecomputeDimension) {
 			this._tabulation = tab;
 			this._text = this._text.replace(/(\t)/g, this._tabulation);
 			this.invalidate();
@@ -305,24 +318,25 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} t the new text
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setText : function(t, mustRecomputeDimension) {
+		setText: function (t, mustRecomputeDimension) {
 			this._text = t;
 			this._text = this._text.replace(/(\r\n|\n\r|\r|\n)/g, "\n");
 			this._text = this._text.replace(/(\t)/g, this._tabulation);
 			this._sections = this._text.split("\n");
-			this.invalidate();
+
 			if (mustRecomputeDimension !== false) {
 				this.computeRealDimension();
 			}
-		},
 
+			this.invalidate();
+		},
 
 		/**
 		 * @method setTextBaseline
 		 * @param {String} b A String (Possible values : "top", "hanging", "middle", "alphabetic", "ideographic", "bottom")
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setTextBaseline : function(b, mustRecomputeDimension) {
+		setTextBaseline: function (b, mustRecomputeDimension) {
 			this._textBaseline = b;
 			this.invalidate();
 			if (mustRecomputeDimension !== false) {
@@ -335,7 +349,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} s "" by default
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setStyle : function(s, mustRecomputeDimension) {
+		setStyle: function (s, mustRecomputeDimension) {
 			this._style = s;
 			this._invalidateFont();
 			this.invalidate();
@@ -344,13 +358,12 @@ var CGSGNodeText = CGSGNode.extend(
 			}
 		},
 
-
 		/**
 		 * @method setMaxWidth
 		 * @param {Number} m Max Width for the text
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setMaxWidth : function(m, mustRecomputeDimension) {
+		setMaxWidth: function (m, mustRecomputeDimension) {
 			this._maxWidth = m;
 			this.dimension.width = m;
 			//this.resizeTo(m, this.getHeight());
@@ -366,7 +379,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} l height of a line
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setLineHeight : function(l, mustRecomputeDimension) {
+		setLineHeight: function (l, mustRecomputeDimension) {
 			this._lineHeight = l;
 			this.invalidate();
 			if (mustRecomputeDimension !== false) {
@@ -379,7 +392,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} s the new size (an integer)
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setSize : function(s, mustRecomputeDimension) {
+		setSize: function (s, mustRecomputeDimension) {
 			this._size = s;
 			this._invalidateFont();
 			this.invalidate();
@@ -393,7 +406,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {String} t "Arial" by default
 		 * @param {Boolean} mustRecomputeDimension (default : true)
 		 */
-		setTypo : function(t, mustRecomputeDimension) {
+		setTypo: function (t, mustRecomputeDimension) {
 			this._typo = t;
 			this._invalidateFont();
 			this.invalidate();
@@ -406,7 +419,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method setWeight
 		 * @param w
 		 */
-		setWeight : function(w) {
+		setWeight: function (w) {
 			this._weight = w;
 			this._invalidateFont();
 			this.invalidate();
@@ -416,7 +429,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method setVariant
 		 * @param v
 		 */
-		setVariant : function(v) {
+		setVariant: function (v) {
 			this._variant = v;
 			this._invalidateFont();
 			this.invalidate();
@@ -426,7 +439,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method setTextAlign
 		 * @param {String} a A String (Possible values : "left", "right", "center")
 		 */
-		setTextAlign : function(a) {
+		setTextAlign: function (a) {
 			this._align = a;
 			this.invalidate();
 		},
@@ -435,7 +448,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * compute the real dimension of the text
 		 * @method computeRealDimension
 		 */
-		computeRealDimension : function() {
+		computeRealDimension: function () {
 			this.metrics.width = 0;
 			var fakeCanvas = document.createElement('canvas');
 			//fakeCanvas.height = 800;
@@ -456,7 +469,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * */
-		render : function(context) {
+		render: function (context) {
 			context.fillStyle = this.color || this.bkgcolors[0];
 			//context.strokeStyle = this.lineColor;
 			//context.lineWidth = this.lineWidth;
@@ -471,7 +484,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Boolean} isGhostmode. If true a square will be rendered instead of the text.
 		 * @private
 		 */
-		_doRender : function(context, isGhostmode) {
+		_doRender: function (context, isGhostmode) {
 			context.font = this._fullfont;
 			//this._style + (this._style != null && this._style.length > 0 ? ' ' : '') + this._size + "pt " + this._typo;
 
@@ -489,7 +502,7 @@ var CGSGNodeText = CGSGNode.extend(
 			}
 			if (isNaN(this._maxWidth) || this._maxWidth <= 0) {
 				posX = this._computeDecalX(this.getWidth());
-				for (s = 0 ; s < this._sections.length ; s++) {
+				for (s = 0; s < this._sections.length; s++) {
 					textW = context.measureText(this._sections[s]).width;
 					this._drawText(this._sections[s], posX, posY, context, isGhostmode, textW);
 					posY += this._lineHeight;
@@ -498,7 +511,7 @@ var CGSGNodeText = CGSGNode.extend(
 			}
 			else {
 				this._nbLines = 0;
-				for (s = 0 ; s < this._sections.length ; s++) {
+				for (s = 0; s < this._sections.length; s++) {
 					var words = this._sections[s].split(this._wrapMode.space);
 					var nbWords = 1;
 					var testLine = words[0];
@@ -514,7 +527,7 @@ var CGSGNodeText = CGSGNode.extend(
 					else {
 						while (nbWords < words.length) {
 							while ((textW = context.measureText(testLine).width) < this._maxWidth &&
-								   nbWords < words.length) {
+							       nbWords < words.length) {
 								if (testLine != "") {
 									testLine += this._wrapMode.space;
 								}
@@ -545,13 +558,17 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} width
 		 * @private
 		 */
-		_drawText : function(text, x, y, context, isGhostmode, width) {
+		_drawText: function (text, x, y, context, isGhostmode, width) {
 			if (cgsgExist(this._transform)) {
 				if (this._transform === "capitalize") {
 					text = text.capitalize();
 				}
-				if (this._transform === "lowercase") text = text.toLowerCase();
-				if (this._transform === "uppercase") text = text.toUpperCase();
+				if (this._transform === "lowercase") {
+					text = text.toLowerCase();
+				}
+				if (this._transform === "uppercase") {
+					text = text.toUpperCase();
+				}
 			}
 
 			if (isGhostmode) {
@@ -567,8 +584,9 @@ var CGSGNodeText = CGSGNode.extend(
 				context.strokeText(text, x, y);
 			}
 
-			if (cgsgExist(this.bkgcolors[0]) && this.globalAlpha > 0)
+			if (cgsgExist(this.bkgcolors[0]) && this.globalAlpha > 0) {
 				context.fillText(text, x, y);
+			}
 
 			var mt = context.measureText(text);
 			if (mt.width > this.metrics.width) {
@@ -584,7 +602,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 * @private
 		 */
-		_drawSquare : function(x, y, width, context) {
+		_drawSquare: function (x, y, width, context) {
 			context.fillRect(x - this._computeDecalX(width), y + this._computeDecalY(), width, this._size);
 		},
 
@@ -592,7 +610,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method getHeight
 		 * @return {Number}
 		 */
-		getHeight : function() {
+		getHeight: function () {
 			if (this._nbLines == 0) {
 				return this._nbLines;
 			}
@@ -604,7 +622,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method getWidth
 		 * @return {Number}
 		 */
-		getWidth : function() {
+		getWidth: function () {
 			return this.metrics.width;
 		},
 
@@ -613,7 +631,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method _computeDecalX
 		 * @return {Number}
 		 */
-		_computeDecalX : function(width) {
+		_computeDecalX: function (width) {
 			var decalX = 0;
 			if (this._align == "start" || this._align == "left") {
 				decalX = 0.0;
@@ -635,7 +653,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method _computeDecalY
 		 * @return {Number}
 		 */
-		_computeDecalY : function() {
+		_computeDecalY: function () {
 			var decalY = 0;
 			if (this._textBaseline == "top" || this._textBaseline == "hanging") {
 				decalY = this._size / cgsgCurrentExplorer.textDecalYTop;
@@ -660,7 +678,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @protected
 		 * @param {CanvasRenderingContext2D} ghostContext The context for the ghost rendering
 		 */
-		doRenderGhost : function(ghostContext) {
+		doRenderGhost: function (ghostContext) {
 			//save current state
 			this.beforeRenderGhost(ghostContext);
 
@@ -681,7 +699,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method renderBoundingBox
 		 * @param {CanvasRenderingContext2D} context the context into render the node
 		 */
-		renderBoundingBox : function(c) {
+		renderBoundingBox: function (c) {
 			var decalX = 0;
 			var decalY = this._computeDecalY();
 
@@ -691,29 +709,31 @@ var CGSGNodeText = CGSGNode.extend(
 			var height = this.getHeight();
 			var width = this.getWidth();
 
-			c.strokeStyle = this.selectionLineColor;
+			if (cgsgExist(this.selectionLineWidth) && this.selectionLineWidth > 0) {
+				c.strokeStyle = this.selectionLineColor;
 
-			c.lineWidth = this.selectionLineWidth / this._absSca.y;
-			c.beginPath();
-			//top line
-			c.moveTo(decalX, decalY);
-			c.lineTo(width, decalY);
-			//bottom line
-			c.moveTo(decalX, decalY + height);
-			c.lineTo(width, decalY + height);
-			c.stroke();
-			c.closePath();
+				c.lineWidth = this.selectionLineWidth / this._absSca.y;
+				c.beginPath();
+				//top line
+				c.moveTo(decalX, decalY);
+				c.lineTo(width, decalY);
+				//bottom line
+				c.moveTo(decalX, decalY + height);
+				c.lineTo(width, decalY + height);
+				c.stroke();
+				c.closePath();
 
-			c.lineWidth = this.selectionLineWidth / this._absSca.x;
-			c.beginPath();
-			//left line
-			c.moveTo(decalX, decalY);
-			c.lineTo(decalX, decalY + height);
-			//right line
-			c.moveTo(decalX + width, decalY);
-			c.lineTo(decalX + width, decalY + height);
-			c.stroke();
-			c.closePath();
+				c.lineWidth = this.selectionLineWidth / this._absSca.x;
+				c.beginPath();
+				//left line
+				c.moveTo(decalX, decalY);
+				c.lineTo(decalX, decalY + height);
+				//right line
+				c.moveTo(decalX + width, decalY);
+				c.lineTo(decalX + width, decalY + height);
+				c.stroke();
+				c.closePath();
+			}
 
 			//draw the resize handles
 			if (this.isResizable) {
@@ -735,17 +755,16 @@ var CGSGNodeText = CGSGNode.extend(
 
 				// middle right
 				this.handles[4].translateTo(width - halfX,
-											height / 2 - halfY + decalY);
+				                            height / 2 - halfY + decalY);
 
 				// bottom left, middle, right
 				this.handles[6].translateTo(width / 2 - halfX,
-											height - halfY + decalY);
+				                            height - halfY + decalY);
 				this.handles[5].translateTo(-halfX, height - halfY + decalY);
 				this.handles[7].translateTo(width - halfX,
-											height - halfY + decalY);
+				                            height - halfY + decalY);
 
-
-				for (var i = 0 ; i < 8 ; i++) {
+				for (var i = 0; i < 8; i++) {
 					this.handles[i].size = this.handleSize;
 					this.handles[i].fillColor = this.handleColor;
 					this.handles[i].strokeColor = this.selectionLineColor;
@@ -759,7 +778,7 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method copy
 		 * @return {CGSGNodeText} a copy of this node
 		 */
-		copy : function() {
+		copy: function () {
 			var node = new CGSGNodeText(this.position.x, this.position.y, this._text);
 			//call the super method
 			node = this._super(node);
