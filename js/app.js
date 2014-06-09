@@ -5,7 +5,7 @@ app.controller('MainCtrl', ['$scope', '$location', function($scope, $location) {
 		"name"           : "SceneGraph.js",
 		"currentVersion" : "v2.0.0",
 		"currentMaster"  : "v2.1.0-Snapshot",
-		"github"         : "https://github.com/GwennaelBuchet/cgSceneGraph",
+		"github"         : "https://github.com/GwennaelBuchet/SceneGraph.js",
 		"contact"        : {
 			"firstName" : "Gwennaël",
 			"lastName"  : "Buchet",
@@ -14,7 +14,7 @@ app.controller('MainCtrl', ['$scope', '$location', function($scope, $location) {
 	};
 
 	$scope.isActive = function(route) {
-		var host = $location.protocol() + "://" + $location.host() + "/cgSceneGraph/";
+		var host = $location.protocol() + "://" + $location.host() + "/SceneGraph.js/";
 		var url = $location.absUrl();
 		return url.substr(host.length, url.length) == route;
 	};
