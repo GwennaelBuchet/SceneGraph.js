@@ -61,13 +61,14 @@ var CGMain = CGSGView.extend(
 
 			// text
 			var maxWidth            = 600;
-			this.text                = new CGSGNodeText(10, 100, "They didn’t agree on much. In fact, they didn’t agree on anything. They fought all the time and challenged each other ever day.");
+			this.text                = new CGSGNodeText(10, 100, "They didn’t agree on much. In fact, they didn’t agree on anything. They fought all the time and challenged each other every day.");
 			this.text.isDraggable        = true;
 			this.text.isResizable        = true;
 			this.text.selectionLineWidth = 0;
 
 			this.text.setClass("cgsg-h3");
 			this.text.addClass("cgsg-center");
+			this.text.color = "red";
 
 			// alert(image.getWidth());
 
@@ -78,8 +79,9 @@ var CGMain = CGSGView.extend(
 				event.data.node.setMaxWidth(event.data.node.dimension.width);
 			};
 
-			var bindLoadWidth = this.loadWidth.bind(this);
-			image.onLoadEnd = bindLoadWidth;
+			var bindSetMaxWidth = this.setMaxWidth.bind(this);
+			image.onLoadEnd = bindSetMaxWidth;
+			image.onResize = bindSetMaxWidth;
 
 			//add the textNode as child of the root
 			image.addChild(this.text);
@@ -87,39 +89,8 @@ var CGMain = CGSGView.extend(
 			this.rootNode.addChild(image);
 		},
 
-        /**
-         * Just create a single node (an image node)
-         */
-        createScene2 : function () {
-	        var rootNode = new CGSGNode(0, 0);
-	        CGSG.sceneGraph.addNode(rootNode, null);
-
-            /*
-             * @param x
-             * @param y
-             * @param urlImage
-             */
-            this.imgNode = new CGSGNodeImage(
-                60,     //x
-                60,     //y
-                "images/hello.png");      //URL. Warning : the web page should be on a web server (apache, ...)
-
-            //this.imgNode.resizeTo(120, 100);
-            //this.imgNode.setSlice(30, 30, 80, 200, true);
-
-            //add some attributes
-            this.imgNode.isResizable = true;
-            this.imgNode.isDraggable = true;
-
-	        rootNode.addChild(this.imgNode);
-
-	        var bindLoadWidth = this.loadWidth.bind(this);
-	        this.imgNode.onLoadEnd = bindLoadWidth;
-        },
-
-		loadWidth : function (event) {
-			var width = event.node.getWidth();
-
+		setMaxWidth : function (event) {
+			var width = event.data.node.getWidth();
 
 			this.text.setMaxWidth(width);
 			console.log("maxWidth = " + this.text._maxWidth);

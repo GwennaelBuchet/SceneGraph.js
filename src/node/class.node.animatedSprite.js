@@ -174,7 +174,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 			this._isLoaded = true;
 			//this._initShape();
 			if (this.onLoadEnd !== null) {
-				this.onLoadEnd();
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_LOAD_END, new CGSGEvent(this, {node: this}));
 			}
 			this.invalidate();
 		},
@@ -437,7 +437,8 @@ var CGSGNodeSprite = CGSGNode.extend(
 					this._isPlaying = true;
 					this.resizeTo(this.currentAnimation.width, this.currentAnimation.height);
 					if (this.onAnimationStart !== null) {
-						this.onAnimationStart({animationName : animationName, loop : loop});
+						CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ANIMATION_START, new CGSGEvent(this, {node: this, animationName : animationName, loop : loop}));
+						//this.onAnimationStart({animationName : animationName, loop : loop});
 					}
 					return true;
 				}
@@ -453,6 +454,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 		stop : function() {
 			this._isPlaying = false;
 			if (this.onAnimationEnd !== null) {
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_ANIMATION_END, new CGSGEvent(this, {node: this, animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame}));
 				this.onAnimationEnd({animationName : this.currentAnimation.name, loop : this._currentLoop, frame : this._currentFrame});
 			}
 			this.invalidate();

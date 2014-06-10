@@ -147,7 +147,7 @@ var CGSGNodeImage = CGSGNode.extend(
 				cgsgImgManager.set(this._urlImage, this.img);
 
 			if (cgsgExist(this.onLoadEnd)) {
-				this.onLoadEnd({node : this, event : event});
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_LOAD_END, new CGSGEvent(this, {node: this}));
 			}
 			this.invalidate();
 		},
@@ -160,7 +160,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 */
 		_onImageError : function(event) {
 			if (this.onLoadError !== null) {
-				this.onLoadError({node : this, event : event});
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_LOAD_ERROR, new CGSGEvent(this, {node: this}));
 			}
 		},
 
@@ -172,7 +172,7 @@ var CGSGNodeImage = CGSGNode.extend(
 		 */
 		_onImageAbort : function(event) {
 			if (this.onLoadAbort !== null) {
-				this.onLoadAbort({node : this, event : event});
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_LOAD_ABORT, new CGSGEvent(this, {node: this}));
 			}
 		},
 
