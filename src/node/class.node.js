@@ -1877,6 +1877,10 @@ var CGSGNode = CGSGObject.extend(
 				this.regionConstraint = region;
 			},
 
+			setRegionNode:function(node) {
+
+			},
+
 			/**
 			 * @public
 			 * @method getAbsolutePosition
