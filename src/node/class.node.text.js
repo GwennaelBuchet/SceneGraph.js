@@ -514,7 +514,7 @@ var CGSGNodeText = CGSGNode.extend(
 				for (s = 0; s < this._sections.length; s++) {
 					var words = this._sections[s].split(this._wrapMode.space);
 					var nbWords = 1;
-					var testLine = words[0];
+					var testLine = words[0], tl = "";
 					posY = 0;
 					textW = 0;
 					if (words.length == 1) {
@@ -531,16 +531,21 @@ var CGSGNodeText = CGSGNode.extend(
 								if (testLine != "") {
 									testLine += this._wrapMode.space;
 								}
+								if (tl != "") {
+									tl += this._wrapMode.space;
+								}
+								tl += words[nbWords - 1];
 								testLine += words[nbWords++];
 							}
-							textW = context.measureText(testLine).width;
+							textW = context.measureText(tl).width;
 							posY = this._nbLines * this._lineHeight;
 							posX = this._computeDecalX(this.getWidth());
-							this._drawText(testLine, posX, posY, context, isGhostmode, textW);
+							this._drawText(tl, posX, posY, context, isGhostmode, textW);
 							this._nbLines++;
 
 							//reset for the next loop
 							testLine = "";
+							tl = "";
 							textW = 0;
 						}
 					}
