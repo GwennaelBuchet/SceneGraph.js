@@ -1,74 +1,89 @@
 <footer ng-controller="MainCtrl" id="footer">
 
-	<!-- copyright , scrollTo Top -->
-	<div class="footer-bar">
-		<div class="container">
-			<span class="copyright">Copyright &copy; {{project.contact.firstName + ' ' + project.contact.lastName}}. All Rights Reserved.</span>
-			<!--a class="toTop" href="#topNav">BACK TO TOP <i class="fa fa-arrow-circle-up"></i></a-->
-		</div>
-	</div>
-	<!-- copyright , scrollTo Top -->
+    <!-- copyright , scrollTo Top -->
+    <div class="footer-bar">
+        <div class="">
+            <span class="copyright text-left">Copyright &copy; {{project.contact.firstName + ' ' + project.contact.lastName}}. All Rights Reserved.</span>
+            <!--a class="toTop" href="#topNav">BACK TO TOP <i class="fa fa-arrow-circle-up"></i></a-->
+
+            <span style="padding-top: -40px">
+            <span class="text-right toTop">
+            <strong>Happy to use {{project.name}} ?</strong> Help us improving it.
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="3PW82UZNL3LXY">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0"
+                       name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1"
+                     height="1">
+            </form>
+                </span>
+                </span>
+        </div>
+    </div>
+    <!-- copyright , scrollTo Top -->
 
 
-	<!-- footer content -->
-	<div class="footer-content">
-		<div class="container">
+    <!-- footer content -->
+    <div class="footer-content">
+        <div class="container">
 
-			<div class="row">
+            <div class="row">
 
-				<!-- FOOTER PROJECT SUMMARY -->
-				<div class="column col-md-4 text-right">
-					<h3>PROJECT SUMMARY</h3>
+                <!-- FOOTER PROJECT SUMMARY -->
+                <div class="column col-md-4 text-right">
 
-					<div class="contact-desc">
-						<!--h3><a href="http://www.ohloh.net/p/cgSceneGraph"><img src="assets/images/ohloh_hub.png" alt="http://www.ohloh.net/p/cgSceneGraph" /></a></h3-->
-						<!--script type="text/javascript-lazy" src="http://www.ohloh.net/p/616805/widgets/project_factoids_stats.js"></script-->
-						<iframe src='http://www.ohloh.net/p/616805/widgets/project_factoids.html'
-						        scrolling='no'
-						        marginHeight=0
-						        marginWidth=0
-						        style='height: 250px; width: 370px; border: none;'></iframe>
-					</div>
+                    <h3>PROJECT SUMMARY</h3>
 
-				</div>
-				<!-- /FOOTER PROJECT SUMMARY -->
+                    <div class="contact-desc">
+                        <!--h3><a href="http://www.ohloh.net/p/cgSceneGraph"><img src="assets/images/ohloh_hub.png" alt="http://www.ohloh.net/p/cgSceneGraph" /></a></h3-->
+                        <!--script type="text/javascript-lazy" src="http://www.ohloh.net/p/616805/widgets/project_factoids_stats.js"></script-->
+                        <iframe src='http://www.ohloh.net/p/616805/widgets/project_factoids.html'
+                                scrolling='no'
+                                marginHeight=0
+                                marginWidth=0
+                                style='height: 250px; width: 370px; border: none;'></iframe>
+                    </div>
 
-				<!-- FOOTER LOGO -->
-				<div class="column logo col-md-4 text-center">
-					<div class="logo-content">
-						<img src="assets/images/logoCGSG_square.png" alt="{{project.name}}"/>
+                </div>
+                <!-- /FOOTER PROJECT SUMMARY -->
 
-						<p><h4>{{project.name}} Framework</h4></p>
-					</div>
-				</div>
-				<!-- /FOOTER LOGO -->
+                <!-- FOOTER LOGO -->
+                <div class="column logo col-md-4 text-center">
+                    <div class="logo-content">
+                        <img src="assets/images/logoCGSG_square.png" alt="{{project.name}}"/>
 
-				<!-- FOOTER CONTACT INFO -->
-				<div class="column col-md-4">
-					<h3>CONTACT</h3>
+                        <p><h4>{{project.name}} Framework</h4></p>
+                    </div>
+                </div>
+                <!-- /FOOTER LOGO -->
 
-					<p class="contact-desc">
-						To get help, <a href="http://stackoverflow.com" target="_blank">StackOverflow</a> remains the
-						best place, but if you need emergency help feel free to contact directly by email.
-						<a href="http://stackoverflow.com/search?q=cgscenegraph"
-						   target="_blank"><img src="assets/images/stackoverflow.png"></a></p>
-					<address class="font-opensans">
-						<ul>
-							<li class="footer-sprite address"><a href="{{project.github}}" target="_blank">
-								{{project.github}}</a></li>
-							<li class="footer-sprite email">
-								<a href="mailto:{{project.contact.email}}">{{project.contact.email}}</a>
-							</li>
-						</ul>
-					</address>
+                <!-- FOOTER CONTACT INFO -->
+                <div class="column col-md-4">
+                    <h3>CONTACT</h3>
 
-				</div>
-				<!-- /FOOTER CONTACT INFO -->
+                    <p class="contact-desc">
+                        To get help, <a href="http://stackoverflow.com" target="_blank">StackOverflow</a> remains the
+                        best place, but if you need emergency help feel free to contact directly by email.
+                        <a href="http://stackoverflow.com/search?q=cgscenegraph"
+                           target="_blank"><img src="assets/images/stackoverflow.png"></a></p>
+                    <address class="font-opensans">
+                        <ul>
+                            <li class="footer-sprite address"><a href="{{project.github}}" target="_blank">
+                                {{project.github}}</a></li>
+                            <li class="footer-sprite email">
+                                <a href="mailto:{{project.contact.email}}">{{project.contact.email}}</a>
+                            </li>
+                        </ul>
+                    </address>
 
-			</div>
+                </div>
+                <!-- /FOOTER CONTACT INFO -->
 
-		</div>
-	</div>
-	<!-- footer content -->
+            </div>
+
+        </div>
+    </div>
+    <!-- footer content -->
 
 </footer>
