@@ -1,0 +1,343 @@
+<!DOCTYPE html><!--[if IE 8]>
+<html class="ie ie8"> <![endif]--><!--[if IE 9]>
+<html class="ie ie9"> <![endif]--><!--[if gt IE 9]><!-->
+<html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>SceneGraph.js</title>
+    <meta name="keywords" content="HTML5,canvas,animation,framework"/>
+    <meta name="description" content="HTML5 interactive and animation framework"/>
+    <meta name="Author" content="Gwennael Buchet [gwennael.buchet@gmail.com]"/>
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+
+    <link rel="fluid-icon" href="http://gwennaelbuchet.github.com/{{project.name}}/fluidicon.png"
+          title="{{project.name}}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144.png"/>
+
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <!-- WEB FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- CORE CSS -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/superslides.css" rel="stylesheet" type="text/css"/>
+
+    <!-- THEME CSS -->
+    <link href="assets/css/essentials.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/layout-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/shCore.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/shThemeDefault.css" rel="stylesheet" type="text/css"/>
+    <script src="js/shCore.js" type="text/javascript"></script>
+    <script src="js/shBrushXml.js" type="text/javascript"></script>
+    <script src="js/shBrushJScript.js" type="text/javascript"></script>
+
+
+    <!-- modernizr -->
+    <script type="text/javascript" src="assets/plugins/modernizr.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+<body ng-app="cgsgApp">
+<!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
+
+<!-- TOP NAV -->
+<ng-include src="'partials/header.html'"></ng-include>
+<!-- /TOP NAV -->
+
+<!-- WRAPPER -->
+<div id="wrapper" ng-controller="MainCtrl">
+
+<!-- PAGE TITLE -->
+<header id="page-title">
+    <div class="container">
+        <h1>Tutorials</h1>
+
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tutorials.html">Tutorials</a></li>
+            <li class="active">Image sharing</li>
+        </ul>
+    </div>
+</header>
+
+<section class="container">
+
+<h1>Image Sharing Tutorial</h1>
+
+<h2>Concept of a sprite sheet</h2>
+
+<p>It's very useful to store several pictures on 1 image file: it saves loading time,
+    requests to the HTTP server and may be memory usage.<br/><br/>
+    The aim is so to use 1 single image file to store all your sprites. Such a file is called a
+    sprite sheet.<br/>
+
+    <br/><br/>
+    Example of image:<br/>
+    <img src="../img/board.png" alt="sprite sheet image" class="imgCenter"/>
+    <br/>
+    The question now is: How to use this single image file in several image nodes ?
+</p>
+
+<br/>
+<hr/>
+<h2>How to use sprite sheets</h2>
+
+<p>
+    To use sprite sheet is done in 3 steps:
+<ul>
+    <li>Load the image</li>
+    <li>Dispatch the image to the nodes (CGSGNodeImage, CGSGNodeSprite, ...)</li>
+    <li>Each node using the image should slice it to only use the needed region</li>
+</ul>
+<br/>
+
+<h3>Load the image</h3>
+
+<p>
+    To load an image is achieved in Javascript:
+
+<div class="displayCode">
+                                <pre class="brush: js;">
+            //load the image normally, like in any JS context
+			this.img = new Image();
+            //specify which function to call when the image will be loaded
+			this.img.onload = this.onImageLoaded.bind(this);
+            //start the loading
+			this.img.src = "images/board.png";
+                                    </pre>
+</div>
+
+</p>
+<br/>
+
+<h3>Dispatch the image</h3>
+
+<p>
+    Once the image is loaded, you can send it to every node you need.<br/><br/>
+    The CGSGNodeImage and CGSGNodeSprite classes provide a "setImage(img)" method.<br/>
+    So, when the image is loaded, just call this method with the image in parameter:
+
+<div class="displayCode">
+                                <pre class="brush: js;">
+            /**
+             * Fired when the image loading is complete.
+             * Set the image object (img) to our image nodes
+             */
+            onImageLoaded: function () {
+                this.imgNode1.setImage(this.img);
+                this.imgNode2.setImage(this.img);
+            }
+                                    </pre>
+</div>
+<br/>
+As we will set the image to the image Nodes after the initialization, we don't have to specify an image URL on the
+CGSGNodeImage constructor:
+
+<div class="displayCode">
+                                <pre class="brush: js;">
+                this.imgNode1 = new CGSGNodeImage(
+                    90, //x
+                    40, //y
+                    null); // no url. no need to load image now
+                                    </pre>
+</div>
+</p>
+<br/>
+
+<h3>Slice the image</h3>
+
+<p>
+    Well, now we have a single image and have pushed it to our nodes.<br/>
+    That's a good start: we have consumed few bandwidth of the network and low memory.
+    However we still need to slice the image in the nodes, to use only the region it needs.<br/>
+<h4>What is a slice ?</h4>
+A slice is a piece of the image, i.e. the small region from the original image to render.
+<br/>
+In the following example, we slice the snow man from slice position = [429, 23] and a slice
+dimension of [23, 23]:
+<br/>
+<br/>
+<img src="../img/slice.png" alt="slice" class="imgCenter"/>
+
+<br/><br/>
+That can be applied on a CGSGNodeImage instance with the "setSlice" method of the class:
+<div class="displayCode">
+                                <pre class="brush: js;">
+                           /**
+                            * Set the slice into the image
+                            * @method setSlice
+                            * @param {Number} x position X of the slice in the image
+                            * @param {Number} y position Y of the slice in the image
+                            * @param {Number} w width of the slice
+                            * @param {Number} h height of the slice
+                            * @param {Boolean} updateDimension If true, the dimension will be set with the dimension of the slice
+                            */
+                           setSlice: function (x, y, w, h, updateDimension);
+                                    </pre>
+</div>
+For animated sprites (CGSGNodeSprite class), the slices are defined with the "addAnimation"
+method.<br/>
+
+<div class="displayCode">
+                                <pre class="brush: js;">
+                            /**
+                             * Add an animation for this sprite
+                             * @public
+                             * @method addAnimation
+                             * @param {String} name Name for this animation
+                             * @param {Number} speed Number of frames between 2 steps
+                             * @param {Number} frames Number of frame for this animation
+                             * @param {Number} sliceX slice position inside the image for this animation
+                             * @param {Number} sliceY slice position inside the image for this animation
+                             * @param {Number} width width of 1 frame
+                             * @param {Number} height height of 1 frame
+                             * @param {Number} framesPerLine Number of frames per line in the image
+                             */
+                            addAnimation: function (name, speed, frames, sliceX, sliceY, width, height, framesPerLine);
+                                    </pre>
+</div>
+
+<br/><br/>
+So, to slice the snow man from our sprite sheet to the "this.imgNode1" node we just define the
+region of the slice in the image:
+<div class="displayCode">
+                                <pre class="brush: js;">
+                                    //x, y, width, height, must recompute dimension
+                                    this.imgNode1.setSlice(429, 23, 23, 23, true);
+                                </pre>
+</div>
+If the last parameter of the "setSlice" method seems weird to you, just put "true" as value and
+it will always be ok :)
+
+</p>
+
+</p>
+
+<br/>
+<hr/>
+<h2>Full example</h2>
+
+<p>
+    Here is a complete example of code :
+    <br/>
+
+<div class="displayCode">
+                                <pre class="brush: js;">
+    var CGMain = CGSGScene.extend(
+	{
+		initialize: function (canvas) {
+
+			//call the constructor of the parent class (ie : CGSGScene)
+			this._super(canvas);
+
+			////// INITIALIZATION /////////
+
+			this.initializeCanvas();
+			this.createScene();
+
+			this.startPlaying();
+		},
+
+		initializeCanvas: function () {
+			//resize the dimension of the canvas to fulfill the viewport
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
+		},
+
+		/**
+		 * Just create a single node (an image node)
+		 */
+		createScene: function () {
+
+			this.isDragSelectEnabled = true;
+
+			//first, create a root node
+			this.rootNode = new CGSGNode(0, 0, 1, 1);
+			this.sceneGraph.addNode(this.rootNode, null);
+
+			//second, create the 2 nodes, with no image URL, and add them to the root node
+			this.imgNode1 = new CGSGNodeImage(
+				40, //x
+				40, //y
+                null); // no url. no need to load image now
+
+			//cut the slice from the source image
+			this.imgNode1.setSlice(476, 0, 34, 34, true);
+
+			//add some attributes
+			this.imgNode1.isResizable = true;
+			this.imgNode1.isDraggable = true;
+
+			//add image node to the root of the scenegraph
+			this.rootNode.addChild(this.imgNode1);
+
+			this.imgNode2 = new CGSGNodeImage(
+				90, //x
+				40, //y
+                null); // no url. no need to load image now
+
+			//add some attributes
+			this.imgNode2.isResizable = true;
+			this.imgNode2.isDraggable = true;
+			this.rootNode.addChild(this.imgNode2);
+			//cut the slice from the source image
+			this.imgNode2.setSlice(612, 34, 34, 34, true);
+
+			//then load the image normally, like in any JS context
+			this.img = new Image();
+			this.img.onload = this.onImageLoaded.bind(this);
+			this.img.src = "images/board.png";
+		},
+
+		/**
+		 * Fired when the image loading is complete.
+		 * Set the image object (img) to our image nodes
+		 */
+		onImageLoaded: function () {
+			this.imgNode1.setImage(this.img);
+			this.imgNode2.setImage(this.img);
+		}
+	}
+);
+                                </pre>
+</div>
+</p>
+
+</section>
+
+</div>
+<!-- /WRAPPER -->
+
+<!-- FOOTER -->
+<ng-include src="'partials/footer.html'"></ng-include>
+<!-- /FOOTER -->
+
+<script type="text/javascript">
+    SyntaxHighlighter.all()
+</script>
+
+
+<!-- JAVASCRIPT FILES -->
+<script type="text/javascript" src="assets/plugins/jquery-2.0.3.min.js"></script>
+
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+
+<script type="text/javascript" src="js/googleAnalytics.js"></script>
+
+</body>
+</html>
