@@ -7,7 +7,7 @@
  * person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify
  * and propagate free of charge, anywhere in the world, all or part of the Software subject to the following mandatory conditions:
  *
- *   •	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *   •    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  *
  *  Any failure to comply with the above shall automatically terminate the license and be construed as a breach of these
  *  Terms of Use causing significant harm to Gwennael Buchet.
@@ -31,9 +31,9 @@
 
 var CGMain = CGSGView.extend(
 	{
-		initialize : function (canvas) {
+		initialize: function (canvas) {
 
-            //call the contructor of the parent class (ie : CGSGView)
+			//call the contructor of the parent class (ie : CGSGView)
 			this._super(canvas);
 
 			////// INITIALIZATION /////////
@@ -44,10 +44,10 @@ var CGMain = CGSGView.extend(
 			this.startPlaying();
 		},
 
-		initializeCanvas : function () {
-            //resize the canvas to fulfill the viewport
-            this.viewDimension = cgsgGetRealViewportDimension();
-            this.setCanvasDimension(this.viewDimension);
+		initializeCanvas: function () {
+			//resize the canvas to fulfill the viewport
+			this.viewDimension = cgsgGetRealViewportDimension();
+			this.setCanvasDimension(this.viewDimension);
 		},
 
 		createScene: function () {
@@ -56,21 +56,24 @@ var CGMain = CGSGView.extend(
 			CGSG.sceneGraph.addNode(this.rootNode, null);
 
 			// image
-			var image         = new CGSGNodeImage(0, 0, "images/hello.png");
+			var image = new CGSGNodeImage(0, 0, "images/hello.png");
 			image.isResizable = true;
+			image.isDraggable = true;
 
 			// text
-			var maxWidth            = 600;
-			this.text                = new CGSGNodeText(10, 100, "They didn’t agree on much. In fact, they didn’t agree on anything. They fought all the time and challenged each other every day.");
-			this.text.isDraggable        = true;
-			this.text.isResizable        = true;
+			var maxWidth = 600;
+			this.text =
+			new CGSGNodeText(10, 100,
+			                 "They didn’t agree on much. In fact, they didn’t agree on anything. They fought all the time and challenged each other every day.");
+			this.text.isDraggable = true;
+			this.text.isResizable = true;
 			this.text.selectionLineWidth = 0;
 
 			this.text.setClass("cgsg-h3");
 			this.text.addClass("cgsg-center");
 			this.text.color = "red";
 
-			// alert(image.getWidth());
+			this.text.setNodeRegionConstraint(image);
 
 			this.text.setWrapMode(CGSGWrapMode.WORD);
 			this.text.setMaxWidth(maxWidth);
@@ -89,7 +92,7 @@ var CGMain = CGSGView.extend(
 			this.rootNode.addChild(image);
 		},
 
-		setMaxWidth : function (event) {
+		setMaxWidth: function (event) {
 			var width = event.data.node.getWidth();
 
 			this.text.setMaxWidth(width);

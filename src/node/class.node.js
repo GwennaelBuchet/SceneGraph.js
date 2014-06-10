@@ -138,6 +138,14 @@ var CGSGNode = CGSGObject.extend(
 				this.regionConstraint = null;
 
 				/**
+				 * Node defining constraint region when moving the node
+				 * @property nodeConstraint
+				 * @default null
+				 * @type {null}
+				 */
+				this.nodeConstraint = null;
+
+				/**
 				 * Pivot point to apply a rotation.
 				 * The point is a value between [0, 0] and [1, 1].
 				 * [0, 0] is the top left corner of the bounding box and [1, 1] the bottom right corner.
@@ -1874,11 +1882,19 @@ var CGSGNode = CGSGObject.extend(
 			 * @param {CGSGRegion} region a CGSGRegion relatively to this parent region. Can be null.
 			 */
 			setRegionConstraint: function (region) {
+				this.nodeConstraint = null;
 				this.regionConstraint = region;
 			},
 
-			setRegionNode:function(node) {
-
+			/**
+			 * Set the region inside which one this node ca be placed an can move
+			 * @public
+			 * @method setNodeRegionConstraint
+			 * @param node {CGSGNode} a CGSGNode relatively to this parent region. Can be null.
+			 */
+			setNodeRegionConstraint:function(node) {
+				this.regionConstraint = null;
+				this.nodeConstraint = node;
 			},
 
 			/**
@@ -2253,6 +2269,7 @@ var CGSGNode = CGSGObject.extend(
 				if (this.regionConstraint !== null) {
 					node.regionConstraint = this.regionConstraint.copy();
 				}
+				node.nodeConstraint = this.nodeConstraint;
 
 				//can be fulfilled by the developer to put in whatever he needs
 				node.userData = this.userData;
