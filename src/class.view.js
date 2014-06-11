@@ -368,6 +368,9 @@ var CGSGView = CGSGObject.extend(
 			CGSG.currentFrame = 0;
 			this._fpss = null;
 
+			this._r = {x: 0, y: 0};
+			this._d = {dW: 0, dH: 0};
+
 			//if CSS files was declared in <head> tag of index.html file, so we have to ask the framework
 			// to load all components in cache
 			this.invalidateTheme();
@@ -744,7 +747,7 @@ var CGSGView = CGSGObject.extend(
 		 * Dispatch a 'click' event and for any selected node which is clickable and and only if 'this._isDblClick' == false.
 		 *
 		 * @method _dispatchClick
-		 * @param event {CGSGEvent} the event to dispatch
+		 * @param e {CGSGEvent} the event to dispatch
 		 * @private
 		 */
 		_dispatchClick: function (e) {
@@ -812,7 +815,7 @@ var CGSGView = CGSGObject.extend(
 		 * touch move Event handler function
 		 * @protected
 		 * @method onTouchMove
-		 * @param {Event} event
+		 * @param {Event} e
 		 */
 		onTouchMove: function (e) {
 			if (e.preventManipulation) {
@@ -840,8 +843,6 @@ var CGSGView = CGSGObject.extend(
 					var mop = this._mouseOldPosition[0];
 					this._offsetX = mp.x - mop.x;
 					this._offsetY = mp.y - mop.y;
-					var canMove = true;
-					var rgc = null;
 					for (i = CGSG.selectedNodes.length - 1; i >= 0; i--) {
 						this._selectedNode = CGSG.selectedNodes[i];
 						if (this._selectedNode !== null && this._selectedNode.isDraggable) {
@@ -853,23 +854,8 @@ var CGSGView = CGSGObject.extend(
 							       (this._selectedNode._absSca.y / this._selectedNode.scale.y);
 
 							//check for the region constraint
-							if (this._selectedNode.nodeConstraint !== null) {
-								rgc = this._selectedNode.nodeConstraint.getRegion();
-								rgc.position.translateTo(0, 0);
-							}
-							else {
-								rgc = this._selectedNode.regionConstraint;
-							}
-							if (rgc !== null) {
-								var reg = this._selectedNode.getRegion();
-								reg.position.x += offX;
-								reg.position.y += offY;
-								if (!cgsgRegionIsInRegion(reg, rgc, 0)) {
-									canMove = false;
-								}
-							}
 
-							if (canMove) {
+							if (this._canMove(this._selectedNode, offX, offY, 0, 0)) {
 								this._selectedNode.translateWith(offX, offY);
 								if (this._selectedNode.onDrag !== null) {
 									var evt = new CGSGEvent(this,
@@ -912,90 +898,123 @@ var CGSGView = CGSGObject.extend(
 							               this._selectedNode._absSca.x;
 							var realDimY = this._selectedNode.dimension.height *
 							               this._selectedNode._absSca.y;
-							var d = {dW: 0, dH: 0};
+
 							// 0  1  2
 							// 3     4
 							// 5  6  7
 							switch (this._resizingDirection) {
 								case 0:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
-										                         realDimY,
-										                         -1, -1);
-										this._selectedNode.translateWith(-d.dW, -d.dH, false);
-										this._selectedNode.resizeWith(d.dW, d.dH, false);
+										this._d = this._getDeltaOnMove(delta, offX, offY, realDimX,
+										                               realDimY,
+										                               -1, -1);
+
+										this._r.x = this._d.dW;
+										this._r.y = this._d.dH;
+										this._d.dW = -this._d.dW;
+										this._d.dH = -this._d.dH;
 									}
 									else {
-										this._selectedNode.translateWith(offX * this._selectedNode.scale.x,
-										                                 offY * this._selectedNode.scale.y,
-										                                 false);
-										this._selectedNode.resizeWith(-offX, -offY, false);
+										this._d.dW = offX * this._selectedNode.scale.x;
+										this._d.dH = offY * this._selectedNode.scale.y;
+										this._r.x = -offX;
+										this._r.y = -offY;
 									}
 									break;
 								case 1:
-									this._selectedNode.translateWith(0, offY * this._selectedNode.scale.y,
-									                                 false);
-									this._selectedNode.resizeWith(0, -offY, false);
+									this._d.dW = 0;
+									this._d.dH = offY * this._selectedNode.scale.y;
+									this._r.x = 0;
+									this._r.y = -offY;
 									break;
 								case 2:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
-										                         realDimY,
-										                         1, -1);
-										this._selectedNode.translateWith(0, -d.dH, false);
-										this._selectedNode.resizeWith(d.dW, d.dH, false);
+										this._d = this._getDeltaOnMove(delta, offX, offY, realDimX,
+										                               realDimY,
+										                               1, -1);
+
+										this._r.x = this._d.dW;
+										this._r.y = this._d.dH;
+										this._d.dW = 0;
+										this._d.dH = -this._d.dH;
 									}
 									else {
-										this._selectedNode.translateWith(0, offY * this._selectedNode.scale.y,
-										                                 false);
-										this._selectedNode.resizeWith(offX, -offY, false);
+
+										this._d.dW = 0;
+										this._d.dH = offY * this._selectedNode.scale.y;
+										this._r.x = offX;
+										this._r.y = -offY;
 									}
 									break;
 								case 3:
-									this._selectedNode.translateWith(offX * this._selectedNode.scale.x, 0,
-									                                 false);
-									this._selectedNode.resizeWith(-offX, 0, false);
+
+									this._d.dW = offX * this._selectedNode.scale.x;
+									this._d.dH = 0;
+									this._r.x = -offX;
+									this._r.y = 0;
 									break;
 								case 4:
-									this._selectedNode.resizeWith(offX, 0, false);
+									this._d.dW = 0;
+									this._d.dH = 0;
+									this._r.x = offX;
+									this._r.y = 0;
 									break;
 								case 5:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
-										                         realDimY,
-										                         1, -1);
-										this._selectedNode.translateWith(d.dW, 0, false);
-										this._selectedNode.resizeWith(-d.dW, -d.dH, false);
+										this._d = this._getDeltaOnMove(delta, offX, offY, realDimX,
+										                               realDimY,
+										                               1, -1);
+										this._r.x = -this._d.dW;
+										this._r.y = -this._d.dH;
+										this._d.dH = 0;
 									}
 									else {
-										this._selectedNode.translateWith(offX * this._selectedNode.scale.x, 0,
-										                                 false);
-										this._selectedNode.resizeWith(-offX, offY, false);
+
+										this._d.dW = offX * this._selectedNode.scale.x;
+										this._d.dH = 0;
+										this._r.x = -offX;
+										this._r.y = offY;
 									}
 									break;
 								case 6:
-									this._selectedNode.resizeWith(0, offY, false);
+									this._d.dW = 0;
+									this._d.dH = 0;
+									this._r.x = 0;
+									this._r.y = offY;
 									break;
 								case 7:
 									if (this._selectedNode.isProportionalResize) {
-										d = this._getDeltaOnMove(delta, offX, offY, realDimX,
-										                         realDimY,
-										                         1, 1);
-										this._selectedNode.resizeWith(d.dW, d.dH, false);
+										this._d = this._getDeltaOnMove(delta, offX, offY, realDimX,
+										                               realDimY,
+										                               1, 1);
+
+										this._r.x = this._d.dW;
+										this._r.y = this._d.dH;
+										this._d.dW = 0;
+										this._d.dH = 0;
 									}
 									else {
-										this._selectedNode.resizeWith(offX, offY, false);
+										this._d.dW = 0;
+										this._d.dH = 0;
+										this._r.x = offX;
+										this._r.y = offY;
 									}
 									break;
 							}
-							this._selectedNode.computeAbsoluteMatrix(false);
-							if (this._selectedNode.onResize !== null) {
-								var evt = new CGSGEvent(this,
-								                        {node: this._selectedNode, positions: this._mousePos.copy(), e: e});
-								CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_RESIZE, evt);
-								//this._selectedNode.onResize({node: this._selectedNode, positions: this._mousePos.copy(), e: e});
+
+							if (this._canMove(this._selectedNode, this._d.dW, this._d.dH, this._r.x, this._r.y)) {
+								this._selectedNode.translateWith(this._d.dW, this._d.dH, false);
+								this._selectedNode.resizeWith(this._r.x, this._r.y, false);
+
+								this._selectedNode.computeAbsoluteMatrix(false);
+								if (this._selectedNode.onResize !== null) {
+									var evt = new CGSGEvent(this,
+									                        {node: this._selectedNode, positions: this._mousePos.copy(), e: e});
+									CGSG.eventManager.dispatch(this._selectedNode, cgsgEventTypes.ON_RESIZE, evt);
+								}
 							}
 						}
+
 					}).bind(this));
 				}
 				this._mouseOldPosition = this._mousePos.copy();
@@ -1073,11 +1092,33 @@ var CGSGView = CGSGObject.extend(
 			this._selectedNode = selN;
 		},
 
+		_canMove: function (node, dX, dY, dW, dH) {
+			var rgc;
+			if (node.nodeConstraint !== null) {
+				rgc = node.nodeConstraint.getRegion();
+				rgc.position.translateTo(0, 0);
+			}
+			else {
+				rgc = node.regionConstraint;
+			}
+			if (rgc !== null) {
+				var reg = node.getRegion();
+				reg.position.x += dX;
+				reg.position.y += dY;
+				reg.dimension.width += dW;
+				reg.dimension.height += dH;
+				if (!cgsgRegionIsInRegion(reg, rgc, 0)) {
+					return false;
+				}
+			}
+			return true;
+		},
+
 		/**
 		 * Detects if the mouse if over the handle box of a selected node.
 		 *
 		 * @method _detectResizeMode
-		 * @param mousePosition {CGSGPosition} the cursor position
+		 * @param pos {CGSGPosition} the cursor position
 		 * @return {Boolean} true if we resize, false otherwise
 		 * @private
 		 */
@@ -1150,7 +1191,7 @@ var CGSGView = CGSGObject.extend(
 		 * mouse up Event handler function
 		 * @protected
 		 * @method onMouseUp
-		 * @param {MouseEvent} event
+		 * @param {MouseEvent} e
 		 */
 		onMouseUp: function (e) {
 			this.onTouchEnd(e);
@@ -1160,7 +1201,7 @@ var CGSGView = CGSGObject.extend(
 		 * touch up Event handler function
 		 * @protected
 		 * @method onTouchEnd
-		 * @param {Event} event
+		 * @param {Event} e
 		 */
 		onTouchEnd: function (e) {
 			if (e.preventManipulation) {
@@ -1197,7 +1238,7 @@ var CGSGView = CGSGObject.extend(
 		 * Creates the custom event by calling _upOnScene and then call _clickOnScene.
 		 *
 		 * @method _upAndClick
-		 * @param {Event} event the event
+		 * @param {Event} e the event
 		 * @private
 		 */
 		_upAndClick: function (e) {
@@ -1211,7 +1252,7 @@ var CGSGView = CGSGObject.extend(
 		 * Creates the custom event by calling _upOnScene and then call _dblClickOnScene.
 		 *
 		 * @method _upAndDblClick
-		 * @param {Event} event the event
+		 * @param {Event} e the event
 		 * @private
 		 */
 		_upAndDblClick: function (e) {
@@ -1223,7 +1264,7 @@ var CGSGView = CGSGObject.extend(
 
 		/**
 		 * @method _upOnScene
-		 * @param {Event} event MouseEvent or TouchEvent
+		 * @param {Event} e MouseEvent or TouchEvent
 		 * @return {Object} a structure indicating is the node has been moved or resize
 		 * @private
 		 */
@@ -1347,18 +1388,18 @@ var CGSGView = CGSGObject.extend(
 		 * mouse double click Event handler function
 		 * @protected
 		 * @method onMouseDblClick
-		 * @param {MouseEvent} event
+		 * @param {MouseEvent} e
 		 */
-		onMouseDblClick: function (event) {
+		onMouseDblClick: function (e) {
 			//this._dblClickOnScene(event);
-			event.preventDefault();
-			event.stopPropagation();
+			e.preventDefault();
+			e.stopPropagation();
 		},
 
 		/**
 		 * @protected
 		 * @method _dblClickOnScene
-		 * @param {CGSGEvent} event wrapping the native event
+		 * @param {CGSGEvent} e wrapping the native event
 		 * @param {Boolean} mustPickNode
 		 * @return {CGSGNode} the node that was double-clicked
 		 * @private
@@ -1394,7 +1435,7 @@ var CGSGView = CGSGObject.extend(
 		/**
 		 * @method onKeyDownHandler
 		 * @protected
-		 * @param {KeyboardEvent} event
+		 * @param {KeyboardEvent} e
 		 * @return {Number}
 		 */
 		onKeyDownHandler: function (e) {
@@ -1412,7 +1453,7 @@ var CGSGView = CGSGObject.extend(
 		/**
 		 * @method onKeyUpHandler
 		 * @protected
-		 * @param {KeyboardEvent} event
+		 * @param {KeyboardEvent} ee
 		 * @return {Number}
 		 */
 		onKeyUpHandler: function (e) {
