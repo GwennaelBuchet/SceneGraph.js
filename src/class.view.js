@@ -908,7 +908,6 @@ var CGSGView = CGSGObject.extend(
 										this._d = this._getDeltaOnMove(delta, offX, offY, realDimX,
 										                               realDimY,
 										                               -1, -1);
-
 										this._r.x = this._d.dW;
 										this._r.y = this._d.dH;
 										this._d.dW = -this._d.dW;
@@ -1095,14 +1094,14 @@ var CGSGView = CGSGObject.extend(
 		_canMove: function (node, dX, dY, dW, dH) {
 			var rgc;
 			if (node.nodeConstraint !== null) {
-				rgc = node.nodeConstraint.getRegion();
-				rgc.position.translateTo(0, 0);
+				rgc = node.nodeConstraint.getAbsoluteRegion();
+				//rgc.position.translateTo(0, 0);
 			}
 			else {
 				rgc = node.regionConstraint;
 			}
 			if (rgc !== null) {
-				var reg = node.getRegion();
+				var reg = node.getAbsoluteRegion();
 				reg.position.x += dX;
 				reg.position.y += dY;
 				reg.dimension.width += dW;

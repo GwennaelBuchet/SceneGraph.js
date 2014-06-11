@@ -84,12 +84,11 @@ var CGMain = CGSGView.extend(
 
 			var bindSetMaxWidth = this.setMaxWidth.bind(this);
 			image.onLoadEnd = bindSetMaxWidth;
-			image.onResize = bindSetMaxWidth;
+			//image.onResize = bindSetMaxWidth;
 
 			//add the textNode as child of the root
-			image.addChild(this.text);
-			image.scaleTo(1.0, 1.0);
 			this.rootNode.addChild(image);
+			this.rootNode.addChild(this.text);
 		},
 
 		setMaxWidth: function (event) {
