@@ -101,11 +101,7 @@ var CGMain = CGSGView.extend(
 			t3.setMaxWidth(maxWidth);
             //t3.setLineHeight(18);
 
-			t3.onResize = function (event) {
-                event.data.node.setMaxWidth(event.data.node.dimension.width);
-            }
-
-			t3.setPrecomputed(true);
+			//t3.setPrecomputed(true);
 
             //add the textNode as child of the root
             this.rootNode.addChild(t3);

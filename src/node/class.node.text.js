@@ -456,30 +456,12 @@ var CGSGNodeText = CGSGNode.extend(
 		 */
 		setMaxWidth: function (m, mustRecomputeDimension) {
 			this._maxWidth = m;
-			this.dimension.width = m;
-			if (mustRecomputeDimension !== false) {
-				this.computeRealDimension();
+			if (this._maxWidth > 0) {
+				this.dimension.width = m;
+				if (mustRecomputeDimension !== false) {
+					this.computeRealDimension();
+				}
 			}
-		},
-
-		/**
-		 * Replace current dimension by these new ones
-		 * @method resizeTo
-		 * @param {Number} w
-		 * @param {Number} h
-		 * */
-		resizeTo: function (w, h) {
-			this._afterResize(w);
-		},
-
-		/**
-		 * Multiply current dimension by these new ones
-		 * @method resizeTBy
-		 * @param {Number} wf
-		 * @param {Number} hf
-		 * */
-		resizeBy: function (wf, hf) {
-			this._afterResize(this._maxWidth * wf);
 		},
 
 		/**
@@ -489,7 +471,9 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @param {Number} h
 		 * */
 		resizeWith: function (w, h) {
-			this._afterResize(this._maxWidth + w);
+			if (this._maxWidth + w > 0) {
+				this._afterResize(this._maxWidth + w);
+			}
 		},
 
 		_afterResize: function (m) {
@@ -509,8 +493,6 @@ var CGSGNodeText = CGSGNode.extend(
 		 * */
 		render: function (context) {
 			context.fillStyle = this.color || this.bkgcolors[0];
-			//context.strokeStyle = this.lineColor;
-			//context.lineWidth = this.lineWidth;
 
 			this._doRender(context, false);
 		},
@@ -524,7 +506,6 @@ var CGSGNodeText = CGSGNode.extend(
 		 */
 		_doRender: function (context, isGhostmode) {
 			context.font = this._fullfont;
-			//this._style + (this._style != null && this._style.length > 0 ? ' ' : '') + this._size + "pt " + this._typo;
 
 			context.textAlign = this._align;
 			context.textBaseline = this._textBaseline;
