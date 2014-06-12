@@ -1095,7 +1095,6 @@ var CGSGView = CGSGObject.extend(
 			var rgc;
 			if (node.nodeConstraint !== null) {
 				rgc = node.nodeConstraint.getAbsoluteRegion();
-				//rgc.position.translateTo(0, 0);
 			}
 			else {
 				rgc = node.regionConstraint;

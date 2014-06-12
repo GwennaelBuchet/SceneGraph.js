@@ -67,20 +67,23 @@ var CGMain = CGSGView.extend(
 			                 "They didn’t agree on much. In fact, they didn’t agree on anything. They fought all the time and challenged each other every day.");
 			this.text.isDraggable = true;
 			this.text.isResizable = true;
-			this.text.selectionLineWidth = 0;
 
 			this.text.setClass("cgsg-h3");
 			this.text.addClass("cgsg-center");
 			this.text.color = "red";
 
-			this.text.setNodeRegionConstraint(image);
+			this.text.selectionLineWidth = 0;
+
 
 			this.text.setWrapMode(CGSGWrapMode.WORD);
-			this.text.setMaxWidth(maxWidth);
+			//this.text.setMaxWidth(maxWidth);
 
-			this.text.onResize = function (event) {
-				event.data.node.setMaxWidth(event.data.node.dimension.width);
-			};
+
+			this.text.setNodeRegionConstraint(image);
+
+			//this.text.onResize = function (event) {
+			//	event.data.node.setMaxWidth(event.data.node.dimension.width);
+			//};
 
 			var bindSetMaxWidth = this.setMaxWidth.bind(this);
 			image.onLoadEnd = bindSetMaxWidth;

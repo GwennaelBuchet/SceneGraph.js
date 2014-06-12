@@ -658,7 +658,9 @@ var CGSGNode = CGSGObject.extend(
 
 				//initialize the position and dimension
 				this.translateTo(x, y, true);
-				this.resizeTo(0, 0);
+				//this.resizeTo(0, 0);
+				this.dimension.width = 0;
+				this.dimension.height = 0;
 
 				/**
 				 * Set to true if dimension of the node is not the original one anymore
@@ -858,6 +860,8 @@ var CGSGNode = CGSGObject.extend(
 				this._cls = [];
 				this._cls.push(cls);
 				this.invalidateTheme();
+
+				//todo for v2.1: load only attribute from this class instead of reloading everything
 			},
 
 			/**

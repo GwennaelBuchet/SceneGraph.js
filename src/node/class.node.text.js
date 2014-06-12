@@ -359,20 +359,6 @@ var CGSGNodeText = CGSGNode.extend(
 		},
 
 		/**
-		 * @method setMaxWidth
-		 * @param {Number} m Max Width for the text
-		 * @param {Boolean} mustRecomputeDimension (default : true)
-		 */
-		setMaxWidth : function(m, mustRecomputeDimension) {
-			this._maxWidth = m;
-			this.dimension.width = m;
-			//this.resizeTo(m, this.getHeight());
-			if (mustRecomputeDimension !== false) {
-				this.computeRealDimension();
-			}
-		},
-
-		/**
 		 * Line height when wrap the text.
 		 * A line height is the size between 2 tops of line
 		 * @method setLineHeight
@@ -461,6 +447,63 @@ var CGSGNodeText = CGSGNode.extend(
 			fakeCanvas.width = 0;
 			fakeCanvas.height = 0;
 			fakeCanvas = null;
+		},
+
+		/**
+		 * @method setMaxWidth
+		 * @param {Number} m Max Width for the text
+		 * @param {Boolean} mustRecomputeDimension (default : true)
+		 */
+		setMaxWidth : function(m, mustRecomputeDimension) {
+			this._maxWidth = m;
+			this.dimension.width = m;
+			if (mustRecomputeDimension !== false) {
+				this.computeRealDimension();
+			}
+		},
+
+		/**
+		 * Replace current dimension by these new ones
+		 * @method resizeTo
+		 * @param {Number} w
+		 * @param {Number} h
+		 * */
+		resizeTo : function(w, h) {
+			this.setMaxWidth(w, true);
+			this._applyContraintsToFollowers();
+			this._endResize();
+		},
+
+		/**
+		 * Multiply current dimension by these new ones
+		 * @method resizeTBy
+		 * @param {Number} wf
+		 * @param {Number} hf
+		 * */
+		resizeBy : function(wf, hf) {
+			var m = this._maxWidth * wf;
+			//this.setMaxWidth(this._maxWidth * wf, true);
+
+			this._applyContraintsToFollowers();
+			this._endResize();
+		},
+
+		/**
+		 * Increase/decrease current dimension with adding values
+		 * @method resizeWith
+		 * @param {Number} w
+		 * @param {Number} h
+		 * */
+		resizeWith : function(w, h) {
+			var m = this._maxWidth + w;
+
+			this._maxWidth = m;
+			this.dimension.width = Math.max(m, this.dimension.width);
+			this.computeRealDimension();
+
+			//this.setMaxWidth(this._maxWidth + w, true);
+			this._applyContraintsToFollowers();
+			this._endResize();
 		},
 
 		/**
@@ -628,6 +671,15 @@ var CGSGNodeText = CGSGNode.extend(
 		 */
 		getWidth : function() {
 			return this.metrics.width;
+		},
+
+		/**
+		 * @method getAbsWidth
+		 * @return {Number}
+		 */
+		getAbsWidth : function() {
+			//this.computeRealDimension();
+			return this.dimension.width * this._absSca.x;
 		},
 
 		/**
