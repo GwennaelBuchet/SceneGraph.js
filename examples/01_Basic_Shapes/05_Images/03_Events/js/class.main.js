@@ -29,6 +29,7 @@
  * image loading example
  * */
 
+
 var CGMain = CGSGView.extend(
 	{
 		initialize: function (canvas) {
@@ -61,7 +62,6 @@ var CGMain = CGSGView.extend(
 			image.isDraggable = true;
 
 			// text
-			var maxWidth = 600;
 			this.text =
 			new CGSGNodeText(10, 100,
 			                 "They didn’t agree on much. In fact, they didn’t agree on anything. They fought all the time and challenged each other every day.");
@@ -74,16 +74,13 @@ var CGMain = CGSGView.extend(
 
 			this.text.selectionLineWidth = 0;
 
-
 			this.text.setWrapMode(CGSGWrapMode.WORD);
-			//this.text.setMaxWidth(maxWidth);
-
 
 			this.text.setNodeRegionConstraint(image);
 
-			//this.text.onResize = function (event) {
-			//	event.data.node.setMaxWidth(event.data.node.dimension.width);
-			//};
+			//Add event on click on scene to add new texr
+			var bindOnSceneClick = this.onSceneClick.bind(this);
+			this.onSceneClickEnd = bindOnSceneClick;
 
 			var bindSetMaxWidth = this.setMaxWidth.bind(this);
 			image.onLoadEnd = bindSetMaxWidth;
@@ -100,6 +97,19 @@ var CGMain = CGSGView.extend(
 			this.text.setMaxWidth(width);
 			console.log("maxWidth = " + this.text._maxWidth);
 			console.log("current width = " + this.text.getWidth());
+		},
+
+		onSceneClick: function (event) {
+			this._textPos = event.data.positions[0];
+
+			//jQuery code to open the dialog popup defined in index.html
+			$( "#dialog-form" ).dialog( "open" );
+		},
+
+		//will be called by the jQuery popup declared in index.html
+		addTextNode:function(text) {
+			var t = new CGSGNodeText(this._textPos.x, this._textPos.y, text);
+			this.rootNode.addChild(t);
 		}
 	}
 );

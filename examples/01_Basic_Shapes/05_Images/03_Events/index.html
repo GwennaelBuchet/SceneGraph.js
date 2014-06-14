@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-    <meta name="viewport"
-          content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
-    <link id="theme" rel="stylesheet" type="text/css" href="../../../../min/css/themes/gray/grayTheme.css" title="theme"/>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<meta name="viewport"
+	      content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
+	<link id="theme"
+	      rel="stylesheet"
+	      type="text/css"
+	      href="../../../../min/css/themes/gray/grayTheme.css"
+	      title="theme"/>
+
+	<link rel="stylesheet" href="css/jquery-ui-1.10.4.min.css">
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/jquery-ui-1.10.4.min.js"></script>
 
 </head>
 
 <body style="margin:0">
 
 <canvas id="scene" width="800" height="800">
-    Your browser does not support the canvas element.
+	Your browser does not support the canvas element.
 </canvas>
+
+<div id="dialog-form" title="Add new text">
+	<form>
+		<fieldset>
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
+		</fieldset>
+	</form>
+</div>
 
 <!--script type="text/javascript" src="../../../../min/scenegraph_2.1.0-snapshot.min.js"></script-->
 
@@ -78,9 +95,32 @@
 
 <script type="text/javascript" src="js/class.main.js"></script>
 <script type="text/javascript">
-    <!-- initialize the framework -->
-    var canvasScene = document.getElementById("scene");
-    var game = new CGMain(canvasScene);
+
+	<!-- initialize the framework -->
+	var canvasScene = document.getElementById("scene");
+	var game = new CGMain(canvasScene);
+
+	$("#dialog-form").dialog(
+			{
+				autoOpen: false,
+				height  : 200,
+				width   : 350,
+				modal   : true,
+				buttons : {
+					"Add": function () {
+						//call code from application
+						game.addTextNode($( "#name" ).val());
+						$(this).dialog("close");
+					},
+					Cancel      : function () {
+						$(this).dialog("close");
+					}
+				},
+				close   : function () {
+					$( "#name" ).val("");
+				}
+			}
+	);
 </script>
 </body>
 </html>
