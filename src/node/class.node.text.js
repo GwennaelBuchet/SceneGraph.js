@@ -653,10 +653,10 @@ var CGSGNodeText = CGSGNode.extend(
 		 * @method getAbsWidth
 		 * @return {Number}
 		 */
-		getAbsWidth: function () {
+		/*getAbsWidth: function () {
 			//this.computeRealDimension();
 			return this.dimension.width * this._absSca.x;
-		},
+		},*/
 
 		/**
 		 * @private
