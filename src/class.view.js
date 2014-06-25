@@ -778,7 +778,8 @@ var CGSGView = CGSGObject.extend(
 			this._mousePos = cgsgGetCursorPositions(e.data.nativeEvent, CGSG.canvas);
 
 			if (this.onSceneClickStart !== null) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_START, e);
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_START, new CGSGEvent(this,
+				                                                                                    {nativeEvent: e, positions: this._mousePos}));
 				//this.onSceneClickStart({positions: this._mousePos.copy(), e: e});
 			}
 
@@ -794,7 +795,8 @@ var CGSGView = CGSGObject.extend(
 			this._dispatchClick(e);
 
 			if (this.onSceneClickEnd !== null) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_END, e);
+				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_SCENE_CLICK_END, new CGSGEvent(this,
+				                                                                                  {nativeEvent: e, positions: this._mousePos}));
 				//this.onSceneClickEnd({positions: this._mousePos.copy(), e: e});
 			}
 
