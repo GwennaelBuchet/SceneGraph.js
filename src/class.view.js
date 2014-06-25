@@ -896,9 +896,9 @@ var CGSGView = CGSGObject.extend(
 							if (delta == 0) {
 								delta = Math.min(offX, offY);
 							}
-							var realDimX = this._selectedNode.dimension.width *
+							var realDimX = this._selectedNode.getWidth() * //this._selectedNode.dimension.width *
 							               this._selectedNode._absSca.x;
-							var realDimY = this._selectedNode.dimension.height *
+							var realDimY = this._selectedNode.getHeight() * //this._selectedNode.dimension.height *
 							               this._selectedNode._absSca.y;
 
 							// 0  1  2
