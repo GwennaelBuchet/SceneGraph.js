@@ -658,7 +658,6 @@ var CGSGNode = CGSGObject.extend(
 
 				//initialize the position and dimension
 				this.translateTo(x, y, true);
-				//this.resizeTo(0, 0);
 				this.dimension.width = 0;
 				this.dimension.height = 0;
 
