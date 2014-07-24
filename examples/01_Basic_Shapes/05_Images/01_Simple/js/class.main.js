@@ -65,7 +65,7 @@ var CGMain = CGSGView.extend(
             this.imgNode = new CGSGNodeImage(
                 60,     //x
                 60,     //y
-                "/cgSceneGraph/examples/shared/images/hello.png");      //URL. Warning : the web page should be on a web server (apache, ...)
+                "/SceneGraph.js/examples/shared/images/hello.png");      //URL. Warning : the web page should be on a web server (apache, ...)
 
             //this.imgNode.resizeTo(120, 100);
             //this.imgNode.setSlice(30, 30, 80, 200, true);
@@ -87,7 +87,7 @@ var CGMain = CGSGView.extend(
 
 		switchSrc : function () {
 			this.currentImg = 1 - this.currentImg;
-			var src = ["/cgSceneGraph/examples/shared/images/hello.png", "/cgSceneGraph/examples/shared/images/board.png"];
+			var src = ["/SceneGraph.js/examples/shared/images/hello.png", "/SceneGraph.js/examples/shared/images/board.png"];
 
             //set the new URL
 			this.imgNode.setURL(src[this.currentImg]);

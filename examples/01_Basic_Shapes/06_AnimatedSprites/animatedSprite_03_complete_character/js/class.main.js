@@ -67,7 +67,7 @@ var CGMain = CGSGView.extend(
 			this.imgNode = new CGSGNodeImage(
 				0, //x
 				0, //y
-				"/cgSceneGraph/examples/shared/images/board.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
+				"/SceneGraph.js/examples/shared/images/board.png");      //URL. Warning : the web page mus be on a web server (apache, ...)
 			this.rootNode.addChild(this.imgNode);
 			this.imgNode.setSlice(0, 0, 476, 635, true);
 
@@ -79,7 +79,7 @@ var CGMain = CGSGView.extend(
 			 * @param image url
 			 * @param context
 			 */
-			this.pingoo = new CGSGNodeSprite(68, 102, "/cgSceneGraph/examples/shared/images/board.png");
+			this.pingoo = new CGSGNodeSprite(68, 102, "/SceneGraph.js/examples/shared/images/board.png");
 			this.pingoo.isDraggable = true;
 			//name, speed, frames, sliceX, sliceY, width, height, framesPerLine
 			this.pingoo.addAnimation("front", 6, 4, 476, 0, 34, 34, 4);

@@ -56,7 +56,7 @@ var CGMain = CGSGView.extend(
 
             this.img = new Image();
             this.img.onload = this.onImageLoaded.bind(this);
-            this.img.src = "/cgSceneGraph/examples/shared/images/board.png";
+            this.img.src = "/SceneGraph.js/examples/shared/images/board.png";
         },
 
         onImageLoaded:function () {

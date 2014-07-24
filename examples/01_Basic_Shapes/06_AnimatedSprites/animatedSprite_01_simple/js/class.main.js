@@ -64,7 +64,7 @@ var CGMain = CGSGView.extend(
 			 * @param image url
 			 * @param context
 			 */
-			var pingoo = new CGSGNodeSprite(60, 60, "/cgSceneGraph/examples/shared/images/board.png");
+			var pingoo = new CGSGNodeSprite(60, 60, "/SceneGraph.js/examples/shared/images/board.png");
             //add the sprite to the scene
             pingoo.isResizable = true;
             CGSG.sceneGraph.addNode(pingoo, this.rootNode);
