@@ -68,7 +68,7 @@ var CGMain = CGSGView.extend(
 		create1LineText: function () {
 			var t1 = new CGSGNodeText(10, 10, "Simple line (H1)");
 			t1.pickNodeMethod = CGSGPickNodeMethod.REGION;
-			t1.setClass("cgsg-h1");
+			//t1.setClass("cgsg-h1");
 			t1.isDraggable = true;
 
 			//add the textNode as child of the root

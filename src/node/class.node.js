@@ -160,7 +160,7 @@ var CGSGNode = CGSGObject.extend(
 				 * @default null
 				 * @type {CGSGPosition}
 				 */
-				this.rotationCenter = null;
+				this.rotationCenter = new CGSGPosition(0.5, 0.5);
 
 				/**
 				 * can be fulfilled by the developer to put in whatever he needs
@@ -939,7 +939,7 @@ var CGSGNode = CGSGObject.extend(
 
 				var ctx = c;
 
-				var startEvt = new CGSGEvent(this, {context : c});
+				var startEvt = new CGSGEvent(this, {context : c, node : this});
 
 				if (cgsgExist(this.onBeforeRender)) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_BEFORE_RENDER, startEvt);
@@ -1000,7 +1000,7 @@ var CGSGNode = CGSGObject.extend(
 					this.renderBoundingBox(ctx);
 				}
 
-				var endEvt = new CGSGEvent(this, {context : ctx});
+				var endEvt = new CGSGEvent(this, {context : ctx, node : this});
 
 				//restore state
 				this.afterRender(endEvt.data.context, t);
@@ -1172,7 +1172,7 @@ var CGSGNode = CGSGObject.extend(
 
 				if (this.onBeforeRenderEnd) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.BEFORE_RENDER_END,
-											   new CGSGEvent(this, {c : c}));
+											   new CGSGEvent(this, {c : c, node:this}));
 				}
 			},
 
@@ -1186,7 +1186,7 @@ var CGSGNode = CGSGObject.extend(
 			afterRender : function(c, t) {
 				if (cgsgExist(this.onAfterRenderStart)) {
 					CGSG.eventManager.dispatch(this, cgsgEventTypes.AFTER_RENDER_START,
-											   new CGSGEvent(this, {context : c}));
+											   new CGSGEvent(this, {context : c, node:this}));
 				}
 
 				//render all children
@@ -1390,7 +1390,7 @@ var CGSGNode = CGSGObject.extend(
 					childAbsoluteScale = absSca.multiply(this.scale);
 				}
 				else {
-					childAbsoluteScale = this.getAbsoluteScale(false);
+					childAbsoluteScale = this.getAbsScale(false);
 				}
 
 				if (this.isTraversable && (this.isClickable || this.isResizable || this.isDraggable)) {
@@ -1456,7 +1456,7 @@ var CGSGNode = CGSGObject.extend(
 					childAbsoluteScale = absoluteScale.multiply(this.scale);
 				}
 				else {
-					childAbsoluteScale = this.getAbsoluteScale(false);
+					childAbsoluteScale = this.getAbsScale(false);
 				}
 
 				if (this.isTraversable && (/*this.isClickable ||*/ this.isResizable || this.isDraggable)) {
@@ -1539,12 +1539,12 @@ var CGSGNode = CGSGObject.extend(
 			translateTo : function(x, y, computeAbsoluteValue) {
 				this.position.translateTo(x, y);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absPos = this.getAbsolutePosition(true);
+					this._absPos = this.getAbsPosition(true);
 				}
 				this._applyContraintsToFollowers();
 
 				if (cgsgExist(this.onTranslate)) {
-					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, null));
+					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, {node : this}));
 				}
 			},
 
@@ -1558,12 +1558,12 @@ var CGSGNode = CGSGObject.extend(
 			translateWith : function(x, y, computeAbsoluteValue) {
 				this.position.translateWith(x, y);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absPos = this.getAbsolutePosition(true);
+					this._absPos = this.getAbsPosition(true);
 				}
 
 				this._applyContraintsToFollowers();
 				if (cgsgExist(this.onTranslate)) {
-					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, null));
+					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, {node : this}));
 				}
 			},
 
@@ -1577,12 +1577,12 @@ var CGSGNode = CGSGObject.extend(
 			translateBy : function(x, y, computeAbsoluteValue) {
 				this.position.translateBy(x, y);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absPos = this.getAbsolutePosition(true);
+					this._absPos = this.getAbsPosition(true);
 				}
 
 				this._applyContraintsToFollowers();
 				if (cgsgExist(this.onTranslate)) {
-					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, null));
+					CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_TRANSLATE, new CGSGEvent(this, {node : this}));
 				}
 			},
 
@@ -1641,7 +1641,7 @@ var CGSGNode = CGSGObject.extend(
 				this.scale.x = sx;
 				this.scale.y = sy;
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absSca = this.getAbsoluteScale(true);
+					this._absSca = this.getAbsScale(true);
 				}
 
 				this._applyContraintsToFollowers();
@@ -1662,7 +1662,7 @@ var CGSGNode = CGSGObject.extend(
 				this.scale.x *= sfx;
 				this.scale.y *= sfy;
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absSca = this.getAbsoluteScale(true);
+					this._absSca = this.getAbsScale(true);
 				}
 				this._applyContraintsToFollowers();
 
@@ -1682,7 +1682,7 @@ var CGSGNode = CGSGObject.extend(
 				this.scale.x += x;
 				this.scale.y += y;
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absSca = this.getAbsoluteScale(true);
+					this._absSca = this.getAbsScale(true);
 				}
 				this._applyContraintsToFollowers();
 
@@ -1701,7 +1701,7 @@ var CGSGNode = CGSGObject.extend(
 			rotateTo : function(a, computeAbsoluteValue) {
 				this.rotation.rotateTo(a);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absRot = this.getAbsoluteRotation(true);
+					this._absRot = this.getAbsRotation(true);
 				}
 				this._applyContraintsToFollowers();
 
@@ -1719,7 +1719,7 @@ var CGSGNode = CGSGObject.extend(
 			rotateBy : function(af, computeAbsoluteValue) {
 				this.rotation.rotateBy(af);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absRot = this.getAbsoluteRotation(true);
+					this._absRot = this.getAbsRotation(true);
 				}
 				this._applyContraintsToFollowers();
 
@@ -1737,7 +1737,7 @@ var CGSGNode = CGSGObject.extend(
 			rotateWith : function(a, computeAbsoluteValue) {
 				this.rotation.rotateWith(a);
 				if (this.needToKeepAbsoluteMatrix && computeAbsoluteValue !== false) {
-					this._absRot = this.getAbsoluteRotation(true);
+					this._absRot = this.getAbsRotation(true);
 				}
 
 				this._applyContraintsToFollowers();
@@ -1936,13 +1936,13 @@ var CGSGNode = CGSGObject.extend(
 
 				/*if (this.needToKeepAbsoluteMatrix) {
 				 if (a.indexOf("position") == 0) {
-				 this._absPos = this.getAbsolutePosition(true);
+				 this._absPos = this.getAbsPosition(true);
 				 }
 				 else if (a.indexOf("rotation") == 0) {
-				 this._absRot = this.getAbsoluteRotation(true);
+				 this._absRot = this.getAbsRotation(true);
 				 }
 				 else if (a.indexOf("scale") == 0) {
-				 this._absSca = this.getAbsoluteScale(true);
+				 this._absSca = this.getAbsScale(true);
 				 }
 				 }*/
 			},
@@ -1979,11 +1979,11 @@ var CGSGNode = CGSGObject.extend(
 
 			/**
 			 * @public
-			 * @method getAbsolutePosition
+			 * @method getAbsPosition
 			 * @param {boolean} recursive flag indicating if computation should be recusive or not
 			 * @return {CGSGPosition} the absolute positions of this node
 			 */
-			getAbsolutePosition : function(recursive) {
+			getAbsPosition : function(recursive) {
 				var n = this;
 				var translation = this.position.copy();
 				while (n._parentNode !== null) {
@@ -1992,13 +1992,13 @@ var CGSGNode = CGSGObject.extend(
 				}
 
 				if (this._parentNode !== null) {
-					translation.addEquals(this._parentNode.getAbsolutePosition(false));
+					translation.addEquals(this._parentNode.getAbsPosition(false));
 				}
 
 				if (recursive !== false) {
 					for (var c = 0 ; c < this.children.length ; c++) {
 						if (cgsgExist(this.children[c])) {
-							this.children[c]._absPos = this.children[c].getAbsolutePosition(recursive);
+							this.children[c]._absPos = this.children[c].getAbsPosition(recursive);
 						}
 					}
 				}
@@ -2008,11 +2008,11 @@ var CGSGNode = CGSGObject.extend(
 
 			/**
 			 * @public
-			 * @method getAbsoluteScale
+			 * @method getAbsScale
 			 * @param {boolean} recursive flag indicating if computation should be recusive or not
 			 * @return {CGSGScale} the absolute scale of this node
 			 */
-			getAbsoluteScale : function(recursive) {
+			getAbsScale : function(recursive) {
 				var n = this;
 				var s = this.scale.copy();
 				while (n._parentNode !== null) {
@@ -2023,7 +2023,7 @@ var CGSGNode = CGSGObject.extend(
 				if (recursive !== false) {
 					for (var c = 0 ; c < this.children.length ; c++) {
 						if (cgsgExist(this.children[c])) {
-							this.children[c]._absSca = this.children[c].getAbsoluteScale(recursive);
+							this.children[c]._absSca = this.children[c].getAbsScale(recursive);
 						}
 					}
 				}
@@ -2032,11 +2032,11 @@ var CGSGNode = CGSGObject.extend(
 
 			/**
 			 * @public
-			 * @method getAbsoluteRotation
+			 * @method getAbsRotation
 			 * @param {boolean} recursive flag indicating if computation should be recusive or not
 			 * @return {CGSGRotation} the absolute rotation of this node
 			 */
-			getAbsoluteRotation : function(recursive) {
+			getAbsRotation : function(recursive) {
 				var n = this;
 				var r = this.rotation.copy();
 				while (n._parentNode !== null) {
@@ -2047,7 +2047,7 @@ var CGSGNode = CGSGObject.extend(
 				if (recursive !== false) {
 					for (var c = 0 ; c < this.children.length ; c++) {
 						if (cgsgExist(this.children[c])) {
-							this.children[c]._absRot = this.children[c].getAbsoluteRotation(recursive);
+							this.children[c]._absRot = this.children[c].getAbsRotation(recursive);
 						}
 					}
 				}
@@ -2062,9 +2062,9 @@ var CGSGNode = CGSGObject.extend(
 			 * @param {Boolean} recursive if !== false, compute recursively
 			 * */
 			computeAbsoluteMatrix : function(recursive) {
-				this._absPos = this.getAbsolutePosition(false);
-				this._absSca = this.getAbsoluteScale(false);
-				this._absRot = this.getAbsoluteRotation(false);
+				this._absPos = this.getAbsPosition(false);
+				this._absSca = this.getAbsScale(false);
+				this._absRot = this.getAbsRotation(false);
 
 				if (recursive !== false) {
 					//for (var c = 0; c < this.children.length; c++) {

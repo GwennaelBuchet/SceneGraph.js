@@ -6,16 +6,8 @@
     <meta name="viewport"
           content="width = device-width, initial-scale = 1, minimum-scale = 1, maximum-scale = 1, user-scalable = no"/>
 
-    <link id="theme" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
-
-    <script type="text/javascript" src="js/Box2dWeb-2.1.a.3.min.js"></script>
-
-    <script type="text/javascript" src="../../js/cgscenegraph_1.4.2.min.js"></script>
-    <script type="text/javascript" src="js/class.node.polygon.js"></script>
-    <script type="text/javascript" src="js/class.node.star.js"></script>
-
-    <script type="text/javascript" src="js/class.main.js"></script>
-
+    <link id="theme" rel="stylesheet" type="text/css" href="../../min/css/themes/gray/grayTheme.css" title="theme"/>
+    <link id="style" rel="stylesheet" type="text/css" href="css/style.css" title="theme"/>
 </head>
 
 <body>
@@ -23,6 +15,14 @@
 <canvas id="scene" width="80" height="50">
     Your browser does not support the canvas element.
 </canvas>
+
+<script type="text/javascript" src="js/Box2dWeb-2.1.a.3.min.js"></script>
+<script type="text/javascript" src="../../min/scenegraph_2.1.0-snapshot.min.js"></script>
+<script type="text/javascript" src="js/SGJSBox2dWebWrapper.js"></script>
+<script type="text/javascript" src="js/class.node.polygon.js"></script>
+<script type="text/javascript" src="js/class.node.star.js"></script>
+
+<script type="text/javascript" src="js/class.main.js"></script>
 
 <script type="text/javascript">
     var canvasScene = document.getElementById("scene");

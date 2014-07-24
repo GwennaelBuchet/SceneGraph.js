@@ -190,7 +190,7 @@ var CGSGSceneGraph = CGSGObject.extend(
 						this.context.scale(CGSG.displayRatio.x, CGSG.displayRatio.y);
 
 						var n = node;
-						var t = n.getAbsolutePosition();
+						var t = n.getAbsPosition();
 
 						this.context.translate(t.x, t.y);
 

@@ -25,28 +25,6 @@ var CGSGNodePolygon = CGSGNode.extend(
 			
 			this._super(this._minX, this._minY, this._maxX-this._minX, this._maxY-this._minY);
 			
-			/**
-			 * Color  to fill the Polygon
-			 * @property color
-			 * @default "#444444"
-			 * @type {String}
-			 */
-			this.color = "#444444";
-			/**
-			 * Color to stroke the Polygon
-			 * @property lineColor
-			 * @default "#222222"
-			 * @type {String}
-			 */
-			this.lineColor = "#222222";
-			/**
-			 * Width of the line that stroke the Polygon.
-			 * Let 0 if you don't want to stroke the Polygon.
-			 * @property lineWidth
-			 * @default 0
-			 * @type {Number}
-			 */
-			this.lineWidth = 0;
 
 			this.pickNodeMethod = CGSGPickNodeMethod.GHOST;
 
@@ -82,7 +60,6 @@ var CGSGNodePolygon = CGSGNode.extend(
         */	
 		doRenderLogic: function (context) {
            	context.beginPath();
-			context.globalAlpha = this.globalAlpha;
 			
 			context.moveTo(this._points[0].x-this._minX, this._points[0].y-this._minY);
 
@@ -90,15 +67,8 @@ var CGSGNodePolygon = CGSGNode.extend(
                 	context.lineTo(this._points[n].x-this._minX, this._points[n].y-this._minY);
             	}
            	context.closePath();
-           	
-			context.fillStyle = this.color;
+
 			context.fill();
-			
-			if (this.lineWidth > 0) {
-				context.lineWidth = this.lineWidth;
-				context.strokeStyle = this.lineColor;
-				context.stroke();
-			}	
 		},
 		
 		/**
@@ -161,8 +131,7 @@ var CGSGNodePolygon = CGSGNode.extend(
          * @method getCenter
         */
 		getCenter: function () {
-			var center = new CGSGPosition((this._maxX-this._minX) / 2, (this._maxY-this._minY) / 2);
-			return center;
+			return new CGSGPosition((this._maxX-this._minX) / 2, (this._maxY-this._minY) / 2);
 		},
 		
         /**

@@ -89,6 +89,10 @@ var CGMain = CGSGView.extend(
 			//add the textNode as child of the root
 			this.rootNode.addChild(image);
 			this.rootNode.addChild(this.text);
+
+			this.onSceneClickEnd = function(event) {
+				var x = 0;
+			};
 		},
 
 		setMaxWidth: function (event) {
