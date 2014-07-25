@@ -1,6 +1,10 @@
 {
 	"name"     : "SceneGraph.js",
 	"version"  : "2.1",
+	"authors": [
+		"Gwennael Buchet, gwennael.buchet@gmail.com"
+	],
+	"description": "SceneGraph.js is a canvas Javascript animation framework. It is very easy to use and offers lots of powerful features.",
 	"main"     : [
 		"min/scenegraph_2.1.0-snapshot.min.js",
 		"min/css/img/alert.png",
