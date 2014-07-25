@@ -1,0 +1,37 @@
+{
+	"name"     : "SceneGraph.js",
+	"version"  : "2.1",
+	"main"     : [
+		"min/scenegraph_2.1.0-snapshot.min.js",
+		"min/css/img/alert.png",
+		"min/css/img/error.png",
+		"min/css/img/ok.png",
+		"min/css/themes/blue/blueTheme.css",
+		"min/css/themes/gray/grayTheme.css",
+		"min/css/themes/green/greenTheme.css",
+		"min/css/themes/pink/pinkTheme.css"
+	],
+	"keywords" : [
+		"html5",
+		"canvas",
+		"animation",
+		"interaction",
+		"front-end",
+		"framework",
+		"web"
+	],
+	"ignore"   : [
+		"/.*",
+		"build_all.bat",
+		"changeLog.txt",
+		"pom.xml",
+		"README.md",
+		"sceneGraph.js.iml.md",
+		"yuidoc.json",
+		"api",
+		"examples",
+		"Medias",
+		"src"
+	],
+	"homepage" : "http://gwennaelbuchet.github.io/SceneGraph.js/"
+}
