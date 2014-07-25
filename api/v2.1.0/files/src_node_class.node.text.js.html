@@ -451,38 +451,51 @@ var CGSGNodeText = CGSGNode.extend(
             var align = CGSG.cssManager.getAttrInArray(this._cls, &quot;text-align&quot;);
             var transform = CGSG.cssManager.getAttrInArray(this._cls, &quot;text-transform&quot;);
             var strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, &quot;-webkit-text-stroke-width&quot;);
-            if (!cgsgExist(strokeWidth)) strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, &quot;text-stroke-width&quot;);
+            if (!cgsgExist(strokeWidth)) {
+                strokeWidth = CGSG.cssManager.getAttrInArray(this._cls, &quot;text-stroke-width&quot;);
+            }
             var strokeColor = CGSG.cssManager.getAttrInArray(this._cls, &quot;-webkit-text-stroke-color&quot;);
-            if (!cgsgExist(strokeColor)) strokeColor = CGSG.cssManager.getAttrInArray(this._cls, &quot;text-stroke-color&quot;);
+            if (!cgsgExist(strokeColor)) {
+                strokeColor = CGSG.cssManager.getAttrInArray(this._cls, &quot;text-stroke-color&quot;);
+            }
 
             if (cgsgExist(cl)) {
                 //value is given as &quot;rgb(xx, yy, zz)&quot;. Let&#x27;s convert it to hex
                 var rgb = CGSGColor.fromString(cl);
                 this.color = CGSGColor.rgb2hex(rgb.r, rgb.g, rgb.b);
             }
-            if (cgsgExist(style))
+            if (cgsgExist(style)) {
                 this._style = style;
-            if (cgsgExist(variant))
+            }
+            if (cgsgExist(variant)) {
                 this._variant = variant;
-            if (cgsgExist(weight))
+            }
+            if (cgsgExist(weight)) {
                 this._weight = weight;
+            }
             if (cgsgExist(size)) {
                 this._sizeT = size;
                 this._size = CGSG.cssManager.getNumber(size);
                 this._lineHeight = this._size;
             }
-            if (cgsgExist(family))
+            if (cgsgExist(family)) {
                 this._typo = family;
-            if (cgsgExist(height))
+            }
+            if (cgsgExist(height)) {
                 this._lineHeight = height;
-            if (cgsgExist(align))
+            }
+            if (cgsgExist(align)) {
                 this._align = align;
-            if (cgsgExist(transform))
+            }
+            if (cgsgExist(transform)) {
                 this._transform = transform;
-            if (cgsgExist(strokeWidth))
+            }
+            if (cgsgExist(strokeWidth)) {
                 this.lineWidth = strokeWidth;
-            if (cgsgExist(strokeColor))
+            }
+            if (cgsgExist(strokeColor)) {
                 this.lineColor = strokeColor;
+            }
 
             this._invalidateFont();
         },
@@ -538,12 +551,16 @@ var CGSGNodeText = CGSGNode.extend(
             this._text = this._text.replace(/(\r\n|\n\r|\r|\n)/g, &quot;\n&quot;);
             this._text = this._text.replace(/(\t)/g, this._tabulation);
             this._sections = this._text.split(&quot;\n&quot;);
-            this.invalidate();
+
             if (mustRecomputeDimension !== false) {
                 this.computeRealDimension();
             }
-        },
 
+            if ((!cgsgExist(this._maxWidth) || this._maxWidth &lt;= 0) &amp;&amp; this.getWidth() &gt; 0)
+                this.setMaxWidth(this.getWidth() + 1, true);
+
+            this.invalidate();
+        },
 
         /**
          * @method setTextBaseline
@@ -567,21 +584,6 @@ var CGSGNodeText = CGSGNode.extend(
             this._style = s;
             this._invalidateFont();
             this.invalidate();
-            if (mustRecomputeDimension !== false) {
-                this.computeRealDimension();
-            }
-        },
-
-
-        /**
-         * @method setMaxWidth
-         * @param {Number} m Max Width for the text
-         * @param {Boolean} mustRecomputeDimension (default : true)
-         */
-        setMaxWidth : function(m, mustRecomputeDimension) {
-            this._maxWidth = m;
-            this.dimension.width = m;
-            //this.resizeTo(m, this.getHeight());
             if (mustRecomputeDimension !== false) {
                 this.computeRealDimension();
             }
@@ -679,6 +681,46 @@ var CGSGNodeText = CGSGNode.extend(
         },
 
         /**
+         * @method setMaxWidth
+         * @param {Number} m Max Width for the text
+         * @param {Boolean} mustRecomputeDimension (default : true)
+         */
+        setMaxWidth : function(m, mustRecomputeDimension) {
+            this._maxWidth = m;
+            if (this._maxWidth &gt; 0) {
+                this.dimension.width = m;
+                if (mustRecomputeDimension !== false) {
+                    this.computeRealDimension();
+                }
+            }
+        },
+
+        /**
+         * Increase/decrease current dimension with adding values
+         * @method resizeWith
+         * @param {Number} w
+         * @param {Number} h
+         * */
+        resizeWith : function(w, h) {
+            if (this._maxWidth + w &gt; 0) {
+                this._afterResize(this._maxWidth + w);
+            }
+        },
+
+        _afterResize : function(m) {
+            var w = this.getWidth();
+            this._maxWidth = m;
+            //this.dimension.width = m;//Math.max(m, this.dimension.width);
+            this.computeRealDimension();
+
+            if (this._nbLines == 1 &amp;&amp; this.getWidth() &lt;= w)
+                this._maxWidth = this.getWidth() + 1;
+
+            this._applyContraintsToFollowers();
+            this._endResize();
+        },
+
+        /**
          * Custom rendering
          * @method render
          * @protected
@@ -686,8 +728,6 @@ var CGSGNodeText = CGSGNode.extend(
          * */
         render : function(context) {
             context.fillStyle = this.color || this.bkgcolors[0];
-            //context.strokeStyle = this.lineColor;
-            //context.lineWidth = this.lineWidth;
 
             this._doRender(context, false);
         },
@@ -701,12 +741,11 @@ var CGSGNodeText = CGSGNode.extend(
          */
         _doRender : function(context, isGhostmode) {
             context.font = this._fullfont;
-            //this._style + (this._style != null &amp;&amp; this._style.length &gt; 0 ? &#x27; &#x27; : &#x27;&#x27;) + this._size + &quot;pt &quot; + this._typo;
 
             context.textAlign = this._align;
             context.textBaseline = this._textBaseline;
 
-            var s = 0, textW = 0, posX = 0, posY = 0;
+            var s = 0, textW = 0, posX = 0, posY = 0, mt;
             if (this.crossed) {
                 context.save();
                 context.strokeStyle = &quot;grey&quot;;
@@ -715,7 +754,7 @@ var CGSGNodeText = CGSGNode.extend(
                 context.stroke();
                 context.restore();
             }
-            if (isNaN(this._maxWidth) || this._maxWidth &lt;= 0) {
+            if (!cgsgExist(this._maxWidth) || this._maxWidth &lt;= 0) {
                 posX = this._computeDecalX(this.getWidth());
                 for (s = 0 ; s &lt; this._sections.length ; s++) {
                     textW = context.measureText(this._sections[s]).width;
@@ -724,12 +763,14 @@ var CGSGNodeText = CGSGNode.extend(
                 }
                 this._nbLines = this._sections.length;
             }
-            else {
+            else { //if (this._maxWidth &gt; 0
                 this._nbLines = 0;
+
+
                 for (s = 0 ; s &lt; this._sections.length ; s++) {
                     var words = this._sections[s].split(this._wrapMode.space);
-                    var nbWords = 1;
-                    var testLine = words[0];
+                    var nbWords = 0;
+                    var testLine = &quot;&quot;;
                     posY = 0;
                     textW = 0;
                     if (words.length == 1) {
@@ -741,25 +782,47 @@ var CGSGNodeText = CGSGNode.extend(
                     }
                     else {
                         while (nbWords &lt; words.length) {
-                            while ((textW = context.measureText(testLine).width) &lt; this._maxWidth &amp;&amp;
-                                   nbWords &lt; words.length) {
+
+                            testLine = words[nbWords];
+                            mt = context.measureText(testLine + this._wrapMode.space + words[nbWords + 1]);
+                            while (mt.width &lt; (this._maxWidth /*- 5*/) &amp;&amp;
+                                   nbWords &lt; words.length - 1
+                                ) {
                                 if (testLine != &quot;&quot;) {
                                     testLine += this._wrapMode.space;
                                 }
-                                testLine += words[nbWords++];
+                                testLine += words[++nbWords];
+                                mt = context.measureText(testLine + this._wrapMode.space + words[nbWords + 1]);
                             }
+
                             textW = context.measureText(testLine).width;
                             posY = this._nbLines * this._lineHeight;
                             posX = this._computeDecalX(this.getWidth());
                             this._drawText(testLine, posX, posY, context, isGhostmode, textW);
                             this._nbLines++;
 
-                            //reset for the next loop
-                            testLine = &quot;&quot;;
-                            textW = 0;
+                            ++nbWords;
                         }
                     }
                 }
+
+
+            }
+
+            //region constraint
+
+            var rgc;
+            if (this.nodeConstraint !== null) {
+                rgc = this.nodeConstraint.getAbsoluteRegion();
+            }
+            else {
+                rgc = this.regionConstraint;
+            }
+            if (rgc !== null) {
+                var r = this.getAbsoluteRegion();
+                var d = this.getAbsBottom() - (rgc.position.x + rgc.dimension.height);
+                if (d &gt; 0)
+                    this.translateWith(0, -d);
             }
         },
 
@@ -778,8 +841,12 @@ var CGSGNodeText = CGSGNode.extend(
                 if (this._transform === &quot;capitalize&quot;) {
                     text = text.capitalize();
                 }
-                if (this._transform === &quot;lowercase&quot;) text = text.toLowerCase();
-                if (this._transform === &quot;uppercase&quot;) text = text.toUpperCase();
+                if (this._transform === &quot;lowercase&quot;) {
+                    text = text.toLowerCase();
+                }
+                if (this._transform === &quot;uppercase&quot;) {
+                    text = text.toUpperCase();
+                }
             }
 
             if (isGhostmode) {
@@ -795,8 +862,9 @@ var CGSGNodeText = CGSGNode.extend(
                 context.strokeText(text, x, y);
             }
 
-            if (cgsgExist(this.bkgcolors[0]) &amp;&amp; this.globalAlpha &gt; 0)
+            if (cgsgExist(this.bkgcolors[0]) &amp;&amp; this.globalAlpha &gt; 0) {
                 context.fillText(text, x, y);
+            }
 
             var mt = context.measureText(text);
             if (mt.width &gt; this.metrics.width) {
@@ -913,35 +981,37 @@ var CGSGNodeText = CGSGNode.extend(
             var decalX = 0;
             var decalY = this._computeDecalY();
 
-            //this._absPos = this.getAbsolutePosition(false);
-            //this._absSca = this.getAbsoluteScale(false);
+            //this._absPos = this.getAbsPosition(false);
+            //this._absSca = this.getAbsScale(false);
 
             var height = this.getHeight();
             var width = this.getWidth();
 
-            c.strokeStyle = this.selectionLineColor;
+            if (cgsgExist(this.selectionLineWidth) &amp;&amp; this.selectionLineWidth &gt; 0) {
+                c.strokeStyle = this.selectionLineColor;
 
-            c.lineWidth = this.selectionLineWidth / this._absSca.y;
-            c.beginPath();
-            //top line
-            c.moveTo(decalX, decalY);
-            c.lineTo(width, decalY);
-            //bottom line
-            c.moveTo(decalX, decalY + height);
-            c.lineTo(width, decalY + height);
-            c.stroke();
-            c.closePath();
+                c.lineWidth = this.selectionLineWidth / this._absSca.y;
+                c.beginPath();
+                //top line
+                c.moveTo(decalX, decalY);
+                c.lineTo(width, decalY);
+                //bottom line
+                c.moveTo(decalX, decalY + height);
+                c.lineTo(width, decalY + height);
+                c.stroke();
+                c.closePath();
 
-            c.lineWidth = this.selectionLineWidth / this._absSca.x;
-            c.beginPath();
-            //left line
-            c.moveTo(decalX, decalY);
-            c.lineTo(decalX, decalY + height);
-            //right line
-            c.moveTo(decalX + width, decalY);
-            c.lineTo(decalX + width, decalY + height);
-            c.stroke();
-            c.closePath();
+                c.lineWidth = this.selectionLineWidth / this._absSca.x;
+                c.beginPath();
+                //left line
+                c.moveTo(decalX, decalY);
+                c.lineTo(decalX, decalY + height);
+                //right line
+                c.moveTo(decalX + width, decalY);
+                c.lineTo(decalX + width, decalY + height);
+                c.stroke();
+                c.closePath();
+            }
 
             //draw the resize handles
             if (this.isResizable) {
@@ -971,7 +1041,6 @@ var CGSGNodeText = CGSGNode.extend(
                 this.handles[5].translateTo(-halfX, height - halfY + decalY);
                 this.handles[7].translateTo(width - halfX,
                                             height - halfY + decalY);
-
 
                 for (var i = 0 ; i &lt; 8 ; i++) {
                     this.handles[i].size = this.handleSize;

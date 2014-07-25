@@ -268,7 +268,7 @@
  */
 var CGSGNodeCircle = CGSGNode.extend(
     {
-        initialize : function(centerX, centerY, radius) {
+        initialize : function(x, y, radius) {
 
             /**
              * @property classType
@@ -282,17 +282,19 @@ var CGSGNodeCircle = CGSGNode.extend(
              * @type {Number}
              */
             this.radius = radius;
-            this._center = new CGSGPosition(centerX, centerY);
+            this._center = new CGSGPosition(x + radius, y + radius);
 
-            this._super(0, 0);
+            this._super(x, y);
             this.resizeTo(radius * 2.0, radius * 2.0);
 
             this.isProportionalResizeOnly = true;
 
-            this.translateTo(centerX - radius, centerY - radius);
+            //this.translateTo(centerX - radius, centerY - radius);
         },
 
         render : function(c) {
+            c.save();
+            //c.translate(this.radius, this.radius);
             c.beginPath();
             c.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
             //Next line is already managed by CGSGNode.
@@ -307,6 +309,7 @@ var CGSGNodeCircle = CGSGNode.extend(
                 //context.strokeStyle = this.lineColor;
                 c.stroke();
             }
+            c.restore();
         },
 
         /**

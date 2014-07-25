@@ -341,14 +341,14 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          * @return {Object} Object with {r:x, g:x, b:x} value
          */
         getColorAt : function(absolutePosition) {
-            var ap = this._absPos;//getAbsolutePosition();
+            var ap = this._absPos;//getAbsPosition();
             var aw = this.getAbsWidth();
             //get the color under the mice
             var data = this._imgData.data;
             //get cursor position under the colorPicker
             //todo : still need to fix the scale (will be done in v2.0 with the matrix class)
-            var x = CGSGMath.fixedPoint((absolutePosition.x - ap.x) /*/ this.getAbsoluteScale().x*/);
-            var y = CGSGMath.fixedPoint((absolutePosition.y - ap.y) /*/ this.getAbsoluteScale().y*/);
+            var x = CGSGMath.fixedPoint((absolutePosition.x - ap.x) /*/ this.getAbsScale().x*/);
+            var y = CGSGMath.fixedPoint((absolutePosition.y - ap.y) /*/ this.getAbsScale().y*/);
 
             return {r : data[((aw * y) + x) * 4],
                 g     : data[((aw * y) + x) * 4 + 1],

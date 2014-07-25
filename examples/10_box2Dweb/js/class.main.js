@@ -130,8 +130,8 @@ var CGMain = CGSGView.extend(
 			};
 
 
-			//this.rootNode.addChild(this.bbox.createBox(200, 30, 60, 60, false));
-			//this.rootNode.addChild(this.bbox.createBox(150, 250, 180, 10, true));
+			this.rootNode.addChild(this.bbox.createBox(200, 30, 60, 60, false));
+			this.rootNode.addChild(this.bbox.createBox(150, 250, 180, 10, true));
 			this.rootNode.addChild(this.bbox.createCircle(300, 130, 40, false));
 
 			this.bbox.start(this);

@@ -261,11 +261,11 @@ var CGSGPickNodeMethod = {
     /**
      * @property GHOST
      */
-    GHOST  : &quot;ghost&quot;,
+    GHOST : &quot;ghost&quot;,
     /**
      * @property REGION
      */
-    REGION : &quot;region&quot;
+    REGION: &quot;region&quot;
 };
 
 /**
@@ -283,14 +283,14 @@ var CGSGPickNodeMethod = {
  * @type {Object}
  */
 var cgsgExplorerParams = {
-    IE10      : {name : &quot;IE 10 or above&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-    IE9       : {name : &quot;IE 9&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.3, textDecalYBottom : 1.26, textDecalYMiddle : 1.87, textDecalYAlpha : 0.983, webworker : false},
-    SAFARI    : {name : &quot;Safari&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 4.0, textDecalYBottom : 1.27, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-    CHROME    : {name : &quot;Chrome&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.3, textDecalYBottom : 1.268, textDecalYMiddle : 2.09, textDecalYAlpha : 0.983, webworker : false},
-    OPERA     : {name : &quot;Opera&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 3.5, textDecalYBottom : 1.28, textDecalYMiddle : 2.0, textDecalYAlpha : 0.995, webworker : false},
-    FIREFOX   : {name : &quot;Firefox&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-    KONQUEROR : {name : &quot;Konqueror&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false},
-    UNKNOWN   : {name : &quot;Unknown&quot;, browserName : &quot;&quot;, fullVersion : &quot;&quot;, textDecalYTop : 10, textDecalYBottom : 1.23, textDecalYMiddle : 1.77, textDecalYAlpha : 0.983, webworker : false}
+    IE10     : {name: &quot;IE 10 or above&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
+    IE9      : {name: &quot;IE 9&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
+    SAFARI   : {name: &quot;Safari&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 4.0, textDecalYBottom: 1.27, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    CHROME   : {name: &quot;Chrome&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 3.3, textDecalYBottom: 1.268, textDecalYMiddle: 2.09, textDecalYAlpha: 0.983, webworker: false},
+    OPERA    : {name: &quot;Opera&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 3.5, textDecalYBottom: 1.28, textDecalYMiddle: 2.0, textDecalYAlpha: 0.995, webworker: false},
+    FIREFOX  : {name: &quot;Firefox&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    KONQUEROR: {name: &quot;Konqueror&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    UNKNOWN  : {name: &quot;Unknown&quot;, browserName: &quot;&quot;, fullVersion: &quot;&quot;, textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false}
 };
 
 /**
@@ -301,7 +301,6 @@ var cgsgExplorerParams = {
  * @type {Object}
  */
 var cgsgCurrentExplorer = cgsgExplorerParams.UNKNOWN;
-
 
 /**
  * Global properties for the current scene
@@ -319,7 +318,7 @@ var CGSG = {
      * @static
      * @type {String}
      */
-    version : &quot;2.0.0-SNAPSHOT&quot;,
+    version: &quot;2.0.0-SNAPSHOT&quot;,
 
     /**
      * The scene graph itself
@@ -327,7 +326,7 @@ var CGSG = {
      * @default null
      * @type {CGSGSceneGraph}
      */
-    sceneGraph : null,
+    sceneGraph: null,
 
     /**
      * Current display ratio
@@ -335,7 +334,7 @@ var CGSG = {
      * @static
      * @type {CGSGScale}
      */
-    displayRatio : CGSG_DEFAULT_DISPLAYRATIO,
+    displayRatio: CGSG_DEFAULT_DISPLAYRATIO,
 
     /**
      * Default threshold to detect the handle boxes on a resizable node
@@ -343,7 +342,7 @@ var CGSG = {
      * @static
      * @type {Number}
      */
-    resizeHandleThreshold : CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
+    resizeHandleThreshold: CGSG_DEFAULT_SELECTED_RESIZEHANDLE_THRESHOLD,
 
     /**
      * The current frame in hte global timeline
@@ -351,7 +350,7 @@ var CGSG = {
      * @readonly
      * @type {Number}
      */
-    currentFrame : 0,
+    currentFrame: 0,
 
     /**
      * The canvas container for this scene
@@ -359,14 +358,14 @@ var CGSG = {
      * @readonly
      * @type {HTMLElement}
      */
-    canvas : null,
+    canvas: null,
 
     /**
      * The main rendering 2D context for this scene
      * @property context
      * @type {CanvasRenderingContext2D}
      */
-    context : null,
+    context: null,
 
     /**
      * The global ghost context for fake rendering
@@ -374,7 +373,7 @@ var CGSG = {
      * @readonly
      * @type {CanvasRenderingContext2D}
      */
-    ghostContext : null,
+    ghostContext: null,
 
     /**
      * the color used for the ghost mode rendering
@@ -382,15 +381,14 @@ var CGSG = {
      * @type {String}
      * @public
      */
-    ghostColor : &quot;#FF0000&quot;,
-
+    ghostColor: &quot;#FF0000&quot;,
 
     /**
      * List of the current selected nodes in the scenegraph.
      * @property selectedNodes
      * @type {Array}
      */
-    selectedNodes : [],
+    selectedNodes: [],
 
     /**
      * List of the timelines for the animations.
@@ -399,7 +397,7 @@ var CGSG = {
      * @type {Array}
      * @private
      */
-    listTimelines : [],
+    listTimelines: [],
 
     /**
      * Number of frames to average the FPS.
@@ -408,7 +406,7 @@ var CGSG = {
      * @default CGSG_DEFAULT_FRAMERATE_DELAY
      * @type {Number}
      */
-    framerateDelay : CGSG_DEFAULT_FRAMERATE_DELAY,
+    framerateDelay: CGSG_DEFAULT_FRAMERATE_DELAY,
 
     /**
      * Maximum number of frames per second. Set it if you want your application to slow down.
@@ -419,14 +417,14 @@ var CGSG = {
      *     //limit the fps of the application to 30
      *     CGSG.maxFramerate : 30,
      */
-    maxFramerate : CGSG_DEFAULT_MAX_FRAMERATE,
+    maxFramerate: CGSG_DEFAULT_MAX_FRAMERATE,
 
     /**
      * Current framerate of the application
      * @property fps
      * @type {Number}
      */
-    fps : 0,
+    fps: 0,
 
     /**
      * If set to true, the bounding boxes for selected nodes will be rendered on top of the scene
@@ -435,16 +433,16 @@ var CGSG = {
      * @default true
      * @type {Boolean}
      */
-    isBoundingBoxOnTop : true,
+    isBoundingBoxOnTop: true,
 
     /**
      * Instance of CollisionTesterFactory
      * @property collisionTestFactory
      * @type {CGSGCollisionTesterFactory}
      */
-    collisionManager : new CGSGCollisionManager(),
+    collisionManager: new CGSGCollisionManager(),
 
-    cssManager : new CGSGCSSManager(),
+    cssManager: new CGSGCSSManager(),
 
     /**
      * Object that defines the performance keys.
@@ -462,19 +460,19 @@ var CGSG = {
      * @property performanceKeys
      * @type {Object}
      */
-    performanceKeys : {
-        _collisionMethod : CGSGCollisionMethod.REGION,
+    performanceKeys: {
+        _collisionMethod: CGSGCollisionMethod.REGION,
 
-        _cgsgCollisionTesterFactory : new CGSGCollisionTesterFactory(),
+        _cgsgCollisionTesterFactory: new CGSGCollisionTesterFactory(),
 
-        collisionTester : new CGSGCollisionRegionTester(),
+        collisionTester: new CGSGCollisionRegionTester(),
 
         /**
          * Redefines the collision method
          * @method setCollisionMethod
          * @param method
          */
-        setCollisionMethod : function(method) {
+        setCollisionMethod: function (method) {
             this._collisionMethod = method,
                 this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
         }
@@ -485,7 +483,7 @@ var CGSG = {
      * @property animationManager
      * @type {CGSGAnimationManager}
      */
-    animationManager : new CGSGAnimationManager(),
+    animationManager: new CGSGAnimationManager(),
 
     /**
      * Event manager to use to bind events to objects.
@@ -493,7 +491,7 @@ var CGSG = {
      * @property eventManager
      * @type {CGSGEventManager}
      */
-    eventManager : new CGSGEventManager(),
+    eventManager: new CGSGEventManager(),
 
     /**
      * Default threshold apply to all new nodes when detecting selection.
@@ -501,9 +499,8 @@ var CGSG = {
      * @property globalDetectSelectionThreshold
      * @type {Number}
      */
-    globalDetectSelectionThreshold : 0
+    globalDetectSelectionThreshold: 0
 };
-
 
 /**
  * All kinds of events defined by the CGSceneGraph framework.
@@ -514,58 +511,61 @@ var CGSG = {
 var cgsgEventTypes = {
 
     // Nodes rendering
-    ON_BEFORE_RENDER             : &quot;onBeforeRender&quot;,
-    ON_AFTER_RENDER              : &quot;onAfterRender&quot;,
+    ON_BEFORE_RENDER            : &quot;onBeforeRender&quot;,
+    ON_AFTER_RENDER             : &quot;onAfterRender&quot;,
     //ON_BEGIN_RENDER: &quot;onBeginRender&quot;,
     //ON_FINISH_RENDER: &quot;onFinishRender&quot;,
-    BEFORE_RENDER_END            : &quot;onBeforeRenderEnd&quot;,
-    AFTER_RENDER_START           : &quot;onAfterRenderStart&quot;,
+    BEFORE_RENDER_END           : &quot;onBeforeRenderEnd&quot;,
+    AFTER_RENDER_START          : &quot;onAfterRenderStart&quot;,
 
     // Node SRT
-    ON_TRANSLATE                 : &quot;onTranslate&quot;,
-    ON_ROTATE                    : &quot;onRotate&quot;,
-    ON_SCALE                     : &quot;onScale&quot;,
-    ON_RESIZE                    : &quot;onResize&quot;,
-    ON_RESIZE_END                : &quot;onResizeEnd&quot;,
+    ON_TRANSLATE                : &quot;onTranslate&quot;,
+    ON_ROTATE                   : &quot;onRotate&quot;,
+    ON_SCALE                    : &quot;onScale&quot;,
+    ON_RESIZE                   : &quot;onResize&quot;,
+    ON_RESIZE_END               : &quot;onResizeEnd&quot;,
 
     // Node mouse event
-    ON_MOUSE_UP                  : &quot;onMouseUp&quot;,
-    ON_MOUSE_OVER                : &quot;onMouseOver&quot;,
-    ON_MOUSE_OUT                 : &quot;onMouseOut&quot;,
-    ON_MOUSE_ENTER               : &quot;onMouseEnter&quot;,
-    ON_CLICK                     : &quot;onClick&quot;,
-    ON_CLICK_START               : &quot;onClickStart&quot;,
-    ON_DBL_CLICK                 : &quot;onDblClick&quot;,
-    ON_DRAG                      : &quot;onDrag&quot;,
-    ON_DRAG_END                  : &quot;onDragEnd&quot;,
+    ON_MOUSE_UP                 : &quot;onMouseUp&quot;,
+    ON_MOUSE_OVER               : &quot;onMouseOver&quot;,
+    ON_MOUSE_OUT                : &quot;onMouseOut&quot;,
+    ON_MOUSE_ENTER              : &quot;onMouseEnter&quot;,
+    ON_CLICK                    : &quot;onClick&quot;,
+    ON_CLICK_START              : &quot;onClickStart&quot;,
+    ON_DBL_CLICK                : &quot;onDblClick&quot;,
+    ON_DRAG                     : &quot;onDrag&quot;,
+    ON_DRAG_END                 : &quot;onDragEnd&quot;,
 
     // Node state event
-    ON_CHILD_ADD                 : &quot;onChildAdd&quot;,
-    ON_CHILD_REMOVED             : &quot;onChildRemove&quot;,
-    ON_SELECT                    : &quot;onSelect&quot;,
-    ON_DESELECT                  : &quot;onDeselect&quot;,
-    ON_FREE                      : &quot;onFreeEvent&quot;,
+    ON_CHILD_ADD                : &quot;onChildAdd&quot;,
+    ON_CHILD_REMOVED            : &quot;onChildRemove&quot;,
+    ON_SELECT                   : &quot;onSelect&quot;,
+    ON_DESELECT                 : &quot;onDeselect&quot;,
+    ON_FREE                     : &quot;onFreeEvent&quot;,
+    ON_LOAD_END                 : &quot;onLoadEnd&quot;,
+    ON_LOAD_ERROR               : &quot;onLoadError&quot;,
+    ON_LOAD_ABORT               : &quot;onLoadAbort&quot;,
 
     // Scene
-    ON_RENDER_START              : &quot;onRenderStart&quot;,
-    ON_RENDER_END                : &quot;onRenderEnd&quot;,
-    ON_SCENE_DBL_CLICK_START     : &quot;onSceneDblClickStart&quot;,
-    ON_SCENE_DBL_CLICK_END       : &quot;onSceneDblClickEnd&quot;,
-    ON_SCENE_CLICK_START         : &quot;onSceneClickStart&quot;,
-    ON_SCENE_CLICK_END           : &quot;onSceneClickEnd&quot;,
-    ON_SCENE_AVERAGE_FPS_CHANGED : &quot;onSceneAverageFpsChanged&quot;,
+    ON_RENDER_START             : &quot;onRenderStart&quot;,
+    ON_RENDER_END               : &quot;onRenderEnd&quot;,
+    ON_SCENE_DBL_CLICK_START    : &quot;onSceneDblClickStart&quot;,
+    ON_SCENE_DBL_CLICK_END      : &quot;onSceneDblClickEnd&quot;,
+    ON_SCENE_CLICK_START        : &quot;onSceneClickStart&quot;,
+    ON_SCENE_CLICK_END          : &quot;onSceneClickEnd&quot;,
+    ON_SCENE_AVERAGE_FPS_CHANGED: &quot;onSceneAverageFpsChanged&quot;,
 
     // Timeline
-    ON_ANIMATE                   : &quot;onAnimate&quot;,
-    ON_ANIMATION_START           : &quot;onAnimationStart&quot;,
-    ON_ANIMATION_END             : &quot;onAnimationEnd&quot;,
+    ON_ANIMATE                  : &quot;onAnimate&quot;,
+    ON_ANIMATION_START          : &quot;onAnimationStart&quot;,
+    ON_ANIMATION_END            : &quot;onAnimationEnd&quot;,
 
     // Particle
-    ON_UPDATE_PARTICLE_END       : &quot;onUpdateParticleEnd&quot;,
-    ON_INIT_PARTICLE             : &quot;onInitParticle&quot;,
+    ON_UPDATE_PARTICLE_END      : &quot;onUpdateParticleEnd&quot;,
+    ON_INIT_PARTICLE            : &quot;onInitParticle&quot;,
 
     // Tab
-    ON_TAB_CHANGED               : &quot;onTabChanged&quot;
+    ON_TAB_CHANGED              : &quot;onTabChanged&quot;
 };
 
 
