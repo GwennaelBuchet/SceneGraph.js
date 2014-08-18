@@ -32,10 +32,10 @@
 		"README.md",
 		"sceneGraph.js.iml.md",
 		"yuidoc.json",
-		"api",
-		"examples",
-		"Medias",
-		"src"
+		"api/*.*",
+		"examples/**.*",
+		"Medias/**.*",
+		"src/**.*"
 	],
 	"homepage" : "http://gwennaelbuchet.github.io/SceneGraph.js/"
 }
