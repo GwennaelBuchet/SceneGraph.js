@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\util.color.js - sceneGraph.js</title>
+    <title>src/utils/util.color.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\util.color.js</h1>
+                        <h1 class="file-heading">File: src/utils/util.color.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -269,7 +269,7 @@ var CGSGColor = {
      * @param {String} b blue value. from 0 to 255.
      * @return {String} an hexadecimal value for the color, starting with a sharp (#)
      */
-    rgb2hex : function(r, g, b) {
+    rgb2hex: function (r, g, b) {
         return &quot;#&quot; + this._toHex(r) + this._toHex(g) + this._toHex(b);
     },
 
@@ -280,16 +280,16 @@ var CGSGColor = {
      * @param {String} hex an hexadecimal code, with or without the starting sharp (#)
      * @return {Object} an object encapsulating r, g and b values (from 0 to 255)
      */
-    hex2rgb : function(hex) {
+    hex2rgb: function (hex) {
         hex = this._withoutSharp(hex);
         return {
-            r : parseInt(hex.substring(0, 2), 16),
-            g : parseInt(hex.substring(2, 4), 16),
-            b : parseInt(hex.substring(4, 6), 16)};
+            r: parseInt(hex.substring(0, 2), 16),
+            g: parseInt(hex.substring(2, 4), 16),
+            b: parseInt(hex.substring(4, 6), 16)};
     },
 
-    _withoutSharp : function(hex) {
-        return (hex.charAt(0) == &quot;#&quot;) ? hex.substring(1, hex.length) : hex;
+    _withoutSharp: function (hex) {
+        return (hex.charAt(0) === &quot;#&quot;) ? hex.substring(1, hex.length) : hex;
     },
 
     /**
@@ -298,7 +298,7 @@ var CGSGColor = {
      * @return {String} Example &quot;A6&quot;
      * @private
      */
-    _toHex : function(n) {
+    _toHex: function (n) {
         var m = parseInt(n, 10);
         if (isNaN(m)) {
             return &quot;00&quot;;
@@ -316,16 +316,16 @@ var CGSGColor = {
      * @example
      *    CGSGColor.fromString(&quot;rgb(121, 333, 444)&quot;); returns {r:121, b:333, c:444};
      */
-    fromString : function(rgb) {
+    fromString: function (rgb) {
         var p1 = rgb.indexOf(&#x27;(&#x27;) + 1;
         var p2 = rgb.lastIndexOf(&#x27;)&#x27;);
 
         var cl = rgb.substring(p1, p2);
         var cls = cl.split(&quot;,&quot;);
         return {
-            r : parseInt(cls[0]),
-            g : parseInt(cls[1]),
-            b : parseInt(cls[2])
+            r: parseInt(cls[0]),
+            g: parseInt(cls[1]),
+            b: parseInt(cls[2])
         }
     },
 
@@ -338,7 +338,7 @@ var CGSGColor = {
      * @param {Number} weight
      * @return {String} a heh value for the interpolated color
      */
-    lerp : function(colorFrom, colorTo, weight) {
+    lerp: function (colorFrom, colorTo, weight) {
         var rgbColorFrom = this.hex2rgb(colorFrom);
         var rgbColorTo = this.hex2rgb(colorTo);
 
@@ -357,7 +357,7 @@ var CGSGColor = {
      * @param {Number} factor If &gt;0 : lighten. If &lt;0 : darken
      * @return {String}
      */
-    darkenHex : function(hex, factor) {
+    darkenHex: function (hex, factor) {
         var rgb = this.hex2rgb(hex);
 
         rgb.r = this.multiplyComponent(rgb.r, factor);
@@ -376,15 +376,15 @@ var CGSGColor = {
      * @param {Number} factor If &gt;0 : lighten. If &lt;0 : darken
      * @return {Object} An {r, g, b} object
      */
-    darkenRGB : function(r, g, b, factor) {
+    darkenRGB: function (r, g, b, factor) {
         return {
-            r : this.multiplyComponent(r, factor),
-            g : this.multiplyComponent(g, factor),
-            b : this.multiplyComponent(b, factor)
+            r: this.multiplyComponent(r, factor),
+            g: this.multiplyComponent(g, factor),
+            b: this.multiplyComponent(b, factor)
         };
     },
 
-    litRGB : function(r, g, b, factor) {
+    litRGB: function (r, g, b, factor) {
         var hsl = this.rgb2hsl(r, g, b);
 
         hsl.l *= factor;
@@ -398,7 +398,7 @@ var CGSGColor = {
      * @param {Number} factor
      * @return {Number} The multiplied value, between 0 and 255
      */
-    multiplyComponent : function(c, factor) {
+    multiplyComponent: function (c, factor) {
         return Math.max(Math.min(255, c * factor), 0);
     },
 
@@ -411,7 +411,7 @@ var CGSGColor = {
      * @param {Number} b
      * @return {Object} An {h, s, v} object
      */
-    rgb2hsv : function(r, g, b) {
+    rgb2hsv: function (r, g, b) {
         var min, max;
 
         //normalize the 3 components
@@ -424,7 +424,7 @@ var CGSGColor = {
         //min == max ? so the 3 values are the same, we got a gray color.
         //just return the lightness
         if (max == min) {
-            return {h : 0, s : 0, v : min};
+            return {h: 0, s: 0, v: min};
         }
 
         var d = (r == min) ? g - b : ((b == min) ? r - g : b - r);
@@ -432,9 +432,9 @@ var CGSGColor = {
 
         var dM = max - min;
         return {
-            h : 60 * (h - d / dM),
-            s : dM / max,
-            v : max
+            h: 60 * (h - d / dM),
+            s: dM / max,
+            v: max
         };
     },
 
@@ -447,7 +447,7 @@ var CGSGColor = {
      * @param {Number} b
      * @return {Object}
      */
-    rgb2hsl : function(r, g, b) {
+    rgb2hsl: function (r, g, b) {
         r /= 255, g /= 255, b /= 255;
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, l = (max + min) / 2;
@@ -472,7 +472,7 @@ var CGSGColor = {
             h /= 6;
         }
 
-        return {h : h, s : s, l : l};
+        return {h: h, s: s, l: l};
     },
 
     /**
@@ -484,14 +484,13 @@ var CGSGColor = {
      * @param {Number} l the lightness
      * @return {Object} A {r, g, b} object
      */
-    hsl2rgb : function(h, s, l) {
+    hsl2rgb: function (h, s, l) {
         var r, g, b;
 
         if (s == 0) {
             r = g = b = l;
         }
         else {
-
 
             var q = l &lt; 0.5 ? l * (1 + s) : l + s - l * s;
             var p = 2 * l - q;
@@ -500,7 +499,7 @@ var CGSGColor = {
             b = this.hue2rgb(p, q, h - 1 / 3);
         }
 
-        return {r : r * 255, g : g * 255, b : b * 255};
+        return {r: r * 255, g: g * 255, b: b * 255};
     },
 
     /**
@@ -510,15 +509,24 @@ var CGSGColor = {
      * @param t
      * @return {*}
      */
-    hue2rgb : function(p, q, t) {
-        if (t &lt; 0) t += 1;
-        if (t &gt; 1) t -= 1;
-        if (t &lt; 1 / 6) return p + (q - p) * 6 * t;
-        if (t &lt; 1 / 2) return q;
-        if (t &lt; 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+    hue2rgb: function (p, q, t) {
+        if (t &lt; 0) {
+            t += 1;
+        }
+        if (t &gt; 1) {
+            t -= 1;
+        }
+        if (t &lt; 1 / 6) {
+            return p + (q - p) * 6 * t;
+        }
+        if (t &lt; 1 / 2) {
+            return q;
+        }
+        if (t &lt; 2 / 3) {
+            return p + (q - p) * (2 / 3 - t) * 6;
+        }
         return p;
     },
-
 
     /**
      * HSV to RGB converter.
@@ -529,7 +537,7 @@ var CGSGColor = {
      * @param {Number} v the value
      * @return {Object} A {r, g, b} object
      */
-    hsv2rgb : function(h, s, v) {
+    hsv2rgb: function (h, s, v) {
         var r, g, b;
 
         var i = Math.floor(h * 6);
@@ -559,7 +567,7 @@ var CGSGColor = {
                 break;
         }
 
-        return {r : r * 255, g : g * 255, b : b * 255};
+        return {r: r * 255, g: g * 255, b: b * 255};
     }
 
 };

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.colorPicker.js - sceneGraph.js</title>
+    <title>src/node/class.node.colorPicker.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.colorPicker.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.colorPicker.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -261,7 +261,7 @@
  */
 var CGSGNodeColorPicker = CGSGNode.extend(
     {
-        initialize : function(x, y, w, h) {
+        initialize: function (x, y, w, h) {
             this._super(x, y);
             this.resizeTo(w, h);
 
@@ -273,13 +273,13 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             this._imgData = null;
 
             var that = this;
-            this.onMouseOver = function(event) {
+            this.onMouseOver = function (event) {
                 that._onMouseOverHandler(event);
             };
-            this.onMouseUp = function(event) {
+            this.onMouseUp = function (event) {
                 that._onClickHandler(event);
             };
-            this.onClick = function(event) {
+            this.onClick = function (event) {
                 that._onClickHandler(event);
             };
 
@@ -314,7 +314,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          * @param {Event} event
          * @private
          */
-        _onMouseOverHandler : function(event) {
+        _onMouseOverHandler: function (event) {
             if (cgsgExist(this.onOverColor)) {
                 var rgb = this.getColorAt(event.data.positions[0]);
 
@@ -327,7 +327,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          * @param {Event} event
          * @private
          */
-        _onClickHandler : function(event) {
+        _onClickHandler: function (event) {
             if (cgsgExist(this.onClickColor)) {
                 var rgb = this.getColorAt(event.data.positions[0]);
 
@@ -340,7 +340,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          * @param {CGSGPosition} absolutePosition position of the cursor inside the colorPicker
          * @return {Object} Object with {r:x, g:x, b:x} value
          */
-        getColorAt : function(absolutePosition) {
+        getColorAt: function (absolutePosition) {
             var ap = this._absPos;//getAbsPosition();
             var aw = this.getAbsWidth();
             //get the color under the mice
@@ -350,9 +350,9 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             var x = CGSGMath.fixedPoint((absolutePosition.x - ap.x) /*/ this.getAbsScale().x*/);
             var y = CGSGMath.fixedPoint((absolutePosition.y - ap.y) /*/ this.getAbsScale().y*/);
 
-            return {r : data[((aw * y) + x) * 4],
-                g     : data[((aw * y) + x) * 4 + 1],
-                b     : data[((aw * y) + x) * 4 + 2]};
+            return {r: data[((aw * y) + x) * 4],
+                g    : data[((aw * y) + x) * 4 + 1],
+                b    : data[((aw * y) + x) * 4 + 2]};
         },
 
         /**
@@ -361,7 +361,7 @@ var CGSGNodeColorPicker = CGSGNode.extend(
          * @protected
          * @param {CanvasRenderingContext2D} context the context into render the node
          * */
-        render : function(context) {
+        render: function (context) {
             this._imgData = context.createImageData(this.getWidth(), this.getHeight());
 
             //draw the colors panel
@@ -370,12 +370,12 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             var widthGray = CGSGMath.fixedPoint(Math.min(this.getWidth() * 0.1, 20));
             var width = this.getWidth() - widthGray;
             var steps = [
-                {index : 1, sens : 1},
-                {index : 0, sens : -1},
-                {index : 2, sens : 1},
-                {index : 1, sens : -1},
-                {index : 0, sens : 1},
-                {index : 2, sens : -1}
+                {index: 1, sens: 1},
+                {index: 0, sens: -1},
+                {index: 2, sens: 1},
+                {index: 1, sens: -1},
+                {index: 0, sens: 1},
+                {index: 2, sens: -1}
             ];
             //A color is divided in 256 values (from 0 to 255).
             //ALl these 256 values won&#x27;t be displayed because a lack of space in the screen (limited to this.getWidth().
@@ -385,8 +385,8 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             var halfH = this.getHeight() / 2;
 
             //the white to black column
-            for (x = 0 ; x &lt; widthGray ; x++) {
-                for (y = 0 ; y &lt; this.getHeight() ; y++) {
+            for (x = 0; x &lt; widthGray; x++) {
+                for (y = 0; y &lt; this.getHeight(); y++) {
                     //current pixel in the linear table
                     currentPixel = (y * this.getWidth() + x) * 4; // 4 because 4 values per pixel : RGBA
 
@@ -400,10 +400,10 @@ var CGSGNodeColorPicker = CGSGNode.extend(
             }
 
             //the colors columns
-            for (x = widthGray ; x &lt; this.getWidth() ; x++) {
+            for (x = widthGray; x &lt; this.getWidth(); x++) {
                 if (clr &lt; 6) {
                     intensity = 1;
-                    for (y = 0 ; y &lt; this.getHeight() ; y++) {
+                    for (y = 0; y &lt; this.getHeight(); y++) {
                         //current pixel in the linear table
                         currentPixel = (y * this.getWidth() + x) * 4; // 4 because 4 values per pixel : RGBA
 

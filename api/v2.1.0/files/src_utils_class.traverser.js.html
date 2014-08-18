@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\class.traverser.js - sceneGraph.js</title>
+    <title>src/utils/class.traverser.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\class.traverser.js</h1>
+                        <h1 class="file-heading">File: src/utils/class.traverser.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -261,7 +261,7 @@
  */
 var CGSGTraverser = CGSGObject.extend(
     {
-        initialize : function() {
+        initialize: function () {
             /**
              * Last results provided by the last check
              * @property lastResults
@@ -290,7 +290,7 @@ var CGSGTraverser = CGSGObject.extend(
                     ...
                 }
          */
-        traverse : function(rootNode, condition, excludedNodes) {
+        traverse: function (rootNode, condition, excludedNodes) {
             this.lastResults.clear();
 
             if (cgsgExist(condition)) {
@@ -307,7 +307,7 @@ var CGSGTraverser = CGSGObject.extend(
          * @param {Function} condition
          * @param {Array} excludedNodes
          */
-        _check : function(rootNode, condition, excludedNodes) {
+        _check: function (rootNode, condition, excludedNodes) {
             if (rootNode.isTraversable === true) {
                 var exclusionExist = cgsgExist(excludedNodes) &amp;&amp; excludedNodes.length &gt; 0;
 
@@ -315,7 +315,7 @@ var CGSGTraverser = CGSGObject.extend(
                     this.lastResults.push(rootNode);
                 }
 
-                for (var i = rootNode.children.length - 1 ; i &gt;= 0 ; --i) {
+                for (var i = rootNode.children.length - 1; i &gt;= 0; --i) {
                     var childNode = rootNode.children[i];
                     this._check(childNode, condition, excludedNodes);
                 }

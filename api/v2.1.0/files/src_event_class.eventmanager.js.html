@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\event\class.eventmanager.js - sceneGraph.js</title>
+    <title>src/event/class.eventmanager.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\event\class.eventmanager.js</h1>
+                        <h1 class="file-heading">File: src/event/class.eventmanager.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -265,7 +265,7 @@
 
 var CGSGBindEntry = CGSGObject.extend(
     {
-        initialize : function(observable, attributeName, isAdditional) {
+        initialize: function (observable, attributeName, isAdditional) {
             this._observable = observable;
             this._attributeName = attributeName;
             this._isAdditional = isAdditional;
@@ -285,7 +285,7 @@ var CGSGBindEntry = CGSGObject.extend(
 
 var CGSGEventManager = CGSGObject.extend(
     {
-        initialize : function() {
+        initialize: function () {
             this._handlerPropertyPrefix = &quot;cgsgEventManager_&quot; + new Date().getTime() + &quot;_&quot;;
             this._table = new CGSGMap();
         },
@@ -297,7 +297,7 @@ var CGSGEventManager = CGSGObject.extend(
          * @param key {CGSGBindEntry} the key
          * @param handler {Function} the new handler
          */
-        replaceHandler : function(key, handler) {
+        replaceHandler: function (key, handler) {
             var obs = key._observable;
 
             // Direct access
@@ -326,7 +326,7 @@ var CGSGEventManager = CGSGObject.extend(
          * @param handler {Function} the handler
          * @return {CGSGBindEntry} the ID of the binding
          */
-        bindHandler : function(observable, eventName, handler) {
+        bindHandler: function (observable, eventName, handler) {
             //check if the same event was already bound via a simple command (ex: &quot;this.xxx.onClick = function() {...}&quot;)
             var additional = cgsgExist(observable[eventName]);
             var attributeName;
@@ -353,7 +353,6 @@ var CGSGEventManager = CGSGObject.extend(
             return entry;
         },
 
-
         /**
          * Notifies an event to all handlers bound to the given event on the given observable object. For performance
          * reasons, this method must not be called if no handler is bound to the observable. Consequently, for instance,
@@ -368,7 +367,7 @@ var CGSGEventManager = CGSGObject.extend(
          * @param eventName {String} The event&#x27;s name
          * @param event {CGSGEvent} the event to notify
          */
-        dispatch : function(observable, eventName, event) {
+        dispatch: function (observable, eventName, event) {
             // Member with event name must exist
             event.observable = observable;
             event.type = eventName;
@@ -386,7 +385,7 @@ var CGSGEventManager = CGSGObject.extend(
 
                 // Additional handlers should be notified too
                 if (cgsgExist(handler)) {
-                    cgsgIterate(handler, function(i, handler) {
+                    cgsgIterate(handler, function (i, handler) {
                         handler(event);
 
                         // Loop will be broken if propagate flag has been set to false by the handler
@@ -404,7 +403,7 @@ var CGSGEventManager = CGSGObject.extend(
          * @param eventName {String} The event&#x27;s name
          * @param handler {Function} the handler
          */
-        unbindHandler : function(observable, eventName, handler) {
+        unbindHandler: function (observable, eventName, handler) {
             var i, len, entry;
 
             // Handler to remove is the one corresponding to the attribute named with the eventName
@@ -423,7 +422,7 @@ var CGSGEventManager = CGSGObject.extend(
             }
 
             // Purge table
-            for (i = 0, len = this._table.getLength() ; i &lt; len ; i++) {
+            for (i = 0, len = this._table.getLength(); i &lt; len; i++) {
                 entry = this._table.getAt(i);
 
                 if (entry.value === handler) {
@@ -440,7 +439,7 @@ var CGSGEventManager = CGSGObject.extend(
          * @param observable {Object} the observable object
          * @param eventName {String} The event&#x27;s name
          */
-        unbindAll : function(observable, eventName) {
+        unbindAll: function (observable, eventName) {
             // Attribute named with eventName is deleted
             observable[eventName] = null;
 
@@ -464,7 +463,7 @@ var CGSGEventManager = CGSGObject.extend(
          * @return {String} the attribute name
          * @private
          */
-        _getHandlerPropertyName : function(eventName) {
+        _getHandlerPropertyName: function (eventName) {
             return this._handlerPropertyPrefix + eventName;
         }
     }

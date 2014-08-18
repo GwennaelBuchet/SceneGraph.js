@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.tabMenu.js - sceneGraph.js</title>
+    <title>src/node/class.node.tabMenu.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.tabMenu.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.tabMenu.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -265,7 +265,7 @@ var CGSGTABHEIGHT = 35;
  */
 var CGSGNodeTabMenu = CGSGNode.extend(
     {
-        initialize : function(x, y, w) {
+        initialize: function (x, y, w) {
             //call the constructor of CGSGNode
             this._super(x, y);
             this.resizeTo(w, CGSGTABHEIGHT);
@@ -328,7 +328,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
          * @param {CGSGNode} view the root node for the view to show when is that is activated
          * @return {Object} The new created tab
          */
-        addTab : function(text, view) {
+        addTab: function (text, view) {
             var button = new CGSGNodeButton(0, 0, text);
             //button.setHorizontalPadding(10);
             //button.setVerticalPadding(8);
@@ -340,17 +340,16 @@ var CGSGNodeTabMenu = CGSGNode.extend(
             button.setTextClasses([&quot;custom-normal&quot;, &quot;custom-over&quot;, &quot;custom-deactivated&quot;, &quot;custom-selected&quot;]);
             button.setClasses([&quot;custom-normal&quot;, &quot;custom-over&quot;, &quot;custom-deactivated&quot;, &quot;custom-selected&quot;]);
 
-
             //button.lineWidth = 1;
             //button.strokeColor = &quot;#A0A0A0&quot;;
             //button.setRadiuses([this._buttonRadius, this._buttonRadius, this._buttonRadius]);
             //button._initShapes();
 
-            var tab = {button : button, view : view};
+            var tab = {button: button, view: view};
             this.tabs.push(tab);
 
             var that = this;
-            button.onClick = function(event) {
+            button.onClick = function (event) {
                 that.selectTab(tab);
             };
 
@@ -358,8 +357,9 @@ var CGSGNodeTabMenu = CGSGNode.extend(
 
             this._recomputeButtonsWidth();
 
-            if (!cgsgExist(this._selectedTab))
+            if (!cgsgExist(this._selectedTab)) {
                 this.selectTab(tab);
+            }
 
             return tab;
         },
@@ -370,7 +370,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
          * @param {Object} tab
          * @return {Object} the selected tab
          */
-        selectTab : function(tab) {
+        selectTab: function (tab) {
             if (cgsgExist(this._selectedTab)) {
                 if (cgsgExist(this._selectedTab.view)) {
                     this._selectedTab.view.isVisible = true;
@@ -381,7 +381,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
             this._tabsBaseline.addChild(tab.view);
             this._selectedTab = tab;
 
-            for (var i = 0 ; i &lt; this.tabs.length ; i++) {
+            for (var i = 0; i &lt; this.tabs.length; i++) {
                 this.tabs[i].view.isVisible = false;
                 this.tabs[i].view.isTraversable = false;
                 this.tabs[i].button.setMode(CGSGButtonMode.NORMAL);
@@ -396,7 +396,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
             this.hideUnderline.resizeTo(tab.button.getWidth(), 1);
 
             if (cgsgExist(this.onTabChanged)) {
-                this.onTabChanged({tab : tab});
+                this.onTabChanged({tab: tab});
             }
 
             return tab;
@@ -407,7 +407,7 @@ var CGSGNodeTabMenu = CGSGNode.extend(
          * @param {Number} index
          * @return {Object} the selected tab
          */
-        selectTabByIndex : function(index) {
+        selectTabByIndex: function (index) {
             return this.selectTab(this.tabs[index]);
         },
 
@@ -416,11 +416,11 @@ var CGSGNodeTabMenu = CGSGNode.extend(
          * @method _recomputeButtonsWidth
          * @private
          */
-        _recomputeButtonsWidth : function() {
+        _recomputeButtonsWidth: function () {
             var totalWidth = 0;
             var i;
             var bw = 0; //biggest width
-            for (i = 0 ; i &lt; this.tabs.length ; i++) {
+            for (i = 0; i &lt; this.tabs.length; i++) {
                 var w = this.tabs[i].button.getWidth();
                 totalWidth += w;
                 bw = Math.max(bw, w);
@@ -432,13 +432,13 @@ var CGSGNodeTabMenu = CGSGNode.extend(
                 //common width
                 var cw = this.getWidth() / this.tabs.length;
 
-                for (i = 0 ; i &lt; this.tabs.length ; i++) {
+                for (i = 0; i &lt; this.tabs.length; i++) {
                     this.tabs[i].button.setFixedSize(new CGSGDimension(cw, CGSGTABHEIGHT));
                     this.tabs[i].button.translateTo(i * cw, 0);
                 }
             }
             else {
-                for (i = 0 ; i &lt; this.tabs.length ; i++) {
+                for (i = 0; i &lt; this.tabs.length; i++) {
                     this.tabs[i].button.setFixedSize(new CGSGDimension(bw, CGSGTABHEIGHT));
                     this.tabs[i].button.translateTo(i * bw, 0);
                 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\effects\class.effect.grayscale.js - sceneGraph.js</title>
+    <title>src/effects/class.effect.grayscale.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\effects\class.effect.grayscale.js</h1>
+                        <h1 class="file-heading">File: src/effects/class.effect.grayscale.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -262,7 +262,7 @@
  */
 var CGSGEffectGrayScale = CGSGEffect.extend(
     {
-        initialize : function() {
+        initialize: function () {
             this._super();
         },
 
@@ -273,12 +273,12 @@ var CGSGEffectGrayScale = CGSGEffect.extend(
          *  @param {Number} width width for the image to be modified
          *  @param {Number} height height for the image to be modified
          */
-        render : function(context, width, height) {
+        render: function (context, width, height) {
             try {
                 var imageData = context.getImageData(0, 0, width, height);
                 var data = imageData.data;
 
-                for (var i = 0 ; i &lt; data.length ; i += 4) {
+                for (var i = 0; i &lt; data.length; i += 4) {
                     var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
 
                     data[i] = brightness; // red

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.circle.js - sceneGraph.js</title>
+    <title>src/node/class.node.circle.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.circle.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.circle.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -268,7 +268,7 @@
  */
 var CGSGNodeCircle = CGSGNode.extend(
     {
-        initialize : function(x, y, radius) {
+        initialize: function (x, y, radius) {
 
             /**
              * @property classType
@@ -292,7 +292,7 @@ var CGSGNodeCircle = CGSGNode.extend(
             //this.translateTo(centerX - radius, centerY - radius);
         },
 
-        render : function(c) {
+        render: function (c) {
             c.save();
             //c.translate(this.radius, this.radius);
             c.beginPath();
@@ -316,22 +316,22 @@ var CGSGNodeCircle = CGSGNode.extend(
          * @method _resize
          * @private
          */
-        _resize : function() {
+        _resize: function () {
             this.radius = CGSGMath.fixedPoint(this.dimension.width / 2);
             this._isDimensionChanged = true;
             this.invalidate();
             if (cgsgExist(this.onResize)) {
-                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node : this}));
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
             }
         },
 
-        resizeTo : function(w, h) {
+        resizeTo: function (w, h) {
             var r = Math.min(w, h);
             this.dimension.resizeTo(r, r);
             this._resize();
         },
 
-        resizeBy : function(w, h) {
+        resizeBy: function (w, h) {
             var mw = w * this.dimension.width;
             var mh = h * this.dimension.height;
             var r = (mw &lt; mh) ? w : h;
@@ -339,7 +339,7 @@ var CGSGNodeCircle = CGSGNode.extend(
             this._resize();
         },
 
-        resizeWith : function(w, h) {
+        resizeWith: function (w, h) {
             var mw = w + this.dimension.width;
             var mh = h + this.dimension.height;
             var r = (mw &lt; mh) ? w : h;
@@ -351,7 +351,7 @@ var CGSGNodeCircle = CGSGNode.extend(
          * @method copy
          * @return {CGSGNodeCircle} a copy of this node
          */
-        copy : function() {
+        copy: function () {
             var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
             //call the super method
             return this._super(node);

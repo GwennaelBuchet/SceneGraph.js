@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\animation\class.anim.timeline.js - sceneGraph.js</title>
+    <title>src/animation/class.anim.timeline.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\animation\class.anim.timeline.js</h1>
+                        <h1 class="file-heading">File: src/animation/class.anim.timeline.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -269,7 +269,7 @@
  */
 var CGSGTimeline = CGSGObject.extend(
     {
-        initialize : function(parentNode, attribute) {
+        initialize: function (parentNode, attribute) {
 
             /**
              * The animated nodes
@@ -285,7 +285,6 @@ var CGSGTimeline = CGSGObject.extend(
              * @type {String}
              */
             this.attribute = attribute;
-
 
             /**
              * @property _method
@@ -339,8 +338,8 @@ var CGSGTimeline = CGSGObject.extend(
          * @param {Number} frame. Must be an integer value.
          * @param {Number} value
          */
-        addKey : function(frame, value) {
-            this._listKeys.push(new CGSGKeyFrame(frame, {x : value, y : 0}));
+        addKey: function (frame, value) {
+            this._listKeys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
             this.sortByFrame(this._listKeys);
 
             this.listValues.clear();
@@ -354,7 +353,7 @@ var CGSGTimeline = CGSGObject.extend(
          * @method removeKey
          * @param frame {Number} Must be an integer value.
          */
-        removeKey : function(frame) {
+        removeKey: function (frame) {
             this._removeKeyToList(frame, this._listKeys);
             this._removeKeyToList(frame, this._listErpKeys);
 
@@ -369,15 +368,15 @@ var CGSGTimeline = CGSGObject.extend(
          * @param frame1 {number}
          * @param frame2 {number}
          */
-        removeKeysBetween : function(frame1, frame2) {
+        removeKeysBetween: function (frame1, frame2) {
             var k;
-            for (k = this._listKeys.length - 1 ; k &gt;= 0 ; k--) {
+            for (k = this._listKeys.length - 1; k &gt;= 0; k--) {
                 if (this._listKeys[k].frame &gt;= frame1 &amp;&amp; this._listKeys[k].frame &lt;= frame2) {
                     this._listKeys.without(this._listKeys[k]);
                 }
             }
 
-            for (k = this._listErpKeys.length - 1 ; k &gt;= 0 ; k--) {
+            for (k = this._listErpKeys.length - 1; k &gt;= 0; k--) {
                 if (this._listErpKeys[k].frame &gt;= frame1 &amp;&amp; this._listErpKeys[k].frame &lt;= frame2) {
                     this._listErpKeys.without(this._listErpKeys[k]);
                 }
@@ -386,19 +385,19 @@ var CGSGTimeline = CGSGObject.extend(
             this.listValues.clear();
         },
 
-        addInterpolationKey : function(frame, value) {
+        addInterpolationKey: function (frame, value) {
             this._removeKeyToList(frame, this._listErpKeys);
-            this._listErpKeys.push(new CGSGKeyFrame(frame, {x : value, y : 0}));
+            this._listErpKeys.push(new CGSGKeyFrame(frame, {x: value, y: 0}));
             this.sortByFrame(this._listErpKeys);
         },
 
-        removeInterpolationKey : function(frame) {
+        removeInterpolationKey: function (frame) {
             this._removeKeyToList(frame, this._listErpKeys);
         },
 
-        _removeKeyToList : function(frame, list) {
+        _removeKeyToList: function (frame, list) {
             var key = null, k = 0;
-            for (k ; k &lt; list.length - 1 ; k++) {
+            for (k; k &lt; list.length - 1; k++) {
                 if (list[k].frame === frame) {
                     key = list[k];
                     break;
@@ -412,7 +411,7 @@ var CGSGTimeline = CGSGObject.extend(
          * @public
          * @method removeAll
          */
-        removeAll : function() {
+        removeAll: function () {
             this.listValues.clear();
             this._listKeys.clear();
             this._listErpKeys.clear();
@@ -424,10 +423,10 @@ var CGSGTimeline = CGSGObject.extend(
          * @private
          * @method _computeNumberOfFrameBetweenKeys
          */
-        _computeNumberOfFrameBetweenKeys : function() {
+        _computeNumberOfFrameBetweenKeys: function () {
             this._numberOfFrameBetweenKeys.clear();
             var nbFrameInSection = 0, k = 0;
-            for (k ; k &lt; this._listErpKeys.length - 1 ; k++) {
+            for (k; k &lt; this._listErpKeys.length - 1; k++) {
                 nbFrameInSection = this._listErpKeys[k + 1].frame - this._listErpKeys[k].frame;
                 this._numberOfFrameBetweenKeys.push(nbFrameInSection);
             }
@@ -438,7 +437,7 @@ var CGSGTimeline = CGSGObject.extend(
          * @method getNbKeys
          * @return {Number} the number of keys in this timeline. Must be an integer value.
          */
-        getNbKeys : function() {
+        getNbKeys: function () {
             return this._listKeys.length;
         },
 
@@ -447,8 +446,8 @@ var CGSGTimeline = CGSGObject.extend(
          * @public
          * @method sortByFrame
          */
-        sortByFrame : function(list) {
-            list.sort(function(a, b) {
+        sortByFrame: function (list) {
+            list.sort(function (a, b) {
                 return a.frame - b.frame;
             });
         },
@@ -458,7 +457,7 @@ var CGSGTimeline = CGSGObject.extend(
          * @public
          * @method compute
          */
-        compute : function() {
+        compute: function () {
             //empty the list of values
             this.listValues.clear();
             if (this.getNbKeys() &lt; 1) {
@@ -473,7 +472,7 @@ var CGSGTimeline = CGSGObject.extend(
          * @method getFirstKey
          * @return {CGSGKeyFrame} the first key frame of this timeline
          */
-        getFirstKey : function() {
+        getFirstKey: function () {
             if (this.getNbKeys() === 0) {
                 return null;
             }
@@ -485,7 +484,7 @@ var CGSGTimeline = CGSGObject.extend(
          * @method getLastKey
          * @return {CGSGKeyFrame} the last key frame of this timeline
          */
-        getLastKey : function() {
+        getLastKey: function () {
             if (this.getNbKeys() === 0) {
                 return null;
             }
@@ -504,7 +503,7 @@ var CGSGTimeline = CGSGObject.extend(
          * If the frame is before the first key, returns the first key value
          * If the frame is after the last key, returns the last key value
          */
-        getValue : function(frame) {
+        getValue: function (frame) {
             var nbKeys = this.getNbKeys();
 
             //if no keys : no animation
@@ -540,13 +539,13 @@ var CGSGTimeline = CGSGObject.extend(
          * @method exportValues
          * @return {Array}
          */
-        exportValues : function() {
+        exportValues: function () {
             if (this.listValues.length === 0) {
                 this.compute();
             }
 
             var values = [], i;
-            for (i = 0 ; i &lt; this.listValues.length ; i++) {
+            for (i = 0; i &lt; this.listValues.length; i++) {
                 values.push(this.listValues[i]);
             }
             return values;
@@ -559,11 +558,11 @@ var CGSGTimeline = CGSGObject.extend(
          * @param newValues {Array} of new values
          * @param startFrame {Number} Must be an integer value.
          */
-        importValues : function(newValues, startFrame) {
+        importValues: function (newValues, startFrame) {
             this.addKey(startFrame, newValues[0]);
             this.addKey(startFrame + newValues.length - 1, newValues[newValues.length - 1]);
             var i;
-            for (i = 0 ; i &lt; newValues.length ; i++) {
+            for (i = 0; i &lt; newValues.length; i++) {
                 this.listValues.push(newValues[i]);
             }
         }

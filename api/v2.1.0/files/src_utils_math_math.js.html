@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\math\math.js - sceneGraph.js</title>
+    <title>src/utils/math/math.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\math\math.js</h1>
+                        <h1 class="file-heading">File: src/utils/math/math.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -268,7 +268,7 @@ var CGSGMath = {
      * @static
      * @property PI2
      */
-    PI2 : 6.28318530718, //Math.PI * 2.0,
+    PI2: 6.28318530718, //Math.PI * 2.0,
 
     /**
      * Convert degree to radian
@@ -277,7 +277,7 @@ var CGSGMath = {
      * @param {Number} angle
      * @return {Number} The radian value
      */
-    deg2rad : function(angle) {
+    deg2rad: function (angle) {
         return (angle / 180.0) * Math.PI;
     },
 
@@ -288,7 +288,7 @@ var CGSGMath = {
      * @param {Number} angle
      * @return {Number} The degree value
      */
-    rad2deg : function(angle) {
+    rad2deg: function (angle) {
         return angle * 57.29577951308232;
     },
 
@@ -299,7 +299,7 @@ var CGSGMath = {
      * @param {Number} n
      * @return {Number} The integer value
      */
-    fixedPoint : function(n) {
+    fixedPoint: function (n) {
         return (0.5 + n) &lt;&lt; 0;
     },
 
@@ -312,7 +312,7 @@ var CGSGMath = {
      * @param {Number} weight Percentage to apply to the first value
      * @return {Number} The interpolated value
      */
-    lerp : function(from, to, weight) {
+    lerp: function (from, to, weight) {
         return from + (to - from) * weight;
     }
 };

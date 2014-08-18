@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\interpolator\class.interpolator.linear.js - sceneGraph.js</title>
+    <title>src/interpolator/class.interpolator.linear.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\interpolator\class.interpolator.linear.js</h1>
+                        <h1 class="file-heading">File: src/interpolator/class.interpolator.linear.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -264,9 +264,8 @@
  */
 var CGSGInterpolatorLinear = CGSGInterpolator.extend(
     {
-        initialize : function() {
+        initialize: function () {
         },
-
 
         /**
          * @method compute
@@ -274,33 +273,33 @@ var CGSGInterpolatorLinear = CGSGInterpolator.extend(
          * @param steps {Array} Array of steps between 2 keys. steps.length = keys.length - 1.
          * @return {Array} Array of {x, y} object corresponding to all the points in the curve
          */
-        compute : function(keys, steps) {
+        compute: function (keys, steps) {
             var k, s, lenk = keys.length, lens, frame, key, nextKey, stepX, stepY;
             var values = [];
 
-            for (k = 0 ; k &lt; lenk - 1 ; k++) {
+            for (k = 0; k &lt; lenk - 1; k++) {
                 key = keys[k];
                 nextKey = keys[k + 1];
                 lens = steps[k];
                 stepX = (nextKey.value.x - key.value.x) / steps[k];
                 stepY = (nextKey.value.y - key.value.y) / steps[k];
 
-                for (s = 0 ; s &lt; lens ; s++) {
+                for (s = 0; s &lt; lens; s++) {
                     frame = s;
                     if (frame === key.frame) {
-                        values.push({x : key.value.x, y : key.value.y});
+                        values.push({x: key.value.x, y: key.value.y});
                     }
                     else if (frame === nextKey.frame) {
-                        values.push({x : nextKey.value.x, y : nextKey.value.y});
+                        values.push({x: nextKey.value.x, y: nextKey.value.y});
                     }
                     else {
-                        values.push({x : keys[k].value.x + s * stepX, y : keys[k].value.y + s * stepY});
+                        values.push({x: keys[k].value.x + s * stepX, y: keys[k].value.y + s * stepY});
                     }
                 }
             }
 
             var lk = keys[lenk - 1];
-            values.push({x : lk.value.x, y : lk.value.y});
+            values.push({x: lk.value.x, y: lk.value.y});
 
             return values;
         }

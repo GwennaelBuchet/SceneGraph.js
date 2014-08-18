@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\mask\class.mask.clip.js - sceneGraph.js</title>
+    <title>src/mask/class.mask.clip.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\mask\class.mask.clip.js</h1>
+                        <h1 class="file-heading">File: src/mask/class.mask.clip.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -265,7 +265,7 @@
 
 var CGSGMaskClip = CGSGMask.extend(
     {
-        initialize : function(clipRegion) {
+        initialize: function (clipRegion) {
             this._super();
             this._maskRegion = clipRegion;
 
@@ -288,7 +288,7 @@ var CGSGMaskClip = CGSGMask.extend(
          * @param context {CanvasRenderingContext2D} the context where the region will be clipped
          * @return {CanvasRenderingContext2D} the context to use
          */
-        prepare : function(node, context) {
+        prepare: function (node, context) {
             this._saveContext = context;
             this.canDrawImage = true;
 
@@ -377,7 +377,7 @@ var CGSGMaskClip = CGSGMask.extend(
          * @param context {CanvasRenderingContext2D} the context returned by prepare()
          * @return {CanvasRenderingContext2D} the context that was used to invoke prepare()
          */
-        finalize : function(node, context) {
+        finalize: function (node, context) {
 
             if (this.canDrawImage) {
                 //node.scaleTo(1, 1, true);

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\util.global.js - sceneGraph.js</title>
+    <title>src/utils/util.global.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\util.global.js</h1>
+                        <h1 class="file-heading">File: src/utils/util.global.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -266,8 +266,9 @@
  * @return {boolean} true if the parameter !== null &amp;&amp; !== undefined &amp;&amp; (!isNaN(o) &amp;&amp; isFinite(o))
  */
 function cgsgExist(o) {
-    if (typeof o === &#x27;number&#x27;)
+    if (typeof o === &#x27;number&#x27;) {
         return !isNaN(o) &amp;&amp; isFinite(o);
+    }
 
     return (o !== null &amp;&amp; o !== undefined);
 }
@@ -284,15 +285,15 @@ function cgsgDetectCurrentExplorer() {
     var fullVersion = &#x27;&#x27; + parseFloat(navigator.appVersion);
     var nameOffset, versionOffset;
 
-    if ((versionOffset = userAgent.indexOf(&quot;Opera&quot;)) != -1) {
+    if ((versionOffset = userAgent.indexOf(&quot;Opera&quot;)) !== -1) {
         //noinspection JSUndeclaredVariable
         cgsgCurrentExplorer = cgsgExplorerParams.OPERA;
         fullVersion = userAgent.substring(versionOffset + 6);
-        if ((versionOffset = userAgent.indexOf(&quot;Version&quot;)) != -1) {
+        if ((versionOffset = userAgent.indexOf(&quot;Version&quot;)) !== -1) {
             fullVersion = userAgent.substring(versionOffset + 8);
         }
     }
-    else if ((versionOffset = userAgent.indexOf(&quot;MSIE&quot;)) != -1) {
+    else if ((versionOffset = userAgent.indexOf(&quot;MSIE&quot;)) !== -1) {
         browserName = &quot;Microsoft Internet Explorer&quot;;
         //noinspection JSUndeclaredVariable
         cgsgCurrentExplorer = cgsgExplorerParams.IE9;
@@ -302,20 +303,20 @@ function cgsgDetectCurrentExplorer() {
             cgsgCurrentExplorer = cgsgExplorerParams.IE10;
         }
     }
-    else if ((versionOffset = userAgent.indexOf(&quot;Chrome&quot;)) != -1) {
+    else if ((versionOffset = userAgent.indexOf(&quot;Chrome&quot;)) !== -1) {
         //noinspection JSUndeclaredVariable
         cgsgCurrentExplorer = cgsgExplorerParams.CHROME;
         fullVersion = userAgent.substring(versionOffset + 7);
     }
-    else if ((versionOffset = userAgent.indexOf(&quot;Safari&quot;)) != -1) {
+    else if ((versionOffset = userAgent.indexOf(&quot;Safari&quot;)) !== -1) {
         //noinspection JSUndeclaredVariable
         cgsgCurrentExplorer = cgsgExplorerParams.SAFARI;
         fullVersion = userAgent.substring(versionOffset + 7);
-        if ((versionOffset = userAgent.indexOf(&quot;Version&quot;)) != -1) {
+        if ((versionOffset = userAgent.indexOf(&quot;Version&quot;)) !== -1) {
             fullVersion = userAgent.substring(versionOffset + 8);
         }
     }
-    else if ((versionOffset = userAgent.indexOf(&quot;Firefox&quot;)) != -1) {
+    else if ((versionOffset = userAgent.indexOf(&quot;Firefox&quot;)) !== -1) {
         //noinspection JSUndeclaredVariable
         cgsgCurrentExplorer = cgsgExplorerParams.FIREFOX;
         fullVersion = userAgent.substring(versionOffset + 8);
@@ -422,7 +423,7 @@ function cgsgGetCursorPositions(event, canvas) {
     //if multi-touch, get all the positions
     if (event.targetTouches) { // or changedTouches
         var touchPoints = (typeof event.targetTouches !== &#x27;undefined&#x27;) ? event.targetTouches : [event];
-        for (var i = 0 ; i &lt; touchPoints.length ; i++) {
+        for (var i = 0; i &lt; touchPoints.length; i++) {
             touch = touchPoints[i];
 
             positions.push(new CGSGPosition((touch.pageX - offsetX) / CGSG.displayRatio.x,
@@ -461,7 +462,7 @@ function cgsgClearContext(context) {
 function cgsgIterate(array, callback) {
     var i = 0, len = array.length;
 
-    for (; i &lt; len &amp;&amp; callback(i, array[i++]) !== false ;) {
+    for (; i &lt; len &amp;&amp; callback(i, array[i++]) !== false;) {
     }
 }
 
@@ -478,7 +479,7 @@ function cgsgIterate(array, callback) {
 function cgsgIterateReverse(array, callback) {
     var i = array.length - 1;
 
-    for (; i &gt;= 0 &amp;&amp; callback(i, array[i--]) !== false ;) {
+    for (; i &gt;= 0 &amp;&amp; callback(i, array[i--]) !== false;) {
     }
 }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.accordion.js - sceneGraph.js</title>
+    <title>src/node/class.node.accordion.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.accordion.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.accordion.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -243,7 +243,7 @@
  */
 var CGSGAccordion = CGSGNode.extend(
     {
-        initialize : function(x, y, width, height, sectionWidth, sectionHeight) {
+        initialize: function (x, y, width, height, sectionWidth, sectionHeight) {
             this._super(x, y, width, height);
 
             this.lineWidth = sectionWidth;
@@ -270,7 +270,7 @@ var CGSGAccordion = CGSGNode.extend(
          * @param {CGSGNode} title
          * @param {CGSGNode} core
          */
-        buildAndAddSection : function(title, core) {
+        buildAndAddSection: function (title, core) {
             var section = new CGSGSection(0, 0, this.lineWidth, this.lineHeight);
             //add the title to the section.
             section.setTitle(title);
@@ -285,7 +285,7 @@ var CGSGAccordion = CGSGNode.extend(
 
             //bind selection onClick
             var that = this;
-            section.onClick = function(e) {
+            section.onClick = function (e) {
                 that.selectSection(e.data.node);
             };
 
@@ -298,7 +298,7 @@ var CGSGAccordion = CGSGNode.extend(
          * @method removeSectionAt
          * @param {Number} index
          */
-        removeSectionAt : function(index) {
+        removeSectionAt: function (index) {
 
             var section = this.sections.splice(index, 1);
 
@@ -314,10 +314,10 @@ var CGSGAccordion = CGSGNode.extend(
         /**
          * Display the core of the selected
          * @method selectSection
-         * @param {CGSGNode} section
+         * @param {CGSGSection} section
          */
-        selectSection : function(section) {
-            var open = section.isOpen != true;
+        selectSection: function (section) {
+            var open = section.isOpen !== true;
             this.deselectAll();
 
             if (open) {
@@ -328,7 +328,7 @@ var CGSGAccordion = CGSGNode.extend(
                                               this.lineHeight + section.core.getHeight() + this.padding, 0);
 
                 //translate other section
-                for (var i = 0 ; i &lt; this.sections.length ; i++) {
+                for (var i = 0; i &lt; this.sections.length; i++) {
                     if (section.index &lt; this.sections[i].index) {
                         CGSG.animationManager.animate(this.sections[i], &quot;position.y&quot;, this.speed,
                                                       this.sections[i].position.y,
@@ -344,9 +344,9 @@ var CGSGAccordion = CGSGNode.extend(
          * deselect all the section.
          * @method deselectAll
          */
-        deselectAll : function() {
+        deselectAll: function () {
 
-            for (var i = 0 ; i &lt; this.sections.length ; i++) {
+            for (var i = 0; i &lt; this.sections.length; i++) {
                 //reorder the section
                 CGSG.animationManager.animate(this.sections[i], &quot;position.y&quot;, this.speed, this.sections[i].position.y,
                                               this.sections[i].index * (this.lineHeight + this.interLine), 0);
@@ -379,7 +379,7 @@ var CGSGAccordion = CGSGNode.extend(
  */
 var CGSGSection = CGSGNode.extend(
     {
-        initialize : function(x, y, width, height) {
+        initialize: function (x, y, width, height) {
             this._super(x, y);
             this.resizeTo(width, height);
 
@@ -390,7 +390,6 @@ var CGSGSection = CGSGNode.extend(
             this.mask = new CGSGMaskClip(new CGSGRegion(0, 0, this.getWidth(), this.getHeight()));
             this.mask.apply(this);
 
-
         },
 
         /**
@@ -398,7 +397,7 @@ var CGSGSection = CGSGNode.extend(
          * @method setTitle
          * @param {String} title
          */
-        setTitle : function(title) {
+        setTitle: function (title) {
 
             var titleNode = new CGSGNodeText(0, 0, title);
             titleNode.setSize(12);
@@ -406,20 +405,19 @@ var CGSGSection = CGSGNode.extend(
             titleNode.isClickable = false;
 
             this.titleNode = title;
-            this.titleNode.translateTo(this.getHeight(), ( this.getHeight() - this.titleNode.getHeight() ) / 2)
+            this.titleNode.translateTo(this.getHeight(), (this.getHeight() - this.titleNode.getHeight() ) / 2);
             this.addChildAt(titleNode, 0);
         },
-
 
         /**
          * set the core of the section
          * @method setCore
          * @param {CGSGNode} core
          */
-        setCore : function(core) {
+        setCore: function (core) {
             this.core = core;
             this.addChildAt(this.core, 1);
-            this.core.translateTo(( this.getWidth() - this.core.getWidth() ) / 2, this.getHeight());
+            this.core.translateTo((this.getWidth() - this.core.getWidth() ) / 2, this.getHeight());
         },
 
         /**
@@ -427,11 +425,11 @@ var CGSGSection = CGSGNode.extend(
          * @method setBackgroundColor
          * @param color
          */
-        setBackgroundColor : function(color) {
+        setBackgroundColor: function (color) {
             this._backgroundColor = color;
         },
 
-        render : function(ctx) {
+        render: function (ctx) {
             ctx.beginPath();
             ctx.fillStyle = this._backgroundColor;
             ctx.globalAlpha = &quot;0.8&quot;;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.slider.js - sceneGraph.js</title>
+    <title>src/node/class.node.slider.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.slider.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.slider.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -240,7 +240,7 @@
 var CGSGNodeSliderHandle = CGSGNode.extend(
     {
 
-        initialize : function(handleWidth) {
+        initialize: function (handleWidth) {
             this._super(0, 0);
             this.resizeTo(handleWidth, handleWidth);
             //this.bkgcolor = &quot;#CCCCCC&quot;;
@@ -257,7 +257,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
          * @public
          * @return {CGSGNodeSlider} parent slider
          */
-        getParentSlider : function() {
+        getParentSlider: function () {
             return this._parentNode;
         },
 
@@ -267,7 +267,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
          * @method onSlide
          * @protected
          */
-        onSlide : function() {
+        onSlide: function () {
             this.handleWidth =
             Math.min(this._parentNode.getHeight(), this._parentNode.getWidth()) *
             2;
@@ -293,7 +293,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
          * @protected
          * @param c {CanvasRenderingContext2D} context the context into render the node
          */
-        render : function(c) {
+        render: function (c) {
 
             this.handleWidth =
             Math.min(this._parentNode.getHeight(), this._parentNode.getWidth()) *
@@ -351,7 +351,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
 var CGSGNodeSlider = CGSGNode.extend(
     {
 
-        initialize : function(x, y, width, height) {
+        initialize: function (x, y, width, height) {
             this._super(x, y);
             this.resizeTo(width, height);
             this.backgroundColor = &quot;#EEEEEE&quot;;
@@ -373,7 +373,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @protected
          * @param c {CanvasRenderingContext2D} context the context into render the node
          */
-        render : function(c) {
+        render: function (c) {
             c.save();
             this.outlineShape(c);
             this.renderBackground(c);
@@ -388,7 +388,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @private
          * @param c {CanvasRenderingContext2D} context the context into render the node
          */
-        outlineShape : function(c) {
+        outlineShape: function (c) {
             var borderRadius = Math.min(this.getWidth(), this.getHeight()) / 2;
             var width = this.getWidth();
             c.beginPath();
@@ -409,7 +409,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @private
          * @param c {CanvasRenderingContext2D} context the context into render the node
          */
-        renderBackground : function(c) {
+        renderBackground: function (c) {
 
             c.fillStyle = this.backgroundColor;
             c.strokeStyle = CGSGColor.darkenHex(this.backgroundColor, 0.8);
@@ -450,7 +450,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @private
          * @param c {CanvasRenderingContext2D} context the context into render the node
          */
-        renderValue : function(c) {
+        renderValue: function (c) {
 
             var fillEnd = this.getWidth() / Math.abs(this.max - this.min) *
                           Math.abs(this.value - this.min);
@@ -475,7 +475,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @method updateSliderHandle
          * @protected
          */
-        updateSliderHandle : function() {
+        updateSliderHandle: function () {
             var handleWidth = Math.min(this.getWidth(), this.getHeight()) * 2;
             var valuePosition = this.getWidth() / Math.abs(this.max - this.min) *
                                 Math.abs(this.value - this.min);
@@ -490,7 +490,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @public
          * @param {CGSGNode} [handle] slider&#x27;s handle
          */
-        setHandle : function(handle) {
+        setHandle: function (handle) {
             this.handle = handle;
             var handleWidth = Math.min(this.getWidth(), this.getHeight()) * 2;
             if (handle == undefined) {
@@ -511,7 +511,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @public
          * @return {CGSGNodeSliderHandle} [handle] slider&#x27;s handle
          */
-        getHandle : function() {
+        getHandle: function () {
             return this.handle;
         },
 
@@ -522,7 +522,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @public
          * @param {Number} min lower bound of this slider
          */
-        setMin : function(min) {
+        setMin: function (min) {
             if (min != null &amp;&amp; min != this.min &amp;&amp; min &lt; this.max) {
                 this.min = min;
                 this.updateSliderHandle();
@@ -536,7 +536,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @public
          * @param {Number} max upper bound of this slider
          */
-        setMax : function(max) {
+        setMax: function (max) {
             if (max != null &amp;&amp; max != this.max &amp;&amp; max &gt; this.min) {
                 this.max = max;
                 this.updateSliderHandle();
@@ -550,7 +550,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @public
          * @param {Number} value of this slider
          */
-        setValue : function(value) {
+        setValue: function (value) {
             if (value &gt;= this.min &amp;&amp; value &lt;= this.max) {
                 this.value = value;
                 this.updateSliderHandle();
@@ -564,7 +564,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @public
          * @return {Number} handle position in [0-1] range
          */
-        getValueAsRangeRatio : function() {
+        getValueAsRangeRatio: function () {
             return 1 - Math.abs((this.value + this.min) / (this.max - this.min));
         }
 

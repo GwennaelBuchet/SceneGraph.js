@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.square.js - sceneGraph.js</title>
+    <title>src/node/class.node.square.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.square.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.square.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -267,7 +267,7 @@
  */
 var CGSGNodeSquare = CGSGNode.extend(
     {
-        initialize : function(x, y, width, height) {
+        initialize: function (x, y, width, height) {
             this._super(x, y);
 
             this.resizeTo(width, height);
@@ -286,7 +286,7 @@ var CGSGNodeSquare = CGSGNode.extend(
          * @protected
          * @param c {CanvasRenderingContext2D} the context into render the node
          * */
-        render : function(c) {
+        render: function (c) {
             //Next lines are already managed by CGSGNode.
             //I let it here just to provide an example
 
@@ -328,8 +328,9 @@ var CGSGNodeSquare = CGSGNode.extend(
                 c.closePath();
 
                 c.fill();
-                if (this.lineWidth &gt; 0)
+                if (this.lineWidth &gt; 0) {
                     c.stroke();
+                }
 
                 c.restore();
             }
@@ -339,7 +340,7 @@ var CGSGNodeSquare = CGSGNode.extend(
          * @method copy
          * @return {CGSGNodeSquare} a copy of this node
          */
-        copy : function() {
+        copy: function () {
             var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
                                           this.dimension.height);
             //call the super method

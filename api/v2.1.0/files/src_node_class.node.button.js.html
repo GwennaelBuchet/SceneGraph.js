@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.button.js - sceneGraph.js</title>
+    <title>src/node/class.node.button.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.button.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.button.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -253,7 +253,7 @@
 
 var CGSGNodeButtonProps = CGSGObject.extend(
     {
-        initialize : function() {
+        initialize: function () {
             this.cls = [];
             this.firstColor = &quot;&quot;;
             this.lastColor = &quot;&quot;;
@@ -310,79 +310,77 @@ var CGSGButtonMode = {
     /**
      * @property NORMAL
      */
-    NORMAL      : {
-        id          : 0,
-        isClickable : true
+    NORMAL     : {
+        id         : 0,
+        isClickable: true
     },
     /**
      * @property OVER
      */
-    OVER        : {
-        id          : 1,
-        isClickable : true
+    OVER       : {
+        id         : 1,
+        isClickable: true
     },
     /**
      * @property DEACTIVATED
      */
-    DEACTIVATED : {
-        id          : 2,
-        isClickable : false
+    DEACTIVATED: {
+        id         : 2,
+        isClickable: false
     },
 
     /**
      * @property SELECTED
      */
-    SELECTED : {
-        id          : 3,
-        isClickable : true
+    SELECTED: {
+        id         : 3,
+        isClickable: true
     }
 };
-
 
 var CGSGPositionMode = {
     /**
      * @property TOP
      */
-    TOP : {index      : 0, decalX : 0, decalY : -1, dt : 1, dy : 1,
-        computeWidth  : function(item1, item2) {
+    TOP: {index      : 0, decalX: 0, decalY: -1, dt: 1, dy: 1,
+        computeWidth : function (item1, item2) {
             return Math.max(item1, item2);
         },
-        computeHeight : function(item1, item2) {
+        computeHeight: function (item1, item2) {
             return 0;
         }},
 
     /**
      * @property BOTTOM
      */
-    BOTTOM : {index   : 1, decalX : 0, decalY : 1, dt : 0, dy : 1,
-        computeWidth  : function(item1, item2) {
+    BOTTOM: {index   : 1, decalX: 0, decalY: 1, dt: 0, dy: 1,
+        computeWidth : function (item1, item2) {
             return Math.max(item1, item2);
         },
-        computeHeight : function(item1, item2) {
+        computeHeight: function (item1, item2) {
             return 0;
         }},
     /**
      * @property LEFT
      */
-    LEFT   : {index   : 2, decalX : -1, decalY : 0, dt : 0, dy : 0,
-        computeWidth  : function(item1, item2) {
+    LEFT  : {index   : 2, decalX: -1, decalY: 0, dt: 0, dy: 0,
+        computeWidth : function (item1, item2) {
             return 0;
         },
-        computeHeight : function(item1, item2) {
+        computeHeight: function (item1, item2) {
             return Math.max(item1, item2);
         }},
     /**
      * @property RIGHT
      */
-    RIGHT  : {index   : 3, decalX : 1, decalY : 0, dt : 1, dy : 0,
-        computeWidth  : function(item1, item2) {
+    RIGHT : {index   : 3, decalX: 1, decalY: 0, dt: 1, dy: 0,
+        computeWidth : function (item1, item2) {
             return 0;
         },
-        computeHeight : function(item1, item2) {
+        computeHeight: function (item1, item2) {
             return Math.max(item1, item2);
         }}
 };
-
 
 /**
  * A CGSGNodeButton represent a basic square
@@ -399,7 +397,7 @@ var CGSGPositionMode = {
  */
 var CGSGNodeButton = CGSGNode.extend(
     {
-        initialize : function(x, y, text) {
+        initialize: function (x, y, text) {
             /**
              * A properties group for each mode.
              * Index in this array corresponds to the id of the mode
@@ -477,13 +475,13 @@ var CGSGNodeButton = CGSGNode.extend(
             this.setTexts(text);
 
             var that = this;
-            this.onMouseOver = function(e) {
+            this.onMouseOver = function (e) {
                 if (that.getMode() == CGSGButtonMode.NORMAL) {
                     that.setMode(CGSGButtonMode.OVER);
                 }
             };
 
-            this.onMouseOut = function(e) {
+            this.onMouseOut = function (e) {
                 if (that.getMode() == CGSGButtonMode.OVER) {
                     that.setMode(CGSGButtonMode.NORMAL);
                 }
@@ -501,7 +499,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setPictoPosition
          * @param {CGSGPositionMode} p
          */
-        setPictoPosition : function(p) {
+        setPictoPosition: function (p) {
             this._pictoPosition = p;
             this.forceRedraw();
         },
@@ -512,7 +510,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param cls {String}
          * @param mode {CGSGButtonMode}
          */
-        setClassFor : function(cls, mode) {
+        setClassFor: function (cls, mode) {
             this._props[mode.id].cls = [];
             this._props[mode.id].cls.push(cls);
 
@@ -527,7 +525,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setClass
          * @param cls {String}
          */
-        setClass : function(cls) {
+        setClass: function (cls) {
             this._clearAllCls();
             this._props[CGSGButtonMode.NORMAL.id].cls.push(cls);
             this._props[CGSGButtonMode.OVER.id].cls.push(cls);
@@ -541,7 +539,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setClasses
          * @param clss {Array} Array of CSS class name
          */
-        setClasses : function(clss) {
+        setClasses: function (clss) {
             this._clearAllCls();
             this._props[CGSGButtonMode.NORMAL.id].cls.push(clss[0]);
             this._props[CGSGButtonMode.OVER.id].cls.push(clss[1]);
@@ -550,7 +548,7 @@ var CGSGNodeButton = CGSGNode.extend(
             this.invalidateTheme();
         },
 
-        _clearAllCls : function() {
+        _clearAllCls: function () {
             this._props[CGSGButtonMode.NORMAL.id].cls = [];
             this._props[CGSGButtonMode.OVER.id].cls = [];
             this._props[CGSGButtonMode.DEACTIVATED.id].cls = [];
@@ -564,7 +562,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param {String} cls
          * @param mode {CGSGButtonMode}
          */
-        addClassFor : function(cls, mode) {
+        addClassFor: function (cls, mode) {
             this._props[mode.id].cls.push(cls);
 
             this._props[mode.id]._invalSize = false;
@@ -579,7 +577,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method addClass
          * @param {String} cls
          */
-        addClass : function(cls) {
+        addClass: function (cls) {
             this._props[CGSGButtonMode.NORMAL.id].cls.push(cls);
             this._props[CGSGButtonMode.OVER.id].cls.push(cls);
             this._props[CGSGButtonMode.DEACTIVATED.id].cls.push(cls);
@@ -594,7 +592,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method addClasses
          * @param {Array} clss
          */
-        addClasses : function(clss) {
+        addClasses: function (clss) {
             this._props[CGSGButtonMode.NORMAL.id].cls.push(clss[0]);
             this._props[CGSGButtonMode.OVER.id].cls.push(clss[1]);
             this._props[CGSGButtonMode.DEACTIVATED.id].cls.push(clss[2]);
@@ -609,7 +607,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param {String} cls
          * @param {CGSGButtonMode} mode
          */
-        removeClassFor : function(cls, mode) {
+        removeClassFor: function (cls, mode) {
             this._props[mode.id].cls = this._props[mode.id].cls.without(cls);
             this.forceRedraw();
             this._loadAttrs(mode);
@@ -621,7 +619,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method removeClass
          * @param {String} cls
          */
-        removeClass : function(cls) {
+        removeClass: function (cls) {
             this._props[CGSGButtonMode.NORMAL.id].cls = this._props[CGSGButtonMode.NORMAL.id].without(cls);
             this._props[CGSGButtonMode.OVER.id].cls = this._props[CGSGButtonMode.OVER.id].without(cls);
             this._props[CGSGButtonMode.DEACTIVATED.id].cls = this._props[CGSGButtonMode.DEACTIVATED.id].without(cls);
@@ -635,7 +633,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param img {Image}
          * @param mode {CGSGButtonMode}
          */
-        setImageFor : function(img, mode) {
+        setImageFor: function (img, mode) {
             this._props[mode.id].icon.setImage(img);
         },
 
@@ -644,7 +642,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setImage
          * @param {Image} img
          */
-        setImage : function(img) {
+        setImage: function (img) {
             this._checkIcon();
 
             this.setImageFor(img, CGSGButtonMode.NORMAL);
@@ -660,7 +658,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setImageURL
          * @param url
          */
-        setImageURL : function(url) {
+        setImageURL: function (url) {
             this._checkIcon();
 
             this._props[CGSGButtonMode.NORMAL.id].icon.onLoadEnd = this._onLoadImageEndAll.bind(this);
@@ -673,16 +671,16 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param url
          * @param mode {CGSGButtonMode}
          */
-        setImageURLFor : function(url, mode) {
+        setImageURLFor: function (url, mode) {
             this._props[mode.id].icon.onLoadEnd = this._onLoadImageEndFor.bind(this);
             this._props[mode.id].icon.setURL(url);
         },
 
-        _onLoadImageEndFor : function() {
+        _onLoadImageEndFor: function () {
             this.forceRedraw();
         },
 
-        _onLoadImageEndAll : function() {
+        _onLoadImageEndAll: function () {
             var img = this._props[CGSGButtonMode.NORMAL.id].icon.getImage();
             this._props[CGSGButtonMode.OVER.id].icon.setImage(img);
             this._props[CGSGButtonMode.DEACTIVATED.id].icon.setImage(img);
@@ -697,7 +695,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method _checkIcon
          * @private
          */
-        _checkIcon : function() {
+        _checkIcon: function () {
             this._checkIconFor(CGSGButtonMode.NORMAL);
             this._checkIconFor(CGSGButtonMode.OVER);
             this._checkIconFor(CGSGButtonMode.DEACTIVATED);
@@ -709,9 +707,10 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param mode
          * @private
          */
-        _checkIconFor : function(mode) {
-            if (!cgsgExist(this._props[mode.id].icon))
+        _checkIconFor: function (mode) {
+            if (!cgsgExist(this._props[mode.id].icon)) {
                 this._props[mode.id].icon = new CGSGNodeImage(0, 0, null);
+            }
         },
 
         /**
@@ -719,7 +718,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getText
          * @return {Array}
          */
-        getTexts : function() {
+        getTexts: function () {
             return [CGSGButtonMode.NORMAL.props.txtNode._text, CGSGButtonMode.OVER.props.txtNode._text,
                     CGSGButtonMode.DEACTIVATED.props.txtNode._text, CGSGButtonMode.SELECTED.props.txtNode._text];
         },
@@ -728,7 +727,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * Force this node to be fully recomputed during next frame
          * @method forceRedraw
          */
-        forceRedraw : function() {
+        forceRedraw: function () {
             this._needRedraw = true;
 
             this._props[CGSGButtonMode.NORMAL.id]._invalSize = true;
@@ -744,7 +743,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @example
          *  button.setText([&quot;normal&quot;, &quot;over&quot;, &quot;deactivated&quot;]);
          */
-        setTexts : function(valuess) {
+        setTexts: function (valuess) {
             //if valuess is not an array, create an array of 4 times this values
             if (!cgsgIsArray(valuess)) {
                 var v = valuess.toString();
@@ -763,7 +762,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setTextClass
          * @param cls {String} CSS class name
          */
-        setTextClass : function(cls) {
+        setTextClass: function (cls) {
             this._props[CGSGButtonMode.NORMAL.id].txtNode.setClass(cls);
             this._props[CGSGButtonMode.OVER.id].txtNode.setClass(cls);
             this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.setClass(cls);
@@ -775,7 +774,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setTextClasses
          * @param clss {Array} Array of CSS class name
          */
-        setTextClasses : function(clss) {
+        setTextClasses: function (clss) {
             this._props[CGSGButtonMode.NORMAL.id].txtNode.setClass(clss[0]);
             this._props[CGSGButtonMode.OVER.id].txtNode.setClass(clss[1]);
             this._props[CGSGButtonMode.DEACTIVATED.id].txtNode.setClass(clss[2]);
@@ -788,7 +787,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param mode {CGSGButtonMode}
          * @param cls {String} CSS class name
          */
-        setTextClassFor : function(cls, mode) {
+        setTextClassFor: function (cls, mode) {
             this._props[mode.id].txtNode.setClass(cls);
             this.invalidate();
         },
@@ -797,7 +796,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setFixedSize
          * @param {CGSGDimension} dim Can be null to remove fixed size
          */
-        setFixedSize : function(dim) {
+        setFixedSize: function (dim) {
             this._props[CGSGButtonMode.NORMAL.id].dimension = dim;
             this._props[CGSGButtonMode.OVER.id].dimension = dim;
             this._props[CGSGButtonMode.DEACTIVATED.id].dimension = dim;
@@ -812,7 +811,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setSlices
          * @param slices {Array} array of region for all 4 modes
          */
-        setSlices : function(slices) {
+        setSlices: function (slices) {
             this._props[CGSGButtonMode.NORMAL.id].slice = slices[0];
             this._props[CGSGButtonMode.OVER.id].slice = slices[1];
             this._props[CGSGButtonMode.DEACTIVATED.id].slice = slices[2];
@@ -825,7 +824,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param slice {CGSGRegion}
          * @param mode {CGSGButtonMode}
          */
-        setSliceFor : function(slice, mode) {
+        setSliceFor: function (slice, mode) {
             this._props[mode.id].slice = slice;
             this._props[mode.id]._invalSize = true;
 
@@ -836,7 +835,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * Reload theme (colors, ...) from loaded CSS file
          * @method invalidateTheme
          */
-        invalidateTheme : function() {
+        invalidateTheme: function () {
             this._super();
 
             this._props[CGSGButtonMode.NORMAL.id].txtNode.invalidateTheme();
@@ -853,7 +852,7 @@ var CGSGNodeButton = CGSGNode.extend(
             this.invalidate();
         },
 
-        invalidate : function() {
+        invalidate: function () {
             if (cgsgExist(this._isInitialized) &amp;&amp; this._isInitialized === true) {
                 this._initShapes();
             }
@@ -864,7 +863,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param mode {CGSGButtonMode}
          * @private
          */
-        _loadAttrs : function(mode) {
+        _loadAttrs: function (mode) {
             var cls = this._props[mode.id].cls;
             var id = mode.id;
             var prop = this._props[id];
@@ -876,8 +875,9 @@ var CGSGNodeButton = CGSGNode.extend(
             var paddingH = CGSG.cssManager.getAttrInArray(cls, &quot;padding-left&quot;);
             var radius = CGSG.cssManager.getAttrInArray(cls, &quot;border-radius&quot;);
             var icon = CGSG.cssManager.getAttrInArray(cls, &quot;icon&quot;);
-            if (!cgsgExist(icon))
+            if (!cgsgExist(icon)) {
                 icon = CGSG.cssManager.getAttrInArray(cls, &quot;list-style-image&quot;);
+            }
 
             //Avoid to override previous value if no one is defined now. So check existence of new one first.
             if (cgsgExist(fillStyle)) {
@@ -891,22 +891,28 @@ var CGSGNodeButton = CGSGNode.extend(
                 prop.lastColor = CGSGColor.rgb2hex(rgb2.r, rgb2.g, rgb2.b);
             }
 
-            if (cgsgExist(lineColor))
+            if (cgsgExist(lineColor)) {
                 prop.lineColor = lineColor;
+            }
 
-            if (cgsgExist(radius))
+            if (cgsgExist(radius)) {
                 prop.radius = CGSG.cssManager.getNumber(radius);
+            }
 
-            if (cgsgExist(lineWidth))
+            if (cgsgExist(lineWidth)) {
                 prop.lineWidth = CGSG.cssManager.getNumber(lineWidth);
+            }
 
-            if (cgsgExist(lineColor))
+            if (cgsgExist(lineColor)) {
                 prop.lineColor = lineColor;
+            }
 
-            if (cgsgExist(paddingV))
+            if (cgsgExist(paddingV)) {
                 prop.paddingV = CGSG.cssManager.getNumber(paddingV);
-            if (cgsgExist(paddingH))
+            }
+            if (cgsgExist(paddingH)) {
                 prop.paddingH = CGSG.cssManager.getNumber(paddingH);
+            }
 
             if (cgsgExist(icon)) {
                 this._checkIconFor(mode);
@@ -920,7 +926,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param {Number} width
          * @param {Number} height
          * */
-        resizeWith : function(width, height) {
+        resizeWith: function (width, height) {
             this._needRedraw = true;
 
             this._super(width, height);
@@ -931,7 +937,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method _initShape
          * @private
          */
-        _initShapes : function() {
+        _initShapes: function () {
             this._initShape(CGSGButtonMode.NORMAL);
             this._initShape(CGSGButtonMode.OVER);
             this._initShape(CGSGButtonMode.DEACTIVATED);
@@ -945,7 +951,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @param mode
          * @private
          */
-        _initShape : function(mode) {
+        _initShape: function (mode) {
             var id = mode.id;
             var prop = this._props[id];
             var txtNode = prop.txtNode;
@@ -1029,9 +1035,9 @@ var CGSGNodeButton = CGSGNode.extend(
                 tmpContext.closePath();
 
                 /*var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
-                gradient.addColorStop(0, prop.firstColor);
-                gradient.addColorStop(1, prop.lastColor);
-                tmpContext.fillStyle = gradient;*/
+                 gradient.addColorStop(0, prop.firstColor);
+                 gradient.addColorStop(1, prop.lastColor);
+                 tmpContext.fillStyle = gradient;*/
                 if (!cgsgExist(prop.lastColor)) {
                     tmpContext.fillStyle = prop.firstColor;
                 }
@@ -1086,7 +1092,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method setMode
          * @param mode
          */
-        setMode : function(mode) {
+        setMode: function (mode) {
             this._currentMode = mode;
             this.isClickable = mode.isClickable;
             this.dimension.resizeTo(this._props[mode.id].dimension.width, this._props[mode.id].dimension.height);
@@ -1097,7 +1103,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method getMode
          * @return {CGSGButtonMode}
          */
-        getMode : function() {
+        getMode: function () {
             return this._currentMode;
         },
 
@@ -1107,7 +1113,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @protected
          * @param {CanvasRenderingContext2D} context the context into render the node
          * */
-        render : function(context) {
+        render: function (context) {
             if (this._needRedraw) {
                 this._initShapes();
             }
@@ -1120,7 +1126,7 @@ var CGSGNodeButton = CGSGNode.extend(
          * @method copy
          * @return {CGSGNodeSquare} a copy of this node
          */
-        copy : function() {
+        copy: function () {
             var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
                                           this.dimension.height);
             //call the super method

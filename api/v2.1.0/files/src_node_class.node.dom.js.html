@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\node\class.node.dom.js - sceneGraph.js</title>
+    <title>src/node/class.node.dom.js - sceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="sceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="sceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\node\class.node.dom.js</h1>
+                        <h1 class="file-heading">File: src/node/class.node.dom.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -270,7 +270,7 @@
  */
 var CGSGNodeDomElement = CGSGNode.extend(
     {
-        initialize : function(x, y, width, height, el) {
+        initialize: function (x, y, width, height, el) {
             this._super(x, y);
 
             this.resizeTo(CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
@@ -308,7 +308,7 @@ var CGSGNodeDomElement = CGSGNode.extend(
          * Updates the styles of the wrapped DOM element to change its position and size inside the scene.
          * @method updateCssRegion
          */
-        updateCssRegion : function() {
+        updateCssRegion: function () {
             if (cgsgExist(this._htmlElement)) {
                 this._htmlElement.style.left = (this.getAbsLeft() + this.threshold) + &quot;px&quot;;
                 this._htmlElement.style.top = (this.getAbsTop() + this.threshold) + &quot;px&quot;;
@@ -322,11 +322,12 @@ var CGSGNodeDomElement = CGSGNode.extend(
          * @method render
          * Custom rendering
          * */
-        render : function(c) {
+        render: function (c) {
             //we draw the rect at (0,0) because we have already translated the context to the correct position
             c.fillRect(0, 0, this.getWidth(), this.getHeight());
-            if (this.lineWidth &gt; 0)
+            if (this.lineWidth &gt; 0) {
                 c.strokeRect(0, 0, this.getWidth(), this.getHeight());
+            }
 
             this.updateCssRegion();
         },
@@ -336,7 +337,7 @@ var CGSGNodeDomElement = CGSGNode.extend(
          * @method copy
          * @return {CGSGNodeDomElement}
          */
-        copy : function() {
+        copy: function () {
             var node = new CGSGNodeDomElement(this.position.x, this.position.y, this.dimension.width,
                                               this.dimension.height, this._htmlElement);
             //call the super method
