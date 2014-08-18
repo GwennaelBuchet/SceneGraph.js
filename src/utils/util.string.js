@@ -23,16 +23,14 @@
  *  These Terms of Use are subject to French law.
  */
 
-
 /**
  * Return same String without string in parameter
  * @method String.prototype.without
  * @param t {String}
  * @return {String}
  */
-String.prototype.without = function(t) {
-	var r = this.replace(t, "");
-	return r;
+String.prototype.without = function (t) {
+    return this.replace(t, "");
 };
 
 /**
@@ -40,14 +38,14 @@ String.prototype.without = function(t) {
  * @method String.prototype.collapse
  * @return {String}
  */
-String.prototype.collapse = function() {
-	var w = this.split("-");
-	var s = w[0];
-	for (var i = 1, l = w.length ; i < l ; i++) {
-		s += w[i].capitalize();
-	}
+String.prototype.collapse = function () {
+    var w = this.split("-");
+    var s = w[0];
+    for (var i = 1, l = w.length; i < l; i++) {
+        s += w[i].capitalize();
+    }
 
-	return s;
+    return s;
 };
 
 /**
@@ -55,11 +53,12 @@ String.prototype.collapse = function() {
  * @method String.prototype.addFirstDot
  * @return {String} A String with the first '.'
  */
-String.prototype.addFirstDot = function() {
-	if (this.indexOf(".") !== 0)
-		return "." + this;
+String.prototype.addFirstDot = function () {
+    if (this.indexOf(".") !== 0) {
+        return "." + this;
+    }
 
-	return this;
+    return this;
 };
 
 /**
@@ -68,10 +67,10 @@ String.prototype.addFirstDot = function() {
  * @param lower {boolean} if true, all other letters will be lowercased
  * @return {string}
  */
-String.prototype.capitalize = function(lower) {
-	return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) {
-		return a.toUpperCase();
-	});
+String.prototype.capitalize = function (lower) {
+    return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function (a) {
+        return a.toUpperCase();
+    });
 };
 
 

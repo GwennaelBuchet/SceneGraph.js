@@ -36,34 +36,34 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGImgManager = CGSGObject.extend(
-	{
-		initialize : function() {
-			/**
-			 * @property _mapURL
-			 * @type {CGSGMap} [URL; Image]
-			 */
-			this._mapURL = new CGSGMap();
-		},
+    {
+        initialize: function () {
+            /**
+             * @property _mapURL
+             * @type {CGSGMap} [URL; Image]
+             */
+            this._mapURL = new CGSGMap();
+        },
 
-		/**
-		 * @method get
-		 * @param url {String}
-		 * @return {Image} or null if doesn't exist yet
-		 */
-		get : function(url) {
-			return this._mapURL.getValue(url);
-		},
+        /**
+         * @method get
+         * @param url {String}
+         * @return {Image} or null if doesn't exist yet
+         */
+        get: function (url) {
+            return this._mapURL.getValue(url);
+        },
 
-		/**
-		 * @method set
-		 * @param url {String}
-		 * @param img {Image}
-		 */
-		set : function(url, img) {
-			this._mapURL.addOrReplace(url, img);
-		}
+        /**
+         * @method set
+         * @param url {String}
+         * @param img {Image}
+         */
+        set: function (url, img) {
+            this._mapURL.addOrReplace(url, img);
+        }
 
-	}
+    }
 );
 
 var cgsgImgManager = new CGSGImgManager();

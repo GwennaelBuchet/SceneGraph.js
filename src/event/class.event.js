@@ -38,46 +38,46 @@
  */
 
 var CGSGEvent = CGSGObject.extend(
-	{
-		initialize : function(trigger, data) {
+    {
+        initialize: function (trigger, data) {
 
-			/**
-			 * Object which has created this event
-			 * @property trigger
-			 * @type {Object} the trigger
-			 */
-			this.trigger = trigger;
+            /**
+             * Object which has created this event
+             * @property trigger
+             * @type {Object} the trigger
+             */
+            this.trigger = trigger;
 
-			/**
-			 * Data wrapped in this event
-			 * @property data
-			 * @type {Object} the wrapped data
-			 */
-			this.data = data;
+            /**
+             * Data wrapped in this event
+             * @property data
+             * @type {Object} the wrapped data
+             */
+            this.data = data;
 
-			/**
-			 * Fields that should be filled by object which triggers this event
-			 * @property observable
-			 * @default null
-			 * @type {Object} the observable object
-			 */
-			this.observable = null;
+            /**
+             * Fields that should be filled by object which triggers this event
+             * @property observable
+             * @default null
+             * @type {Object} the observable object
+             */
+            this.observable = null;
 
-			/**
-			 * Fields that should be filled by object which triggers this event
-			 * @property type
-			 * @default null
-			 * @type {String} the type of event
-			 */
-			this.type = null;
+            /**
+             * Fields that should be filled by object which triggers this event
+             * @property type
+             * @default null
+             * @type {String} the type of event
+             */
+            this.type = null;
 
-			/**
-			 * Flags which indicates if events which are going to be dispatched should be ignored
-			 * @property propagate
-			 * @default true
-			 * @type {boolean} true if next events should be dispatched, false otherwise
-			 */
-			this.propagate = true;
-		}
-	}
+            /**
+             * Flags which indicates if events which are going to be dispatched should be ignored
+             * @property propagate
+             * @default true
+             * @type {boolean} true if next events should be dispatched, false otherwise
+             */
+            this.propagate = true;
+        }
+    }
 );

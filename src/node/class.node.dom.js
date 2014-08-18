@@ -41,82 +41,83 @@
  * @type {CGSGNodeWebview}
  */
 var CGSGNodeDomElement = CGSGNode.extend(
-	{
-		initialize : function(x, y, width, height, el) {
-			this._super(x, y);
+    {
+        initialize: function (x, y, width, height, el) {
+            this._super(x, y);
 
-			this.resizeTo(CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
+            this.resizeTo(CGSGMath.fixedPoint(width), CGSGMath.fixedPoint(height));
 
-			/**
-			 * Size of the area around the element
-			 * @property threshold
-			 * @default 20
-			 * @type {Number}
-			 */
-			this.threshold = 20;
+            /**
+             * Size of the area around the element
+             * @property threshold
+             * @default 20
+             * @type {Number}
+             */
+            this.threshold = 20;
 
-			/**
-			 * @property classType
-			 * @type {String}
-			 */
-			this.classType = "CGSGNodeDomElement";
+            /**
+             * @property classType
+             * @type {String}
+             */
+            this.classType = "CGSGNodeDomElement";
 
-			/**
-			 * A HTML tag that contains the element
-			 * @property _htmlElement
-			 * @type {HTMLElement}
-			 * @private
-			 */
-			this._htmlElement = el;
+            /**
+             * A HTML tag that contains the element
+             * @property _htmlElement
+             * @type {HTMLElement}
+             * @private
+             */
+            this._htmlElement = el;
 
-			// We work in absolute position
-			this._htmlElement.style.position = "absolute";
-			this.updateCssRegion();
+            // We work in absolute position
+            this._htmlElement.style.position = "absolute";
+            this.updateCssRegion();
 
-			// Listen
-		},
+            // Listen
+        },
 
-		/**
-		 * Updates the styles of the wrapped DOM element to change its position and size inside the scene.
-		 * @method updateCssRegion
-		 */
-		updateCssRegion : function() {
-			if (cgsgExist(this._htmlElement)) {
-				this._htmlElement.style.left = (this.getAbsLeft() + this.threshold) + "px";
-				this._htmlElement.style.top = (this.getAbsTop() + this.threshold) + "px";
-				this._htmlElement.style.width = (this.getAbsWidth() - this.threshold * 2) + "px";
-				this._htmlElement.style.height = (this.getAbsHeight() - this.threshold * 2) + "px";
-			}
-		},
+        /**
+         * Updates the styles of the wrapped DOM element to change its position and size inside the scene.
+         * @method updateCssRegion
+         */
+        updateCssRegion: function () {
+            if (cgsgExist(this._htmlElement)) {
+                this._htmlElement.style.left = (this.getAbsLeft() + this.threshold) + "px";
+                this._htmlElement.style.top = (this.getAbsTop() + this.threshold) + "px";
+                this._htmlElement.style.width = (this.getAbsWidth() - this.threshold * 2) + "px";
+                this._htmlElement.style.height = (this.getAbsHeight() - this.threshold * 2) + "px";
+            }
+        },
 
-		/**
-		 * @protected
-		 * @method render
-		 * Custom rendering
-		 * */
-		render : function(c) {
-			//we draw the rect at (0,0) because we have already translated the context to the correct position
-			c.fillRect(0, 0, this.getWidth(), this.getHeight());
-			if (this.lineWidth > 0)
-				c.strokeRect(0, 0, this.getWidth(), this.getHeight());
+        /**
+         * @protected
+         * @method render
+         * Custom rendering
+         * */
+        render: function (c) {
+            //we draw the rect at (0,0) because we have already translated the context to the correct position
+            c.fillRect(0, 0, this.getWidth(), this.getHeight());
+            if (this.lineWidth > 0) {
+                c.strokeRect(0, 0, this.getWidth(), this.getHeight());
+            }
 
-			this.updateCssRegion();
-		},
+            this.updateCssRegion();
+        },
 
-		/**
-		 * Return the copy of this node
-		 * @method copy
-		 * @return {CGSGNodeDomElement}
-		 */
-		copy : function() {
-			var node = new CGSGNodeDomElement(this.position.x, this.position.y, this.dimension.width,
-											  this.dimension.height, this._htmlElement);
-			//call the super method
-			node = this._super(node);
+        /**
+         * Return the copy of this node
+         * @method copy
+         * @return {CGSGNodeDomElement}
+         */
+        copy: function () {
+            var node = new CGSGNodeDomElement(this.position.x, this.position.y, this.dimension.width,
+                                              this.dimension.height, this._htmlElement);
+            //call the super method
+            node = this._super(node);
 
-			node.threshold = this.threshold;
+            node.threshold = this.threshold;
 
-			return node;
-		}
-	}
+            return node;
+        }
+    }
 );

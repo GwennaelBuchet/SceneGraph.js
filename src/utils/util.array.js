@@ -40,7 +40,7 @@
  * @return {Boolean}
  */
 function cgsgIsArray(value) {
-	return (Object.prototype.toString.call(value) === '[object Array]');
+    return (Object.prototype.toString.call(value) === '[object Array]');
 }
 
 /**
@@ -48,29 +48,29 @@ function cgsgIsArray(value) {
  * @method Array.prototype.without
  * @param item
  */
-Array.prototype.without = function(item) {
-	for (var i = 0 ; i < this.length ; i++) {
-		if (this[i] == item) {
-			this.splice(i, 1);
-			//break;
-		}
-	}
+Array.prototype.without = function (item) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] === item) {
+            this.splice(i, 1);
+            //break;
+        }
+    }
 };
 
 /**
  * Remove the item at the end of this array
  * @method Array.prototype.pop
  */
-Array.prototype.pop = function() {
-	this.splice(this.length - 1, 1);
+Array.prototype.pop = function () {
+    this.splice(this.length - 1, 1);
 };
 
 /**
  * Empty the array
  * @method Array.prototype.clear
  */
-Array.prototype.clear = function() {
-	this.length = 0;
+Array.prototype.clear = function () {
+    this.length = 0;
 };
 
 /**
@@ -78,8 +78,8 @@ Array.prototype.clear = function() {
  * @method Array.prototype.isEmpty
  * @return {Boolean} true if the array is empty
  */
-Array.prototype.isEmpty = function() {
-	return this.length === 0;
+Array.prototype.isEmpty = function () {
+    return this.length === 0;
 };
 
 /**
@@ -88,8 +88,8 @@ Array.prototype.isEmpty = function() {
  * @method Array.prototype.clone
  * @return {Array}
  */
-Array.prototype.clone = function() {
-	return this.slice(0);
+Array.prototype.clone = function () {
+    return this.slice(0);
 };
 
 /**
@@ -98,18 +98,18 @@ Array.prototype.clone = function() {
  * @method Array.prototype.copy
  * @return {Array}
  */
-Array.prototype.copy = function() {
-	var a = [];
-	for (var i = 0 ; i < this.length ; i++) {
-		if (this[i].copy) {
-			a.push(this[i].copy());
-		}
-		else {
-			a.push(this[i]);
-		}
-	}
+Array.prototype.copy = function () {
+    var a = [];
+    for (var i = 0; i < this.length; i++) {
+        if (this[i].copy) {
+            a.push(this[i].copy());
+        }
+        else {
+            a.push(this[i]);
+        }
+    }
 
-	return a;
+    return a;
 };
 
 /**
@@ -118,13 +118,13 @@ Array.prototype.copy = function() {
  * @param item
  * @return {Boolean}
  */
-Array.prototype.contains = function(item) {
-	for (var i = 0 ; i < this.length ; i++) {
-		if (this[i] == item) {
-			return true;
-		}
-	}
-	return false;
+Array.prototype.contains = function (item) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == item) {
+            return true;
+        }
+    }
+    return false;
 };
 
 /**
@@ -132,16 +132,16 @@ Array.prototype.contains = function(item) {
  *  @method Array.prototype.unique
  *  @return {Array}
  */
-Array.prototype.unique = function() {
-	var tmp = [], i;
-	this.sort();
-	for (i = 0 ; i < this.length ; i++) {
-		if (this[i] !== this[i + 1]) {
-			tmp[tmp.length] = this[i];
-		}
-	}
+Array.prototype.unique = function () {
+    var tmp = [], i;
+    this.sort();
+    for (i = 0; i < this.length; i++) {
+        if (this[i] !== this[i + 1]) {
+            tmp[tmp.length] = this[i];
+        }
+    }
 
-	return tmp;
+    return tmp;
 };
 
 /**
@@ -149,13 +149,13 @@ Array.prototype.unique = function() {
  * @method Array.prototype.sum
  * @return {Number}
  */
-Array.prototype.sum = function() {
-	var sum = 0;
-	for (var i = 0 ; i < this.length ; i++) {
-		sum += parseInt(this[i]);
-	}
+Array.prototype.sum = function () {
+    var sum = 0;
+    for (var i = 0; i < this.length; i++) {
+        sum += parseInt(this[i]);
+    }
 
-	return sum;
+    return sum;
 };
 
 /**
@@ -163,7 +163,7 @@ Array.prototype.sum = function() {
  * @method Array.prototype.average
  * @return {Number}
  */
-Array.prototype.average = function() {
-	return this.sum() / this.length;
+Array.prototype.average = function () {
+    return this.sum() / this.length;
 };
 

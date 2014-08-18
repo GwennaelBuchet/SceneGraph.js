@@ -94,8 +94,8 @@ var CGMain = CGSGView.extend(
 
             //to force the check of the dimension ofr this new image:
             this.imgNode.onLoadEnd = function(event) {
-                event.node.checkDimension();
-            }
+                event.data.node.checkDimension();
+            };
 		}
 	}
 );

@@ -36,76 +36,76 @@
  * @type {CGSGPosition}
  */
 var CGSGPosition = CGSGVector2D.extend(
-	{
-		initialize : function(x, y) {
-			this._super(x, y);
-		},
+    {
+        initialize: function (x, y) {
+            this._super(x, y);
+        },
 
-		/**
-		 * Indicates if this position meaningfully equals to the given position.
-		 * @public
-		 * @method equalsTo
-		 * @param position {CGSGPosition} the position to compare to this position
-		 * @return {Boolean} true if given position exists and has same coordinates as this position, false otherwise
-		 */
-		equalsTo : function(position) {
-			return cgsgExist(position) && position.x === this.x && position.y === this.y;
-		},
+        /**
+         * Indicates if this position meaningfully equals to the given position.
+         * @public
+         * @method equalsTo
+         * @param position {CGSGPosition} the position to compare to this position
+         * @return {Boolean} true if given position exists and has same coordinates as this position, false otherwise
+         */
+        equalsTo: function (position) {
+            return cgsgExist(position) && position.x === this.x && position.y === this.y;
+        },
 
-		/**
-		 * return a new object with these attributes
-		 * @public
-		 * @method copy
-		 * @return {CGSGPosition}
-		 */
-		copy : function() {
-			return new CGSGPosition(this.x, this.y);
-		},
+        /**
+         * return a new object with these attributes
+         * @public
+         * @method copy
+         * @return {CGSGPosition}
+         */
+        copy: function () {
+            return new CGSGPosition(this.x, this.y);
+        },
 
-		/**
-		 * Replace current relative position by this new one
-		 * @method translateTo
-		 * @param {Number} newX
-		 * @param {Number} newY
-		 */
-		translateTo : function(newX, newY) {
-			this.x = newX;
-			this.y = newY;
-		},
+        /**
+         * Replace current relative position by this new one
+         * @method translateTo
+         * @param {Number} newX
+         * @param {Number} newY
+         */
+        translateTo: function (newX, newY) {
+            this.x = newX;
+            this.y = newY;
+        },
 
-		/**
-		 * Add new coordinate to the current relative one
-		 * @public
-		 * @method translateWith
-		 * @param {Number} x
-		 * @param {Number} y
-		 */
-		translateWith : function(x, y) {
-			this.x += x;
-			this.y += y;
-		},
+        /**
+         * Add new coordinate to the current relative one
+         * @public
+         * @method translateWith
+         * @param {Number} x
+         * @param {Number} y
+         */
+        translateWith: function (x, y) {
+            this.x += x;
+            this.y += y;
+        },
 
-		/**
-		 * Add new coordinate to the current relative one
-		 * @public
-		 * @method translateBy
-		 * @param {Number} x
-		 * @param {Number} y
-		 */
-		translateBy : function(x, y) {
-			this.x *= x;
-			this.y *= y;
-		},
+        /**
+         * Add new coordinate to the current relative one
+         * @public
+         * @method translateBy
+         * @param {Number} x
+         * @param {Number} y
+         */
+        translateBy: function (x, y) {
+            this.x *= x;
+            this.y *= y;
+        },
 
-		/**
-		 * Return true if x<0 || y<0
-		 * @method isNegative
-		 * @return {boolean}
-		 */
-		isNegative : function() {
-			return (this.x < 0 || this.y < 0);
-		}
-	}
+        /**
+         * Return true if x<0 || y<0
+         * @method isNegative
+         * @return {boolean}
+         */
+        isNegative: function () {
+            return (this.x < 0 || this.y < 0);
+        }
+    }
 );
 
 /**
@@ -119,11 +119,11 @@ var CGSGPosition = CGSGVector2D.extend(
  * @type {CGSGScale}
  */
 var CGSGScale = CGSGPosition.extend(
-	{
-		initialize : function(x, y) {
-			this._super(x, y);
-		}
-	}
+    {
+        initialize: function (x, y) {
+            this._super(x, y);
+        }
+    }
 );
 
 /**
@@ -136,81 +136,81 @@ var CGSGScale = CGSGPosition.extend(
  * @type {CGSGRotation}
  */
 var CGSGRotation = CGSGObject.extend(
-	{
-		initialize : function(angle) {
-			this.angle = angle;
-		},
+    {
+        initialize: function (angle) {
+            this.angle = angle;
+        },
 
-		/**
-		 * return a new object with these attributes
-		 * @public
-		 * @method copy
-		 * @return {CGSGRotation}
-		 */
-		copy : function() {
-			return new CGSGRotation(this.angle);
-		},
+        /**
+         * return a new object with these attributes
+         * @public
+         * @method copy
+         * @return {CGSGRotation}
+         */
+        copy: function () {
+            return new CGSGRotation(this.angle);
+        },
 
-		/**
-		 * Replace current angle by this new one
-		 * @public
-		 * @method rotateTo
-		 * @param {Number} newAngle
-		 */
-		rotateTo : function(newAngle) {
-			this.angle = newAngle;
-		},
+        /**
+         * Replace current angle by this new one
+         * @public
+         * @method rotateTo
+         * @param {Number} newAngle
+         */
+        rotateTo: function (newAngle) {
+            this.angle = newAngle;
+        },
 
-		/**
-		 * Multiply this angle by this factor
-		 * @public
-		 * @method rotateBy
-		 * @param {Number} rotateFactor
-		 */
-		rotateBy : function(rotateFactor) {
-			this.multiplyEquals(rotateFactor);
-		},
+        /**
+         * Multiply this angle by this factor
+         * @public
+         * @method rotateBy
+         * @param {Number} rotateFactor
+         */
+        rotateBy: function (rotateFactor) {
+            this.multiplyEquals(rotateFactor);
+        },
 
-		/**
-		 * Add this angle to the current one
-		 * @public
-		 * @method rotateWith
-		 * @param {Number} angle
-		 */
-		rotateWith : function(angle) {
-			this.addEquals(angle);
-		},
+        /**
+         * Add this angle to the current one
+         * @public
+         * @method rotateWith
+         * @param {Number} angle
+         */
+        rotateWith: function (angle) {
+            this.addEquals(angle);
+        },
 
-		/**
-		 * Add this angle to the current one
-		 * @public
-		 * @method add
-		 * @param {Number} angle
-		 */
-		addEquals : function(angle) {
-			this.angle += angle;
-		},
+        /**
+         * Add this angle to the current one
+         * @public
+         * @method add
+         * @param {Number} angle
+         */
+        addEquals: function (angle) {
+            this.angle += angle;
+        },
 
-		/**
-		 * Subtract this angle to the current one
-		 * @public
-		 * @method substract
-		 * @param {Number} angle
-		 */
-		subtractEquals : function(angle) {
-			this.angle -= angle;
-		},
+        /**
+         * Subtract this angle to the current one
+         * @public
+         * @method substract
+         * @param {Number} angle
+         */
+        subtractEquals: function (angle) {
+            this.angle -= angle;
+        },
 
-		/**
-		 * Multiply this angle to the current one
-		 * @public
-		 * @method multiply
-		 * @param {Number} angle
-		 */
-		multiplyEquals : function(angle) {
-			this.angle *= angle;
-		}
-	}
+        /**
+         * Multiply this angle to the current one
+         * @public
+         * @method multiply
+         * @param {Number} angle
+         */
+        multiplyEquals: function (angle) {
+            this.angle *= angle;
+        }
+    }
 );
 
 /**
@@ -224,88 +224,88 @@ var CGSGRotation = CGSGObject.extend(
  * @type {CGSGDimension}
  */
 var CGSGDimension = CGSGVector2D.extend(
-	{
-		initialize : function(width, height) {
+    {
+        initialize: function (width, height) {
 
-			this._super(width, height);
+            this._super(width, height);
 
-			/**
-			 * Alias to the x attribute
-			 * @property width
-			 * @type {Number}
-			 */
-			this.width = this.x;
-			/**
-			 * Alias to the y attribute
-			 * @property height
-			 * @type {Number}
-			 */
-			this.height = this.y;
-		},
+            /**
+             * Alias to the x attribute
+             * @property width
+             * @type {Number}
+             */
+            this.width = this.x;
+            /**
+             * Alias to the y attribute
+             * @property height
+             * @type {Number}
+             */
+            this.height = this.y;
+        },
 
-		/**
-		 * Return a new object with these attributes
-		 * @method copy
-		 * @return {CGSGDimension}
-		 */
-		copy : function() {
-			return new CGSGDimension(this.width, this.height);
-		},
+        /**
+         * Return a new object with these attributes
+         * @method copy
+         * @return {CGSGDimension}
+         */
+        copy: function () {
+            return new CGSGDimension(this.width, this.height);
+        },
 
-		/**
-		 * Replace current dimension by these new ones
-		 * @method resizeTo
-		 * @param {Number} newWidth
-		 * @param {Number} newHeight
-		 * */
-		resizeTo : function(newWidth, newHeight) {
-			if (newWidth >= 0) {
-				this.width = newWidth;
-			}
-			if (newHeight >= 0) {
-				this.height = newHeight;
-			}
-		},
+        /**
+         * Replace current dimension by these new ones
+         * @method resizeTo
+         * @param {Number} newWidth
+         * @param {Number} newHeight
+         * */
+        resizeTo: function (newWidth, newHeight) {
+            if (newWidth >= 0) {
+                this.width = newWidth;
+            }
+            if (newHeight >= 0) {
+                this.height = newHeight;
+            }
+        },
 
-		/**
-		 * Multiply current dimension by these new ones
-		 * @method resizeBy
-		 * @param {Number} widthFactor
-		 * @param {Number} heightFactor
-		 * */
-		resizeBy : function(widthFactor, heightFactor) {
-			if (widthFactor >= 0) {
-				this.width *= widthFactor;
-			}
-			if (heightFactor >= 0) {
-				this.height *= heightFactor;
-			}
-		},
+        /**
+         * Multiply current dimension by these new ones
+         * @method resizeBy
+         * @param {Number} widthFactor
+         * @param {Number} heightFactor
+         * */
+        resizeBy: function (widthFactor, heightFactor) {
+            if (widthFactor >= 0) {
+                this.width *= widthFactor;
+            }
+            if (heightFactor >= 0) {
+                this.height *= heightFactor;
+            }
+        },
 
-		/**
-		 * Increase/decrease current dimension with adding values
-		 * @method resizeWith
-		 * @param {Number} width
-		 * @param {Number} height
-		 * */
-		resizeWith : function(width, height) {
-			if (this.width + width >= 0) {
-				this.width += width;
-			}
-			if (this.height + height >= 0) {
-				this.height += height;
-			}
-		},
+        /**
+         * Increase/decrease current dimension with adding values
+         * @method resizeWith
+         * @param {Number} width
+         * @param {Number} height
+         * */
+        resizeWith: function (width, height) {
+            if (this.width + width >= 0) {
+                this.width += width;
+            }
+            if (this.height + height >= 0) {
+                this.height += height;
+            }
+        },
 
-		/**
-		 * Return true if no pixels are inside the dimension
-		 * @method isEmpty
-		 * @return {boolean}
-		 */
-		isEmpty : function() {
-			return (this.width <= 0 || this.height <= 0);
-		}
-	}
+        /**
+         * Return true if no pixels are inside the dimension
+         * @method isEmpty
+         * @return {boolean}
+         */
+        isEmpty: function () {
+            return (this.width <= 0 || this.height <= 0);
+        }
+    }
 );
 
 /**
@@ -321,63 +321,63 @@ var CGSGDimension = CGSGVector2D.extend(
  * @type {CGSGRegion}
  */
 var CGSGRegion = CGSGObject.extend(
-	{
-		initialize : function(x, y, width, height) {
-			/**
-			 * @property position
-			 * @type {CGSGPosition}
-			 */
-			this.position = new CGSGPosition(x, y);
-			/**
-			 * @property dimension
-			 * @type {CGSGDimension}
-			 */
-			this.dimension = new CGSGDimension(width, height);
-		},
+    {
+        initialize: function (x, y, width, height) {
+            /**
+             * @property position
+             * @type {CGSGPosition}
+             */
+            this.position = new CGSGPosition(x, y);
+            /**
+             * @property dimension
+             * @type {CGSGDimension}
+             */
+            this.dimension = new CGSGDimension(width, height);
+        },
 
-		/**
-		 * @method copy
-		 * @return {CGSGRegion}
-		 */
-		copy : function() {
-			return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
-		},
+        /**
+         * @method copy
+         * @return {CGSGRegion}
+         */
+        copy: function () {
+            return new CGSGRegion(this.position.x, this.position.y, this.dimension.width, this.dimension.height);
+        },
 
-		/**
-		 * @method add
-		 * @param region {CGSGRegion}
-		 */
-		addEquals : function(region) {
-			this.position.translateWith(region.position.x, region.position.y);
-			this.dimension.resizeWith(region.dimension.width, region.dimension.height);
-		},
+        /**
+         * @method add
+         * @param region {CGSGRegion}
+         */
+        addEquals: function (region) {
+            this.position.translateWith(region.position.x, region.position.y);
+            this.dimension.resizeWith(region.dimension.width, region.dimension.height);
+        },
 
-		/**
-		 * @method subtract
-		 * @param {CGSGRegion} region
-		 */
-		subtractEquals : function(region) {
-			this.position.translateWith(-region.position.x, -region.position.y);
-			this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
-		},
+        /**
+         * @method subtract
+         * @param {CGSGRegion} region
+         */
+        subtractEquals: function (region) {
+            this.position.translateWith(-region.position.x, -region.position.y);
+            this.dimension.resizeWith(-region.dimension.width, -region.dimension.height);
+        },
 
-		/**
-		 * Return true if no pixels are inside the region
-		 * @method isEmpty
-		 * @return {boolean}
-		 */
-		isEmpty : function() {
-			return this.dimension.isEmpty();
-		},
+        /**
+         * Return true if no pixels are inside the region
+         * @method isEmpty
+         * @return {boolean}
+         */
+        isEmpty: function () {
+            return this.dimension.isEmpty();
+        },
 
-		/**
-		 * Return true if dimension is Empty or position is negative
-		 * @method isNegative
-		 * @return {boolean}
-		 */
-		isNegative : function() {
-			return (this.isEmpty() || this.position.isNegative());
-		}
-	}
+        /**
+         * Return true if dimension is Empty or position is negative
+         * @method isNegative
+         * @return {boolean}
+         */
+        isNegative: function () {
+            return (this.isEmpty() || this.position.isNegative());
+        }
+    }
 );
 

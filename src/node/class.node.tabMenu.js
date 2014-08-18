@@ -36,186 +36,186 @@ var CGSGTABHEIGHT = 35;
  * @type {CGSGNodeTabMenu}
  */
 var CGSGNodeTabMenu = CGSGNode.extend(
-	{
-		initialize : function(x, y, w) {
-			//call the constructor of CGSGNode
-			this._super(x, y);
-			this.resizeTo(w, CGSGTABHEIGHT);
+    {
+        initialize: function (x, y, w) {
+            //call the constructor of CGSGNode
+            this._super(x, y);
+            this.resizeTo(w, CGSGTABHEIGHT);
 
-			/**
-			 * Define the class type.
-			 * Not mandatory but very useful, as Javascript does not have a mechanism to manage the type of class
-			 * @property classType
-			 * @type {String}
-			 */
-			this.classType = "CGSGNodeTabMenu";
+            /**
+             * Define the class type.
+             * Not mandatory but very useful, as Javascript does not have a mechanism to manage the type of class
+             * @property classType
+             * @type {String}
+             */
+            this.classType = "CGSGNodeTabMenu";
 
-			this._buttonRadius = 4;
+            this._buttonRadius = 4;
 
-			this._tabsContainer = new CGSGNode(0, 0);
-			this._tabsContainer.resizeTo(w, 0);
-			this._tabsContainer.color = "#A0A0A0";
-			this._tabsContainer.lineWidth = 0;
-			this.addChild(this._tabsContainer);
+            this._tabsContainer = new CGSGNode(0, 0);
+            this._tabsContainer.resizeTo(w, 0);
+            this._tabsContainer.color = "#A0A0A0";
+            this._tabsContainer.lineWidth = 0;
+            this.addChild(this._tabsContainer);
 
-			var sep1 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius + 1, w, this._buttonRadius);
-			sep1.bkgcolors[0] = "white";
-			sep1.lineWidth = 0;
-			this.addChild(sep1);
-			var sep2 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
-			sep2.bkgcolors[0] = "#A0A0A0";
-			sep2.lineWidth = 0;
-			this.addChild(sep2);
+            var sep1 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius + 1, w, this._buttonRadius);
+            sep1.bkgcolors[0] = "white";
+            sep1.lineWidth = 0;
+            this.addChild(sep1);
+            var sep2 = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
+            sep2.bkgcolors[0] = "#A0A0A0";
+            sep2.lineWidth = 0;
+            this.addChild(sep2);
 
-			this.hideUnderline = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
-			this.hideUnderline.bkgcolors[0] = "white";
-			this.hideUnderline.lineWidth = 0;
-			this.addChild(this.hideUnderline);
+            this.hideUnderline = new CGSGNodeSquare(0, CGSGTABHEIGHT - this._buttonRadius, w, 1);
+            this.hideUnderline.bkgcolors[0] = "white";
+            this.hideUnderline.lineWidth = 0;
+            this.addChild(this.hideUnderline);
 
-			this._tabsBaseline = new CGSGNode(0, CGSGTABHEIGHT - this._buttonRadius + 1);
-			this._tabsBaseline.resizeTo(w, 0);
-			this.addChild(this._tabsBaseline);
+            this._tabsBaseline = new CGSGNode(0, CGSGTABHEIGHT - this._buttonRadius + 1);
+            this._tabsBaseline.resizeTo(w, 0);
+            this.addChild(this._tabsBaseline);
 
-			/**
-			 * Array of the buttons in the menu
-			 * @property buttons
-			 * @type {Array} array of CGSGNodeButtons
-			 */
-			this.tabs = [];
+            /**
+             * Array of the buttons in the menu
+             * @property buttons
+             * @type {Array} array of CGSGNodeButtons
+             */
+            this.tabs = [];
 
-			/**
-			 * Event
-			 * @property onTabChanged
-			 * @default null
-			 * @type {Function}
-			 */
-			this.onTabChanged = null;
+            /**
+             * Event
+             * @property onTabChanged
+             * @default null
+             * @type {Function}
+             */
+            this.onTabChanged = null;
 
-			this._selectedTab = null;
-		},
+            this._selectedTab = null;
+        },
 
-		/**
-		 * @method addButton
-		 * @param {String} text the text on the tab
-		 * @param {CGSGNode} view the root node for the view to show when is that is activated
-		 * @return {Object} The new created tab
-		 */
-		addTab : function(text, view) {
-			var button = new CGSGNodeButton(0, 0, text);
-			//button.setHorizontalPadding(10);
-			//button.setVerticalPadding(8);
-			//button.setTextSizes([10, 10, 10]);
-			//button.setFirstColors(["#EAEAEA", "white", "white"]);
-			//button.setLastColors(["#EAEAEA", "white", "white"]);
-			//button.setTextColors(["#999999", "#000000", "#000000"]);
+        /**
+         * @method addButton
+         * @param {String} text the text on the tab
+         * @param {CGSGNode} view the root node for the view to show when is that is activated
+         * @return {Object} The new created tab
+         */
+        addTab: function (text, view) {
+            var button = new CGSGNodeButton(0, 0, text);
+            //button.setHorizontalPadding(10);
+            //button.setVerticalPadding(8);
+            //button.setTextSizes([10, 10, 10]);
+            //button.setFirstColors(["#EAEAEA", "white", "white"]);
+            //button.setLastColors(["#EAEAEA", "white", "white"]);
+            //button.setTextColors(["#999999", "#000000", "#000000"]);
 
-			button.setTextClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
-			button.setClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+            button.setTextClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
+            button.setClasses(["custom-normal", "custom-over", "custom-deactivated", "custom-selected"]);
 
+            //button.lineWidth = 1;
+            //button.strokeColor = "#A0A0A0";
+            //button.setRadiuses([this._buttonRadius, this._buttonRadius, this._buttonRadius]);
+            //button._initShapes();
 
-			//button.lineWidth = 1;
-			//button.strokeColor = "#A0A0A0";
-			//button.setRadiuses([this._buttonRadius, this._buttonRadius, this._buttonRadius]);
-			//button._initShapes();
+            var tab = {button: button, view: view};
+            this.tabs.push(tab);
 
-			var tab = {button : button, view : view};
-			this.tabs.push(tab);
+            var that = this;
+            button.onClick = function (event) {
+                that.selectTab(tab);
+            };
 
-			var that = this;
-			button.onClick = function(event) {
-				that.selectTab(tab);
-			};
+            this._tabsContainer.addChild(button);
 
-			this._tabsContainer.addChild(button);
+            this._recomputeButtonsWidth();
 
-			this._recomputeButtonsWidth();
+            if (!cgsgExist(this._selectedTab)) {
+                this.selectTab(tab);
+            }
 
-			if (!cgsgExist(this._selectedTab))
-				this.selectTab(tab);
+            return tab;
+        },
 
-			return tab;
-		},
+        /**
+         * Select the tab passed in parameter
+         * @method selectTab
+         * @param {Object} tab
+         * @return {Object} the selected tab
+         */
+        selectTab: function (tab) {
+            if (cgsgExist(this._selectedTab)) {
+                if (cgsgExist(this._selectedTab.view)) {
+                    this._selectedTab.view.isVisible = true;
+                    this._selectedTab.view.isTraversable = true;
+                }
+                this._tabsBaseline.detachChild(this._selectedTab.view);
+            }
+            this._tabsBaseline.addChild(tab.view);
+            this._selectedTab = tab;
 
-		/**
-		 * Select the tab passed in parameter
-		 * @method selectTab
-		 * @param {Object} tab
-		 * @return {Object} the selected tab
-		 */
-		selectTab : function(tab) {
-			if (cgsgExist(this._selectedTab)) {
-				if (cgsgExist(this._selectedTab.view)) {
-					this._selectedTab.view.isVisible = true;
-					this._selectedTab.view.isTraversable = true;
-				}
-				this._tabsBaseline.detachChild(this._selectedTab.view);
-			}
-			this._tabsBaseline.addChild(tab.view);
-			this._selectedTab = tab;
+            for (var i = 0; i < this.tabs.length; i++) {
+                this.tabs[i].view.isVisible = false;
+                this.tabs[i].view.isTraversable = false;
+                this.tabs[i].button.setMode(CGSGButtonMode.NORMAL);
+            }
 
-			for (var i = 0 ; i < this.tabs.length ; i++) {
-				this.tabs[i].view.isVisible = false;
-				this.tabs[i].view.isTraversable = false;
-				this.tabs[i].button.setMode(CGSGButtonMode.NORMAL);
-			}
+            if (cgsgExist(tab.view)) {
+                tab.view.isVisible = true;
+                tab.view.isTraversable = true;
+            }
+            tab.button.setMode(CGSGButtonMode.SELECTED);
+            this.hideUnderline.translateTo(tab.button.position.x, this.hideUnderline.position.y);
+            this.hideUnderline.resizeTo(tab.button.getWidth(), 1);
 
-			if (cgsgExist(tab.view)) {
-				tab.view.isVisible = true;
-				tab.view.isTraversable = true;
-			}
-			tab.button.setMode(CGSGButtonMode.SELECTED);
-			this.hideUnderline.translateTo(tab.button.position.x, this.hideUnderline.position.y);
-			this.hideUnderline.resizeTo(tab.button.getWidth(), 1);
+            if (cgsgExist(this.onTabChanged)) {
+                this.onTabChanged({tab: tab});
+            }
 
-			if (cgsgExist(this.onTabChanged)) {
-				this.onTabChanged({tab : tab});
-			}
+            return tab;
+        },
 
-			return tab;
-		},
+        /**
+         * @method selectTabByIndex
+         * @param {Number} index
+         * @return {Object} the selected tab
+         */
+        selectTabByIndex: function (index) {
+            return this.selectTab(this.tabs[index]);
+        },
 
-		/**
-		 * @method selectTabByIndex
-		 * @param {Number} index
-		 * @return {Object} the selected tab
-		 */
-		selectTabByIndex : function(index) {
-			return this.selectTab(this.tabs[index]);
-		},
+        /**
+         * Recompute width for all buttons
+         * @method _recomputeButtonsWidth
+         * @private
+         */
+        _recomputeButtonsWidth: function () {
+            var totalWidth = 0;
+            var i;
+            var bw = 0; //biggest width
+            for (i = 0; i < this.tabs.length; i++) {
+                var w = this.tabs[i].button.getWidth();
+                totalWidth += w;
+                bw = Math.max(bw, w);
+            }
 
-		/**
-		 * Recompute width for all buttons
-		 * @method _recomputeButtonsWidth
-		 * @private
-		 */
-		_recomputeButtonsWidth : function() {
-			var totalWidth = 0;
-			var i;
-			var bw = 0; //biggest width
-			for (i = 0 ; i < this.tabs.length ; i++) {
-				var w = this.tabs[i].button.getWidth();
-				totalWidth += w;
-				bw = Math.max(bw, w);
-			}
+            //each button get the same width:
+            //whether the width of the biggest button, or the width of the tab / number of buttons
+            if (totalWidth > this.getWidth() || this.tabs.length * bw > this.getWidth()) {
+                //common width
+                var cw = this.getWidth() / this.tabs.length;
 
-			//each button get the same width:
-			//whether the width of the biggest button, or the width of the tab / number of buttons
-			if (totalWidth > this.getWidth() || this.tabs.length * bw > this.getWidth()) {
-				//common width
-				var cw = this.getWidth() / this.tabs.length;
+                for (i = 0; i < this.tabs.length; i++) {
+                    this.tabs[i].button.setFixedSize(new CGSGDimension(cw, CGSGTABHEIGHT));
+                    this.tabs[i].button.translateTo(i * cw, 0);
+                }
+            }
+            else {
+                for (i = 0; i < this.tabs.length; i++) {
+                    this.tabs[i].button.setFixedSize(new CGSGDimension(bw, CGSGTABHEIGHT));
+                    this.tabs[i].button.translateTo(i * bw, 0);
+                }
+            }
 
-				for (i = 0 ; i < this.tabs.length ; i++) {
-					this.tabs[i].button.setFixedSize(new CGSGDimension(cw, CGSGTABHEIGHT));
-					this.tabs[i].button.translateTo(i * cw, 0);
-				}
-			}
-			else {
-				for (i = 0 ; i < this.tabs.length ; i++) {
-					this.tabs[i].button.setFixedSize(new CGSGDimension(bw, CGSGTABHEIGHT));
-					this.tabs[i].button.translateTo(i * bw, 0);
-				}
-			}
-
-		}
-	}
+        }
+    }
 );

@@ -39,111 +39,111 @@
  * @type {CGSGMask}
  */
 var CGSGMask = CGSGObject.extend(
-	{
-		initialize : function() {
-			this._prepareEvent = cgsgEventTypes.ON_BEFORE_RENDER;
-			this._finalizeEvent = cgsgEventTypes.ON_AFTER_RENDER;
+    {
+        initialize: function () {
+            this._prepareEvent = cgsgEventTypes.ON_BEFORE_RENDER;
+            this._finalizeEvent = cgsgEventTypes.ON_AFTER_RENDER;
 
-			this._keyEvents = new CGSGMap();
-			this._bindEventAdapter = this._eventAdapter.bind(this);
-		},
+            this._keyEvents = new CGSGMap();
+            this._bindEventAdapter = this._eventAdapter.bind(this);
+        },
 
-		/**
-		 * Apply this mask to the given node.
-		 *
-		 * @method apply
-		 * @param node {CGSGNode} the node
-		 */
-		apply : function(node) {
-			// Remember keys for event bound to the node in order to unbound it...
-			this._keyEvents.addOrReplace(node, {
-				prepareKey  : CGSG.eventManager.bindHandler(node, this._prepareEvent, this._bindEventAdapter),
-				finalizeKey : CGSG.eventManager.bindHandler(node, this._finalizeEvent, this._bindEventAdapter)
-			});
+        /**
+         * Apply this mask to the given node.
+         *
+         * @method apply
+         * @param node {CGSGNode} the node
+         */
+        apply: function (node) {
+            // Remember keys for event bound to the node in order to unbound it...
+            this._keyEvents.addOrReplace(node, {
+                prepareKey : CGSG.eventManager.bindHandler(node, this._prepareEvent, this._bindEventAdapter),
+                finalizeKey: CGSG.eventManager.bindHandler(node, this._finalizeEvent, this._bindEventAdapter)
+            });
 
-			this._internalApply(node);
-		},
+            this._internalApply(node);
+        },
 
-		/**
-		 * Override this method to perform custom additional stuff when applying this mask.
-		 *
-		 * @method _internalApply
-		 * @private
-		 * @param node {CGSGNode} the node
-		 */
-		_internalApply : function(node) {
+        /**
+         * Override this method to perform custom additional stuff when applying this mask.
+         *
+         * @method _internalApply
+         * @private
+         * @param node {CGSGNode} the node
+         */
+        _internalApply: function (node) {
 
-		},
+        },
 
-		/**
-		 * Removes this mask from a node.
-		 *
-		 * @method remove
-		 * @param node CGSGNode the node
-		 */
-		remove : function(node) {
-			var key = this._keyEvents.getValue(node);
+        /**
+         * Removes this mask from a node.
+         *
+         * @method remove
+         * @param node CGSGNode the node
+         */
+        remove: function (node) {
+            var key = this._keyEvents.getValue(node);
 
-			if (cgsgExist(key)) {
-				CGSG.eventManager.unbindHandler(node, this._prepareEvent, this._bindEventAdapter);
-				CGSG.eventManager.unbindHandler(node, this._finalizeEvent, this._bindEventAdapter);
-			}
+            if (cgsgExist(key)) {
+                CGSG.eventManager.unbindHandler(node, this._prepareEvent, this._bindEventAdapter);
+                CGSG.eventManager.unbindHandler(node, this._finalizeEvent, this._bindEventAdapter);
+            }
 
-			this._internalRemove(node);
-		},
+            this._internalRemove(node);
+        },
 
-		/**
-		 * Override this method to perform custom additional stuff when removing this mask.
-		 *
-		 * @method _internalRemove
-		 * @private
-		 * @param node {CGSGNode} the node
-		 */
-		_internalRemove : function(node) {
+        /**
+         * Override this method to perform custom additional stuff when removing this mask.
+         *
+         * @method _internalRemove
+         * @private
+         * @param node {CGSGNode} the node
+         */
+        _internalRemove: function (node) {
 
-		},
+        },
 
-		/**
-		 * Observer method which catches key events to apply the mask.
-		 *
-		 * @method _eventAdapter
-		 * @param event {CGSGEvent} the event
-		 * @private
-		 */
-		_eventAdapter : function(event) {
-			switch (event.type) {
-				case this._prepareEvent :
-					var ctx = this.prepare(event.observable, event.data.context);
-					event.data.context = ctx;
+        /**
+         * Observer method which catches key events to apply the mask.
+         *
+         * @method _eventAdapter
+         * @param event {CGSGEvent} the event
+         * @private
+         */
+        _eventAdapter: function (event) {
+            switch (event.type) {
+                case this._prepareEvent :
+                    var ctx = this.prepare(event.observable, event.data.context);
+                    event.data.context = ctx;
 
-					break;
-				case this._finalizeEvent :
-					var ctx = this.finalize(event.observable, event.data.context);
-					event.data.context = ctx;
-					break;
-			}
-		},
+                    break;
+                case this._finalizeEvent :
+                    var ctx = this.finalize(event.observable, event.data.context);
+                    event.data.context = ctx;
+                    break;
+            }
+        },
 
-		/**
-		 * Method to override to prepare the given context to render.
-		 *
-		 * @method prepare
-		 * @param node {CGSGNode} the observed node
-		 * @param context {CanvasRenderingContext2D} the context
-		 */
-		prepare : function(node, context) {
-			// do nothing
-		},
+        /**
+         * Method to override to prepare the given context to render.
+         *
+         * @method prepare
+         * @param node {CGSGNode} the observed node
+         * @param context {CanvasRenderingContext2D} the context
+         */
+        prepare: function (node, context) {
+            // do nothing
+        },
 
-		/**
-		 * Method to override to finish the mask rendering.
-		 *
-		 * @method finalize
-		 * @param node {CGSGNode} the observed node
-		 * @param context {CanvasRenderingContext2D} the context
-		 */
-		finalize : function(node, context) {
-			// do nothing
-		}
-	}
+        /**
+         * Method to override to finish the mask rendering.
+         *
+         * @method finalize
+         * @param node {CGSGNode} the observed node
+         * @param context {CanvasRenderingContext2D} the context
+         */
+        finalize: function (node, context) {
+            // do nothing
+        }
+    }
 );

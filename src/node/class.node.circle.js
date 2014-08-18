@@ -39,94 +39,94 @@
  * @author xymostech (Emily Eisenberg)
  */
 var CGSGNodeCircle = CGSGNode.extend(
-	{
-		initialize : function(x, y, radius) {
+    {
+        initialize: function (x, y, radius) {
 
-			/**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 */
-			this.classType = "CGSGNodeCircle";
+            /**
+             * @property classType
+             * @readonly
+             * @type {String}
+             */
+            this.classType = "CGSGNodeCircle";
 
-			/**
-			 * @property radius
-			 * @type {Number}
-			 */
-			this.radius = radius;
-			this._center = new CGSGPosition(x + radius, y + radius);
+            /**
+             * @property radius
+             * @type {Number}
+             */
+            this.radius = radius;
+            this._center = new CGSGPosition(x + radius, y + radius);
 
-			this._super(x, y);
-			this.resizeTo(radius * 2.0, radius * 2.0);
+            this._super(x, y);
+            this.resizeTo(radius * 2.0, radius * 2.0);
 
-			this.isProportionalResizeOnly = true;
+            this.isProportionalResizeOnly = true;
 
-			//this.translateTo(centerX - radius, centerY - radius);
-		},
+            //this.translateTo(centerX - radius, centerY - radius);
+        },
 
-		render : function(c) {
-			c.save();
-			//c.translate(this.radius, this.radius);
-			c.beginPath();
-			c.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
-			//Next line is already managed by CGSGNode.
-			//I let it here just to provide an example
-			//context.fillStyle = this.bkgcolors[0];
-			c.fill();
+        render: function (c) {
+            c.save();
+            //c.translate(this.radius, this.radius);
+            c.beginPath();
+            c.arc(this.radius, this.radius, this.radius, 0, 2 * Math.PI, false);
+            //Next line is already managed by CGSGNode.
+            //I let it here just to provide an example
+            //context.fillStyle = this.bkgcolors[0];
+            c.fill();
 
-			if (this.lineWidth > 0) {
-				//Next lines are already managed by CGSGNode.
-				//I let it here just to provide an example
-				//context.lineWidth = this.lineWidth;
-				//context.strokeStyle = this.lineColor;
-				c.stroke();
-			}
-			c.restore();
-		},
+            if (this.lineWidth > 0) {
+                //Next lines are already managed by CGSGNode.
+                //I let it here just to provide an example
+                //context.lineWidth = this.lineWidth;
+                //context.strokeStyle = this.lineColor;
+                c.stroke();
+            }
+            c.restore();
+        },
 
-		/**
-		 * @method _resize
-		 * @private
-		 */
-		_resize : function() {
-			this.radius = CGSGMath.fixedPoint(this.dimension.width / 2);
-			this._isDimensionChanged = true;
-			this.invalidate();
-			if (cgsgExist(this.onResize)) {
-				CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node : this}));
-			}
-		},
+        /**
+         * @method _resize
+         * @private
+         */
+        _resize: function () {
+            this.radius = CGSGMath.fixedPoint(this.dimension.width / 2);
+            this._isDimensionChanged = true;
+            this.invalidate();
+            if (cgsgExist(this.onResize)) {
+                CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_RESIZE, new CGSGEvent(this, {node: this}));
+            }
+        },
 
-		resizeTo : function(w, h) {
-			var r = Math.min(w, h);
-			this.dimension.resizeTo(r, r);
-			this._resize();
-		},
+        resizeTo: function (w, h) {
+            var r = Math.min(w, h);
+            this.dimension.resizeTo(r, r);
+            this._resize();
+        },
 
-		resizeBy : function(w, h) {
-			var mw = w * this.dimension.width;
-			var mh = h * this.dimension.height;
-			var r = (mw < mh) ? w : h;
-			this.dimension.resizeBy(r, r);
-			this._resize();
-		},
+        resizeBy: function (w, h) {
+            var mw = w * this.dimension.width;
+            var mh = h * this.dimension.height;
+            var r = (mw < mh) ? w : h;
+            this.dimension.resizeBy(r, r);
+            this._resize();
+        },
 
-		resizeWith : function(w, h) {
-			var mw = w + this.dimension.width;
-			var mh = h + this.dimension.height;
-			var r = (mw < mh) ? w : h;
-			this.dimension.resizeWith(r, r);
-			this._resize();
-		},
+        resizeWith: function (w, h) {
+            var mw = w + this.dimension.width;
+            var mh = h + this.dimension.height;
+            var r = (mw < mh) ? w : h;
+            this.dimension.resizeWith(r, r);
+            this._resize();
+        },
 
-		/**
-		 * @method copy
-		 * @return {CGSGNodeCircle} a copy of this node
-		 */
-		copy : function() {
-			var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
-			//call the super method
-			return this._super(node);
-		}
-	}
+        /**
+         * @method copy
+         * @return {CGSGNodeCircle} a copy of this node
+         */
+        copy: function () {
+            var node = new CGSGNodeCircle(this.position.x, this.position.y, this.radius);
+            //call the super method
+            return this._super(node);
+        }
+    }
 );

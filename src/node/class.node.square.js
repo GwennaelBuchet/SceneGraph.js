@@ -38,84 +38,85 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGNodeSquare = CGSGNode.extend(
-	{
-		initialize : function(x, y, width, height) {
-			this._super(x, y);
+    {
+        initialize: function (x, y, width, height) {
+            this._super(x, y);
 
-			this.resizeTo(width, height);
+            this.resizeTo(width, height);
 
-			/**
-			 * @property classType
-			 * @readonly
-			 * @type {String}
-			 */
-			this.classType = "CGSGNodeSquare";
-		},
+            /**
+             * @property classType
+             * @readonly
+             * @type {String}
+             */
+            this.classType = "CGSGNodeSquare";
+        },
 
-		/**
-		 * Custom rendering
-		 * @method render
-		 * @protected
-		 * @param c {CanvasRenderingContext2D} the context into render the node
-		 * */
-		render : function(c) {
-			//Next lines are already managed by CGSGNode.
-			//I let it here just to provide an example
+        /**
+         * Custom rendering
+         * @method render
+         * @protected
+         * @param c {CanvasRenderingContext2D} the context into render the node
+         * */
+        render: function (c) {
+            //Next lines are already managed by CGSGNode.
+            //I let it here just to provide an example
 
-			//draw this zone
-			//c.fillStyle = this.bkgcolors[0];
+            //draw this zone
+            //c.fillStyle = this.bkgcolors[0];
 
-			//if (this.lineWidth > 0) {
-			//	c.strokeStyle = this.lineColor;
-			//	c.lineWidth = this.lineWidth;
-			//}
+            //if (this.lineWidth > 0) {
+            //	c.strokeStyle = this.lineColor;
+            //	c.lineWidth = this.lineWidth;
+            //}
 
-			//we draw the rect at (0,0) because we have already translated the c to the correct position
-			if (!cgsgExist(this.radius) || this.radius <= 0) {
-				c.fillRect(0, 0, this.dimension.width, this.dimension.height);
-				if (this.lineWidth > 0) {
-					c.strokeRect(0, 0, this.dimension.width, this.dimension.height);
-				}
-			}
-			else {
-				c.save();
-				var r = this.radius;
-				var w = this.dimension.width;
-				var h = this.dimension.height;
-				var rw = r + w;
-				var rh = r + h;
+            //we draw the rect at (0,0) because we have already translated the c to the correct position
+            if (!cgsgExist(this.radius) || this.radius <= 0) {
+                c.fillRect(0, 0, this.dimension.width, this.dimension.height);
+                if (this.lineWidth > 0) {
+                    c.strokeRect(0, 0, this.dimension.width, this.dimension.height);
+                }
+            }
+            else {
+                c.save();
+                var r = this.radius;
+                var w = this.dimension.width;
+                var h = this.dimension.height;
+                var rw = r + w;
+                var rh = r + h;
 
-				c.translate(-r, -r);
+                c.translate(-r, -r);
 
-				c.beginPath();
-				c.moveTo(2 * r, r);
-				c.lineTo(w, r);
-				c.quadraticCurveTo(rw, r, rw, r + r);
-				c.lineTo(rw, h);
-				c.quadraticCurveTo(rw, rh, w, rh);
-				c.lineTo(r + r, rh);
-				c.quadraticCurveTo(r, rh, r, h);
-				c.lineTo(r, r + r);
-				c.quadraticCurveTo(r, r, r + r, r);
-				c.closePath();
+                c.beginPath();
+                c.moveTo(2 * r, r);
+                c.lineTo(w, r);
+                c.quadraticCurveTo(rw, r, rw, r + r);
+                c.lineTo(rw, h);
+                c.quadraticCurveTo(rw, rh, w, rh);
+                c.lineTo(r + r, rh);
+                c.quadraticCurveTo(r, rh, r, h);
+                c.lineTo(r, r + r);
+                c.quadraticCurveTo(r, r, r + r, r);
+                c.closePath();
 
-				c.fill();
-				if (this.lineWidth > 0)
-					c.stroke();
+                c.fill();
+                if (this.lineWidth > 0) {
+                    c.stroke();
+                }
 
-				c.restore();
-			}
-		},
+                c.restore();
+            }
+        },
 
-		/**
-		 * @method copy
-		 * @return {CGSGNodeSquare} a copy of this node
-		 */
-		copy : function() {
-			var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
-										  this.dimension.height);
-			//call the super method
-			return this._super(node);
-		}
-	}
+        /**
+         * @method copy
+         * @return {CGSGNodeSquare} a copy of this node
+         */
+        copy: function () {
+            var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
+                                          this.dimension.height);
+            //call the super method
+            return this._super(node);
+        }
+    }
 );

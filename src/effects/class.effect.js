@@ -33,18 +33,18 @@
  * @type {CGSGEffect}
  */
 var CGSGEffect = CGSGObject.extend(
-	{
-		initialize : function() {
-		},
+    {
+        initialize: function () {
+        },
 
-		/**
-		 *  This function must be filled by the inherited classes.
-		 *  @method render
-		 *  @param {CanvasRenderingContext2D} context context containing the image
-		 *  @param {Number} width width for the image to be modified
-		 *  @param {Number} height height for the image to be modified
-		 */
-		render : function(context, width, height) {
-		}
-	}
+        /**
+         *  This function must be filled by the inherited classes.
+         *  @method render
+         *  @param {CanvasRenderingContext2D} context context containing the image
+         *  @param {Number} width width for the image to be modified
+         *  @param {Number} height height for the image to be modified
+         */
+        render: function (context, width, height) {
+        }
+    }
 );

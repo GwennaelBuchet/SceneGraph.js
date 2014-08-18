@@ -128,7 +128,7 @@ var CGMain = CGSGView.extend(
 
             var textNodeBottom = new CGSGNodeText(10, 20, "Bottom on " + cgsgCurrentExplorer.name);
             textNodeBottom.setSize(14);
-            textNodeBottom.setTypo("courier new");
+            textNodeBottom.setTypo("Times New Roman");
             textNodeBottom.isDraggable = true;
             textNodeBottom.color = "white";
             textNodeBottom.setTextBaseline("bottom");

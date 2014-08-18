@@ -33,36 +33,36 @@
  * @type {CGSGEffectInvertColors}
  */
 var CGSGEffectInvertColors = CGSGEffect.extend(
-	{
-		initialize : function() {
-			this._super();
-		},
+    {
+        initialize: function () {
+            this._super();
+        },
 
-		/**
-		 *  This function must be filled by the inherited classes.
-		 *  @method render
-		 *  @param {CanvasRenderingContext2D} context context containing the image
-		 *  @param {Number} width width for the image to be modified
-		 *  @param {Number} height height for the image to be modified
-		 */
-		render : function(context, width, height) {
-			try {
-				var imageData = context.getImageData(0, 0, width, height);
-				var data = imageData.data;
+        /**
+         *  This function must be filled by the inherited classes.
+         *  @method render
+         *  @param {CanvasRenderingContext2D} context context containing the image
+         *  @param {Number} width width for the image to be modified
+         *  @param {Number} height height for the image to be modified
+         */
+        render: function (context, width, height) {
+            try {
+                var imageData = context.getImageData(0, 0, width, height);
+                var data = imageData.data;
 
-				for (var i = 0 ; i < data.length ; i += 4) {
-					data[i] = 255 - data[i]; // red
-					data[i + 1] = 255 - data[i + 1]; // green
-					data[i + 2] = 255 - data[i + 2]; // blue
-					// i+3 = alpha
-				}
+                for (var i = 0; i < data.length; i += 4) {
+                    data[i] = 255 - data[i]; // red
+                    data[i + 1] = 255 - data[i + 1]; // green
+                    data[i + 2] = 255 - data[i + 2]; // blue
+                    // i+3 = alpha
+                }
 
-				// overwrite original image
-				context.putImageData(imageData, 0, 0);
-			}
-			catch (err) {
-				//the image is not on the same domain or not on a server
-			}
-		}
-	}
+                // overwrite original image
+                context.putImageData(imageData, 0, 0);
+            }
+            catch (err) {
+                //the image is not on the same domain or not on a server
+            }
+        }
+    }
 );

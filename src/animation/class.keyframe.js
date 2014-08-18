@@ -36,43 +36,43 @@
  * @author Gwennael Buchet (gwennael.buchet@gmail.com)
  */
 var CGSGKeyFrame = CGSGObject.extend(
-	{
-		initialize : function(frame, value) {
-			/**
-			 * @property frame
-			 * @type {Number}
-			 */
-			this.frame = frame;
-			/**
-			 * @property value
-			 * @type {*}
-			 * @example {x:10, y:30}; {x:10}
-			 */
-			this.value = value;
+    {
+        initialize: function (frame, value) {
+            /**
+             * @property frame
+             * @type {Number}
+             */
+            this.frame = frame;
+            /**
+             * @property value
+             * @type {*}
+             * @example {x:10, y:30}; {x:10}
+             */
+            this.value = value;
 
-			/**
-			 * Incoming tangent for this key
-			 * @property inTangent
-			 * @default (0, 0)
-			 * @type {CGSGVector2D}
-			 */
-			this.inTangent = new CGSGVector2D(0, 0);
+            /**
+             * Incoming tangent for this key
+             * @property inTangent
+             * @default (0, 0)
+             * @type {CGSGVector2D}
+             */
+            this.inTangent = new CGSGVector2D(0, 0);
 
-			/**
-			 * Outgoing tangent for this key
-			 * @property outTangent
-			 * @default (0, 0)
-			 * @type {CGSGVector2D}
-			 */
-			this.outTangent = new CGSGVector2D(0, 0);
+            /**
+             * Outgoing tangent for this key
+             * @property outTangent
+             * @default (0, 0)
+             * @type {CGSGVector2D}
+             */
+            this.outTangent = new CGSGVector2D(0, 0);
 
-			/**
-			 * can be fulfilled by the developer to put in whatever he needs
-			 * @property userData
-			 * @default null
-			 * @type {*}
-			 */
-			this.userData = null;
-		}
-	}
+            /**
+             * can be fulfilled by the developer to put in whatever he needs
+             * @property userData
+             * @default null
+             * @type {*}
+             */
+            this.userData = null;
+        }
+    }
 );
