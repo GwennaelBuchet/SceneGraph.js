@@ -16,6 +16,7 @@
 var CGSGAccordion = CGSGNode.extend(
     {
         initialize: function (x, y, width, height, sectionWidth, sectionHeight) {
+            'use strict';
             this._super(x, y, width, height);
 
             this.lineWidth = sectionWidth;

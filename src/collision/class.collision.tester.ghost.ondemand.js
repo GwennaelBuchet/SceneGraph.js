@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use strict";
-
 /**
  * @module Collision
  * @class CGSGCollisionGhostOnDemandTester

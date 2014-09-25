@@ -23,7 +23,7 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use script";
+'use script';
 
 /**
  * Utils methods extending the Array prototype
@@ -120,7 +120,7 @@ Array.prototype.copy = function () {
  */
 Array.prototype.contains = function (item) {
     for (var i = 0; i < this.length; i++) {
-        if (this[i] == item) {
+        if (this[i] === item) {
             return true;
         }
     }

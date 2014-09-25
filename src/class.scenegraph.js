@@ -155,7 +155,7 @@ var CGSGSceneGraph = CGSGObject.extend(
 
                             //fire event if this is the last animation key for this tl
                             key = tl.getLastKey();
-                            if (key !== null && key.frame == CGSG.currentFrame) {
+                            if (key !== null && key.frame === CGSG.currentFrame) {
                                 tl.removeAll();
                                 if (tl.onAnimationEnd !== null) {
                                     evt = new CGSGEvent(this, {node: node});

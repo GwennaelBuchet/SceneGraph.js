@@ -113,7 +113,7 @@ var CGSGNodeImage = CGSGNode.extend(
 
             ///// INITIALIZATION //////
             //finally load the image
-            if (cgsgExist(this._urlImage) && this._urlImage != "") {
+            if (cgsgExist(this._urlImage) && this._urlImage !== "") {
                 this.setURL(urlImage);
             }
         },
@@ -129,7 +129,7 @@ var CGSGNodeImage = CGSGNode.extend(
         _createDelegate: function (objectContext, delegateMethod) {
             return function () {
                 return delegateMethod.call(objectContext);
-            }
+            };
         },
 
         /**
@@ -285,7 +285,7 @@ var CGSGNodeImage = CGSGNode.extend(
          * @param {CanvasRenderingContext2D} context the context to render on
          * */
         render: function (context) {
-            if (this.isLoaded && this._img.src != "" && !this.slice.isEmpty()) {
+            if (this.isLoaded && this._img.src !== "" && !this.slice.isEmpty()) {
                 context.drawImage(
                     this._img, // image
                     this.slice.position.x,

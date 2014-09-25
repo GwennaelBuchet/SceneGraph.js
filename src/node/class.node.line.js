@@ -12,7 +12,7 @@
 var CGSGNodeLine = CGSGNode.extend(
     {
         initialize: function (pts) {
-
+            'use strict';
             this._pts = pts.copy();
             this._nbPts = this._pts.length;
             this._minX = 0;

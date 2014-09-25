@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  * */
 
-"use strict";
-
 /**
  * A Position object
  * @class CGSGPosition
@@ -38,6 +36,7 @@
 var CGSGPosition = CGSGVector2D.extend(
     {
         initialize: function (x, y) {
+            'use strict';
             this._super(x, y);
         },
 

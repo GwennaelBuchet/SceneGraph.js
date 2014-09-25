@@ -86,7 +86,7 @@ var CGSGEventManager = CGSGObject.extend(
                 }
             }
 
-            this._table.addOrReplace(key, handler)
+            this._table.addOrReplace(key, handler);
         },
 
         /**

@@ -239,7 +239,7 @@ var CGSGVector2D = CGSGObject.extend(
             var length = this.getLength();
 
             //return if length is 1 or 0
-            if (length == 1 || length == 0) {
+            if (length === 1 || length === 0) {
                 return;
             }
 

@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use strict";
-
 //noinspection JSHint
 /**
  * @module Collision
@@ -37,6 +35,7 @@
 var CGSGCollisionManager = CGSGObject.extend(
     {
         initialize: function () {
+            'use strict';
         },
 
         /**

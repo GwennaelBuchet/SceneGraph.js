@@ -33,7 +33,7 @@ var CGSGPickNodeMethod = {
     /**
      * @property GHOST
      */
-    GHOST : "ghost",
+    GHOST: "ghost",
     /**
      * @property REGION
      */
@@ -55,14 +55,14 @@ var CGSGPickNodeMethod = {
  * @type {Object}
  */
 var cgsgExplorerParams = {
-    IE10     : {name: "IE 10 or above", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
-    IE9      : {name: "IE 9", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
-    SAFARI   : {name: "Safari", browserName: "", fullVersion: "", textDecalYTop: 4.0, textDecalYBottom: 1.27, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
-    CHROME   : {name: "Chrome", browserName: "", fullVersion: "", textDecalYTop: 3.3, textDecalYBottom: 1.268, textDecalYMiddle: 2.09, textDecalYAlpha: 0.983, webworker: false},
-    OPERA    : {name: "Opera", browserName: "", fullVersion: "", textDecalYTop: 3.5, textDecalYBottom: 1.28, textDecalYMiddle: 2.0, textDecalYAlpha: 0.995, webworker: false},
-    FIREFOX  : {name: "Firefox", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    IE10: {name: "IE 10 or above", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
+    IE9: {name: "IE 9", browserName: "", fullVersion: "", textDecalYTop: 4.3, textDecalYBottom: 1.26, textDecalYMiddle: 1.87, textDecalYAlpha: 0.983, webworker: false},
+    SAFARI: {name: "Safari", browserName: "", fullVersion: "", textDecalYTop: 4.0, textDecalYBottom: 1.27, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
+    CHROME: {name: "Chrome", browserName: "", fullVersion: "", textDecalYTop: 3.3, textDecalYBottom: 1.268, textDecalYMiddle: 2.09, textDecalYAlpha: 0.983, webworker: false},
+    OPERA: {name: "Opera", browserName: "", fullVersion: "", textDecalYTop: 3.5, textDecalYBottom: 1.28, textDecalYMiddle: 2.0, textDecalYAlpha: 0.995, webworker: false},
+    FIREFOX: {name: "Firefox", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
     KONQUEROR: {name: "Konqueror", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false},
-    UNKNOWN  : {name: "Unknown", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false}
+    UNKNOWN: {name: "Unknown", browserName: "", fullVersion: "", textDecalYTop: 10, textDecalYBottom: 1.23, textDecalYMiddle: 1.77, textDecalYAlpha: 0.983, webworker: false}
 };
 
 /**
@@ -245,8 +245,8 @@ var CGSG = {
          * @param method
          */
         setCollisionMethod: function (method) {
-            this._collisionMethod = method,
-                this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
+            this._collisionMethod = method;
+            this.collisionTester = this._cgsgCollisionTesterFactory.getCollisionTester(this._collisionMethod);
         }
     },
 
@@ -283,60 +283,60 @@ var CGSG = {
 var cgsgEventTypes = {
 
     // Nodes rendering
-    ON_BEFORE_RENDER            : "onBeforeRender",
-    ON_AFTER_RENDER             : "onAfterRender",
+    ON_BEFORE_RENDER: "onBeforeRender",
+    ON_AFTER_RENDER: "onAfterRender",
     //ON_BEGIN_RENDER: "onBeginRender",
     //ON_FINISH_RENDER: "onFinishRender",
-    BEFORE_RENDER_END           : "onBeforeRenderEnd",
-    AFTER_RENDER_START          : "onAfterRenderStart",
+    BEFORE_RENDER_END: "onBeforeRenderEnd",
+    AFTER_RENDER_START: "onAfterRenderStart",
 
     // Node SRT
-    ON_TRANSLATE                : "onTranslate",
-    ON_ROTATE                   : "onRotate",
-    ON_SCALE                    : "onScale",
-    ON_RESIZE                   : "onResize",
-    ON_RESIZE_END               : "onResizeEnd",
+    ON_TRANSLATE: "onTranslate",
+    ON_ROTATE: "onRotate",
+    ON_SCALE: "onScale",
+    ON_RESIZE: "onResize",
+    ON_RESIZE_END: "onResizeEnd",
 
     // Node mouse event
-    ON_MOUSE_UP                 : "onMouseUp",
-    ON_MOUSE_OVER               : "onMouseOver",
-    ON_MOUSE_OUT                : "onMouseOut",
-    ON_MOUSE_ENTER              : "onMouseEnter",
-    ON_CLICK                    : "onClick",
-    ON_CLICK_START              : "onClickStart",
-    ON_DBL_CLICK                : "onDblClick",
-    ON_DRAG                     : "onDrag",
-    ON_DRAG_END                 : "onDragEnd",
+    ON_MOUSE_UP: "onMouseUp",
+    ON_MOUSE_OVER: "onMouseOver",
+    ON_MOUSE_OUT: "onMouseOut",
+    ON_MOUSE_ENTER: "onMouseEnter",
+    ON_CLICK: "onClick",
+    ON_CLICK_START: "onClickStart",
+    ON_DBL_CLICK: "onDblClick",
+    ON_DRAG: "onDrag",
+    ON_DRAG_END: "onDragEnd",
 
     // Node state event
-    ON_CHILD_ADD                : "onChildAdd",
-    ON_CHILD_REMOVED            : "onChildRemove",
-    ON_SELECT                   : "onSelect",
-    ON_DESELECT                 : "onDeselect",
-    ON_FREE                     : "onFreeEvent",
-    ON_LOAD_END                 : "onLoadEnd",
-    ON_LOAD_ERROR               : "onLoadError",
-    ON_LOAD_ABORT               : "onLoadAbort",
+    ON_CHILD_ADD: "onChildAdd",
+    ON_CHILD_REMOVED: "onChildRemove",
+    ON_SELECT: "onSelect",
+    ON_DESELECT: "onDeselect",
+    ON_FREE: "onFreeEvent",
+    ON_LOAD_END: "onLoadEnd",
+    ON_LOAD_ERROR: "onLoadError",
+    ON_LOAD_ABORT: "onLoadAbort",
 
     // Scene
-    ON_RENDER_START             : "onRenderStart",
-    ON_RENDER_END               : "onRenderEnd",
-    ON_SCENE_DBL_CLICK_START    : "onSceneDblClickStart",
-    ON_SCENE_DBL_CLICK_END      : "onSceneDblClickEnd",
-    ON_SCENE_CLICK_START        : "onSceneClickStart",
-    ON_SCENE_CLICK_END          : "onSceneClickEnd",
+    ON_RENDER_START: "onRenderStart",
+    ON_RENDER_END: "onRenderEnd",
+    ON_SCENE_DBL_CLICK_START: "onSceneDblClickStart",
+    ON_SCENE_DBL_CLICK_END: "onSceneDblClickEnd",
+    ON_SCENE_CLICK_START: "onSceneClickStart",
+    ON_SCENE_CLICK_END: "onSceneClickEnd",
     ON_SCENE_AVERAGE_FPS_CHANGED: "onSceneAverageFpsChanged",
 
     // Timeline
-    ON_ANIMATE                  : "onAnimate",
-    ON_ANIMATION_START          : "onAnimationStart",
-    ON_ANIMATION_END            : "onAnimationEnd",
+    ON_ANIMATE: "onAnimate",
+    ON_ANIMATION_START: "onAnimationStart",
+    ON_ANIMATION_END: "onAnimationEnd",
 
     // Particle
-    ON_UPDATE_PARTICLE_END      : "onUpdateParticleEnd",
-    ON_INIT_PARTICLE            : "onInitParticle",
+    ON_UPDATE_PARTICLE_END: "onUpdateParticleEnd",
+    ON_INIT_PARTICLE: "onInitParticle",
 
     // Tab
-    ON_TAB_CHANGED              : "onTabChanged"
+    ON_TAB_CHANGED: "onTabChanged"
 };
 

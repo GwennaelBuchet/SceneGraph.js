@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use strict";
-
 /**
  * List the methods to check the collision on two nodes
  * @module Collision

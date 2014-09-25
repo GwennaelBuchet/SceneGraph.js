@@ -76,8 +76,7 @@ var CGSGColor = {
             return "00";
         }
         m = Math.max(0, Math.min(m, 255));
-        return "0123456789ABCDEF".charAt((m - m % 16) / 16)
-            + "0123456789ABCDEF".charAt(m % 16);
+        return "0123456789ABCDEF".charAt((m - m % 16) / 16) + "0123456789ABCDEF".charAt(m % 16);
     },
 
     /**
@@ -98,7 +97,7 @@ var CGSGColor = {
             r: parseInt(cls[0]),
             g: parseInt(cls[1]),
             b: parseInt(cls[2])
-        }
+        };
     },
 
     /**
@@ -195,12 +194,12 @@ var CGSGColor = {
 
         //min == max ? so the 3 values are the same, we got a gray color.
         //just return the lightness
-        if (max == min) {
+        if (max === min) {
             return {h: 0, s: 0, v: min};
         }
 
-        var d = (r == min) ? g - b : ((b == min) ? r - g : b - r);
-        var h = (r == min) ? 3 : ((b == min) ? 1 : 5);
+        var d = (r === min) ? g - b : ((b === min) ? r - g : b - r);
+        var h = (r === min) ? 3 : ((b === min) ? 1 : 5);
 
         var dM = max - min;
         return {
@@ -220,11 +219,11 @@ var CGSGColor = {
      * @return {Object}
      */
     rgb2hsl: function (r, g, b) {
-        r /= 255, g /= 255, b /= 255;
+        r /= 255; g /= 255; b /= 255;
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, l = (max + min) / 2;
 
-        if (max == min) {
+        if (max === min) {
             h = s = 0;
         }
         else {
@@ -259,7 +258,7 @@ var CGSGColor = {
     hsl2rgb: function (h, s, l) {
         var r, g, b;
 
-        if (s == 0) {
+        if (s === 0) {
             r = g = b = l;
         }
         else {
@@ -320,22 +319,22 @@ var CGSGColor = {
 
         switch (i % 6) {
             case 0:
-                r = v, g = t, b = p;
+                r = v; g = t; b = p;
                 break;
             case 1:
-                r = q, g = v, b = p;
+                r = q; g = v; b = p;
                 break;
             case 2:
-                r = p, g = v, b = t;
+                r = p; g = v; b = t;
                 break;
             case 3:
-                r = p, g = q, b = v;
+                r = p; g = q; b = v;
                 break;
             case 4:
-                r = t, g = p, b = v;
+                r = t; g = p; b = v;
                 break;
             case 5:
-                r = v, g = p, b = q;
+                r = v; g = p; b = q;
                 break;
         }
 

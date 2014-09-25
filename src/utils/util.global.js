@@ -97,7 +97,7 @@ function cgsgDetectCurrentExplorer() {
              (versionOffset = userAgent.lastIndexOf('/'))) {
         browserName = userAgent.substring(nameOffset, versionOffset);
         fullVersion = userAgent.substring(versionOffset + 1);
-        if (browserName.toLowerCase() == browserName.toUpperCase()) {
+        if (browserName.toLowerCase() === browserName.toUpperCase()) {
             browserName = navigator.appName;
         }
     }
@@ -221,6 +221,7 @@ function cgsgClearContext(context) {
     context.clearRect(0, 0, CGSG.canvas.width, CGSG.canvas.height);
 }
 
+/* jshint -W035 */
 /**
  * Iterates the given array and, at each iteration, calls the given callback function. The loop stops if the callback
  * function returns false.
@@ -234,9 +235,12 @@ function cgsgClearContext(context) {
 function cgsgIterate(array, callback) {
     var i = 0, len = array.length;
 
+
     for (; i < len && callback(i, array[i++]) !== false;) {
     }
+
 }
+/* jshint +W035 */
 
 /**
  * Iterates the given array from the end to the beginning of the array. The loop stops if the callback function returns
@@ -251,8 +255,10 @@ function cgsgIterate(array, callback) {
 function cgsgIterateReverse(array, callback) {
     var i = array.length - 1;
 
+    /* jshint -W035 */
     for (; i >= 0 && callback(i, array[i--]) !== false;) {
     }
+    /* jshint +W035 */
 }
 
 /**

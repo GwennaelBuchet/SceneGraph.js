@@ -23,7 +23,7 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use strict";
+
 
 /**
  * Wraps inside a CGSGNode a DOM element to display it in the scene. Note that the element will be on top of canvas

@@ -143,7 +143,7 @@ var CGSGNodeSprite = CGSGNode.extend(
 
             ///// INITIALIZATION //////
             //finally load the image
-            if (this._urlImage !== null && this._urlImage != "") {
+            if (this._urlImage !== null && this._urlImage !== "") {
                 this._img.onload = this._createDelegate(this, this._onImageLoaded);
                 this._img.src = this._urlImage;
             }
@@ -160,7 +160,7 @@ var CGSGNodeSprite = CGSGNode.extend(
         _createDelegate: function (objectContext, delegateMethod) {
             return function () {
                 return delegateMethod.call(objectContext);
-            }
+            };
         },
 
         /**
@@ -318,7 +318,7 @@ var CGSGNodeSprite = CGSGNode.extend(
          * @method render
          * */
         render: function (c) {
-            if (this._isLoaded && this._img.src != "") {
+            if (this._isLoaded && this._img.src !== "") {
 
                 //compute the current slice of the current sprite
                 if (cgsgExist(this.currentAnimation)) {
@@ -405,7 +405,7 @@ var CGSGNodeSprite = CGSGNode.extend(
             }
 
             this.listAnimations.push(animation);
-            if (this.listAnimations.length == 1) {
+            if (this.listAnimations.length === 1) {
                 this.currentAnimation = animation;
             }
 
@@ -509,7 +509,7 @@ var CGSGNodeSprite = CGSGNode.extend(
             node.onAnimationEnd = this.onAnimationEnd;
             node.onAnimationStart = this.onAnimationStart;
 
-            if (this._urlImage !== null && this._urlImage != "") {
+            if (this._urlImage !== null && this._urlImage !== "") {
                 node._img.onload = node._createDelegate(node, node._onImageLoaded, node.context);
                 node._img.src = node._urlImage;
             }

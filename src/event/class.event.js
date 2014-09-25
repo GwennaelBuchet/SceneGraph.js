@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  * */
 
-"use strict";
-
 /**
  * This class represents an event fired by observable (through event manager) to observers (the handlers) functions.
  *
@@ -40,6 +38,7 @@
 var CGSGEvent = CGSGObject.extend(
     {
         initialize: function (trigger, data) {
+            'use strict';
 
             /**
              * Object which has created this event

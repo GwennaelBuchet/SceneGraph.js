@@ -26,6 +26,7 @@
 var CGSGNodeButtonProps = CGSGObject.extend(
     {
         initialize: function () {
+            "use strict";
             this.cls = [];
             this.firstColor = "";
             this.lastColor = "";
@@ -82,22 +83,22 @@ var CGSGButtonMode = {
     /**
      * @property NORMAL
      */
-    NORMAL     : {
-        id         : 0,
+    NORMAL: {
+        id: 0,
         isClickable: true
     },
     /**
      * @property OVER
      */
-    OVER       : {
-        id         : 1,
+    OVER: {
+        id: 1,
         isClickable: true
     },
     /**
      * @property DEACTIVATED
      */
     DEACTIVATED: {
-        id         : 2,
+        id: 2,
         isClickable: false
     },
 
@@ -105,7 +106,7 @@ var CGSGButtonMode = {
      * @property SELECTED
      */
     SELECTED: {
-        id         : 3,
+        id: 3,
         isClickable: true
     }
 };
@@ -114,8 +115,8 @@ var CGSGPositionMode = {
     /**
      * @property TOP
      */
-    TOP: {index      : 0, decalX: 0, decalY: -1, dt: 1, dy: 1,
-        computeWidth : function (item1, item2) {
+    TOP: {index: 0, decalX: 0, decalY: -1, dt: 1, dy: 1,
+        computeWidth: function (item1, item2) {
             return Math.max(item1, item2);
         },
         computeHeight: function (item1, item2) {
@@ -125,8 +126,8 @@ var CGSGPositionMode = {
     /**
      * @property BOTTOM
      */
-    BOTTOM: {index   : 1, decalX: 0, decalY: 1, dt: 0, dy: 1,
-        computeWidth : function (item1, item2) {
+    BOTTOM: {index: 1, decalX: 0, decalY: 1, dt: 0, dy: 1,
+        computeWidth: function (item1, item2) {
             return Math.max(item1, item2);
         },
         computeHeight: function (item1, item2) {
@@ -135,8 +136,8 @@ var CGSGPositionMode = {
     /**
      * @property LEFT
      */
-    LEFT  : {index   : 2, decalX: -1, decalY: 0, dt: 0, dy: 0,
-        computeWidth : function (item1, item2) {
+    LEFT: {index: 2, decalX: -1, decalY: 0, dt: 0, dy: 0,
+        computeWidth: function (item1, item2) {
             return 0;
         },
         computeHeight: function (item1, item2) {
@@ -145,8 +146,8 @@ var CGSGPositionMode = {
     /**
      * @property RIGHT
      */
-    RIGHT : {index   : 3, decalX: 1, decalY: 0, dt: 1, dy: 0,
-        computeWidth : function (item1, item2) {
+    RIGHT: {index: 3, decalX: 1, decalY: 0, dt: 1, dy: 0,
+        computeWidth: function (item1, item2) {
             return 0;
         },
         computeHeight: function (item1, item2) {
@@ -212,9 +213,9 @@ var CGSGNodeButton = CGSGNode.extend(
              * @private
              */
             this._tmpCanvases = [document.createElement('canvas'),
-                                 document.createElement('canvas'),
-                                 document.createElement('canvas'),
-                                 document.createElement('canvas')];
+                document.createElement('canvas'),
+                document.createElement('canvas'),
+                document.createElement('canvas')];
 
             /**
              * @property classType
@@ -248,13 +249,13 @@ var CGSGNodeButton = CGSGNode.extend(
 
             var that = this;
             this.onMouseOver = function (e) {
-                if (that.getMode() == CGSGButtonMode.NORMAL) {
+                if (that.getMode() === CGSGButtonMode.NORMAL) {
                     that.setMode(CGSGButtonMode.OVER);
                 }
             };
 
             this.onMouseOut = function (e) {
-                if (that.getMode() == CGSGButtonMode.OVER) {
+                if (that.getMode() === CGSGButtonMode.OVER) {
                     that.setMode(CGSGButtonMode.NORMAL);
                 }
             };
@@ -492,7 +493,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         getTexts: function () {
             return [CGSGButtonMode.NORMAL.props.txtNode._text, CGSGButtonMode.OVER.props.txtNode._text,
-                    CGSGButtonMode.DEACTIVATED.props.txtNode._text, CGSGButtonMode.SELECTED.props.txtNode._text];
+                CGSGButtonMode.DEACTIVATED.props.txtNode._text, CGSGButtonMode.SELECTED.props.txtNode._text];
         },
 
         /**
@@ -740,8 +741,8 @@ var CGSGNodeButton = CGSGNode.extend(
             if (cgsgExist(prop.icon) && prop.icon.isLoaded) {
                 if (cgsgExist(prop.slice)) {
                     prop.icon.setSlice(prop.slice.position.x, prop.slice.position.y,
-                                       prop.slice.dimension.width, prop.slice.dimension.height,
-                                       true);
+                        prop.slice.dimension.width, prop.slice.dimension.height,
+                        true);
                 }
 
                 wImg = prop.icon.slice.dimension.width;
@@ -785,25 +786,25 @@ var CGSGNodeButton = CGSGNode.extend(
                 tmpContext.moveTo(2 * r, r);
                 tmpContext.lineTo(r + this.dimension.width - r, r);
                 tmpContext.quadraticCurveTo(r + this.dimension.width,
-                                            r,
-                                            r + this.dimension.width,
-                                            r + r);
+                    r,
+                        r + this.dimension.width,
+                        r + r);
                 tmpContext.lineTo(r + this.dimension.width,
-                                  r + this.dimension.height - r);
+                        r + this.dimension.height - r);
                 tmpContext.quadraticCurveTo(r + this.dimension.width,
-                                            r + this.dimension.height,
-                                            r + this.dimension.width - r,
-                                            r + this.dimension.height);
+                        r + this.dimension.height,
+                        r + this.dimension.width - r,
+                        r + this.dimension.height);
                 tmpContext.lineTo(r + r,
-                                  r + this.dimension.height);
+                        r + this.dimension.height);
                 tmpContext.quadraticCurveTo(r,
-                                            r + this.dimension.height,
-                                            r,
-                                            r + this.dimension.height - r);
+                        r + this.dimension.height,
+                    r,
+                        r + this.dimension.height - r);
                 tmpContext.lineTo(r, r + r);
                 tmpContext.quadraticCurveTo(r, r,
-                                            r + r,
-                                            r);
+                        r + r,
+                    r);
                 tmpContext.closePath();
 
                 /*var gradient = tmpContext.createLinearGradient(0, 0, 0, this.dimension.height);
@@ -846,10 +847,10 @@ var CGSGNodeButton = CGSGNode.extend(
                 prop.icon.translateTo(
                         textX + ctX + this._pictoPosition.decalX * (ctX + dPT + (1 - this._pictoPosition.dt) * wImg) -
                         this._pictoPosition.dy * wImg / 2,
-                        (1 - this._pictoPosition.dy) * (textY + (tH - hImg) / 2)
-                            + this._pictoPosition.dy * (textY - txtNode._size / 2
-                                                            - this._pictoPosition.dt * (dPT + hImg) +
-                                                        (1 - this._pictoPosition.dt) * (tH + dPT))
+                        (1 - this._pictoPosition.dy) * (textY + (tH - hImg) / 2) +
+                        this._pictoPosition.dy * (textY - txtNode._size / 2 -
+                        this._pictoPosition.dt * (dPT + hImg) +
+                        (1 - this._pictoPosition.dt) * (tH + dPT))
                 );
 
                 prop.icon.doRender(tmpContext);
@@ -900,7 +901,7 @@ var CGSGNodeButton = CGSGNode.extend(
          */
         copy: function () {
             var node = new CGSGNodeSquare(this.position.x, this.position.y, this.dimension.width,
-                                          this.dimension.height);
+                this.dimension.height);
             //call the super method
             node = this._super(node);
 

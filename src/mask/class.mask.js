@@ -111,14 +111,15 @@ var CGSGMask = CGSGObject.extend(
          * @private
          */
         _eventAdapter: function (event) {
+            var ctx;
             switch (event.type) {
                 case this._prepareEvent :
-                    var ctx = this.prepare(event.observable, event.data.context);
+                    ctx = this.prepare(event.observable, event.data.context);
                     event.data.context = ctx;
 
                     break;
                 case this._finalizeEvent :
-                    var ctx = this.finalize(event.observable, event.data.context);
+                    ctx = this.finalize(event.observable, event.data.context);
                     event.data.context = ctx;
                     break;
             }

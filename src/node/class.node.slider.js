@@ -13,6 +13,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
     {
 
         initialize: function (handleWidth) {
+            'use strict';
             this._super(0, 0);
             this.resizeTo(handleWidth, handleWidth);
             //this.bkgcolor = "#CCCCCC";
@@ -265,7 +266,7 @@ var CGSGNodeSlider = CGSGNode.extend(
         setHandle: function (handle) {
             this.handle = handle;
             var handleWidth = Math.min(this.getWidth(), this.getHeight()) * 2;
-            if (handle == undefined) {
+            if (handle === undefined) {
                 this.handle = new CGSGNodeSliderHandle(handleWidth);
                 this.handle.color = this.backgroundColor;
             }
@@ -295,7 +296,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @param {Number} min lower bound of this slider
          */
         setMin: function (min) {
-            if (min != null && min != this.min && min < this.max) {
+            if (min !== null && min !== this.min && min < this.max) {
                 this.min = min;
                 this.updateSliderHandle();
             }
@@ -309,7 +310,7 @@ var CGSGNodeSlider = CGSGNode.extend(
          * @param {Number} max upper bound of this slider
          */
         setMax: function (max) {
-            if (max != null && max != this.max && max > this.min) {
+            if (max !== null && max !== this.max && max > this.min) {
                 this.max = max;
                 this.updateSliderHandle();
             }

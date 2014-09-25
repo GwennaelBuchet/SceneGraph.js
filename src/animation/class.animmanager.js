@@ -121,7 +121,7 @@ var CGSGAnimationManager = CGSGObject.extend(
          * @return {Boolean} true if there is still animation key after the current frame
          */
         stillHaveAnimation: function () {
-            if (this.listTimelines.length == 0) {
+            if (this.listTimelines.length === 0) {
                 return false;
             }
             else {
@@ -145,7 +145,7 @@ var CGSGAnimationManager = CGSGObject.extend(
          */
         getTimeline: function (node, attribute) {
             for (var i = 0, len = this.listTimelines.length; i < len; ++i) {
-                if (this.listTimelines[i].parentNode === node && this.listTimelines[i].attribute == attribute) {
+                if (this.listTimelines[i].parentNode === node && this.listTimelines[i].attribute === attribute) {
                     return this.listTimelines[i];
                 }
             }

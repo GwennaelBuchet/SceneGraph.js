@@ -21,6 +21,7 @@
  *
  * From documentation by John Resig (http://ejohn.org/)
  */
+/* jshint ignore:start */
 (function () {
     var initializing = false, fnTest = /xyz/.test(function () {
         xyz;
@@ -84,3 +85,4 @@
         return CGSGObject;
     };
 })();
+/* jshint ignore:end */

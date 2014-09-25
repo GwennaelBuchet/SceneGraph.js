@@ -147,7 +147,7 @@ var CGSGCSSManager = CGSGObject.extend(
          * @return {Number}
          */
         getURL: function (attr) {
-            if (!cgsgExist(attr) || attr.length == 0) {
+            if (!cgsgExist(attr) || attr.length === 0) {
                 return null;
             }
 
@@ -168,7 +168,7 @@ var CGSGCSSManager = CGSGObject.extend(
          * @return {Number}
          */
         getNumber: function (attr) {
-            if (!cgsgExist(attr) || attr.length == 0) {
+            if (!cgsgExist(attr) || attr.length === 0) {
                 return NaN;
             }
 
@@ -185,7 +185,7 @@ var CGSGCSSManager = CGSGObject.extend(
          * @return {Float}
          */
         getFloat: function (attr) {
-            if (!cgsgExist(attr) || attr.length == 0) {
+            if (!cgsgExist(attr) || attr.length === 0) {
                 return null;
             }
 
@@ -266,8 +266,8 @@ var CGSGCSSManager = CGSGObject.extend(
 
             var cssFiles = document.getElementsByTagName("link");
             for (var i = cssFiles.length; i >= 0; i--) {
-                if (cssFiles[i] && cssFiles[i].getAttribute(href) != null &&
-                    cssFiles[i].getAttribute(href).indexOf(filename) != -1) {
+                if (cssFiles[i] && cssFiles[i].getAttribute(href) !== null &&
+                    cssFiles[i].getAttribute(href).indexOf(filename) !== -1) {
                     cssFiles[i].parentNode.removeChild(cssFiles[i]);
                 }
             }
@@ -294,7 +294,7 @@ var CGSGCSSManager = CGSGObject.extend(
         _createDelegate: function (objectContext, delegateMethod) {
             return function () {
                 return delegateMethod.call(objectContext);
-            }
+            };
         },
 
         /**

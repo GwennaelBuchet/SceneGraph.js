@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CGSGHandleBox - SceneGraph.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="SceneGraph.js"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 2.2.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/CGSG.html">CGSG</a></li>
+            
+                <li><a href="../classes/CGSGAccordion.html">CGSGAccordion</a></li>
+            
+                <li><a href="../classes/CGSGAnimationManager.html">CGSGAnimationManager</a></li>
+            
+                <li><a href="../classes/CGSGAnimationMethod.html">CGSGAnimationMethod</a></li>
+            
+                <li><a href="../classes/CGSGBindEntry.html">CGSGBindEntry</a></li>
+            
+                <li><a href="../classes/CGSGButtonMode.html">CGSGButtonMode</a></li>
+            
+                <li><a href="../classes/CGSGCollisionGhostOnDemandTester.html">CGSGCollisionGhostOnDemandTester</a></li>
+            
+                <li><a href="../classes/CGSGCollisionManager.html">CGSGCollisionManager</a></li>
+            
+                <li><a href="../classes/CGSGCollisionMethod.html">CGSGCollisionMethod</a></li>
+            
+                <li><a href="../classes/CGSGCollisionRegionTester.html">CGSGCollisionRegionTester</a></li>
+            
+                <li><a href="../classes/CGSGCollisionTesterFactory.html">CGSGCollisionTesterFactory</a></li>
+            
+                <li><a href="../classes/CGSGColor.html">CGSGColor</a></li>
+            
+                <li><a href="../classes/CGSGCSSManager.html">CGSGCSSManager</a></li>
+            
+                <li><a href="../classes/CGSGDimension.html">CGSGDimension</a></li>
+            
+                <li><a href="../classes/CGSGEvent.html">CGSGEvent</a></li>
+            
+                <li><a href="../classes/CGSGEventManager.html">CGSGEventManager</a></li>
+            
+                <li><a href="../classes/CGSGHandleBox.html">CGSGHandleBox</a></li>
+            
+                <li><a href="../classes/CGSGImgManager.html">CGSGImgManager</a></li>
+            
+                <li><a href="../classes/CGSGInterpolator.html">CGSGInterpolator</a></li>
+            
+                <li><a href="../classes/CGSGInterpolatorLinear.html">CGSGInterpolatorLinear</a></li>
+            
+                <li><a href="../classes/CGSGInterpolatorTCB.html">CGSGInterpolatorTCB</a></li>
+            
+                <li><a href="../classes/CGSGKeyFrame.html">CGSGKeyFrame</a></li>
+            
+                <li><a href="../classes/CGSGMap.html">CGSGMap</a></li>
+            
+                <li><a href="../classes/CGSGMask.html">CGSGMask</a></li>
+            
+                <li><a href="../classes/CGSGMaskCache.html">CGSGMaskCache</a></li>
+            
+                <li><a href="../classes/CGSGMaskClip.html">CGSGMaskClip</a></li>
+            
+                <li><a href="../classes/CGSGMath.html">CGSGMath</a></li>
+            
+                <li><a href="../classes/CGSGNode.html">CGSGNode</a></li>
+            
+                <li><a href="../classes/CGSGNodeButton.html">CGSGNodeButton</a></li>
+            
+                <li><a href="../classes/CGSGNodeCircle.html">CGSGNodeCircle</a></li>
+            
+                <li><a href="../classes/CGSGNodeColorPicker.html">CGSGNodeColorPicker</a></li>
+            
+                <li><a href="../classes/CGSGNodeCurveTCB.html">CGSGNodeCurveTCB</a></li>
+            
+                <li><a href="../classes/CGSGNodeDomElement.html">CGSGNodeDomElement</a></li>
+            
+                <li><a href="../classes/CGSGNodeEllipse.html">CGSGNodeEllipse</a></li>
+            
+                <li><a href="../classes/CGSGNodeImage.html">CGSGNodeImage</a></li>
+            
+                <li><a href="../classes/CGSGNodeLine.html">CGSGNodeLine</a></li>
+            
+                <li><a href="../classes/CGSGNodeSlider.html">CGSGNodeSlider</a></li>
+            
+                <li><a href="../classes/CGSGNodeSliderHandle.html">CGSGNodeSliderHandle</a></li>
+            
+                <li><a href="../classes/CGSGNodeSprite.html">CGSGNodeSprite</a></li>
+            
+                <li><a href="../classes/CGSGNodeSquare.html">CGSGNodeSquare</a></li>
+            
+                <li><a href="../classes/CGSGNodeTabMenu.html">CGSGNodeTabMenu</a></li>
+            
+                <li><a href="../classes/CGSGNodeText.html">CGSGNodeText</a></li>
+            
+                <li><a href="../classes/CGSGNodeWebview.html">CGSGNodeWebview</a></li>
+            
+                <li><a href="../classes/CGSGParticle.html">CGSGParticle</a></li>
+            
+                <li><a href="../classes/CGSGParticleEmitter.html">CGSGParticleEmitter</a></li>
+            
+                <li><a href="../classes/CGSGParticleSystem.html">CGSGParticleSystem</a></li>
+            
+                <li><a href="../classes/CGSGPickNodeMethod.html">CGSGPickNodeMethod</a></li>
+            
+                <li><a href="../classes/CGSGPosition.html">CGSGPosition</a></li>
+            
+                <li><a href="../classes/CGSGRegion.html">CGSGRegion</a></li>
+            
+                <li><a href="../classes/CGSGRotation.html">CGSGRotation</a></li>
+            
+                <li><a href="../classes/CGSGScale.html">CGSGScale</a></li>
+            
+                <li><a href="../classes/CGSGSceneGraph.html">CGSGSceneGraph</a></li>
+            
+                <li><a href="../classes/CGSGSection.html">CGSGSection</a></li>
+            
+                <li><a href="../classes/CGSGTimeline.html">CGSGTimeline</a></li>
+            
+                <li><a href="../classes/CGSGTraverser.html">CGSGTraverser</a></li>
+            
+                <li><a href="../classes/CGSGVector2D.html">CGSGVector2D</a></li>
+            
+                <li><a href="../classes/CGSGView.html">CGSGView</a></li>
+            
+                <li><a href="../classes/CGSGWEBVIEWMODE.html">CGSGWEBVIEWMODE</a></li>
+            
+                <li><a href="../classes/CGSGWrapMode.html">CGSGWrapMode</a></li>
+            
+                <li><a href="../classes/GLOBAL_CONSTANTS.html">GLOBAL_CONSTANTS</a></li>
+            
+                <li><a href="../classes/GLOBAL_METHODS.html">GLOBAL_METHODS</a></li>
+            
+                <li><a href="../classes/GLOBAL_PROPERTIES.html">GLOBAL_PROPERTIES</a></li>
+            
+                <li><a href="../classes/UTIL_ARRAY.html">UTIL_ARRAY</a></li>
+            
+                <li><a href="../classes/WUICCGSGNodeImageFactory.html">WUICCGSGNodeImageFactory</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Animation.html">Animation</a></li>
+            
+                <li><a href="../modules/Collision.html">Collision</a></li>
+            
+                <li><a href="../modules/Math.html">Math</a></li>
+            
+                <li><a href="../modules/Node.html">Node</a></li>
+            
+                <li><a href="../modules/ParticleSystem.html">ParticleSystem</a></li>
+            
+                <li><a href="../modules/Scene.html">Scene</a></li>
+            
+                <li><a href="../modules/Util.html">Util</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>CGSGHandleBox Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a>
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_utils_class.handlebox.js.html#l26"><code>src\utils\class.handlebox.js:26</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Math.html">Math</a>
+        
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>A Tiny box on selected square borders</p>
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_CGSGHandleBox" class="method item">
+    <h3 class="name"><code>CGSGHandleBox</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>parentNode</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>size</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>fillColor</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>strokeColor</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>lineWidth</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>x</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>y</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l26"><code>src\utils\class.handlebox.js:26</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">parentNode</code>
+                        <span class="type"><a href="../classes/CGSGNode.html" class="crosslink">CGSGNode</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">size</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">fillColor</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">strokeColor</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">lineWidth</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">x</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">y</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method">
+                                <a href="#method_checkIfSelected">checkIfSelected</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_translateTo">translateTo</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property private">
+                                <a href="#property__parentNode">_parentNode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property private">
+                                <a href="#property__position">_position</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_fillColor">fillColor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_isVisible">isVisible</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_lineWidth">lineWidth</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_size">size</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_strokeColor">strokeColor</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_checkIfSelected" class="method item">
+    <h3 class="name"><code>checkIfSelected</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>mousePosition</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>threshold</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l111"><code>src\utils\class.handlebox.js:111</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return true if this handleBox is under the coordinate of the mouse.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">mousePosition</code>
+                        <span class="type"><a href="../classes/CGSGPosition.html" class="crosslink">CGSGPosition</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">threshold</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Threshold of detection around the box</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item">
+    <h3 class="name"><code>render</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>context</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l88"><code>src\utils\class.handlebox.js:88</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the context into render the handle box</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_translateTo" class="method item">
+    <h3 class="name"><code>translateTo</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>newRelativeX</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>newRelativeY</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l133"><code>src\utils\class.handlebox.js:133</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">newRelativeX</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">newRelativeY</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property__parentNode" class="property item private">
+    <h3 class="name"><code>_parentNode</code></h3>
+    <span class="type"><a href="../classes/CGSGNode.html" class="crosslink">CGSGNode</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l74"><code>src\utils\class.handlebox.js:74</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__position" class="property item private">
+    <h3 class="name"><code>_position</code></h3>
+    <span class="type"><a href="../classes/CGSGPosition.html" class="crosslink">CGSGPosition</a></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l80"><code>src\utils\class.handlebox.js:80</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_fillColor" class="property item">
+    <h3 class="name"><code>fillColor</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l44"><code>src\utils\class.handlebox.js:44</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_isVisible" class="property item">
+    <h3 class="name"><code>isVisible</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l68"><code>src\utils\class.handlebox.js:68</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_lineWidth" class="property item">
+    <h3 class="name"><code>lineWidth</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l56"><code>src\utils\class.handlebox.js:56</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_size" class="property item">
+    <h3 class="name"><code>size</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l62"><code>src\utils\class.handlebox.js:62</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_strokeColor" class="property item">
+    <h3 class="name"><code>strokeColor</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_utils_class.handlebox.js.html#l50"><code>src\utils\class.handlebox.js:50</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

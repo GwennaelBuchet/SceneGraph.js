@@ -23,8 +23,6 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use strict";
-
 /**
  * @module Collision
  * @class CGSGCollisionTesterFactory
@@ -36,6 +34,7 @@
 var CGSGCollisionTesterFactory = CGSGObject.extend(
     {
         initialize: function () {
+            'use strict';
 
             this.collisionTesters = new CGSGMap();
 

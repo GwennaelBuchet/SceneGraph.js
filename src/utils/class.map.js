@@ -34,6 +34,7 @@
 var CGSGMap = CGSGObject.extend(
     {
         initialize: function () {
+            "use strict";
             this._map = {};
 
             this._map.keys = [];

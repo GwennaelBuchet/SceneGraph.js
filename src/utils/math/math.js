@@ -72,7 +72,9 @@ var CGSGMath = {
      * @return {Number} The integer value
      */
     fixedPoint: function (n) {
+        /*jshint -W016 */
         return (0.5 + n) << 0;
+        /*jshint +W016 */
     },
 
     /**

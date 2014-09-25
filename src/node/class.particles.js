@@ -26,7 +26,6 @@
  *  These Terms of Use are subject to French law.
  */
 
-"use strict";
 
 /**
  * @module Animation
@@ -174,8 +173,7 @@ var CGSGParticle = CGSGObject.extend(
  */
 var CGSGParticleEmitter = CGSGNode.extend(
     {
-        initialize: function (nodeConstructor, region, nbParticlesMax, velocity, angle, speed, speedThreshold,
-                              outflow) {
+        initialize: function (nodeConstructor, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
             this._super(region.position.x, region.position.y);
             this.resizeTo(region.dimension.width, region.dimension.height);
 
@@ -388,7 +386,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
             particle.init();
             //set a random position inside the region of this emitter
             particle.initPosition(Math.random() * this.region.dimension.width,
-                                  Math.random() * this.region.dimension.height);
+                    Math.random() * this.region.dimension.height);
 
             //set a random direction inside the angle
             var velocity = this.velocity.copy();
@@ -400,7 +398,7 @@ var CGSGParticleEmitter = CGSGNode.extend(
 
             if (this.onInitParticle !== null) {
                 CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_INIT_PARTICLE,
-                                           new CGSGEvent(this, {index: index, particle: particle}));
+                    new CGSGEvent(this, {index: index, particle: particle}));
                 //this.onInitParticle({index : index, particle : particle});
                 //this.onInitParticle({data :{index : index, particle : particle}});
             }
@@ -419,8 +417,9 @@ var CGSGParticleEmitter = CGSGNode.extend(
             //finally, call the update method of the particle node to apply extra animations
             //if (this.onUpdateParticleEnd !== null) {
             this.onUpdateParticleEnd &&
-            CGSG.eventManager.dispatch(this, cgsgEventTypes.ON_UPDATE_PARTICLE_END,
-                                       new CGSGEvent(this, {particle: particle}));
+            CGSG.eventManager.dispatch(this,
+                cgsgEventTypes.ON_UPDATE_PARTICLE_END,
+                new CGSGEvent(this, {particle: particle}));
             //this.onUpdateParticleEnd(particle);
             //this.onUpdateParticleEnd({data:{particle : particle}});
             //}
@@ -543,7 +542,7 @@ var CGSGParticleSystem = CGSGNode.extend(
          */
         addEmitter: function (node, region, nbParticlesMax, velocity, angle, speed, speedThreshold, outflow) {
             var emitter = new CGSGParticleEmitter(node, region, nbParticlesMax, velocity, angle, speed, speedThreshold,
-                                                  outflow);
+                outflow);
             this.addChild(emitter);
             this.emitters.push(emitter);
             return emitter;

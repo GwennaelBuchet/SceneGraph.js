@@ -1,0 +1,38 @@
+{
+    "project": {},
+    "files": {
+        "input/preprocessor/preprocessortest.js": {
+            "name": "input/preprocessor/preprocessortest.js",
+            "modules": {},
+            "classes": {
+                "TestPreprocessor": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "TestPreprocessor": {
+            "name": "TestPreprocessor",
+            "shortname": "TestPreprocessor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "input/preprocessor/preprocessortest.js",
+            "line": 1,
+            "description": "This class is for testing the preprocessor option.",
+            "customtag": "hello"
+        }
+    },
+    "classitems": [],
+    "warnings": [
+        {
+            "message": "unknown tag: customtag",
+            "line": " input/preprocessor/preprocessortest.js:1"
+        }
+    ],
+    "testModuleWasHere": true
+}
