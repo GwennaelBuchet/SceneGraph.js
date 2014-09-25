@@ -60,9 +60,9 @@ module.exports = function (grunt) {
         'src/class.scenegraph.js',
         'src/class.view.js'
     ];
-    var output = 'min/<%= pkg.name %>_<%= pkg.version %>.js';
-    var outputMin = 'min/<%= pkg.name %>_<%= pkg.version %>.min.js';
-    var outputMap = 'min/<%= pkg.name %>_<%= pkg.version %>.map';
+    var output = 'min/scenegraph_<%= pkg.version %>.js';
+    var outputMin = 'min/scenegraph_<%= pkg.version %>.min.js';
+    var outputMap = 'min/scenegraph_<%= pkg.version %>.map';
 
     // Grunt configuration
     grunt.initConfig({

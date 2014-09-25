@@ -46,6 +46,22 @@ function cgsgIsArray(value) {
 }
 
 /**
+ * Return first item of this array, or null if there is no item
+ * @method Array.prototype.first
+ */
+Array.prototype.first = function () {
+    return (this.length > 0) ? this[0] : null;
+};
+
+/**
+ * Return last item of this array
+ * @method Array.prototype.last
+ */
+Array.prototype.last = function () {
+    return (this.length > 0) ? this[this.length - 1] : null;
+};
+
+/**
  * Remove all the occurrences of the item from the array
  * @method Array.prototype.without
  * @param item
@@ -3874,7 +3890,7 @@ var CGSG = {
      * @static
      * @type {String}
      */
-    version: "2.0.0-SNAPSHOT",
+    version: "2.2.0",
 
     /**
      * The scene graph itself

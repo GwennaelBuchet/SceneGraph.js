@@ -90,7 +90,7 @@ var CGSG = {
      * @static
      * @type {String}
      */
-    version: "2.0.0-SNAPSHOT",
+    version: "2.2.0",
 
     /**
      * The scene graph itself
