@@ -23,12 +23,15 @@
  */
 /* jshint ignore:start */
 (function () {
-    var initializing = false, fnTest = /xyz/.test(function () {
-        xyz;
-    }) ? /\b_super\b/ : /.*/;
     // The base CGSGObject implementation (does nothing)
     this.CGSGObject = function () {
     };
+
+    var initializing = false;
+    var fnTest = /xyz/.test(function () {
+        xyz;
+    }) ? /\b_super\b/ : /.*/;
+
 
     // Create a new CGSGObject that inherits from this class
     CGSGObject.extend = function (prop) {
@@ -45,24 +48,24 @@
             // Check if we're overwriting an existing function
             //noinspection JSUnfilteredForInLoop
             prototype[name] = typeof prop[name] === "function" &&
-                              typeof _super[name] === "function" && fnTest.test(prop[name]) ?
-                              (function (name, fn) {
-                                  return function () {
-                                      var tmp = this._super;
+            typeof _super[name] === "function" && fnTest.test(prop[name]) ?
+                (function (name, fn) {
+                    return function () {
+                        var tmp = this._super;
 
-                                      // Add a new ._super() method that is the same method
-                                      // but on the super-class
-                                      this._super = _super[name];
+                        // Add a new ._super() method that is the same method
+                        // but on the super-class
+                        this._super = _super[name];
 
-                                      // The method only need to be bound temporarily, so we
-                                      // remove it when we're done executing
-                                      var ret = fn.apply(this, arguments);
-                                      this._super = tmp;
+                        // The method only need to be bound temporarily, so we
+                        // remove it when we're done executing
+                        var ret = fn.apply(this, arguments);
+                        this._super = tmp;
 
-                                      return ret;
-                                  };
-                              })(name, prop[name]) :
-                              prop[name];
+                        return ret;
+                    };
+                })(name, prop[name]) :
+                prop[name];
         }
 
         // The dummy class constructor

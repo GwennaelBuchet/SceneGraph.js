@@ -71,7 +71,7 @@ var CGSGNodeSquare = CGSGNode.extend(
             //}
 
             //we draw the rect at (0,0) because we have already translated the c to the correct position
-            if (!cgsgExist(this.radius) || this.radius <= 0) {
+            if (!cgsgExist(this.borderRadius) || this.borderRadius <= 0) {
                 c.fillRect(0, 0, this.dimension.width, this.dimension.height);
                 if (this.lineWidth > 0) {
                     c.strokeRect(0, 0, this.dimension.width, this.dimension.height);
@@ -79,7 +79,7 @@ var CGSGNodeSquare = CGSGNode.extend(
             }
             else {
                 c.save();
-                var r = this.radius;
+                var r = this.borderRadius;
                 var w = this.dimension.width;
                 var h = this.dimension.height;
                 var rw = r + w;

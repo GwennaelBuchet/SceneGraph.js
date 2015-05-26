@@ -52,7 +52,7 @@ var CGSGPosition = CGSGVector2D.extend(
         },
 
         /**
-         * return a new object with these attributes
+         * return a new object with these attributesgetAbsoluteWidth
          * @public
          * @method copy
          * @return {CGSGPosition}

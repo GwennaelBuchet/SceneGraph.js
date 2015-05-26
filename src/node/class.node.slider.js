@@ -16,7 +16,7 @@ var CGSGNodeSliderHandle = CGSGNode.extend(
             'use strict';
             this._super(0, 0);
             this.resizeTo(handleWidth, handleWidth);
-            //this.bkgcolor = "#CCCCCC";
+            this.bkgcolors = ["#CCCCCC"];
             this.rotationCenter = new CGSGPosition(0.5, 0.5);
             this.handleWidth = handleWidth;
             this.isDraggable = true;

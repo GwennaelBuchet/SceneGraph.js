@@ -57,11 +57,15 @@ var CGSGColor = {
         return {
             r: parseInt(hex.substring(0, 2), 16),
             g: parseInt(hex.substring(2, 4), 16),
-            b: parseInt(hex.substring(4, 6), 16)};
+            b: parseInt(hex.substring(4, 6), 16)
+        };
     },
 
     _withoutSharp: function (hex) {
-        return (hex.charAt(0) === "#") ? hex.substring(1, hex.length) : hex;
+        if (cgsgExist(hex)) {
+            return (hex.charAt(0) === "#") ? hex.substring(1, hex.length) : hex;
+        }
+        return "000000";
     },
 
     /**
@@ -219,7 +223,9 @@ var CGSGColor = {
      * @return {Object}
      */
     rgb2hsl: function (r, g, b) {
-        r /= 255; g /= 255; b /= 255;
+        r /= 255;
+        g /= 255;
+        b /= 255;
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, l = (max + min) / 2;
 
@@ -319,22 +325,34 @@ var CGSGColor = {
 
         switch (i % 6) {
             case 0:
-                r = v; g = t; b = p;
+                r = v;
+                g = t;
+                b = p;
                 break;
             case 1:
-                r = q; g = v; b = p;
+                r = q;
+                g = v;
+                b = p;
                 break;
             case 2:
-                r = p; g = v; b = t;
+                r = p;
+                g = v;
+                b = t;
                 break;
             case 3:
-                r = p; g = q; b = v;
+                r = p;
+                g = q;
+                b = v;
                 break;
             case 4:
-                r = t; g = p; b = v;
+                r = t;
+                g = p;
+                b = v;
                 break;
             case 5:
-                r = v; g = p; b = q;
+                r = v;
+                g = p;
+                b = q;
                 break;
         }
 

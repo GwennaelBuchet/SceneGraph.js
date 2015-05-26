@@ -658,7 +658,7 @@ var CGSGNodeText = CGSGNode.extend(
                 context.strokeText(text, x, y);
             }
 
-            if (cgsgExist(this.bkgcolors[0]) && this.globalAlpha > 0) {
+            if (cgsgExist(context.fillStyle) && this.globalAlpha > 0) {
                 context.fillText(text, x, y);
             }
 

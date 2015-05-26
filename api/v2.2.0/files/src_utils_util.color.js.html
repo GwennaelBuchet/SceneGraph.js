@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\utils\util.color.js - SceneGraph.js</title>
+    <title>src/utils/util.color.js - SceneGraph.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,7 +15,7 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..\..\logo\logoCGSG_256x57.png" title="SceneGraph.js"></h1>
+                <h1><img src="../../logo/logoCGSG_256x57.png" title="SceneGraph.js"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
@@ -222,7 +222,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src\utils\util.color.js</h1>
+                        <h1 class="file-heading">File: src/utils/util.color.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -285,11 +285,15 @@ var CGSGColor = {
         return {
             r: parseInt(hex.substring(0, 2), 16),
             g: parseInt(hex.substring(2, 4), 16),
-            b: parseInt(hex.substring(4, 6), 16)};
+            b: parseInt(hex.substring(4, 6), 16)
+        };
     },
 
     _withoutSharp: function (hex) {
-        return (hex.charAt(0) === &quot;#&quot;) ? hex.substring(1, hex.length) : hex;
+        if (cgsgExist(hex)) {
+            return (hex.charAt(0) === &quot;#&quot;) ? hex.substring(1, hex.length) : hex;
+        }
+        return &quot;000000&quot;;
     },
 
     /**
@@ -447,7 +451,9 @@ var CGSGColor = {
      * @return {Object}
      */
     rgb2hsl: function (r, g, b) {
-        r /= 255; g /= 255; b /= 255;
+        r /= 255;
+        g /= 255;
+        b /= 255;
         var max = Math.max(r, g, b), min = Math.min(r, g, b);
         var h, s, l = (max + min) / 2;
 
@@ -547,22 +553,34 @@ var CGSGColor = {
 
         switch (i % 6) {
             case 0:
-                r = v; g = t; b = p;
+                r = v;
+                g = t;
+                b = p;
                 break;
             case 1:
-                r = q; g = v; b = p;
+                r = q;
+                g = v;
+                b = p;
                 break;
             case 2:
-                r = p; g = v; b = t;
+                r = p;
+                g = v;
+                b = t;
                 break;
             case 3:
-                r = p; g = q; b = v;
+                r = p;
+                g = q;
+                b = v;
                 break;
             case 4:
-                r = t; g = p; b = v;
+                r = t;
+                g = p;
+                b = v;
                 break;
             case 5:
-                r = v; g = p; b = q;
+                r = v;
+                g = p;
+                b = q;
                 break;
         }
 
